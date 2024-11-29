@@ -94,9 +94,9 @@ const UserListScreen = () => {
       const unsubscribe = onSnapshot(doc(db, 'challenges', challengeDocRef.id), (docSnapshot) => {
         const challengeData = docSnapshot.data();
         if (challengeData.status === 'accepted') {
-          // Challenge accepted, navigate to quiz
+          // Challenge accepted, navigate both users to quiz
           setChallengeLoading(false);
-          navigate('/cquiz', { state: { selectedQuiz } });
+          navigate('/cquiz', { state: { selectedQuiz, users: [currentUser.uid, challengedUserId] } });
         } else if (challengeData.status === 'declined') {
           // Challenge declined, show error message
           setChallengeLoading(false);

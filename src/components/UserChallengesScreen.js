@@ -34,7 +34,7 @@ const UserChallengesScreen = () => {
         setLoading(false);
         return;
       }
-      
+
       try {
         const challengesQuery = query(
           collection(db, 'challenges'),
@@ -63,7 +63,7 @@ const UserChallengesScreen = () => {
         setLoading(false);
       }
     };
-    
+
     fetchChallenges();
   }, []);
 
@@ -89,8 +89,16 @@ const UserChallengesScreen = () => {
         console.log(`Challenge accepted and deleted: ${challengeId}`);
 
         // Navigate both the challenger and challenged to the quiz
-        navigate('/cquiz', { state: { selectedQuiz: quiz } });
-
+        const challengeDoc = await getDoc(challengeDocRef);
+        const challengeData = challengeDoc.data();
+        
+        // Pass both the users and quiz information
+        navigate('/cquiz', { 
+          state: { 
+            selectedQuiz: quiz, 
+            users: [challengeData.challengerId, challengeData.challengedId] 
+          }
+        });
       } else if (action === 'decline') {
         await updateDoc(challengeDocRef, {
           status: 'declined',
@@ -197,9 +205,6 @@ const styles = {
     cursor: 'pointer',
     transition: 'background-color 0.3s',
     marginTop: '15px',
-  },
-  buttonHover: {
-    backgroundColor: '#45a049',
   },
   loaderContainer: {
     display: 'flex',
