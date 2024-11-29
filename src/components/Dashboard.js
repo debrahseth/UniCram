@@ -15,6 +15,16 @@ const Dashboard = () => {
     { text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela" },
     { text: "Success is the sum of small efforts, repeated day in and day out.", author: "Robert Collier" },
     { text: "Don’t wait for opportunity. Create it.", author: "Anonymous" },
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+    { text: "An investment in knowledge pays the best interest.", author: "Benjamin Franklin" },
+    { text: "The more that you read, the more things you will know. The more that you learn, the more places you'll go.", author: "Dr. Seuss" },
+    { text: "Education is the key to unlocking the world, a passport to freedom.", author: "Oprah Winfrey" },
+    { text: "Learning never exhausts the mind, it only ignites it.", author: "Leonardo da Vinci" },
+    { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
+    { text: "The beautiful thing about learning is that no one can take it away from you.", author: "B.B. King" },
+    { text: "Education is not preparation for life; education is life itself.", author: "John Dewey" },
+    { text: "What we learn with pleasure we never forget.", author: "Alfred Mercier" },
+    { text: "It is the mark of an educated mind to be able to entertain a thought without accepting it.", author: "Aristotle" },
   ];
 
   const studyTips = [
