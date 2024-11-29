@@ -106,7 +106,6 @@ const styles = {
     height: '100vh',
     backgroundColor: '#f4f7fc',
     padding: '20px',
-    marginTop: '40px'
   },
   footerStyle: {
     position: 'fixed',
