@@ -91,9 +91,6 @@ const Dashboard = () => {
 
         <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
       </div>
-      <div style={styles.footerStyle}>
-        <p>© 2025 StudyGroup. All rights reserved.</p>
-      </div>
     </div>
   );
 };
@@ -106,17 +103,6 @@ const styles = {
     height: '100vh',
     backgroundColor: '#f4f7fc',
     padding: '20px',
-  },
-  footerStyle: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    width: '100%',
-    padding: '10px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '0.9rem',
   },
   header: {
     width: '100%',
