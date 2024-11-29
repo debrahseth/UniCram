@@ -9,6 +9,9 @@ import Quiz from './components/Quiz';
 import Result from './components/Result';
 import Dashboard from './components/Dashboard';
 import SplashScreen from './components/SplashScreen';
+import UserListScreen from './components/UserListScreen';
+import UserChallengesScreen from './components/UserChallengesScreen';
+import QuizScreen from './components/QuizScreen';
 import './App.css';
 
 function App() {
@@ -24,6 +27,9 @@ function App() {
         <Route path="/result" element={<Result />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/splash" element={<SplashScreen />} />
+        <Route path="/challenge" element={<UserListScreen />} />
+        <Route path="/challenges" element={<UserChallengesScreen />} />
+        <Route path="/cquiz" element={<QuizScreen />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

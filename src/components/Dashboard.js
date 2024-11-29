@@ -100,6 +100,8 @@ const Dashboard = () => {
         </div>
 
         <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
+        <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
+        <button onClick={() => navigate('/challenges')} style={styles.startQuizButton}>See my Challenges</button>
       </div>
     </div>
   );
