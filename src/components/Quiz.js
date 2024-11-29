@@ -18,9 +18,9 @@ const Quiz = () => {
   const [timerRunning, setTimerRunning] = useState(false);
 
   const timeLimits = {
-    easy: 5,
-    medium: 90,
-    hard: 120,
+    easy: 150,
+    medium: 300,
+    hard: 450,
   };
 
   const handleCourseSelection = (course) => {
