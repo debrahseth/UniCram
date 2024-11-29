@@ -73,39 +73,42 @@ const UserChallengesScreen = () => {
       console.error("No logged-in user found.");
       return;
     }
-
+  
     try {
       const challengeDocRef = doc(db, 'challenges', challengeId);
-
+  
       if (action === 'accept') {
         // Update the challenge status to 'accepted'
         await updateDoc(challengeDocRef, {
           status: 'accepted',
           acceptedAt: serverTimestamp(),
         });
-
-        // Delete the challenge from the collection after accepting it
-        await deleteDoc(challengeDocRef);
-        console.log(`Challenge accepted and deleted: ${challengeId}`);
-
-        // Navigate both the challenger and challenged to the quiz
+  
+        // Fetch the challenge document again to get updated data
         const challengeDoc = await getDoc(challengeDocRef);
         const challengeData = challengeDoc.data();
-        
-        // Pass both the users and quiz information
-        navigate('/cquiz', { 
-          state: { 
-            selectedQuiz: quiz, 
-            users: [challengeData.challengerId, challengeData.challengedId] 
+  
+        // Navigate both the challenger and challenged to the quiz
+        console.log('Navigating to /cquiz with quiz:', quiz, 'and users:', [challengeData.challengerId, challengeData.challengedId]);
+  
+        // Pass both the users and quiz information to the QuizScreen
+        navigate('/cquiz', {
+          state: {
+            selectedQuiz: quiz,
+            users: [challengeData.challengerId, challengeData.challengedId] // Passing both user IDs
           }
         });
+  
+        // Optionally, delete the challenge document after navigating
+        await deleteDoc(challengeDocRef);
+        console.log(`Challenge accepted and deleted: ${challengeId}`);
       } else if (action === 'decline') {
         await updateDoc(challengeDocRef, {
           status: 'declined',
           declinedAt: serverTimestamp(),
         });
-
-        // Optionally, delete the challenge when declined, if you want to clean it up
+  
+        // Delete the challenge document when declined
         await deleteDoc(challengeDocRef);
         console.log(`Challenge declined and deleted: ${challengeId}`);
       }
@@ -113,7 +116,7 @@ const UserChallengesScreen = () => {
       console.error("Error handling challenge response: ", error);
     }
   };
-
+  
   if (loading) {
     return (
       <div style={styles.loaderContainer}>

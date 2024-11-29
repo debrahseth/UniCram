@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import quizData from '../assets/quizData';
 
-const QuizScreen = ({ selectedQuiz, challengerId, challengedId }) => {
+const QuizScreen = () => {
+  const location = useLocation();
+  const { selectedQuiz, users } = location.state || {};  // Destructure state passed from the challenge screen
+  
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [challengerScore, setChallengerScore] = useState(0);
   const [challengedScore, setChallengedScore] = useState(0);
   const [isQuizComplete, setIsQuizComplete] = useState(false);
   const [answered, setAnswered] = useState(false);
-  
+
   const quizQuestions = quizData[selectedQuiz];
-  
+
   if (!quizQuestions) {
     return <p>Quiz not found</p>;
   }
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
+
   const handleAnswerSelection = (selectedAnswer, userType) => {
-    if (answered) return;
+    if (answered) return;  // Prevent multiple answers for the same question
+    
     if (selectedAnswer === currentQuestion.answer) {
       if (userType === 'challenger') {
         setChallengerScore(challengerScore + 1);
@@ -26,6 +32,7 @@ const QuizScreen = ({ selectedQuiz, challengerId, challengedId }) => {
     }
 
     setAnswered(true);
+
     setTimeout(() => {
       if (currentQuestionIndex + 1 < quizQuestions.length) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -35,6 +42,7 @@ const QuizScreen = ({ selectedQuiz, challengerId, challengedId }) => {
       }
     }, 1000); 
   };
+
   const restartQuiz = () => {
     setChallengerScore(0);
     setChallengedScore(0);
@@ -42,6 +50,7 @@ const QuizScreen = ({ selectedQuiz, challengerId, challengedId }) => {
     setIsQuizComplete(false);
     setAnswered(false);
   };
+
   return (
     <div>
       {isQuizComplete ? (
@@ -61,24 +70,27 @@ const QuizScreen = ({ selectedQuiz, challengerId, challengedId }) => {
       ) : (
         <div>
           <h2>{selectedQuiz}</h2>
-          <p>{currentQuestion.question}</p>
+          <h3>{currentQuestion.question}</h3>
           <div>
-            {currentQuestion.options.map((option, index) => (
-              <div key={index}>
-                <button
-                  onClick={() => handleAnswerSelection(option, 'challenger')}
-                  disabled={answered}
-                >
+            {/* Challenger's Answer Buttons */}
+            <div>
+              <h4>Challenger's Turn</h4>
+              {currentQuestion.options.map((option, index) => (
+                <button key={index} onClick={() => handleAnswerSelection(option, 'challenger')} disabled={answered}>
                   {option}
                 </button>
-                <button
-                  onClick={() => handleAnswerSelection(option, 'challenged')}
-                  disabled={answered}
-                >
+              ))}
+            </div>
+            
+            {/* Challenged's Answer Buttons */}
+            <div>
+              <h4>Challenged's Turn</h4>
+              {currentQuestion.options.map((option, index) => (
+                <button key={index} onClick={() => handleAnswerSelection(option, 'challenged')} disabled={answered}>
                   {option}
                 </button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       )}
