@@ -1,46 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import quizData from '../assets/quizData'; // Import your quizData
+import quizData from '../assets/quizData';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
 const QuizScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const { challengeId } = location.state || {}; // Get challengeId from previous screen
-
+  const { challengeId } = location.state || {};
   const [challengerUsername, setChallengerUsername] = useState('');
   const [challengedUsername, setChallengedUsername] = useState('');
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [quiz, setQuiz] = useState(null); // Store quiz data
+  const [loading, setLoading] = useState(true);
+  const [quiz, setQuiz] = useState(null);
   const [status, setStatus] = useState('');
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Track the current question index
-  const [selectedAnswer, setSelectedAnswer] = useState(null); // Store the selected answer for current question
-  const [challengerAnswers, setChallengerAnswers] = useState([]); // Store answers for challenger
-  const [challengedAnswers, setChallengedAnswers] = useState([]); // Store answers for challenged
-  const [isQuizFinished, setIsQuizFinished] = useState(false); // Track quiz completion status
-  const [challengerScore, setChallengerScore] = useState(0); // Track challenger score
-  const [challengedScore, setChallengedScore] = useState(0); // Track challenged score
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [challengerAnswers, setChallengerAnswers] = useState([]);
+  const [challengedAnswers, setChallengedAnswers] = useState([]); 
+  const [isQuizFinished, setIsQuizFinished] = useState(false);
+  const [challengerScore, setChallengerScore] = useState(0);
+  const [challengedScore, setChallengedScore] = useState(0);
+  const [timer, setTimer] = useState(30);
+  const [timerInterval, setTimerInterval] = useState(null);
 
-  // Fetch challenge data (challengerId, challengedId, quiz)
   const fetchChallengeData = async () => {
     if (!challengeId) return;
-
     try {
       const challengeDocRef = doc(db, 'challenges', challengeId);
       const challengeDoc = await getDoc(challengeDocRef);
-
       if (challengeDoc.exists()) {
         const challengeData = challengeDoc.data();
         const { challengerId, challengedId, quiz: quizName, status } = challengeData;
-
         setStatus(status);
-
-        // Only fetch and display the quiz if the challenge is accepted
         if (status === 'accepted') {
           fetchUsernames(challengerId, challengedId);
-          fetchQuizData(quizName); // Fetch quiz based on quiz name
+          fetchQuizData(quizName);
         } else {
           console.log('Challenge not accepted yet');
         }
@@ -52,10 +46,8 @@ const QuizScreen = () => {
     }
   };
 
-  // Fetch usernames from users collection
   const fetchUsernames = async (challengerId, challengedId) => {
     try {
-      // Fetch Challenger Username
       const challengerDocRef = doc(db, 'users', challengerId);
       const challengerDoc = await getDoc(challengerDocRef);
       if (challengerDoc.exists()) {
@@ -63,8 +55,6 @@ const QuizScreen = () => {
       } else {
         setChallengerUsername('Unknown');
       }
-
-      // Fetch Challenged Username
       const challengedDocRef = doc(db, 'users', challengedId);
       const challengedDoc = await getDoc(challengedDocRef);
       if (challengedDoc.exists()) {
@@ -72,80 +62,85 @@ const QuizScreen = () => {
       } else {
         setChallengedUsername('Unknown');
       }
-
-      setLoading(false); // Set loading to false after data is fetched
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching usernames:', error);
-      setLoading(false); // Stop loading on error
+      setLoading(false);
     }
   };
 
-  // Fetch quiz data based on the quiz name
   const fetchQuizData = (quizName) => {
-    console.log('Selected Quiz:', quizName); // Log the selected quiz name
-
-    // Check if the selected quiz exists in the local quizData
     if (quizName && quizData[quizName]) {
-      setQuiz(quizData[quizName]); // Set quiz data if found
+      setQuiz(quizData[quizName]);
     } else {
       console.error('Quiz not found for:', quizName);
     }
   };
 
-  // Handle answer selection without updating scores immediately
   const handleAnswerSelection = (answer) => {
     setSelectedAnswer(answer);
-
-    // Store the selected answer for each player
     const currentQuestion = quiz[currentQuestionIndex];
+    // Track answers separately for each player
+    setChallengerAnswers(prevAnswers => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[currentQuestionIndex] = answer;
+      return newAnswers;
+    });
+    setChallengedAnswers(prevAnswers => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[currentQuestionIndex] = answer;
+      return newAnswers;
+    });
 
-    if (currentQuestion.player === 'challenger') {
-      setChallengerAnswers(prevAnswers => [...prevAnswers, answer]);
-    } else {
-      setChallengedAnswers(prevAnswers => [...prevAnswers, answer]);
-    }
-
-    // Move to the next question after a short delay to allow user to see their selection
     setTimeout(() => {
-      setSelectedAnswer(null); // Reset selected answer for the next question
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-    }, 500); // Adjust the delay as needed (500ms delay before moving to the next question)
+      setSelectedAnswer(null);
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+    }, 500);
   };
 
-  // Calculate scores after quiz finishes
   const calculateScores = () => {
     let challengerScoreTemp = 0;
     let challengedScoreTemp = 0;
-
     quiz.forEach((question, index) => {
-      if (challengerAnswers[index] === question.correctAnswer) {
+      if (challengerAnswers[index] !== undefined && challengerAnswers[index] === question.correctAnswer) {
         challengerScoreTemp += 1;
       }
-      if (challengedAnswers[index] === question.correctAnswer) {
+      if (challengedAnswers[index] !== undefined && challengedAnswers[index] === question.correctAnswer) {
         challengedScoreTemp += 1;
       }
     });
-
     setChallengerScore(challengerScoreTemp);
     setChallengedScore(challengedScoreTemp);
   };
 
-  // Handle quiz finish logic
   const handleQuizFinish = () => {
     setIsQuizFinished(true);
-    calculateScores(); // Calculate scores when the quiz is finished
+    calculateScores();
+    if (timerInterval) {
+      clearInterval(timerInterval);
+    }
   };
 
-  // Fetch the challenge data and usernames on component mount
   useEffect(() => {
     fetchChallengeData();
+
+    const interval = setInterval(() => {
+      setTimer(prevTime => {
+        if (prevTime === 0) {
+          clearInterval(interval);
+          handleQuizFinish();
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000); 
+    setTimerInterval(interval);
+
+    return () => clearInterval(interval);
   }, [challengeId]);
 
-  // Check if the quiz is finished
   const currentQuestion = quiz ? quiz[currentQuestionIndex] : null;
-  const isQuizFinishedFlag = currentQuestionIndex >= quiz?.length;
-
-  // If the quiz is finished, call handleQuizFinish
+  const isQuizFinishedFlag = currentQuestionIndex >= quiz?.length || timer === 0;
   useEffect(() => {
     if (isQuizFinishedFlag) {
       handleQuizFinish();
@@ -161,11 +156,10 @@ const QuizScreen = () => {
       <h2>Quiz Challenge</h2>
       <p><strong>Challenger:</strong> {challengerUsername}</p>
       <p><strong>Challenged:</strong> {challengedUsername}</p>
-
-      {/* Display the quiz question */}
+      <h3>Time Remaining: {Math.floor(timer / 60)}:{timer % 60 < 10 ? `0${timer % 60}` : timer % 60}</h3>
       {quiz && currentQuestion && !isQuizFinishedFlag ? (
         <div>
-          <h3>{currentQuestion.quizName}</h3> {/* Display the name of the selected quiz */}
+          <h3>{currentQuestion.quizName}</h3>
           <h4>{currentQuestion.question}</h4>
           <div style={styles.optionsContainer}>
             {currentQuestion.options.map((option, idx) => (
@@ -173,9 +167,9 @@ const QuizScreen = () => {
                 key={idx}
                 style={{
                   ...styles.optionButton,
-                  backgroundColor: selectedAnswer === option ? '#4CAF50' : '#008CBA', // Highlight selected answer
+                  backgroundColor: selectedAnswer === option ? '#4CAF50' : '#008CBA',
                 }}
-                onClick={() => handleAnswerSelection(option)} // Trigger automatic question change
+                onClick={() => handleAnswerSelection(option)}
               >
                 {option}
               </button>
@@ -185,13 +179,12 @@ const QuizScreen = () => {
       ) : isQuizFinishedFlag ? (
         <div>
           <h3>Quiz Finished!</h3>
-          <p>Challenger Score: {challengerScore}</p>
-          <p>Challenged Score: {challengedScore}</p>
+          <p><strong>{challengerUsername}'s Score:</strong> {challengerScore}</p>
+          <p><strong>{challengedUsername}'s Score:</strong> {challengedScore}</p>
         </div>
       ) : (
         <p>Loading quiz question...</p>
       )}
-
       <button onClick={() => navigate('/dashboard')} style={styles.button}>Go Back to Dashboard</button>
     </div>
   );
