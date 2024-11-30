@@ -16,7 +16,7 @@ const QuizScreen = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [challengerAnswers, setChallengerAnswers] = useState([]);
-  const [challengedAnswers, setChallengedAnswers] = useState([]); 
+  const [challengedAnswers, setChallengedAnswers] = useState([]);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [challengerScore, setChallengerScore] = useState(0);
   const [challengedScore, setChallengedScore] = useState(0);
@@ -77,38 +77,46 @@ const QuizScreen = () => {
     }
   };
 
-  const handleAnswerSelection = (answer) => {
+  // Function to handle selection of an answer for each player
+  const handleAnswerSelection = (answer, player) => {
     setSelectedAnswer(answer);
-    const currentQuestion = quiz[currentQuestionIndex];
-    // Track answers separately for each player
-    setChallengerAnswers(prevAnswers => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[currentQuestionIndex] = answer;
-      return newAnswers;
-    });
-    setChallengedAnswers(prevAnswers => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[currentQuestionIndex] = answer;
-      return newAnswers;
-    });
 
+    if (player === 'challenger') {
+      setChallengerAnswers((prevAnswers) => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentQuestionIndex] = answer;
+        return newAnswers;
+      });
+    } else if (player === 'challenged') {
+      setChallengedAnswers((prevAnswers) => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentQuestionIndex] = answer;
+        return newAnswers;
+      });
+    }
+
+    // Move to next question after a brief delay
     setTimeout(() => {
       setSelectedAnswer(null);
-      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     }, 500);
   };
 
+  // Calculate scores for both players at the end of the quiz
   const calculateScores = () => {
     let challengerScoreTemp = 0;
     let challengedScoreTemp = 0;
+
+    // Loop through each question and calculate scores for both players
     quiz.forEach((question, index) => {
-      if (challengerAnswers[index] !== undefined && challengerAnswers[index] === question.correctAnswer) {
+      if (challengerAnswers[index] === question.correctAnswer) {
         challengerScoreTemp += 1;
       }
-      if (challengedAnswers[index] !== undefined && challengedAnswers[index] === question.correctAnswer) {
+      if (challengedAnswers[index] === question.correctAnswer) {
         challengedScoreTemp += 1;
       }
     });
+
     setChallengerScore(challengerScoreTemp);
     setChallengedScore(challengedScoreTemp);
   };
@@ -125,7 +133,7 @@ const QuizScreen = () => {
     fetchChallengeData();
 
     const interval = setInterval(() => {
-      setTimer(prevTime => {
+      setTimer((prevTime) => {
         if (prevTime === 0) {
           clearInterval(interval);
           handleQuizFinish();
@@ -133,7 +141,8 @@ const QuizScreen = () => {
         }
         return prevTime - 1;
       });
-    }, 1000); 
+    }, 1000);
+
     setTimerInterval(interval);
 
     return () => clearInterval(interval);
@@ -159,7 +168,6 @@ const QuizScreen = () => {
       <h3>Time Remaining: {Math.floor(timer / 60)}:{timer % 60 < 10 ? `0${timer % 60}` : timer % 60}</h3>
       {quiz && currentQuestion && !isQuizFinishedFlag ? (
         <div>
-          <h3>{currentQuestion.quizName}</h3>
           <h4>{currentQuestion.question}</h4>
           <div style={styles.optionsContainer}>
             {currentQuestion.options.map((option, idx) => (
@@ -169,7 +177,7 @@ const QuizScreen = () => {
                   ...styles.optionButton,
                   backgroundColor: selectedAnswer === option ? '#4CAF50' : '#008CBA',
                 }}
-                onClick={() => handleAnswerSelection(option)}
+                onClick={() => handleAnswerSelection(option, 'challenger')}
               >
                 {option}
               </button>
