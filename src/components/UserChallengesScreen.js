@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebase'; 
+import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where, updateDoc, doc, getDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'; 
+import { collection, query, where, onSnapshot, updateDoc, doc, deleteDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const UserChallengesScreen = () => {
@@ -9,37 +9,56 @@ const UserChallengesScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  // Function to fetch the challenger's username
   const fetchChallengerUsername = async (challengerId) => {
+    console.log('Fetching username for challengerId:', challengerId);
     try {
       const userDocRef = doc(db, 'users', challengerId);
       const userDoc = await getDoc(userDocRef);
       if (userDoc.exists()) {
         const username = userDoc.data().username;
+        console.log(`Fetched challenger username: ${username}`);  // Log the username
         return username;
       } else {
+        console.log('Challenger username not found, returning "Unknown"');
         return 'Unknown';
       }
     } catch (error) {
+      console.error('Error fetching challenger username:', error);
       return 'Unknown';
     }
   };
+
+  // Effect hook to listen for real-time challenges
   useEffect(() => {
-    const fetchChallenges = async () => {
-      const currentUser = getAuth().currentUser;
-      if (!currentUser) {
-        setLoading(false);
-        return;
-      }
-      try {
-        const challengesQuery = query(
-          collection(db, 'challenges'),
-          where('challengedId', '==', currentUser.uid),
-          where('status', '==', 'pending')
-        );
-        const challengeSnapshot = await getDocs(challengesQuery);
+    const currentUser = getAuth().currentUser;
+    if (!currentUser) {
+      console.log('No logged-in user found.');
+      setLoading(false);
+      return;
+    }
+
+    console.log('Logged-in user:', currentUser.uid);  // Log current user's UID
+
+    try {
+      // Query for pending challenges where current user is the 'challenged'
+      const challengesQuery = query(
+        collection(db, 'challenges'),
+        where('challengedId', '==', currentUser.uid),
+        where('status', '==', 'pending')
+      );
+
+      // Set up a real-time listener for challenges collection
+      const unsubscribe = onSnapshot(challengesQuery, async (snapshot) => {
+        console.log('Challenges updated:', snapshot.docs.length);  // Log the number of challenges updated
+
         const challengesList = [];
-        for (let docSnap of challengeSnapshot.docs) {
+        for (let docSnap of snapshot.docs) {
           const challengeData = docSnap.data();
+          console.log('Challenge data:', challengeData);  // Log the challenge data
+
+          // Fetch the challenger's username
           const challengerUsername = await fetchChallengerUsername(challengeData.challengerId);
           challengesList.push({
             id: docSnap.id,
@@ -49,20 +68,25 @@ const UserChallengesScreen = () => {
         }
         setChallenges(challengesList);
         setLoading(false);
-      } catch (error) {
-        console.error("Error fetching challenges: ", error);
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-    fetchChallenges();
+      });
+
+      // Cleanup the listener when the component unmounts
+      return () => unsubscribe();
+    } catch (error) {
+      console.error("Error in useEffect:", error);  // Log any errors in the useEffect
+      setError(error.message);
+      setLoading(false);
+    }
   }, []);
+
+  // Handling response to a challenge (accept/decline)
   const handleChallengeResponse = async (challengeId, action, quiz) => {
     const currentUser = getAuth().currentUser;
     if (!currentUser) {
       console.error("No logged-in user found.");
       return;
     }
+
     try {
       const challengeDocRef = doc(db, 'challenges', challengeId);
       if (action === 'accept') {
@@ -73,12 +97,14 @@ const UserChallengesScreen = () => {
         const challengeDoc = await getDoc(challengeDocRef);
         const challengeData = challengeDoc.data();
         console.log('Navigating to /cquiz with quiz:', quiz, 'and users:', [challengeData.challengerId, challengeData.challengedId]);
+
+        // Navigate to quiz screen with challenge data
         navigate('/cquiz', {
           state: {
             selectedQuiz: quiz,
             challengeId,
-            users: [challengeData.challengerId, challengeData.challengedId]
-          }
+            users: [challengeData.challengerId, challengeData.challengedId],
+          },
         });
         await deleteDoc(challengeDocRef);
         console.log(`Challenge accepted and deleted: ${challengeId}`);
@@ -93,7 +119,9 @@ const UserChallengesScreen = () => {
     } catch (error) {
       console.error("Error handling challenge response: ", error);
     }
-  };  
+  };
+
+  // Loading state and error handling
   if (loading) {
     return (
       <div style={styles.loaderContainer}>
@@ -109,6 +137,8 @@ const UserChallengesScreen = () => {
       </div>
     );
   }
+
+  // Main UI rendering
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Pending Challenges</h1>
@@ -137,6 +167,7 @@ const UserChallengesScreen = () => {
     </div>
   );
 };
+
 const styles = {
   container: {
     padding: '20px',
@@ -190,4 +221,5 @@ const styles = {
     height: '100vh',
   },
 };
+
 export default UserChallengesScreen;

@@ -17,6 +17,7 @@ const UserListScreen = () => {
   const [challengeLoading, setChallengeLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -50,16 +51,19 @@ const UserListScreen = () => {
     };
     fetchUsers();
   }, []);
+
   const handleChallengeClick = (userId, userName) => {
     setChallengedUserId(userId);
     setChallengedUserName(userName);
     setShowQuizModal(true);
   };
+
   const handleQuizSelection = (quiz) => {
     setSelectedQuiz(quiz);
     setShowQuizModal(false);
     setShowConfirmationModal(true);
   };
+
   const handleChallengeConfirmation = async () => {
     const currentUser = getAuth().currentUser;
     if (!currentUser || !challengedUserId || !selectedQuiz) {
@@ -76,7 +80,7 @@ const UserListScreen = () => {
         quiz: selectedQuiz,
         createdAt: serverTimestamp(),
       });
-  
+
       console.log(`Challenge sent to ${challengedUserId} for quiz: ${selectedQuiz}`);
 
       const unsubscribe = onSnapshot(doc(db, 'challenges', challengeDocRef.id), (docSnapshot) => {
@@ -90,14 +94,14 @@ const UserListScreen = () => {
         }
       });
       setTimeout(() => unsubscribe(), 10000);
-  
+
       setShowConfirmationModal(false);
     } catch (error) {
       console.error("Error sending challenge: ", error);
       setChallengeLoading(false);
       setErrorMessage("Error sending challenge.");
     }
-  };  
+  };
 
   if (loading) {
     return (
@@ -132,43 +136,52 @@ const UserListScreen = () => {
           </div>
         ))}
       </div>
+
       {showQuizModal && (
         <div style={styles.modalOverlay}>
           <div style={styles.modal}>
             <h2>Select a Quiz</h2>
-            {Object.keys(quizData).map((quiz, index) => (
-              <button key={index} onClick={() => handleQuizSelection(quiz)}>
-                {quiz}
-              </button>
-            ))}
-            <button onClick={() => setShowQuizModal(false)}>Cancel</button>
+            <div style={styles.quizContainer}>
+            <ul style={styles.quizList}>
+              {Object.keys(quizData).map((quiz, index) => (
+                <li key={index} style={styles.quizListItem}>
+                  <button onClick={() => handleQuizSelection(quiz)} style={styles.quizButton}>
+                    {quiz}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            </div>
+            <button onClick={() => setShowQuizModal(false)} style={styles.button}>Cancel</button>
           </div>
         </div>
       )}
+
       {showConfirmationModal && (
         <div style={styles.modalOverlay}>
-          <div style={styles.modal}>
+          <div style={styles.Modal}>
             <h2>Confirm Challenge</h2>
             <p>Are you sure you want to challenge {challengedUserName} to the {selectedQuiz}?</p>
-            <button onClick={handleChallengeConfirmation}>Confirm</button>
-            <button onClick={() => setShowConfirmationModal(false)}>Cancel</button>
+            <button onClick={handleChallengeConfirmation} style={styles.button}>Confirm</button>
+            <button onClick={() => setShowConfirmationModal(false)} style={styles.button}>Cancel</button>
           </div>
         </div>
       )}
+
       {challengeLoading && (
         <div style={styles.loaderContainer}>
           <div className="spinner"></div>
           <p>Waiting for challenge response...</p>
         </div>
       )}
+
       {errorMessage && (
         <div style={styles.errorMessage}>
           <p>{errorMessage}</p>
         </div>
       )}
-      <button onClick={() => navigate(-1)} style={styles.button}>
-        Go Back
-      </button>
+
+      <button onClick={() => navigate(-1)} style={styles.button}>Go Back</button>
     </div>
   );
 };
@@ -201,6 +214,30 @@ const styles = {
     border: 'none',
     borderRadius: '4px',
   },
+  quizContainer: {
+    height: '300px',
+    overflowY: 'auto',
+    marginBottom: '20px',
+  },
+  quizList: {
+    listStyleType: 'none',
+    padding: '0',
+    marginTop: '20px',
+  },
+  quizListItem: {
+    marginBottom: '10px',
+  },
+  quizButton: {
+    padding: '10px',
+    fontSize: '16px',
+    backgroundColor: '#008CBA',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    width: '100%',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s',
+  },
   loaderContainer: {
     display: 'flex',
     justifyContent: 'center',
@@ -226,9 +263,6 @@ const styles = {
     transition: 'background-color 0.3s',
     marginTop: '15px',
   },
-  buttonHover: {
-    backgroundColor: '#45a049',
-  },
   modalOverlay: {
     position: 'fixed',
     top: 0,
@@ -239,12 +273,22 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   modal: {
     backgroundColor: 'white',
     padding: '20px',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    width: '90%',
+    height: '450px'
+  },
+  Modal: {
+    backgroundColor: 'white',
+    padding: '20px',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    width: '90%',
   },
 };
 
