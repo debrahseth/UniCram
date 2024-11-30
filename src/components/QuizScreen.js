@@ -14,14 +14,14 @@ const QuizScreen = () => {
   const [quiz, setQuiz] = useState(null);
   const [status, setStatus] = useState('');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [challengerAnswers, setChallengerAnswers] = useState([]);
-  const [challengedAnswers, setChallengedAnswers] = useState([]);
-  const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [challengerScore, setChallengerScore] = useState(0);
   const [challengedScore, setChallengedScore] = useState(0);
   const [timer, setTimer] = useState(30);
   const [timerInterval, setTimerInterval] = useState(null);
+
+  // Track selected answers for both players
+  const [challengerSelectedAnswer, setChallengerSelectedAnswer] = useState(null);
+  const [challengedSelectedAnswer, setChallengedSelectedAnswer] = useState(null);
 
   const fetchChallengeData = async () => {
     if (!challengeId) return;
@@ -77,63 +77,31 @@ const QuizScreen = () => {
     }
   };
 
-  // Function to handle selection of an answer for each player
   const handleAnswerSelection = (answer, player) => {
-    setSelectedAnswer(answer);
-
+    const currentQuestion = quiz[currentQuestionIndex];
     if (player === 'challenger') {
-      setChallengerAnswers((prevAnswers) => {
-        const newAnswers = [...prevAnswers];
-        newAnswers[currentQuestionIndex] = answer;
-        return newAnswers;
-      });
+      setChallengerSelectedAnswer(answer);
+      if (answer === currentQuestion.correctAnswer) {
+        setChallengerScore(prevScore => prevScore + 1);
+      }
     } else if (player === 'challenged') {
-      setChallengedAnswers((prevAnswers) => {
-        const newAnswers = [...prevAnswers];
-        newAnswers[currentQuestionIndex] = answer;
-        return newAnswers;
-      });
+      setChallengedSelectedAnswer(answer);
+      if (answer === currentQuestion.correctAnswer) {
+        setChallengedScore(prevScore => prevScore + 1);
+      }
     }
-
-    // Move to next question after a brief delay
-    setTimeout(() => {
-      setSelectedAnswer(null);
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-    }, 500);
-  };
-
-  // Calculate scores for both players at the end of the quiz
-  const calculateScores = () => {
-    let challengerScoreTemp = 0;
-    let challengedScoreTemp = 0;
-
-    // Loop through each question and calculate scores for both players
-    quiz.forEach((question, index) => {
-      if (challengerAnswers[index] === question.correctAnswer) {
-        challengerScoreTemp += 1;
-      }
-      if (challengedAnswers[index] === question.correctAnswer) {
-        challengedScoreTemp += 1;
-      }
-    });
-
-    setChallengerScore(challengerScoreTemp);
-    setChallengedScore(challengedScoreTemp);
+    setCurrentQuestionIndex(prevIndex => prevIndex + 1);
   };
 
   const handleQuizFinish = () => {
-    setIsQuizFinished(true);
-    calculateScores();
-    if (timerInterval) {
-      clearInterval(timerInterval);
-    }
+    clearInterval(timerInterval);
+    setTimer(0);
   };
 
   useEffect(() => {
     fetchChallengeData();
-
     const interval = setInterval(() => {
-      setTimer((prevTime) => {
+      setTimer(prevTime => {
         if (prevTime === 0) {
           clearInterval(interval);
           handleQuizFinish();
@@ -142,7 +110,6 @@ const QuizScreen = () => {
         return prevTime - 1;
       });
     }, 1000);
-
     setTimerInterval(interval);
 
     return () => clearInterval(interval);
@@ -166,6 +133,7 @@ const QuizScreen = () => {
       <p><strong>Challenger:</strong> {challengerUsername}</p>
       <p><strong>Challenged:</strong> {challengedUsername}</p>
       <h3>Time Remaining: {Math.floor(timer / 60)}:{timer % 60 < 10 ? `0${timer % 60}` : timer % 60}</h3>
+      
       {quiz && currentQuestion && !isQuizFinishedFlag ? (
         <div>
           <h4>{currentQuestion.question}</h4>
@@ -175,7 +143,10 @@ const QuizScreen = () => {
                 key={idx}
                 style={{
                   ...styles.optionButton,
-                  backgroundColor: selectedAnswer === option ? '#4CAF50' : '#008CBA',
+                  backgroundColor:
+                    (challengerSelectedAnswer === option && 'green') ||
+                    (challengedSelectedAnswer === option && 'red') ||
+                    '#008CBA',
                 }}
                 onClick={() => handleAnswerSelection(option, 'challenger')}
               >
@@ -187,8 +158,8 @@ const QuizScreen = () => {
       ) : isQuizFinishedFlag ? (
         <div>
           <h3>Quiz Finished!</h3>
-          <p><strong>{challengerUsername}'s Score:</strong> {challengerScore}</p>
-          <p><strong>{challengedUsername}'s Score:</strong> {challengedScore}</p>
+          <p><strong>{challengerUsername}'s Final Score:</strong> {challengerScore}</p>
+          <p><strong>{challengedUsername}'s Final Score:</strong> {challengedScore}</p>
         </div>
       ) : (
         <p>Loading quiz question...</p>
