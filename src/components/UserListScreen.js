@@ -3,6 +3,7 @@ import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, doc, getDoc, addDoc, serverTimestamp, onSnapshot } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import quizData from '../assets/quizData';
 
 const UserListScreen = () => {
   const [users, setUsers] = useState([]);
@@ -13,12 +14,9 @@ const UserListScreen = () => {
   const [selectedQuiz, setSelectedQuiz] = useState('');
   const [challengedUserId, setChallengedUserId] = useState('');
   const [challengedUserName, setChallengedUserName] = useState('');
-  const [challengeLoading, setChallengeLoading] = useState(false);  // New state for challenge loading
-  const [errorMessage, setErrorMessage] = useState('');  // For showing error messages if declined
-
+  const [challengeLoading, setChallengeLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-
-  // Fetch users excluding the current user
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -52,34 +50,24 @@ const UserListScreen = () => {
     };
     fetchUsers();
   }, []);
-
-  // Handle the challenge button click
   const handleChallengeClick = (userId, userName) => {
     setChallengedUserId(userId);
     setChallengedUserName(userName);
     setShowQuizModal(true);
   };
-
-  // Handle quiz selection
   const handleQuizSelection = (quiz) => {
     setSelectedQuiz(quiz);
     setShowQuizModal(false);
     setShowConfirmationModal(true);
   };
-
-  // Handle challenge confirmation
   const handleChallengeConfirmation = async () => {
     const currentUser = getAuth().currentUser;
     if (!currentUser || !challengedUserId || !selectedQuiz) {
       console.error("Challenge data is missing.");
       return;
     }
-
     try {
-      // Set loading state
       setChallengeLoading(true);
-
-      // Add challenge to Firestore
       const challengeRef = collection(db, 'challenges');
       const challengeDocRef = await addDoc(challengeRef, {
         challengerId: currentUser.uid,
@@ -88,32 +76,28 @@ const UserListScreen = () => {
         quiz: selectedQuiz,
         createdAt: serverTimestamp(),
       });
+  
       console.log(`Challenge sent to ${challengedUserId} for quiz: ${selectedQuiz}`);
 
-      // Monitor the challenge status
       const unsubscribe = onSnapshot(doc(db, 'challenges', challengeDocRef.id), (docSnapshot) => {
         const challengeData = docSnapshot.data();
         if (challengeData.status === 'accepted') {
-          // Challenge accepted, navigate both users to quiz
           setChallengeLoading(false);
-          navigate('/cquiz', { state: { selectedQuiz, users: [currentUser.uid, challengedUserId] } });
+          navigate('/cquiz', { state: { selectedQuiz, challengeId: challengeDocRef.id, users: [currentUser.uid, challengedUserId] } });
         } else if (challengeData.status === 'declined') {
-          // Challenge declined, show error message
           setChallengeLoading(false);
           setErrorMessage(`${challengedUserName} has declined the challenge.`);
         }
       });
-
-      // Stop listening once the challenge is processed
-      setTimeout(() => unsubscribe(), 10000);  // Automatically stop after 10 seconds
-
+      setTimeout(() => unsubscribe(), 10000);
+  
       setShowConfirmationModal(false);
     } catch (error) {
       console.error("Error sending challenge: ", error);
       setChallengeLoading(false);
       setErrorMessage("Error sending challenge.");
     }
-  };
+  };  
 
   if (loading) {
     return (
@@ -152,9 +136,11 @@ const UserListScreen = () => {
         <div style={styles.modalOverlay}>
           <div style={styles.modal}>
             <h2>Select a Quiz</h2>
-            <button onClick={() => handleQuizSelection('Math Quiz')}>Math Quiz</button>
-            <button onClick={() => handleQuizSelection('Science Quiz')}>Science Quiz</button>
-            <button onClick={() => handleQuizSelection('History Quiz')}>History Quiz</button>
+            {Object.keys(quizData).map((quiz, index) => (
+              <button key={index} onClick={() => handleQuizSelection(quiz)}>
+                {quiz}
+              </button>
+            ))}
             <button onClick={() => setShowQuizModal(false)}>Cancel</button>
           </div>
         </div>

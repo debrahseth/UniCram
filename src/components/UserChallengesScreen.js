@@ -9,13 +9,10 @@ const UserChallengesScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  // Function to fetch the username of the challenger by userId
   const fetchChallengerUsername = async (challengerId) => {
     try {
       const userDocRef = doc(db, 'users', challengerId);
       const userDoc = await getDoc(userDocRef);
-
       if (userDoc.exists()) {
         const username = userDoc.data().username;
         return username;
@@ -26,7 +23,6 @@ const UserChallengesScreen = () => {
       return 'Unknown';
     }
   };
-
   useEffect(() => {
     const fetchChallenges = async () => {
       const currentUser = getAuth().currentUser;
@@ -34,7 +30,6 @@ const UserChallengesScreen = () => {
         setLoading(false);
         return;
       }
-
       try {
         const challengesQuery = query(
           collection(db, 'challenges'),
@@ -43,8 +38,6 @@ const UserChallengesScreen = () => {
         );
         const challengeSnapshot = await getDocs(challengesQuery);
         const challengesList = [];
-
-        // Fetch the challenger username for each challenge
         for (let docSnap of challengeSnapshot.docs) {
           const challengeData = docSnap.data();
           const challengerUsername = await fetchChallengerUsername(challengeData.challengerId);
@@ -54,7 +47,6 @@ const UserChallengesScreen = () => {
             ...challengeData,
           });
         }
-
         setChallenges(challengesList);
         setLoading(false);
       } catch (error) {
@@ -63,43 +55,31 @@ const UserChallengesScreen = () => {
         setLoading(false);
       }
     };
-
     fetchChallenges();
   }, []);
-
   const handleChallengeResponse = async (challengeId, action, quiz) => {
     const currentUser = getAuth().currentUser;
     if (!currentUser) {
       console.error("No logged-in user found.");
       return;
     }
-  
     try {
       const challengeDocRef = doc(db, 'challenges', challengeId);
-  
       if (action === 'accept') {
-        // Update the challenge status to 'accepted'
         await updateDoc(challengeDocRef, {
           status: 'accepted',
           acceptedAt: serverTimestamp(),
         });
-  
-        // Fetch the challenge document again to get updated data
         const challengeDoc = await getDoc(challengeDocRef);
         const challengeData = challengeDoc.data();
-  
-        // Navigate both the challenger and challenged to the quiz
         console.log('Navigating to /cquiz with quiz:', quiz, 'and users:', [challengeData.challengerId, challengeData.challengedId]);
-  
-        // Pass both the users and quiz information to the QuizScreen
         navigate('/cquiz', {
           state: {
             selectedQuiz: quiz,
-            users: [challengeData.challengerId, challengeData.challengedId] // Passing both user IDs
+            challengeId,
+            users: [challengeData.challengerId, challengeData.challengedId]
           }
         });
-  
-        // Optionally, delete the challenge document after navigating
         await deleteDoc(challengeDocRef);
         console.log(`Challenge accepted and deleted: ${challengeId}`);
       } else if (action === 'decline') {
@@ -107,16 +87,13 @@ const UserChallengesScreen = () => {
           status: 'declined',
           declinedAt: serverTimestamp(),
         });
-  
-        // Delete the challenge document when declined
         await deleteDoc(challengeDocRef);
         console.log(`Challenge declined and deleted: ${challengeId}`);
       }
     } catch (error) {
       console.error("Error handling challenge response: ", error);
     }
-  };
-  
+  };  
   if (loading) {
     return (
       <div style={styles.loaderContainer}>
@@ -125,7 +102,6 @@ const UserChallengesScreen = () => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div style={styles.container}>
@@ -133,7 +109,6 @@ const UserChallengesScreen = () => {
       </div>
     );
   }
-
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Pending Challenges</h1>
@@ -162,7 +137,6 @@ const UserChallengesScreen = () => {
     </div>
   );
 };
-
 const styles = {
   container: {
     padding: '20px',
@@ -216,5 +190,4 @@ const styles = {
     height: '100vh',
   },
 };
-
 export default UserChallengesScreen;
