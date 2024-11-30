@@ -99,9 +99,14 @@ const Dashboard = () => {
           </ul>
         </div>
 
-        <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
-        <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
-        <button onClick={() => navigate('/challenges')} style={styles.startQuizButton}>See my Challenges</button>
+        <div style={styles.buttonContainer}>
+            <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
+            <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
+            <button onClick={() => navigate('/challenges')} style={styles.startQuizButton}>See my Challenges</button>
+        </div>
+      </div>
+      <div style={styles.footerStyle}>
+        <p>© 2025 StudyGroup. All rights reserved.</p>
       </div>
     </div>
   );
@@ -183,16 +188,28 @@ const styles = {
   tipItem: {
     marginBottom: '10px',
   },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '20px',
+    flexWrap: 'wrap',
+    marginBottom: '20px',
+  },
   startQuizButton: {
+    padding: '12px 24px',
+    fontSize: '16px',
     backgroundColor: '#4CAF50',
     color: 'white',
-    padding: '15px 30px',
-    fontSize: '16px',
-    cursor: 'pointer',
-    borderRadius: '8px',
     border: 'none',
-    marginTop: '20px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    width: '30%',
     transition: 'background-color 0.3s',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+  },
+  startQuizButtonHover: {
+    backgroundColor: '#45a049',
   },
   icon: {
     marginRight: '8px',
@@ -218,6 +235,18 @@ const styles = {
     color: 'white',
     fontSize: '1.5rem',
     cursor: 'pointer',
+  },
+  footerStyle: {
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    padding: '12px',
+    backgroundColor: '#333',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '0.9rem',
+    fontFamily: 'Poppins, sans-serif',
   },
 };
 
