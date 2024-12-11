@@ -60,7 +60,7 @@ const Dashboard = () => {
   }, [navigate]);
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);  // Rotate through quotes
+      setCurrentQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [quotes.length]);
@@ -101,8 +101,8 @@ const Dashboard = () => {
 
         <div style={styles.buttonContainer}>
             <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
-            <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
-            <button onClick={() => navigate('/challenges')} style={styles.startQuizButton}>See my Challenges</button>
+            {/* <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button> */}
+            {/* <button onClick={() => navigate('/challenges')} style={styles.startQuizButton}>See my Challenges</button> */}
         </div>
       </div>
       <div style={styles.footerStyle}>
@@ -203,7 +203,7 @@ const styles = {
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
-    width: '30%',
+    width: '100%',
     transition: 'background-color 0.3s',
     textAlign: 'center',
     boxSizing: 'border-box',
@@ -245,7 +245,7 @@ const styles = {
     backgroundColor: '#333',
     color: '#fff',
     textAlign: 'center',
-    fontSize: '0.9rem',
+    fontSize: '0.5rem',
     fontFamily: 'Poppins, sans-serif',
   },
 };
