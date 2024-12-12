@@ -81,6 +81,9 @@ const Dashboard = () => {
         </button>
       </div>
       <div style={styles.content}>
+        <div style={styles.buttonContainer}>
+          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
+        </div>
         <div style={styles.motivationalQuotes}>
         <h3>Motivational Quotes</h3>
           <div style={styles.quoteCard}>
@@ -98,15 +101,6 @@ const Dashboard = () => {
             ))}
           </ul>
         </div>
-
-        <div style={styles.buttonContainer}>
-            <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
-            {/* <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button> */}
-            {/* <button onClick={() => navigate('/challenges')} style={styles.startQuizButton}>See my Challenges</button> */}
-        </div>
-      </div>
-      <div style={styles.footerStyle}>
-        <p>© 2025 StudyGroup. All rights reserved.</p>
       </div>
     </div>
   );
@@ -117,7 +111,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: '100vh',
+    height: '90vh',
     backgroundColor: '#f4f7fc',
     padding: '20px',
   },
@@ -235,18 +229,6 @@ const styles = {
     color: 'white',
     fontSize: '1.5rem',
     cursor: 'pointer',
-  },
-  footerStyle: {
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    width: '100%',
-    padding: '12px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '0.5rem',
-    fontFamily: 'Poppins, sans-serif',
   },
 };
 

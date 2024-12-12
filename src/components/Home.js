@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import logo from '../assets/logo4.jpg';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -89,7 +90,12 @@ const Home = () => {
 
   return (
     <div style={containerStyle}>
-      <h2 style={headerStyle}>Welcome to the Study Group Quiz Page</h2>
+      <h2 style={headerStyle}>Welcome to the Learning Page</h2>
+      <img
+        src={logo}
+        alt="Study Group Logo"
+        style={{ width: '200px', marginBottom: '20px' }}
+      />
       <p style={paragraphStyle}>
         Start by logging in or signing up to take the quiz.
       </p>

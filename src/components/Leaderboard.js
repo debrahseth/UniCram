@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { db } from '../firebase';
 import { collection, onSnapshot, getDocs } from 'firebase/firestore';
+import TopRightLogo from './TopRightLogo';
+import TopLeftLogo from './TopLeftLogo';
 
 const Leaderboard = () => {
   const [leaderboardData, setLeaderboardData] = useState({});
@@ -46,10 +48,9 @@ const Leaderboard = () => {
   return (
     <div style={styles.container}>
       <div style={styles.header}>
+        <TopLeftLogo />
+        <TopRightLogo />
         <h2>Leaderboard</h2>
-        <button onClick={() => navigate(-1)} style={styles.backButton}>
-          <FaArrowLeft size={20} /> Go Back
-        </button>
       </div>
       {Object.keys(leaderboardData).length === 0 ? (
         <div style={styles.noDataContainer}>
@@ -86,8 +87,10 @@ const Leaderboard = () => {
           ))}
         </div>
       )}
-      <div style={styles.footer}>
-        <p>© 2025 StudyGroup. All rights reserved.</p>
+      <div style={styles.buttonContainer}>
+        <button onClick={() => navigate(-1)} style={styles.backButton}>
+          <FaArrowLeft size={20} /> Go Back
+        </button>
       </div>
     </div>
   );
@@ -95,14 +98,14 @@ const Leaderboard = () => {
 const styles = {
   container: {
     backgroundColor: '#f4f7fc',
-    padding: '20px',
+    padding: '5px',
     minHeight: '100vh',
   },
   header: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: '20px',
+    marginBottom: '70px',
   },
   backButton: {
     backgroundColor: '#4CAF50',
@@ -140,17 +143,6 @@ const styles = {
     fontSize: '18px',
     textAlign: 'left',
   },
-  footer: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    width: '100%',
-    padding: '10px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '0.9rem',
-  },
   noDataContainer: {
     padding: '20px',
     textAlign: 'center',
@@ -166,6 +158,19 @@ const styles = {
   },
   courseContainer: {
     marginBottom: '40px',
+  },
+  buttonContainer: {
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    backgroundColor: '#fff',
+    padding: '10px 0',
+    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
   },
 };
 export default Leaderboard;

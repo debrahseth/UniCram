@@ -4,6 +4,8 @@ import { courses } from './courses';
 import { collection, addDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import { FaChevronLeft, FaCheck, FaTimes, FaLightbulb, FaClock } from 'react-icons/fa';
+import TopLeftLogo from './TopLeftLogo'; 
+import TopRightLogo from './TopRightLogo';
 
 const Quiz = () => {
   const navigate = useNavigate();
@@ -123,6 +125,8 @@ const Quiz = () => {
   if (!selectedCourse) {
     return (
       <div style={styles.container}>
+        <TopLeftLogo />
+        <TopRightLogo />
         <h2>Select a Course</h2>
         <div style={styles.courseSelection}>
           {courses.map((course, index) => (
@@ -131,9 +135,11 @@ const Quiz = () => {
             </button>
           ))}
         </div>
+        <div style={styles.buttonContainer}>
         <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
           <FaChevronLeft style={styles.icon} /> Go Back
         </button>
+        </div>
       </div>
     );
   }
@@ -142,6 +148,8 @@ const Quiz = () => {
     const difficulties = ['easy', 'medium', 'hard'];
     return (
       <div style={styles.container}>
+        <TopLeftLogo />
+        <TopRightLogo />
         <h2>Select Difficulty Level for {selectedCourse.title}</h2>
         <div style={styles.difficultySelection}>
           {difficulties.map((difficulty, index) => (
@@ -150,9 +158,11 @@ const Quiz = () => {
             </button>
           ))}
         </div>
-        <button onClick={() => setSelectedCourse(null)} style={styles.goBackButton}>
-          <FaChevronLeft style={styles.icon} /> Go Back
-        </button>
+        <div style={styles.buttonContainer}>
+          <button onClick={() => setSelectedCourse(null)} style={styles.goBackButton}>
+            <FaChevronLeft style={styles.icon} /> Go Back
+          </button>
+        </div>
       </div>
     );
   }
@@ -215,6 +225,8 @@ const Quiz = () => {
 
   return (
     <div style={styles.container}>
+      <TopLeftLogo />
+      <TopRightLogo />
       <h2>Quiz: {selectedCourse.title}</h2>
       <h3>Question {currentQuestionIndex + 1}:</h3>
       <div style={styles.timerContainer}>
@@ -244,6 +256,7 @@ const styles = {
     gap: '20px',
     marginBottom: '20px',
     textAlign: 'center',
+    width: '100%',
   },
   courseButton: {
     backgroundColor: '#4CAF50',
@@ -262,6 +275,19 @@ const styles = {
   icon: {
     marginRight: '10px',
     fontSize: '20px',
+  },
+  buttonContainer: {
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    backgroundColor: '#fff',
+    padding: '10px 0',
+    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
   },
   goBackButton: {
     backgroundColor: '#2196F3',
