@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 import { db } from '../firebase';
 import { collection, onSnapshot, getDocs } from 'firebase/firestore';
-import TopRightLogo from './TopRightLogo';
-import TopLeftLogo from './TopLeftLogo';
 import logo from '../assets/main.jpg';
 
 const Leaderboard = () => {
@@ -50,8 +48,16 @@ const Leaderboard = () => {
     <div style={styles.container}>
       <div style={styles.background}></div>
       <div style={styles.header}>
-        <TopLeftLogo />
-        <TopRightLogo />
+        <div style={styles.buttonContainer}>
+          <button onClick={() => navigate(-1)} style={styles.backButton}>
+          <FaArrowCircleLeft size={20} /> Go Back
+          </button>
+        </div>
+        <div style={styles.buttonContain}>
+          <button onClick={() => navigate('/profile')} style={styles.backButton}>
+           My Records<FaArrowCircleRight size={20} />
+          </button>
+        </div>
         <h2 style={{fontSize: '36px'}}>Leaderboard</h2>
       </div>
       <div style={styles.scrollableContainer}>
@@ -91,11 +97,9 @@ const Leaderboard = () => {
         </div>
       )}
       </div>
-      <div style={styles.buttonContainer}>
-        <button onClick={() => navigate(-1)} style={styles.backButton}>
-          <FaArrowLeft size={20} /> Go Back
-        </button>
-      </div>
+        <div style={styles.footer}>
+          <p>© 2025 StudyGroup. All rights reserved.</p>
+        </div>
     </div>
   );
 };
@@ -147,7 +151,7 @@ const styles = {
     border: 'none',
     borderRadius: '5px',
     padding: '10px 15px',
-    fontSize: '16px',
+    fontSize: '25px',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
@@ -194,17 +198,26 @@ const styles = {
     marginBottom: '40px',
   },
   buttonContainer: {
+  position: 'absolute',
+    top: '40px',
+    left: '20px',
+  },
+  buttonContain: {
+    position: 'absolute',
+      top: '40px',
+      right: '20px',
+    },
+  footer: {
     position: 'fixed',
     bottom: '0',
     left: '0',
     width: '100%',
-    backgroundColor: '#fff',
-    padding: '10px 0',
-    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 10,
+    padding: '15px',
+    backgroundColor: '#333',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '1.1rem',
+    fontFamily: 'Poppins, sans-serif',
   },
 };
 export default Leaderboard;

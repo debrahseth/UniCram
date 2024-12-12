@@ -77,17 +77,21 @@ const Dashboard = () => {
         <button onClick={() => navigate('/leaderboard')} style={styles.leaderboardButton}>
           <i className="fa fa-trophy" style={styles.icon}></i>
         </button>
-        <h2>Welcome, {username || 'User'}!</h2>
+        <h2 style={styles.label}>Welcome, {username || 'User'}!</h2>
         <button onClick={() => navigate('/profile')} style={styles.profileButton}>
           <i className="fa fa-user" style={styles.icon}></i>
         </button>
       </div>
-      <div style={styles.content}>
+      <div style={styles.button}>
         <div style={styles.buttonContainer}>
           <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
+          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Challenge a Friend</button>
+          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>See your challenges</button>
         </div>
+      </div>
+      <div style={styles.content}>
         <div style={styles.motivationalQuotes}>
-        <h3>Motivational Quotes</h3>
+        <h3 style={styles.title}>Motivational Quotes</h3>
           <div style={styles.quoteCard}>
             <p style={styles.quoteText} className="quote-text">
               "{quotes[currentQuoteIndex].text}"
@@ -96,7 +100,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div style={styles.studyTips}>
-          <h3>Study Tips for Success</h3>
+          <h3 style={styles.title}>Study Tips for Success</h3>
           <ul style={styles.tipsList}>
             {studyTips.map((tip, index) => (
               <li key={index} style={styles.tipItem}>{tip}</li>
@@ -133,15 +137,13 @@ const styles = {
   },
   header: {
     width: '100%',
-    backgroundColor: '#4CAF50',
-    color: 'white',
+    backgroundColor: '#FFD700',
     padding: '20px',
     textAlign: 'center',
     borderRadius: '8px 8px 0 0',
     position: 'relative',
     zIndex: 1,
-    opacity: 0.7,
-    fontSize: '25px',
+    opacity: 0.6,
   },
   content: {
     display: 'flex',
@@ -149,89 +151,93 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    maxWidth: '800px',
     padding: '20px',
     marginTop: '20px',
-    backgroundColor: 'white',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     zIndex: 2,
     opacity: 0.9,
+    flex: 1,         
+    overflowY: 'auto',
+  },
+  label :{
+    fontSize: '40px',
+  },
+  title: {
+    fontSize: '30px',
+  },
+  button: {
+    padding: '10px',
+    display: 'flex',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    width: '90%',
+    marginTop: '10px',
+    flexDirection: 'row',
   },
   motivationalQuotes: {
-    backgroundColor: 'white',
     padding: '20px',
     borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    width: '100%',
-    maxWidth: '600px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    width: '96%',
     marginBottom: '20px',
   },
   quoteCard: {
     textAlign: 'center',
     fontStyle: 'italic',
     padding: '15px',
-    backgroundColor: '#f0f8ff',
     borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)',
     opacity: 1,
     transition: 'opacity 1s ease-in-out',
   },
   quoteText: {
-    fontSize: '18px',
+    fontSize: '25px',
     color: '#333',
     marginBottom: '10px',
-    opacity: 1,
+    opacity: 3,
     transition: 'opacity 1s ease-in-out',
   },
   quoteAuthor: {
-    fontSize: '16px',
+    fontSize: '20px',
     color: '#555',
   },
   studyTips: {
-    backgroundColor: 'white',
     padding: '20px',
     borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    width: '100%',
-    maxWidth: '600px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    width: '96%',
     marginBottom: '20px',
   },
   tipsList: {
     listStyleType: 'disc',
     paddingLeft: '20px',
     color: '#333',
-    fontSize: '16px',
+    fontSize: '20px',
   },
   tipItem: {
     marginBottom: '10px',
   },
   buttonContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
-    gap: '20px',
-    flexWrap: 'wrap',
-    marginBottom: '20px',
+    justifyContent: 'space-evenly', 
+    alignItems: 'center', 
+    gap: '20px',        
+    width: '100%',          
+    margin: '0 auto',      
   },
   startQuizButton: {
-    padding: '12px 24px',
-    fontSize: '16px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
+    fontSize: '20px',
+    backgroundColor: '#FFD700',
+    color: 'black',
     borderRadius: '8px',
     cursor: 'pointer',
-    width: '100%',
+    width: '80%',
     transition: 'background-color 0.3s',
     textAlign: 'center',
-    boxSizing: 'border-box',
-  },
-  startQuizButtonHover: {
-    backgroundColor: '#45a049',
   },
   icon: {
     marginRight: '8px',
     fontSize: '40px',
+    color: 'black',
   },
   leaderboardButton: {
     position: 'absolute',
@@ -240,7 +246,6 @@ const styles = {
     transform: 'translateY(-50%)',
     backgroundColor: 'transparent',
     border: 'none',
-    color: 'white',
     fontSize: '1.5rem',
     cursor: 'pointer',
   },
@@ -251,7 +256,6 @@ const styles = {
     transform: 'translateY(-50%)',
     backgroundColor: 'transparent',
     border: 'none',
-    color: 'white',
     fontSize: '1.5rem',
     cursor: 'pointer',
   },

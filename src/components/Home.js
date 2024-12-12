@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import logo from '../assets/logo4.jpg';
+import logo from '../assets/logo5.jpg';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Home = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    height: '90vh',
     backgroundColor: '#f3f4f6',
     textAlign: 'center',
     fontFamily: 'Poppins, sans-serif',
@@ -20,7 +20,7 @@ const Home = () => {
 
   const headerStyle = {
     fontSize: '3.5rem',
-    color: '#4CAF50',
+    color: '#000000',
     fontWeight: '700',
     marginBottom: '30px',
   };
@@ -42,6 +42,7 @@ const Home = () => {
     cursor: 'pointer',
     transition: '0.3s',
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
@@ -94,12 +95,12 @@ const Home = () => {
       <img
         src={logo}
         alt="Study Group Logo"
-        style={{ width: '200px', marginBottom: '20px' }}
+        style={{ width: '400px', marginBottom: '20px', borderRadius: '50%'}}
       />
       <p style={paragraphStyle}>
         Start by logging in or signing up to take the quiz.
       </p>
-      <div>
+      <div style={buttonStyle}>
         <button
           style={buttonSignUpStyle}
           onClick={() => navigate('/signup')}

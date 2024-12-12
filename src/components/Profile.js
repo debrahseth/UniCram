@@ -49,6 +49,14 @@ const Profile = () => {
 
   return (
     <div style={styles.container}>
+      <div style={styles.buttonContainer}>
+        <button onClick={() => navigate(-1)} style={styles.goBackButton}>
+          <FaArrowLeft style={styles.icon} /> Go Back
+        </button>
+        <button onClick={handleLogout} style={styles.logoutButton}>
+          <FaSignOutAlt style={styles.icon} /> Logout
+        </button>
+      </div>
       <div style={styles.profileCard}>
         <h3 style={styles.profileTitle}>Profile Details</h3>
         <div style={styles.profilePictureContainer}>
@@ -59,7 +67,7 @@ const Profile = () => {
           />
         </div>
         <div style={styles.inputGroup}>
-          <label>Username:</label>
+          <label style={styles.label}><i className="fa fa-user" style={styles.icon}></i>Username:</label>
           <input
             type="text"
             value={userDetails.username}
@@ -68,7 +76,7 @@ const Profile = () => {
           />
         </div>
         <div style={styles.inputGroup}>
-          <label>Email:</label>
+          <label style={styles.label}><i className="fa fa-envelope" style={styles.icon}></i>Email:</label>
           <input
             type="email"
             value={userDetails.email}
@@ -76,15 +84,11 @@ const Profile = () => {
             style={styles.input}
           />
         </div>
+        <div style={styles.footer}>
+          <p>© 2025 StudyGroup. All rights reserved.</p>
+        </div>
       </div>
-      <div style={styles.buttonContainer}>
-        <button onClick={() => navigate(-1)} style={styles.goBackButton}>
-          <FaArrowLeft style={styles.icon} /> Go Back
-        </button>
-        <button onClick={handleLogout} style={styles.logoutButton}>
-          <FaSignOutAlt style={styles.icon} /> Logout
-        </button>
-      </div>
+      
     </div>
   );
 };
@@ -111,7 +115,9 @@ const styles = {
     alignItems: 'center',
     gap: '10px',
     transition: 'background-color 0.3s',
-    marginLeft: '20px',
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
   },
   goBackButton: {
     backgroundColor: '#4CAF50',
@@ -125,7 +131,9 @@ const styles = {
     alignItems: 'center',
     gap: '10px',
     transition: 'background-color 0.3s',
-    marginRight: '20px',
+    position: 'absolute',
+    top: '20px',
+    left: '20px',
   },
   icon: {
     fontSize: '18px',
@@ -135,8 +143,7 @@ const styles = {
     borderRadius: '10px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
     padding: '20px',
-    width: '100%',
-    maxWidth: '600px',
+    width: '98%',
     textAlign: 'left',
     display: 'flex',
     flexDirection: 'column',
@@ -166,15 +173,16 @@ const styles = {
   input: {
     width: '96%',
     padding: '12px',
-    fontSize: '16px',
+    fontSize: '20px',
     borderRadius: '5px',
     border: '1px solid #ddd',
     backgroundColor: '#f4f7fc',
     cursor: 'not-allowed',
+    marginTop: '10px'
   },
   buttonContainer: {
     position: 'fixed',
-    bottom: '0',
+    top: '0',
     left: '0',
     width: '100%',
     backgroundColor: '#fff',
@@ -184,6 +192,25 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 10,
+  },
+  label:{
+    fontSize: '25px',
+  },
+  icon: {
+    fontSize: '20px',
+    marginRight: '8px',
+  },
+  footer: {
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    padding: '15px',
+    backgroundColor: '#333',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '0.9rem',
+    fontFamily: 'Poppins, sans-serif',
   },
 };
 
