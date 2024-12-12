@@ -355,6 +355,9 @@ const styles = {
     marginBottom: '15px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     transition: 'background-color 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   timerContainer: {
     marginBottom: '20px',

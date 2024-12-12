@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import logo from '../assets/main.jpg';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ const Dashboard = () => {
 
   return (
     <div style={styles.container}>
+      <div style={styles.background}></div>
       <div style={styles.header}>
         <button onClick={() => navigate('/leaderboard')} style={styles.leaderboardButton}>
           <i className="fa fa-trophy" style={styles.icon}></i>
@@ -111,9 +113,23 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: '90vh',
-    backgroundColor: '#f4f7fc',
-    padding: '20px',
+    height: '100vh',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  background: {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: `url(${logo})`, 
+    backgroundPosition: 'center', 
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    opacity: 0.5,
+    zIndex: -1,
   },
   header: {
     width: '100%',
@@ -123,6 +139,9 @@ const styles = {
     textAlign: 'center',
     borderRadius: '8px 8px 0 0',
     position: 'relative',
+    zIndex: 1,
+    opacity: 0.7,
+    fontSize: '25px',
   },
   content: {
     display: 'flex',
@@ -133,6 +152,11 @@ const styles = {
     maxWidth: '800px',
     padding: '20px',
     marginTop: '20px',
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    zIndex: 2,
+    opacity: 0.9,
   },
   motivationalQuotes: {
     backgroundColor: 'white',
@@ -207,6 +231,7 @@ const styles = {
   },
   icon: {
     marginRight: '8px',
+    fontSize: '40px',
   },
   leaderboardButton: {
     position: 'absolute',

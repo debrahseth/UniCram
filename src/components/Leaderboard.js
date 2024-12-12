@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import { collection, onSnapshot, getDocs } from 'firebase/firestore';
 import TopRightLogo from './TopRightLogo';
 import TopLeftLogo from './TopLeftLogo';
+import logo from '../assets/main.jpg';
 
 const Leaderboard = () => {
   const [leaderboardData, setLeaderboardData] = useState({});
@@ -47,11 +48,13 @@ const Leaderboard = () => {
   }, [usersData]);
   return (
     <div style={styles.container}>
+      <div style={styles.background}></div>
       <div style={styles.header}>
         <TopLeftLogo />
         <TopRightLogo />
-        <h2>Leaderboard</h2>
+        <h2 style={{fontSize: '36px'}}>Leaderboard</h2>
       </div>
+      <div style={styles.scrollableContainer}>
       {Object.keys(leaderboardData).length === 0 ? (
         <div style={styles.noDataContainer}>
           <p style={styles.noDataMessage}>No leaderboard data available.</p>
@@ -87,6 +90,7 @@ const Leaderboard = () => {
           ))}
         </div>
       )}
+      </div>
       <div style={styles.buttonContainer}>
         <button onClick={() => navigate(-1)} style={styles.backButton}>
           <FaArrowLeft size={20} /> Go Back
@@ -97,15 +101,45 @@ const Leaderboard = () => {
 };
 const styles = {
   container: {
-    backgroundColor: '#f4f7fc',
-    padding: '5px',
-    minHeight: '100vh',
-  },
-  header: {
+    height: '90vh',
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: '70px',
+    flexDirection: 'column',
+    position: 'relative',
+    overflow: 'hidden',
+    width: '100%',
+    },
+  background: {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: `url(${logo})`, 
+    backgroundPosition: 'center', 
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    opacity: 0.5,
+    zIndex: -1,
+    },
+  header: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: '10px',
+    textAlign: 'center',
+    zIndex: 10,
+    opacity: '0.7',
+  },
+  scrollableContainer: {
+    marginTop: '100px',
+    flex: 1,         
+    overflowY: 'auto',
+    padding: '20px',
+    opacity: '0.9',
   },
   backButton: {
     backgroundColor: '#4CAF50',

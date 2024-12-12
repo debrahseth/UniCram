@@ -4,8 +4,6 @@ import { FaSignOutAlt, FaArrowLeft } from 'react-icons/fa';
 import { auth, db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import logo from '../assets/logo2.jpg';
-import TopRightLogo from './TopRightLogo';
-import TopLeftLogo from './TopLeftLogo';
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState({ username: '', email: '' });
@@ -51,8 +49,6 @@ const Profile = () => {
 
   return (
     <div style={styles.container}>
-      <TopRightLogo />
-      <TopLeftLogo />
       <div style={styles.profileCard}>
         <h3 style={styles.profileTitle}>Profile Details</h3>
         <div style={styles.profilePictureContainer}>
