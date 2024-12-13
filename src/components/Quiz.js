@@ -21,9 +21,9 @@ const Quiz = () => {
   const [timerRunning, setTimerRunning] = useState(false);
 
   const timeLimits = {
-    easy: 15000,
-    medium: 30000,
-    hard: 450000,
+    easy: 150,
+    medium: 300,
+    hard: 450,
   };
 
   const rules = [
@@ -317,6 +317,7 @@ const styles = {
     fontFamily: "'Roboto', sans-serif",
     color: '#333',
     boxSizing: 'border-box',
+    height: '90vh'
   },
   mainContainer: {
     height: "100vh",

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FaCheckCircle, FaTimesCircle, FaEye, FaArrowLeft } from 'react-icons/fa'; // Import icons
+import { FaCheckCircle, FaTimesCircle, FaEye, FaArrowLeft } from 'react-icons/fa';
 
 const Result = () => {
   const [showReview, setShowReview] = useState(false);
@@ -17,21 +17,22 @@ const Result = () => {
 
   return (
     <div style={styles.container}>
-      <h2>Quiz Completed</h2>
-      <p>Your score is: {score} out of {totalQuestions}</p>
+      <div style={styles.header}>
+      <h2 style={{fontSize: '36px'}}>Quiz Completed</h2>
+      <p style={{fontSize: '20px'}}>Your score is: {score} out of {totalQuestions}</p>
 
       <div style={styles.progressBarContainer}>
         <div style={{ ...styles.progressBar, width: `${percentage}%` }}></div>
       </div>
-      <p>{percentage.toFixed(2)}% - {percentage >= 50 ? 'Passed' : 'Failed'}</p>
+      <p style={{fontSize: '20px'}}>{percentage.toFixed(2)}% - {percentage >= 50 ? 'Passed' : 'Failed'}</p>
       <div style={styles.reviewButtonContainer}>
         <button onClick={() => setShowReview(!showReview)} style={styles.reviewButton}>
           <FaEye style={styles.icon} /> {showReview ? 'Hide Review' : 'Review Answers'}
         </button>
       </div>
-
+      </div>
       {showReview && (
-        <div>
+        <div style={styles.scrollableContainer}>
           <h3>Review Your Answers</h3>
           {questions.map((question, index) => {
             const userAnswer = userAnswers.find((answer) => answer.questionId === index)?.answer;
@@ -51,7 +52,7 @@ const Result = () => {
         </div>
       )}
       <div style={styles.buttonContainer}>
-        <button onClick={() => navigate('/dashboard')} style={styles.button}>
+        <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
           <FaArrowLeft style={styles.icon} /> Go Back
         </button>
       </div>
@@ -63,6 +64,21 @@ const styles = {
     textAlign: 'center',
     padding: '20px',
     fontFamily: "'Roboto', sans-serif",
+    height: '95vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    width: '96%',
+    backgroundColor: '#FFD700',
+    padding: '15px',
+    textAlign: 'center',
+    borderRadius: '8px 8px 0 0',
+    position: 'relative',
+    position: 'fixed',
+    top: 10,
   },
   progressBarContainer: {
     width: '100%',
@@ -84,27 +100,43 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  button: {
-    padding: '10px 20px',
-    fontSize: '16px',
-    margin: '5px',
-    cursor: 'pointer',
-    borderRadius: '5px',
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
-    display: 'flex',
-    alignItems: 'center',
-  },
   reviewButtonContainer: {
     marginTop: '20px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonContainer: {
+    width: '100%',
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    backgroundColor: '#fff',
+    // padding: '6px',
+    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  goBackButton: {
+    backgroundColor: '#2196F3',
+    color: 'white',
+    padding: '12px 20px',
+    fontSize: '20px',
+    cursor: 'pointer',
+    borderRadius: '10px',
+    border: 'none',
+    marginTop: '20px',
+    marginBottom: '20px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    transition: 'background-color 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   reviewButton: {
     padding: '10px 20px',
-    fontSize: '16px',
+    fontSize: '20px',
     cursor: 'pointer',
     borderRadius: '5px',
     backgroundColor: '#28a745',
@@ -131,6 +163,18 @@ const styles = {
   },
   icon: {
     marginRight: '8px',
+  },
+  scrollableContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+    width: '98%',
+    marginTop: "300px",
+    marginBottom: "60px",
+    flex: 1,
+    overflowY: "auto",
+    padding: "20px",
+    opacity: "0.9",
   },
 };
 export default Result;

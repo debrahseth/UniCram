@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../firebase';
-import { collection, getDocs, deleteDoc, onSnapshot } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, onSnapshot, doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/main.jpg';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const PersonalRecords = () => {
   const [quizRecords, setQuizRecords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [overallRating, setOverallRating] = useState(0);
+  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
   const calculateRating = (score, totalQuestions) => {
@@ -16,14 +19,36 @@ const PersonalRecords = () => {
     if (percentage >= 80) return 4;
     if (percentage >= 60) return 3;
     if (percentage >= 40) return 2;
-    return 1;
+    if (percentage >= 20)return 1;
+    return 0;
   };
   const calculateOverallRating = (totalScore, totalQuestions) => {
     if (totalQuestions === 0) return 0;
     const averageScore = (totalScore / totalQuestions) * 100;
     return calculateRating(averageScore, 100);
   };
-
+  useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        if (currentUser) {
+          setUser(currentUser);
+          try {
+            const userDocRef = doc(db, 'users', currentUser.uid);
+            const userDoc = await getDoc(userDocRef);
+            if (userDoc.exists()) {
+              setUsername(userDoc.data().username);
+            } else {
+              setUsername(currentUser.displayName || 'User');
+            }
+          } catch (error) {
+            console.error('Error fetching user data:', error);
+          }
+          setLoading(false);
+        } else {
+          navigate('/login');
+        }
+      });
+      return () => unsubscribe();
+    }, [navigate]);
   useEffect(() => {
     const fetchQuizRecords = async () => {
       const currentUser = auth.currentUser;
@@ -91,9 +116,9 @@ const PersonalRecords = () => {
     <div style={styles.container}>
     <div style={styles.background}></div>
     <div style={styles.title}>
-      <h2>Your Quiz Records</h2>
+      <h2>{username}'s Quiz Records</h2>
         <div style={styles.ratingcontainer}>
-            <p style={styles.recordDetails1}>Overall Rating:
+            <p style={styles.recordDetails1}>My Quiz Potential:
                 {Array.from({ length: 5 }, (_, i) => (
                 <span key={i} style={i < overallRating ? styles.filledStar1 : styles.emptyStar1}>
                 &#9733;
@@ -117,7 +142,7 @@ const PersonalRecords = () => {
               <p style={styles.recordDetails}>Score: {record.score}/{record.totalQuestions}</p>
               <p style={styles.recordDetails}>Date Taken: {record.dateTaken ? new Date(record.dateTaken.seconds * 1000).toLocaleString() : 'N/A'}</p>
               <div style={styles.starRating}>
-              <p style={styles.recordDetails}>Rating: {Array.from({ length: 5 }, (_, i) => (
+              <p style={styles.recordDetails}>Progress Snapshot: {Array.from({ length: 5 }, (_, i) => (
                     <span key={i} style={i < rating ? styles.filledStar : styles.emptyStar}>
                       &#9733;
                     </span>
@@ -188,6 +213,7 @@ title: {
     width: '100%',
     padding: '20px',
     marginTop: '10px',
+    marginBottom: '20px',
     zIndex: 2,
     opacity: 0.9,
     flex: 1,         
