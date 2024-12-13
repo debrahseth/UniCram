@@ -31,7 +31,7 @@ function App() {
         <Route path="/record" element={<PersonalRecords />} />
         <Route path="/challenge" element={<ChallengeSendingScreen />} />
         <Route path="/received" element={<ChallengesReceivedScreen />} />
-        <Route path="/Quiz" element={<QuizScreen />} />
+        <Route path="/Quiz/:challengeId" element={<QuizScreen />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

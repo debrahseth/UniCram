@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
-import { collection, query, where, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { collection, query, where, updateDoc, doc, deleteDoc, onSnapshot } from 'firebase/firestore';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,36 +9,27 @@ const ChallengesReceivedScreen = () => {
   const [currentUserId, setCurrentUserId] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      setCurrentUserId(currentUser.uid);
-    }
-
-    const fetchChallenges = async () => {
-      if (currentUserId) {
-        try {
+    useEffect(() => {
+        const currentUser = auth.currentUser;
+        if (currentUser) {
+          setCurrentUserId(currentUser.uid);
+        }
+        if (currentUserId) {
           const challengesQuery = query(
             collection(db, 'challenges'),
             where('receiverId', '==', currentUserId),
             where('status', '==', 'pending')
           );
-
-          const snapshot = await getDocs(challengesQuery);
-          const challengeList = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-
-          setChallenges(challengeList);
-        } catch (error) {
-          console.error('Error fetching challenges:', error);
+          const unsubscribe = onSnapshot(challengesQuery, (snapshot) => {
+            const challengeList = snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setChallenges(challengeList);
+          });
+          return () => unsubscribe();
         }
-      }
-    };
-
-    fetchChallenges();
-  }, [currentUserId]);
+      }, [currentUserId]);
 
   const handleAcceptChallenge = async (challengeId, senderId, receiverId) => {
     try {
@@ -48,10 +39,11 @@ const ChallengesReceivedScreen = () => {
       });
       await deleteDoc(challengeRef);
       console.log('Challenge accepted and deleted!');
-      navigate(`/quiz/${challengeId}?sender=${senderId}&receiver=${receiverId}`);
-      setChallenges((prevChallenges) =>
-        prevChallenges.filter((challenge) => challenge.id !== challengeId)
-      );
+      if (senderId && receiverId) {
+        navigate(`/Quiz/${challengeId}?sender=${senderId}&receiver=${receiverId}`);
+      } else {
+        console.error("Sender or receiver ID is missing!");
+      }
     } catch (error) {
       console.error('Error accepting challenge:', error);
     }
@@ -97,7 +89,7 @@ const ChallengesReceivedScreen = () => {
             <p>Challenge sent by: User {challenge.senderId}</p>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button
-                onClick={() => handleAcceptChallenge(challenge.id)}
+                onClick={() => handleAcceptChallenge(challenge.id, challenge.senderId, currentUserId)}
                 style={{
                   padding: '10px 20px',
                   backgroundColor: '#4CAF50',

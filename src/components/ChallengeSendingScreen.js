@@ -63,7 +63,6 @@ const ChallengeSendingScreen = () => {
             course: selectedSubject,
             difficulty: selectedDifficulty,
             status: 'pending',
-           // timestamp: serverTimestamp(),
           };
           const challengesCollectionRef = collection(db, 'challenges');
           await addDoc(challengesCollectionRef, challengeData);
