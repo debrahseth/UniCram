@@ -118,7 +118,7 @@ const PersonalRecords = () => {
     <div style={styles.title}>
       <h2>{username}'s Quiz Records</h2>
         <div style={styles.ratingcontainer}>
-            <p style={styles.recordDetails1}>My Quiz Potential:
+            <p style={styles.recordDetails1}>Progress Snapshot:
                 {Array.from({ length: 5 }, (_, i) => (
                 <span key={i} style={i < overallRating ? styles.filledStar1 : styles.emptyStar1}>
                 &#9733;
@@ -142,7 +142,7 @@ const PersonalRecords = () => {
               <p style={styles.recordDetails}>Score: {record.score}/{record.totalQuestions}</p>
               <p style={styles.recordDetails}>Date Taken: {record.dateTaken ? new Date(record.dateTaken.seconds * 1000).toLocaleString() : 'N/A'}</p>
               <div style={styles.starRating}>
-              <p style={styles.recordDetails}>Progress Snapshot: {Array.from({ length: 5 }, (_, i) => (
+              <p style={styles.recordDetails}>Quiz Potential: {Array.from({ length: 5 }, (_, i) => (
                     <span key={i} style={i < rating ? styles.filledStar : styles.emptyStar}>
                       &#9733;
                     </span>
