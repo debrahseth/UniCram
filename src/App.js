@@ -9,6 +9,7 @@ import Quiz from './components/Quiz';
 import Result from './components/Result';
 import Dashboard from './components/Dashboard';
 import SplashScreen from './components/SplashScreen';
+import PersonalRecords from './components/PersonalRecords';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/result" element={<Result />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/splash" element={<SplashScreen />} />
+        <Route path="/record" element={<PersonalRecords />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

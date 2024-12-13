@@ -84,11 +84,13 @@ const Profile = () => {
             style={styles.input}
           />
         </div>
+        <button onClick={() => navigate('/record')} style={styles.recordButton}>
+          <i class="fa fa-trophy"></i> My Achievements <i class="fa fa-trophy"></i>
+        </button>
+      </div>
         <div style={styles.footer}>
           <p>© 2025 StudyGroup. All rights reserved.</p>
         </div>
-      </div>
-      
     </div>
   );
 };
@@ -109,30 +111,47 @@ const styles = {
     border: 'none',
     borderRadius: '50px',
     padding: '12px 20px',
-    fontSize: '16px',
+    fontSize: '25px',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     gap: '10px',
     transition: 'background-color 0.3s',
     position: 'absolute',
-    top: '20px',
+    top: '30px',
     right: '20px',
   },
+  recordButton: {
+    backgroundColor: '#FFD700',
+    color: 'white',
+    border: 'none',
+    borderRadius: '50px',
+    padding: '12px 20px',
+    fontSize: '25px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+    transition: 'background-color 0.3s',
+    position: 'absolute',
+    bottom: '90px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  },  
   goBackButton: {
     backgroundColor: '#4CAF50',
     color: 'white',
     border: 'none',
     borderRadius: '50px',
     padding: '12px 20px',
-    fontSize: '16px',
+    fontSize: '25px',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     gap: '10px',
     transition: 'background-color 0.3s',
     position: 'absolute',
-    top: '20px',
+    top: '30px',
     left: '20px',
   },
   icon: {

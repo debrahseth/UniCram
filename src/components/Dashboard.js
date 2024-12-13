@@ -33,7 +33,24 @@ const Dashboard = () => {
     "Never be afraid to ask for help. Collaborating with others can open up new ways of learning.",
     "Stay organized! Keeping track of your tasks and goals can reduce stress and increase productivity.",
     "Don’t be afraid of failure – it’s a stepping stone to success. Learn from mistakes and keep improving.",
-    "Make learning fun! Try gamifying your study sessions to make them more enjoyable and engaging."
+    "Make learning fun! Try gamifying your study sessions to make them more enjoyable and engaging.",
+    "Active learning is the best way to retain information. Summarize what you've learned, teach others, and practice recalling key concepts.",
+    "Break your study time into manageable chunks using the Pomodoro Technique. 25-minute intervals of focus followed by 5-minute breaks can improve productivity.",
+    "Spaced repetition is a game changer. Review material at increasing intervals to combat forgetting and solidify long-term memory.",
+    "Set specific goals for each study session. Instead of vague intentions, make each task measurable and achievable to stay on track.",
+    "Visual aids like mind maps and diagrams can simplify complex ideas and help you understand relationships between concepts.",
+    "Avoid multitasking. Focus on one thing at a time for better concentration and deeper learning.",
+    "Practice retrieval by testing yourself regularly. This strengthens memory and helps you actively engage with the material.",
+    "Study in short, frequent sessions rather than cramming. Consistent, smaller study periods improve retention and prevent burnout.",
+    "Teach others or engage in group discussions to reinforce your understanding and learn from different perspectives.",
+    "Prioritize sleep, exercise, and nutrition. A healthy body supports a sharp mind, which is crucial for effective learning.",
+    "Use technology and apps to enhance your learning experience. Tools like Anki, Notion, and Quizlet help keep you organized and focused.",
+    "Work through past papers or sample problems to familiarize yourself with the material and exam format.",
+    "Break down large tasks into smaller steps. This prevents overwhelm and makes progress feel more achievable.",
+    "Stay organized by tracking assignments and setting deadlines. A cluttered space or mind leads to increased stress.",
+    "Change your study environment from time to time. A new setting can refresh your focus and spark creativity.",
+    "Be patient and consistent. Learning is a process, and steady effort over time leads to mastery.",
+    "Make learning enjoyable by connecting the material to your interests. Try to find fun ways to engage with the content.",
   ];
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
@@ -89,6 +106,7 @@ const Dashboard = () => {
           <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>See your challenges</button>
         </div>
       </div>
+      <div style={styles.scrollableContainer}>
       <div style={styles.content}>
         <div style={styles.motivationalQuotes}>
         <h3 style={styles.title}>Motivational Quotes</h3>
@@ -107,6 +125,7 @@ const Dashboard = () => {
             ))}
           </ul>
         </div>
+      </div>
       </div>
     </div>
   );
@@ -150,13 +169,19 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%',
+    width: '95%',
     padding: '20px',
-    marginTop: '20px',
+    marginLeft: '25px',
     zIndex: 2,
     opacity: 0.9,
     flex: 1,         
+  },
+  scrollableContainer: {
+    flex: 1,     
+    marginTop: '20px',    
     overflowY: 'auto',
+    opacity: '0.9',
+    width: '100%'
   },
   label :{
     fontSize: '40px',
@@ -177,7 +202,7 @@ const styles = {
     padding: '20px',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-    width: '96%',
+    width: '100%',
     marginBottom: '20px',
   },
   quoteCard: {
@@ -204,14 +229,14 @@ const styles = {
     padding: '20px',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
-    width: '96%',
+    width: '100%',
     marginBottom: '20px',
   },
   tipsList: {
     listStyleType: 'disc',
     paddingLeft: '20px',
     color: '#333',
-    fontSize: '20px',
+    fontSize: '25px',
   },
   tipItem: {
     marginBottom: '10px',

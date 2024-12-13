@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courses } from './courses';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import { FaChevronLeft, FaCheck, FaTimes, FaLightbulb, FaClock } from 'react-icons/fa';
 import TopLeftLogo from './TopLeftLogo'; 
@@ -78,6 +78,7 @@ const Quiz = () => {
 
   const saveScoreToFirestore = async (score) => {
     const totalQuestions = filteredQuestions.length;
+    const currentUser = auth.currentUser;
     try {
       await addDoc(collection(firestore, 'scores'), {
         userId: authInstance.currentUser.uid,
@@ -87,10 +88,21 @@ const Quiz = () => {
         totalQuestions,
       });
       console.log('Score saved successfully!');
-    } catch (error) {
-      console.error('Error saving score:', error);
-    }
-  };
+  const userQuizScoresRef = doc(firestore, 'users', currentUser.uid);
+    const userQuizScoresCollectionRef = collection(userQuizScoresRef, 'quizScores');
+
+    await addDoc(userQuizScoresCollectionRef, {
+      difficulty: selectedDifficulty,
+      subject: selectedCourse.title,
+      score,
+      totalQuestions,
+      dateTaken: new Date(),
+    });
+    console.log('Score saved successfully under the user ID in the quizScores subcollection!');
+  } catch (error) {
+    console.error('Error saving score:', error);
+  }
+};
 
   useEffect(() => {
     if (timerRunning && timer > 0) {

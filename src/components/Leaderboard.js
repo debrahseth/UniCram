@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
+import { FaArrowCircleLeft } from 'react-icons/fa';
 import { db } from '../firebase';
 import { collection, onSnapshot, getDocs } from 'firebase/firestore';
 import logo from '../assets/main.jpg';
@@ -54,8 +54,8 @@ const Leaderboard = () => {
           </button>
         </div>
         <div style={styles.buttonContain}>
-          <button onClick={() => navigate('/profile')} style={styles.backButton}>
-           My Records<FaArrowCircleRight size={20} />
+          <button onClick={() => navigate('/record')} style={styles.backButton}>
+            <i class="fa fa-trophy"></i>My Records
           </button>
         </div>
         <h2 style={{fontSize: '36px'}}>Leaderboard</h2>
