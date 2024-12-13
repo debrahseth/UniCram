@@ -112,7 +112,7 @@ const Leaderboard = () => {
 };
 const styles = {
   container: {
-    height: "90vh",
+    height: "100vh",
     display: "flex",
     flexDirection: "column",
     position: "relative",
@@ -146,7 +146,8 @@ const styles = {
     opacity: "0.7",
   },
   scrollableContainer: {
-    marginTop: "100px",
+    marginTop: "130px",
+    marginBottom: '90px',
     flex: 1,
     overflowY: "auto",
     padding: "20px",
