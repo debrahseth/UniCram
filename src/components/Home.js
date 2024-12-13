@@ -76,19 +76,6 @@ const Home = () => {
     e.target.style.backgroundColor = style.backgroundColor;
   };
 
-  const footerStyle = {
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    width: '100%',
-    padding: '15px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '0.9rem',
-    fontFamily: 'Poppins, sans-serif',
-  };
-
   return (
     <div style={containerStyle}>
       <h2 style={headerStyle}>Welcome to the Learning Page</h2>
@@ -119,9 +106,6 @@ const Home = () => {
           <FaSignInAlt style={{ marginRight: '33px', fontSize: '1.4rem' }} />
           Login
         </button>
-      </div>
-      <div style={footerStyle}>
-        <p>© 2025 StudyGroup. All rights reserved.</p>
       </div>
     </div>
   );
