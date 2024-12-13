@@ -162,7 +162,7 @@ const styles = {
     borderRadius: '8px 8px 0 0',
     position: 'relative',
     zIndex: 1,
-    opacity: 0.6,
+    opacity: 0.8,
   },
   content: {
     display: 'flex',

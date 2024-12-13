@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, doc, onSnapshot } from 'firebase/firestore';
 import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
 import logo from '../assets/logo1.jpg';
 import logo1 from '../assets/logo2.jpg';
@@ -15,6 +15,7 @@ const ChallengeSendingScreen = () => {
   const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
   const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,10 +53,10 @@ const ChallengeSendingScreen = () => {
   };
 
   const handleChallengeSend = async () => {
+    setIsLoading(true);
     if (selectedUserId && selectedSubject && selectedDifficulty) {
       try {
         const currentUser = auth.currentUser;
-  
         if (currentUser) {
           const challengeData = {
             senderId: currentUser.uid,
@@ -65,17 +66,35 @@ const ChallengeSendingScreen = () => {
             status: 'pending',
           };
           const challengesCollectionRef = collection(db, 'challenges');
-          await addDoc(challengesCollectionRef, challengeData);
+          const docRef = await addDoc(challengesCollectionRef, challengeData);
+          await new Promise((resolve) => setTimeout(resolve, 2000));
           console.log('Challenge sent:', challengeData);
+          const challengeRef = doc(db, 'challenges', docRef.id);
+          const unsubscribe = onSnapshot(challengeRef, (snapshot) => {
+            const challenge = snapshot.data();
+            if (challenge.status === 'accepted') {
+              setIsLoading(false);
+              unsubscribe(); 
+              navigate(`/Quiz/${docRef.id}?sender=${challenge.senderId}&receiver=${challenge.receiverId}`);
+            } else if (challenge.status === 'declined') {
+              setIsLoading(false);
+              unsubscribe(); 
+              alert('Challenge was declined.');
+            }
+          });
           setIsModalOpen(false);
         } else {
           console.error('No user is authenticated');
         }
       } catch (error) {
         console.error('Error sending challenge:', error);
+        setIsLoading(false);
       }
+    } else {
+        setIsLoading(false);
     }
   };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -176,8 +195,12 @@ const ChallengeSendingScreen = () => {
               </select>
             </div>
 
-            <button onClick={handleChallengeSend} style={styles.button}>
-              Send Challenge
+            <button onClick={handleChallengeSend} style={isLoading ? { ...styles.button, ...styles.loadingButton } : styles.button} disabled={isLoading}>
+                {isLoading ? (
+                    <span style={styles.loadingText}>Loading...</span>
+                ) : (
+                'Send Challenge'
+                )}
             </button>
             <button onClick={handleCloseModal} style={{ ...styles.button, ...styles.closeButton }}>
               Close
@@ -381,6 +404,14 @@ modal: {
     fontSize: '20px',
     marginLeft: '20px',
     transition: 'background-color 0.3s',
+  },
+  loadingButton: {
+    backgroundColor: 'grey',
+    cursor: 'not-allowed',
+  },
+  loadingText: {
+    fontSize: '16px',
+    color: 'blue',
   },
   closeButton: {
     backgroundColor: '#f44336',
