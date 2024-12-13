@@ -102,8 +102,8 @@ const Dashboard = () => {
       <div style={styles.button}>
         <div style={styles.buttonContainer}>
           <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
-          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Challenge a Friend</button>
-          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>See your challenges</button>
+          <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
+          <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button>
         </div>
       </div>
       <div style={styles.scrollableContainer}>

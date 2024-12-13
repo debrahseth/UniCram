@@ -10,6 +10,9 @@ import Result from './components/Result';
 import Dashboard from './components/Dashboard';
 import SplashScreen from './components/SplashScreen';
 import PersonalRecords from './components/PersonalRecords';
+import ChallengeSendingScreen from './components/ChallengeSendingScreen';
+import ChallengesReceivedScreen from './components/ChallengesReceivedScreen';
+import QuizScreen from './components/QuizScreen';
 import './App.css';
 
 function App() {
@@ -26,6 +29,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/record" element={<PersonalRecords />} />
+        <Route path="/challenge" element={<ChallengeSendingScreen />} />
+        <Route path="/received" element={<ChallengesReceivedScreen />} />
+        <Route path="/Quiz" element={<QuizScreen />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>
