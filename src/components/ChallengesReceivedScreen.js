@@ -32,11 +32,12 @@ const ChallengesReceivedScreen = () => {
                 if (!usernames[challenge.senderId]) {
                   fetchUsername(challenge.senderId);
                 }
+                  alert(`You have received a challenge!`);
               });
           });
           return () => unsubscribe();
         }
-      }, [currentUserId]);
+      }, [currentUserId, usernames]);
 
       const fetchUsername = async (userId) => {
         try {
@@ -61,7 +62,7 @@ const ChallengesReceivedScreen = () => {
       await updateDoc(challengeRef, {
         status: 'accepted',
       });
-      console.log('Challenge accepted and deleted!');
+      console.log('Challenge accepted!');
       if (senderId && receiverId) {
         navigate(`/Quiz/${challengeId}?sender=${senderId}&receiver=${receiverId}`);
       } else {

@@ -17,12 +17,16 @@ const QuizCompleted = () => {
         const storedReceiverScore = await AsyncStorage.getItem('receiverScore');
         if (storedSenderScore !== null) {
           setSenderScores(JSON.parse(storedSenderScore));
-          setIsSenderScoreLoaded(true);
+        } else {
+            setSenderScores(null);
         }
+          setIsSenderScoreLoaded(true);
         if (storedReceiverScore !== null) {
           setReceiverScores(JSON.parse(storedReceiverScore));
-          setIsReceiverScoreLoaded(true);
+        } else {
+            setReceiverScores(null);
         }
+          setIsReceiverScoreLoaded(true);
       } catch (error) {
         console.error('Error retrieving scores from AsyncStorage:', error);
       }
@@ -39,7 +43,7 @@ const QuizCompleted = () => {
         {isSenderScoreLoaded ? (
           senderScores
         ) : (
-          <span>Loading...</span>
+          <span>Loading {senderUsername}'s score...</span>
         )}
       </p>
       <p>
@@ -47,7 +51,7 @@ const QuizCompleted = () => {
         {isReceiverScoreLoaded ? (
           receiverScores
         ) : (
-          <span>Loading...</span>
+          <span>Loading {receiverUsername}'s score...</span>
         )}
       </p>
     </div>

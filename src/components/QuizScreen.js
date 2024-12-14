@@ -95,6 +95,7 @@ const QuizScreen = () => {
         setAnswer('');
       } else {
         setIsQuizComplete(true);
+        setIsLoading(true);
         calculateScores();
       }
   };

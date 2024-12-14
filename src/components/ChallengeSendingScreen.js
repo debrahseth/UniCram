@@ -132,7 +132,7 @@ const ChallengeSendingScreen = () => {
         <div style={styles.background}></div>
         <div style={styles.header}>
             <div style={styles.buttonContainer}>
-                <button onClick={() => navigate(-1)} style={styles.backButton}>
+                <button onClick={() => navigate('/dashboard')} style={styles.backButton}>
                     <FaArrowCircleLeft size={20} /> Go Back
                 </button>
             </div>
