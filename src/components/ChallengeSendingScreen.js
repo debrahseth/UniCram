@@ -67,7 +67,7 @@ const ChallengeSendingScreen = () => {
           };
           const challengesCollectionRef = collection(db, 'challenges');
           const docRef = await addDoc(challengesCollectionRef, challengeData);
-          await new Promise((resolve) => setTimeout(resolve, 6000));
+          await new Promise((resolve) => setTimeout(resolve, 3000));
           console.log('Challenge sent:', challengeData);
           const challengeRef = doc(db, 'challenges', docRef.id);
           const unsubscribe = onSnapshot(challengeRef, (snapshot) => {
@@ -197,7 +197,7 @@ const ChallengeSendingScreen = () => {
 
             <button onClick={handleChallengeSend} style={isLoading ? { ...styles.button, ...styles.loadingButton } : styles.button} disabled={isLoading}>
                 {isLoading ? (
-                    <span style={styles.loadingText}>Loading...</span>
+                    <span style={styles.loadingText}>Please wait while challenge is accepted...</span>
                 ) : (
                 'Send Challenge'
                 )}

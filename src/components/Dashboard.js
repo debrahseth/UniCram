@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
 import logo from '../assets/main.jpg';
 
 const Dashboard = () => {
@@ -10,6 +10,7 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
+  const [currentUserId, setCurrentUserId] = useState(null);
   const quotes = [
     { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
     { text: "The best way to predict the future is to create it.", author: "Abraham Lincoln" },
@@ -54,6 +55,7 @@ const Dashboard = () => {
   ];
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
@@ -76,6 +78,7 @@ const Dashboard = () => {
     });
     return () => unsubscribe();
   }, [navigate]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
@@ -86,6 +89,26 @@ const Dashboard = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      setCurrentUserId(currentUser.uid);
+    }
+    if (currentUserId) {
+      const challengesQuery = query(
+        collection(db, 'challenges'),
+        where('receiverId', '==', currentUserId),
+        where('status', '==', 'pending')
+      );
+      const unsubscribe = onSnapshot(challengesQuery, (snapshot) => {
+        if (!snapshot.empty) {
+          alert('You have received a new challenge!');
+        }
+      });
+      return () => unsubscribe();
+    }
+  }, [currentUserId]); 
 
   return (
     <div style={styles.container}>

@@ -32,12 +32,11 @@ const ChallengesReceivedScreen = () => {
                 if (!usernames[challenge.senderId]) {
                   fetchUsername(challenge.senderId);
                 }
-                  alert(`You have received a challenge!`);
               });
           });
           return () => unsubscribe();
         }
-      }, [currentUserId, usernames]);
+      }, [currentUserId]);
 
       const fetchUsername = async (userId) => {
         try {
