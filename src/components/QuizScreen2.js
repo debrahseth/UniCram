@@ -4,14 +4,14 @@ import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { courseData } from './courseData';
 
-const QuizScreen = () => {
+const QuizScreen2 = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [quizData, setQuizData] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState({ receiver: [] });
-  const [receiverScores, setReceiverScores] = useState(0);
-  const [receiverUsername, setReceiverUsername] = useState('');
+  const [userAnswers, setUserAnswers] = useState({ sender: [] });
+  const [senderScores, setSenderScores] = useState(0);
+  const [senderUsername, setSenderUsername] = useState('');
   const [timer, setTimer] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
@@ -19,8 +19,9 @@ const QuizScreen = () => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const receiverId = queryParams.get('receiver');
+    const senderId = queryParams.get('sender');
     const challengeId = location.pathname.split('/')[2];
+
     const fetchChallengeData = async () => {
       try {
         const challengeRef = doc(db, 'challenges', challengeId);
@@ -52,12 +53,12 @@ const QuizScreen = () => {
         } else {
           console.error('Challenge not found');
         }
-        const receiverRef = doc(db, 'users', receiverId);
-        const receiverSnap = await getDoc(receiverRef);
-        if (receiverSnap.exists()) {
-          setReceiverUsername(receiverSnap.data().username); 
+        const senderRef = doc(db, 'users', senderId); // Assuming sender data is stored in 'users' collection
+        const senderSnap = await getDoc(senderRef);
+        if (senderSnap.exists()) {
+          setSenderUsername(senderSnap.data().username); // Assuming the username field is 'username'
         } else {
-          console.error('Receiver not found');
+          console.error('Sender not found');
         }
       } catch (error) {
         console.error('Error fetching challenge data:', error);
@@ -70,7 +71,7 @@ const QuizScreen = () => {
   const handleAnswerSelect = (answer) => {
     setUserAnswers((prevAnswers) => ({
       ...prevAnswers,
-      receiver: [...prevAnswers.receiver, answer],
+      sender: [...prevAnswers.sender, answer],
     }));
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -80,13 +81,13 @@ const QuizScreen = () => {
     }
   };
   const calculateScores = () => {
-    let receiverScore = 0;
+    let senderScore = 0;
     quizData.forEach((question, index) => {
-      if (userAnswers.receiver[index] === question.answer) {
-        receiverScore += 1;
+      if (userAnswers.sender[index] === question.answer) {
+        senderScore += 1;
       }
     });
-    setReceiverScores(receiverScore);
+    setSenderScores(senderScore);
   };
   useEffect(() => {
     if (timer > 0) {
@@ -117,7 +118,7 @@ const QuizScreen = () => {
     return (
       <div>
         <h2>Quiz Completed!</h2>
-        <p>{receiverUsername}'s Score: {receiverScores}</p>
+        <p>{senderUsername}'s Score: {senderScores}</p>
         <button onClick={() => navigate('/quiz-completed')}>Go to Quiz Results</button>
       </div>
     );
@@ -154,4 +155,4 @@ const QuizScreen = () => {
     </div>
   );
 };
-export default QuizScreen;
+export default QuizScreen2;

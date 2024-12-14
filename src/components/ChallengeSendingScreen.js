@@ -75,7 +75,7 @@ const ChallengeSendingScreen = () => {
             if (challenge.status === 'accepted') {
               setIsLoading(false);
               unsubscribe(); 
-              navigate(`/Quiz/${docRef.id}?sender=${challenge.senderId}&receiver=${challenge.receiverId}`);
+              navigate(`/Quiz2/${docRef.id}?sender=${challenge.senderId}&receiver=${challenge.receiverId}`);
             } else if (challenge.status === 'declined') {
               setIsLoading(false);
               unsubscribe(); 
