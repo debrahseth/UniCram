@@ -10,17 +10,21 @@ const QuizScreen = () => {
   const [quizData, setQuizData] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState({ sender: [], receiver: [] });
+  const [senderScores, setSenderScores] = useState(0);
+  const [receiverScores, setReceiverScores] = useState(0);
   const [timer, setTimer] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
   const [isQuizComplete, setIsQuizComplete] = useState(false);
-  const [scores, setScores] = useState({ sender: 0, receiver: 0 }); 
+  const [currentUser, setCurrentUser] = useState('sender');
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const senderId = queryParams.get('sender');
     const receiverId = queryParams.get('receiver');
     const challengeId = location.pathname.split('/')[2];
+
+    setCurrentUser(senderId);
 
     const fetchChallengeData = async () => {
       try {
@@ -64,12 +68,14 @@ const QuizScreen = () => {
     fetchChallengeData();
   }, [location]);
 
-  const handleAnswerSelect = (answer, userType) => {
-    setUserAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [userType]: [...prevAnswers[userType], answer],
-    }));
+  const handleAnswerSelect = (answer) => {
+    if (!currentUser) return;
 
+    setUserAnswers((prevAnswers) => {
+      const updatedAnswers = { ...prevAnswers };
+      updatedAnswers[currentUser].push(answer);
+      return updatedAnswers;
+    });
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
@@ -77,7 +83,6 @@ const QuizScreen = () => {
       calculateScores();
     }
   };
-
   const calculateScores = () => {
     let senderScore = 0;
     let receiverScore = 0;
@@ -89,7 +94,9 @@ const QuizScreen = () => {
         receiverScore += 1;
       }
     });
-    setScores({ sender: senderScore, receiver: receiverScore });
+
+    setSenderScores(senderScore);
+    setReceiverScores(receiverScore);
   };
 
   useEffect(() => {
@@ -97,6 +104,13 @@ const QuizScreen = () => {
       const countdown = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
+
+      if (timer === 1) {
+        clearInterval(countdown);
+        setIsQuizComplete(true);
+        calculateScores();
+      }
+
       return () => clearInterval(countdown);
     }
   }, [timer]);
@@ -120,8 +134,8 @@ const QuizScreen = () => {
     return (
       <div>
         <h2>Quiz Completed!</h2>
-        <p>Sender Score: {scores.sender}</p>
-        <p>Receiver Score: {scores.receiver}</p>
+        <p>Sender Score: {senderScores}</p>
+        <p>Receiver Score: {receiverScores}</p>
         <button onClick={() => navigate('/quiz-completed')}>Go to Quiz Results</button>
       </div>
     );
@@ -133,29 +147,28 @@ const QuizScreen = () => {
     <div>
       <h1>{currentQuestion.question}</h1>
       <p>Time remaining: {formattedTime}</p>
+
       {currentQuestion.type === 'True/False' && (
         <div>
-          <button onClick={() => handleAnswerSelect('True', 'sender')}>True</button>
-          <button onClick={() => handleAnswerSelect('False', 'sender')}>False</button>
+          <button onClick={() => handleAnswerSelect('True')}>True</button>
+          <button onClick={() => handleAnswerSelect('False')}>False</button>
         </div>
       )}
-
       {currentQuestion.type === 'Multiple Choice' && (
         <div>
           {currentQuestion.options.map((option, index) => (
-            <button key={index} onClick={() => handleAnswerSelect(option, 'sender')}>
+            <button key={index} onClick={() => handleAnswerSelect(option)}>
               {option}
             </button>
           ))}
         </div>
       )}
-
       {currentQuestion.type === 'Fill-in' && (
         <div>
           <input
             type="text"
-            onBlur={(e) => handleAnswerSelect(e.target.value, 'sender')}
-            placeholder="Enter your answer"
+            onBlur={(e) => handleAnswerSelect(e.target.value)}
+            placeholder={currentUser === 'sender' ? 'Enter answer for Sender' : 'Enter answer for Receiver'}
           />
         </div>
       )}
