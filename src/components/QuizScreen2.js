@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { courseData } from './courseData';
+import '../styles.css';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizScreen2 = () => {
   const location = useLocation();
@@ -10,6 +12,7 @@ const QuizScreen2 = () => {
   const [quizData, setQuizData] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState({ sender: [] });
+  const [answer, setAnswer] = useState('');
   const [senderScores, setSenderScores] = useState(0);
   const [receiverUsername, setReceiverUsername] = useState('');
   const [senderUsername, setSenderUsername] = useState('');
@@ -17,6 +20,7 @@ const QuizScreen2 = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
   const [isQuizComplete, setIsQuizComplete] = useState(false);
+  const [loadingSenderScore, setLoadingSenderScore] = useState(true);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -77,6 +81,24 @@ const QuizScreen2 = () => {
     };
     fetchChallengeData();
   }, [location]);
+
+  const handleInputChange = (e) => {
+    setAnswer(e.target.value);
+  };
+  const handleAnswer = () => {
+      setUserAnswers((prevAnswers) => ({
+        ...prevAnswers,
+        sender: [...prevAnswers.sender, answer],
+      }));
+      if (currentQuestionIndex < quizData.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setAnswer('');
+      } else {
+        setIsQuizComplete(true);
+        calculateScores();
+      }
+  };
+
   const handleAnswerSelect = (answer) => {
     setUserAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -89,15 +111,23 @@ const QuizScreen2 = () => {
       calculateScores();
     }
   };
-  const calculateScores = () => {
+  
+  const calculateScores = async () => {
     let senderScore = 0;
     quizData.forEach((question, index) => {
       if (userAnswers.sender[index] === question.answer) {
         senderScore += 1;
       }
     });
-    setSenderScores(senderScore);
+    try {
+        await AsyncStorage.setItem('senderScore', JSON.stringify(senderScore));
+        setSenderScores(senderScore);
+        console.log('Sender score saved to AsyncStorage:', senderScore);
+      } catch (error) {
+        console.error('Error saving score to AsyncStorage:', error);
+      }
   };
+
   useEffect(() => {
     if (timer > 0) {
       const countdown = setInterval(() => {
@@ -111,28 +141,52 @@ const QuizScreen2 = () => {
       return () => clearInterval(countdown);
     }
   }, [timer]);
+
   useEffect(() => {
     const hours = Math.floor(timer / 3600);
     const minutes = Math.floor((timer % 3600) / 60);
     const seconds = timer % 60;
     setFormattedTime(`${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
   }, [timer]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoadingSenderScore(false);
+    }, 30000);
+
+    return () => clearTimeout(timeout);
+  }, [senderScores]);
+
   if (isLoading) {
-    return <div>Loading quiz...</div>;
+    return (
+    <div className="spinner-container">
+        <div className="spinner"></div>
+        <p>Loading quiz...</p>
+    </div>
+    );
   }
   if (!quizData) {
     return <div>Error loading quiz data.</div>;
   }
+
   if (isQuizComplete) {
     return (
       <div>
         <h2>Quiz Completed!</h2>
-        <p>{senderUsername}'s Score: {senderScores}</p>
-        <button onClick={() => navigate('/quiz-completed', { state: { senderScores, senderUsername, receiverUsername } })}>Go to Quiz Results</button>
+        {loadingSenderScore ? (
+        <div className="spinner-container">
+            <div className="spinner"></div>
+            <p>Loading {senderUsername}'s score...</p>
+        </div>
+        ) : (
+        <p>{senderUsername}'s Score: {senderScores}</p>)}
+        <button onClick={() => navigate('/quiz-completed', { state: { receiverUsername, senderUsername } })}>Go to Quiz Results</button>
       </div>
     );
   }
+
   const currentQuestion = quizData[currentQuestionIndex];
+
   return (
     <div>
       <h1>{currentQuestion.question}</h1>
@@ -156,12 +210,17 @@ const QuizScreen2 = () => {
         <div>
           <input
             type="text"
-            onBlur={(e) => handleAnswerSelect(e.target.value)}
             placeholder="Enter your answer"
+            value={answer}
+            onChange={handleInputChange}
           />
+          <button onClick={() => handleAnswer('answer')}>Submit</button>
         </div>
       )}
     </div>
   );
 };
+
+const styles ={
+}
 export default QuizScreen2;

@@ -67,7 +67,7 @@ const ChallengeSendingScreen = () => {
           };
           const challengesCollectionRef = collection(db, 'challenges');
           const docRef = await addDoc(challengesCollectionRef, challengeData);
-          await new Promise((resolve) => setTimeout(resolve, 2000));
+          await new Promise((resolve) => setTimeout(resolve, 6000));
           console.log('Challenge sent:', challengeData);
           const challengeRef = doc(db, 'challenges', docRef.id);
           const unsubscribe = onSnapshot(challengeRef, (snapshot) => {

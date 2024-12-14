@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizCompleted = () => {
   const location = useLocation();
@@ -10,17 +11,24 @@ const QuizCompleted = () => {
   const { senderUsername, receiverUsername } = location.state || {};
 
   useEffect(() => {
-    if (location.state) {
-      setSenderScores(location.state.senderScores);
-      setReceiverScores(location.state.receiverScores);
-    }
-    if (senderScores !== null) {
-      setIsSenderScoreLoaded(true);
-    }
-    if (receiverScores !== null) {
-      setIsReceiverScoreLoaded(true);
-    }
-  }, [location.state, senderScores, receiverScores]);
+    const loadScores = async () => {
+      try {
+        const storedSenderScore = await AsyncStorage.getItem('senderScore');
+        const storedReceiverScore = await AsyncStorage.getItem('receiverScore');
+        if (storedSenderScore !== null) {
+          setSenderScores(JSON.parse(storedSenderScore));
+          setIsSenderScoreLoaded(true);
+        }
+        if (storedReceiverScore !== null) {
+          setReceiverScores(JSON.parse(storedReceiverScore));
+          setIsReceiverScoreLoaded(true);
+        }
+      } catch (error) {
+        console.error('Error retrieving scores from AsyncStorage:', error);
+      }
+    };
+    loadScores();
+  }, []);
 
   return (
     <div>
