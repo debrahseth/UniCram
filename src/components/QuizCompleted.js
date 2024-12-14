@@ -1,8 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { doc, deleteDoc } from 'firebase/firestore';
+import { doc, getDoc, deleteDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizCompleted = () => {
   const location = useLocation();
@@ -16,31 +15,36 @@ const QuizCompleted = () => {
   useEffect(() => {
     const loadScores = async () => {
       try {
-        const storedSenderScore = await AsyncStorage.getItem('senderScore');
-        const storedReceiverScore = await AsyncStorage.getItem('receiverScore');
+        if (challengeId) {
+          const challengeRef = doc(db, 'challenges', challengeId);
+          const scoresRef = collection(challengeRef, 'scores');
+          const senderDoc = await getDoc(doc(scoresRef, 'sender'));
+          const receiverDoc = await getDoc(doc(scoresRef, 'receiver'));
 
-        if (storedSenderScore !== null) {
-          setSenderScores(JSON.parse(storedSenderScore));
-          setIsSenderScoreLoaded(true);
-        }
+          if (senderDoc.exists()) {
+            setSenderScores(senderDoc.data().senderScore);
+            setIsSenderScoreLoaded(true);
+          } else {
+            console.error('Sender score not found in Firestore');
+          }
 
-        if (storedReceiverScore !== null) {
-          setReceiverScores(JSON.parse(storedReceiverScore));
-          setIsReceiverScoreLoaded(true);
+          if (receiverDoc.exists()) {
+            setReceiverScores(receiverDoc.data().receiverScore);
+            setIsReceiverScoreLoaded(true);
+          } else {
+            console.error('Receiver score not found in Firestore');
+          }
         }
-        
       } catch (error) {
-        console.error('Error retrieving scores from AsyncStorage:', error);
+        console.error('Error retrieving scores from Firestore:', error);
       }
     };
+
     loadScores();
-  }, []);
+  }, [challengeId]);
 
   const resetScoresAndNavigate = async () => {
     try {
-      await AsyncStorage.removeItem('senderScore');
-      await AsyncStorage.removeItem('receiverScore');
-      console.log('Scores cleared from AsyncStorage');
       if (challengeId) {
         const challengeRef = doc(db, 'challenges', challengeId);
         await deleteDoc(challengeRef);
@@ -77,9 +81,6 @@ const QuizCompleted = () => {
       </button>
     </div>
   );
-};
-
-const styles = {
 };
 
 export default QuizCompleted;

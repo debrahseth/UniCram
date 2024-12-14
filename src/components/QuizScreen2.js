@@ -1,10 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, setDoc } from 'firebase/firestore';
 import { courseData } from './courseData';
 import '../styles.css';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizScreen2 = () => {
   const location = useLocation();
@@ -16,6 +15,7 @@ const QuizScreen2 = () => {
   const [senderScores, setSenderScores] = useState(0);
   const [receiverUsername, setReceiverUsername] = useState('');
   const [senderUsername, setSenderUsername] = useState('');
+  const [challengeId, setChallengeId] = useState('');
   const [timer, setTimer] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
@@ -26,11 +26,12 @@ const QuizScreen2 = () => {
     const queryParams = new URLSearchParams(location.search);
     const senderId = queryParams.get('sender');
     const receiverId = queryParams.get('receiver');
-    const challengeId = location.pathname.split('/')[2];
+    const extractedChallengeId = location.pathname.split('/')[2];
+    setChallengeId(extractedChallengeId);
 
     const fetchChallengeData = async () => {
       try {
-        const challengeRef = doc(db, 'challenges', challengeId);
+        const challengeRef = doc(db, 'challenges', extractedChallengeId);
         const challengeSnap = await getDoc(challengeRef);
         if (challengeSnap.exists()) {
           const challenge = challengeSnap.data();
@@ -85,64 +86,70 @@ const QuizScreen2 = () => {
   const handleInputChange = (e) => {
     setAnswer(e.target.value);
   };
-  const handleAnswer = () => {
+
+  const handleAnswer = async () => {
       setUserAnswers((prevAnswers) => ({
         ...prevAnswers,
         sender: [...prevAnswers.sender, answer],
       }));
+      const currentQuestion = quizData[currentQuestionIndex];
+      const isCorrect = answer === currentQuestion.answer;
+      if (isCorrect) {
+        setSenderScores((prevScore) => prevScore + 1);
+      }
+      try {
+        const challengeRef = doc(db, 'challenges', challengeId);
+        const scoresRef = collection(challengeRef, 'scores');
+        const scoresData = { senderScore: senderScores + (isCorrect ? 1 : 0) }; 
+        await setDoc(doc(scoresRef, 'sender'), scoresData);
+        console.log('Sender score updated in Firestore:', senderScores + (isCorrect ? 1 : 0));
+      } catch (error) {
+        console.error('Error updating score to Firestore:', error);
+      }
       if (currentQuestionIndex < quizData.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        calculateScores();
-        setAnswer('');
       } else {
         setIsQuizComplete(true);
-        calculateScores();
       }
-  };
+    };
 
-  const handleAnswerSelect = (answer) => {
+  const handleAnswerSelect = async (answer) => {
     setUserAnswers((prevAnswers) => ({
       ...prevAnswers,
       sender: [...prevAnswers.sender, answer],
     }));
-    if (currentQuestionIndex < quizData.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      calculateScores();
-    } else {
-      setIsQuizComplete(true);
-      calculateScores();
-    }
-  };
+    const currentQuestion = quizData[currentQuestionIndex];
+    const isCorrect = answer === currentQuestion.answer;
+        if (isCorrect) {
+            setSenderScores((prevScore) => prevScore + 1);
+        }
+        try {
+            const challengeRef = doc(db, 'challenges', challengeId);
+            const scoresRef = collection(challengeRef, 'scores');
+            const scoresData = { senderScore: senderScores + (isCorrect ? 1 : 0) };
+            await setDoc(doc(scoresRef, 'sender'), scoresData);
+            console.log('Sender score updated in Firestore:', senderScores + (isCorrect ? 1 : 0));
+        } catch (error) {
+            console.error('Error updating score to Firestore:', error);
+        }
+        if (currentQuestionIndex < quizData.length - 1) {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+        } else {
+            setIsQuizComplete(true);
+        }
+    };
   
-  const calculateScores = async () => {
-    let senderScore = 0;
-    quizData.forEach((question, index) => {
-      if (userAnswers.sender[index] === question.answer) {
-        senderScore += 1;
-      }
-    });
-    try {
-        await AsyncStorage.setItem('senderScore', JSON.stringify(senderScore));
-        setSenderScores(senderScore);
-        console.log('Sender score saved to AsyncStorage:', senderScore);
-      } catch (error) {
-        console.error('Error saving score to AsyncStorage:', error);
-      }
-  };
-
-  useEffect(() => {
-    if (timer > 0) {
-      const countdown = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-      if (timer === 1) {
-        clearInterval(countdown);
-        setIsQuizComplete(true);
-        calculateScores();
-      }
-      return () => clearInterval(countdown);
-    }
-  }, [timer]);
+  // useEffect(() => {
+//     if (timer > 0) {
+//       const countdown = setInterval(() => {
+//         setTimer((prevTimer) => prevTimer - 1);
+//       }, 1000);
+//       return () => clearInterval(countdown);
+//     } else if (timer === 0) {
+//       setIsQuizComplete(true);
+//       console.log('Timer ended, quiz is complete');
+//     }
+//   }, [timer]);
 
   useEffect(() => {
     const hours = Math.floor(timer / 3600);

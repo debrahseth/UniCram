@@ -1,10 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, collection } from 'firebase/firestore';
 import { courseData } from './courseData';
 import '../styles.css';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizScreen = () => {
   const location = useLocation();
@@ -87,62 +86,70 @@ const QuizScreen = () => {
   const handleInputChange = (e) => {
     setAnswer(e.target.value);
   };
-  const handleAnswer = () => {
+
+  const handleAnswer = async () => {
       setUserAnswers((prevAnswers) => ({
         ...prevAnswers,
         receiver: [...prevAnswers.receiver, answer],
       }));
+      const currentQuestion = quizData[currentQuestionIndex];
+      const isCorrect = answer === currentQuestion.answer;
+      if (isCorrect) {
+        setReceiverScores((prevScore) => prevScore + 1);
+      }
+      try {
+        const challengeRef = doc(db, 'challenges', challengeId);
+        const scoresRef = collection(challengeRef, 'scores');
+        const scoresData = { receiverScore: receiverScores + (isCorrect ? 1 : 0) }; 
+        await setDoc(doc(scoresRef, 'receiver'), scoresData);
+        console.log('Receiver score updated in Firestore:', receiverScores + (isCorrect ? 1 : 0));
+      } catch (error) {
+        console.error('Error updating score to Firestore:', error);
+      }
       if (currentQuestionIndex < quizData.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setAnswer('');
       } else {
         setIsQuizComplete(true);
-        calculateScores();
       }
-  };
+    };
 
-  const handleAnswerSelect = (answer) => {
+  const handleAnswerSelect = async (answer) => {
     setUserAnswers((prevAnswers) => ({
       ...prevAnswers,
       receiver: [...prevAnswers.receiver, answer],
     }));
-    if (currentQuestionIndex < quizData.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      setIsQuizComplete(true);
-      calculateScores();
-    }
-  };
+    const currentQuestion = quizData[currentQuestionIndex];
+    const isCorrect = answer === currentQuestion.answer;
+        if (isCorrect) {
+            setReceiverScores((prevScore) => prevScore + 1);
+        }
+        try {
+            const challengeRef = doc(db, 'challenges', challengeId);
+            const scoresRef = collection(challengeRef, 'scores');
+            const scoresData = { receiverScore: receiverScores + (isCorrect ? 1 : 0) };
+            await setDoc(doc(scoresRef, 'receiver'), scoresData);
+            console.log('Receiver score updated in Firestore:', receiverScores + (isCorrect ? 1 : 0));
+        } catch (error) {
+            console.error('Error updating score to Firestore:', error);
+        }
+        if (currentQuestionIndex < quizData.length - 1) {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+        } else {
+            setIsQuizComplete(true);
+        }
+    };
 
-  const calculateScores = async () => {
-    let receiverScore = 0;
-    quizData.forEach((question, index) => {
-      if (userAnswers.receiver[index] === question.answer) {
-        receiverScore += 1;
-      }
-    });
-    try {
-        await AsyncStorage.setItem('receiverScore', JSON.stringify(receiverScore));
-        setReceiverScores(receiverScore);
-        console.log('Receiver score saved to AsyncStorage:', receiverScore);
-      } catch (error) {
-        console.error('Error saving score to AsyncStorage:', error);
-      }
-  };
-
-  useEffect(() => {
-    if (timer > 0) {
-      const countdown = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-      if (timer === 1) {
-        clearInterval(countdown);
-        setIsQuizComplete(true);
-        calculateScores();
-      }
-      return () => clearInterval(countdown);
-    }
-  }, [timer]);
+// useEffect(() => {
+//     if (timer > 0) {
+//       const countdown = setInterval(() => {
+//         setTimer((prevTimer) => prevTimer - 1);
+//       }, 1000);
+//       return () => clearInterval(countdown);
+//     } else if (timer === 0) {
+//       setIsQuizComplete(true);
+//       console.log('Timer ended, quiz is complete');
+//     }
+//   }, [timer]);
 
   useEffect(() => {
     const hours = Math.floor(timer / 3600);
