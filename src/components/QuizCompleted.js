@@ -1,9 +1,10 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizCompleted = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [senderScores, setSenderScores] = useState(null);
   const [receiverScores, setReceiverScores] = useState(null);
   const [isSenderScoreLoaded, setIsSenderScoreLoaded] = useState(false);
@@ -34,6 +35,17 @@ const QuizCompleted = () => {
     loadScores();
   }, []);
 
+  const resetScoresAndNavigate = async () => {
+    try {
+      await AsyncStorage.removeItem('senderScore');
+      await AsyncStorage.removeItem('receiverScore');
+      console.log('Scores cleared from AsyncStorage');
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error resetting scores:', error);
+    }
+  };
+
   return (
     <div>
       <h1>Quiz Completed!</h1>
@@ -54,8 +66,14 @@ const QuizCompleted = () => {
           <span>Loading {receiverUsername}'s score...</span>
         )}
       </p>
+      <button onClick={resetScoresAndNavigate}>
+        Go Back to Dashboard
+      </button>
     </div>
   );
+};
+
+const styles = {
 };
 
 export default QuizCompleted;

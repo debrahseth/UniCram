@@ -181,7 +181,13 @@ const QuizScreen2 = () => {
         </div>
         ) : (
         <p>{senderUsername}'s Score: {senderScores}</p>)}
-        <button onClick={() => navigate('/quiz-completed', { state: { receiverUsername, senderUsername } })}>Go to Quiz Results</button>
+        {!loadingSenderScore && (
+        <button 
+          onClick={() => navigate('/quiz-completed', { state: { receiverUsername, senderUsername } })}
+        >
+          Go to Quiz Results
+        </button>
+      )}
       </div>
     );
   }
