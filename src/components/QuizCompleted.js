@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizCompleted = () => {
@@ -9,25 +11,24 @@ const QuizCompleted = () => {
   const [receiverScores, setReceiverScores] = useState(null);
   const [isSenderScoreLoaded, setIsSenderScoreLoaded] = useState(false);
   const [isReceiverScoreLoaded, setIsReceiverScoreLoaded] = useState(false);
-  const { senderUsername, receiverUsername } = location.state || {};
+  const { senderUsername, receiverUsername, challengeId } = location.state || {};
 
   useEffect(() => {
     const loadScores = async () => {
       try {
         const storedSenderScore = await AsyncStorage.getItem('senderScore');
         const storedReceiverScore = await AsyncStorage.getItem('receiverScore');
+
         if (storedSenderScore !== null) {
           setSenderScores(JSON.parse(storedSenderScore));
-        } else {
-            setSenderScores(null);
-        }
           setIsSenderScoreLoaded(true);
+        }
+
         if (storedReceiverScore !== null) {
           setReceiverScores(JSON.parse(storedReceiverScore));
-        } else {
-            setReceiverScores(null);
-        }
           setIsReceiverScoreLoaded(true);
+        }
+        
       } catch (error) {
         console.error('Error retrieving scores from AsyncStorage:', error);
       }
@@ -40,6 +41,11 @@ const QuizCompleted = () => {
       await AsyncStorage.removeItem('senderScore');
       await AsyncStorage.removeItem('receiverScore');
       console.log('Scores cleared from AsyncStorage');
+      if (challengeId) {
+        const challengeRef = doc(db, 'challenges', challengeId);
+        await deleteDoc(challengeRef);
+        console.log('Challenge deleted from "challenges" collection');
+      }
       navigate('/dashboard');
     } catch (error) {
       console.error('Error resetting scores:', error);

@@ -16,6 +16,7 @@ const QuizScreen = () => {
   const [receiverScores, setReceiverScores] = useState(0);
   const [receiverUsername, setReceiverUsername] = useState('');
   const [senderUsername, setSenderUsername] = useState('');
+  const [challengeId, setChallengeId] = useState('');
   const [timer, setTimer] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
@@ -26,11 +27,12 @@ const QuizScreen = () => {
     const queryParams = new URLSearchParams(location.search);
     const senderId = queryParams.get('sender');
     const receiverId = queryParams.get('receiver');
-    const challengeId = location.pathname.split('/')[2];
+    const extractedChallengeId = location.pathname.split('/')[2];
+    setChallengeId(extractedChallengeId);
 
     const fetchChallengeData = async () => {
       try {
-        const challengeRef = doc(db, 'challenges', challengeId);
+        const challengeRef = doc(db, 'challenges', extractedChallengeId);
         const challengeSnap = await getDoc(challengeRef);
         if (challengeSnap.exists()) {
           const challenge = challengeSnap.data();
@@ -95,7 +97,6 @@ const QuizScreen = () => {
         setAnswer('');
       } else {
         setIsQuizComplete(true);
-        setIsLoading(true);
         calculateScores();
       }
   };
@@ -153,7 +154,7 @@ const QuizScreen = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoadingReceiverScore(false);
-    }, 30000);
+    }, 3000);
 
     return () => clearTimeout(timeout);
   }, [receiverScores]);
@@ -167,8 +168,8 @@ const QuizScreen = () => {
     );
   }
   if (!quizData) {
-    return <div>Error loading quiz data.</div>;
-  }
+    return <div>Error loading quiz scores.</div>;
+  };
 
   if (isQuizComplete){
     return (
@@ -183,7 +184,8 @@ const QuizScreen = () => {
         <p>{receiverUsername}'s Score: {receiverScores}</p>)}
         {!loadingReceiverScore && (
         <button 
-          onClick={() => navigate('/quiz-completed', { state: { receiverUsername, senderUsername } })}
+          onClick={() => {
+            navigate('/quiz-completed', { state: { receiverUsername, senderUsername, challengeId } })}}
         >
           Go to Quiz Results
         </button>

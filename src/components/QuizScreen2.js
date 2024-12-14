@@ -92,10 +92,10 @@ const QuizScreen2 = () => {
       }));
       if (currentQuestionIndex < quizData.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
+        calculateScores();
         setAnswer('');
       } else {
         setIsQuizComplete(true);
-        setIsLoading(true);
         calculateScores();
       }
   };
@@ -107,6 +107,7 @@ const QuizScreen2 = () => {
     }));
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      calculateScores();
     } else {
       setIsQuizComplete(true);
       calculateScores();
