@@ -86,10 +86,6 @@ const Dashboard = () => {
     return () => clearInterval(interval);
   }, [quotes.length]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   useEffect(() => {
     const currentUser = auth.currentUser;
     if (currentUser) {
@@ -109,6 +105,10 @@ const Dashboard = () => {
       return () => unsubscribe();
     }
   }, [currentUserId]); 
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div style={styles.container}>
