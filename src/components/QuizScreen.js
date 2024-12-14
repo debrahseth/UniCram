@@ -12,6 +12,7 @@ const QuizScreen = () => {
   const [userAnswers, setUserAnswers] = useState({ receiver: [] });
   const [receiverScores, setReceiverScores] = useState(0);
   const [receiverUsername, setReceiverUsername] = useState('');
+  const [senderUsername, setSenderUsername] = useState('');
   const [timer, setTimer] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
@@ -19,6 +20,7 @@ const QuizScreen = () => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
+    const senderId = queryParams.get('sender');
     const receiverId = queryParams.get('receiver');
     const challengeId = location.pathname.split('/')[2];
     const fetchChallengeData = async () => {
@@ -51,6 +53,13 @@ const QuizScreen = () => {
           }
         } else {
           console.error('Challenge not found');
+        }
+        const senderRef = doc(db, 'users', senderId);
+        const senderSnap = await getDoc(senderRef);
+        if (senderSnap.exists()) {
+          setSenderUsername(senderSnap.data().username);
+        } else {
+          console.error('Sender not found');
         }
         const receiverRef = doc(db, 'users', receiverId);
         const receiverSnap = await getDoc(receiverRef);
@@ -118,7 +127,7 @@ const QuizScreen = () => {
       <div>
         <h2>Quiz Completed!</h2>
         <p>{receiverUsername}'s Score: {receiverScores}</p>
-        <button onClick={() => navigate('/quiz-completed')}>Go to Quiz Results</button>
+        <button onClick={() => navigate('/quiz-completed', { state: { receiverScores, receiverUsername, senderUsername } })}>Go to Quiz Results</button>
       </div>
     );
   }

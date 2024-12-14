@@ -11,6 +11,7 @@ const QuizScreen2 = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState({ sender: [] });
   const [senderScores, setSenderScores] = useState(0);
+  const [receiverUsername, setReceiverUsername] = useState('');
   const [senderUsername, setSenderUsername] = useState('');
   const [timer, setTimer] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +21,7 @@ const QuizScreen2 = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const senderId = queryParams.get('sender');
+    const receiverId = queryParams.get('receiver');
     const challengeId = location.pathname.split('/')[2];
 
     const fetchChallengeData = async () => {
@@ -53,12 +55,19 @@ const QuizScreen2 = () => {
         } else {
           console.error('Challenge not found');
         }
-        const senderRef = doc(db, 'users', senderId); // Assuming sender data is stored in 'users' collection
+        const senderRef = doc(db, 'users', senderId);
         const senderSnap = await getDoc(senderRef);
         if (senderSnap.exists()) {
-          setSenderUsername(senderSnap.data().username); // Assuming the username field is 'username'
+          setSenderUsername(senderSnap.data().username);
         } else {
           console.error('Sender not found');
+        }
+        const receiverRef = doc(db, 'users', receiverId);
+        const receiverSnap = await getDoc(receiverRef);
+        if (receiverSnap.exists()) {
+          setReceiverUsername(receiverSnap.data().username); 
+        } else {
+          console.error('Receiver not found');
         }
       } catch (error) {
         console.error('Error fetching challenge data:', error);
@@ -119,7 +128,7 @@ const QuizScreen2 = () => {
       <div>
         <h2>Quiz Completed!</h2>
         <p>{senderUsername}'s Score: {senderScores}</p>
-        <button onClick={() => navigate('/quiz-completed')}>Go to Quiz Results</button>
+        <button onClick={() => navigate('/quiz-completed', { state: { senderScores, senderUsername, receiverUsername } })}>Go to Quiz Results</button>
       </div>
     );
   }
