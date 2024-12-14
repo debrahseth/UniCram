@@ -182,20 +182,12 @@ const QuizScreen2 = () => {
     return (
       <div>
         <h2>Quiz Completed!</h2>
-        {loadingSenderScore ? (
-        <div className="spinner-container">
-            <div className="spinner"></div>
-            <p>Loading {senderUsername}'s score...</p>
-        </div>
-        ) : (
-        <p>{senderUsername}'s Score: {senderScores}</p>)}
-        {!loadingSenderScore && (
+        <p>{senderUsername}'s Score: {senderScores}</p>
         <button 
           onClick={() => navigate('/quiz-completed', { state: { receiverUsername, senderUsername } })}
         >
           Go to Quiz Results
         </button>
-      )}
       </div>
     );
   }
