@@ -20,7 +20,6 @@ const QuizScreen2 = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
   const [isQuizComplete, setIsQuizComplete] = useState(false);
-  const [loadingSenderScore, setLoadingSenderScore] = useState(true);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -158,14 +157,6 @@ const QuizScreen2 = () => {
     setFormattedTime(`${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
   }, [timer]);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoadingSenderScore(false);
-    }, 30000);
-
-    return () => clearTimeout(timeout);
-  }, [senderScores]);
-
   if (isLoading) {
     return (
     <div className="spinner-container">
@@ -184,7 +175,7 @@ const QuizScreen2 = () => {
         <h2>Quiz Completed!</h2>
         <p>{senderUsername}'s Score: {senderScores}</p>
         <button 
-          onClick={() => navigate('/quiz-completed', { state: { receiverUsername, senderUsername } })}
+          onClick={() => navigate('/quiz-completed', { state: { receiverUsername, senderUsername, challengeId } })}
         >
           Go to Quiz Results
         </button>

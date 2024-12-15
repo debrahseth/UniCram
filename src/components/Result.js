@@ -94,12 +94,6 @@ const styles = {
     backgroundColor: '#76c7c0',
     borderRadius: '15px',
   },
-  buttonContainer: {
-    marginTop: '20px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   reviewButtonContainer: {
     marginTop: '20px',
     display: 'flex',
@@ -112,7 +106,6 @@ const styles = {
     bottom: '0',
     left: '0',
     backgroundColor: '#fff',
-    // padding: '6px',
     boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
     display: 'flex',
     justifyContent: 'center',

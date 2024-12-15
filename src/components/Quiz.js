@@ -181,12 +181,12 @@ const Quiz = () => {
         </div>
         <div style={styles.contain}>
           <div style={styles.difficultySelection}>
-          <h2 style={styles.head}> Select Difficulty for {selectedCourse.title} Quiz </h2>
-          {difficulties.map((difficulty, index) => (
-            <button key={index} onClick={() => handleDifficultySelection(difficulty)} style={styles.difficultyButton}>
-              {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-            </button>
-          ))}
+            <h2 style={styles.head}> Select Difficulty for {selectedCourse.title} Quiz </h2>
+            {difficulties.map((difficulty, index) => (
+              <button key={index} onClick={() => handleDifficultySelection(difficulty)} style={styles.difficultyButton}>
+                {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+              </button>
+            ))}
           </div>
           <div style={styles.content}>
             <h2 style={styles.title}> Rules for the quizzes</h2>
