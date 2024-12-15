@@ -4,6 +4,8 @@ import { db } from '../firebase';
 import { doc, getDoc, setDoc, collection } from 'firebase/firestore';
 import { courseData } from './courseData';
 import '../styles.css';
+import { FaClock } from 'react-icons/fa';
+import logo from "../assets/main.jpg";
 
 const QuizScreen = () => {
   const location = useLocation();
@@ -16,10 +18,11 @@ const QuizScreen = () => {
   const [receiverUsername, setReceiverUsername] = useState('');
   const [senderUsername, setSenderUsername] = useState('');
   const [challengeId, setChallengeId] = useState('');
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [formattedTime, setFormattedTime] = useState('00:00');
   const [isQuizComplete, setIsQuizComplete] = useState(false);
+  const [course, setCourse] = useState('');
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -35,6 +38,7 @@ const QuizScreen = () => {
         if (challengeSnap.exists()) {
           const challenge = challengeSnap.data();
           const { course, difficulty } = challenge;
+          setCourse(course);
           let timeInSeconds = 0;
           switch (difficulty) {
             case 'Easy':
@@ -138,17 +142,18 @@ const QuizScreen = () => {
         }
     };
 
-// useEffect(() => {
-//     if (timer > 0) {
-//       const countdown = setInterval(() => {
-//         setTimer((prevTimer) => prevTimer - 1);
-//       }, 1000);
-//       return () => clearInterval(countdown);
-//     } else if (timer === 0) {
-//       setIsQuizComplete(true);
-//       console.log('Timer ended, quiz is complete');
-//     }
-//   }, [timer]);
+    useEffect(() => {
+      if (timer > 0 && !isQuizComplete) {
+        const countdown = setInterval(() => {
+          setTimer((prevTimer) => prevTimer - 1);
+        }, 1000);
+        return () => clearInterval(countdown);
+      } else if (timer === 0) {
+        setIsQuizComplete(true);
+        console.log('Timer ended, quiz is complete');
+        navigate('/quiz-completed', { state: { receiverUsername, senderUsername, challengeId } })
+      }
+    }, [timer, isQuizComplete]);
 
   useEffect(() => {
     const hours = Math.floor(timer / 3600);
@@ -171,15 +176,26 @@ const QuizScreen = () => {
 
   if (isQuizComplete){
     return (
-      <div>
-        <h2>Quiz Completed!</h2>
-        <p>{receiverUsername}'s Score: {receiverScores}</p>
-        <button 
-          onClick={() => {
-            navigate('/quiz-completed', { state: { receiverUsername, senderUsername, challengeId } })}}
-        >
-          Go to Quiz Results
-        </button>
+      <div style={styles.container}>
+        <div style={styles.background}></div>
+          <div style={styles.header}>
+            <h1 style={{fontSize: '36px'}}>Quiz Completed!</h1>
+          </div>  
+          <div style={styles.headContainer}>
+            <div style={styles.head}>
+              <h2 style={{fontSize: '30px'}}>Your Score</h2>
+            </div>
+          </div>
+          <div style={styles.mainContainer}>
+              <div style={styles.miniContain}>
+                {receiverScores}
+              </div>
+          </div>
+          <div style={styles.buttonContainer}>
+            <button onClick={() => {navigate('/quiz-completed', { state: { receiverUsername, senderUsername, challengeId } })}} style={styles.goBackButton}>
+              Go to Quiz Results
+            </button>
+          </div>
       </div>
     );
   }
@@ -187,22 +203,37 @@ const QuizScreen = () => {
   const currentQuestion = quizData[currentQuestionIndex];
 
   return (
-    <div>
-      <h1>{currentQuestion.question}</h1>
-      <p>Time remaining: {formattedTime}</p>
+    <div style={styles.container}>
+      <div style={styles.background}></div>
+        <div style={styles.header}>
+          <h1 style={{fontSize: "40px"}}>Quiz: {course}</h1>
+        </div>
+        <div style={styles.con}>
+            <div style={styles.timerContainer}>
+              <FaClock style={styles.icon} /> <h4 style={{fontSize: "30px"}}>Time remaining: {formattedTime}</h4>
+            </div>
+        </div>
+        <div style={styles.contain}>
+          <h2 style={{fontSize: "20px", textAlign: 'center'}}>Question {currentQuestionIndex + 1} :</h2>
+          <h2 style={{fontSize: "30px", textAlign: 'center'}}>{currentQuestion.question}</h2>
+        </div>
       {currentQuestion.type === 'True/False' && (
         <div>
-          <button onClick={() => handleAnswerSelect('True')}>True</button>
-          <button onClick={() => handleAnswerSelect('False')}>False</button>
+          <div style={styles.con1}>
+            <button onClick={() => handleAnswerSelect('True')} style={styles.button}>True</button>
+            <button onClick={() => handleAnswerSelect('False')} style={styles.button}>False</button>
+          </div>
         </div>
       )}
       {currentQuestion.type === 'Multiple Choice' && (
         <div>
-          {currentQuestion.options.map((option, index) => (
-            <button key={index} onClick={() => handleAnswerSelect(option)}>
-              {option}
-            </button>
-          ))}
+          <div style={styles.con3}>
+            {currentQuestion.options.map((option, index) => (
+              <button key={index} onClick={() => handleAnswerSelect(option)} style={styles.answerButton}>
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       )}
       {currentQuestion.type === 'Fill-in' && (
@@ -212,14 +243,279 @@ const QuizScreen = () => {
             placeholder="Enter your answer"
             value={answer}
             onChange={handleInputChange}
+            style={styles.inputField}
           />
-          <button onClick={() => handleAnswer('answer')}>Submit</button>
+          <div style={styles.con2}>
+            <button onClick={() => handleAnswer('answer')} style={styles.submitButton}>Submit</button>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-const styles ={
+const styles = {
+  mainContainer: {
+    height: "55vh",
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    overflow: "hidden",
+    width: "90%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  container: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    overflow: "hidden",
+    width: "100%",
+  },
+  background: {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: `url(${logo})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    opacity: 0.5,
+    zIndex: -1,
+  },
+  header: {
+    position: "fixed",
+    top: "15px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "96%",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "10px",
+    textAlign: "center",
+    zIndex: 10,
+    opacity: "0.7",
+    borderRadius: '10px',
+  },
+  headContainer: {
+    display: 'flex',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    width: '96%',
+    marginTop: '160px',
+    flexDirection: 'row', 
+    marginLeft: "auto",
+    marginRight: "auto",     
+  },
+  head: {
+    textAlign: 'center',
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  con: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    width: '96%',
+    padding: '5px',
+    textAlign: 'center',
+    zIndex: 2,
+    opacity: 0.9,
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    marginTop: '160px',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  con1: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '90%',
+    padding: '10px',
+    textAlign: 'center',
+    zIndex: 2,
+    opacity: 0.9,
+    flex: 1,
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    marginTop: '150px',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  con2: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    width: '90%',
+    padding: '10px',
+    textAlign: 'center',
+    zIndex: 2,
+    opacity: 0.9,
+    flex: 1,
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  con3: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    width: '90%',
+    padding: '10px',
+    textAlign: 'center',
+    zIndex: 2,
+    opacity: 0.9,
+    flex: 1,
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    marginTop: '10px',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  contain: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    width: '90%',
+    padding: '5px',
+    textAlign: 'center',
+    zIndex: 2,
+    opacity: 0.9,
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    marginTop: '10px',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  miniContain: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,   
+    width: '50%',
+    fontWeight: 900,
+    fontSize: '300px',
+    zIndex: 2,
+    opacity: 1,
+    flex: 1,
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    height: '30vh',
+    marginBottom: '20px',
+    marginTop: '20px',
+  },
+  timerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  icon: {
+    marginRight: '10px',
+    fontSize: '25px',
+  },
+  button: {
+    flex: 1,
+    margin: '0 10px',
+    padding: '10px 20px',
+    fontSize: '16px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  },
+  submitButton: {
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: '20px',
+    fontSize: '20px',
+    cursor: 'pointer',
+    borderRadius: '10px',
+    border: 'none',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    transition: 'background-color 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '60%',
+  },
+  inputField: {
+    padding: '12px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '20px',
+    borderRadius: '8px',
+    border: '1px solid #ccc',
+    width: '90%',
+    marginBottom: '30px',
+    marginTop: '100px',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  answerButton: {
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: '15px 25px',
+    fontSize: '16px',
+    cursor: 'pointer',
+    borderRadius: '10px',
+    border: 'none',
+    marginBottom: '5px',
+    marginTop: '5px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    transition: 'background-color 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '90%',
+  },
+  buttonContainer: {
+    width: '90%',
+    bottom: '20',
+    left: '0',
+    backgroundColor: '#fff',
+    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    borderRadius: '10px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  goBackButton: {
+    backgroundColor: '#2196F3',
+    color: 'white',
+    padding: '12px 20px',
+    fontSize: '20px',
+    cursor: 'pointer',
+    borderRadius: '10px',
+    width: '60%',
+    border: 'none',
+    marginTop: '20px',
+    marginBottom: '20px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    transition: 'background-color 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 }
 export default QuizScreen;

@@ -1,44 +1,58 @@
-// courseData.js
 export const courseData = {
-    Math: {
+    Thermodynamics: {
       Easy: [
         { 
-          question: "What is 2 + 2?", 
-          answer: "4", 
+          question: "What is the internal energy change if 50 J of heat is added and 20 J of work is done by the system?", 
+          answer: "30 J", 
           type: "Fill-in" 
         },
         { 
-          question: "Is 5 + 3 = 8?", 
+          question: "Is the change in enthalpy equal to the heat added at constant pressure?", 
           answer: "True", 
           type: "True/False" 
         }
       ],
       Medium: [
         { 
-          question: "What is 12 * 8?", 
-          answer: "96", 
+          question: "Calculate the work done by the system if the pressure is 2 atm and the volume changes by 3 L.", 
+          answer: "6 atm·L", 
           type: "Fill-in" 
         },
         { 
-          question: "What is 5 + 5?", 
-          answer: "10", 
+          question: "A gas expands from 1 L to 3 L at constant pressure of 5 atm. What is the work done?", 
+          answer: "10 atm·L", 
           type: "Fill-in" 
+        },
+        { 
+          question: "Is the specific heat at constant pressure greater than the specific heat at constant volume?", 
+          answer: "True", 
+          type: "True/False" 
         }
       ],
       Hard: [
         { 
-          question: "What is 49 * 87?", 
-          answer: "4263", 
+          question: "A 1 mole of an ideal gas undergoes an isothermal expansion at 300 K. If the initial volume is 2 L and the final volume is 10 L, calculate the work done by the gas. (R = 8.314 J/mol·K)", 
+          answer: "1710 J", 
           type: "Fill-in" 
         },
         { 
-          question: "Is 36 * 49 = 1764?", 
-          answer: "True", 
+          question: "A Carnot engine operates between a hot reservoir at 500 K and a cold reservoir at 300 K. What is the efficiency of the engine?", 
+          answer: "40%", 
+          type: "Fill-in" 
+        },
+        { 
+          question: "Is the entropy of an isolated system always constant?", 
+          answer: "False", 
           type: "True/False" 
+        },
+        { 
+          question: "If 100 J of work is done on a gas and 50 J of heat is transferred from the gas, what is the change in internal energy?", 
+          answer: "-50 J", 
+          type: "Fill-in" 
         }
       ]
     },
-    Science: {
+    'Engineering in Society': {
       Easy: [
         { 
           question: "What planet is closest to the Sun?", 
@@ -187,7 +201,7 @@ export const courseData = {
           type: "True/False" 
         }
       ],
-      Simple: [
+      Hard: [
         { 
           question: "Who wrote 'Ulysses'?", 
           answer: "James Joyce", 

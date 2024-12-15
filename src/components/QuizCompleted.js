@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { doc, getDoc, deleteDoc, collection, getDocs } from 'firebase/firestore';
+import { doc, onSnapshot, deleteDoc, collection, getDocs, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { FaArrowLeft, FaHandshake } from 'react-icons/fa';
 import logo from "../assets/main.jpg";
@@ -15,61 +15,76 @@ const QuizCompleted = () => {
   const { senderUsername, receiverUsername, challengeId } = location.state || {};
 
   useEffect(() => {
-    const loadScores = async () => {
+    const loadScores = () => {
       try {
         if (challengeId) {
           const challengeRef = doc(db, 'challenges', challengeId);
           const scoresRef = collection(challengeRef, 'scores');
-          const senderDoc = await getDoc(doc(scoresRef, 'sender'));
-          const receiverDoc = await getDoc(doc(scoresRef, 'receiver'));
-
-          if (senderDoc.exists()) {
-            setSenderScores(senderDoc.data().senderScore);
-            setIsSenderScoreLoaded(true);
-          } else {
-            console.error('Sender score not found in Firestore');
-          }
-
-          if (receiverDoc.exists()) {
-            setReceiverScores(receiverDoc.data().receiverScore);
-            setIsReceiverScoreLoaded(true);
-          } else {
-            console.error('Receiver score not found in Firestore');
-          }
+          const unsubscribeSender = onSnapshot(doc(scoresRef, 'sender'), (senderDoc) => {
+            if (senderDoc.exists()) {
+              setSenderScores(senderDoc.data().senderScore);
+              setIsSenderScoreLoaded(true);
+            } else {
+              console.error('Sender score not found in Firestore');
+            }
+          });
+          const unsubscribeReceiver = onSnapshot(doc(scoresRef, 'receiver'), (receiverDoc) => {
+            if (receiverDoc.exists()) {
+              setReceiverScores(receiverDoc.data().receiverScore);
+              setIsReceiverScoreLoaded(true);
+            } else {
+              console.error('Receiver score not found in Firestore');
+            }
+          });
+          return () => {
+            unsubscribeSender();
+            unsubscribeReceiver();
+          };
         }
       } catch (error) {
         console.error('Error retrieving scores from Firestore:', error);
       }
     };
-
-    loadScores();
+    const unsubscribe = loadScores();
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, [challengeId]);
 
   const resetScoresAndNavigate = async () => {
     try {
       if (challengeId) {
         const challengeRef = doc(db, 'challenges', challengeId);
-        const scoresRef = collection(challengeRef, 'scores');
-        const scoresSnapshot = await getDocs(scoresRef);
-        const deletePromises = scoresSnapshot.docs.map((doc) => deleteDoc(doc.ref));
-        await Promise.all(deletePromises);
-        console.log('Scores deleted from "scores" subcollection');
-        await deleteDoc(challengeRef);
-        console.log('Challenge deleted from "challenges" collection');
+        const challengeDoc = await getDoc(challengeRef);
+        if (challengeDoc.exists()) {
+          const scoresRef = collection(challengeRef, 'scores');
+          const scoresSnapshot = await getDocs(scoresRef);
+          if (!scoresSnapshot.empty) {
+            const deletePromises = scoresSnapshot.docs.map((doc) => deleteDoc(doc.ref));
+            await Promise.all(deletePromises);
+            console.log('Scores deleted from "scores" subcollection');
+          } else {
+            console.log('No scores to delete.');
+          }
+          await deleteDoc(challengeRef);
+          console.log('Challenge deleted from "challenges" collection');
+        } else {
+          console.log('Challenge not found, skipping deletion.');
+        }
       }
       navigate('/dashboard');
     } catch (error) {
       console.error('Error resetting scores:', error);
     }
   };
-
+  
   const determineWinner = () => {
     if (senderScores > receiverScores) {
-      return <h3 style={{fontSize: '25px'}}>{senderUsername} Wins! Congrats {senderUsername}<i className="fa fa-trophy" style={{ marginLeft: '10px' }}></i></h3>;
+      return <h3 style={{fontSize: '20px'}}>{senderUsername} Wins! Congrats {senderUsername}<i className="fa fa-trophy" style={{ marginLeft: '10px' }}></i></h3>;
     } else if (receiverScores > senderScores) {
-      return <h3 style={{fontSize: '25px'}}>{receiverUsername} Wins! Congrats {receiverUsername}<i className="fa fa-trophy" style={{ marginLeft: '10px' }}></i></h3>;
+      return <h3 style={{fontSize: '20px'}}>{receiverUsername} Wins! Congrats {receiverUsername}<i className="fa fa-trophy" style={{ marginLeft: '10px' }}></i></h3>;
     } else {
-      return <h3 style={{fontSize: '25px'}}>When Great Minds Meet – A Tie! <FaHandshake/></h3>;
+      return <h3 style={{fontSize: '20px'}}>When Great Minds Meet – A Tie! <FaHandshake/></h3>;
     }
   };
 
@@ -77,13 +92,13 @@ const QuizCompleted = () => {
     <div style={styles.container}>
       <div style={styles.headerContainer}>
         <div style={styles.header}>
-          <h1 style={{fontSize: '36px'}}>Quiz Completed!</h1>
-          {isSenderScoreLoaded && isReceiverScoreLoaded && determineWinner()}
+          <h1 style={{fontSize: '30px'}}>Quiz Completed!</h1>
         </div>
       </div>
       <div style={styles.headContainer}>
         <div style={styles.head}>
-          <h2 style={{fontSize: '30px'}}> Quiz Results</h2>
+          <h2 style={{fontSize: '26px'}}> Quiz Results</h2>
+            <p>{isSenderScoreLoaded && isReceiverScoreLoaded && determineWinner()}</p>
         </div>
       </div>
       <div style={styles.scoresContainer}>
@@ -171,7 +186,7 @@ const styles = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
     width: '98%',
     position: 'fixed',
-    top: 7,
+    top: 5,
     flexDirection: 'row',      
   },
   header: {
@@ -184,12 +199,11 @@ const styles = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
     width: '96%',
     position: 'fixed',
-    top: 160,
+    top: 100,
     flexDirection: 'row',      
   },
   head: {
     textAlign: 'center',
-    display: 'flex',
     flex: 1,
     justifyContent: 'center',
   },
@@ -226,7 +240,7 @@ const styles = {
     justifyContent: 'space-between', 
     width: '100%',
     height: '70vh',
-    padding: '20px',
+    padding: '5px',
     boxSizing: 'border-box',
   },
   contain: {
