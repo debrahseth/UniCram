@@ -23,6 +23,7 @@ const QuizScreen2 = () => {
   const [formattedTime, setFormattedTime] = useState('00:00');
   const [isQuizComplete, setIsQuizComplete] = useState(false);
   const [course, setCourse] = useState('');
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -42,13 +43,13 @@ const QuizScreen2 = () => {
           let timeInSeconds = 0;
           switch (difficulty) {
             case 'Easy':
-              timeInSeconds = 30;
+              timeInSeconds = 300;
               break;
             case 'Medium':
-              timeInSeconds = 45;
+              timeInSeconds = 600;
               break;
             case 'Hard':
-              timeInSeconds = 60;
+              timeInSeconds = 900;
               break;
             default:
               timeInSeconds = 30;
@@ -91,12 +92,14 @@ const QuizScreen2 = () => {
   };
 
   const handleAnswer = async () => {
+    const normalizedAnswer = answer.trim().toLowerCase(); 
+    const currentQuestion = quizData[currentQuestionIndex];
+    const normalizedCorrectAnswer = currentQuestion.answer.trim().toLowerCase();
+    const isCorrect = normalizedAnswer === normalizedCorrectAnswer;
       setUserAnswers((prevAnswers) => ({
         ...prevAnswers,
         sender: [...prevAnswers.sender, answer],
       }));
-      const currentQuestion = quizData[currentQuestionIndex];
-      const isCorrect = answer === currentQuestion.answer;
       if (isCorrect) {
         setSenderScores((prevScore) => prevScore + 1);
       }
@@ -141,6 +144,51 @@ const QuizScreen2 = () => {
             setIsQuizComplete(true);
         }
     };
+
+    const handleSelect = (option) => {
+      if (currentQuestion.type === 'Multiple Answers') {
+        setSelectedAnswers((prevAnswers) => {
+          if (prevAnswers.includes(option)) {
+            return prevAnswers.filter((ans) => ans !== option);
+          } else {
+            return [...prevAnswers, option];
+          }
+        });
+      } else {
+        setAnswer(option);
+      }
+    };
+
+    const handleNextQuestion = async () => {
+      const currentQuestion = quizData[currentQuestionIndex];
+      let isCorrect = false;
+      if (currentQuestion.type === 'Multiple Answers') {
+        if (selectedAnswers.length === 0) {
+          alert('Please select at least one answer!');
+          return;
+        }
+      isCorrect = selectedAnswers.every((answer) => currentQuestion.correctAnswers.includes(answer)) &&
+      selectedAnswers.length === currentQuestion.correctAnswers.length;
+    }
+    if (isCorrect) {
+      setSenderScores((prevScore) => prevScore + 1);
+    }
+    try {
+      const challengeRef = doc(db, 'challenges', challengeId);
+      const scoresRef = collection(challengeRef, 'scores');
+      const scoresData = { senderScore: senderScores + (isCorrect ? 1 : 0) };
+      await setDoc(doc(scoresRef, 'sender'), scoresData);
+      console.log('Sender score updated in Firestore:', senderScores + (isCorrect ? 1 : 0));
+    } catch (error) {
+      console.error('Error updating score to Firestore:', error);
+    }
+    if (currentQuestionIndex < quizData.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedAnswers([]);
+    } else {
+      setIsQuizComplete(true);
+    }
+  };
   
     useEffect(() => {
       if (timer > 0 && !isQuizComplete) {
@@ -151,7 +199,6 @@ const QuizScreen2 = () => {
       } else if (timer === 0) {
         setIsQuizComplete(true);
         console.log('Timer ended, quiz is complete');
-        navigate('/quiz-completed', { state: { receiverUsername, senderUsername, challengeId } })
       }
     }, [timer, isQuizComplete]);
 
@@ -235,6 +282,29 @@ const QuizScreen2 = () => {
             ))}
           </div>
         </div>
+      )}
+      {currentQuestion.type === 'Multiple Answers' && (
+       <div>
+       <div style={{ ...styles.con3, overflowY: 'scroll', maxHeight: '300px' }}>
+         {currentQuestion.options.map((option, index) => (
+           <label key={index} style={styles.label}>
+             <input
+               type="checkbox"
+               value={option}
+               checked={selectedAnswers.includes(option)}
+               onChange={() => handleSelect(option)}
+               style={styles.checkbox}
+             />
+             {option}
+           </label>
+         ))}
+       </div>
+      <div style={styles.con2}>
+        <button onClick={handleNextQuestion} style={styles.submitButton}>
+          Submit Answer
+        </button>
+      </div>
+     </div>     
       )}
       {currentQuestion.type === 'Fill-in' && (
         <div>
@@ -412,7 +482,6 @@ const styles = {
     fontSize: '300px',
     zIndex: 2,
     opacity: 1,
-    flex: 1,
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
     height: '30vh',
@@ -516,6 +585,36 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  checkbox: {
+    marginRight: '8px', 
+    width: '20px',
+    height: '20px',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+  },
+  checkboxChecked: {
+    backgroundColor: '#4CAF50', 
+  },
+  checkboxUnchecked: {
+    backgroundColor: '#f0f0f0',
+  },
+  label: {
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: '5px 25px',
+    fontSize: '14px',
+    cursor: 'pointer',
+    borderRadius: '10px',
+    border: 'none',
+    marginBottom: '5px',
+    marginTop: '5px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    transition: 'background-color 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '80%',
   },
 }
 export default QuizScreen2;

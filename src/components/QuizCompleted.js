@@ -98,14 +98,13 @@ const QuizCompleted = () => {
       <div style={styles.headContainer}>
         <div style={styles.head}>
           <h2 style={{fontSize: '26px'}}> Quiz Results</h2>
-            <p>{isSenderScoreLoaded && isReceiverScoreLoaded && determineWinner()}</p>
+          {isSenderScoreLoaded && isReceiverScoreLoaded && determineWinner()}
         </div>
       </div>
       <div style={styles.scoresContainer}>
         <div style={styles.contain}>
           <div style={styles.mainContainer}>
           <div style={styles.background}></div>
-            <p>
               <h2 style={styles.title}>{senderUsername}'s Score{' '}</h2>
                 <div style={styles.miniScoresContainer}>
                   <div style={styles.miniContain}>
@@ -115,13 +114,11 @@ const QuizCompleted = () => {
                       <span style={{fontSize: '16px'}}>Loading {senderUsername}'s score...</span>)}
                   </div>
                 </div>
-            </p>
            </div> 
         </div>
         <div style={styles.contain}>
           <div style={styles.mainContainer}>
           <div style={styles.background}></div>
-            <p>
               <h2 style={styles.title}>{receiverUsername}'s Score{' '}</h2>
                 <div style={styles.miniScoresContainer}>
                   <div style={styles.miniContain}>
@@ -131,7 +128,6 @@ const QuizCompleted = () => {
                       <span style={{fontSize: '16px'}}>Loading {receiverUsername}'s score...</span>)}
                   </div>
                 </div>
-            </p>
           </div>
         </div>
       </div>
@@ -250,8 +246,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     width: '50%',
-    padding: '10px',
-    flex: 1,   
+    padding: '10px', 
     zIndex: 2,
     opacity: 0.9,
     flex: 1,
@@ -285,7 +280,6 @@ const styles = {
     fontSize: '100px',
     zIndex: 2,
     opacity: 1,
-    flex: 1,
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
     height: '30vh',
