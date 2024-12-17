@@ -55,22 +55,26 @@ const ChallengesReceivedScreen = () => {
         }
       };
 
-  const handleAcceptChallenge = async (challengeId, senderId, receiverId) => {
-    try {
-      const challengeRef = doc(db, 'challenges', challengeId);
-      await updateDoc(challengeRef, {
-        status: 'accepted',
-      });
-      console.log('Challenge accepted!');
-      if (senderId && receiverId) {
-        navigate(`/Quiz/${challengeId}?sender=${senderId}&receiver=${receiverId}`);
-      } else {
-        console.error("Sender or receiver ID is missing!");
-      }
-    } catch (error) {
-      console.error('Error accepting challenge:', error);
-    }
-  };
+      const handleAcceptChallenge = async (challengeId, senderId, receiverId) => {
+        try {
+          const challengeRef = doc(db, 'challenges', challengeId);
+          await updateDoc(challengeRef, {
+            status: 'accepted',
+          });
+          console.log('Challenge accepted!');
+          if (senderId && receiverId) {
+            const senderRef = doc(db, 'users', senderId);
+            await updateDoc(senderRef, { status: 'busy' });
+            const receiverRef = doc(db, 'users', receiverId);
+            await updateDoc(receiverRef, { status: 'busy' });
+            navigate(`/Quiz/${challengeId}?sender=${senderId}&receiver=${receiverId}`);
+          } else {
+            console.error("Sender or receiver ID is missing!");
+          }
+        } catch (error) {
+          console.error('Error accepting challenge:', error);
+        }
+      };      
 
   const handleDeclineChallenge = async (challengeId) => {
     try {
@@ -137,7 +141,6 @@ const styles ={
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        alignItems: 'center',
         height: '100vh',
         position: 'relative',
         overflow: 'hidden',
