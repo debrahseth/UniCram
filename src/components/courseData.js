@@ -335,4 +335,208 @@ export const courseData = {
         }
       ]
     },
+    'Fluid Mechanics': {
+      Easy: [
+        {
+          question: " Fluid is a substance that ....",
+          answer: "Cannot remain at rest under action of any shear force",
+          type: "Multiple Choice",
+          options: ["Cannot be subjected to shear forces", "Always expands until it fills any container", "Has the same shear stress at a point regardless of its motion", "Flows", "Cannot remain at rest under action of any shear force"]
+        },
+        {
+          question: " Fluid is a substance that offers no resistance to change of....",
+          answer: "shape",
+          type: "Fill-in"
+        },
+        {
+          question: "Practical fluids.....",
+          correctAnswer: ["Are viscous", "Possess surface tension", "Are compressible"],
+          type: "Multiple Answers",
+          options: ["Are viscous", "Possess surface tension", "Are incompressible", "Are compressible", "None of the above"]
+        },
+        {
+          question: "In a static fluid ......",
+          answer: "Only normal stresses can exist",
+          type: "Multiple Choice",
+          options: ["Resistance to shear stress is small", "Fluid pressure is zero", "Linear deformation is small", "Only normal stresses can exist", "Viscosity is nil"]
+        },
+        {
+          question: "A fluid is said to be ideal if it is ......",
+          answer: "Inviscous and incompressible",
+          type: "Multiple Choice",
+          options: ["Inviscous and compressible", "Inviscous and incompressible", "Viscous and incompressible", "Inviscous", "Incompressible"]
+        },
+        {
+          question: "The specific weight of water is 1000 kg/m^3 ....",
+          correctAnswer: ["At normal pressure of 760 mm", "At 4 degrees celsius", "At mean sea level"],
+          type: "Multiple Answers",
+          options: ["At normal pressure of 760 mm", "At 4 degrees celsius", "At mean sea level", "None of the above"]
+        },
+        {
+          question: "When the flow parameters at any given instant remain same at every point, then flow is said to be",
+          answer: "Uniform",
+          type: "Multiple Choice",
+          options: ["Quasi static", "Steady state", "Laminar", "Uniform", "Static"]
+        },
+        {
+          question: "Which of the following is demensionless?",
+          correctAnswer: ["Specific Gravity"],
+          type: "Multiple Answers",
+          options: ["Specific Weight", "Specific Speed", "Specific Gravity", "Specific Viscosity"]
+        },
+        {
+          question: "The normal streaa in a fluid will be constant in all directions at a point only if ...",
+          answer: "It is at rest",
+          type: "Multiple Choice",
+          options: ["It is incompressible", "It is at rest", "It has zero viscosity", "It is frictionless", "It has uniform viscosity"]
+        },
+        {
+          question: "The bulk modulus of elasticity ....",
+          answer: "Increases with pressure",
+          type: "Multiple Choice",
+          options: ["Has dimensions of 1/pressure", "Increases with pressure", "Is large when fluid is more compressible", "Is independent of pressure and viscosity"]
+        },
+        {
+          question: "A balloon lifting in air follows the following principles",
+          correctAnswer: ["Law of gravitation", "Archimedes Principle", "Principle of buoyancy"],
+          type: "Multiple Answers",
+          options: ["Continuity equation", "Law of gravitation", "Archimedes Principle", "Principle of buoyancy"]
+        },
+        {
+          question: "The value of the coefficient of compressibility for water at ordinary pressure and temperature in kg/cm is equal to?",
+          answer: "21,000",
+          type: "Multiple Choice",
+          options: ["1000", "21,000", "2,100", "2,700", "10,000"]
+        },
+        {
+          question: ""
+        }
+      ],
+        Medium: [
+          {
+            question: "An ideal flow of any fluid must fulfill the following....",
+            correctAnswer: ["Continuity Equation"],
+            type: "Multiple Answers",
+            options: ["Newton's law of motion", "Newton's law of viscosity", "Continuity Equation", "Pascal's law", "Boundary layer theory"]
+          },
+          {
+            question: "If no resistance is encountered by displacement, such a substance is known as 'Perfect Solid'",
+            answer: "False",
+            type: "True/False"
+          },
+          {
+            question: "The volumetric change of the fluid caused by a resistance is known as....",
+            answer: "Compressibility",
+            type: "Fill-in"
+          },
+          {
+            question: "Liquids ......",
+            correctAnswer: ["None of the above"],
+            type: "Multiple Answers",
+            options: ["Cannot be compressed", "Occupy definite volume", "Are not affected by change in pressure and temperature", "Are not viscous", "None of the above"]
+          },
+          {
+            question: "Density of water is maximum at ...",
+            answer: "39.2 degrees Fahrenheit",
+            type: "Multiple Choice",
+            options: ["0 degrees celsius", "0 degrees Kelvin", "39.2 degrees Fahrenheit", "20 degrees celsius", "4 degrees Kelvin"]
+          },
+          {
+            question: "Specific weight of water in S.I. units is equal to....",
+            answer: "9810 N/m^3",
+            type: "Multiple Choice",
+            options: ["1000 N/m^3", "9810 N/m^3", "9.81 * 10^6 N/m^3", "9.81 N/m^3"]
+          },
+          {
+            question: "The surface tension of mercury at normal temperature compared to that of water is less",
+            answer: "False",
+            type: "True/False"
+          },
+          {
+            question: "A perfect gas .....",
+            correctAnswer: ["None of the above"],
+            type: "Multiple Answers",
+            options: ["Has constant viscosity", "Has zero viscosity", "Is incompressible", "None of the above"]
+          },
+          {
+            question: "For very great pressures, viscosity of most gases and liquids....?",
+            correctAnswer: ["Shows erratic behaviour"],
+            type: "Multiple Answers",
+            options: ["Remains the same", "Shows erratic behaviour", "Increases", "Decreases", "None of the above"]
+          },
+          {
+            question: "A fluid in equilibrium can't sustain 'Compressive Stress'.",
+            answer: "False",
+            type: "True/False"
+          },
+          {
+            question: "Viscosity in water in comparison to mercury is?",
+            answer: "higher",
+            type: "Fill-in"
+          },
+          {
+            question: "The bulk modulus of elasticity with increase in pressure increase first up to a certain limit and then decreases.",
+            answer: "False",
+            type: "True/False"
+          }
+        ],
+        Hard: [
+          {
+            question: "The value of mass density in kg/m^3 for water at 0 degrees celsius is",
+            answer: "999.8",
+            type: "Multiple Choice",
+            options: ["101.9", "91", "999.8", "1000.0", "None of the above"]
+          },
+          {
+            question: "Property of a fluid by which its own molecules are attracted is called....",
+            answer: "Cohesion",
+            type: "Fill-in"
+          },
+          {
+            question: "Mercury does not wet glass. This is dues to the property of liquid known as...",
+            answer: "Surface Tension",
+            type: "Multiple Choice",
+            options: ["Adhesion", "Cohesion", "Sureface Tension", "Viscosity", "Compressibility"]
+          },
+          {
+            question: "The property of a fluid which enables it to resist tensile stress is known as....",
+            answer: "Surface Tension",
+            type: "Multiple Choice",
+            options: ["Surface Tension", "Cohesion", "Adhesion", "VIcosity"]
+          },
+          {
+            question: "Property of a fluid by which molecules of different kinds of fluids are attracted to each other is called?",
+            answer: "Adhesion",
+            type: "Fill-in"
+          },
+          {
+            question: "The pressure at a point in a fluid will not be the same in all the directions when the fluid is ...",
+            correctAnswer: ["Viscous", "Moving"],
+            type: "Multiple Answers",
+            options: ["Moving", "Viscous", "Static", "Inviscous"]
+          },
+          {
+            question: "An object having 10kg mass weighs 9.81kg on a spring balance. The value of 'g' at this place is .... m/s^2.",
+            answer: "10",
+            type: "Fill-in"
+          },
+          {
+            question: "The tendency of a liquid surface to contract is due to ....",
+            answer: "Surface Tension",
+            type: "Fill-in"
+          },
+          {
+            question: "The increase of temperature results in?",
+            correctAnswer: ["Decrease in viscosity of liquid"],
+            type: "Multiple Answers",
+            options: ["Increase in viscosity of gas", "Decrease in viscosity of liquid", "Decrease in viscosity of gas", "Increase in viscosity of liquid"]
+          },
+          {
+            question: "Surface tension has the units of?",
+            answer: "Newtons(N)",
+            type: "Multiple Choice",
+            options: ["Newtons(N)", "Newton meter(Nm)", "Newton per meter(N/m)", "Joules(J)"]
+          },
+        ]
+    }
   }

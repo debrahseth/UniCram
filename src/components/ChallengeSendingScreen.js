@@ -3,8 +3,8 @@ import { db, auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
 import { collection, onSnapshot, addDoc, doc, updateDoc } from 'firebase/firestore';
 import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
-import logo from '../assets/logo1.jpg';
-import logo1 from '../assets/logo2.jpg';
+import logo from '../assets/main.jpg';
+import logo1 from '../assets/logo1.jpg';
 import { courseData } from './courseData'; 
 
 const ChallengeSendingScreen = () => {
@@ -261,7 +261,7 @@ header: {
     textAlign: 'center',
     borderRadius: '8px 8px 0 0',
     position: 'relative',
-    zIndex: 1,
+    zIndex: 2,
     opacity: 0.6,
 },
 backButton: {

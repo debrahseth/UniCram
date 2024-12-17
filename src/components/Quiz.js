@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courses } from './courses';
-import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { collection, addDoc, doc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import { FaChevronLeft, FaCheck, FaTimes, FaLightbulb, FaClock } from 'react-icons/fa';
 import TopLeftLogo from './TopLeftLogo'; 
@@ -296,7 +296,7 @@ const Quiz = () => {
         <h2 style={{fontSize: "40px"}}>Quiz: {selectedCourse.title}</h2>
       </div>
       <div style={styles.con}>
-        <h3 style={{fontSize: "33px"}}>Question {currentQuestionIndex + 1}:</h3>
+        <h3 style={{fontSize: "33px"}}>Question {currentQuestionIndex + 1} of {filteredQuestions.length}:</h3>
         <div style={styles.timerContainer}>
           <FaClock style={styles.icon} /> <h4 style={{fontSize: "30px"}}>Time Left: {formatTime(timer)}</h4>
         </div>
@@ -425,7 +425,6 @@ const styles = {
     flex: 1,   
     zIndex: 2,
     opacity: 0.9,
-    flex: 1,
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
     height: '70vh',

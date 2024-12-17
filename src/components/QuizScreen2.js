@@ -254,7 +254,7 @@ const QuizScreen2 = () => {
           </div>
         </div>
         <div style={styles.contain}>
-          <h2 style={{fontSize: "20px", textAlign: 'center'}}>Question {currentQuestionIndex + 1} :</h2>
+          <h2 style={{fontSize: "20px", textAlign: 'center'}}>Question {currentQuestionIndex + 1} of {quizData.length}:</h2>
           <h2 style={{fontSize: "30px", textAlign: 'center'}}>{currentQuestion.question}</h2>
         </div>
       {currentQuestion.type === 'True/False' && (

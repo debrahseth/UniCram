@@ -308,6 +308,9 @@ const styles = {
     marginRight: '8px',
     fontSize: '40px',
     color: 'black',
+    backgroundColor: 'white',
+    padding: '15px',
+    borderRadius: '50px'
   },
   leaderboardButton: {
     position: 'absolute',

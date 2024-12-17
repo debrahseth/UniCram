@@ -154,11 +154,11 @@ const styles = {
     opacity: "0.9",
   },
   backButton: {
-    backgroundColor: "#4CAF50",
-    color: "white",
+    backgroundColor: "white",
+    color: "black",
     border: "none",
-    borderRadius: "5px",
-    padding: "10px 15px",
+    borderRadius: "10px",
+    padding: "10px 10px",
     fontSize: "25px",
     cursor: "pointer",
     display: "flex",
@@ -208,12 +208,12 @@ const styles = {
   buttonContainer: {
     position: "absolute",
     top: "40px",
-    left: "20px",
+    left: "15px",
   },
   buttonContain: {
     position: "absolute",
     top: "40px",
-    right: "20px",
+    right: "30px",
   },
   footer: {
     position: "fixed",
