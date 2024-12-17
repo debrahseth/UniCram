@@ -74,8 +74,6 @@ const ChallengeSendingScreen = () => {
               try {
                 const senderRef = doc(db, 'users', currentUser.uid);
                 await updateDoc(senderRef, { status: 'busy' });
-                const receiverRef = doc(db, 'users', selectedUserId);
-                await updateDoc(receiverRef, { status: 'busy' });
                 setIsLoading(false);
                 unsubscribe(); 
                 navigate(`/Quiz2/${docRef.id}?sender=${challenge.senderId}&receiver=${challenge.receiverId}`);

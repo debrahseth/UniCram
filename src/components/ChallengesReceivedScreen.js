@@ -63,8 +63,6 @@ const ChallengesReceivedScreen = () => {
           });
           console.log('Challenge accepted!');
           if (senderId && receiverId) {
-            const senderRef = doc(db, 'users', senderId);
-            await updateDoc(senderRef, { status: 'busy' });
             const receiverRef = doc(db, 'users', receiverId);
             await updateDoc(receiverRef, { status: 'busy' });
             navigate(`/Quiz/${challengeId}?sender=${senderId}&receiver=${receiverId}`);
