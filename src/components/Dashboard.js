@@ -107,7 +107,12 @@ const Dashboard = () => {
   }, [currentUserId]); 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+        <p>Loading ...</p>
+      </div>
+    );
   }
 
   return (
@@ -129,6 +134,7 @@ const Dashboard = () => {
           <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button>
         </div>
       </div>
+        <button onClick={() => navigate('/users')} style={styles.userButton}>Meet the Brain Snacks Community</button>
       <div style={styles.scrollableContainer}>
       <div style={styles.content}>
         <div style={styles.motivationalQuotes}>
@@ -221,6 +227,22 @@ const styles = {
     marginTop: '10px',
     flexDirection: 'row',
   },
+  userButton: {
+    padding: '15px',
+    display: 'flex',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
+    width: '90%',
+    marginTop: '10px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '25px',
+    fontWeight: '800',
+    color: 'black',
+    backgroundColor: '#AED6F1',
+    flexDirection: 'row',
+    opacity: '0.7',
+  }, 
   motivationalQuotes: {
     padding: '20px',
     borderRadius: '8px',

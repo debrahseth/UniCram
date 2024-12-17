@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignOutAlt, FaArrowLeft } from 'react-icons/fa';
-import { auth, db } from '../firebase';
+import { db } from '../firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 import logo from '../assets/logo2.jpg';
 
 const Profile = () => {
-  const [userDetails, setUserDetails] = useState({ username: '', email: '' });
+  const [userDetails, setUserDetails] = useState({ username: '', email: '', programOfStudy: '' });
   const [loading, setLoading] = useState(true);
+  const [programOfStudy, setProgramOfStudy] = useState('');
   const navigate = useNavigate();
+
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -23,7 +28,9 @@ const Profile = () => {
             setUserDetails({
               username: userDoc.data().username || currentUser.displayName || 'No Username',
               email: currentUser.email || 'No Email',
+              programOfStudy: userDoc.data().programOfStudy || 'No Program of Study',
             });
+            setProgramOfStudy(userDoc.data().programOfStudy || '');
           } else {
             console.log('User document not found');
           }
@@ -35,16 +42,17 @@ const Profile = () => {
       }
     };
 
-    fetchUserDetails();
-  }, []);
+    if (currentUser) {
+      fetchUserDetails();
+    }
+  }, [currentUser]);
 
   const handleLogout = async () => {
     try {
-      const user = auth.currentUser;
-      if (user) {
-        const userDocRef = doc(db, 'users', user.uid);
+      if (currentUser) {
+        const userDocRef = doc(db, 'users', currentUser.uid);
         await updateDoc(userDocRef, {
-          status: 'offline'
+          status: 'offline',
         });
       }
       await auth.signOut();
@@ -54,8 +62,31 @@ const Profile = () => {
     }
   };
   
+  const handleUpdateProgramOfStudy = async () => {
+    try {
+      if (currentUser) {
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        await updateDoc(userDocRef, {
+          programOfStudy: programOfStudy,
+        });
+        setUserDetails((prevDetails) => ({
+          ...prevDetails,
+          programOfStudy: programOfStudy,
+        }));
+        alert('Program of Study updated');
+      }
+    } catch (error) {
+      console.error('Error updating program of study:', error);
+    }
+  };
+
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+        <p>Loading Profile...</p>
+      </div>
+    );
   }
 
   return (
@@ -95,6 +126,19 @@ const Profile = () => {
             style={styles.input}
           />
         </div>
+        <div style={styles.inputGroup}>
+          <label style={styles.label}><i className="fa fa-graduation-cap" style={styles.icon}></i>Program of Study:</label>
+          <input
+            type="text"
+            value={programOfStudy}
+            onChange={(e) => setProgramOfStudy(e.target.value)}
+            placeholder="Enter your program of study"
+            style={styles.programInput}
+          />
+        </div>
+        <button onClick={handleUpdateProgramOfStudy} style={styles.updateButton}>
+          Update Program of Study
+        </button>
         <button onClick={() => navigate('/record')} style={styles.recordButton}>
           <i class="fa fa-trophy"></i> My Achievements <i class="fa fa-trophy"></i>
         </button>
@@ -129,7 +173,7 @@ const styles = {
     gap: '10px',
     transition: 'background-color 0.3s',
     position: 'absolute',
-    top: '30px',
+    top: '10px',
     right: '20px',
   },
   recordButton: {
@@ -162,8 +206,18 @@ const styles = {
     gap: '10px',
     transition: 'background-color 0.3s',
     position: 'absolute',
-    top: '30px',
+    top: '10px',
     left: '20px',
+  },
+  updateButton: {
+    padding: '10px 20px',
+    backgroundColor: '#3498db',
+    color: '#fff',
+    fontWeight: '600',
+    border: 'none',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    marginTop: '10px',
   },
   profileCard: {
     backgroundColor: 'white',
@@ -207,6 +261,16 @@ const styles = {
     cursor: 'not-allowed',
     marginTop: '10px'
   },
+  programInput: {
+    width: '96%',
+    padding: '12px',
+    fontSize: '20px',
+    borderRadius: '5px',
+    border: '1px solid #ddd',
+    backgroundColor: '#f4f7fc',
+    cursor: 'text',
+    marginTop: '10px'
+  },
   buttonContainer: {
     position: 'fixed',
     top: '0',
@@ -221,10 +285,10 @@ const styles = {
     zIndex: 10,
   },
   label:{
-    fontSize: '25px',
+    fontSize: '20px',
   },
   icon: {
-    fontSize: '20px',
+    fontSize: '15px',
     marginRight: '8px',
   },
   footer: {
