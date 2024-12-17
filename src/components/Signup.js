@@ -22,6 +22,7 @@ const Signup = () => {
       await setDoc(doc(db, 'users', user.uid), {
         username: username,
         email: email,
+        status: 'online',
       });
       navigate('/splash');
     } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, addDoc, doc, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, doc } from 'firebase/firestore';
 import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
 import logo from '../assets/logo1.jpg';
 import logo1 from '../assets/logo2.jpg';
@@ -23,11 +23,8 @@ const ChallengeSendingScreen = () => {
     if (currentUser) {
       setCurrentUserId(currentUser.uid);
     }
-
-    const fetchUsers = async () => {
+    const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
       try {
-        const snapshot = await getDocs(collection(db, 'users'));
-
         const userList = snapshot.docs
           .filter(doc => doc.id !== currentUser?.uid)
           .map(doc => {
@@ -36,17 +33,18 @@ const ChallengeSendingScreen = () => {
               id: doc.id,
               username: userData.username,
               avatar: logo1,
+              status: userData.status, 
             };
           });
-
         setUsers(userList);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
+    });
+    return () => {
+      unsubscribe();
     };
-
-    fetchUsers();
-  }, []);
+  }, []); 
 
   const handleUserSelect = (userId) => {
     setSelectedUserId(userId);
@@ -218,7 +216,6 @@ challengeScreen: {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     height: '100vh',
     position: 'relative',
     overflow: 'hidden',

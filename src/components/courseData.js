@@ -227,19 +227,19 @@ export const courseData = {
       Easy: [
         { 
           question: "Give the dimensions and units of stress in terms of S.I base units.", 
-          answer: ["M.L^(-1).T^(-2) and kg/m⋅s^2"], 
+          answer: "M.L^(-1).T^(-2) and kg/m⋅s^2", 
           type: "Multiple Choice",
           options: ["M.L^(-1).T^(-2) and kg/m⋅s^2", "M.L^(-1)).T^(-2) and kg.m/s^2", "M.L^(2).T^(-3) and kg.m^2/s^-3", "M.L^(-1).T^(-1) and kg/m⋅s"]
         },
         { 
           question: "Give the dimensions and units of work in terms of S.I base units.", 
-          answer: ["M.L^(2).T^(-2) and kg.m^2/s^2"], 
+          answer: "M.L^(2).T^(-2) and kg.m^2/s^2", 
           type: "Multiple Choice",
           options: ["M.L^(-1).T^(-2) and kg/m⋅s^2", "M.L^(2).T^(-2) and kg.m^2/s^2", "M.L^(2).T^(-2) and kg.m^2/s^-2", "M.L^(-1).T^(-1) and kg/m⋅s"]
         },
         { 
           question: "Give the dimensions and units of power in terms of S.I base units.", 
-          answer: ["M.L^(2).T^(-3) and kg.m^2/s^3"], 
+          answer: "M.L^(2).T^(-3) and kg.m^2/s^3", 
           type: "Multiple Choice",
           options: ["M.L^(2).T^(-2) and kg.m^2/s^2", "M.L^(2).T^(-3) and kg.m^2/s^-3", "M.L^(2).T^(-3) and kg.m^2/s^3", "M.L^(2).T^(-1) and kg.m^2/s"]
         },

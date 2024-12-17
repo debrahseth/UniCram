@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignOutAlt, FaArrowLeft } from 'react-icons/fa';
 import { auth, db } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import logo from '../assets/logo2.jpg';
 
 const Profile = () => {
@@ -38,11 +38,22 @@ const Profile = () => {
     fetchUserDetails();
   }, []);
 
-  const handleLogout = () => {
-    auth.signOut();
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userDocRef = doc(db, 'users', user.uid);
+        await updateDoc(userDocRef, {
+          status: 'offline'
+        });
+      }
+      await auth.signOut();
+      navigate('/login');
+    } catch (error) {
+      console.error('Error during logout:', error.message);
+    }
   };
-
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -153,9 +164,6 @@ const styles = {
     position: 'absolute',
     top: '30px',
     left: '20px',
-  },
-  icon: {
-    fontSize: '18px',
   },
   profileCard: {
     backgroundColor: 'white',

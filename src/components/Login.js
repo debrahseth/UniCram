@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import { auth, db } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -20,8 +20,10 @@ const Login = () => {
       const user = userCredential.user;
       const userDocRef = doc(db, 'users', user.uid);
       const userDoc = await getDoc(userDocRef);
-
       if (userDoc.exists()) {
+        await updateDoc(userDocRef, {
+          status: 'online'
+        });
         navigate('/splash');
       } else {
         setError('User does not exist in the system.');
@@ -32,6 +34,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div style={styles.container}>
