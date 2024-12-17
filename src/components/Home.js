@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import logo from '../assets/logo5.jpg';
+import logo from '../assets/logo.jpg';
 
 const Home = () => {
   const navigate = useNavigate();

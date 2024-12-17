@@ -350,7 +350,7 @@ export const courseData = {
         },
         {
           question: "Practical fluids.....",
-          correctAnswer: ["Are viscous", "Possess surface tension", "Are compressible"],
+          correctAnswers: ["Are viscous", "Possess surface tension", "Are compressible"],
           type: "Multiple Answers",
           options: ["Are viscous", "Possess surface tension", "Are incompressible", "Are compressible", "None of the above"]
         },
@@ -368,7 +368,7 @@ export const courseData = {
         },
         {
           question: "The specific weight of water is 1000 kg/m^3 ....",
-          correctAnswer: ["At normal pressure of 760 mm", "At 4 degrees celsius", "At mean sea level"],
+          correctAnswers: ["At normal pressure of 760 mm", "At 4 degrees celsius", "At mean sea level"],
           type: "Multiple Answers",
           options: ["At normal pressure of 760 mm", "At 4 degrees celsius", "At mean sea level", "None of the above"]
         },
@@ -380,12 +380,12 @@ export const courseData = {
         },
         {
           question: "Which of the following is demensionless?",
-          correctAnswer: ["Specific Gravity"],
+          correctAnswers: ["Specific Gravity"],
           type: "Multiple Answers",
           options: ["Specific Weight", "Specific Speed", "Specific Gravity", "Specific Viscosity"]
         },
         {
-          question: "The normal streaa in a fluid will be constant in all directions at a point only if ...",
+          question: "The normal stress in a fluid will be constant in all directions at a point only if ...",
           answer: "It is at rest",
           type: "Multiple Choice",
           options: ["It is incompressible", "It is at rest", "It has zero viscosity", "It is frictionless", "It has uniform viscosity"]
@@ -398,7 +398,7 @@ export const courseData = {
         },
         {
           question: "A balloon lifting in air follows the following principles",
-          correctAnswer: ["Law of gravitation", "Archimedes Principle", "Principle of buoyancy"],
+          correctAnswers: ["Law of gravitation", "Archimedes Principle", "Principle of buoyancy"],
           type: "Multiple Answers",
           options: ["Continuity equation", "Law of gravitation", "Archimedes Principle", "Principle of buoyancy"]
         },
@@ -408,14 +408,11 @@ export const courseData = {
           type: "Multiple Choice",
           options: ["1000", "21,000", "2,100", "2,700", "10,000"]
         },
-        {
-          question: ""
-        }
       ],
         Medium: [
           {
             question: "An ideal flow of any fluid must fulfill the following....",
-            correctAnswer: ["Continuity Equation"],
+            correctAnswers: ["Continuity Equation"],
             type: "Multiple Answers",
             options: ["Newton's law of motion", "Newton's law of viscosity", "Continuity Equation", "Pascal's law", "Boundary layer theory"]
           },
@@ -431,7 +428,7 @@ export const courseData = {
           },
           {
             question: "Liquids ......",
-            correctAnswer: ["None of the above"],
+            correctAnswers: ["None of the above"],
             type: "Multiple Answers",
             options: ["Cannot be compressed", "Occupy definite volume", "Are not affected by change in pressure and temperature", "Are not viscous", "None of the above"]
           },
@@ -454,13 +451,13 @@ export const courseData = {
           },
           {
             question: "A perfect gas .....",
-            correctAnswer: ["None of the above"],
+            correctAnswers: ["None of the above"],
             type: "Multiple Answers",
             options: ["Has constant viscosity", "Has zero viscosity", "Is incompressible", "None of the above"]
           },
           {
             question: "For very great pressures, viscosity of most gases and liquids....?",
-            correctAnswer: ["Shows erratic behaviour"],
+            correctAnswers: ["Shows erratic behaviour"],
             type: "Multiple Answers",
             options: ["Remains the same", "Shows erratic behaviour", "Increases", "Decreases", "None of the above"]
           },
@@ -511,7 +508,7 @@ export const courseData = {
           },
           {
             question: "The pressure at a point in a fluid will not be the same in all the directions when the fluid is ...",
-            correctAnswer: ["Viscous", "Moving"],
+            correctAnswers: ["Viscous", "Moving"],
             type: "Multiple Answers",
             options: ["Moving", "Viscous", "Static", "Inviscous"]
           },
@@ -527,7 +524,7 @@ export const courseData = {
           },
           {
             question: "The increase of temperature results in?",
-            correctAnswer: ["Decrease in viscosity of liquid"],
+            correctAnswers: ["Decrease in viscosity of liquid"],
             type: "Multiple Answers",
             options: ["Increase in viscosity of gas", "Decrease in viscosity of liquid", "Decrease in viscosity of gas", "Increase in viscosity of liquid"]
           },
