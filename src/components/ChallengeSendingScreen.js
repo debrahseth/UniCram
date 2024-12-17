@@ -462,16 +462,16 @@ modal: {
     fontWeight: '600',
     color: '#ffffff',
     backgroundColor: 'green',
-    padding:'5px',
+    padding:'8px',
     borderRadius: '8px',
   },
   offlineStatus: {
-    color: 'gray',
+    color: 'white',
     fontStyle: 'italic',
     fontSize: '18px',
     fontWeight: '600',
     backgroundColor: 'red',
-    padding:'5px',
+    padding:'8px',
     borderRadius: '8px',
   },
   busyStatus: {
@@ -480,7 +480,7 @@ modal: {
     fontWeight: '600',
     color: '#ffffff',
     backgroundColor: 'orange',
-    padding:'5px',
+    padding:'10px',
     borderRadius: '8px',
   },
   defaultStatus: {
