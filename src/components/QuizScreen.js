@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { doc, getDoc, setDoc, collection } from 'firebase/firestore';
+import { doc, getDoc, setDoc, collection, updateDoc } from 'firebase/firestore';
 import { courseData } from './courseData';
 import '../styles.css';
+import { getAuth } from 'firebase/auth';
 import { FaClock } from 'react-icons/fa';
 import logo from "../assets/main.jpg";
 
@@ -24,6 +25,8 @@ const QuizScreen = () => {
   const [isQuizComplete, setIsQuizComplete] = useState(false);
   const [course, setCourse] = useState('');
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -58,28 +61,18 @@ const QuizScreen = () => {
           if (courseData[course] && courseData[course][difficulty]) {
             const questions = courseData[course][difficulty];
             setQuizData(questions);
-          } else {
-            console.error('No questions found for this course and difficulty');
-          }
-        } else {
-          console.error('Challenge not found');
-        }
+          } 
+        } 
         const senderRef = doc(db, 'users', senderId);
         const senderSnap = await getDoc(senderRef);
         if (senderSnap.exists()) {
           setSenderUsername(senderSnap.data().username);
-        } else {
-          console.error('Sender not found');
         }
         const receiverRef = doc(db, 'users', receiverId);
         const receiverSnap = await getDoc(receiverRef);
         if (receiverSnap.exists()) {
           setReceiverUsername(receiverSnap.data().username); 
-        } else {
-          console.error('Receiver not found');
         }
-      } catch (error) {
-        console.error('Error fetching challenge data:', error);
       } finally {
         setIsLoading(false);
       }
@@ -108,7 +101,6 @@ const QuizScreen = () => {
       const scoresRef = collection(challengeRef, 'scores');
       const scoresData = { receiverScore: receiverScores + (isCorrect ? 1 : 0) };
       await setDoc(doc(scoresRef, 'receiver'), scoresData);
-      console.log('Receiver score updated in Firestore:', receiverScores + (isCorrect ? 1 : 0));
     } catch (error) {
       console.error('Error updating score to Firestore:', error);
     }
@@ -129,15 +121,10 @@ const QuizScreen = () => {
         if (isCorrect) {
             setReceiverScores((prevScore) => prevScore + 1);
         }
-        try {
             const challengeRef = doc(db, 'challenges', challengeId);
             const scoresRef = collection(challengeRef, 'scores');
             const scoresData = { receiverScore: receiverScores + (isCorrect ? 1 : 0) };
             await setDoc(doc(scoresRef, 'receiver'), scoresData);
-            console.log('Receiver score updated in Firestore:', receiverScores + (isCorrect ? 1 : 0));
-        } catch (error) {
-            console.error('Error updating score to Firestore:', error);
-        }
         if (currentQuestionIndex < quizData.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
@@ -173,20 +160,27 @@ const QuizScreen = () => {
       if (isCorrect) {
         setReceiverScores((prevScore) => prevScore + 1);
       }
-      try {
         const challengeRef = doc(db, 'challenges', challengeId);
         const scoresRef = collection(challengeRef, 'scores');
         const scoresData = { receiverScore: receiverScores + (isCorrect ? 1 : 0) };
         await setDoc(doc(scoresRef, 'receiver'), scoresData);
-        console.log('Receiver score updated in Firestore:', receiverScores + (isCorrect ? 1 : 0));
-      } catch (error) {
-        console.error('Error updating score to Firestore:', error);
-      }
       if (currentQuestionIndex < quizData.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setSelectedAnswers([]);
       } else {
         setIsQuizComplete(true);
+      }
+    };
+
+    const handleGoToQuizResults = async () => {
+      if (currentUser) {
+          const userRef = doc(db, 'users', currentUser.uid);
+          await updateDoc(userRef, {
+            status: 'online'
+          });
+          navigate('/quiz-completed', {
+            state: { receiverUsername, senderUsername, challengeId }
+          });
       }
     };
     
@@ -198,7 +192,6 @@ const QuizScreen = () => {
         return () => clearInterval(countdown);
       } else if (timer === 0) {
         setIsQuizComplete(true);
-        console.log('Timer ended, quiz is complete');
       }
     }, [timer, isQuizComplete]);
 
@@ -239,7 +232,7 @@ const QuizScreen = () => {
               </div>
           </div>
           <div style={styles.buttonContainer}>
-            <button onClick={() => {navigate('/quiz-completed', { state: { receiverUsername, senderUsername, challengeId } })}} style={styles.goBackButton}>
+            <button onClick={handleGoToQuizResults} style={styles.goBackButton}>
               Go to Quiz Results
             </button>
           </div>

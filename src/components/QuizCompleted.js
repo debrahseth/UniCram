@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { doc, onSnapshot, deleteDoc, collection, getDocs, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, onSnapshot, deleteDoc, collection, getDocs, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { FaArrowLeft, FaHandshake } from 'react-icons/fa';
 import logo from "../assets/main.jpg";
@@ -68,16 +68,6 @@ const QuizCompleted = () => {
           }
           await deleteDoc(challengeRef);
           console.log('Challenge deleted from "challenges" collection');
-          const challengeData = challengeDoc.data();
-          const senderId = challengeData.senderId;
-          const receiverId = challengeData.receiverId;
-          if (senderId && receiverId) {
-            const senderRef = doc(db, 'users', senderId);
-            await updateDoc(senderRef, { status: 'online' });
-            const receiverRef = doc(db, 'users', receiverId);
-            await updateDoc(receiverRef, { status: 'online' });
-            console.log('User statuses reset to online.');
-          }
         } else {
           console.log('Challenge not found, skipping deletion.');
         }
@@ -86,7 +76,7 @@ const QuizCompleted = () => {
     } catch (error) {
       console.error('Error resetting scores:', error);
     }
-  };  
+  };
   
   const determineWinner = () => {
     if (senderScores > receiverScores) {
