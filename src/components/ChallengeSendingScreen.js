@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
-import { collection, onSnapshot, addDoc, doc } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, doc, updateDoc } from 'firebase/firestore';
 import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
 import logo from '../assets/logo1.jpg';
 import logo1 from '../assets/logo2.jpg';
@@ -68,12 +68,20 @@ const ChallengeSendingScreen = () => {
           await new Promise((resolve) => setTimeout(resolve, 3000));
           console.log('Challenge sent:', challengeData);
           const challengeRef = doc(db, 'challenges', docRef.id);
-          const unsubscribe = onSnapshot(challengeRef, (snapshot) => {
+          const unsubscribe = onSnapshot(challengeRef, async (snapshot) => {
             const challenge = snapshot.data();
             if (challenge.status === 'accepted') {
-              setIsLoading(false);
-              unsubscribe(); 
-              navigate(`/Quiz2/${docRef.id}?sender=${challenge.senderId}&receiver=${challenge.receiverId}`);
+              try {
+                const senderRef = doc(db, 'users', currentUser.uid);
+                await updateDoc(senderRef, { status: 'busy' });
+                const receiverRef = doc(db, 'users', selectedUserId);
+                await updateDoc(receiverRef, { status: 'busy' });
+                setIsLoading(false);
+                unsubscribe(); 
+                navigate(`/Quiz2/${docRef.id}?sender=${challenge.senderId}&receiver=${challenge.receiverId}`);
+              } catch (error) {
+                console.error('Error updating user status:', error);
+              }
             } else if (challenge.status === 'declined') {
               setIsLoading(false);
               unsubscribe(); 
@@ -89,9 +97,9 @@ const ChallengeSendingScreen = () => {
         setIsLoading(false);
       }
     } else {
-        setIsLoading(false);
+      setIsLoading(false);
     }
-  };
+  };  
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -114,6 +122,19 @@ const ChallengeSendingScreen = () => {
     }
   };
 
+  const getStatusStyle = (status) => {
+    switch(status) {
+      case 'online':
+        return styles.onlineStatus;
+      case 'offline':
+        return styles.offlineStatus;
+      case 'busy':
+        return styles.busyStatus;
+      default:
+        return styles.defaultStatus;
+    }
+  };
+
   const userList = users.map((user) => (
     <li
       key={user.id}
@@ -122,6 +143,7 @@ const ChallengeSendingScreen = () => {
     >
       <img src={user.avatar} alt={user.username} style={styles.userAvatar} />
       <span style={styles.userName}>{user.username}</span>
+      <span style={getStatusStyle(user.status)}>{user.status}</span>
     </li>
   ));
 
@@ -309,6 +331,7 @@ userItem: {
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     padding: '15px',
     marginBottom: '10px',
     borderRadius: '8px',
@@ -321,6 +344,7 @@ selectedUserItem: {
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     padding: '15px',
     marginBottom: '10px',
     borderRadius: '8px',
@@ -430,6 +454,40 @@ modal: {
   },
   selectedItem: {
     backgroundColor: '#FFD700',
+  },
+  userStatus: {
+    fontStyle: 'italic',
+  },
+  onlineStatus: {
+    fontStyle: 'italic',
+    fontSize: '18px',
+    fontWeight: '600',
+    color: '#ffffff',
+    backgroundColor: 'green',
+    padding:'5px',
+    borderRadius: '8px',
+  },
+  offlineStatus: {
+    color: 'gray',
+    fontStyle: 'italic',
+    fontSize: '18px',
+    fontWeight: '600',
+    backgroundColor: 'red',
+    padding:'5px',
+    borderRadius: '8px',
+  },
+  busyStatus: {
+    fontStyle: 'italic',
+    fontSize: '18px',
+    fontWeight: '600',
+    color: '#ffffff',
+    backgroundColor: 'orange',
+    padding:'5px',
+    borderRadius: '8px',
+  },
+  defaultStatus: {
+    color: 'black',
+    fontStyle: 'italic',
   },
 };
 export default ChallengeSendingScreen;
