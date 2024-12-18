@@ -230,6 +230,9 @@ useEffect(() => {
     if (!currentQuestion) {
       return <div>Loading question...</div>;
     }
+    if (currentQuestion.type === 'multiple-choice' && !currentQuestion.options) {
+    return <div>Options are not available for this question.</div>;
+  }
     switch (currentQuestion.type) {
       case 'multiple-choice':
         return (

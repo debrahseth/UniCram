@@ -159,7 +159,7 @@ const ChallengeSendingScreen = () => {
                     <i class="fa fa-rocket"></i>See My Challenges
                 </button>
             </div>
-            <h1 style={styles.title}>Send a Quiz Challenge</h1>
+            <h1 style={{fontSize: "40px"}}>Send a Quiz Challenge</h1>
         </div>
                 <p style={styles.subtitle}>Select a user to challenge:</p>
                 <div style={styles.scrollableContainer}>
@@ -262,7 +262,6 @@ header: {
     borderRadius: '8px 8px 0 0',
     position: 'relative',
     zIndex: 2,
-    opacity: 0.6,
 },
 backButton: {
     backgroundColor: "#4CAF50",
@@ -307,12 +306,6 @@ scrollableContainer: {
     overflowY: 'auto',
     opacity: '0.9',
     width: '100%'
-},
-title: {
-    fontSize: '36px',
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: '20px',
 },
 subtitle: {
     fontSize: '25px',

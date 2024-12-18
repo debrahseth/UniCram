@@ -309,7 +309,7 @@ const QuizScreen = () => {
             style={styles.inputField}
           />
           <div style={styles.con2}>
-            <button onClick={() => handleAnswer('answer')} style={styles.submitButton}>Submit</button>
+            <button onClick={() => {handleAnswer('answer'); setAnswer('');}} style={styles.submitButton} >Submit</button>
           </div>
         </div>
       )}

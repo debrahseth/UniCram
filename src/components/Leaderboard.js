@@ -157,7 +157,7 @@ const styles = {
     backgroundColor: "white",
     color: "black",
     border: "none",
-    borderRadius: "10px",
+    borderRadius: "30px",
     padding: "10px 10px",
     fontSize: "25px",
     cursor: "pointer",
