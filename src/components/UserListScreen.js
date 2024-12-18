@@ -134,19 +134,18 @@ userCard: {
 },
 userInfo: {
   display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
+  justifyContent: 'space-between',
+  alignItems: 'center', 
+  width: '100%',
 },
 userName: {
-  fontSize: '24px',
+  fontSize: '20px',
   fontWeight: 'bold',
-  marginLeft: '15px',
+  marginLeft: '20px'
 },
 userProgram: {
-  fontSize: '20px',
-  color: 'black',
-  marginLeft: '150px',
-  fontWeight: '600'
+  marginRight: '20px',
+  fontSize: '18px',
 },
 goBackButton: {
   backgroundColor: '#2196F3',
