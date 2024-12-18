@@ -19,6 +19,7 @@ const Quiz = () => {
   const [userAnswer, setUserAnswer] = useState('');
   const [timer, setTimer] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
+  const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
   const timeLimits = {
     easy: 150,
@@ -40,6 +41,15 @@ const Quiz = () => {
     "The leaderboard is just there to help you improve your scores. Don't be ashamed if you are not at the top. There's more room for improvement.",
     "I wish you a very big 'GOOD LUCK' as you take this quiz."
   ];
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
   const handleCourseSelection = (course) => {
     setSelectedCourse(course);
     setSelectedDifficulty(null);
@@ -55,7 +65,7 @@ const Quiz = () => {
   };
 
   const handleAnswer = (answer) => {
-    const currentQuestion = filteredQuestions[currentQuestionIndex];
+    const currentQuestion = shuffledQuestions[currentQuestionIndex];
     if (!currentQuestion) {
       console.error('No question found at current index:', currentQuestionIndex);
       return;
@@ -67,7 +77,7 @@ const Quiz = () => {
   };
 
   const handleNextQuestion = (newUserAnswers) => {
-    if (currentQuestionIndex < filteredQuestions.length - 1) {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       endQuiz(newUserAnswers);
@@ -77,13 +87,13 @@ const Quiz = () => {
   const endQuiz = (newUserAnswers) => {
     const score = calculateScore(newUserAnswers);
     saveScoreToFirestore(score);
-    navigate('/result', { state: { score, questions: filteredQuestions, userAnswers: newUserAnswers } });
+    navigate('/result', { state: { score, questions: shuffledQuestions, userAnswers: newUserAnswers } });
   };
 
   const calculateScore = (answers) => {
     let score = 0;
     answers.forEach((answer, index) => {
-      const currentQuestion = filteredQuestions[index];
+      const currentQuestion = shuffledQuestions[index];
       if (answer.answer === currentQuestion.answer) {
         score += 1;
       }
@@ -92,7 +102,7 @@ const Quiz = () => {
   };
 
   const saveScoreToFirestore = async (score) => {
-    const totalQuestions = filteredQuestions.length;
+    const totalQuestions = shuffledQuestions.length;
     const currentUser = auth.currentUser;
     try {
       await addDoc(collection(firestore, 'scores'), {
@@ -119,6 +129,13 @@ const Quiz = () => {
   }
 };
 
+useEffect(() => {
+  if (selectedCourse && selectedDifficulty) {
+    const filteredQuestions = selectedCourse.questions.filter((question) => question.difficulty === selectedDifficulty);
+    setShuffledQuestions(shuffleArray([...filteredQuestions]));
+  }
+}, [selectedCourse, selectedDifficulty]);
+
   useEffect(() => {
     if (timerRunning && timer > 0) {
       const intervalId = setInterval(() => {
@@ -129,7 +146,7 @@ const Quiz = () => {
     } else if (timer === 0 && timerRunning) {
       const score = calculateScore(userAnswers);
       saveScoreToFirestore(score);
-      navigate('/result', { state: { score, questions: filteredQuestions, userAnswers } });
+      navigate('/result', { state: { score, questions: shuffledQuestions, userAnswers } });
     }
   }, [timer, timerRunning, userAnswers]);
 
@@ -144,10 +161,6 @@ const Quiz = () => {
       return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
   };
-
-  const filteredQuestions = selectedCourse && selectedDifficulty
-    ? selectedCourse.questions.filter((question) => question.difficulty === selectedDifficulty)
-    : [];
 
   if (!selectedCourse) {
     return (
@@ -208,11 +221,11 @@ const Quiz = () => {
     );
   }
 
-  if (filteredQuestions.length === 0) {
+  if (shuffledQuestions.length === 0) {
     return <div style={styles.container}>No questions available for the selected difficulty level.</div>;
   }
 
-  const currentQuestion = filteredQuestions[currentQuestionIndex];
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const renderQuestion = () => {
     if (!currentQuestion) {
       return <div>Loading question...</div>;
@@ -296,7 +309,7 @@ const Quiz = () => {
         <h2 style={{fontSize: "40px"}}>Quiz: {selectedCourse.title}</h2>
       </div>
       <div style={styles.con}>
-        <h3 style={{fontSize: "33px"}}>Question {currentQuestionIndex + 1} of {filteredQuestions.length}:</h3>
+        <h3 style={{fontSize: "33px"}}>Question {currentQuestionIndex + 1} of {shuffledQuestions.length}:</h3>
         <div style={styles.timerContainer}>
           <FaClock style={styles.icon} /> <h4 style={{fontSize: "30px"}}>Time Left: {formatTime(timer)}</h4>
         </div>

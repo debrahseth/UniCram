@@ -1457,6 +1457,34 @@ export const courses = [
           difficulty: 'medium',
           type: 'multiple-choice'
         },
+        {
+          question: 'The point in the immersed body through which the resultant pressure of the liquid may be taken to act is known as .....',
+          options: ['A) Meta Center', 'B) Center of Pressure', 'C) Center of Buoyancy', 'D) Center of Gravity'],
+          answer: 'B) Center of Pressure',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The total pressure on the surface of a vertical sluice gate 2m x 1m with its top 2m surface being 0.5m below the water level will be ...?',
+          option: ['A) 500kg', 'B) 1000kg', 'C) 1500kg', 'D) 2000kg', 'E) 4000kg'],
+          answer: 'D) 2000kg',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The resultant upward pressure of a fluid on a floating body is equal to the weight of the fluid displaced by the body. This defintion is according to ...?',
+          options: ['A) Buoyancy', 'B) Equilibrium of a floating body', "C) Archimedes' Principle", "D) Bernoulli's theorem", 'E) Metacentric principle'],
+          answer: "C) Archimedes' Principle",
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: "The resultant upward pressure of the fluid on an immersed body is called ...?",
+          options: ['A) Upthrust', 'B) Buoyancy', 'C) Center of pressure', 'D) All the above are correct', 'E) None of the above is correct'],
+          answer: 'B) Upthrust',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
         // True/False Questions
         {
           question: 'Fluids always flow from areas of low pressure to high pressure.',

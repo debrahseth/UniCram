@@ -408,6 +408,57 @@ export const courseData = {
           type: "Multiple Choice",
           options: ["1000", "21,000", "2,100", "2,700", "10,000"]
         },
+        {
+          question: "The units of viscosity are ?",
+          correctAnswers: ["kg sec/metre"],
+          type: "Multiple Answers",
+          options: ["Metre squared per second", "Newton-sec per metre squared", "kg sec/metre", "newton-sec per meter", "None of the above"]
+        },
+        {
+          question: "Kinematic viscosity is dependent on ......",
+          answer: "Density",
+          type: "Fill-in"
+        },
+        {
+          question: "Units of surface tension are ........",
+          answer: ["Both of the above"],
+          type: "Multiple Choice",
+          options: ["Energy/unit area", "Distance", "Both of the above", "It has no units", "None of the above"]
+        },
+        {
+          question: "Which of the following meter(s) is not associated with viscosity?",
+          correctAnswers: ["Orsat"],
+          type: "Multiple Answers",
+          options: ["Red Wood", "Say bolt", "Engler", "Orsat", "None of the above"]
+        },
+        {
+          question: "The property of fluid by virtue of which it offers resistance to shear is called?",
+          answer: "Viscosity",
+          type: "Fill-in"
+        },
+        {
+          question: "A pressure of 25m of head of water is equal to ...",
+          answer: "245 kN/m^2",
+          type: "Multiple Choice",
+          options: ["25 kN/m^2", "245 kN/m^2", "2500 kN/m^2", "2.5 kN/m^2", "12.5 kN/m^2"]
+        },
+        {
+          question: "Specific weight of sea water is more than that of pure water because it contains ...",
+          answer: "All of the above",
+          type: "Multiple Choice",
+          options: ["Dissolved air", "Dissolved salt", "Suspended matter", "All of the above", "Heavy water"]
+        },
+        {
+          question: "If 850 kg liquid occupies volume of one cubic meter, then 0.85 represents its ..?",
+          answer: "Specific gravity",
+          type: "Multipl Choice",
+          options: ["Specific weight", "Specific mass", "Specific gravity", "Specific density", "None of the above"]
+        },
+        {
+          question: "Free surface of a liquid tends to contract to the smallest possible area due to force of ?",
+          answer: "Surface tension",
+          type: "Fill-in"
+        }
       ],
         Medium: [
           {
@@ -472,7 +523,53 @@ export const courseData = {
             type: "Fill-in"
           },
           {
+            question: "Choose the correct relationship",
+            answer: "Dynamic Viscosity = Kinematic Viscosity x Density",
+            type: "Multiple Choice",
+            options: ["Dynamic Viscosity = Kinematic Viscosity x Density", "Specific Gravity = Gravity x Density", "Gravity = Specific Gravity x Density", "Kinematic Viscosity = Dynamic Viscosity x Density", "Hydrostatic Force = Surface tension x Gravity"]
+          },
+          {
             question: "The bulk modulus of elasticity with increase in pressure increase first up to a certain limit and then decreases.",
+            answer: "False",
+            type: "True/False"
+          },
+          {
+            question: "Choose the wrong statement(s).",
+            correctAnswers: ["When in equilibrium, fluids can sustain shear forces"],
+            type: "Multiple Answers",
+            options: ["When in equilibrium, fluids can sustain shear forces", "Fluids are capable of flowing", "Fluids conform to the shape of the containing vessels", "When in equilibrium, fluids cannot sustain tangential forces", "Fluids have some degree of comprehensibility and offer little resistance to form"]
+          },
+          {
+            question: "If 'w' is the specific weight of liquid and 'k' the depth of any point from the surface, then pressure intensity at that point will be ....",
+            answer: "wh",
+            type: "Multiple Choice",
+            options: ["wh", "h", "w/h", "h/w", "h/wh"]
+          },
+          {
+            question: "Choose the wrong statement(s).",
+            correctAnswers: ["Viscosity of liquids is appreciably affected by change in pressure"],
+            type: "Multiple Answers",
+            options: ["Viscosity of liquids is appreciably affected by change in pressure", "Viscosity is expressed as poise, stoke, or saybolt seconds", "Viscosity of liquids decreases with increase in temperature", "Viscosity is due primarily to interaction between fluid molecules", "Viscosity of a fluid is that property which determines the amount of its resistance to a shearing force"]
+          },
+          {
+            question: "The ratio of 'Absolute Viscosity' to 'Mass density' is known as ....",
+            answer: "Kinematic Viscosity",
+            type: "Fill-in"
+          },
+          {
+            question: "Which of the following is the unit of kinematic viscosity?",
+            answer:"Stoke",
+            type: "Multiple Choice",
+            options: ["Pascal", "Stoke", "Faraday", "Poise", "None of the above"]
+          },
+          {
+            question: "A one dimensional flow is one which ....",
+            answer: "Involves zero transverse component of flow",
+            type: "Multiple Choice",
+            options: ["Is uniform flow", "Involves zero transverse component of flow", "Is steady uniform flow", "Takes place in one dimension"]
+          },
+          {
+            question: "A bucket of water is hanging from a spring balance. An iron piece is suspended into water without touching sides of the bucket fro another suppport. The spring balance reading will increase/decrease depending on the depth of immersion.",
             answer: "False",
             type: "True/False"
           }
@@ -534,6 +631,63 @@ export const courseData = {
             type: "Multiple Choice",
             options: ["Newtons(N)", "Newton meter(Nm)", "Newton per meter(N/m)", "Joules(J)"]
           },
+          {
+            question: "Surface tension ....",
+            answer: "Acts in the plane of the interface normal to any line in the surface",
+            type: "Multiple Choice",
+            options: ["Has no units", "Is also known as capillarity", "Acts in the plane of the interface normal to any line in the surface", "Is a function of the curvature of the interface"]
+          },
+          {
+            question: "The stress-strain relation of the newtoneon fluid is....",
+            answer: "Linear",
+            type: "Fill-in"
+          },
+          {
+            question: "A liquid compressed in cylinder has a volume of 0.04 m^3 at 50 kg/cm^2 and a volume of 0.039 m^3 at 150 kg/cm^2. The bulk modulus of elasticity of the liquid is ?",
+            answer: "4000 kg/cm^2",
+            type: "Multiple Choice",
+            options:["400 kg/cm^2", "4000 kg/cm^2", "40 * 10^5 kg/cm^2", "40 * 10^6 kg/cm^2"]
+          },
+          {
+            question: "Dimensions of surface tension is/are ....",
+            correctAnswers: ["M.I.L.T^2"],
+            type: "Multiple Answers",
+            options: ["M.I.L.T^2", "M.I.L.T", "M.I.L.r^2", "M.I.L^2.T^2"]
+          },
+          {
+            question: "For manometer, a better liquid combination is one having ....",
+            answer: "Higher surface tension",
+            type: "Multiple Choice",
+            options: ["Lower surface tension", "Higher surface tension", "Surface tension is no criterion", "High density and viscosity", "Low density and viscosity"]
+          },
+          {
+            question: "If mersury in a barometer is replaced by water, the height of 3.75 cm of mercury will be ..... cm of water.",
+            answer: "51",
+            type: "Fill-in"
+          },
+          {
+            question: "Choose the wrong statement(s). Alcohol is used in manometer because, ....",
+            correctAnswers: ["Its vapour pressure is low"],
+            type: "Multiple Answers",
+            options: ["Its density is less", "Its vapour pressure is low", "It provides suitable meniscus for the inclined tube", "It provides longer length for a given pressure difference", "It provides accurate readings"]
+          },
+          {
+            question: "Falling drops of water become spheres due to the property of ....",
+            answer: "Surface tension",
+            type: "Fill-in"
+          },
+          {
+            question: "A liquid will wet the solid, if adhesion forces compared to cohesion forces is/are ..?",
+            correctAnswers: ["more"],
+            type: "Multiple Answers",
+            options: ["Less", "More", "Equal", "Less at low temperature and more at high temperature", "There is no such criterion"]
+          },
+          {
+            question: "If cohesion between molecules of a fluid is greate then adhesion between fluid and glass, then the free level of fluid in a dipped glass tube will be ..?",
+            answer: "Lower than the surface of the liquid",
+            type: "Multiple Choice",
+            options: ["Higher than the surface of liquid", "The same as the surface of liquid", "Lower than the surface of the liquid", "Unpredictable", "None of the above"]
+          }
         ]
     }
   }
