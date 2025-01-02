@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { doc, onSnapshot, deleteDoc, collection, getDocs, getDoc } from 'firebase/firestore';
+import { doc, onSnapshot, collection } from 'firebase/firestore';
 import { db } from '../firebase';
 import { FaArrowLeft, FaHandshake } from 'react-icons/fa';
 import logo from "../assets/main.jpg";
@@ -24,16 +24,12 @@ const QuizCompleted = () => {
             if (senderDoc.exists()) {
               setSenderScores(senderDoc.data().senderScore);
               setIsSenderScoreLoaded(true);
-            } else {
-              console.error('Sender score not found in Firestore');
             }
           });
           const unsubscribeReceiver = onSnapshot(doc(scoresRef, 'receiver'), (receiverDoc) => {
             if (receiverDoc.exists()) {
               setReceiverScores(receiverDoc.data().receiverScore);
               setIsReceiverScoreLoaded(true);
-            } else {
-              console.error('Receiver score not found in Firestore');
             }
           });
           return () => {
@@ -50,33 +46,6 @@ const QuizCompleted = () => {
       if (unsubscribe) unsubscribe();
     };
   }, [challengeId]);
-
-  const resetScoresAndNavigate = async () => {
-    try {
-      if (challengeId) {
-        const challengeRef = doc(db, 'challenges', challengeId);
-        const challengeDoc = await getDoc(challengeRef);
-        if (challengeDoc.exists()) {
-          const scoresRef = collection(challengeRef, 'scores');
-          const scoresSnapshot = await getDocs(scoresRef);
-          if (!scoresSnapshot.empty) {
-            const deletePromises = scoresSnapshot.docs.map((doc) => deleteDoc(doc.ref));
-            await Promise.all(deletePromises);
-            console.log('Scores deleted from "scores" subcollection');
-          } else {
-            console.log('No scores to delete.');
-          }
-          await deleteDoc(challengeRef);
-          console.log('Challenge deleted from "challenges" collection');
-        } else {
-          console.log('Challenge not found, skipping deletion.');
-        }
-      }
-      navigate('/dashboard');
-    } catch (error) {
-      console.error('Error resetting scores:', error);
-    }
-  };
   
   const determineWinner = () => {
     if (senderScores > receiverScores) {
@@ -132,7 +101,7 @@ const QuizCompleted = () => {
         </div>
       </div>
         <div style={styles.buttonContainer}>
-          <button onClick={resetScoresAndNavigate} style={styles.goBackButton}>
+          <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
             <FaArrowLeft style={styles.icon} />Go Back to Dashboard
           </button>
         </div>

@@ -82,12 +82,18 @@ const Home = () => {
       <img
         src={logo}
         alt="Study Group Logo"
-        style={{ width: '400px', marginBottom: '20px', borderRadius: '50%'}}
+        style={{
+          width: '100%',
+          maxWidth: '400px',
+          marginBottom: '20px',
+          borderRadius: '50%',
+          objectFit: 'cover',
+        }}
       />
       <p style={paragraphStyle}>
         Start by logging in or signing up to take the quiz.
       </p>
-      <div style={buttonStyle}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <button
           style={buttonSignUpStyle}
           onClick={() => navigate('/signup')}
@@ -107,6 +113,42 @@ const Home = () => {
           Login
         </button>
       </div>
+      {/* Responsive Styles */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            h2 {
+              font-size: 2.5rem;
+              margin-bottom: 20px;
+            }
+            p {
+              font-size: 1rem;
+              margin-bottom: 30px;
+            }
+            button {
+              font-size: 1rem;
+              padding: 12px 28px;
+              margin: 8px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            h2 {
+              font-size: 2rem;
+              margin-bottom: 15px;
+            }
+            p {
+              font-size: 0.9rem;
+              margin-bottom: 20px;
+            }
+            button {
+              font-size: 0.9rem;
+              padding: 10px 25px;
+              margin: 5px;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

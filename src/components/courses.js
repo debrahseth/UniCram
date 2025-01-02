@@ -7,180 +7,105 @@ export const courses = [
           // Multiple-Choice Questions
           {
             question: 'What is the fundamental role of engineering in society?',
-            options: [
-              'A) To design and build new technologies',
-              'B) To solve societal problems through technological solutions',
-              'C) To study the history of engineering',
-              'D) To manufacture products at lower costs'
-            ],
+            options: ['A) To design and build new technologies', 'B) To solve societal problems through technological solutions','C) To study the history of engineering','D) To manufacture products at lower costs'],
             answer: 'B) To solve societal problems through technological solutions',
             difficulty: 'medium',
             type: 'multiple-choice'
           },
           {
             question: 'Which of the following is an example of civil engineering?',
-            options: [
-              'A) Designing circuits for electronics',
-              'B) Building roads and bridges',
-              'C) Programming software applications',
-              'D) Creating medical devices'
-            ],
+            options: ['A) Designing circuits for electronics','B) Building roads and bridges','C) Programming software applications','D) Creating medical devices'],
             answer: 'B) Building roads and bridges',
             difficulty: 'medium',
             type: 'multiple-choice'
           },
           {
             question: 'Which engineering discipline primarily focuses on renewable energy sources?',
-            options: [
-              'A) Electrical Engineering',
-              'B) Civil Engineering',
-              'C) Environmental Engineering',
-              'D) Mechanical Engineering'
-            ],
+            options: ['A) Electrical Engineering','B) Civil Engineering','C) Environmental Engineering','D) Mechanical Engineering'],
             answer: 'C) Environmental Engineering',
             difficulty: 'medium',
             type: 'multiple-choice'
           },
           {
             question: 'What is the term used to describe the process of designing a product or service to meet human needs?',
-            options: [
-              'A) Product Development',
-              'B) Engineering Design',
-              'C) System Analysis',
-              'D) Technological Innovation'
-            ],
+            options: ['A) Product Development','B) Engineering Design','C) System Analysis','D) Technological Innovation'],
             answer: 'B) Engineering Design',
             difficulty: 'medium',
             type: 'multiple-choice'
           },
           {
             question: 'Which of the following engineers is most likely to work on the development of smart cities?',
-            options: [
-              'A) Chemical Engineer',
-              'B) Environmental Engineer',
-              'C) Software Engineer',
-              'D) Civil Engineer'
-            ],
+            options: ['A) Chemical Engineer','B) Environmental Engineer','C) Software Engineer','D) Civil Engineer'],
             answer: 'D) Civil Engineer',
             difficulty: 'medium',
             type: 'multiple-choice'
           },
           {
             question: "Which of the following is a primary responsibility of an engineer working in sustainable development?",
-            options: [
-              "A) Designing new consumer electronics",
-              "B) Ensuring products meet environmental regulations",
-              "C) Creating software for video games",
-              "D) Developing military technology"
-            ],
+            options: ["A) Designing new consumer electronics","B) Ensuring products meet environmental regulations","C) Creating software for video games","D) Developing military technology"],
             answer: "B) Ensuring products meet environmental regulations",
             difficulty: "medium",
             type: "multiple-choice"
           },
           {
             question: "Which engineering discipline is most involved in designing transportation infrastructure?",
-            options: [
-              "A) Mechanical Engineer",
-              "B) Civil Engineer",
-              "C) Electrical Engineer",
-              "D) Chemical Engineer"
-            ],
+            options: ["A) Mechanical Engineer","B) Civil Engineer","C) Electrical Engineer","D) Chemical Engineer"],
             answer: "B) Civil Engineer",
             difficulty: "medium",
             type: "multiple-choice"
           },
           {
             question: "In the context of engineering ethics, which of the following is considered a key aspect of a professional engineer's responsibility?",
-            options: [
-              "A) Maximizing profits for the company",
-              "B) Ensuring public health, safety, and welfare",
-              "C) Protecting intellectual property above all",
-              "D) Expanding market share globally"
-            ],
+            options: ["A) Maximizing profits for the company","B) Ensuring public health, safety, and welfare","C) Protecting intellectual property above all","D) Expanding market share globally"],
             answer: "B) Ensuring public health, safety, and welfare",
             difficulty: "hard",
             type: "multiple-choice"
           },
           {
             question: "Which of the following best describes the role of an industrial engineer in society?",
-            options: [
-              "A) Managing projects to improve manufacturing efficiency",
-              "B) Designing chemical processes for drug production",
-              "C) Developing energy-efficient software systems",
-              "D) Building bridges and highways"
-            ],
+            options: ["A) Managing projects to improve manufacturing efficiency","B) Designing chemical processes for drug production","C) Developing energy-efficient software systems","D) Building bridges and highways"],
             answer: "A) Managing projects to improve manufacturing efficiency",
             difficulty: "medium",
             type: "multiple-choice"
           },
           {
             question: "Which type of engineering is most closely related to the development and maintenance of renewable energy systems?",
-            options: [
-              "A) Mechanical Engineering",
-              "B) Civil Engineering",
-              "C) Environmental Engineering",
-              "D) Electrical Engineering"
-            ],
+            options: ["A) Mechanical Engineering","B) Civil Engineering","C) Environmental Engineering","D) Electrical Engineering"],
             answer: "C) Environmental Engineering",
             difficulty: "medium",
             type: "multiple-choice"
           },
           {
             question: "Which of the following is a core value in engineering design to ensure the safety of the general public?",
-            options: [
-              "A) Profit maximization",
-              "B) Innovation for the sake of novelty",
-              "C) Risk analysis and mitigation",
-              "D) Brand recognition"
-            ],
+            options: ["A) Profit maximization","B) Innovation for the sake of novelty","C) Risk analysis and mitigation","D) Brand recognition"],
             answer: "C) Risk analysis and mitigation",
             difficulty: "medium",
             type: "multiple-choice"
           },
           {
             question: "Which branch of engineering is most concerned with ensuring that products are energy efficient and environmentally friendly?",
-            options: [
-              "A) Electrical Engineering",
-              "B) Civil Engineering",
-              "C) Chemical Engineering",
-              "D) Environmental Engineering"
-            ],
+            options: ["A) Electrical Engineering","B) Civil Engineering","C) Chemical Engineering","D) Environmental Engineering"],
             answer: "D) Environmental Engineering",
             difficulty: "medium",
             type: "multiple-choice"
           },
           {
             question: "What is the primary focus of a systems engineer in large-scale infrastructure projects?",
-            options: [
-              "A) Designing microchips",
-              "B) Coordinating and optimizing different subsystems",
-              "C) Developing chemical formulas",
-              "D) Building physical structures like bridges"
-            ],
+            options: ["A) Designing microchips","B) Coordinating and optimizing different subsystems","C) Developing chemical formulas","D) Building physical structures like bridges"],
             answer: "B) Coordinating and optimizing different subsystems",
             difficulty: "hard",
             type: "multiple-choice"
           },
           {
-            "question": "Which of the following is NOT typically a responsibility of a biomedical engineer?",
-            "options": [
-              "A) Designing medical devices",
-              "B) Developing new pharmaceuticals",
-              "C) Working on prosthetics and implants",
-              "D) Improving healthcare technologies"
-            ],
+            question: "Which of the following is NOT typically a responsibility of a biomedical engineer?",
+            options: ["A) Designing medical devices","B) Developing new pharmaceuticals","C) Working on prosthetics and implants","D) Improving healthcare technologies"],
             answer: "B) Developing new pharmaceuticals",
             difficulty: "medium",
             type: "multiple-choice"
           },
           {
             question: "What is a key societal impact of civil engineering in the context of urban development?",
-            options: [
-              "A) Advancing space exploration",
-              "B) Improving energy storage systems",
-              "C) Designing safe, functional, and efficient urban spaces",
-              "D) Developing software systems for healthcare"
-            ],
+            options: ["A) Advancing space exploration","B) Improving energy storage systems","C) Designing safe, functional, and efficient urban spaces","D) Developing software systems for healthcare"],
             answer: "C) Designing safe, functional, and efficient urban spaces",
             difficulty: "medium",
             type: "multiple-choice"
@@ -751,300 +676,175 @@ export const courses = [
         // Multiple-Choice Questions
         {
           question: "Which of the following is the correct equation for calculating the energy balance in a chemical process?",
-          options: [
-            "A) ΔH = Q - W",
-            "B) ΔH = Q + W",
-            "C) ΔU = Q - W",
-            "D) ΔU = Q + W"
-          ],
+          options: ["A) ΔH = Q - W","B) ΔH = Q + W","C) ΔU = Q - W","D) ΔU = Q + W"],
           answer: "A) ΔH = Q - W",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following statements best describes the First Law of Thermodynamics?",
-          options: [
-            "A) Energy can be created but not destroyed.",
-            "B) Energy can neither be created nor destroyed, only transformed.",
-            "C) The entropy of a system remains constant.",
-            "D) Energy can be destroyed but not created."
-          ],
+          options: ["A) Energy can be created but not destroyed.","B) Energy can neither be created nor destroyed, only transformed.","C) The entropy of a system remains constant.","D) Energy can be destroyed but not created."],
           answer: "B) Energy can neither be created nor destroyed, only transformed.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "In a chemical process, what is the primary purpose of a heat exchanger?",
-          options: [
-            "A) To speed up the chemical reaction.",
-            "B) To separate two immiscible liquids.",
-            "C) To transfer heat from one fluid to another.",
-            "D) To increase the pressure of a gas."
-          ],
+          options: ["A) To speed up the chemical reaction.","B) To separate two immiscible liquids.","C) To transfer heat from one fluid to another.","D) To increase the pressure of a gas."],
           answer: "C) To transfer heat from one fluid to another.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the definition of molar flow rate in a chemical process?",
-          options: [
-            "A) The total number of moles passing through a system per unit time.",
-            "B) The volume of gas passing through a system per unit time.",
-            "C) The mass of the substance passing through the system per unit time.",
-            "D) The total energy passing through the system per unit time."
-          ],
+          options: ["A) The total number of moles passing through a system per unit time.","B) The volume of gas passing through a system per unit time.","C) The mass of the substance passing through the system per unit time.","D) The total energy passing through the system per unit time."],
           answer: "A) The total number of moles passing through a system per unit time.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following statements is true about a simple distillation process?",
-          options: [
-            "A) It is used to separate components with very similar boiling points.",
-            "B) It is used for separating components with a large difference in boiling points.",
-            "C) It requires a catalyst to be efficient.",
-            "D) It is only effective for separating solid mixtures."
-          ],
+          options: ["A) It is used to separate components with very similar boiling points.","B) It is used for separating components with a large difference in boiling points.","C) It requires a catalyst to be efficient.","D) It is only effective for separating solid mixtures."],
           answer: "B) It is used for separating components with a large difference in boiling points.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following factors does **not** affect the rate of a chemical reaction?",
-          options: [
-            "A) Temperature",
-            "B) Pressure",
-            "C) Concentration of reactants",
-            "D) The color of the reactants"
-          ],
+          options: ["A) Temperature","B) Pressure","C) Concentration of reactants","D) The color of the reactants"],
           answer: "D) The color of the reactants",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following is a characteristic of a first-order reaction?",
-          options: [
-            "A) The rate of reaction is proportional to the square of the concentration of the reactant.",
-            "B) The rate of reaction is proportional to the concentration of the reactant.",
-            "C) The rate of reaction is independent of the concentration of the reactant.",
-            "D) The rate of reaction depends on the temperature but not the concentration."
-          ],
+          options: ["A) The rate of reaction is proportional to the square of the concentration of the reactant.","B) The rate of reaction is proportional to the concentration of the reactant.","C) The rate of reaction is independent of the concentration of the reactant.","D) The rate of reaction depends on the temperature but not the concentration."],
           answer: "B) The rate of reaction is proportional to the concentration of the reactant.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "In a **continuous** stirred tank reactor (CSTR), the flow rate of the input stream is equal to the flow rate of the output stream in a steady-state operation. What happens if the input concentration is increased?",
-          options: [
-            "A) The output concentration will remain the same.",
-            "B) The output concentration will decrease.",
-            "C) The output concentration will increase.",
-            "D) The reaction will stop."
-          ],
+          options: ["A) The output concentration will remain the same.","B) The output concentration will decrease.","C) The output concentration will increase.","D) The reaction will stop."],
           answer: "C) The output concentration will increase.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following processes is most commonly used to separate a mixture of liquids with **very similar boiling points**?",
-          options: [
-            "A) Simple distillation",
-            "B) Fractional distillation",
-            "C) Membrane filtration",
-            "D) Adsorption"
-          ],
+          options: ["A) Simple distillation","B) Fractional distillation","C) Membrane filtration","D) Adsorption"],
           answer: "B) Fractional distillation",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "In a **material balance** for a chemical process, which of the following terms represents the mass of input material minus the mass of output material?",
-          options: [
-            "A) Accumulation",
-            "B) Reaction",
-            "C) Generation",
-            "D) Consumption"
-          ],
+          options: ["A) Accumulation","B) Reaction","C) Generation","D) Consumption"],
           answer: "A) Accumulation",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following is **not** a typical application of **pneumatic conveying** in a chemical plant?",
-          options: [
-            "A) Transporting solid particles over long distances",
-            "B) Moving gases or vapors through pipes",
-            "C) Transferring liquids in pumps",
-            "D) Moving powders from one section of the plant to another"
-          ],
+          options: ["A) Transporting solid particles over long distances","B) Moving gases or vapors through pipes","C) Transferring liquids in pumps","D) Moving powders from one section of the plant to another"],
           answer: "C) Transferring liquids in pumps",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What does the **Reynolds number** in fluid mechanics indicate?",
-          options: [
-            "A) The flow velocity of a fluid",
-            "B) The efficiency of a pump",
-            "C) The type of fluid flow (laminar or turbulent)",
-            "D) The pressure drop in a pipe"
-          ],
+          options: ["A) The flow velocity of a fluid","B) The efficiency of a pump","C) The type of fluid flow (laminar or turbulent)","D) The pressure drop in a pipe"],
           answer: "C) The type of fluid flow (laminar or turbulent)",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following best describes the process of **electrolysis** in a chemical plant?",
-          options: [
-            "A) The process of heating a substance until it breaks down into its components.",
-            "B) The use of electric current to drive a non-spontaneous chemical reaction.",
-            "C) The separation of components by a chemical membrane.",
-            "D) The process of mixing two chemicals to form a reaction."
-          ],
+          options: ["A) The process of heating a substance until it breaks down into its components.","B) The use of electric current to drive a non-spontaneous chemical reaction.","C) The separation of components by a chemical membrane.","D) The process of mixing two chemicals to form a reaction."],
           answer: "B) The use of electric current to drive a non-spontaneous chemical reaction.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following is the **main difference** between **batch** and **continuous** processes?",
-          options: [
-            "A) Batch processes operate continuously while continuous processes work in batches.",
-            "B) Batch processes have a fixed input and output, while continuous processes do not.",
-            "C) Batch processes are more energy-efficient than continuous processes.",
-            "D) Continuous processes operate without interruption, while batch processes are operated intermittently."
-          ],
+          options: ["A) Batch processes operate continuously while continuous processes work in batches.","B) Batch processes have a fixed input and output, while continuous processes do not.","C) Batch processes are more energy-efficient than continuous processes.","D) Continuous processes operate without interruption, while batch processes are operated intermittently."],
           answer: "D) Continuous processes operate without interruption, while batch processes are operated intermittently.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the purpose of a **heat exchanger** in chemical processing?",
-          options: [
-            "A) To increase the temperature of fluids",
-            "B) To remove heat from a fluid",
-            "C) To transfer heat between two fluids at different temperatures",
-            "D) To generate power from thermal energy"
-          ],
+          options: ["A) To increase the temperature of fluids","B) To remove heat from a fluid","C) To transfer heat between two fluids at different temperatures","D) To generate power from thermal energy"],
           answer: "C) To transfer heat between two fluids at different temperatures",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the flow rate in cubic meters per second (m³/s) for a pipe carrying water if the area of cross-section is 0.5 m² and the flow velocity is 2 m/s?",
-          options: [
-            "A) 1 m³/s",
-            "B) 2 m³/s",
-            "C) 0.5 m³/s",
-            "D) 0.25 m³/s"
-          ],
+          options: ["A) 1 m³/s","B) 2 m³/s","C) 0.5 m³/s","D) 0.25 m³/s"],
           answer: "B) 1 m³/s",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the molecular weight of CO₂ (Carbon Dioxide)?",
-          options: [
-            "A) 44 g/mol",
-            "B) 32 g/mol",
-            "C) 28 g/mol",
-            "D) 18 g/mol"
-          ],
+          options: ["A) 44 g/mol","B) 32 g/mol","C) 28 g/mol","D) 18 g/mol"],
           answer: "A) 44 g/mol",
           difficulty: "easy",
           type: "multiple-choice"
         },
         {
           question: "In a reaction, if the rate constant (k) is 0.02 s⁻¹ and the concentration of the reactant is 3 mol/L, what is the rate of reaction for a first-order reaction?",
-          options: [
-            "A) 0.06 mol/L.s",
-            "B) 0.02 mol/L.s",
-            "C) 0.03 mol/L.s",
-            "D) 0.06 mol/L"
-          ],
+          options: ["A) 0.06 mol/L.s","B) 0.02 mol/L.s","C) 0.03 mol/L.s","D) 0.06 mol/L"],
           answer: "A) 0.06 mol/L.s",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the **mass flow rate** in kg/s of a substance with a density of 1.2 g/cm³, velocity of 5 m/s, and a pipe area of 0.3 m²?",
-          options: [
-            "A) 1.8 kg/s",
-            "B) 3.6 kg/s",
-            "C) 0.6 kg/s",
-            "D) 6 kg/s"
-          ],
+          options: ["A) 1.8 kg/s","B) 3.6 kg/s","C) 0.6 kg/s","D) 6 kg/s"],
           answer: "A) 1.8 kg/s",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "The heat required to raise the temperature of a substance can be calculated using Q = mcΔT. If m = 5 kg, c = 4.18 kJ/kg°C, and ΔT = 10°C, what is the heat required?",
-          options: [
-            "A) 209 kJ",
-            "B) 2090 kJ",
-            "C) 418 kJ",
-            "D) 100 kJ"
-          ],
+          options: ["A) 209 kJ","B) 2090 kJ","C) 418 kJ","D) 100 kJ"],
           answer: "A) 209 kJ",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following describes the relationship between the volume and pressure of an ideal gas, according to Boyle’s Law?",
-          options: [
-            "A) Volume is inversely proportional to pressure.",
-            "B) Volume is directly proportional to pressure.",
-            "C) Volume is constant regardless of pressure.",
-            "D) Volume is directly proportional to the square of pressure."
-          ],
+          options: ["A) Volume is inversely proportional to pressure.","B) Volume is directly proportional to pressure.","C) Volume is constant regardless of pressure.","D) Volume is directly proportional to the square of pressure."],
           answer: "A) Volume is inversely proportional to pressure.",
-          difficulty: "easy",
+          difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the **Reynolds number** for a fluid with a velocity of 2 m/s, density of 1000 kg/m³, and dynamic viscosity of 0.001 Pa.s in a pipe with a diameter of 0.05 m?",
-          options: [
-            "A) 1000",
-            "B) 2000",
-            "C) 5000",
-            "D) 10000"
-          ],
+          options: ["A) 1000","B) 2000","C) 5000","D) 10000"],
           answer: "B) 2000",
-          difficulty: "hard",
+          difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "In a chemical process, if the feed stream has a mass flow rate of 150 kg/s and the product stream has a mass flow rate of 120 kg/s, what is the mass flow rate of the waste stream?",
-          options: [
-            "A) 30 kg/s",
-            "B) 150 kg/s",
-            "C) 120 kg/s",
-            "D) 270 kg/s"
-          ],
+          options: ["A) 30 kg/s","B) 150 kg/s","C) 120 kg/s","D) 270 kg/s"],
           answer: "A) 30 kg/s",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "A chemical reaction has a rate constant of 0.1 L/(mol·s) and the concentration of reactant A is 0.5 mol/L. What is the rate of the reaction for a second-order reaction?",
-          options: [
-            "A) 0.05 mol/L.s",
-            "B) 0.1 mol/L.s",
-            "C) 0.025 mol/L.s",
-            "D) 0.5 mol/L.s"
-          ],
+          options: ["A) 0.05 mol/L.s","B) 0.1 mol/L.s","C) 0.025 mol/L.s","D) 0.5 mol/L.s"],
           answer: "A) 0.05 mol/L.s",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "In a chemical process, what happens if the residence time of a substance in a reactor is increased while keeping other factors constant?",
-          options: [
-            "A) The reaction rate increases.",
-            "B) The reaction rate decreases.",
-            "C) The conversion of reactants to products increases.",
-            "D) The conversion of reactants to products decreases."
-          ],
+          options: ["A) The reaction rate increases.","B) The reaction rate decreases.","C) The conversion of reactants to products increases.","D) The conversion of reactants to products decreases."],
           answer: "C) The conversion of reactants to products increases.",
           difficulty: "medium",
           type: "multiple-choice"
@@ -1059,240 +859,140 @@ export const courses = [
         // Multiple-Choice Questions
         {
           question: "Which of the following is the correct expression for the first law of thermodynamics?",
-          options: [
-            "A) ΔU = Q + W",
-            "B) ΔU = Q - W",
-            "C) ΔU = W + PΔV",
-            "D) ΔH = ΔU + PΔV"
-          ],
+          options: ["A) ΔU = Q + W","B) ΔU = Q - W","C) ΔU = W + PΔV","D) ΔH = ΔU + PΔV"],
           answer: "B) ΔU = Q - W",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           "question": "The efficiency of a heat engine is given by the formula: η = 1 - (Tc / Th). What do Tc and Th represent in this formula?",
-          "options": [
-            "A) Tc is the temperature of the cold reservoir, and Th is the temperature of the hot reservoir.",  
-            "B) Tc is the temperature of the hot reservoir, and Th is the temperature of the cold reservoir.",
-            "C) Tc is the heat transferred, and Th is the work done.",
-            "D) Tc and Th are both constant temperatures."
-          ],
+          "options": ["A) Tc is the temperature of the cold reservoir, and Th is the temperature of the hot reservoir.",  "B) Tc is the temperature of the hot reservoir, and Th is the temperature of the cold reservoir.","C) Tc is the heat transferred, and Th is the work done.","D) Tc and Th are both constant temperatures."],
           "answer": "A) Tc is the temperature of the cold reservoir, and Th is the temperature of the hot reservoir.",
           "difficulty": "medium",
           "type": "multiple-choice"
         },      
         {
           question: "Which property is used to measure the heat content of a system at constant pressure?",
-          options: [
-            "A) Enthalpy",
-            "B) Entropy",
-            "C) Internal Energy",
-            "D) Free Energy"
-          ],
+          options: ["A) Enthalpy","B) Entropy","C) Internal Energy","D) Free Energy"],
           answer: "A) Enthalpy",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which law of thermodynamics states that energy cannot be created or destroyed, only converted from one form to another?",
-          options: [
-            "A) First Law of Thermodynamics",
-            "B) Second Law of Thermodynamics",
-            "C) Third Law of Thermodynamics",
-            "D) Zeroth Law of Thermodynamics"
-          ],
+          options: ["A) First Law of Thermodynamics","B) Second Law of Thermodynamics","C) Third Law of Thermodynamics","D) Zeroth Law of Thermodynamics"],
           answer: "A) First Law of Thermodynamics",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following is the **unit of enthalpy**?",
-          options: [
-            "A) Joules (J)",
-            "B) Calories (cal)",
-            "C) Kelvin (K)",
-            "D) Pascals (Pa)"
-          ],
+          options: ["A) Joules (J)","B) Calories (cal)","C) Kelvin (K)","D) Pascals (Pa)"],
           answer: "A) Joules (J)",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "In thermodynamics, which of the following describes the change in energy due to a temperature change in a substance?",
-          options: [
-            "A) Enthalpy",
-            "B) Heat capacity",
-            "C) Entropy",
-            "D) Work"
-          ],
+          options: ["A) Enthalpy","B) Heat capacity","C) Entropy","D) Work"],
           answer: "B) Heat capacity",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "The process of transferring heat from a hot object to a cold one until both reach the same temperature is called?",
-          options: [
-            "A) Isobaric process",
-            "B) Isochoric process",
-            "C) Thermal equilibrium",
-            "D) Adiabatic process"
-          ],
+          options: ["A) Isobaric process","B) Isochoric process","C) Thermal equilibrium","D) Adiabatic process"],
           answer: "C) Thermal equilibrium",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "In an adiabatic process, which of the following holds true?",
-          options: [
-            "A) Heat exchange occurs with the surroundings.",
-            "B) No heat is exchanged with the surroundings.",
-            "C) Work done by the system is zero.",
-            "D) The temperature remains constant."
-          ],
+          options: ["A) Heat exchange occurs with the surroundings.","B) No heat is exchanged with the surroundings.","C) Work done by the system is zero.","D) The temperature remains constant."],
           answer: "B) No heat is exchanged with the surroundings.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "The second law of thermodynamics states that the entropy of an isolated system always...",
-          options: [
-            "A) Decreases",
-            "B) Increases",
-            "C) Remains constant",
-            "D) Depends on the temperature"
-          ],
+          options: ["A) Decreases","B) Increases","C) Remains constant","D) Depends on the temperature"],
           answer: "B) Increases",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the term used for the energy required to raise the temperature of 1 kg of a substance by 1 degree Celsius?",
-          options: [
-            "A) Specific heat capacity",
-            "B) Latent heat",
-            "C) Work done",
-            "D) Enthalpy"
-          ],
+          options: ["A) Specific heat capacity","B) Latent heat","C) Work done","D) Enthalpy"],
           answer: "A) Specific heat capacity",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following processes occurs at **constant pressure**?",
-          options: [
-            "A) Isochoric process",
-            "B) Isobaric process",
-            "C) Adiabatic process",
-            "D) Isothermal process"
-          ],
+          options: ["A) Isochoric process","B) Isobaric process","C) Adiabatic process","D) Isothermal process"],
           answer: "B) Isobaric process",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following terms refers to the amount of disorder or randomness in a system?",
-          options: [
-            "A) Enthalpy",
-            "B) Entropy",
-            "C) Internal energy",
-            "D) Heat"
-          ],
+          options: ["A) Enthalpy","B) Entropy","C) Internal energy","D) Heat"],
           answer: "B) Entropy",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the standard state for a substance in thermodynamics?",
-          options: [
-            "A) The state of the substance at high pressure and temperature",
-            "B) The state of the substance at 1 bar pressure and 298 K",
-            "C) The state of the substance at 0 K",
-            "D) The state of the substance at 1 atm pressure and 0°C"
-          ],
+          options: ["A) The state of the substance at high pressure and temperature","B) The state of the substance at 1 bar pressure and 298 K","C) The state of the substance at 0 K","D) The state of the substance at 1 atm pressure and 0°C"],
           answer: "B) The state of the substance at 1 bar pressure and 298 K",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following is true for an ideal gas?",
-          options: [
-            "A) The intermolecular forces are significant.",
-            "B) The gas behaves in accordance with the ideal gas law at all temperatures and pressures.",
-            "C) The volume of the gas molecules is considered to be negligible.",
-            "D) The gas cannot be compressed."
-          ],
+          options: ["A) The intermolecular forces are significant.","B) The gas behaves in accordance with the ideal gas law at all temperatures and pressures.","C) The volume of the gas molecules is considered to be negligible.","D) The gas cannot be compressed."],
           answer: "C) The volume of the gas molecules is considered to be negligible.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What does the Gibbs free energy (G) indicate about a chemical reaction?",
-          options: [
-            "A) It represents the total energy available in a system.",
-            "B) If ΔG < 0, the reaction is non-spontaneous.",
-            "C) If ΔG > 0, the reaction is spontaneous.",
-            "D) If ΔG = 0, the system is at equilibrium."
-          ],
+          options: ["A) It represents the total energy available in a system.","B) If ΔG < 0, the reaction is non-spontaneous.","C) If ΔG > 0, the reaction is spontaneous.","D) If ΔG = 0, the system is at equilibrium."],
           answer: "D) If ΔG = 0, the system is at equilibrium.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following statements is true for an isothermal process?",
-          options: [
-            "A) The temperature remains constant, and the internal energy changes.",
-            "B) The temperature remains constant, and no heat is exchanged.",
-            "C) The temperature changes, and the system does work.",
-            "D) The temperature remains constant, and heat is exchanged with the surroundings."
-          ],
+          options: ["A) The temperature remains constant, and the internal energy changes.","B) The temperature remains constant, and no heat is exchanged.","C) The temperature changes, and the system does work.","D) The temperature remains constant, and heat is exchanged with the surroundings."],
           answer: "D) The temperature remains constant, and heat is exchanged with the surroundings.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which equation represents the relationship between enthalpy and internal energy for an ideal gas?",
-          options: [
-            "A) H = U + PV",
-            "B) H = U - PV",
-            "C) H = U + RT",
-            "D) H = U - RT"
-          ],
+          options: ["A) H = U + PV","B) H = U - PV","C) H = U + RT","D) H = U - RT"],
           answer: "A) H = U + PV",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the term used to describe the heat required to raise the temperature of a substance by one degree?",
-          options: [
-            "A) Heat capacity",
-            "B) Specific heat",
-            "C) Enthalpy",
-            "D) Latent heat"
-          ],
+          options: ["A) Heat capacity","B) Specific heat","C) Enthalpy","D) Latent heat"],
           answer: "B) Specific heat",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "Which of the following is a characteristic of a reversible reaction in thermodynamics?",
-          options: [
-            "A) The reaction proceeds without any energy change.",
-            "B) The reaction can proceed in both directions under appropriate conditions.",
-            "C) The reaction is spontaneous in one direction only.",
-            "D) The reaction does not reach equilibrium."
-          ],
+          options: ["A) The reaction proceeds without any energy change.","B) The reaction can proceed in both directions under appropriate conditions.","C) The reaction is spontaneous in one direction only.","D) The reaction does not reach equilibrium."],
           answer: "B) The reaction can proceed in both directions under appropriate conditions.",
           difficulty: "medium",
           type: "multiple-choice"
         },
         {
           question: "What is the term for the change in enthalpy that occurs when a substance undergoes a phase transition?",
-          options: [
-            "A) Latent heat",
-            "B) Sensible heat",
-            "C) Specific heat",
-            "D) Free energy"
-          ],
+          options: ["A) Latent heat","B) Sensible heat","C) Specific heat","D) Free energy"],
           answer: "A) Latent heat",
           difficulty: "medium",
           type: "multiple-choice"
@@ -1399,60 +1099,35 @@ export const courses = [
         // Multiple-Choice Questions (Medium Difficulty)
         {
           question: 'Which of the following is the primary factor that affects fluid flow in a pipe?',
-          options: [
-            'A) Temperature',
-            'B) Pressure difference',
-            'C) Pipe material',
-            'D) Fluid density'
-          ],
+          options: ['A) Temperature', 'B) Pressure difference', 'C) Pipe material', 'D) Fluid density'],
           answer: 'B) Pressure difference',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which type of flow is characterized by smooth, orderly fluid motion?',
-          options: [
-            'A) Turbulent flow',
-            'B) Laminar flow',
-            'C) Transitional flow',
-            'D) Rotational flow'
-          ],
+          options: ['A) Turbulent flow', 'B) Laminar flow', 'C) Transitional flow', 'D) Rotational flow'],
           answer: 'B) Laminar flow',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'In a pipe, the velocity of the fluid is highest at which location?',
-          options: [
-            'A) Near the walls',
-            'B) At the center of the pipe',
-            'C) At the pipe’s entrance',
-            'D) At the pipe’s exit'
-          ],
+          options: ['A) Near the walls', 'B) At the center of the pipe', 'C) At the pipe’s entrance', 'D) At the pipe’s exit'],
           answer: 'B) At the center of the pipe',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is a method to measure fluid velocity in a pipe?',
-          options: [
-            'A) Venturi meter',
-            'B) Orifice plate',
-            'C) Pitot tube',
-            'D) All of the above'
-          ],
+          options: ['A) Venturi meter', 'B) Orifice plate', 'C) Pitot tube', 'D) All of the above'],
           answer: 'D) All of the above',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'What is the primary cause of head loss in a pipe?',
-          options: [
-            'A) Temperature changes',
-            'B) Frictional resistance',
-            'C) Pressure differences',
-            'D) Fluid viscosity'
-          ],
+          options: ['A) Temperature changes', 'B) Frictional resistance', 'C) Pressure differences', 'D) Fluid viscosity'],
           answer: 'B) Frictional resistance',
           difficulty: 'medium',
           type: 'multiple-choice'
@@ -1481,7 +1156,84 @@ export const courses = [
         {
           question: 'The resultant upward pressure of the fluid on an immersed body is called ...?',
           options: ['A) Upthrust', 'B) Buoyancy', 'C) Center of pressure', 'D) All the above are correct', 'E) None of the above is correct'],
-          answer: 'B) Upthrust',
+          answer: 'A) Upthrust',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The property by virtue of which a liquid opposes relative motion between its different layers is called',
+          options: ['A) Surface Tension', 'B) Co-efficient of viscosity', 'C) Viscosity', 'D) Osmosis', 'E) Cohesion'],
+          answer: 'C) Viscosity',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The process of diffusion of one liquid into the other through a semi-permeable membrane is called',
+          options: ['A) Viscosity', 'B) Osmosis', 'C) Surface tension', 'D) Cohesion', 'E) Diffusivity'],
+          answer: 'B) Osmosis',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The units of dynamic or absolute viscosity are ....',
+          options: ['A) m^2/s', 'B) kg.s/m', 'C) N.s/m', 'D) N.s^2/m', 'E) None of the above is correct'],
+          answer: 'C) N.s/m',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The continuity equation is connected with',
+          options: ['A) Viscous/Unviscous fluids', 'B) Compressibility of fluids', 'C) Conservation of mass', 'D) Steady/Unsteady flow', 'E) Open channel/pipe flow'],
+          answer: 'C) Conservation of mass',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The rise or depression of liquid in a tube due to surface tensionwim increase in size of tube will ....?',
+          options: ['A) Increase', 'B) Remain unaffected', 'C) May increase or decrease depending on the characteristics of liquid', 'D) Decrease', 'E) Unpredictable'],
+          answer: 'D) Decrease',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'Liquids transmit pressure equally in all the directions. This is according to ....',
+          options: ["A) Boyle's Law", 'B) Archimedes principle', "C) Pascal's Law", "D) Newton's formula", "E) Chezy's equation"],
+          answer: "C) Pascal's Law",
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'Capillary action is due to the ....',
+          options: ['A) Surface tension', 'B) Cohesion of the liquid', 'C) Adhesion of the liquid molecules and the molecules on the surfaec of a solid', 'D) All the above are correct', 'E) None of the above is correct'],
+          answer: 'D) All the above are correct',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: "Newton's law of viscosity is a relationship between ...........",
+          options: ['A) Shear stress and the velocity gradient in a fluid', 'B) Shear stress and viscosity', 'C) Shear stress, velocity and viscosity', 'D) Pressure, velocity and viscosity', 'E) Shear stress, pressure and rate of angular distortion'],
+          answer: 'A) Shear stress and the velocity gradient in a fluid',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'The atmospheric pressure with rise in altitude decreases?',
+          options: ['A) Linearly', 'B) First slowly and then steeply', 'C) First steeply and then gradually', 'D) Unpredictable', 'E) None of the above'],
+          answer: 'B) First slowly and then steeply',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: "Pressure of the order of 10''' torr can be measured by",
+          options: ['A) Bourdon tube', 'B) Pirani Gauge', 'C) Micro-manometer', 'D) Ionisation gauge', 'E) McLeod gauge'],
+          answer: 'D) Ionisation gauge',
+          difficulty: 'medium',
+          type: 'multiple-choice'
+        },
+        {
+          question: 'Operation of McLeod gauge used for low pressure measurement is based on the principle of',
+          options: ['A) Gas Law', "B) Boyle's Law", 'C) Charles Law', "D) Pascal's law", "E) McLeod's law"],
+          answer: "B) Boyle's Law",
           difficulty: 'medium',
           type: 'multiple-choice'
         },
@@ -1557,60 +1309,35 @@ export const courses = [
         // Multiple-Choice Questions (Medium Difficulty)
         {
           question: 'Which of the following is the most common method for separating mixtures in analytical chemistry?',
-          options: [
-            'A) Chromatography',
-            'B) Titration',
-            'C) Spectroscopy',
-            'D) Filtration'
-          ],
+          options: ['A) Chromatography','B) Titration','C) Spectroscopy','D) Filtration'],
           answer: 'A) Chromatography',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is NOT a type of chromatography?',
-          options: [
-            'A) Gas chromatography',
-            'B) Liquid chromatography',
-            'C) Electrochromatography',
-            'D) Membrane chromatography'
-          ],
+          options: ['A) Gas chromatography','B) Liquid chromatography','C) Electrochromatography','D) Membrane chromatography'],
           answer: 'D) Membrane chromatography',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which method is used to measure the concentration of ions in solution?',
-          options: [
-            'A) Ion chromatography',
-            'B) Flame photometry',
-            'C) Mass spectrometry',
-            'D) Atomic absorption spectroscopy'
-          ],
+          options: ['A) Ion chromatography','B) Flame photometry','C) Mass spectrometry','D) Atomic absorption spectroscopy'],
           answer: 'B) Flame photometry',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is a key principle of spectroscopy?',
-          options: [
-            'A) Absorption of electromagnetic radiation by matter',
-            'B) Measurement of fluid density',
-            'C) Determining the melting point of substances',
-            'D) Separation of mixtures based on boiling points'
-          ],
+          options: ['A) Absorption of electromagnetic radiation by matter','B) Measurement of fluid density','C) Determining the melting point of substances','D) Separation of mixtures based on boiling points'],
           answer: 'A) Absorption of electromagnetic radiation by matter',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following chemical elements is commonly analyzed using Atomic Absorption Spectroscopy?',
-          options: [
-            'A) Hydrogen',
-            'B) Carbon',
-            'C) Calcium',
-            'D) Oxygen'
-          ],
+          options: ['A) Hydrogen','B) Carbon','C) Calcium','D) Oxygen'],
           answer: 'C) Calcium',
           difficulty: 'medium',
           type: 'multiple-choice'
@@ -1689,120 +1416,70 @@ export const courses = [
         // Multiple-Choice Questions (Medium Difficulty)
         {
           question: 'Which of the following processes is used for separating a liquid mixture into its components based on boiling points?',
-          options: [
-            'A) Distillation',
-            'B) Filtration',
-            'C) Adsorption',
-            'D) Absorption'
-          ],
+          options: ['A) Distillation','B) Filtration','C) Adsorption','D) Absorption'],
           answer: 'A) Distillation',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which is the primary raw material for the production of sulfuric acid in the contact process?',
-          options: [
-            'A) Sulfur',
-            'B) Nitrogen',
-            'C) Water',
-            'D) Oxygen'
-          ],
+          options: ['A) Sulfur','B) Nitrogen','C) Water','D) Oxygen'],
           answer: 'A) Sulfur',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'What is the key chemical process in the production of ammonia for fertilizers?',
-          options: [
-            'A) Haber-Bosch process',
-            'B) Contact process',
-            'C) Fischer-Tropsch synthesis',
-            'D) Chlor-alkali process'
-          ],
+          options: ['A) Haber-Bosch process','B) Contact process','C) Fischer-Tropsch synthesis','D) Chlor-alkali process'],
           answer: 'A) Haber-Bosch process',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is NOT typically produced in petrochemical industries?',
-          options: [
-            'A) Ethylene',
-            'B) Propylene',
-            'C) Methanol',
-            'D) Sulfur'
-          ],
+          options: ['A) Ethylene','B) Propylene','C) Methanol','D) Sulfur'],
           answer: 'D) Sulfur',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'The production of ethylene oxide primarily uses which type of reactor?',
-          options: [
-            'A) Fluidized bed reactor',
-            'B) Batch reactor',
-            'C) Continuous stirred-tank reactor',
-            'D) Fixed-bed reactor'
-          ],
+          options: ['A) Fluidized bed reactor','B) Batch reactor','C) Continuous stirred-tank reactor','D) Fixed-bed reactor'],
           answer: 'D) Fixed-bed reactor',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is an example of a batch process in the chemical industry?',
-          options: [
-            'A) Oil refining',
-            'B) Pharmaceutical production',
-            'C) Cement production',
-            'D) Ethanol fermentation'
-          ],
+          options: ['A) Oil refining','B) Pharmaceutical production','C) Cement production','D) Ethanol fermentation'],
           answer: 'B) Pharmaceutical production',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is a byproduct of the chlorine-alkali process?',
-          options: [
-            'A) Hydrogen',
-            'B) Oxygen',
-            'C) Methanol',
-            'D) Ethylene'
-          ],
+          options: ['A) Hydrogen','B) Oxygen','C) Methanol','D) Ethylene'],
           answer: 'A) Hydrogen',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'In the production of sulfuric acid, the contact process uses which gas as the starting material?',
-          options: [
-            'A) Nitrogen dioxide',
-            'B) Oxygen',
-            'C) Sulfur dioxide',
-            'D) Ammonia'
-          ],
+          options: ['A) Nitrogen dioxide','B) Oxygen','C) Sulfur dioxide','D) Ammonia'],
           answer: 'C) Sulfur dioxide',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following chemicals is commonly used to produce synthetic rubber?',
-          options: [
-            'A) Butadiene',
-            'B) Acetylene',
-            'C) Ethylene',
-            'D) Methane'
-          ],
+          options: ['A) Butadiene','B) Acetylene','C) Ethylene','D) Methane'],
           answer: 'A) Butadiene',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'The primary use of methanol in the chemical process industries is as a precursor for the production of ____.',
-          options: [
-            'A) Acetone',
-            'B) Formaldehyde',
-            'C) Acetic acid',
-            'D) Ethanol'
-          ],
+          options: ['A) Acetone','B) Formaldehyde','C) Acetic acid','D) Ethanol'],
           answer: 'B) Formaldehyde',
           difficulty: 'medium',
           type: 'multiple-choice'
@@ -1880,120 +1557,70 @@ export const courses = [
         // Multiple-Choice Questions (Medium Difficulty)
         {
           question: 'Which programming language is commonly used for engineering simulations and numerical computations?',
-          options: [
-            'A) Python',
-            'B) C++',
-            'C) MATLAB',
-            'D) Java'
-          ],
+          options: ['A) Python','B) C++','C) MATLAB','D) Java'],
           answer: 'C) MATLAB',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'What is the primary function of CAD (Computer-Aided Design) software?',
-          options: [
-            'A) To create and modify technical drawings',
-            'B) To analyze fluid dynamics',
-            'C) To write source code for simulations',
-            'D) To manage project schedules'
-          ],
+          options: ['A) To create and modify technical drawings','B) To analyze fluid dynamics','C) To write source code for simulations','D) To manage project schedules'],
           answer: 'A) To create and modify technical drawings',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is a common operating system used in engineering workstations?',
-          options: [
-            'A) Linux',
-            'B) Windows 95',
-            'C) macOS',
-            'D) Android'
-          ],
+          options: ['A) Linux','B) Windows 95','C) macOS','D) Android'],
           answer: 'A) Linux',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'In computer programming, which type of loop is typically used to repeat a task a set number of times?',
-          options: [
-            'A) If loop',
-            'B) For loop',
-            'C) While loop',
-            'D) Switch case loop'
-          ],
+          options: ['A) If loop','B) For loop','C) While loop','D) Switch case loop'],
           answer: 'B) For loop',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is an example of a software application used for finite element analysis?',
-          options: [
-            'A) ANSYS',
-            'B) AutoCAD',
-            'C) SolidWorks',
-            'D) Excel'
-          ],
+          options: ['A) ANSYS','B) AutoCAD','C) SolidWorks','D) Excel'],
           answer: 'A) ANSYS',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is a version control system commonly used in collaborative software development?',
-          options: [
-            'A) Git',
-            'B) Java',
-            'C) MATLAB',
-            'D) C++'
-          ],
+          options: ['A) Git','B) Java','C) MATLAB','D) C++'],
           answer: 'A) Git',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'What does the acronym "API" stand for in software development?',
-          options: [
-            'A) Application Programming Interface',
-            'B) Automated Process Integration',
-            'C) Advanced Programming Instruction',
-            'D) Application Process Instance'
-          ],
+          options: ['A) Application Programming Interface','B) Automated Process Integration','C) Advanced Programming Instruction','D) Application Process Instance'],
           answer: 'A) Application Programming Interface',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following programming languages is often used for real-time control systems?',
-          options: [
-            'A) JavaScript',
-            'B) C++',
-            'C) Python',
-            'D) Ruby'
-          ],
+          options: ['A) JavaScript','B) C++','C) Python','D) Ruby'],
           answer: 'B) C++',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which type of software is commonly used to simulate the behavior of electrical circuits?',
-          options: [
-            'A) SPICE',
-            'B) AutoCAD',
-            'C) Excel',
-            'D) MATLAB'
-          ],
+          options: ['A) SPICE','B) AutoCAD','C) Excel','D) MATLAB'],
           answer: 'A) SPICE',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which software is most widely used for 3D modeling and design in engineering?',
-          options: [
-            'A) SolidWorks',
-            'B) WordPress',
-            'C) PowerPoint',
-            'D) Excel'
-          ],
+          options: ['A) SolidWorks','B) WordPress','C) PowerPoint','D) Excel'],
           answer: 'A) SolidWorks',
           difficulty: 'medium',
           type: 'multiple-choice'
@@ -2071,118 +1698,70 @@ export const courses = [
         // Multiple-Choice Questions (Medium Difficulty)
         {
           question: 'What is the general solution to the first-order differential equation dy/dx = 3x^2?',
-          options: [
-            'A) y = x^3 + C',
-            'B) y = 3x^3 + C',
-            'C) y = x^2 + C',
-            'D) y = 3x^2 + C'
-          ],
+          options: ['A) y = x^3 + C','B) y = 3x^3 + C','C) y = x^2 + C','D) y = 3x^2 + C'],
           answer: 'A) y = x^3 + C',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is an example of a second-order linear differential equation?',
-          options: [
-            'A) y" + 3y = 0',
-            'B) y" + y = e^x',
-            'C) y" + 4y = sin(x)',
-            'D) All of the above'
-          ],
+          options: ['A) y" + 3y = 0','B) y" + y = e^x','C) y" + 4y = sin(x)','D) All of the above'],
           answer: 'D) All of the above',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'The method of solving linear ordinary differential equations using an integrating factor is applicable to which type of equation?',
-          options: [
-            'A) Linear equations with constant coefficients',
-            'B) First-order linear differential equations',
-            'C) Nonlinear equations',
-            'D) Homogeneous equations'
-          ],
+          options: ['A) Linear equations with constant coefficients','B) First-order linear differential equations','C) Nonlinear equations','D) Homogeneous equations'],
           answer: 'B) First-order linear differential equations',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which of the following is NOT a method of solving second-order linear differential equations?',
-          options: [
-            'A) Separation of variables',
-            'B) The method of undetermined coefficients',
-            'C) Variation of parameters',
-            'D) Laplace transforms'
-          ],
+          options: ['A) Separation of variables','B) The method of undetermined coefficients','C) Variation of parameters','D) Laplace transforms'],
           answer: 'A) Separation of variables',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'The characteristic equation of a differential equation is derived from the homogeneous form of the equation.',
-          options: [
-            'A) True',
-            'B) False'
-          ],
+          options: ['A) True','B) False'],
           answer: 'A) True',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: "The equation y'' + 4y = 0 has a solution of the form y = e^(kx). What is the value of k?",
-          options: [
-            'A) ±2i',
-            'B) ±4i',
-            'C) ±2',
-            'D) ±4'
-          ],
+          options: ['A) ±2i','B) ±4i','C) ±2','D) ±4'],
           answer: 'B) ±4i',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'Which method is commonly used to solve higher-order linear differential equations with constant coefficients?',
-          options: [
-            'A) Series solutions',
-            'B) Variation of parameters',
-            'C) Direct integration',
-            'D) Method of undetermined coefficients'
-          ],
+          options: ['A) Series solutions','B) Variation of parameters','C) Direct integration','D) Method of undetermined coefficients'],
           answer: 'D) Method of undetermined coefficients',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'The solution to a homogeneous second-order linear differential equation is typically expressed as a ____.',
-          options: [
-            'A) Sum of two independent solutions',
-            'B) Single solution with arbitrary constants',
-            'C) Fourier series expansion',
-            'D) Polynomial function'
-          ],
+          options: ['A) Sum of two independent solutions','B) Single solution with arbitrary constants','C) Fourier series expansion','D) Polynomial function'],
           answer: 'A) Sum of two independent solutions',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'In which case does the method of separation of variables fail for solving a differential equation?',
-          options: [
-            'A) When the equation is linear',
-            'B) When both variables appear in the derivative term',
-            'C) When the equation is nonlinear',
-            'D) When there is a boundary condition'
-          ],
+          options: ['A) When the equation is linear','B) When both variables appear in the derivative term','C) When the equation is nonlinear','D) When there is a boundary condition'],
           answer: 'B) When both variables appear in the derivative term',
           difficulty: 'medium',
           type: 'multiple-choice'
         },
         {
           question: 'The method of variation of parameters is used to find the particular solution to a ____ equation.',
-          options: [
-            'A) Homogeneous',
-            'B) Non-homogeneous',
-            'C) Linear',
-            'D) Nonlinear'
-          ],
+          options: ['A) Homogeneous','B) Non-homogeneous','C) Linear','D) Nonlinear'],
           answer: 'B) Non-homogeneous',
           difficulty: 'medium',
           type: 'multiple-choice'

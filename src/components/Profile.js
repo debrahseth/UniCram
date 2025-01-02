@@ -139,10 +139,10 @@ const Profile = () => {
         <button onClick={handleUpdateProgramOfStudy} style={styles.updateButton}>
           Update Program of Study
         </button>
+      </div>
         <button onClick={() => navigate('/record')} style={styles.recordButton}>
           <i class="fa fa-trophy"></i> My Achievements <i class="fa fa-trophy"></i>
         </button>
-      </div>
         <div style={styles.footer}>
           <p>© 2025 StudyGroup. All rights reserved.</p>
         </div>
@@ -153,7 +153,7 @@ const Profile = () => {
 const styles = {
   container: {
     backgroundColor: '#f4f7fc',
-    padding: '20px',
+    padding: '10px',
     display: 'flex',
     height: '90vh',
     flexDirection: 'column',
@@ -166,7 +166,7 @@ const styles = {
     border: 'none',
     borderRadius: '50px',
     padding: '12px 20px',
-    fontSize: '25px',
+    fontSize: '20px',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
@@ -181,15 +181,15 @@ const styles = {
     color: 'white',
     border: 'none',
     borderRadius: '50px',
-    padding: '12px 20px',
-    fontSize: '25px',
+    padding: '10px 15px',
+    fontSize: '20px',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     gap: '10px',
     transition: 'background-color 0.3s',
     position: 'absolute',
-    bottom: '90px',
+    bottom: '80px',
     left: '50%',
     transform: 'translateX(-50%)',
   },  
@@ -199,7 +199,7 @@ const styles = {
     border: 'none',
     borderRadius: '50px',
     padding: '12px 20px',
-    fontSize: '25px',
+    fontSize: '20px',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
@@ -223,7 +223,7 @@ const styles = {
     backgroundColor: 'white',
     borderRadius: '10px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    padding: '20px',
+    padding: '10px',
     width: '98%',
     textAlign: 'left',
     display: 'flex',
@@ -239,7 +239,7 @@ const styles = {
   profilePictureContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: '20px',
+    marginBottom: '10px',
   },
   profilePicture: {
     width: '150px',
@@ -248,7 +248,7 @@ const styles = {
     objectFit: 'cover',
   },
   inputGroup: {
-    marginBottom: '15px',
+    marginBottom: '10px',
     width: '100%',
   },
   input: {

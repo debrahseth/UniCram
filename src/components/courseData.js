@@ -1,5 +1,5 @@
 export const courseData = {
-    Thermodynamics: {
+    'Thermodynamics': {
       Easy: [
         { 
           question: "What is the internal energy change if 50 J of heat is added and 20 J of work is done by the system?(2 dp)", 
@@ -458,6 +458,30 @@ export const courseData = {
           question: "Free surface of a liquid tends to contract to the smallest possible area due to force of ?",
           answer: "Surface tension",
           type: "Fill-in"
+        },
+        {
+          question: "If the surface of a liquid is convex, it means ....",
+          answer: "Cohesion pressure is increased",
+          type: "Multiple Choice",
+          options: ["Cohesion pressure is negligible", "Cohesion pressure is decreased", "Cohesion pressure is increased", "There is no cohesion"]
+        },
+        {
+          question: "To avoid vaporisation in the pipe line, the pipe line over the ridge is laid such that it is not more than ..?",
+          answer: "6.4 m above the hydraulic gradient",
+          type: "Multiple Choice",
+          options: ["2.4 m above the hydraulic gradient", "6.4 m above the hydraulic gradient", "10.0 m above the hydraulic gradient", "5.0 m above the hydraulic gradient", "None of the above"]
+        },
+        {
+          question: "To avoid an interruption in the flow of a syphon, an air vessel is provided .....",
+          answer: "At the summit",
+          type: "Multiple Choice",
+          options: ["At the inlet", "At the outlet", "At the summit", "At any point between inlet and outlet"]
+        },
+        {
+          question: "The vapour pressure over the concave surface is ...",
+          answer: "Less than the vapour pressure over the plane surface",
+          type: "Multiple Choice",
+          options: ["Less than the vapour pressure over the plane surface", "Equal to the vapour pressure over the plane surface", "Greate than the vapour pressure over the plane surface", "Zero"]
         }
       ],
         Medium: [
@@ -572,6 +596,34 @@ export const courseData = {
             question: "A bucket of water is hanging from a spring balance. An iron piece is suspended into water without touching sides of the bucket fro another suppport. The spring balance reading will increase/decrease depending on the depth of immersion.",
             answer: "False",
             type: "True/False"
+          },
+          {
+            question: "The conditions for the stable equilibrium of a floating body is/are ....",
+            answer: "All of the above",
+            type: "Multiple Choice",
+            options: ["The meta-center should lie above the center of gravity", "The center of buoyancy and the center of gravity must lie on the same vertical line", "A righting couple should be formed", "All of the above", "None of the above"]
+          },
+          {
+            question: "Poise is the unit of ...?",
+            answer: "Viscosity",
+            type: "Fill-in"
+          },
+          {
+            question: "Metacentric height is given as the distance between ...",
+            answer: "The center of gravity of the body and the meta center",
+            type: "Multiple Choice",
+            options: ["The center of gravity of the body and the meta center", "The center of gravity of the body and the center of buoyancy", "The center of gravity of the body and the center of pressure", "Center of buoyancy and metacenter", "None of the above"]
+          },
+          {
+            question: "The buoyancy depends on .....",
+            answer: "Mass of liduid displaced",
+            type: "Multiple Choice",
+            options: ["Depth of immersion", "Mass of liquid displaced", "Pressure of the liquid displaced", "Viscosity of the liquid"]
+          },
+          {
+            question: "The center of gravity of the volume of the liquid displaced by an immersed body is called ..?",
+            answer: "Center of buoyancy",
+            type: "Fill-in"
           }
         ],
         Hard: [
@@ -687,7 +739,413 @@ export const courseData = {
             answer: "Lower than the surface of the liquid",
             type: "Multiple Choice",
             options: ["Higher than the surface of liquid", "The same as the surface of liquid", "Lower than the surface of the liquid", "Unpredictable", "None of the above"]
+          },
+          {
+            question: "A piece of metal of specific gravity 13.6 i placed in a mercury of specific gravity 13.6, what fraction of it volume is under the mercury?",
+            answer: "Whole of the metal piece will be immersed with its top surface just at mercury level",
+            type: "Multiple Choice",
+            options: ["Whole of the metal piece will be immersed with its top surface just at the mercury level", "The metal piece will simply float over the mercury", "The metal piece will be immersed in mercury by half", "Metal piece will sink to the bottom"],
+          },
+          {
+            question: "The angle of contact in case of a liquid depends upon .....?",
+            answer: "Both of die above",
+            type:"Multiple Choice",
+            options: ["The nature of the liduid and the solid", "The material which exists above the free surface of the liquid", "Both of die above", "Any one of the above", "None of the above"]
+          },
+          {
+            question: "Fress surface of a liquid behaves like a sheet and tends to contract to smallest possible area due to the force of ...?",
+            answer: "Cohesion",
+            type: "Fill-in"
+          },
+          {
+            question: "Surface energy per unit area of a surface is numerically equal to ....?",
+            answer: "Surface tension",
+            type: "Fill-in",
+          },
+          {
+            question: "The capillary rise at 20 degrees celsius in a clean tube of 1mm bore containing water is approximately ....?",
+            answer: "30 mm",
+            type: "Multiple Choice",
+            options: ["1 mm", "5 mm", "30 mm", "10 mm", "20 mm"]
           }
         ]
-    }
+      },
+      'Differential Equations': {
+        Easy: [
+          {
+            question: "A differential equation that describes a physical phenomena is called a/an ...?",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["Linear Differential Equation", "Mathematical Model", "Application Equation", "Non-linear Differential Equation", "None of the above"]
+          },
+          {
+            question: "The solution to a differential equation with subsidiary conditions will always produce a/an ....?",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["Genral solution", "Initial solution", "Complimentary solution", "Particular solution", "None of the above"]
+          },
+          {
+            question: "What is the Type and Linearity of the following differential equation? [(v^2 - 1)x' -xsiny = 2]",
+            correctAnswers: [""],
+            type: "Multiple Answers",
+            options: ["Partial", "Linear", "Non-linear", "Ordinary"]
+          },
+          {
+            question: "Find the largest interval where the existence and uniqueness of the solution to thte initial value problem is guaranteed. [In(t)u' + tan(t)u = sin^2(t), u(pi/3) = -1]",
+            answer:"",
+            type: "Multiple Choice",
+            options: ["(-pi/2,pi/2)", "(0,pi/2)", "(1,pi/2)", "(-pi/2,0)", "None of the above"]
+          },
+          {
+            question: "What will be the value (if any) of the particular solution of the problem u' + (1 + cos(t))u = 1 + cos(t), u(0) = 3 over a long period of time?",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["0", "u = 1 + 2e^-(t + sin(t))", "1", "u = 1 + e^-(t + sin(t))", "None of the above"]
+          },
+          {
+            question: "Determine the degree of homogeneity of the following multi-variable function? [f(x,u) = (x^2 + xu)/(tan(u^2))].",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["1", "2", "0", "Non-Homogenous", "None of the above"]
+          }
+        ],
+        Medium: [
+          {
+            question: "If y1 and y2 are two linearly independent solutions of a differential equation, then the set {y1,y2} is termed;",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["Particular set of solutions", "Fundamental set of solutions", "General set of solutions", "Independent set of solutions", "None of the above"]
+          },
+          {
+            question: "Which of the following is/are true about a linear ordinary equation?",
+            correctAnswers: [""],
+            type: "Multiple Answers",
+            options: ["The dependent variable and it's derivatives only occur in their first power", "There are no terms involving products of the dependent variable and its derivatives", "There are no transcendental functions of both the independent and the dependent variable"]
+          },
+          {
+            question: "Express [yy' - xy' + y^2 = x^2] in differential form.",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["dy + (x + y)dx = 0", "dy - (x + y)dx = 0", "(y - x)dy + (x^2 - y^2)dx = 0", "ydy + (x^2 - y)dx = 0", "None of the above"]
+          },
+          {
+            question: "What is the degree of homogeneity of the following differential equation? [du/dx = (cos(x^2/u^2))/(sin(u/x))].",
+            asnwer: "",
+            type: "Fill-in"
+          },
+          {
+            question: "Which of the following transformation(s) ensures that the differential equation: (x + 3u + 5)du/dx + (2x + 7u + 1) = 0 becomes separable?",
+            correctAnswers: [""],
+            type: "Multiple Answers",
+            options: ["x = X + 32 and u = U - 9", "x = X + 13 and u = U - 7", "x = X - 32 and u = U + 9", "x = X - 13 and u = U + 7"]
+          },
+          {
+            question: "What is the general solution of the differential equation? [xz' = (1 - z^2)^(1/2)]",
+            asnwer: "",
+            type: "Multiple Choice",
+            options: ["sin^-1(z) = In(x) + c", "sinh^-1(z) = In(x) + c", "cosh^-1(z) = In(x) + c", "tan^-1(z) = In(x) + c"]
+          }
+        ],
+        Hard: [
+          {
+            question: "Which of the following is true about the equation: x^2.u^3 + x(1 + u^2)u' = 0?",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["Linear and separable", "Non-linear and non-separable", "Linear and non-separable", "Non-linear and separable", "None of the above"]
+          },
+          {
+            question: "Find a solution of x.du/dx = u^2 - u that passes through thte point (1/2,1/2).",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["1 - u = -2xu", "2u = x^2 - 12x", "u = -0.5(u - 1)x", "u = -2xu - 1", "None of the above"]
+          },
+          {
+            question: "A particular solution of tu' - Bu = 0, u(1) = Uo goes through the points (2,1) and (4,4). Find the value of B.",
+            answer: "",
+            type: "Fill-in"
+          },
+          {
+            question: "Find the value of Uo in the previous question.",
+            answer: "",
+            type: "Fill-in"
+          },
+          {
+            question: "Find the solution for the following differential equation below: du/dx = (x^2)/(1 + u^2).",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["tan^-1(u) = -1/x + c", "u + u^3 = x^3 + c", "u + u^3/3 = x^3/3 + c", "tan(u) = -1/x + c", "None of the above"]
+          },
+          {
+            question: "What is the general solution of the following differential equation? [u' = (sin^2(x))(cos^2(2u))]",
+            answer: "",
+            type: "Multiple Choice",
+            options: ["tan(2u) = sin(x)cos(x) + x + c", "tan(2u) = x - sin(x)cos(x) + c", "sec^2(2u) = sin(x)cos(x) + x + c", "2tan(2u) = x - sin(x)cos(x) + c", "None of the above"]
+          }
+        ]
+      },
+      'Analytical Chemistry for Engineers': {
+          Easy: [
+            {
+              question: 'Good precision assures good accuracy.',
+              answer:'',
+              type: 'True/False',
+            },
+            {
+              question: 'The absolute error of a measurement is the difference between the true value and the measured value.',
+              answer: '',
+              type: 'True/False'
+            },
+            {
+              question: 'Systematic, or determinate errors affect the accuracy of results.',
+              answer: '',
+              type: 'True/False'
+            },
+            {
+              question: 'Of the three types of systematic errors encountered in aa chemical analysis, personal errors are usually the most difficult to identify and correct.',
+              answer: "",
+              type: 'Trua/False'
+            },
+            {
+              question: 'Constant errors are independent of the size of the sample being analysed.',
+              answer: '',
+              type: 'True/False'
+            },
+            {
+              question: '........ is the probability that a device will adequately perform (as specified) for a period of time under specified operating conditions.',
+              answer: '',
+              type: 'Fill-in',
+            },
+            {
+              question: '........... is the closeness of agreement among a number of consecutive measurements of the same variable under same operating conditions over a period of time, approaching from both directions.',
+              answer: '',
+              type: 'Fill-in'
+            },
+            {
+              question: '............. is the degree of agreement between the measured value and the true value.',
+              answer: '',
+              type: 'FIll-in'
+            },
+            {
+              question: '.......... is defined as the degree of agreement between replicate measurements of the same quantity.',
+              answer: '',
+              type: 'Fill-in'
+            },
+            {
+              question: 'A limited array over which a process variable can be measured, defined by the lower and upper range values is called ......',
+              answer: '',
+              type: 'Fill-in'
+            },
+            {
+              question: 'Calculate the % transmittance of a 3 x 10^-5 M solution of an analyte with a molar absorptivity of 9000 M^-1.cm^-1. The sample holder is a 1cm cuvette.',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['98.1%', '1.86%', '0.569%', '56.9%']
+            },
+            {
+              question: 'Which of the following is the instrumental method for scattering of radiation signal?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Nephelometry', 'Polarograph', 'Amperometry', 'Chronopotentiometry']
+            },
+            {
+              question: 'Which of the following would be the best method to decrease the random uncertainty of a measurement in an acid-base titration?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Repeat the titration', 'Ensure your eye is at the same height as the meniscus when reading from the burette', 'Use a different burette', 'Use a different indicator for titration']
+            },
+            {
+              question: 'Which of the following detectors in GC allows for both identification and quantification of an unknown peak in a sample?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Mass Spectrometer', 'Flame ionization', 'Thermal Conductivity', 'Sulfur Chemiluminescence']
+            },
+            {
+              question: '100 cm^3 of NaOH solution of pH 12 is mixed with 900 cm^3 if water. What is the pH of the resulting solution?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['1', '3', '11', '13']
+            },
+            {
+              question: 'Which statement about indicators is always correct?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['The mid-point of the pH range of an indicator is 7', 'The pH range is greater for the indicators with higher pKa values', 'The colour red indicates an acidic solution', 'The pKa value of the indicator is within its pH range']
+            },
+            {
+              question: 'Mass spectrometers are used to determine which of the following?',
+              correctAnswers: [''],
+              type: 'Multiple Answers',
+              options: ['Composition in sample', 'Concentration of elements in sample', 'Relative mass of atoms', 'Properties of sample', 'None of the above']
+            },
+            {
+              question: 'Which of the following analytical methods is based on the measurement of the quantity of electrical charge required to convert a sample of analyte from one oxidation state to another?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Electrogravimetry', 'Potentionemtry', 'Absorbance', 'Coulometry']
+            },
+            {
+              question: 'For the reaction [H2(g) + I2(g) -> 2HI(g)] at a certain temperature, the equilibrium concentration, in mol/dm^3 are [H2(g)] = 0.30, [I2(g)] = 0.30, [HI(g)] = 3.0. What is the value of Kc?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['1.0 x 10^-2', '10', '33', '1.0 x 10^2']
+            },
+            {
+              question: 'The indicator, HIn is used in a titration between an acid and base. Which statement about the dissociation of the indicator, HIn is correct? [ HIn (colour A) <-> H+ + In- (colour B).',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['In a strong alkaline solution, colour B would be observed', 'In a strong acidic solution, colour B would be observed', '[In-] is greater than [HIn] at the equivalence point', 'In a weakly acidic solution colour B would be observed']
+            }
+          ],
+          Medium: [
+            {
+              question: 'CaCO3 contains .......... percent of Ca by weight.',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['40', '48', '96', '12']
+            },
+            {
+              question: 'Solutions which can distil without change in composition are called ....?',
+              answer: '',
+              type: 'Mutiple Choice',
+              options: ['Ideal', 'Saturated', 'Supersaturated', 'Azetropic']
+            },
+            {
+              question: 'The evaporation of aqueous solution of sugar causes its molarity to ......',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ["Decrease", "Increase", "Remain Unchanged", " Either 'increase' or 'decrease'; depends on the concentration of the solution"]
+            },
+            {
+              question: "A very dilute solution is prepared by dissolving 'x1' mole of solute in 'x2' mole of solvent. The mole fraction of solute is approximately equal to .......",
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['x1/x2', 'x2/x1', '1 - (x1/x2)', '1/x2']
+            },
+            {
+              question: 'A metal oxide is reduced by heating in a stream of hydrogen. After complete reduction, it is found that 3.15g of the oxide has yielded 1.05g of the metal. It may be inferred that the ..........',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Atomic weight of the metal is 4', 'Equivalent weight of the metal is 4', 'Atomic weight of the metal is 2', 'Equivalent weight of the metal is 8']
+            },
+            {
+              question: 'One micron is equal to .....',
+              correctAnswers: [''],
+              type: 'Multiple Answers',
+              options: ['10^-4 mm', '10^-4 cm', '10^-6 m', 'None of the above']
+            },
+            {
+              question: 'If the pH of an acidic solution is decreased from 5 to 2, then the increase in its hydrogen ion concentration is ....... times.',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['10', '100', '1000', '10000']
+            },
+            {
+              question: 'Solution made by dissolving equimolar amounts of solutes in the same amount of a given solvent will have the ...........',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Same elevation in boiling point', 'Different elevation in boiling point', 'Elevation in boiling point in the ratio of their molecular weights', 'None of these']
+            },
+            {
+              question: 'N2 content in a urea sample was found to be only 42%. What is the actual content of the sample? (molecular weight of urea = 60)',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['80%', '90%', '95%', '98%']
+            },
+            {
+              question: 'With rise in pressure, the solubility of gases in solvent, at a fixed temperature ...',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Increases', 'Decreases', 'Remians unchanged', 'Decreases linearly']
+            },
+            {
+              question: 'Which of th efollowing theories introduced the solvent system concept of acids and bases.',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Arhenius', 'Franklin', 'Bronsted-Lowry', 'Lewis']
+            },
+            {
+              question: 'In the ..... theory, an acid is a substance that can accept an electron pair.',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Arhenius', 'Franklin', 'Bronsted-Lowry', 'Lewis']
+            },
+            {
+              question: 'Calculate the negative log concentration of 2.0 x 10^-3 solutiom of HCl.',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['11.3 M', '2.7 M', '2.7', '11.3']
+            },
+            {
+              question: 'Determine the pOH of a 0.0001 M solution of formic acid. (Ka = 1.75 x 10^-5).',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['4', '4.38', '6.8', '2.4']
+            },
+            {
+              question: 'Which of the following will be the colour change of using methyl violet indicator for acid-base titration.',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Violet to Blue', 'Yellow to Blue', 'Blue to Violet', 'Blue to Violet']
+            },
+          ],
+          Hard: [
+            {
+              question: 'At room temperature, the product [H+][OH-] in a solution is 10^(-14) moles/litre. If [OH-] = 10^-6 moles/litre, then the pH of the solution will be ....?',
+              answer: '',
+              type: 'Fill-in'
+            },
+            {
+              question: 'Increasing the temperature of an aqueous solution will cause decrease in its ......',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Molality', 'Mole Fraction', 'Weight Percent', 'Molarity']
+            },
+            { 
+              question: 'On addition of 1 cc of dilute HCl acid (1% conc.) to 80 cc of a buffer solution of pH = 4, the pH of the solution becomes .....?',
+              answer: '',
+              type: 'Fill-in'
+            },
+            {
+              question: 'The unit of molar absorptivity is :',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['L.mol^-1.cm^-1', 'L^-1.mol.cm^-1', 'L.mol.cm^-1', 'L.mol.cm']
+            },
+            {
+              question: 'What is the concentration of a solution whose absorbance is 0.21 when placed in a tube of path length 10cm (wavelength = 245 nm and epsilon = 31,500 M^-1.cm^-1)',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['6.67 x 10^-4', '6.67 x 10^-4 M', '6.67 x 10^-4 M^-1.cm^-1', '3.09 M']
+            },
+            {
+              question: 'Which of the following acid and bas pairs are capable of acting as a buffer?',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['HCl, NaOH', 'CH3COOH, HCOO-', 'HCOOC, HCOO-', 'CH3CH2COOH, CH3COO-']
+            },
+            {
+              question: 'What is the pH of solution that contains 3.0M HF acid and 2.5M Fluoride? Ka = 6.76 x 10^-4 for HF (2 d.p)',
+              answer: '',
+              type: 'Fill-in'
+            },
+            {
+              question: "Beer's Lambert Law states that; ",
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['Absorbance is proportional to both the path length and concentration of the absorbing species', 'Absorbance is proportional to the log of the concentration of the absorbing species', 'Absorbance is equal to Po/P', 'None of the above']
+            },
+            {
+              question: 'A solution containing 5ppm of KMnO4 (F.W = 158) has a transmittance of 0.360 measured in a 1cm cell at 500nm. The molar absorptivity of KMnO4 in L.mol^-1.cm^-1 is ......',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['1.1 x 10^4', '1.4 x 10^4', '1.9 x 10^4', '2.7 x 10^4']
+            },
+            {
+              question: 'The transmittance of an alcoholic solution of a certain compound at 500 nm is 1% in a 1 cm cell. Its absorbance is: ',
+              answer: '',
+              type: 'Multiple Choice',
+              options: ['1.0', '2.0', '2.5', '4.0']
+            },
+          ]
+      }
   }
