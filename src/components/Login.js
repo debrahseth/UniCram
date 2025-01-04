@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import { auth, db } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import logo from '../assets/main.jpg';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +14,12 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setTimeout(() => {
+      document.getElementById("loginForm").classList.add("fadeInUp");
+    }, 300);
+  }, []);
+
   const handleLogin = async () => {
     setLoading(true);
     try {
@@ -21,9 +28,7 @@ const Login = () => {
       const userDocRef = doc(db, 'users', user.uid);
       const userDoc = await getDoc(userDocRef);
       if (userDoc.exists()) {
-        await updateDoc(userDocRef, {
-          status: 'online'
-        });
+        await updateDoc(userDocRef, { status: 'online' });
         navigate('/splash');
       } else {
         setError('User does not exist in the system.');
@@ -34,11 +39,20 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <div style={styles.container}>
-      <div style={styles.formContainer}>
+
+      <div style={styles.header}>
+        <h1 style={styles.appName}>Brain Snacks StudyGroup</h1>
+        <p style={styles.welcomeNote}>Welcome back! Please login to continue.</p>
+      </div>
+
+      <div style={styles.logoContainer}>
+        <img src={logo} alt="App Logo" style={styles.logo} />
+      </div>
+
+      <div id="loginForm" style={styles.formContainer}>
         <h2 style={styles.title}>Login</h2>
         <div style={styles.inputGroup}>
           <i className="fa fa-envelope" style={styles.icon}></i>
@@ -82,8 +96,9 @@ const Login = () => {
           Go Back
         </button>
       </div>
+
       <div style={styles.footerStyle}>
-        <p>© 2025 StudyGroup. All rights reserved.</p>
+        <p style={{fontSize: '30px'}}>© 2025 StudyGroup. All rights reserved.</p>
       </div>
     </div>
   );
@@ -95,17 +110,56 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#f0f4f8',
+    backgroundColor: 'white',
     padding: '0 20px',
     fontFamily: 'Poppins, sans-serif',
+    flexDirection: 'row',
+    overflow: 'hidden',
+  },
+  header: {
+    position: 'absolute',
+    top: '20px',
+    transform: 'translateX(-50%)',
+    textAlign: 'center',
+    zIndex: 10,
+    opacity: 0,
+    animation: 'fadeInUp 1s ease forwards 0.5s',
+  },
+  appName: {
+    fontSize: '36px',
+    fontWeight: '700',
+    color: '#333',
+  },
+  welcomeNote: {
+    fontSize: '18px',
+    color: '#666',
+  },
+  logoContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: '500px',
+    padding: '10px',
+    flex: '1',
+    opacity: 0,
+    animation: 'fadeInUp 1s ease forwards 0.8s',
+  },
+  logo: {
+    maxWidth: '92%',
+    height: 'auto',
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.9)',
   },
   formContainer: {
     backgroundColor: 'white',
     borderRadius: '8px',
     padding: '40px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.7)',
     width: '100%',
-    maxWidth: '450px',
+    maxWidth: '600px',
+    opacity: 0,
+    animation: 'fadeInUp 1s ease forwards 1s',
     transition: 'all 0.3s ease-in-out',
   },
   title: {
@@ -127,16 +181,13 @@ const styles = {
     color: '#999',
   },
   input: {
-    width: '80%',
+    width: '82%',
     padding: '14px 40px',
     fontSize: '16px',
     borderRadius: '8px',
     border: '1px solid #ddd',
     outline: 'none',
     transition: 'border-color 0.3s',
-  },
-  inputFocus: {
-    borderColor: '#4CAF50',
   },
   button: {
     width: '100%',
@@ -145,31 +196,16 @@ const styles = {
     color: 'white',
     border: 'none',
     borderRadius: '8px',
-    fontSize: '16px',
+    fontSize: '25px',
     cursor: 'pointer',
     transition: 'background-color 0.3s',
     marginTop: '15px',
-  },
-  buttonHover: {
-    backgroundColor: '#45a049',
   },
   error: {
     color: 'red',
     fontSize: '14px',
     textAlign: 'center',
     marginBottom: '15px',
-  },
-  footerStyle: {
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    width: '100%',
-    padding: '12px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '0.9rem',
-    fontFamily: 'Poppins, sans-serif',
   },
   loading: {
     textAlign: 'center',
@@ -190,8 +226,57 @@ const styles = {
     border: 'none',
     cursor: 'pointer',
     color: '#999',
-    fontSize: '20px',
+    fontSize: '25px',
+  },
+  footerStyle: {
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    padding: '12px',
+    backgroundColor: '#333',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '0.9rem',
+    fontFamily: 'Poppins, sans-serif',
   },
 };
+
+const keyframes = `
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+`;
+
+document.head.insertAdjacentHTML('beforeend', `<style>${keyframes}</style>`);
 
 export default Login;

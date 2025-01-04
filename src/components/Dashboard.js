@@ -129,7 +129,8 @@ const Dashboard = () => {
       </div>
       <div style={styles.button}>
         <div style={styles.buttonContainer}>
-          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Start a Quiz</button>
+          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Compete Now</button>
+          <button onClick={() => navigate('/test-yourself')} style={styles.startQuizButton}>Practice Quiz</button>
           <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
           <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button>
         </div>
@@ -296,6 +297,7 @@ const styles = {
   },
   startQuizButton: {
     fontSize: '20px',
+    fontWeight: '900',
     backgroundColor: '#FFD700',
     color: 'black',
     borderRadius: '8px',

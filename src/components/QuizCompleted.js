@@ -73,7 +73,7 @@ const QuizCompleted = () => {
       <div style={styles.scoresContainer}>
         <div style={styles.contain}>
           <div style={styles.mainContainer}>
-          <div style={styles.background}></div>
+            <div style={styles.background}></div>
               <h2 style={styles.title}>{senderUsername}'s Score{' '}</h2>
                 <div style={styles.miniScoresContainer}>
                   <div style={styles.miniContain}>
@@ -83,7 +83,7 @@ const QuizCompleted = () => {
                       <span style={{fontSize: '16px'}}>Loading {senderUsername}'s score...</span>)}
                   </div>
                 </div>
-           </div> 
+          </div> 
         </div>
         <div style={styles.contain}>
           <div style={styles.mainContainer}>

@@ -142,7 +142,7 @@ const ChallengesReceivedScreen = () => {
             </div>
             <div style={styles.buttonContain}>
                 <button onClick={() => navigate("/challenge")} style={styles.backButton}>
-                    <i class="fa fa-rocket"></i>Send Challenges
+                    <i className="fa fa-rocket"></i>Send Challenges
                 </button>
             </div>
             <h1 style={{fontSize: '40px'}}>Challenges Received</h1>

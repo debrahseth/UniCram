@@ -16,6 +16,8 @@ import QuizScreen from './components/QuizScreen';
 import QuizScreen2 from './components/QuizScreen2';
 import QuizCompleted from './components/QuizCompleted';
 import UserListScreen from './components/UserListScreen';
+import TestYourself from './components/TestYourself';
+import ReviewQuiz from './components/ReviewQuiz';
 import './App.css';
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
         <Route path="/Quiz2/:challengeId" element={<QuizScreen2 />} />
         <Route path="/quiz-completed" element={<QuizCompleted />} />
         <Route path="/users" element={<UserListScreen />} />
+        <Route path="/test-yourself" element={<TestYourself />} />
+        <Route path="/review" element={<ReviewQuiz />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

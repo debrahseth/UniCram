@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import logo from '../assets/logo.jpg';
+import logo from '../assets/main.jpg';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,144 +11,127 @@ const Home = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '90vh',
-    backgroundColor: '#f3f4f6',
+    height: '94.8vh',
+    background: 'linear-gradient(to right,rgb(91, 180, 212),rgb(4, 66, 54))',
     textAlign: 'center',
     fontFamily: 'Poppins, sans-serif',
     padding: '20px',
   };
 
   const headerStyle = {
-    fontSize: '3.5rem',
-    color: '#000000',
+    fontSize: '3.8rem',
+    color: 'black',
     fontWeight: '700',
     marginBottom: '30px',
+    textTransform: 'uppercase',
+    letterSpacing: '2px',
+    animation: 'fadeIn 1s ease-out',
   };
 
   const paragraphStyle = {
-    fontSize: '1.25rem',
-    color: '#333',
-    marginBottom: '40px',
-    lineHeight: '1.6',
+    fontSize: '2.5rem',
+    color: 'black',
+    marginBottom: '20px',
+    lineHeight: '1.7',
+    animation: 'fadeIn 1.5s ease-out',
+  };
+
+  const buttonContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+    opacity: 0,
+    animation: 'fadeIn 2s ease-out forwards',
   };
 
   const buttonStyle = {
-    padding: '15px 35px',
+    padding: '12px 40px',
     margin: '10px',
-    fontSize: '1.2rem',
-    fontWeight: '500',
+    fontSize: '1.3rem',
+    fontWeight: '600',
     border: 'none',
     borderRadius: '50px',
     cursor: 'pointer',
-    transition: '0.3s',
+    transition: '0.3s ease',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+    boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
   };
 
   const buttonSignUpStyle = {
     ...buttonStyle,
     backgroundColor: '#4CAF50',
     color: '#fff',
+    transform: 'scale(1)',
+    transition: 'transform 0.3s ease',
+    fontSize: '2.0rem'
   };
 
   const buttonLoginStyle = {
     ...buttonStyle,
     backgroundColor: '#2196F3',
     color: '#fff',
+    transform: 'scale(1)',
+    transition: 'transform 0.3s ease',
+    fontSize: '2.0rem'
   };
 
   const buttonHoverStyle = {
     backgroundColor: '#45a049',
+    transform: 'scale(1.05)',
   };
 
   const buttonLoginHoverStyle = {
     backgroundColor: '#1e88e5',
+    transform: 'scale(1.05)',
   };
 
   const handleMouseEnter = (e, style) => {
     e.target.style.backgroundColor = style.backgroundColor;
+    e.target.style.transform = style.transform;
   };
 
   const handleMouseLeave = (e, style) => {
     e.target.style.backgroundColor = style.backgroundColor;
+    e.target.style.transform = 'scale(1)';
   };
 
   return (
     <div style={containerStyle}>
-      <h2 style={headerStyle}>Welcome to the Learning Page</h2>
+      <h2 style={headerStyle}>UniBuddy Team</h2>
       <img
         src={logo}
         alt="Study Group Logo"
-        style={{
-          width: '100%',
-          maxWidth: '400px',
-          marginBottom: '20px',
-          borderRadius: '50%',
-          objectFit: 'cover',
-        }}
-      />
+        style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: '50%', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',transform: 'scale(1)',transition: 'transform 0.3s ease',}}
+        onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}/>
       <p style={paragraphStyle}>
-        Start by logging in or signing up to take the quiz.
+        Start by logging in or signing up to join the community.
       </p>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <button
-          style={buttonSignUpStyle}
-          onClick={() => navigate('/signup')}
-          onMouseEnter={(e) => handleMouseEnter(e, buttonHoverStyle)}
-          onMouseLeave={(e) => handleMouseLeave(e, buttonSignUpStyle)}
-        >
-          <FaUserPlus style={{ marginRight: '10px', fontSize: '1.4rem' }} />
-          Sign Up
-        </button>
-        <button
-          style={buttonLoginStyle}
-          onClick={() => navigate('/login')}
-          onMouseEnter={(e) => handleMouseEnter(e, buttonLoginHoverStyle)}
-          onMouseLeave={(e) => handleMouseLeave(e, buttonLoginStyle)}
-        >
-          <FaSignInAlt style={{ marginRight: '33px', fontSize: '1.4rem' }} />
-          Login
-        </button>
+      <div style={buttonContainerStyle}>
+        <div style={buttonStyle}>
+          <button
+            style={buttonSignUpStyle}
+            onClick={() => navigate('/signup')}
+            onMouseEnter={(e) => handleMouseEnter(e, buttonHoverStyle)}
+            onMouseLeave={(e) => handleMouseLeave(e, buttonSignUpStyle)}
+          >
+            <FaUserPlus style={{ marginRight: '10px', fontSize: '1.5rem' }} />
+            Sign Up
+          </button>
+          <button
+            style={buttonLoginStyle}
+            onClick={() => navigate('/login')}
+            onMouseEnter={(e) => handleMouseEnter(e, buttonLoginHoverStyle)}
+            onMouseLeave={(e) => handleMouseLeave(e, buttonLoginStyle)}
+          >
+            <FaSignInAlt style={{ marginRight: '10px', fontSize: '1.5rem' }} />
+            Login
+          </button>
+        </div>
       </div>
-      {/* Responsive Styles */}
-      <style>
-        {`
-          @media (max-width: 768px) {
-            h2 {
-              font-size: 2.5rem;
-              margin-bottom: 20px;
-            }
-            p {
-              font-size: 1rem;
-              margin-bottom: 30px;
-            }
-            button {
-              font-size: 1rem;
-              padding: 12px 28px;
-              margin: 8px;
-            }
-          }
-
-          @media (max-width: 480px) {
-            h2 {
-              font-size: 2rem;
-              margin-bottom: 15px;
-            }
-            p {
-              font-size: 0.9rem;
-              margin-bottom: 20px;
-            }
-            button {
-              font-size: 0.9rem;
-              padding: 10px 25px;
-              margin: 5px;
-            }
-          }
-        `}
-      </style>
     </div>
   );
 };

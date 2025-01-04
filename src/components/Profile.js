@@ -9,9 +9,9 @@ import logo from '../assets/logo2.jpg';
 const Profile = () => {
   const [userDetails, setUserDetails] = useState({ username: '', email: '', programOfStudy: '' });
   const [loading, setLoading] = useState(true);
+  const [logoutLoading, setLogoutLoading] = useState(false);
   const [programOfStudy, setProgramOfStudy] = useState('');
   const navigate = useNavigate();
-
   const auth = getAuth();
   const currentUser = auth.currentUser;
 
@@ -48,6 +48,7 @@ const Profile = () => {
   }, [currentUser]);
 
   const handleLogout = async () => {
+    setLogoutLoading(true);
     try {
       if (currentUser) {
         const userDocRef = doc(db, 'users', currentUser.uid);
@@ -56,9 +57,11 @@ const Profile = () => {
         });
       }
       await auth.signOut();
+      setLogoutLoading(false);
       navigate('/login');
     } catch (error) {
       console.error('Error during logout:', error.message);
+      setLogoutLoading(false);
     }
   };
   
@@ -85,6 +88,15 @@ const Profile = () => {
       <div className="spinner-container">
         <div className="spinner"></div>
         <p>Loading Profile...</p>
+      </div>
+    );
+  }
+
+  if (logoutLoading) {
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+        <p>Logging out...</p>
       </div>
     );
   }

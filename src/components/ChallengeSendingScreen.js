@@ -156,7 +156,7 @@ const ChallengeSendingScreen = () => {
             </div>
             <div style={styles.buttonContain}>
                 <button onClick={() => navigate("/received")} style={styles.backButton}>
-                    <i class="fa fa-rocket"></i>See My Challenges
+                    <i className="fa fa-rocket"></i>See My Challenges
                 </button>
             </div>
             <h1 style={{fontSize: "40px"}}>Send a Quiz Challenge</h1>
