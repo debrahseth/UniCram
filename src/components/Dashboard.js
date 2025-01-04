@@ -4,13 +4,16 @@ import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
 import logo from '../assets/main.jpg';
+import useInactivityLogout from './useInactivityLogout';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState('');
+  const [logoutLoading, setLogoutLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentUserId, setCurrentUserId] = useState(null);
+  const currentUser = auth.currentUser; 
   const quotes = [
     { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
     { text: "The best way to predict the future is to create it.", author: "Abraham Lincoln" },
@@ -106,11 +109,22 @@ const Dashboard = () => {
     }
   }, [currentUserId]); 
 
+  useInactivityLogout(auth, db, currentUser, navigate, setLogoutLoading);
+
   if (loading) {
     return (
       <div className="spinner-container">
         <div className="spinner"></div>
         <p>Loading ...</p>
+      </div>
+    );
+  }
+
+  if (logoutLoading) {
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+        <p>Logging out...</p>
       </div>
     );
   }

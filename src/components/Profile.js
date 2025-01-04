@@ -15,6 +15,8 @@ const Profile = () => {
   const auth = getAuth();
   const currentUser = auth.currentUser;
 
+  let inactivityTimeout;
+
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -64,6 +66,24 @@ const Profile = () => {
       setLogoutLoading(false);
     }
   };
+
+  const useInactivityLogout = (timeoutDuration = 10000) => {
+    useEffect(() => {
+      const resetInactivityTimer = () => {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(handleLogout, timeoutDuration);
+      };
+      window.addEventListener('mousemove', resetInactivityTimer);
+      window.addEventListener('keydown', resetInactivityTimer);
+      resetInactivityTimer();
+      return () => {
+        clearTimeout(inactivityTimeout);
+        window.removeEventListener('mousemove', resetInactivityTimer);
+        window.removeEventListener('keydown', resetInactivityTimer);
+      };
+    }, [timeoutDuration]);
+  };
+  useInactivityLogout();
   
   const handleUpdateProgramOfStudy = async () => {
     try {
@@ -153,7 +173,7 @@ const Profile = () => {
         </button>
       </div>
         <button onClick={() => navigate('/record')} style={styles.recordButton}>
-          <i class="fa fa-trophy"></i> My Achievements <i class="fa fa-trophy"></i>
+          <i className="fa fa-trophy"></i> My Achievements <i className="fa fa-trophy"></i>
         </button>
         <div style={styles.footer}>
           <p>© 2025 StudyGroup. All rights reserved.</p>

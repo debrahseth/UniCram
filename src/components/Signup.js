@@ -10,6 +10,7 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [programOfStudy, setProgram] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -29,6 +30,7 @@ const Signup = () => {
       await setDoc(doc(db, 'users', user.uid), {
         username: username,
         email: email,
+        programOfStudy: programOfStudy,
         status: 'online',
       });
       navigate('/splash');
@@ -70,6 +72,16 @@ const Signup = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={styles.input}
+          />
+        </div>
+        <div style={styles.inputGroup}>
+          <i className="fa fa-graduation-cap" style={styles.icon}></i>
+          <input
+            type="text"
+            placeholder="Program of Study"
+            value={programOfStudy}
+            onChange={(e) => setProgram(e.target.value)}
             style={styles.input}
           />
         </div>
@@ -174,14 +186,14 @@ const styles = {
   },
   title: {
     textAlign: 'center',
-    marginBottom: '30px',
+    marginBottom: '10px',
     fontSize: '28px',
     fontWeight: '600',
     color: '#333',
   },
   inputGroup: {
     position: 'relative',
-    marginBottom: '25px',
+    marginBottom: '20px',
   },
   icon: {
     position: 'absolute',
@@ -209,10 +221,10 @@ const styles = {
     color: 'white',
     border: 'none',
     borderRadius: '8px',
-    fontSize: '25px',
+    fontSize: '20px',
     cursor: 'pointer',
     transition: 'background-color 0.3s',
-    marginTop: '20px',
+    marginTop: '10px',
   },
   buttonHover: {
     backgroundColor: '#45a049',
