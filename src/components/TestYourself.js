@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courseData1 } from './courseData1';
 import logo from "../assets/main.jpg";
+import logo1 from "../assets/logo1.jpg";
 
 const TestYourself = () => {
   const navigate = useNavigate();
@@ -134,6 +135,8 @@ const TestYourself = () => {
 
   return (
     <div>
+      <div style={styles.ContaineR}>
+      <div style={styles.Back}></div>
         {stage === 'course' && (
           <>
             <h2 style={styles.header}>Choose a Course</h2>
@@ -172,7 +175,8 @@ const TestYourself = () => {
               </button>
             </div>
           </>
-        )}  
+        )}   
+      </div>  
       {stage === 'quiz' && questions.length > 0 && !quizFinished && (
         <> 
       <div style={styles.container}>
@@ -277,6 +281,29 @@ const TestYourself = () => {
 };
 
 const styles = {
+ContaineR: {
+  display: "flex",
+  flexDirection: "column",
+  position: "relative",
+  overflow: "hidden",
+  width: "100%",
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+Back: {
+  content: '""',
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundImage: `url(${logo1})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  opacity: 0.5,
+  zIndex: -1,
+},
 container: {
   display: 'flex',
   flexDirection: 'column',
@@ -301,7 +328,7 @@ background: {
 },
 header: {
   position: 'fixed',
-  top: '15px',
+  top: '10px',
   left: '50%',
   transform: 'translateX(-50%)', 
   width: '90%',
@@ -310,7 +337,7 @@ header: {
   fontSize: '50px',
   padding: '20px',
   textAlign: 'center',
-  zIndex: 10, 
+  zIndex: 1, 
   opacity: 0.7,
   borderRadius: '30px', 
   marginLeft: 'auto',
@@ -323,31 +350,39 @@ courseSelector: {
   textAlign: 'center',
   flex: 1,
   padding: "20px",
-  opacity: "0.9"
-},
-scrollableContainer: {
-  flex: 1,     
-  marginTop: '180px',    
-  marginBottom: '100px',
-  overflowY: 'auto',
-  opacity: '0.9',
+  opacity: "0.9",
+  borderRadius: '8px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.9)',
+  marginBottom: '20px',
   width: '90%',
-  height: '60vh',
+  marginLeft: 'auto',
   marginRight: 'auto',
-  marginLeft: 'auto'
 },
 difficultySelector: {
   display: 'flex',
   flexDirection: 'column',
-  marginTop: "230px",
   gap: '50px',
   textAlign: 'center',
-  width: '90%',
   flex: 1,
+  marginTop: '310px',
+  width: '90%',
   padding: "20px",
   opacity: "0.9",
+  borderRadius: '8px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+  marginBottom: '120px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+},
+scrollableContainer: {
+  flex: 1,     
+  overflowY: 'auto',
+  opacity: '0.9',
+  width: '100%',
+  marginTop: '200px',
   marginRight: 'auto',
   marginLeft: 'auto',
+  marginBottom: '110px',
 },
 courseButton: {
   backgroundColor: '#4CAF50',
@@ -389,12 +424,12 @@ question: {
 },
 optionsContainer: {
   position: 'fixed',
-  top: '380px',
+  top: '400px',
   left: '50%',
   transform: 'translateX(-50%)',
   display: 'flex',
   flexDirection: 'column',
-  gap: '5px',
+  gap: '10px',
   zIndex: 1,
   opacity: 0.9,
   borderRadius: '10px',

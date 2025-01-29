@@ -42,7 +42,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding: '20px',
-    height: '90vh',
+    height: '95vh',
     position: 'relative',
     overflow: 'hidden',
     fontFamily: 'Poppins, sans-serif',

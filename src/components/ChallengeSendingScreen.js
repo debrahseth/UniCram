@@ -156,10 +156,10 @@ const ChallengeSendingScreen = () => {
             </div>
             <div style={styles.buttonContain}>
                 <button onClick={() => navigate("/received")} style={styles.backButton}>
-                    <i className="fa fa-rocket"></i>See My Challenges
+                    <i className="fa fa-rocket"></i>My Challenges
                 </button>
             </div>
-            <h1 style={{fontSize: "40px"}}>Send a Quiz Challenge</h1>
+            <h1 style={{fontSize: "40px",textAlign: "center",display: "flex",justifyContent: "center",alignItems: "center"}}>Quiz Battle!</h1>
         </div>
                 <p style={styles.subtitle}>Select a user to challenge:</p>
                 <div style={styles.scrollableContainer}>
@@ -255,13 +255,16 @@ background: {
     zIndex: -1,
 },
 header: {
-    width: '100%',
-    backgroundColor: '#FFD700',
-    padding: '20px',
-    textAlign: 'center',
-    borderRadius: '8px 8px 0 0',
-    position: 'relative',
-    zIndex: 2,
+  zIndex: 2,
+  width: '95%',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  backgroundColor: '#FFD700',
+  padding: '20px',
+  top: '10px',
+  borderRadius: '8px 8px 10px 10px',
+  position: 'relative',
+  opacity: 0.8,
 },
 backButton: {
     backgroundColor: "#4CAF50",
@@ -311,6 +314,7 @@ subtitle: {
     fontSize: '25px',
     color: '#000000',
     marginBottom: '10px',
+    fontWeight: '900'
 },
 userList: {
     listStyleType: 'none',

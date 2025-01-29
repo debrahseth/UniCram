@@ -159,7 +159,7 @@ const Dashboard = () => {
               "{quotes[currentQuoteIndex].text}"
             </p>
             <p style={styles.quoteAuthor}>- {quotes[currentQuoteIndex].author}</p>
-          </div>
+        </div>
         </div>
         <div style={styles.studyTips}>
           <h3 style={styles.title}>Study Tips for Success</h3>
@@ -187,7 +187,7 @@ const styles = {
   background: {
     content: '""',
     position: 'absolute',
-    top: 0,
+    top: 160,
     left: 0,
     right: 0,
     bottom: 0,

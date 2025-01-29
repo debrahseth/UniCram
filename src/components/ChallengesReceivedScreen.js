@@ -12,6 +12,7 @@ const ChallengesReceivedScreen = () => {
   const [password, setPassword] = useState('');
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [passwordError, setPasswordError] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const correctPassword = "BrainSnacks123";
 
@@ -145,7 +146,7 @@ const ChallengesReceivedScreen = () => {
                     <i className="fa fa-rocket"></i>Send Challenges
                 </button>
             </div>
-            <h1 style={{fontSize: '40px'}}>Challenges Received</h1>
+            <h1 style={{fontSize: "40px",textAlign: "center",display: "flex",justifyContent: "center",alignItems: "center"}}>Challenges</h1>
         </div>
         <div style={styles.scrollableContainer}>
       {challenges.length === 0 ? (
@@ -177,13 +178,23 @@ const ChallengesReceivedScreen = () => {
       {showPasswordPrompt && (
         <div style={styles.passwordPromptContainer}>
           <h3 style={{textAlign: "center"}}>Enter Password to Confirm Reset</h3>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={styles.passwordInput}
-          />
-          {passwordError && <p style={styles.errorText}>{passwordError}</p>}
+          <div style={styles.inputGroup}>
+            <input
+              type={passwordVisible ? "text" : "password"}
+              placeholder="ENTER PASSWORD TO RESET"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={styles.passwordInput}
+            />
+            <button
+              type="button"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+              style={styles.toggleButton}
+            >
+              <i className={`fa ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+            </button>
+            {passwordError && <p style={styles.errorText}>{passwordError}</p>}
+          </div>
           <button onClick={handleResetChallenges} style={styles.confirmButton}>
             Confirm Reset
           </button>
@@ -221,11 +232,13 @@ const styles ={
         zIndex: -1,
     },
     header: {
-        width: '100%',
+        width: '95%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
         backgroundColor: '#FFD700',
         padding: '20px',
-        textAlign: 'center',
-        borderRadius: '8px 8px 0 0',
+        top: '10px',
+        borderRadius: '8px 8px 10px 10px',
         position: 'relative',
         zIndex: 1,
         opacity: 0.8,
@@ -254,8 +267,12 @@ const styles ={
         top: "40px",
         right: "20px",
     },
+    inputGroup: {
+      position: 'relative',
+      marginBottom: '15px',
+    },
     noDataContainer:{
-        fontSize: '36px', 
+        fontSize: '36px',
         color: '#000000',
         fontWeight: 900,
         textAlign: 'center',
@@ -264,7 +281,8 @@ const styles ={
         opacity: '0.8',
         width: '95%',
         padding: '30px',
-        marginLeft: '17px'
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
     title:{
         fontSize: '30px',
@@ -355,13 +373,29 @@ const styles ={
       padding: '20px',
       borderRadius: '10px',
       boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+      flexDirection: 'column'
     },
-    passwordInput: {
-      padding: '10px',
-      fontSize: '16px',
-      width: '200px',
-      marginBottom: '10px',
+  passwordInput: {
+    padding: '10px',
+    fontSize: '16px',
+    width: '300px',
+    marginBottom: '10px',
+    borderRadius: '8px',
+    border: '1px solid #ddd',
+    outline: 'none',
+    transition: 'border-color 0.3s',
     },
+  toggleButton: {
+    position: 'absolute',
+    right: '5px',
+    top: '42%',
+    transform: 'translateY(-50%)',
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    color: '#999',
+    fontSize: '20px',
+  },
     confirmButton: {
       backgroundColor: 'green',
       color: 'white',

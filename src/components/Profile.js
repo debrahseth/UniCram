@@ -10,6 +10,8 @@ const Profile = () => {
   const [userDetails, setUserDetails] = useState({ username: '', email: '', programOfStudy: '' });
   const [loading, setLoading] = useState(true);
   const [logoutLoading, setLogoutLoading] = useState(false);
+  const [recordLoading, setRecordLoading] = useState(false);
+  const [programLoading, setProgramLoading] = useState(false);
   const [programOfStudy, setProgramOfStudy] = useState('');
   const navigate = useNavigate();
   const auth = getAuth();
@@ -67,7 +69,7 @@ const Profile = () => {
     }
   };
 
-  const useInactivityLogout = (timeoutDuration = 10000) => {
+  const useInactivityLogout = (timeoutDuration = 300000) => {
     useEffect(() => {
       const resetInactivityTimer = () => {
         clearTimeout(inactivityTimeout);
@@ -86,6 +88,7 @@ const Profile = () => {
   useInactivityLogout();
   
   const handleUpdateProgramOfStudy = async () => {
+    setProgramLoading(true);
     try {
       if (currentUser) {
         const userDocRef = doc(db, 'users', currentUser.uid);
@@ -100,14 +103,32 @@ const Profile = () => {
       }
     } catch (error) {
       console.error('Error updating program of study:', error);
+    } finally {
+      setProgramLoading(false);
     }
   };
+
+  const handleRecord = async () => {
+    setRecordLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    navigate('/record');
+    setRecordLoading(false);
+  }
 
   if (loading) {
     return (
       <div className="spinner-container">
         <div className="spinner"></div>
         <p>Loading Profile...</p>
+      </div>
+    );
+  }
+
+  if (recordLoading) {
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+        <p>Loading Records...</p>
       </div>
     );
   }
@@ -168,11 +189,17 @@ const Profile = () => {
             style={styles.programInput}
           />
         </div>
-        <button onClick={handleUpdateProgramOfStudy} style={styles.updateButton}>
-          Update Program of Study
+        <button onClick={handleUpdateProgramOfStudy} style={styles.updateButton} disabled={programLoading}>
+          {programLoading ? (
+            <div className="spinner-button"> 
+              Updating...
+            </div>
+          ) : (
+            'Update Program of Study'
+          )}
         </button>
       </div>
-        <button onClick={() => navigate('/record')} style={styles.recordButton}>
+        <button onClick={handleRecord} style={styles.recordButton}>
           <i className="fa fa-trophy"></i> My Achievements <i className="fa fa-trophy"></i>
         </button>
         <div style={styles.footer}>

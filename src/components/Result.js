@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FaCheckCircle, FaTimesCircle, FaEye, FaArrowLeft } from 'react-icons/fa';
+import logo from '../assets/main.jpg';
+import { FaCheckCircle, FaTimesCircle, FaEye, FaArrowLeft, FaEyeSlash } from 'react-icons/fa';
 
 const Result = () => {
   const [showReview, setShowReview] = useState(false);
@@ -27,28 +28,36 @@ const Result = () => {
       <p style={{fontSize: '20px'}}>{percentage.toFixed(2)}% - {percentage >= 50 ? 'Passed' : 'Failed'}</p>
       <div style={styles.reviewButtonContainer}>
         <button onClick={() => setShowReview(!showReview)} style={styles.reviewButton}>
-          <FaEye style={styles.icon} /> {showReview ? 'Hide Review' : 'Review Answers'}
+          {showReview ? (
+          <FaEyeSlash style={styles.icon} /> 
+          ) : (
+          <FaEye style={styles.icon} /> 
+          )}
+          {showReview ? 'Hide Review' : 'Review Answers'}
         </button>
       </div>
-      </div>
+    </div>
       {showReview && (
+        <div style={styles.contain}>
+        <div style={styles.background}></div>
         <div style={styles.scrollableContainer}>
           <h3>Review Your Answers</h3>
           {questions.map((question, index) => {
             const userAnswer = userAnswers.find((answer) => answer.questionId === index)?.answer;
             const isCorrect = userAnswer === question.answer;
             return (
-              <div key={index} style={styles.questionContainer}>
-                <p><strong>Q{index + 1}:</strong> {question.question}</p>
-                <p><strong>Your Answer:</strong> {userAnswer}</p>
-                <p><strong>Correct Answer:</strong> {question.answer}</p>
-                <p style={{ color: isCorrect ? 'green' : 'red' }}>
-                  {isCorrect ? <FaCheckCircle style={styles.correctIcon} /> : <FaTimesCircle style={styles.incorrectIcon} />}
-                  {isCorrect ? 'Correct' : 'Incorrect'}
-                </p>
-              </div>
+                <div key={index} style={styles.questionContainer}>
+                  <p><strong>Q{index + 1}:</strong> {question.question}</p>
+                  <p><strong>Your Answer:</strong> {userAnswer}</p>
+                  <p><strong>Correct Answer:</strong> {question.answer}</p>
+                  <p style={{ color: isCorrect ? 'green' : 'red' }}>
+                    {isCorrect ? <FaCheckCircle style={styles.correctIcon} /> : <FaTimesCircle style={styles.incorrectIcon} />}
+                    {isCorrect ? 'Correct' : 'Incorrect'}
+                  </p>
+                </div> 
             );
           })}
+        </div>   
         </div>
       )}
       <div style={styles.buttonContainer}>
@@ -60,6 +69,29 @@ const Result = () => {
   );
 };
 const styles = {
+  contain: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: '90vh',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  background: {
+    content: '""',
+    position: 'absolute',
+    top: 300,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: `url(${logo})`, 
+    backgroundPosition: 'center', 
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    opacity: 0.5,
+    zIndex: -1,
+  },
   container: {
     textAlign: 'center',
     padding: '20px',
@@ -69,6 +101,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
   },
   header: {
     width: '96%',
@@ -76,9 +109,9 @@ const styles = {
     padding: '15px',
     textAlign: 'center',
     borderRadius: '8px 8px 0 0',
-    position: 'relative',
     position: 'fixed',
     top: 10,
+    zIndex: 2,
   },
   progressBarContainer: {
     width: '100%',
@@ -110,6 +143,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 2,
   },
   goBackButton: {
     backgroundColor: '#2196F3',
@@ -131,7 +165,7 @@ const styles = {
     padding: '10px 20px',
     fontSize: '20px',
     cursor: 'pointer',
-    borderRadius: '5px',
+    borderRadius: '50px',
     backgroundColor: '#28a745',
     color: 'white',
     border: 'none',
@@ -160,10 +194,10 @@ const styles = {
   scrollableContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '20px',
-    width: '98%',
+    gap: '5px',
+    width: '95%',
     marginTop: "300px",
-    marginBottom: "60px",
+    marginBottom: "50px",
     flex: 1,
     overflowY: "auto",
     padding: "20px",
