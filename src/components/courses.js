@@ -1,6 +1,9 @@
 export const courses = [
     {
         id: 'CENG-291',
+        programOfStudy: 'Chemical Engineering',
+        levelOfStudy: 'Level 200',
+        semesterOfStudy: 'Semester 1',
         title: 'Engineering in Society',
         description: 'A course exploring the role of engineering in society and addressing fundamental engineering concepts, with a focus on mathematical applications and societal impact.',
         questions: [
@@ -416,6 +419,9 @@ export const courses = [
       },
     {
       id: 'CHE-251',
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       title: 'Chemical Process Calculations I',
       description: 'An introduction to the basic principles of chemical process calculations, thermodynamics, and fluid mechanics.',
       questions: [
@@ -853,6 +859,9 @@ export const courses = [
     },
     {
       id: 'CHE-253',
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       title: 'Chemical Engineering Thermodynamics I',
       description: 'A foundational course on the principles of thermodynamics, focusing on energy, enthalpy, entropy, and phase equilibria.',
       questions: [
@@ -1093,6 +1102,9 @@ export const courses = [
     },  
     {
       id: 'CHE-255',
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       title: 'Fluid Transport',
       description: 'A course on the principles of fluid mechanics and transport processes in engineering systems.',
       questions: [
@@ -1303,6 +1315,9 @@ export const courses = [
     },  
     {
       id: 'CHE-257',
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       title: 'Analytical Chemistry for Engineers',
       description: 'A course focusing on the fundamental techniques and theories in analytical chemistry, specifically for engineers.',
       questions: [
@@ -1410,6 +1425,9 @@ export const courses = [
     },  
     {
       id: 'CHE-259',
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       title: 'Chemical Process Industries',
       description: 'A course covering the various chemical processes used in industrial applications, including the principles and technologies behind chemical production.',
       questions: [
@@ -1551,6 +1569,9 @@ export const courses = [
     },  
     {
       id: 'CHE-261',
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       title: 'Computer Applications for Engineers',
       description: 'A course focusing on the use of computer applications and software tools essential for engineering practices, including programming, simulations, and data analysis.',
       questions: [
@@ -1692,6 +1713,9 @@ export const courses = [
     },  
     {
       id: 'MATH-251',
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       title: 'Differential Equations',
       description: 'A course that covers the methods and applications of solving differential equations, including ordinary and partial equations.',
       questions: [

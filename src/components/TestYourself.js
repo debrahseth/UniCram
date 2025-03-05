@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courseData1 } from './courseData1';
-import logo from "../assets/main.jpg";
-import logo1 from "../assets/logo1.jpg";
+import { db, auth } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import logo from "../assets/op.jpg";
 
 const TestYourself = () => {
   const navigate = useNavigate();
@@ -15,6 +16,72 @@ const TestYourself = () => {
   const [stage, setStage] = useState('course');
   const [timer, setTimer] = useState('');
   const [timerActive, setTimerActive] = useState(false);
+  const [programOfStudy, setProgramOfStudy] = useState('');
+  const [levelOfStudy, setLevelOfStudy] = useState('');
+  const [semesterOfStudy, setSemesterOfStudy] = useState('');
+
+useEffect(() => {
+  const fetchProgramOfStudy = async () => {
+    try {
+      const userDocRef = doc(db, 'users', auth.currentUser.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        setProgramOfStudy(userDoc.data().programOfStudy);
+      } else {
+        console.log('No user data found!');
+      }
+    } catch (error) {
+      console.error("Error fetching user's programOfStudy:", error);
+    }
+  };
+
+  if (auth.currentUser) {
+    fetchProgramOfStudy();
+  }
+}, []);
+
+useEffect(() => {
+  const fetchLevelOfStudy = async () => {
+    try {
+      const userDocRef = doc(db, 'users', auth.currentUser.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        setLevelOfStudy(userDoc.data().levelOfStudy);
+      } else {
+        console.log('No user data found!');
+      }
+    } catch (error) {
+      console.error("Error fetching user's levelOfStudy:", error);
+    }
+  };
+
+  if (auth.currentUser) {
+    fetchLevelOfStudy();
+  }
+}, []);
+
+useEffect(() => {
+  const fetchSemesterOfStudy = async () => {
+    try {
+      const userDocRef = doc(db, 'users', auth.currentUser.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        setSemesterOfStudy(userDoc.data().semesterOfStudy);
+      } else {
+        console.log('No user data found!');
+      }
+    } catch (error) {
+      console.error("Error fetching user's semesterOfStudy:", error);
+    }
+  };
+
+  if (auth.currentUser) {
+    fetchSemesterOfStudy();
+  }
+}, []);
   
   const handleCourseSelect = (course) => {
     setSelectedCourse(course);
@@ -135,60 +202,69 @@ const TestYourself = () => {
 
   return (
     <div>
-      <div style={styles.ContaineR}>
-      <div style={styles.Back}></div>
+       <div style={styles.container}>
+       <div style={styles.background}></div>
         {stage === 'course' && (
           <>
+          <div style={styles.mainContainer}>
             <h2 style={styles.header}>Choose a Course</h2>
-            <div style={styles.scrollableContainer}>
             <div style={styles.courseSelector}>
-              {Object.keys(courseData1).map((course) => (
-                <button
-                  key={course}
-                  style={styles.courseButton}
-                  onClick={() => handleCourseSelect(course)}
-                >
-                  {course}
-                </button>
-              ))}
-            </div>
-            </div>
+              {Object.keys(courseData1).filter((subject) => courseData1[subject].programOfStudy === programOfStudy && courseData1[subject].levelOfStudy === levelOfStudy && courseData1[subject].semesterOfStudy === semesterOfStudy).length > 0 ? (
+                Object.keys(courseData1).filter((subject) => courseData1[subject].programOfStudy === programOfStudy && courseData1[subject].levelOfStudy === levelOfStudy && courseData1[subject].semesterOfStudy === semesterOfStudy).map((course) => (
+                  <button
+                    key={course}
+                    style={styles.courseButton}
+                    onClick={() => handleCourseSelect(course)}
+                  >
+                    {course}
+                  </button>
+                ))
+              ) : (
+                <div style={styles.noDataContainer}>
+                  <p style={styles.noDataMessage}>No courses available for your program of study.</p>
+                </div>  
+              )}
+            </div>  
             <div style={styles.buttonContainment}>
               <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
                 Go Back
               </button>
             </div>
+          </div>  
           </>
         )}
         {stage === 'difficulty' && selectedCourse && (
           <>
+          <div style={styles.parentContainer}>
             <h2 style={styles.header}>Choose Duration for {selectedCourse} Quiz</h2>
             <div style={styles.difficultySelector}>
               <button onClick={() => handleDifficultySelect('Easy')} style={styles.courseButton}>5 minutes</button>
               <button onClick={() => handleDifficultySelect('Medium')} style={styles.courseButton}>10 minutes</button>
               <button onClick={() => handleDifficultySelect('Hard')} style={styles.courseButton}>15 minutes</button>
               <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>45 minutes</button>
-            </div>
+              <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>60 minutes</button>
+            </div> 
             <div style={styles.buttonContainment}>
               <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
                 Go Back
               </button>
             </div>
+          </div>  
           </>
         )}   
       </div>  
       {stage === 'quiz' && questions.length > 0 && !quizFinished && (
         <> 
-      <div style={styles.container}>
+        <div style={styles.container}>
           <div style={styles.background}></div>
-          < div style={styles.timerContainer}>
+            <div style={styles.timerContainer}>
               <p style={styles.questionNumber}>{selectedCourse} - {selectedDifficulty} Quiz</p>
               <p style={styles.questionNumber}>Time Left: {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, '0')}</p>
               <p style={styles.questionNumber}>Question {currentQuestionIndex + 1} / {questions.length}</p>
               <div style={styles.progressBar}>
                   <div style={{...styles.progressFill,width: `${progress}%`,}}/>
               </div>
-          </div>
+            </div>
           <div style={styles.cont}>
           <p style={styles.question}>Question {currentQuestionIndex + 1}: {questions[currentQuestionIndex].question}</p>
           </div>
@@ -218,22 +294,20 @@ const TestYourself = () => {
                 style={styles.inputField}/>
             )}
           </div>
-      </div>
-        <div style={styles.navigation}>
-          {currentQuestionIndex < questions.length - 1 ? (
-            <button style={styles.nextButton} onClick={handleNextQuestion}>
-              Next Question
-            </button>
-          ) : (
-            <button style={styles.submitButton} onClick={handleSubmitQuiz}>
-              Submit Quiz
-            </button>
-          )}
+          <div style={styles.navigation}>
+            {currentQuestionIndex < questions.length - 1 ? (
+              <button style={styles.nextButton} onClick={handleNextQuestion}>
+                Next Question
+              </button>
+            ) : (
+              <button style={styles.submitButton} onClick={handleSubmitQuiz}>
+                Submit Quiz
+              </button>
+            )}
+          </div>
         </div>
-
-            </>
-          )}     
-
+              </>
+            )}       
       {quizFinished && (
       <div style={styles.container}>
         <div style={styles.headContainer}>
@@ -245,24 +319,22 @@ const TestYourself = () => {
         <div style={styles.scoresContainer}>
           <div style={styles.contain}>
             <div style={styles.mainContainer}>
-              <div style={styles.background}></div>
-              <h2 style={styles.title}>Your Score</h2> 
-              <div style={styles.miniScoresContainer}>
-                <div style={styles.miniContain}>
-                  {calculateScore()} / {questions.length}
-                </div>
-              </div>   
-            </div>
-          </div> 
-          <div style={styles.contain}>
-            <div style={styles.mainContainer}>
-              <div style={styles.background}></div> 
-              <h2 style={styles.title}>Percentage</h2> 
-              <div style={styles.miniScoresContainer}>
-                <div style={styles.miniContain}>
-                  {Math.floor(calculatePercentage())}%
-                </div>
-              </div>  
+            <h2 style={styles.title}>Your Score</h2> 
+            <div style={styles.miniScoresContainer}>
+              <div style={styles.miniContain}>
+                {calculateScore()} / {questions.length}
+              </div>
+            </div>   
+          </div>
+        </div> 
+        <div style={styles.contain}>
+          <div style={styles.mainContainer}>
+            <h2 style={styles.title}>Percentage</h2> 
+            <div style={styles.miniScoresContainer}>
+              <div style={styles.miniContain}>
+                {Math.floor(calculatePercentage())}%
+              </div>
+            </div>  
             </div>
           </div>  
         </div>
@@ -281,35 +353,23 @@ const TestYourself = () => {
 };
 
 const styles = {
-ContaineR: {
-  display: "flex",
-  flexDirection: "column",
-  position: "relative",
-  overflow: "hidden",
-  width: "100%",
+noDataContainer: {
+  padding: "20px",
+  textAlign: "center",
+  backgroundColor: "#fff",
+  borderRadius: "5px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   alignItems: 'center',
-  justifyContent: 'center',
 },
-Back: {
-  content: '""',
-  position: "absolute",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundImage: `url(${logo1})`,
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  opacity: 0.5,
-  zIndex: -1,
+noDataMessage: {
+  fontSize: "30px",
+  color: "#555",
 },
 container: {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '85vh',
   fontFamily: 'Poppins, sans-serif',
 },
 background: {
@@ -348,55 +408,49 @@ courseSelector: {
   flexDirection: 'column',
   gap: '20px',
   textAlign: 'center',
+  width: '90%',
+  marginTop: "180px",
   flex: 1,
-  padding: "20px",
+  overflowY: "auto",
+  padding: "15px",
   opacity: "0.9",
   borderRadius: '8px',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.9)',
-  marginBottom: '20px',
-  width: '90%',
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+},
+parentContainer: {
+  width: '90vw',
+  display: 'flex',
+  justifyContent: 'center',
 },
 difficultySelector: {
   display: 'flex',
-  flexDirection: 'column',
-  gap: '50px',
-  textAlign: 'center',
   flex: 1,
-  marginTop: '310px',
-  width: '90%',
+  flexDirection: 'column',
+  gap: '30px',
+  textAlign: 'center',
+  marginTop: '250px',
   padding: "20px",
   opacity: "0.9",
   borderRadius: '8px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-  marginBottom: '120px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-},
-scrollableContainer: {
-  flex: 1,     
-  overflowY: 'auto',
-  opacity: '0.9',
   width: '100%',
-  marginTop: '200px',
-  marginRight: 'auto',
-  marginLeft: 'auto',
-  marginBottom: '110px',
 },
 courseButton: {
   backgroundColor: '#4CAF50',
+  opacity: '0.9',
+  borderRadius: '8px',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   color: 'white',
   padding: '15px 25px',
   fontSize: '30px',
+  fontWeight: '900',
   cursor: 'pointer',
-  borderRadius: '10px',
   border: 'none',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   transition: 'transform 0.3s ease, background-color 0.3s ease',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  width: '100%',
 },
 optionButton: {
   backgroundColor: '#4CAF50',
@@ -478,6 +532,8 @@ congratulatoryMessage: {
   textAlign: 'center',
 },
 navigation: {
+  position: 'fixed',
+  bottom: '10px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -617,7 +673,7 @@ inputField: {
   marginRight: "auto",
 },
 mainContainer: {
-  height: "60vh",
+  height: "86vh",
   display: "flex",
   flexDirection: "column",
   position: "relative",
@@ -634,6 +690,7 @@ scoresContainer:{
   height: '50vh',
   padding: '5px',
   boxSizing: 'border-box',
+  marginTop: '150px',
 },
 contain: {
   display: 'flex',

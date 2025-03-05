@@ -4,7 +4,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { auth, db } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import logo from '../assets/main.jpg';
+import logo from '../assets/op.jpg';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -44,7 +44,7 @@ const Login = () => {
     <div style={styles.container}>
 
       <div style={styles.header}>
-        <h1 style={styles.appName}>Brain Snacks StudyGroup</h1>
+        <h1 style={styles.appName}>Prime Academy</h1>
         <p style={styles.welcomeNote}>Welcome back! Please login to continue.</p>
       </div>
 
@@ -98,7 +98,7 @@ const Login = () => {
       </div>
 
       <div style={styles.footerStyle}>
-        <p style={{fontSize: '30px'}}>© 2025 StudyGroup. All rights reserved.</p>
+        <p style={{fontSize: '30px'}}>© 2025 Prime Academy. All rights reserved.</p>
       </div>
     </div>
   );

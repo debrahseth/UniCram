@@ -7,7 +7,7 @@ import logo from "../assets/main.jpg";
 
 const Leaderboard = () => {
   const [leaderboardData, setLeaderboardData] = useState({});
-  const [recordLoading, setRecordLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [usersData, setUsersData] = useState({});
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -51,6 +51,7 @@ const Leaderboard = () => {
           );
         }
         setLeaderboardData(leaderboardWithUsernames);
+        setLoading(false);
       }
     );
     fetchUserData();
@@ -90,11 +91,11 @@ const Leaderboard = () => {
     setPasswordError('');
   };
 
-  if (recordLoading) {
+  if (loading) {
     return (
       <div className="spinner-container">
         <div className="spinner"></div>
-        <p>Loading Records...</p>
+        <p>Loading Leaderboard...</p>
       </div>
     );
   }
@@ -273,11 +274,10 @@ const styles = {
     backgroundColor: "#fff",
     borderRadius: "5px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    marginTop: "300px",
-    marginBottom: "50px",
+    alignItems: 'center',
   },
   noDataMessage: {
-    fontSize: "18px",
+    fontSize: "30px",
     color: "#555",
   },
   courseContainer: {

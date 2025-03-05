@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courses } from './courses';
-import { collection, addDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import { FaChevronLeft, FaCheck, FaTimes, FaLightbulb, FaClock } from 'react-icons/fa';
 import TopLeftLogo from './TopLeftLogo'; 
@@ -20,6 +20,9 @@ const Quiz = () => {
   const [timer, setTimer] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [userProgramOfStudy, setUserProgramOfStudy] = useState('');
+  const [userSemesterOfStudy, setUserSemesterOfStudy] = useState('');
+  const [userLevelOfStudy, setUserLevelOfStudy] = useState('');
 
   const timeLimits = {
     easy: 150,
@@ -130,6 +133,20 @@ const Quiz = () => {
 };
 
 useEffect(() => {
+  const currentUser = authInstance.currentUser;
+  if (currentUser) {
+    const userRef = doc(firestore, 'users', currentUser.uid);
+    getDoc(userRef).then((docSnap) => {
+      if (docSnap.exists()) {
+        setUserProgramOfStudy(docSnap.data().programOfStudy);
+        setUserSemesterOfStudy(docSnap.data().semesterOfStudy);
+        setUserLevelOfStudy(docSnap.data().levelOfStudy);
+      }
+    });
+  }
+}, []);
+
+useEffect(() => {
   if (selectedCourse && selectedDifficulty) {
     const filteredQuestions = selectedCourse.questions.filter((question) => question.difficulty === selectedDifficulty);
     setShuffledQuestions(shuffleArray([...filteredQuestions]));
@@ -163,6 +180,8 @@ useEffect(() => {
   };
 
   if (!selectedCourse) {
+    const filteredCourses = courses.filter((course) => course.programOfStudy === userProgramOfStudy) && courses.filter((course) => course.semesterOfStudy === userSemesterOfStudy) && courses.filter((course) => course.levelOfStudy === userLevelOfStudy);
+
     return (
       <div style={styles.mainContainer}>
         <div style={styles.background}></div>
@@ -170,17 +189,23 @@ useEffect(() => {
           <h2 style={{fontSize: "40px"}}>Select a Course</h2>
         </div>
         <div style={styles.courseSelection}>
-          {courses.map((course, index) => (
-            <button key={index} onClick={() => handleCourseSelection(course)} style={styles.courseButton}>
-              <FaLightbulb style={styles.icon} /> {course.title}
-            </button>
-          ))}
+          {filteredCourses.length > 0 ? (
+            filteredCourses.map((course, index) => (
+              <button key={index} onClick={() => handleCourseSelection(course)} style={styles.courseButton}>
+                <FaLightbulb style={styles.icon} /> {course.title}
+              </button>
+            ))
+          ) : (
+            <div style={styles.noDataContainer}>
+              <p style={styles.noDataMessage}>No courses available for your program of study.Try again later.</p>
+            </div>  
+          )}
         </div>
-        <div>
-        <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
-          <FaChevronLeft style={styles.icon} /> Go Back
-        </button>
-      </div>
+        <div style={styles.buttonContainer}>
+          <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
+            <FaChevronLeft style={styles.icon} /> Go Back
+          </button>
+        </div>
       </div>
     );
   }
@@ -345,6 +370,18 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  noDataContainer: {
+    padding: "20px",
+    textAlign: "center",
+    backgroundColor: "#fff",
+    borderRadius: "5px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    alignItems: 'center',
+  },
+  noDataMessage: {
+    fontSize: "30px",
+    color: "#555",
+  },
   background: {
     content: '""',
     position: "absolute",
@@ -378,6 +415,7 @@ const styles = {
     textAlign: 'center',
     width: '90%',
     marginTop: "180px",
+    marginBottom: "100px",
     flex: 1,
     overflowY: "auto",
     padding: "20px",
@@ -406,8 +444,7 @@ const styles = {
     position: 'fixed',
     bottom: '0',
     left: '0',
-    backgroundColor: '#fff',
-    padding: '10px 0',
+    padding: '5px',
     boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
     display: 'flex',
     justifyContent: 'center',
@@ -416,6 +453,7 @@ const styles = {
   },
   goBackButton: {
     backgroundColor: '#2196F3',
+    width: '80%',
     color: 'white',
     padding: '12px 20px',
     fontSize: '20px',
@@ -443,7 +481,7 @@ const styles = {
     opacity: 0.9,
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
-    height: '70vh',
+    height: '66vh',
     marginTop: '120px'
   },
   content: {
@@ -458,7 +496,7 @@ const styles = {
     flex: 1,
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
-    height: '70vh',
+    height: '66vh',
     marginTop: '120px'
   },
   con: {
@@ -545,7 +583,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between', 
     width: '100%',
-    height: '100vh',
+    height: '90vh',
     padding: '20px',
     boxSizing: 'border-box',
   },  
@@ -553,6 +591,7 @@ const styles = {
     backgroundColor: '#FF9800',
     color: 'white',
     padding: '15px 25px',
+    width: '100%',
     fontSize: '30px',
     cursor: 'pointer',
     borderRadius: '10px',

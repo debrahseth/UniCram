@@ -1,5 +1,8 @@
 export const courseData1 = {
     'Thermodynamics': {
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       Easy: [
         { 
           question: "What is the internal energy change if 50 J of heat is added and 20 J of work is done by the system?(2 dp)", 
@@ -53,6 +56,9 @@ export const courseData1 = {
       ]
     },
     'Engineering in Society': {
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       Easy: [
         { 
           question: "Ethical theory is a conprehensive perspective to morality that clarifies, organizes and guides moral reflections.", 
@@ -224,6 +230,9 @@ export const courseData1 = {
       ]
     },
     'Chemical Process Calculations': {
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       Easy: [
         { 
           question: "Give the dimensions and units of stress in terms of S.I base units.", 
@@ -336,6 +345,9 @@ export const courseData1 = {
       ]
     },
     'Fluid Mechanics': {
+      programOfStudy: 'Chemical Engineering',
+      levelOfStudy: 'Level 200',
+      semesterOfStudy: 'Semester 1',
       Easy: [
         {
           question: " Fluid is a substance that ....",
@@ -771,6 +783,9 @@ export const courseData1 = {
         ]
       },
       'Differential Equations': {
+        programOfStudy: 'Chemical Engineering',
+        levelOfStudy: 'Level 200',
+        semesterOfStudy: 'Semester 1',
         Easy: [
           {
             question: "A differential equation that describes a physical phenomena is called a/an ...?",
@@ -884,6 +899,9 @@ export const courseData1 = {
         ]
       },
       'Analytical Chemistry for Engineers': {
+        programOfStudy: 'Chemical Engineering',
+        levelOfStudy: 'Level 200',
+        semesterOfStudy: 'Semester 1',
           Easy: [
             {
               question: 'Good precision assures good accuracy.',
@@ -901,7 +919,7 @@ export const courseData1 = {
               type: 'True/False'
             },
             {
-              question: 'Of the three types of systematic errors encountered in aa chemical analysis, personal errors are usually the most difficult to identify and correct.',
+              question: 'Of the three types of systematic errors encountered in a chemical analysis, personal errors are usually the most difficult to identify and correct.',
               answer: "",
               type: 'Trua/False'
             },
@@ -1145,7 +1163,7 @@ export const courseData1 = {
               answer: '',
               type: 'Multiple Choice',
               options: ['1.0', '2.0', '2.5', '4.0']
-            },
+            }
           ]
-      }
+        },
   }

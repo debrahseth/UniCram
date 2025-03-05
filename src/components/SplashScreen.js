@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { spiral } from 'ldrs';
+import welcomeImage from '../assets/welcomeImage.jpg';
+import logo from '../assets/welcome.jpg';
 
 const SplashScreen = () => {
   const [username, setUsername] = useState('');
@@ -17,6 +20,8 @@ const SplashScreen = () => {
       return 'Good Evening';
     }
   };
+
+  spiral.register()
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -46,81 +51,99 @@ const SplashScreen = () => {
     <div style={styles.container}>
       {loading ? (
         <>
-          <div style={styles.iconContainer}>
-            <div style={styles.dotContainer}>
-              <span style={styles.dot}></span>
-              <span style={styles.dot}></span>
-              <span style={styles.dot}></span>
+          <div style={styles.content}>
+            <div style={styles.textContainer}> 
+              <div style={styles.profilePictureContainer}>
+                <img
+                  src={logo}
+                  alt="Study Group Logo"
+                  style={styles.profilePicture}
+                />
+              </div>
+              <h2 style={styles.greeting}>{getGreeting()}, {username || 'User'}!</h2>
+              <p style={styles.message}>Prime Academy is getting things ready for you...</p>
+              <l-spiral size="50" speed="0.9" color="black"></l-spiral>
             </div>
+            <img src={welcomeImage} alt="Welcome" style={styles.welcomeImage} />
           </div>
-          <h2 style={styles.greeting}>{getGreeting()}, {username || 'User'}!</h2>
-          <p style={styles.message}>We're getting things ready for you...</p>
         </>
       ) : (
         <h2 style={styles.greeting}>Navigating to Dashboard...</h2>
       )}
     </div>
-  );
+  );  
 };
 
 const styles = {
   container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+    width: "100%",
+    backgroundColor: "#f4f4f4",
+    animation: "fadeIn 2s ease-in-out",
+  },
+  content: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "80%",
+    maxWidth: "1200px",
+    padding: "30px",
+    backgroundColor: "#ffffff",
+    boxShadow: "0 6px 15px rgba(0, 0, 0, 0.2)",
+    borderRadius: "12px",
+    opacity: 0,
+    animation: "fadeIn 2s forwards",
+    transform: "translateY(10px)",
+  },
+  profilePictureContainer: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    height: '100vh',
-    backgroundColor: '#f4f7fc',
-    textAlign: 'center',
-    padding: '0 20px',
+    alignItems: "center", 
+    width: "100%", 
+    marginBottom: '20px',
+  },
+  profilePicture: {
+    width: '250px',
+    height: '250px',
+    borderRadius: '10%',
+    objectFit: 'cover',
+    display: "block",
+  },
+  textContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "50%",
+    textAlign: "center",
   },
   greeting: {
-    fontSize: '28px',
-    color: '#333',
-    marginBottom: '20px',
-    fontFamily: "'Roboto', sans-serif",
-    fontWeight: '600',
+    fontSize: "40px",
+    fontWeight: "bold",
+    marginBottom: "15px",
+    color: "#333",
   },
   message: {
-    fontSize: '18px',
-    color: '#777',
-    marginBottom: '30px',
-    fontFamily: "'Roboto', sans-serif",
+    fontSize: "22px",
+    color: "#555",
+    marginBottom: "25px",
   },
-  iconContainer: {
-    marginBottom: '20px',
+  welcomeImage: {
+    flex: 1,
+    width: "50%",
+    height: "auto",
+    objectFit: "cover",
+    maxHeight: "1200px",
+    borderRadius: "10px",
+    animation: "fadeIn 2s ease-in-out",
   },
-  dotContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  dot: {
-    width: '12px',
-    height: '12px',
-    margin: '0 5px',
-    borderRadius: '50%',
-    backgroundColor: '#4CAF50',
-    animation: 'bounce 1.4s infinite both',
-  },
-  '@keyframes bounce': {
-    '0%, 20%, 50%, 80%, 100%': {
-      transform: 'translateY(0)',
-    },
-    '40%': {
-      transform: 'translateY(-10px)',
-    },
-    '60%': {
-      transform: 'translateY(-5px)',
-    },
-  },
-  footer: {
-    position: 'absolute',
-    bottom: '10px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    fontSize: '14px',
-    color: '#888',
-  },
+  '@keyframes fadeIn': {
+    from: { opacity: 0 },
+    to: { opacity: 1 }
+  }
 };
+
 export default SplashScreen;

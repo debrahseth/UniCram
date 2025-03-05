@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import logo from '../assets/main.jpg';
+import logo from '../assets/welcomeImage.jpg';
+import logo1 from '../assets/welcome.jpg';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,8 +12,8 @@ const Home = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '94.8vh',
-    background: 'linear-gradient(to right,rgb(91, 180, 212),rgb(4, 66, 54))',
+    height: '95vh',
+    background: 'linear-gradient(to right,rgb(91, 212, 123),rgb(4, 66, 63))',
     textAlign: 'center',
     fontFamily: 'Poppins, sans-serif',
     padding: '20px',
@@ -34,6 +35,15 @@ const Home = () => {
     marginBottom: '20px',
     lineHeight: '1.7',
     animation: 'fadeIn 1.5s ease-out',
+  };
+
+  const imageContainer = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "30px",
+    flexWrap: "wrap",
+    marginBottom: "20px",
   };
 
   const buttonContainerStyle = {
@@ -100,13 +110,21 @@ const Home = () => {
 
   return (
     <div style={containerStyle}>
-      <h2 style={headerStyle}>UniBuddy Team</h2>
+      <h2 style={headerStyle}>Prime Academy</h2>
+      <div style={imageContainer}>
+      <img
+        src={logo1}
+        alt="Study Group Logo"
+        style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: '30%', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',transform: 'scale(1)',transition: 'transform 0.3s ease',}}
+        onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}/>
       <img
         src={logo}
         alt="Study Group Logo"
-        style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: '50%', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',transform: 'scale(1)',transition: 'transform 0.3s ease',}}
+        style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: '30%', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',transform: 'scale(1)',transition: 'transform 0.3s ease',}}
         onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
         onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}/>
+      </div>  
       <p style={paragraphStyle}>
         Start by logging in or signing up to join the community.
       </p>

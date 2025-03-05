@@ -4,7 +4,7 @@ import { db } from '../firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 import '../styles.css';
 import {FaChevronLeft} from 'react-icons/fa';
-import logo from '../assets/logo1.jpg';
+import logo from '../assets/op.jpg';
 
 const UserListScreen = () => {
   const [users, setUsers] = useState([]);
@@ -46,7 +46,7 @@ const UserListScreen = () => {
   return (
     <div style={styles.container}>
     <div style={styles.background}></div>
-      <h1 style={styles.header}>The Brain Snacks Community</h1>
+      <h1 style={styles.header}>The Prime Academy Community</h1>
       <div style={styles.scrollableContainer}>
         <div style={styles.userList}>
           {users.length > 0 ? (
@@ -55,6 +55,7 @@ const UserListScreen = () => {
                 <div style={styles.userInfo}>
                   <h2 style={styles.userName}>{user.username}</h2>
                   <h2 style={styles.userProgram}>Program: {user.programOfStudy || 'No Program'}</h2>
+                  <h2 style={styles.userProgram}>Level: {user.levelOfStudy || 'No Level'}</h2>
                 </div>
               </div>
             ))
@@ -91,7 +92,7 @@ background: {
   backgroundPosition: 'center', 
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
-  opacity: 0.5,
+  opacity: 0.3,
   zIndex: -1,
 },
 header: {
@@ -130,7 +131,7 @@ userCard: {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  opacity: '0.7'
+  opacity: '0.9'
 },
 userInfo: {
   display: 'flex',

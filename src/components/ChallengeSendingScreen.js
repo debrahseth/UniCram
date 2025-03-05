@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
-import { collection, onSnapshot, addDoc, doc, updateDoc } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
 import logo from '../assets/main.jpg';
 import logo1 from '../assets/logo1.jpg';
@@ -16,6 +16,7 @@ const ChallengeSendingScreen = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,28 +24,54 @@ const ChallengeSendingScreen = () => {
     if (currentUser) {
       setCurrentUserId(currentUser.uid);
     }
-    const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
+  
+    const fetchUserDetails = async () => {
+      if (!currentUser) return;
       try {
-        const userList = snapshot.docs
-          .filter(doc => doc.id !== currentUser?.uid)
-          .map(doc => {
-            const userData = doc.data();
-            return {
-              id: doc.id,
-              username: userData.username,
-              avatar: logo1,
-              status: userData.status, 
-            };
+        const userRef = doc(db, 'users', currentUser.uid);
+        const userSnap = await getDoc(userRef);
+  
+        if (userSnap.exists()) {
+          const loggedInUserData = userSnap.data();
+          const { levelOfStudy, semesterOfStudy, programOfStudy } = loggedInUserData;
+          setUserData(loggedInUserData);
+  
+          const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
+            try {
+              const userList = snapshot.docs
+                .filter(doc => {
+                  const userData = doc.data();
+                  return (
+                    doc.id !== currentUser.uid &&
+                    userData.levelOfStudy === levelOfStudy &&
+                    userData.semesterOfStudy === semesterOfStudy &&
+                    userData.programOfStudy === programOfStudy
+                  );
+                })
+                .map(doc => ({
+                  id: doc.id,
+                  username: doc.data().username,
+                  avatar: logo1,
+                  status: doc.data().status,
+                }));
+  
+              setUsers(userList);
+            } catch (error) {
+              console.error('Error fetching users:', error);
+            }
           });
-        setUsers(userList);
+  
+          return () => {
+            unsubscribe();
+          };
+        }
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching logged-in user details:', error);
       }
-    });
-    return () => {
-      unsubscribe();
     };
-  }, []); 
+  
+    fetchUserDetails();
+  }, []);  
 
   const handleUserSelect = (userId) => {
     setSelectedUserId(userId);
@@ -182,7 +209,8 @@ const ChallengeSendingScreen = () => {
             <div style={{ marginBottom: '20px' }}>
               <label>Select Subject:</label>
               <div style={styles.scrollableList}>
-                {Object.keys(courseData).map((subject) => (
+                {Object.keys(courseData).filter((subject) => courseData[subject].programOfStudy === userData.programOfStudy && courseData[subject].semesterOfStudy === userData.semesterOfStudy && courseData[subject].levelOfStudy === userData.levelOfStudy).length > 0 ? (
+                  Object.keys(courseData).filter((subject) => courseData[subject].programOfStudy === userData.programOfStudy && courseData[subject].semesterOfStudy === userData.semesterOfStudy && courseData[subject].levelOfStudy === userData.levelOfStudy).map((subject) => (
                   <div
                     key={subject}
                     style={{
@@ -193,7 +221,10 @@ const ChallengeSendingScreen = () => {
                   >
                     {subject}
                   </div>
-                ))}
+                ))
+              ) : (
+                <p style={styles.noDataMessage}>No courses available now. Please come back later.</p>
+              )}
               </div>
             </div>
 
@@ -253,6 +284,10 @@ background: {
     backgroundRepeat: 'no-repeat',
     opacity: 0.5,
     zIndex: -1,
+},
+noDataMessage: {
+  fontSize: "20px",
+  color: "#555",
 },
 header: {
   zIndex: 2,

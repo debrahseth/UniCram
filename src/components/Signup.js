@@ -4,7 +4,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { auth, db } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import logo from '../assets/main.jpg';
+import logo from '../assets/op.jpg';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -14,7 +14,31 @@ const Signup = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [levelOfStudy, setLevelOfStudy] = useState('');
+  const [semesterOfStudy, setSemesterOfStudy] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const navigate = useNavigate();
+  const programs = [
+    "Agricultural Engineering",
+    "Aerospace Engineering",
+    "Automobile Engineering",
+    "Biomedical Engineering",
+    "Chemical Engineering",
+    "Civil Engineering",
+    "Computer Engineering",
+    "Electrical and Electronics Engineering",
+    "Geological Engineering",
+    "Geomatic Engineering",
+    "Industrial Engineering",
+    "Materials Engineering",
+    "Mechanical Engineering",
+    "Metallurgical Engineering",
+    "Petrochemical Engineering",
+    "Petroleum Engineering",
+    "Telecommunications Engineering",
+  ];
 
   useEffect(() => {
       setTimeout(() => {
@@ -23,6 +47,14 @@ const Signup = () => {
     }, []);
 
   const handleSignup = async () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleSubmit = async () => {
     setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -31,21 +63,24 @@ const Signup = () => {
         username: username,
         email: email,
         programOfStudy: programOfStudy,
+        levelOfStudy: levelOfStudy,
+        semesterOfStudy: semesterOfStudy,
         status: 'online',
       });
       navigate('/splash');
     } catch (error) {
       setError(error.message);
     } finally {
+      setModalOpen(false);
       setLoading(false);
     }
-  };
+};
 
   return (
     <div style={styles.container}>
 
       <div style={styles.header}>
-        <h1 style={styles.appName}>Brain Snacks StudyGroup</h1>
+        <h1 style={styles.appName}>Prime Academy</h1>
         <p style={styles.welcomeNote}>Welcome! Please create an account to continue.</p>
       </div>
 
@@ -76,16 +111,6 @@ const Signup = () => {
           />
         </div>
         <div style={styles.inputGroup}>
-          <i className="fa fa-graduation-cap" style={styles.icon}></i>
-          <input
-            type="text"
-            placeholder="Program of Study"
-            value={programOfStudy}
-            onChange={(e) => setProgram(e.target.value)}
-            style={styles.input}
-          />
-        </div>
-        <div style={styles.inputGroup}>
           <i className="fa fa-lock" style={styles.icon}></i>
           <input
             type={passwordVisible ? "text" : "password"}
@@ -102,17 +127,12 @@ const Signup = () => {
             <i className={`fa ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}></i>
           </button>
         </div>
+
         {error && <p style={styles.error}>{error}</p>}
-        {loading ? (
-          <div style={styles.loading}>
-            <i className="fa fa-spinner fa-spin" style={styles.spinner}></i>
-            Signing up...
-          </div>
-        ) : (
-          <button onClick={handleSignup} style={styles.button} disabled={loading}>
-            Sign Up
-          </button>
-        )}
+        
+        <button onClick={handleSignup} style={styles.button} disabled={loading}>
+          Sign Up
+        </button>
 
         <button onClick={() => navigate('/')} style={styles.button}>
           Go Back
@@ -120,8 +140,76 @@ const Signup = () => {
       </div>
 
       <div style={styles.footerStyle}>
-        <p style={{fontSize: '30px'}}>© 2025 StudyGroup. All rights reserved.</p>
+        <p style={{fontSize: '30px'}}>© 2025 Prime Academy. All rights reserved.</p>
       </div>
+
+      {modalOpen && (
+        <div style={styles.modal}>
+          <div style={styles.modalContent}>
+            <h2>Enter Your Details</h2> 
+            <label style={styles.label}>Program of Study:</label>
+            <div style={styles.dropdownContainer} onClick={() => setIsOpen(!isOpen)}>
+                <div style={styles.input1}>
+                  {programOfStudy || "Select Program"}
+                </div>
+              {isOpen && (
+                <div style={styles.dropdownMenu}>
+                  {programs.map((program, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        ...styles.dropdownItem,
+                        ...(hoveredIndex === index ? styles.dropdownItemHover : {}),}}
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                      onClick={() => {
+                        setProgram(program);
+                        setIsOpen(false);
+                      }}
+                    >
+                      {program}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div> 
+            <label style={styles.label}>Level of Study:</label>
+            <select
+              value={levelOfStudy}
+              onChange={(e) => setLevelOfStudy(e.target.value)}
+              style={styles.input1}
+            >
+              <option value="">Select Level</option>
+              <option value="Level 100">Level 100</option>
+              <option value="Level 200">Level 200</option>
+              <option value="Level 300">Level 300</option>
+              <option value="Level 400">Level 400</option>
+            </select>
+            <label style={styles.label}>Semester of Study:</label>
+            <select
+              value={semesterOfStudy}
+              onChange={(e) => setSemesterOfStudy(e.target.value)}
+              style={styles.input1}
+            >
+              <option value="">Select Semester</option>
+              <option value="Semester 1">Semester 1</option>
+              <option value="Semester 2">Semester 2</option>
+            </select>
+          {error && <p style={styles.error}>{error}</p>}
+          {loading ? (
+        <div style={styles.loading}>
+            <i className="fa fa-spinner fa-spin" style={styles.spinner}></i>
+            Signing up...
+          </div>
+          ) : (
+          <button onClick={handleSubmit} style={styles.button} disabled={loading}>
+            Sign Up
+          </button>
+          )}
+          <button onClick={handleCloseModal} style={styles.button}>Cancel</button>
+        </div>  
+      </div>
+      )}
     </div>
   );
 };
@@ -146,6 +234,34 @@ const styles = {
     zIndex: 10,
     opacity: 0,
     animation: 'fadeInUp 1s ease forwards 0.5s',
+  },
+  modal: {
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    right: '0',
+    bottom: '0',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '8px',
+    width: '600px',
+    textAlign: 'center',
+    opacity: '0.8',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    gap: '10px'
+  },
+  label:{
+    fontSize: '20px',
+    textAlign: 'left',
+    fontWeight: 700,
   },
   appName: {
     fontSize: '36px',
@@ -176,7 +292,7 @@ const styles = {
   formContainer: {
     backgroundColor: 'white',
     borderRadius: '8px',
-    padding: '14px',
+    padding: '46px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.8)',
     width: '100%',
     maxWidth: '500px',
@@ -204,6 +320,15 @@ const styles = {
   },
   input: {
     width: '80%',
+    padding: '14px 40px',
+    fontSize: '16px',
+    borderRadius: '8px',
+    border: '1px solid #ddd',
+    outline: 'none',
+    transition: 'border-color 0.3s',
+  },
+  input1: {
+    width: '100%',
     padding: '14px 40px',
     fontSize: '16px',
     borderRadius: '8px',
@@ -267,6 +392,35 @@ const styles = {
     cursor: 'pointer',
     color: '#999',
     fontSize: '20px',
+  },
+  dropdownContainer: {
+    width: "86.5%",
+    fontSize: "16px",
+    textAlign: 'left',
+    borderRadius: "5px",
+    backgroundColor: "white",
+    cursor: "pointer",
+    position: "relative",
+  },
+  dropdownMenu: {
+    position: "absolute",
+    width: "115%",
+    maxHeight: "150px",
+    overflowY: "auto",
+    backgroundColor: "white",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    zIndex: 1000,
+  },
+  dropdownItem: {
+    padding: "10px",
+    cursor: "pointer",
+    borderBottom: "1px solid #eee",
+    transition: "background-color 0.3s ease",
+  },
+  dropdownItemHover: {
+    backgroundColor: "#f0f0f0",
   },
 };
 

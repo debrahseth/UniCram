@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
-import logo from '../assets/main.jpg';
+import logo from '../assets/op.jpg';
 import useInactivityLogout from './useInactivityLogout';
+import { dotStream, spiral } from 'ldrs'
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -107,15 +108,17 @@ const Dashboard = () => {
       });
       return () => unsubscribe();
     }
-  }, [currentUserId]); 
+  }, [currentUserId]);
+
+  dotStream.register()
+  spiral.register()
 
   useInactivityLogout(auth, db, currentUser, navigate, setLogoutLoading);
 
   if (loading) {
     return (
       <div className="spinner-container">
-        <div className="spinner"></div>
-        <p>Loading ...</p>
+        <p style={{fontSize: '36px', color: 'blue'}}>Loading <l-dot-stream size="60" speed="2.5"  color="blue"></l-dot-stream></p>
       </div>
     );
   }
@@ -123,8 +126,8 @@ const Dashboard = () => {
   if (logoutLoading) {
     return (
       <div className="spinner-container">
-        <div className="spinner"></div>
         <p>Logging out...</p>
+        <l-spiral size="40" speed="0.9"  color="blue"></l-spiral>
       </div>
     );
   }
@@ -133,8 +136,8 @@ const Dashboard = () => {
     <div style={styles.container}>
       <div style={styles.background}></div>
       <div style={styles.header}>
-        <button onClick={() => navigate('/leaderboard')} style={styles.leaderboardButton}>
-          <i className="fa fa-trophy" style={styles.icon}></i>
+        <button onClick={() => navigate('/users')} style={styles.leaderboardButton}>
+          <i className="fa fa-users" style={styles.icon}></i>
         </button>
         <h2 style={styles.label}>Welcome, {username || 'User'}!</h2>
         <button onClick={() => navigate('/profile')} style={styles.profileButton}>
@@ -143,13 +146,13 @@ const Dashboard = () => {
       </div>
       <div style={styles.button}>
         <div style={styles.buttonContainer}>
-          <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Compete Now</button>
+          {/* <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Compete Now</button> */}
           <button onClick={() => navigate('/test-yourself')} style={styles.startQuizButton}>Practice Quiz</button>
           <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
           <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button>
         </div>
       </div>
-        <button onClick={() => navigate('/users')} style={styles.userButton}>Meet the Brain Snacks Community</button>
+        {/* <button onClick={() => navigate('/users')} style={styles.userButton}>Meet the Brain Snacks Community</button> */}
       <div style={styles.scrollableContainer}>
       <div style={styles.content}>
         <div style={styles.motivationalQuotes}>
@@ -171,6 +174,9 @@ const Dashboard = () => {
         </div>
       </div>
       </div>
+      <div style={styles.footer}>
+        <p>© 2025 Prime Academy. All rights reserved.</p>
+      </div> 
     </div>
   );
 };
@@ -180,14 +186,14 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: '100vh',
+    height: '90.5vh',
     position: 'relative',
     overflow: 'hidden',
   },
   background: {
     content: '""',
     position: 'absolute',
-    top: 160,
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,
@@ -195,18 +201,22 @@ const styles = {
     backgroundPosition: 'center', 
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    opacity: 0.5,
+    opacity: 0.3,
     zIndex: -1,
   },
   header: {
-    width: '100%',
+    width: '95%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     backgroundColor: '#FFD700',
     padding: '20px',
     textAlign: 'center',
-    borderRadius: '8px 8px 0 0',
+    borderRadius: '10px 10px 10px 10px',
     position: 'relative',
-    zIndex: 1,
+    zIndex: 2,
+    top: '10px',
     opacity: 0.8,
+    marginBottom: '20px',
   },
   content: {
     display: 'flex',
@@ -275,14 +285,14 @@ const styles = {
     transition: 'opacity 1s ease-in-out',
   },
   quoteText: {
-    fontSize: '25px',
-    color: '#333',
+    fontSize: '35px',
+    color: '#000000',
     marginBottom: '10px',
-    opacity: 3,
+    opacity: 5,
     transition: 'opacity 1s ease-in-out',
   },
   quoteAuthor: {
-    fontSize: '20px',
+    fontSize: '25px',
     color: '#555',
   },
   studyTips: {
@@ -295,7 +305,7 @@ const styles = {
   tipsList: {
     listStyleType: 'disc',
     paddingLeft: '20px',
-    color: '#333',
+    color: '#000000',
     fontSize: '25px',
   },
   tipItem: {
@@ -306,11 +316,11 @@ const styles = {
     justifyContent: 'space-evenly', 
     alignItems: 'center', 
     gap: '20px',        
-    width: '100%',          
-    margin: '0 auto',      
+    width: '100%',       
+    margin: '10px auto',      
   },
   startQuizButton: {
-    fontSize: '20px',
+    fontSize: '25px',
     fontWeight: '900',
     backgroundColor: '#FFD700',
     color: 'black',
@@ -347,6 +357,18 @@ const styles = {
     border: 'none',
     fontSize: '1.5rem',
     cursor: 'pointer',
+  },
+  footer: {
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    padding: '15px',
+    backgroundColor: '#333',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '1rem',
+    fontFamily: 'Poppins, sans-serif',
   },
 };
 
