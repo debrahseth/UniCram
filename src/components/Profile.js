@@ -38,6 +38,7 @@ const Profile = () => {
     "Geological Engineering",
     "Geomatic Engineering",
     "Industrial Engineering",
+    "Marine Engineering",
     "Materials Engineering",
     "Mechanical Engineering",
     "Metallurgical Engineering",

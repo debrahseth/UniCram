@@ -1,35 +1,94 @@
-export const courseData = {
+import reactorImage from "../assets/op.jpg";
+
+export const courseData2 = {
+  // Level 200, Semester One
     'Thermodynamics': {
       programOfStudy: 'Chemical Engineering',
       levelOfStudy: 'Level 200',
       semesterOfStudy: 'Semester 1',
-      Easy: [
+      Easy: [     
         { 
           question: "What is the internal energy change if 50 J of heat is added and 20 J of work is done by the system?(2 dp)", 
-          answer: "30.00 J", 
+          answer: "30.00", 
           type: "Fill-in" 
         },
         { 
           question: "Is the change in enthalpy equal to the heat added at constant pressure?", 
           answer: "True", 
           type: "True/False" 
+        },
+        {
+          question: 'For a diatomic gas experiencing a temperature increase, the change in specific molar internal energy is 1000kJ/mol. Calculate the change in specific molar enthalpy for the same process in kJ/mol.',
+          answer:'1400',
+          type: 'Fill-in'
+        },
+        {
+          question: 'If at a specific temperature T, water exists at a pressure higher than its saturated pressure, the water is said to be .......',
+          answer: 'A compressed liquid',
+          type: 'Multiple Choice',
+          options: ['A superheated vapour','A saturated vapour','A saturated liquid','A compressed liquid']
+        },
+        {
+          question: "For a constant pressure process, the heat transferred equals.....?",
+          answer: 'The change in enthalpy',
+          type: 'Multiple Choice',
+          options: ['The change in enthalpy','The change in internal energy','The change in entropy','The change in volume']
+        },
+        {
+          question: 'If a substance A has a triple point above 1 atm, then ',
+          answer: 'The solid can become vapour without first turning into liquid',
+          type: 'Multiple Choice',
+          options: ['The solid can only become vapour after it has turned into liquid','The solid can become vapour without first turning into liquid','Liquid-vapour transition is not possible','Vapour-liquid transtion is not possible']
         }
       ],
       Medium: [
         { 
           question: "Calculate the work done by the system if the pressure is 2 atm and the volume changes by 3 L.(2 dp)", 
-          answer: "6.00 atm·L", 
+          answer: "6.00", 
           type: "Fill-in" 
+        },
+        {
+          question: 'If at a temperature 500K and pressure 1bar, an unidentified gas has a compressibility factor of 0.6,',
+          answer: 'The gas behaves as a real gas',
+          type: 'Multiple Choice',
+          options: ['The gas behaves as a mono-atomic gas','The gas behaves as a real gas','The gas behaves as an ideal gas','The gas behaves as a diatomic gas']
+        },
+        {
+          question: 'A monoatomic gas experiencing a change in enthalpy of 2000kJ when it moves from temperature T1 to T2. What will be the enthalpy change experienced by a diatomic gas of an equal number of moles, which also moves from T1 to T2?',
+          answer:'2800',
+          type: 'Fill-in'
+        },
+        {
+          question: 'If at a specific pressure, water exists at a temperature higher than its saturated temperature, the water is said to be....?',
+          answer: 'A superheated vapour',
+          options: ['A compressed liquid','A saturated vapour','A superheated vapour','A saturated liquid'],
+          type: 'Multiple Choice'
         },
         { 
           question: "A gas expands from 1 L to 3 L at constant pressure of 5 atm. What is the work done?(2 dp)", 
-          answer: "10.00 atm·L", 
+          answer: "10.00", 
           type: "Fill-in" 
         },
         { 
-          question: "Is the specific heat at constant pressure greater than the specific heat at constant volume?", 
+          question: "The specific heat at constant pressure is greater than the specific heat at constant volume.", 
           answer: "True", 
           type: "True/False" 
+        },
+        {
+          question: 'On a pressure-temperature diagram',
+          answer: 'The two-phase region cannot be seen',
+          type: 'Multiple Choice',
+          options: ['The phases cannot be seen','The critical point cannot be seen','The sublimation line cannot be seen','The two-phase region cannot be seen']
+        },
+        {
+          question: 'At a specific temperature and pressure H2 gas has a density of 10 kg/m^3. What is the  density of N2 gas at the same temperature and pressure? Assume both gases exist under ideal conditions.',
+          answer: '140',
+          type: 'Fill-in'
+        },
+        {
+          question: 'At a specific tempearature and pressure H2 gas has a density of 10kg/m^3. What is the density of CO2 gas at the same temperature and pressure? Assume both gases exist under ideal conditions.',
+          answer: '220',
+          type: 'Fill-in'
         }
       ],
       Hard: [
@@ -37,6 +96,18 @@ export const courseData = {
           question: "A 1 mole of an ideal gas undergoes an isothermal expansion at 300 K. If the initial volume is 2 L and the final volume is 10 L, calculate the work done by the gas. (R = 8.314 J/mol·K)", 
           answer: "1710 J", 
           type: "Fill-in" 
+        },
+        {
+          question: "If at a specific temperature T, water exists at a pressure lower then its saturated pressure, the water is said to be ....?",
+          answer: 'A superheated vapour',
+          type: 'Multiple Choice',
+          options: ['A superheated vapour','A compressed liquid','A saturated vapour','A saturated liquid']
+        },
+        {
+          question: 'If at a specific pressure, water exist at a temperature lower than its saturated temperature, the water is said to be........?',
+          answer: 'A compressed liquid',
+          type: 'Multiple Choice',
+          options: ['A saturated liquid','A superheated vapour','A compressed liquid','A saturated vapour']
         },
         { 
           question: "A Carnot engine operates between a hot reservoir at 500 K and a cold reservoir at 300 K. What is the efficiency of the engine?", 
@@ -52,6 +123,48 @@ export const courseData = {
           question: "If 100 J of work is done on a gas and 50 J of heat is transferred from the gas, what is the change in internal energy?", 
           answer: "-50 J", 
           type: "Fill-in" 
+        },
+        {
+          question: 'If a substance has a triple point below 1 atm, then ........',
+          answer: 'The solid can only become vapour after it has turned to liquid',
+          type: 'Multiple Choice',
+          options: ['Liquid-vapour transition is not possible','The solid can become vapour without turning to liquid','Vapour-liquid transition is not possible','The solid can only become vapour after it has turned to liquid']
+        },
+        {
+          question: 'For a diatomic gas experiencing a temperature increase, the change in specific molar enthalpy is 2800kJ/mol. Calculate the change in the specific molar internal energy for the same process in kJ/mol.',
+          answer: '2000',
+          type: 'Fill-in'
+        }
+      ],
+      General: [
+        {
+          question: "Label the parts of this chemical reactor.",
+          type: "Multiple Choice",
+          image: reactorImage,
+          options: ['Endothermic','Exothermic','Neutral','catalyst chamber'],
+          answer: "catalyst chamber"
+        },
+        {
+          type: "True/False",
+          question: "The reaction shown in the diagram is exothermic.",
+          image: reactorImage,
+          answer: "False"
+        },
+        { 
+          question: "Is the entropy of an isolated system always constant?", 
+          answer: "False", 
+          type: "True/False" 
+        },
+        { 
+          question: "If 100 J of work is done on a gas and 50 J of heat is transferred from the gas, what is the change in internal energy?", 
+          answer: "-50 J", 
+          type: "Fill-in" 
+        },
+        {
+          type: "Fill-in",
+          question: "Name the process shown in the diagram.",
+          image: reactorImage,
+          answer: "Evaporation"
         }
       ]
     },
@@ -61,7 +174,7 @@ export const courseData = {
       semesterOfStudy: 'Semester 1',
       Easy: [
         { 
-          question: "Ethical theory is a conprehensive perspective to morality that clarifies, organizes and guides moral reflections.", 
+          question: "Ethical theory is a comprehensive perspective to morality that clarifies, organizes and guides moral reflections.", 
           answer: "True", 
           type: "True/False", 
         },
@@ -72,7 +185,7 @@ export const courseData = {
           options: ["Shared standards", "Ethical relativism", "Deterrence and discipline", "Education and mutual understanding", "Support for responsible professionals"] 
         },
         {
-          question: "The Engineer has several types of moral rights which fall into overlapping categoris including;",
+          question: "The Engineer has several types of moral rights which fall into overlapping categories including;",
           answer: "",
           type: "Multiple Choice",
           options: ["Rights of recognition", "Rights of professional conscience", "Contractual rights", "Rights of personal privacy", "Rights of conscientious refusal"]
@@ -94,18 +207,18 @@ export const courseData = {
           type: "True/False"
         },
         {
-          question: "Prominent among the cornerstones of ethical behaviour are the following excluding;",
+          question: "Prominent among the cornerstones of ethical behaviour are the following, excluding?",
           answer: "",
           type: "Multiple Choice",
           options: ["Do what you say you will do", "Accept responsibilities for your mistakes", "Never become involved in a lie", "Trade off information given to you in confidence", "Eschew the act of accepting gifts that compromise your ability to seek the interest of your organization"]
         },
         {
-          question: "The defintion of safety alone underscores the notion that judgement about safety is tacitly value judgement.",
+          question: "The definition of safety alone underscores the notion that judgement about safety is tacitly value judgement.",
           answer: "",
           type: "True/False"
         },
         {
-          question: "It is a general rule that Code of Ethics states that the moral responsibilities of Engineers as seen by the profession and not as represented by a professional society",
+          question: "It is a general rule that, Code of Ethics states that the moral responsibilities of Engineers, as seen by the profession and not as represented by a professional society",
           answer: "",
           type: "True/False"
         },
@@ -126,7 +239,7 @@ export const courseData = {
           type: "True/False"
         },
         {
-          question: "Taken together, the themes which defines the scope of engineering ethics, consitutes a normative (value) perpective on the profession and its ethics.",
+          question: "Taken together, the themes which defines the scope of engineering ethics constitutes a normative (value) perspective on the profession and its ethics.",
           answer: "",
           type: "True/False"
         },
@@ -161,8 +274,8 @@ export const courseData = {
         },
         {
           question: "The following statement(s) is/are some of the common sense procedure(s) that should be adhered to prior to whistleblowing except;",
-          correctAnswers: [""],
-          type: "Multiple Answers",
+          answer: [""],
+          type: "Multiple Choice",
           options: ["Be prompt in expressing objections", "Proceed in a tectful, low-key manner, i.e. keep focus on the issue", "Consult trusted colleagues for advics to avoid isolation"]
         },
         {
@@ -185,8 +298,8 @@ export const courseData = {
         },
         {
           questions: "Which of the following source(s) and the many degree(s) of subtlety resonates with the conflict of interest?",
-          correctAnswers: [""],
-          type: "Multiple Answers",
+          answer: '',
+          type: "Multiple Choice",
           options: ["Common situations involving gifts, bribes and kickbacks", "More common situations involving interest in the other companies", "Situations involving availability of insider information"]
         },
         { 
@@ -205,8 +318,8 @@ export const courseData = {
       Hard: [
         { 
           question: "Identify the issue(s) or factor(s) that has/have the potential to limit the effectiveness of Code of Ethics;", 
-          correctAnswers: ["Conceptual design", "Factual issues", "Data handling"], 
-          type: "Multiple Answers",
+          answer: "3",
+          type: "Multiple Choice",
           options: ["Conceptual design", "Factual issues", "Data handling", "Trade offs", "None of the above"] 
         },
         { 
@@ -217,14 +330,14 @@ export const courseData = {
         },
         {
           question: "Which of the following statement(s) is/are inconsistent with the definition of ethics as applied to the Engineering profession?",
-          correctAnswers: [""],
-          type: "Multiple Answers",
+          answer: "",
+          type: "Multiple Choice",
           options: ["Ethics is synonymous with morality", "Engineering ethics refer to actions that are morally required and permissible", "Engineering ethics consists of desirable ideals and personal commitment in the profession"]
         },
         {
           question: "Which of the following statement(s) is/are consistent with the professional obligations of Engineers?",
-          correctAnswers: [""],
-          type: "Multiple Answers",
+          answer: "",
+          type: "Multiple Choice",
           options: ["Engineers shall endeavour to extend public knowledge and appreciation of engineering and its achievements", "Engineers shall at all times strive to serve the public interest", "Engineers shall avoid all conduct or practice that deceives the public"]
         }
       ]
@@ -463,7 +576,7 @@ export const courseData = {
         {
           question: "If 850 kg liquid occupies volume of one cubic meter, then 0.85 represents its ..?",
           answer: "Specific gravity",
-          type: "Multiple Choice",
+          type: "Multipl Choice",
           options: ["Specific weight", "Specific mass", "Specific gravity", "Specific density", "None of the above"]
         },
         {
@@ -493,7 +606,7 @@ export const courseData = {
           question: "The vapour pressure over the concave surface is ...",
           answer: "Less than the vapour pressure over the plane surface",
           type: "Multiple Choice",
-          options: ["Less than the vapour pressure over the plane surface", "Equal to the vapour pressure over the plane surface", "Greater than the vapour pressure over the plane surface", "Zero"]
+          options: ["Less than the vapour pressure over the plane surface", "Equal to the vapour pressure over the plane surface", "Greate than the vapour pressure over the plane surface", "Zero"]
         }
       ],
         Medium: [
@@ -919,7 +1032,7 @@ export const courseData = {
               type: 'True/False'
             },
             {
-              question: 'Of the three types of systematic errors encountered in aa chemical analysis, personal errors are usually the most difficult to identify and correct.',
+              question: 'Of the three types of systematic errors encountered in a chemical analysis, personal errors are usually the most difficult to identify and correct.',
               answer: "",
               type: 'True/False'
             },
@@ -953,6 +1066,156 @@ export const courseData = {
               answer: '',
               type: 'Fill-in'
             },
+            {
+              question: 'Analytical chemistry is mostly defined as what analytical chemists do.',
+              answer: 'True',
+              type: 'True/False',
+          },
+          {
+              question: 'Gross error is a special type of determinate error.',
+              answer: 'False',
+              type: 'True/False',
+          },
+          {
+              question: 'The two zeros after the decimal point are significant in data analysis.',
+              answer: 'False',
+              type: 'True/False',
+          },
+          {
+              question: 'Determinate errors follow the normal distribution and hence can be analyzed statistically.',
+              answer: 'False',
+              type: 'True/',
+          },
+          {
+              question: 'The following replicate molarities were obtained when standardizing a solution; 0.3067,0.1071, 0.1066 and 0.1050. The value 0.1050 should be discarded as due to accidental error at 95% confidence level if Qcrit at 95% confidence level and four observations is 0.829.',
+              answer: 'False',
+              type: 'True/False',
+          },
+          {
+              question: 'The uncertainty in addition is calculated by summing the absolute uncertainties of individual values.',
+              answer: 'True',
+              type: 'True/False',
+          },
+          {
+              question: 'The molality of a solution depends on temperature.',
+              answer: 'False',
+              type: 'True/False',
+          },
+          {
+              question: 'Confidence limits help determine the reliability of an experimental result.',
+              answer: '',
+              type: 'True/False',
+          },
+          {
+              question: 'Volumetric analysis involves the measurement of mass rather than volume. ',
+              answer: '',
+              type: 'True/False',
+          },
+          {
+              question: 'The propagation of errors is essential in analytical chemistry calculations.',
+              answer: '',
+              type: 'True/False',
+          },
+          {
+              question: 'The analytical concentration of a solute is different from its _______ concentration. ',
+              answer: 'equilibrium',
+              type: 'Fill-in',
+          },
+          {
+              question: 'When adding uncertainties, the absolute uncertainties are _______. ',
+              answer: 'summed',
+              type: 'Fill-in',
+          },
+          {
+              question: ' In error propagation, multiplication and division require adding _______ uncertainties. ',
+              answer: 'relative',
+              type: 'Fill-in',
+          },
+          {
+              question: 'A 95% confidence interval means we are _______% sure that the true value lies within the given range. ',
+              answer: '95',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The unit of molality is _______.',
+              answer: 'mol/kg',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The formula for molarity is moles of solute per _______ of solution.',
+              answer: 'liter',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The uncertainty of a measurement represents the possible _______ from the true value. ',
+              answer: 'deviation',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The volume of a solution in a titration is measured using a _______.',
+              answer: 'burette',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The molarity of AgNO₃ solution in the given problem is _______.',
+              answer: '0.1167 M',
+              type: 'Fill-in',
+          },
+          {
+              question: 'In volumetric analysis, a solution of known concentration is called a _______. ',
+              answer: 'standard solution',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The propagation of errors is critical in analytical chemistry to maintain _______. ',
+              answer: 'accuracy',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The europium concentration in the three samples needs to be averaged to find the _______ content.',
+              answer: 'mean',
+              type: 'Fill-in',
+          },
+          {
+              question: 'A soda ash sample was analyzed using a standard solution of _______. ',
+              answer: 'hydrochloric acid',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The sum of uncertainties is higher in addition than in _______.',
+              answer: 'multiplication',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The total uncertainty in an experiment is affected by the precision of _______. ',
+              answer: 'measurements',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The pH of a solution is calculated using the concentration of _______ ions.',
+              answer: 'hydrogen',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The concentration of chloride ions in the titration experiment depends on the _______ of the AgNO₃ solution.',
+              answer: 'molarity',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The absolute uncertainty for a given data set is the uncertainty of each value added and then divided by the _______.',
+              answer: 'number of values',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The standard deviation is a measure of the _______ in a data set.',
+              answer: 'spread',
+              type: 'Fill-in',
+          },
+          {
+              question: 'The final molarity of a solution depends on the number of moles of solute and the _______ of the solution. ',
+              answer: 'volume',
+              type: 'Fill-in',
+          },
             {
               question: 'Calculate the % transmittance of a 3 x 10^-5 M solution of an analyte with a molar absorptivity of 9000 M^-1.cm^-1. The sample holder is a 1cm cuvette.',
               answer: '',
@@ -1163,7 +1426,7 @@ export const courseData = {
               answer: '',
               type: 'Multiple Choice',
               options: ['1.0', '2.0', '2.5', '4.0']
-            },
+            }
           ]
-      }
-  }
+        },
+    }

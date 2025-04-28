@@ -267,7 +267,7 @@ const QuizScreen2 = () => {
       )}
       {currentQuestion.type === 'Multiple Choice' && (
         <div>
-          <div style={styles.con3}>
+          <div style={styles.Con3}>
             {currentQuestion.options.map((option, index) => (
               <button key={index} onClick={() => handleAnswerSelect(option)} style={styles.answerButton}>
                 {option}
@@ -278,7 +278,7 @@ const QuizScreen2 = () => {
       )}
       {currentQuestion.type === 'Multiple Answers' && (
        <div>
-       <div style={{ ...styles.con3, overflowY: 'scroll', maxHeight: '300px' }}>
+       <div style={styles.con3}>
          {currentQuestion.options.map((option, index) => (
            <label key={index} style={styles.label}>
              <input
@@ -432,6 +432,25 @@ const styles = {
     marginRight: "auto",
   },
   con3: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '90%',
+    padding: '30px',
+    textAlign: 'center',
+    zIndex: 2,
+    opacity: 0.9,
+    flex: 1,
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+    marginTop: '20px',
+    marginBottom: '20px',
+    marginLeft: "auto",
+    marginRight: "auto",
+    gap: '20px',
+  },  
+  Con3: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -595,19 +614,19 @@ const styles = {
   label: {
     backgroundColor: '#4CAF50',
     color: 'white',
-    padding: '5px 25px',
-    fontSize: '14px',
+    padding: '20px 25px',
+    fontSize: '20px',
+    fontWeight: '500',
     cursor: 'pointer',
     borderRadius: '10px',
     border: 'none',
-    marginBottom: '5px',
-    marginTop: '5px',
+    marginBottom: '10px',
+    marginTop: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     transition: 'background-color 0.3s ease',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '80%',
   },
 }
 export default QuizScreen2;

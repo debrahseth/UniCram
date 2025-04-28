@@ -4,7 +4,7 @@ import { auth, db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { spiral } from 'ldrs';
 import welcomeImage from '../assets/welcomeImage.jpg';
-import logo from '../assets/welcome.jpg';
+import logo from '../assets/welcome1.jpg';
 
 const SplashScreen = () => {
   const [username, setUsername] = useState('');

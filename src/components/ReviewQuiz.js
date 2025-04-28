@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import logo from '../assets/main.jpg';
+import logo from '../assets/op.jpg';
 
 const ReviewQuiz = () => {
   const { state } = useLocation();
@@ -10,13 +10,15 @@ const ReviewQuiz = () => {
   return (
     <div style={styles.container}>
       <div style={styles.background}></div>
+      <div style={styles.head}>
         <h2 style={styles.header}>Review Your Quiz</h2>
+      </div>  
       <div style={styles.scrollableContainer}>
       {questions.map((question, index) => {
         const userAnswer = selectedAnswers[index];
         const isCorrect = userAnswer === question.answer;
         return (
-          <div key={index}>
+          <div key={index} style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
             <p style={styles.questionText}>Question: {question.question}</p>
             <p>
               <strong>Your answer:</strong> {userAnswer || "No answer"}
@@ -61,19 +63,36 @@ const styles = {
     opacity: 0.5,
     zIndex: -1,
   },
+  head: {
+    width: '95%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    padding: '10px',
+    textAlign: 'center',
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)",
+    borderRadius: '10px 10px 10px 10px',
+    position: 'relative',
+    zIndex: 2,
+    opacity: 0.9,
+    top: '10px',
+  },
   header: {
-    fontSize: '2.5rem',
+    fontSize: '3rem',
     color: '#333',
-    marginBottom: '30px',
+  },
+  evenRow: {
+    backgroundColor: '#f9f9f9',
+    padding: '10px',
+    borderRadius: '10px',
+  },
+  oddRow: {
+    backgroundColor: '#f0f0f0',
+    padding: '10px',
+    borderRadius: '10px',
   },
   questionText: {
     fontSize: '1.5rem',
     marginBottom: '10px',
-  },
-  explanation: {
-    fontSize: '1rem',
-    color: '#333',
-    marginTop: '10px',
   },
   restartButton: {
     padding: '5px 30px',

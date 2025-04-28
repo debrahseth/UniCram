@@ -6,6 +6,7 @@ import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
 import logo from '../assets/main.jpg';
 import logo1 from '../assets/logo1.jpg';
 import { courseData } from './courseData'; 
+import { dotStream } from 'ldrs';
 
 const ChallengeSendingScreen = () => {
   const [users, setUsers] = useState([]);
@@ -17,6 +18,7 @@ const ChallengeSendingScreen = () => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -172,6 +174,14 @@ const ChallengeSendingScreen = () => {
     </li>
   ));
 
+  useEffect(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 4000);
+    }, []);
+  
+  dotStream.register()
+
   return (
     <div style={styles.challengeScreen}>
         <div style={styles.background}></div>
@@ -190,9 +200,19 @@ const ChallengeSendingScreen = () => {
         </div>
                 <p style={styles.subtitle}>Select a user to challenge:</p>
                 <div style={styles.scrollableContainer}>
-                    <div style={styles.content}>
-                        <ul style={styles.userList}>{userList}</ul>
+                  <div style={styles.content}>
+                  {loading ? (
+                    <div style={styles.noDataContainer}>
+                      <p style={styles.noDataMessage}>Loading competitors<l-dot-stream size="60" speed="2.5"  color="black"></l-dot-stream></p>
                     </div>
+                    ) : userList.length > 0 ? (
+                      <ul style={styles.userList}>{userList}</ul>
+                    ) : (
+                      <div style={styles.noDataContainer}>
+                        <p style={styles.noDataMessage}>No users available for your program of study</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
       <button
         onClick={handleOpenModal}
@@ -263,31 +283,50 @@ const ChallengeSendingScreen = () => {
 
 const styles = {
 challengeScreen: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    height: '100vh',
-    position: 'relative',
-    overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  height: '100vh',
+  position: 'relative',
+  overflow: 'hidden',
   },
 background: {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `url(${logo})`, 
-    backgroundPosition: 'center', 
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    opacity: 0.5,
-    zIndex: -1,
+  content: '""',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundImage: `url(${logo})`, 
+  backgroundPosition: 'center', 
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  opacity: 0.5,
+  zIndex: -1,
 },
+noDataContainer: {
+  display: "flex",        
+  flexDirection: "column",   
+  justifyContent: "center",  
+  alignItems: "center",      
+  padding: "20px",
+  textAlign: "center",
+  borderRadius: "5px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
+  width: "80%",             
+  minHeight: "200px",     
+  position: "absolute",     
+  top: "60%",            
+  left: "50%",            
+  transform: "translate(-50%, -50%)",
+},  
 noDataMessage: {
-  fontSize: "20px",
-  color: "#555",
+  textAlign: 'center',
+  fontSize: "50px",
+  fontWeight: "900",
+  color: '#000000',
+  padding: '20px',
 },
 header: {
   zIndex: 2,
@@ -346,7 +385,7 @@ scrollableContainer: {
     width: '100%'
 },
 subtitle: {
-    fontSize: '25px',
+    fontSize: '35px',
     color: '#000000',
     marginBottom: '10px',
     fontWeight: '900'

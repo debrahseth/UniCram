@@ -32,6 +32,7 @@ const Signup = () => {
     "Geological Engineering",
     "Geomatic Engineering",
     "Industrial Engineering",
+    "Marine Engineering",
     "Materials Engineering",
     "Mechanical Engineering",
     "Metallurgical Engineering",
@@ -67,8 +68,24 @@ const Signup = () => {
         semesterOfStudy: semesterOfStudy,
         status: 'online',
       });
+      const response = await fetch('https://prime-api-server.vercel.app/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: email,
+          username: username
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Failed to send email:', errorData);
+        throw new Error('Failed to send welcome email');
+      }
+  
       navigate('/splash');
     } catch (error) {
+      console.error('Error during sign-up:', error);
       setError(error.message);
     } finally {
       setModalOpen(false);

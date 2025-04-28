@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import logo from '../assets/welcomeImage.jpg';
-import logo1 from '../assets/welcome.jpg';
+import logo1 from '../assets/welcome1.jpg';
 
 const Home = () => {
   const navigate = useNavigate();

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courseData1 } from './courseData1';
+import { courseData2 } from './courseData2';
+import { courseData3 } from './courseData3';
 import { db, auth } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import logo from "../assets/op.jpg";
+import { dotStream } from 'ldrs';
 
 const TestYourself = () => {
   const navigate = useNavigate();
@@ -19,69 +22,40 @@ const TestYourself = () => {
   const [programOfStudy, setProgramOfStudy] = useState('');
   const [levelOfStudy, setLevelOfStudy] = useState('');
   const [semesterOfStudy, setSemesterOfStudy] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [showDiagram, setShowDiagram] = useState(true);
+  const [zoomedImage, setZoomedImage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [readAloud, setReadAloud] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
-useEffect(() => {
-  const fetchProgramOfStudy = async () => {
-    try {
-      const userDocRef = doc(db, 'users', auth.currentUser.uid);
-      const userDoc = await getDoc(userDocRef);
-
-      if (userDoc.exists()) {
-        setProgramOfStudy(userDoc.data().programOfStudy);
-      } else {
-        console.log('No user data found!');
-      }
-    } catch (error) {
-      console.error("Error fetching user's programOfStudy:", error);
-    }
+  const handleZoomImage = (image) => {
+    setZoomedImage(image);
   };
 
-  if (auth.currentUser) {
-    fetchProgramOfStudy();
-  }
-}, []);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userDocRef = doc(db, 'users', auth.currentUser.uid);
+        const userDoc = await getDoc(userDocRef);
 
-useEffect(() => {
-  const fetchLevelOfStudy = async () => {
-    try {
-      const userDocRef = doc(db, 'users', auth.currentUser.uid);
-      const userDoc = await getDoc(userDocRef);
-
-      if (userDoc.exists()) {
-        setLevelOfStudy(userDoc.data().levelOfStudy);
-      } else {
-        console.log('No user data found!');
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setProgramOfStudy(userData.programOfStudy || '');
+          setLevelOfStudy(userData.levelOfStudy || '');
+          setSemesterOfStudy(userData.semesterOfStudy || '');
+        } else {
+          console.log('No user data found!');
+        }
+      } catch (error) {
+        console.error("Error fetching user's data:", error);
       }
-    } catch (error) {
-      console.error("Error fetching user's levelOfStudy:", error);
+    };
+
+    if (auth.currentUser) {
+      fetchUserData();
     }
-  };
-
-  if (auth.currentUser) {
-    fetchLevelOfStudy();
-  }
-}, []);
-
-useEffect(() => {
-  const fetchSemesterOfStudy = async () => {
-    try {
-      const userDocRef = doc(db, 'users', auth.currentUser.uid);
-      const userDoc = await getDoc(userDocRef);
-
-      if (userDoc.exists()) {
-        setSemesterOfStudy(userDoc.data().semesterOfStudy);
-      } else {
-        console.log('No user data found!');
-      }
-    } catch (error) {
-      console.error("Error fetching user's semesterOfStudy:", error);
-    }
-  };
-
-  if (auth.currentUser) {
-    fetchSemesterOfStudy();
-  }
-}, []);
+  }, []);
   
   const handleCourseSelect = (course) => {
     setSelectedCourse(course);
@@ -96,49 +70,52 @@ useEffect(() => {
   useEffect(() => {
     if (selectedCourse && selectedDifficulty) {
       let questionsToDisplay = [];
+  
+      const getQuestionsFromSources = (course, difficulty) => {
+        let data =
+          courseData1[course]?.[difficulty] ||
+          courseData2[course]?.[difficulty] ||
+          courseData3[course]?.[difficulty];
+  
+        return data ? [...data] : [];
+      };
+  
       if (selectedDifficulty === 'Random') {
         const allDifficulties = ['Easy', 'Medium', 'Hard'];
+        
         allDifficulties.forEach((level) => {
-          const difficultyData = courseData1[selectedCourse]?.[level];
-          if (difficultyData) {
+          const difficultyData = getQuestionsFromSources(selectedCourse, level);
+          if (difficultyData.length > 0) {
             questionsToDisplay = [...questionsToDisplay, ...difficultyData];
           } else {
-            console.warn(`Difficulty data not found for ${level}`);
+            console.warn(`Difficulty data not found for ${selectedCourse} at ${level}`);
           }
         });
+  
         questionsToDisplay = questionsToDisplay.sort(() => Math.random() - 0.5);
       } else {
-        const difficultyData = courseData1[selectedCourse]?.[selectedDifficulty];
-        if (difficultyData) {
-          questionsToDisplay = difficultyData;
-        } else {
-          console.warn('Difficulty data not found');
+        questionsToDisplay = getQuestionsFromSources(selectedCourse, selectedDifficulty);
+  
+        if (questionsToDisplay.length === 0) {
+          console.warn(`Difficulty data not found for ${selectedCourse} at ${selectedDifficulty}`);
         }
       }
+  
       setQuestions(questionsToDisplay);
     }
-  }, [selectedCourse, selectedDifficulty]);
+  }, [selectedCourse, selectedDifficulty]);  
   
   useEffect(() => {
     if (stage === 'quiz') {
-      let duration = 0;
-      switch (selectedDifficulty) {
-        case 'Easy':
-          duration = 300;
-          break;
-        case 'Medium':
-          duration = 600;
-          break;
-        case 'Hard':
-          duration = 900;
-          break;
-        case 'Random':
-          duration = 1500;
-          break;
-        default:
-          duration = 300;
-      }
-      setTimer(duration);
+      const durations = {
+        Easy: 1500,
+        Medium: 1800,
+        Hard: 2700,
+        Random: 3600,
+        General: 5400,
+      };
+
+      setTimer(durations[selectedDifficulty] || durations.Default);
       setTimerActive(true);
     }
   }, [stage, selectedDifficulty]);
@@ -161,6 +138,14 @@ useEffect(() => {
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
       [currentQuestionIndex]: answer,
+    }));
+  };
+
+  const handleTypeAnswer = (answer) => {
+    const userAnswer = answer.trim().toLowerCase();
+    setSelectedAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [currentQuestionIndex]: userAnswer,
     }));
   };
 
@@ -200,6 +185,22 @@ useEffect(() => {
 
   const progress = (currentQuestionIndex + 1) / questions.length * 100;
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 6000);
+  }, []);
+
+  useEffect(() => {
+    if (readAloud && questions[currentQuestionIndex]?.question) {
+      const utterance = new SpeechSynthesisUtterance(questions[currentQuestionIndex].question);
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    }
+  }, [readAloud, currentQuestionIndex]);
+
+  dotStream.register()
+
   return (
     <div>
        <div style={styles.container}>
@@ -209,8 +210,28 @@ useEffect(() => {
           <div style={styles.mainContainer}>
             <h2 style={styles.header}>Choose a Course</h2>
             <div style={styles.courseSelector}>
-              {Object.keys(courseData1).filter((subject) => courseData1[subject].programOfStudy === programOfStudy && courseData1[subject].levelOfStudy === levelOfStudy && courseData1[subject].semesterOfStudy === semesterOfStudy).length > 0 ? (
-                Object.keys(courseData1).filter((subject) => courseData1[subject].programOfStudy === programOfStudy && courseData1[subject].levelOfStudy === levelOfStudy && courseData1[subject].semesterOfStudy === semesterOfStudy).map((course) => (
+            {loading ? (
+            <div style={styles.noDataContainer}>
+              <p style={styles.noDataMessage}>Loading courses<l-dot-stream size="60" speed="2.5"  color="black"></l-dot-stream></p>
+            </div>
+              ) : Object.keys({ ...courseData1, ...courseData2, ...courseData3 })
+              .filter((subject) => {
+                const course = courseData1[subject] || courseData2[subject] || courseData3[subject];
+                return(
+                  course.programOfStudy === programOfStudy && 
+                  course.levelOfStudy === levelOfStudy && 
+                  course.semesterOfStudy === semesterOfStudy
+                );
+              }).length > 0 ? (
+                Object.keys({ ...courseData1, ...courseData2, ...courseData3 })
+                .filter((subject) => {
+                  const course= courseData1[subject] || courseData2[subject] || courseData3[subject];
+                  return(
+                    course.programOfStudy === programOfStudy && 
+                    course.levelOfStudy === levelOfStudy && 
+                    course.semesterOfStudy === semesterOfStudy
+                  );
+                }).map((course) => (
                   <button
                     key={course}
                     style={styles.courseButton}
@@ -238,11 +259,11 @@ useEffect(() => {
           <div style={styles.parentContainer}>
             <h2 style={styles.header}>Choose Duration for {selectedCourse} Quiz</h2>
             <div style={styles.difficultySelector}>
-              <button onClick={() => handleDifficultySelect('Easy')} style={styles.courseButton}>5 minutes</button>
-              <button onClick={() => handleDifficultySelect('Medium')} style={styles.courseButton}>10 minutes</button>
-              <button onClick={() => handleDifficultySelect('Hard')} style={styles.courseButton}>15 minutes</button>
-              <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>45 minutes</button>
-              <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>60 minutes</button>
+              <button onClick={() => handleDifficultySelect('Easy')} style={styles.courseButton}>25 minutes</button>
+              <button onClick={() => handleDifficultySelect('Medium')} style={styles.courseButton}>30 minutes</button>
+              <button onClick={() => handleDifficultySelect('Hard')} style={styles.courseButton}>45 minutes</button>
+              <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>1 hour</button>
+              <button onClick={() => handleDifficultySelect('General')} style={styles.courseButton}>1 hour - 30 minutes</button>
             </div> 
             <div style={styles.buttonContainment}>
               <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
@@ -259,39 +280,136 @@ useEffect(() => {
           <div style={styles.background}></div>
             <div style={styles.timerContainer}>
               <p style={styles.questionNumber}>{selectedCourse} - {selectedDifficulty} Quiz</p>
-              <p style={styles.questionNumber}>Time Left: {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, '0')}</p>
+              <p style={styles.questionNumber}>Time Left: {Math.floor(timer / 3600)}hr : {String(Math.floor((timer % 3600) / 60)).padStart(2, '0')}mins : {String(timer % 60).padStart(2, '0')}s</p>
               <p style={styles.questionNumber}>Question {currentQuestionIndex + 1} / {questions.length}</p>
               <div style={styles.progressBar}>
                   <div style={{...styles.progressFill,width: `${progress}%`,}}/>
               </div>
+              <div style={styles.readingControlsContainer}>
+                {!readAloud ? (
+                  <button
+                    style={styles.toggleButton1}
+                    onClick={() => {
+                      setReadAloud(true);
+                      setIsPaused(false);
+                    }}>
+                    🔊 Start Reading
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      style={styles.toggleButton1}
+                      onClick={() => {
+                        if (isPaused) {
+                          window.speechSynthesis.resume();
+                          setIsPaused(false);
+                        } else {
+                          window.speechSynthesis.pause();
+                          setIsPaused(true);
+                        }
+                      }}
+                    >
+                      {isPaused ? '▶️ Resume' : '⏸️ Pause'}
+                    </button>
+                    <button
+                      style={{ ...styles.toggleButton1, backgroundColor: '#dc3545' }}
+                      onClick={() => {
+                        window.speechSynthesis.cancel();
+                        setReadAloud(false);
+                        setIsPaused(false);
+                      }}
+                    >
+                      🛑 Stop
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           <div style={styles.cont}>
-          <p style={styles.question}>Question {currentQuestionIndex + 1}: {questions[currentQuestionIndex].question}</p>
+            <p style={styles.question}>Question {currentQuestionIndex + 1}: {questions[currentQuestionIndex].question}</p>
           </div>
           <div style={styles.optionsContainer}>
+            {questions[currentQuestionIndex].image && (
+              <button
+                style={styles.toggleButton}
+                onClick={() => setShowDiagram(!showDiagram)}
+              >
+                {showDiagram ? 'Hide Diagram' : 'Show Diagram'}
+              </button>
+            )}
+            {questions[currentQuestionIndex].image && showDiagram && (
+              <img
+                src={questions[currentQuestionIndex].image}
+                alt="Question Diagram"
+                style={styles.diagramImage}
+                onClick={() => handleZoomImage(questions[currentQuestionIndex].image)}
+              />
+            )}
             {questions[currentQuestionIndex].type === 'Multiple Choice' ? (
               questions[currentQuestionIndex].options.map((option, index) => (
-                <button key={index} style={{...styles.optionButton,backgroundColor:selectedAnswers[currentQuestionIndex] === option? '#4CAF50': '#f0f0f0',}}onClick={() => handleSelectAnswer(option)}>
+                <button
+                  key={index}
+                  style={{
+                    ...styles.optionButton,
+                    backgroundColor: selectedAnswers[currentQuestionIndex] === option ? '#4CAF50' : '#f0f0f0',
+                  }}
+                  onClick={() => handleSelectAnswer(option)}
+                >
                   {option}
                 </button>
               ))
             ) : questions[currentQuestionIndex].type === 'True/False' ? (
-              <>
               <div style={styles.Container}>
-                <button style={{...styles.optionButton,backgroundColor:selectedAnswers[currentQuestionIndex] === 'True'? '#4CAF50':'#f0f0f0',}}onClick={() => handleSelectAnswer('True')}>
+                <button
+                  style={{
+                    ...styles.optionButton,
+                    backgroundColor: selectedAnswers[currentQuestionIndex] === 'True' ? '#4CAF50' : '#f0f0f0',
+                  }}
+                  onClick={() => handleSelectAnswer('True')}
+                >
                   True
                 </button>
-                <button style={{...styles.optionButton,backgroundColor:selectedAnswers[currentQuestionIndex] === 'False'? '#4CAF50': '#f0f0f0',}}onClick={() => handleSelectAnswer('False')}>
+                <button
+                  style={{
+                    ...styles.optionButton,
+                    backgroundColor: selectedAnswers[currentQuestionIndex] === 'False' ? '#4CAF50' : '#f0f0f0',
+                  }}
+                  onClick={() => handleSelectAnswer('False')}
+                >
                   False
                 </button>
-              </div>  
+              </div>
+            ) : questions[currentQuestionIndex].type === 'Diagram' ? (
+              <>
+                <input
+                  type="text"
+                  placeholder="Type your answer"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onBlur={(e) => {
+                    handleTypeAnswer(e.target.value.trim().toLowerCase());
+                    setInputValue('');
+                  }}
+                  style={styles.inputField1}
+                />
               </>
             ) : (
               <input
                 type="text"
                 placeholder="Type your answer"
-                onBlur={(e) => handleSelectAnswer(e.target.value)}
-                style={styles.inputField}/>
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onBlur={(e) => {
+                  handleTypeAnswer(e.target.value.trim().toLowerCase());
+                  setInputValue('');
+                }}
+                style={styles.inputField}
+              />
+            )}
+            {zoomedImage && (
+              <div style={styles.modalOverlay} onClick={() => setZoomedImage(null)}>
+                <img src={zoomedImage} alt="Zoomed Diagram" style={styles.zoomedImage} />
+              </div>
             )}
           </div>
           <div style={styles.navigation}>
@@ -354,16 +472,25 @@ useEffect(() => {
 
 const styles = {
 noDataContainer: {
+  display: "flex",        
+  flexDirection: "column",   
+  justifyContent: "center",  
+  alignItems: "center",      
   padding: "20px",
   textAlign: "center",
-  backgroundColor: "#fff",
   borderRadius: "5px",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-  alignItems: 'center',
-},
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
+  width: "80%",             
+  minHeight: "200px",     
+  position: "absolute",     
+  top: "60%",            
+  left: "50%",            
+  transform: "translate(-50%, -50%)",
+}, 
 noDataMessage: {
-  fontSize: "30px",
-  color: "#555",
+  fontSize: "50px",
+  color: "#000000",
+  fontWeight: "900"
 },
 container: {
   display: 'flex',
@@ -383,7 +510,7 @@ background: {
   backgroundPosition: "center",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  opacity: 0.5,
+  opacity: 0.2,
   zIndex: -1,
 },
 header: {
@@ -428,7 +555,7 @@ difficultySelector: {
   flexDirection: 'column',
   gap: '30px',
   textAlign: 'center',
-  marginTop: '250px',
+  marginTop: '230px',
   padding: "20px",
   opacity: "0.9",
   borderRadius: '8px',
@@ -456,7 +583,7 @@ optionButton: {
   backgroundColor: '#4CAF50',
   color: 'black',
   padding: '15px 25px',
-  fontSize: '15px',
+  fontSize: '25px',
   fontWeight: 'bolder',
   cursor: 'pointer',
   borderRadius: '10px',
@@ -474,6 +601,7 @@ quizContainer: {
 },
 question: {
   fontSize: '1.5rem',
+  fontWeight: '900',
   padding: '5px'
 },
 optionsContainer: {
@@ -489,7 +617,8 @@ optionsContainer: {
   borderRadius: '10px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   padding: '8px',
-  width: '80%'
+  width: '80%',
+  marginTop: '35px'
 },  
 Container: {
   position: 'fixed',
@@ -672,6 +801,20 @@ inputField: {
   marginLeft: "auto",
   marginRight: "auto",
 },
+inputField1: {
+  padding: '12px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: '25px',
+  borderRadius: '8px',
+  border: '1px solid #ccc',
+  width: '80%',
+  marginTop: '10px',
+  marginLeft: "auto",
+  marginRight: "auto",
+},
 mainContainer: {
   height: "86vh",
   display: "flex",
@@ -766,7 +909,54 @@ cont: {
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
   padding: '5px',
   marginTop: '8px',
-}  
+},
+toggleButton: {
+  padding: '8px',
+  marginBottom: '10px',
+  cursor: 'pointer',
+  backgroundColor: '#007bff',
+  color: 'white',
+  border: 'none',
+  borderRadius: '5px',
+},
+diagramImage: {
+  width: '100px',
+  height: '100px',
+  cursor: 'pointer',
+},
+modalOverlay: {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: 'rgba(0,0,0,0.7)',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+zoomedImage: {
+  maxWidth: '80%',
+  maxHeight: '80%',
+},
+readingControlsContainer: {
+  position: 'absolute',
+  top: 20,
+  right: 20,
+  display: 'flex',
+  gap: '10px',
+  zIndex: 1000,
+},
+toggleButton1: {
+  backgroundColor: '#007BFF',
+  color: '#fff',
+  padding: '8px 14px',
+  border: 'none',
+  borderRadius: '8px',
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  fontSize: '20px',
+  transition: '0.3s ease',
+}
 };
-
 export default TestYourself;
