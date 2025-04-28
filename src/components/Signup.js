@@ -68,7 +68,7 @@ const Signup = () => {
         semesterOfStudy: semesterOfStudy,
         status: 'online',
       });
-      const response = await fetch('https://prime-api-server.vercel.app/send-email', {
+      const response = await fetch('https://prime-api-server-debrahseth-study-group-projects.vercel.app/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
