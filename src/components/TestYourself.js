@@ -214,7 +214,7 @@ const TestYourself = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 6000);
+    }, 1000);
   }, []);
 
   useEffect(() => {

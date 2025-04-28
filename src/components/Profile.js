@@ -14,13 +14,13 @@ const Profile = () => {
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [recordLoading, setRecordLoading] = useState(false);
   const [programLoading, setProgramLoading] = useState(false);
-  const [collegeLoading, setCollegeLoading] = useState(false);
+  // const [collegeLoading, setCollegeLoading] = useState(false);
   const [levelLoading, setLevelLoading] = useState(false);
   const [semesterLoading, setSemesterLoading] = useState(false);
   const [programOfStudy, setProgramOfStudy] = useState('');
   const [levelOfStudy, setLevelOfStudy] = useState('');
   const [semesterOfStudy, setSemesterOfStudy] = useState('');
-  const [collegeOfStudy, setCollegeOfStudy] = useState('');
+  // const [collegeOfStudy, setCollegeOfStudy] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const navigate = useNavigate();
@@ -65,12 +65,12 @@ const Profile = () => {
               programOfStudy: userDoc.data().programOfStudy || 'No Program of Study',
               semesterOfStudy: userDoc.data().semesterOfStudy || 'No Semester of Study',
               levelOfStudy: userDoc.data().levelOfStudy || 'No Level of Study',
-              collegeOfStudy: userDoc.data().collegeOfStudy || 'No College of Study',
+              // collegeOfStudy: userDoc.data().collegeOfStudy || 'No College of Study',
             });
             setProgramOfStudy(userDoc.data().programOfStudy || '');
             setSemesterOfStudy(userDoc.data().semesterOfStudy || '');
             setLevelOfStudy(userDoc.data().levelOfStudy || '');
-            setCollegeOfStudy(userDoc.data().collegeOfStudy || '');
+            // setCollegeOfStudy(userDoc.data().collegeOfStudy || '');
           } else {
             console.log('User document not found');
           }
@@ -191,26 +191,26 @@ const Profile = () => {
     }
   };
 
-  const handleUpdateCollegeOfStudy = async () => {
-    setCollegeLoading(true);
-    try {
-      if (currentUser) {
-        const userDocRef = doc(db, 'users', currentUser.uid);
-        await updateDoc(userDocRef, {
-          collegeOfStudy:collegeOfStudy,
-        });
-        setUserDetails((prevDetails) => ({
-          ...prevDetails,
-          collegeOfStudy: collegeOfStudy,
-        }));
-        alert('College of Study updated');
-      }
-    } catch (error) {
-      console.error('Error updating college of study:', error);
-    } finally {
-      setCollegeLoading(false);
-    }
-  };
+  // const handleUpdateCollegeOfStudy = async () => {
+  //   setCollegeLoading(true);
+  //   try {
+  //     if (currentUser) {
+  //       const userDocRef = doc(db, 'users', currentUser.uid);
+  //       await updateDoc(userDocRef, {
+  //         collegeOfStudy:collegeOfStudy,
+  //       });
+  //       setUserDetails((prevDetails) => ({
+  //         ...prevDetails,
+  //         collegeOfStudy: collegeOfStudy,
+  //       }));
+  //       alert('College of Study updated');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error updating college of study:', error);
+  //   } finally {
+  //     setCollegeLoading(false);
+  //   }
+  // };
 
   const handleRecord = async () => {
     setRecordLoading(true);
@@ -277,7 +277,7 @@ const Profile = () => {
             <div style={styles.inputGroup}>
               <label style={styles.label}><i className="fa fa-building" style={styles.icon}></i>College of Study:</label>
               <input
-              value={collegeOfStudy}
+              value='College of Engineering'
               readOnly
               // onChange={(e) => setCollegeOfStudy(e.target.value)}
               style={styles.programInput}

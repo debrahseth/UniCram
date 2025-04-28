@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { auth, db } from '../firebase';
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Title, Tooltip, Legend } from 'chart.js';
-import { collection, getDocs, deleteDoc, onSnapshot, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, onSnapshot, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/main.jpg';
 import StreakTracker from './StreakTracker';
@@ -253,7 +253,13 @@ const PersonalRecords = () => {
           const deletePromises = querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
           await Promise.all(deletePromises);
 
-          setQuizRecords([]);
+          const userDocRef = doc(db, 'users', currentUser.uid);
+          await updateDoc(userDocRef, {
+          streak: 0,
+          lastQuizDate: null,
+        });
+
+        setQuizRecords([]);
           console.log('All quiz scores have been deleted.');
         }
       } catch (error) {
