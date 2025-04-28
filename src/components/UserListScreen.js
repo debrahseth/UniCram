@@ -59,6 +59,7 @@ const UserListScreen = () => {
                   <td style={styles.tableCell1}>{user.username}</td>
                   <td style={styles.tableCell1}>BSc. {user.programOfStudy || 'No Program'}</td>
                   <td style={styles.tableCell1}>{user.levelOfStudy || 'No Level'}</td>
+                  <td style={styles.tableCell1}>{user.streak || '-'} 🔥</td>
                 </tr>
               ))}
             </tbody>

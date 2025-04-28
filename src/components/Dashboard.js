@@ -5,6 +5,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
 import logo from '../assets/op.jpg';
 import useInactivityLogout from './useInactivityLogout';
+import StreakTracker from './StreakTracker';
 import { dotStream, spiral } from 'ldrs'
 
 const Dashboard = () => {
@@ -143,6 +144,7 @@ const Dashboard = () => {
         <button onClick={() => navigate('/profile')} style={styles.profileButton}>
           <i className="fa fa-user" style={styles.icon}></i>
         </button>
+        <StreakTracker/>
       </div>
       <div style={styles.button}>
         <div style={styles.buttonContainer}>

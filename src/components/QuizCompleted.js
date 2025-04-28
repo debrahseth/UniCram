@@ -12,8 +12,14 @@ const QuizCompleted = () => {
   const [receiverScores, setReceiverScores] = useState(null);
   const [isSenderScoreLoaded, setIsSenderScoreLoaded] = useState(false);
   const [isReceiverScoreLoaded, setIsReceiverScoreLoaded] = useState(false);
+  const [winner, setWinner] = useState(null); // New state to track the winner
   const { senderUsername, receiverUsername, challengeId } = location.state || {};
 
+  const handleLeavePage = () => {
+    speechSynthesis.cancel();
+    navigate("/dashboard");
+  };
+  
   useEffect(() => {
     const loadScores = () => {
       try {
@@ -46,7 +52,35 @@ const QuizCompleted = () => {
       if (unsubscribe) unsubscribe();
     };
   }, [challengeId]);
-  
+
+  // Add useEffect to determine the winner and trigger voice announcement
+  useEffect(() => {
+    if (isSenderScoreLoaded && isReceiverScoreLoaded) {
+      let winnerName = null;
+      let loserName = null;
+      if (senderScores > receiverScores) {
+        winnerName = senderUsername;
+        loserName = receiverUsername;
+        setWinner('sender');
+      } else if (receiverScores > senderScores) {
+        winnerName = receiverUsername;
+        loserName = senderUsername;
+        setWinner('receiver');
+      } else {
+        setWinner('tie');
+      }
+
+      if (winnerName) {
+        const utterance = new SpeechSynthesisUtterance(`Congratulations ${winnerName}! You did an amazing job and came out on top!. ${loserName}, don't worry, — every great champion started with a few setbacks. Keep pushing, your moment is coming soon!. Congrats to you all!.`);
+        utterance.lang = 'en-US';
+        utterance.volume = 1;
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        speechSynthesis.speak(utterance);
+      }
+    }
+  }, [isSenderScoreLoaded, isReceiverScoreLoaded, senderScores, receiverScores, senderUsername, receiverUsername]);
+
   const determineWinner = () => {
     if (senderScores > receiverScores) {
       return <h3 style={{fontSize: '20px'}}>{senderUsername} Wins! Congrats {senderUsername}<i className="fa fa-trophy" style={{ marginLeft: '10px' }}></i></h3>;
@@ -72,7 +106,7 @@ const QuizCompleted = () => {
       </div>
       <div style={styles.scoresContainer}>
         <div style={styles.contain}>
-          <div style={styles.mainContainer}>
+          <div style={{ ...styles.mainContainer, ...(winner === 'sender' ? styles.winnerContainer : {}) }}>
             <div style={styles.background}></div>
               <h2 style={styles.title}>{senderUsername}'s Score{' '}</h2>
                 <div style={styles.miniScoresContainer}>
@@ -86,7 +120,7 @@ const QuizCompleted = () => {
           </div> 
         </div>
         <div style={styles.contain}>
-          <div style={styles.mainContainer}>
+          <div style={{ ...styles.mainContainer, ...(winner === 'receiver' ? styles.winnerContainer : {}) }}>
           <div style={styles.background}></div>
               <h2 style={styles.title}>{receiverUsername}'s Score{' '}</h2>
                 <div style={styles.miniScoresContainer}>
@@ -101,7 +135,7 @@ const QuizCompleted = () => {
         </div>
       </div>
         <div style={styles.buttonContainer}>
-          <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
+          <button onClick={handleLeavePage} style={styles.goBackButton}>
             <FaArrowLeft style={styles.icon} />Go Back to Dashboard
           </button>
         </div>
@@ -119,6 +153,12 @@ const styles = {
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  winnerContainer: { // New style for the winner's container animation
+    animation: 'celebrate 2s infinite',
+    border: '3px solid transparent',
+    background: 'linear-gradient(white, white) padding-box, linear-gradient(45deg, #FFD700, #FF4500, #FFD700) border-box',
+    boxShadow: '0 0 15px rgba(255, 215, 0, 0.5)',
   },
   background: {
     content: '""',
@@ -255,5 +295,17 @@ const styles = {
     marginBottom: '200px',
   },
 };
+
+// Add CSS keyframes for the celebration animation
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = `
+  @keyframes celebrate {
+    0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 69, 0, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+  }
+`;
+document.head.appendChild(styleSheet);
 
 export default QuizCompleted;

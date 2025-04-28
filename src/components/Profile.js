@@ -12,7 +12,7 @@ const Profile = () => {
   const [userDetails, setUserDetails] = useState({ username: '', email: '', programOfStudy: '', levelOfStudy: '', semesterOfStudy: '' });
   const [loading, setLoading] = useState(true);
   const [logoutLoading, setLogoutLoading] = useState(false);
-  // const [recordLoading, setRecordLoading] = useState(false);
+  const [recordLoading, setRecordLoading] = useState(false);
   const [programLoading, setProgramLoading] = useState(false);
   const [collegeLoading, setCollegeLoading] = useState(false);
   const [levelLoading, setLevelLoading] = useState(false);
@@ -212,12 +212,12 @@ const Profile = () => {
     }
   };
 
-  // const handleRecord = async () => {
-  //   setRecordLoading(true);
-  //   await new Promise(resolve => setTimeout(resolve, 3000));
-  //   navigate('/record');
-  //   setRecordLoading(false);
-  // }
+  const handleRecord = async () => {
+    setRecordLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    navigate('/record');
+    setRecordLoading(false);
+  }
 
   if (loading) {
     return (
@@ -227,13 +227,13 @@ const Profile = () => {
     );
   }
 
-  // if (recordLoading) {
-  //   return (
-  //     <div className="spinner-container">
-  //       <p style={{fontSize: '36px', color: 'blue'}}>Loading Records <l-line-spinner size="40" stroke="3" speed="1" color="blue" ></l-line-spinner></p>
-  //     </div>
-  //   );
-  // }
+  if (recordLoading) {
+    return (
+      <div className="spinner-container">
+        <p style={{fontSize: '36px', color: 'blue'}}>Loading Records <l-line-spinner size="40" stroke="3" speed="1" color="blue" ></l-line-spinner></p>
+      </div>
+    );
+  }
 
   if (logoutLoading) {
     return (
@@ -276,21 +276,22 @@ const Profile = () => {
             </div>
             <div style={styles.inputGroup}>
               <label style={styles.label}><i className="fa fa-building" style={styles.icon}></i>College of Study:</label>
-              <select
+              <input
               value={collegeOfStudy}
-              onChange={(e) => setCollegeOfStudy(e.target.value)}
+              readOnly
+              // onChange={(e) => setCollegeOfStudy(e.target.value)}
               style={styles.programInput}
-              >
-                <option value="">Select College</option>
+              />
+                {/* <option value="">Select College</option>
                 <option value="College of Engineering">College of Engineering</option>
                 <option value="College of Science">College of Science</option>
                 <option value="College of Health Sciences">College of Health</option>
                 <option value="College of Humanities and Social Sciences">College of Social Sciences</option>
                 <option value="College of Art and Built Environment">College of Art and Built Environment</option>
                 <option value="College of Agriculture and Natural Resources">College of Agriculture and Natural Resources</option>
-              </select>
+              </select> */}
             </div>
-              <button onClick={handleUpdateCollegeOfStudy} style={styles.updateButton1} disabled={collegeLoading}>
+              {/* <button onClick={handleUpdateCollegeOfStudy} style={styles.updateButton1} disabled={collegeLoading}>
                 {collegeLoading ? (
                   <div className="spinner-button"> 
                     Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
@@ -298,7 +299,10 @@ const Profile = () => {
                 ) : (
                   'Update College of Study'
                 )}
-              </button>
+              </button> */}
+                <button onClick={handleRecord} style={styles.recordButton}>
+                  <i className="fa fa-trophy"></i> My Achievements <i className="fa fa-trophy"></i>
+                </button>
               <div style={styles.update}>
                 <button onClick={() => navigate(-1)} style={styles.goBackButton}>
                   <FaArrowLeft style={styles.icon} /> Go Back
@@ -306,9 +310,6 @@ const Profile = () => {
                 <button onClick={handleLogout} style={styles.logoutButton}>
                   <FaSignOutAlt style={styles.icon} /> Logout
                 </button>
-                {/* <button onClick={handleRecord} style={styles.recordButton}>
-                  <i className="fa fa-trophy"></i> My Achievements <i className="fa fa-trophy"></i>
-                </button> */}
               </div>
           </div>
           <div style={styles.profileCard}> 
@@ -475,22 +476,22 @@ const styles = {
   dropdownItemHover: {
     backgroundColor: "#f0f0f0",
   },
-  // recordButton: {
-  //   backgroundColor: '#FFD700',
-  //   color: 'white',
-  //   border: 'none',
-  //   borderRadius: '50px',
-  //   padding: '10px 15px',
-  //   fontSize: '20px',
-  //   cursor: 'pointer',
-  //   display: 'flex',
-  //   gap: '10px',
-  //   transition: 'background-color 0.3s',
-  //   width: '100%',
-  //   fontWeight: '800',
-  //   marginTop: '10px',
-  //   justifyContent: 'center',
-  // },  
+  recordButton: {
+    backgroundColor: '#FFD700',
+    color: 'white',
+    border: 'none',
+    borderRadius: '50px',
+    padding: '10px 15px',
+    fontSize: '20px',
+    cursor: 'pointer',
+    display: 'flex',
+    gap: '10px',
+    transition: 'background-color 0.3s',
+    width: '100%',
+    fontWeight: '800',
+    marginTop: '10px',
+    justifyContent: 'center',
+  },  
   goBackButton: {
     backgroundColor: '#4CAF50',
     padding: '10px 20px',

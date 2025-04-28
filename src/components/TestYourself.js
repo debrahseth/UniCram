@@ -4,12 +4,13 @@ import { courseData1 } from './courseData1';
 import { courseData2 } from './courseData2';
 import { courseData3 } from './courseData3';
 import { db, auth } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
 import logo from "../assets/op.jpg";
 import { dotStream } from 'ldrs';
 
 const TestYourself = () => {
   const navigate = useNavigate();
+  const firestore = db;
   const [selectedCourse, setSelectedCourse] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -155,14 +156,39 @@ const TestYourself = () => {
     }
   };
 
-  const handleSubmitQuiz = () => {
-    setQuizFinished(true);
-  };
-
   const calculateScore = () => {
     return questions.reduce((score, question, index) => {
       return score + (selectedAnswers[index] === question.answer ? 1 : 0);
     }, 0);
+  };
+  const saveScoreToFirestore = async (score) => {
+
+    const totalQuestions = questions.length;
+    const currentUser = auth.currentUser;
+
+    const subjectName = selectedCourse;
+  try{
+    const userDocRef = doc(firestore, 'users', currentUser.uid);
+    const userQuizScoresCollectionRef = collection(userDocRef, 'quizScores');
+
+    await addDoc(userQuizScoresCollectionRef, {
+      difficulty: selectedDifficulty,
+      subject: subjectName,
+      score,
+      totalQuestions,
+      dateTaken: new Date(),
+    });
+
+    console.log('Score saved successfully!');
+    } catch (error) {
+      console.error('Error saving score:', error);
+    }
+  };
+
+  const handleSubmitQuiz = async () => {
+    setQuizFinished(true);
+    const score = calculateScore();
+    await saveScoreToFirestore(score);
   };
 
   const calculatePercentage = () => {

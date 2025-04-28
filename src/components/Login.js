@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import { auth, db } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail  } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import logo from '../assets/op.jpg';
 
@@ -12,9 +12,18 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [loadingReset, setLoadingReset] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
+    const savedEmail = localStorage.getItem('email');
+    const savedPassword = localStorage.getItem('password');
+    if (savedEmail && savedPassword) {
+      setEmail(savedEmail);
+      setPassword(savedPassword);
+      setRememberMe(true);
+    }
     setTimeout(() => {
       document.getElementById("loginForm").classList.add("fadeInUp");
     }, 300);
@@ -29,6 +38,13 @@ const Login = () => {
       const userDoc = await getDoc(userDocRef);
       if (userDoc.exists()) {
         await updateDoc(userDocRef, { status: 'online' });
+        if (rememberMe) {
+          localStorage.setItem('email', email);
+          localStorage.setItem('password', password);
+        } else {
+          localStorage.removeItem('email');
+          localStorage.removeItem('password');
+        }
         navigate('/splash');
       } else {
         setError('User does not exist in the system.');
@@ -37,6 +53,22 @@ const Login = () => {
       setError(error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handlePasswordReset = async () => {
+    if (!email) {
+      setError('Please enter your email to reset password.');
+      return;
+    }
+    setLoadingReset(true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setError('Password reset email sent. Please check your inbox.');
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoadingReset(false);
     }
   };
 
@@ -81,6 +113,28 @@ const Login = () => {
             <i className={`fa ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}></i>
           </button>
         </div>
+        <div style={styles.rememberMeContainer}>
+        <label style={styles.rememberMeLabel}>
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+              style={styles.checkbox}
+            />
+            Remember Me
+          </label>
+          <button
+            onClick={handlePasswordReset}
+            style={styles.forgotPasswordButton}
+            disabled={loadingReset}
+          >
+            {loadingReset ? (
+              <i className="fa fa-spinner fa-spin" style={styles.spinner}></i> // Spinner while loading
+            ) : ( 
+              'Forgot Password?'
+            )}
+          </button>
+        </div>  
         {error && <p style={styles.error}>{error}</p>}
         {loading ? (
           <div style={styles.loading}>
@@ -154,7 +208,7 @@ const styles = {
   formContainer: {
     backgroundColor: 'white',
     borderRadius: '8px',
-    padding: '40px',
+    padding: '25px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.7)',
     width: '100%',
     maxWidth: '600px',
@@ -239,6 +293,28 @@ const styles = {
     textAlign: 'center',
     fontSize: '0.9rem',
     fontFamily: 'Poppins, sans-serif',
+  },
+  rememberMeContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: '10px',
+  },
+  rememberMeLabel: {
+    fontSize: '14px',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  checkbox: {
+    marginRight: '5px',
+  },
+  forgotPasswordButton: {
+    background: 'none',
+    border: 'none',
+    color: '#007bff',
+    cursor: 'pointer',
+    fontSize: '14px',
   },
 };
 
