@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import logo from '../assets/welcomeImage.jpg';
-import logo1 from '../assets/welcome1.jpg';
+import logo from '../assets/prince.jpg';
+// import logo1 from '../assets/welcome1.jpg';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -12,11 +12,25 @@ const Home = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '95vh',
-    background: 'linear-gradient(to right,rgb(91, 212, 123),rgb(4, 66, 63))',
+    height: '100vh',
     textAlign: 'center',
     fontFamily: 'Poppins, sans-serif',
     padding: '20px',
+  };
+
+  const background = {
+    content: '""',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: `url(${logo})`, 
+    backgroundPosition: 'center', 
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    opacity: 1,
+    zIndex: -2,
   };
 
   const headerStyle = {
@@ -37,19 +51,28 @@ const Home = () => {
     animation: 'fadeIn 1.5s ease-out',
   };
 
-  const imageContainer = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "30px",
-    flexWrap: "wrap",
-    marginBottom: "20px",
-  };
+  // const imageContainer = {
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   gap: "30px",
+  //   flexWrap: "wrap",
+  //   marginBottom: "20px",
+  // };
 
   const buttonContainerStyle = {
     display: 'flex',
     justifyContent: 'center',
     gap: '20px',
+    opacity: 0,
+    animation: 'fadeIn 2s ease-out forwards',
+  };
+
+  const buttonContainer = {
+    display: 'flex',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: '20px',
     opacity: 0,
     animation: 'fadeIn 2s ease-out forwards',
   };
@@ -68,6 +91,15 @@ const Home = () => {
     alignItems: 'center',
     justifyContent: 'center',
     boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
+  };
+
+  const buttonAbout = {
+    ...buttonStyle,
+    backgroundColor: '#0EA5E9',
+    color: '#fff',
+    transform: 'scale(1)',
+    transition: 'transform 0.3s ease',
+    fontSize: '2.0rem'
   };
 
   const buttonSignUpStyle = {
@@ -98,6 +130,11 @@ const Home = () => {
     transform: 'scale(1.05)',
   };
 
+  const buttonAboutHoverStyle = {
+    backgroundColor: '#1e88e5',
+    transform: 'scale(1.05)',
+  };
+
   const handleMouseEnter = (e, style) => {
     e.target.style.backgroundColor = style.backgroundColor;
     e.target.style.transform = style.transform;
@@ -110,8 +147,9 @@ const Home = () => {
 
   return (
     <div style={containerStyle}>
+      <div style={background}></div>
       <h2 style={headerStyle}>Prime Academy</h2>
-      <div style={imageContainer}>
+      {/* <div style={imageContainer}>
       <img
         src={logo1}
         alt="Study Group Logo"
@@ -124,7 +162,7 @@ const Home = () => {
         style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: '30%', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',transform: 'scale(1)',transition: 'transform 0.3s ease',}}
         onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
         onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}/>
-      </div>  
+      </div>   */}
       <p style={paragraphStyle}>
         Start by logging in or signing up to join the community.
       </p>
@@ -148,6 +186,17 @@ const Home = () => {
             <FaSignInAlt style={{ marginRight: '10px', fontSize: '1.5rem' }} />
             Login
           </button>
+        </div>
+      </div>
+      <div style={buttonContainer}>
+        <div style={buttonStyle}>
+        <button 
+        onClick={() => navigate('/about')} 
+        style={buttonAbout} 
+        onMouseEnter={(e) => handleMouseEnter(e, buttonAboutHoverStyle)}
+        onMouseLeave={(e) => handleMouseLeave(e, buttonAbout)}>
+          About Prime Academy
+        </button>
         </div>
       </div>
     </div>

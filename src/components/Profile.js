@@ -396,7 +396,7 @@ const Profile = () => {
               Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
             </div>
           ) : (
-            'Update Level of Study'
+            'Update Level'
           )}
           </button>
           <button onClick={handleUpdateSemesterOfStudy} style={styles.updateButton} disabled={semesterLoading}>
@@ -405,7 +405,7 @@ const Profile = () => {
                 Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
               </div>
             ) : (
-              'Update Semester of Study'
+              'Update Semester'
             )}
           </button>
           </div>
@@ -546,9 +546,8 @@ const styles = {
     justifyContent: 'space-between', 
   },
   profileCard: {
-    backgroundColor: 'white',
     borderRadius: '10px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
     padding: '10px',
     width: '48%',
     textAlign: 'left',

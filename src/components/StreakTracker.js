@@ -50,7 +50,7 @@ const StreakTracker = () => {
       lastDate = currentDate;
     }
 
-    const daysSinceLastQuiz = (today - lastDate) / (1000 * 60 * 60 * 24);
+    const daysSinceLastQuiz = lastDate ? (today - lastDate) / (1000 * 60 * 60 * 24) : Infinity;
     if (daysSinceLastQuiz > 1) {
       currentStreak = 0;
       streakBroken = true;
@@ -63,12 +63,20 @@ const StreakTracker = () => {
       setStreakMessage('Your streak melted! Start a new one today!');
       setTimeout(() => setStreakMessage(''), 3000);
     }
-
-    if (user) {
-      const userDocRef = doc(db, 'users', user.uid);
-      setDoc(userDocRef, { streak: currentStreak, lastQuizDate: lastDate ? lastDate.toISOString() : null }, { merge: true });
-    }
   };
+
+  // Sync streak and lastQuizDate changes to Firestore
+  useEffect(() => {
+    if (user && streak !== null && lastQuizDate !== undefined) {
+      const userDocRef = doc(db, 'users', user.uid);
+      setDoc(userDocRef, { 
+        streak, 
+        lastQuizDate: lastQuizDate ? lastQuizDate : null 
+      }, { merge: true })
+        .then(() => console.log('Streak updated in Firestore:', { streak, lastQuizDate }))
+        .catch(error => console.error('Error updating streak in Firestore:', error));
+    }
+  }, [user, streak, lastQuizDate]);
 
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -83,6 +91,12 @@ const StreakTracker = () => {
         });
 
         return () => unsubscribeSnapshot();
+      } else {
+        setUser(null);
+        setQuizRecords([]);
+        setStreak(0);
+        setLastQuizDate(null);
+        setStreakMessage('');
       }
     });
 
@@ -92,8 +106,8 @@ const StreakTracker = () => {
   return (
     <div style={styles.header}>
       <div style={styles.streakContainer}>
-        <span style={styles.streakText}>Streak: {streak} Days</span>
         <span style={styles.streakIcon}>🔥</span>
+        <span style={styles.streakText}>Streak: {streak} {streak === 1 ? 'Day' : 'Days'}</span>
       </div>
       {streakMessage && (
         <div style={styles.streakMessage}>

@@ -19,6 +19,8 @@ const PersonalRecords = () => {
   const [showGraph, setShowGraph] = useState(false);
   const [chartData, setChartData] = useState({});
   const [selectedCourse, setSelectedCourse] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
+  const [dayLabels, setDayLabels] = useState([]);
   const navigate = useNavigate();
 
   const uniqueCourses = [...new Set(quizRecords.map(record => record.subject))];
@@ -87,17 +89,8 @@ const PersonalRecords = () => {
       tension: 0.1,
     }));
 
-    // const areaDatasets = Object.keys(subjectData).map((subject)  => ({
-    //   label: subject,
-    //   data: subjectData[subject].scores,
-    //   fill: true,
-    //   backgroundColor: getRandomColor().concat('80'),
-    //   borderColor: getRandomColor(),
-    //   tension: 0.1,
-    // }));
-
     const dailyAverages = {};
-    const dayLabels = [];
+    const newDayLabels = [];
     sortedRecords.forEach((record) => {
       const date = new Date(record.dateTaken.seconds * 1000);
       const dayKey = date.toLocaleDateString();
@@ -105,64 +98,61 @@ const PersonalRecords = () => {
 
       if (!dailyAverages[dayKey]) {
         dailyAverages[dayKey] = [];
-        dayLabels.push(dayKey);
+        newDayLabels.push(dayKey);
       }
       dailyAverages[dayKey].push(scorePercentage);
     });
 
+    setDayLabels(newDayLabels);
+
     const barDatasets = Object.keys(subjectData).map((subject) => {
-      const subjectScoresByDay = {};
-      dayLabels.forEach(day => subjectScoresByDay[day] = []);
-      sortedRecords.forEach((record) => {
-        if (record.subject === subject) {
-          const date = new Date(record.dateTaken.seconds * 1000);
-          const dayKey = date.toLocaleDateString();
-          const scorePercentage = (record.score / record.totalQuestions) * 100;
-
-          subjectScoresByDay[dayKey].push(scorePercentage);
-        }
-      });
+      if (selectedDay) {
+        const subjectScores = sortedRecords
+          .filter(record => record.subject === subject && new Date(record.dateTaken.seconds * 1000).toLocaleDateString() === selectedDay)
+          .map(record => (record.score / record.totalQuestions) * 100);
+        const average = subjectScores.length > 0 ? subjectScores.reduce((a, b) => a + b) / subjectScores.length : 0;
+        return {
+          label: subject,
+          data: [average],
+          backgroundColor: getRandomColor(),
+        };
+      } else {
+        const subjectScoresByDay = {};
+        newDayLabels.forEach(day => subjectScoresByDay[day] = []);
+        sortedRecords.forEach((record) => {
+          if (record.subject === subject) {
+            const date = new Date(record.dateTaken.seconds * 1000);
+            const dayKey = date.toLocaleDateString();
+            const scorePercentage = (record.score / record.totalQuestions) * 100;
+            subjectScoresByDay[dayKey].push(scorePercentage);
+          }
+        });
   
-      const averages = dayLabels.map(day => {
-        const scores = subjectScoresByDay[day];
-        return scores.length > 0 ? scores.reduce((a, b) => a + b) / scores.length : 0;
-      });
+        const averages = newDayLabels.map(day => {
+          const scores = subjectScoresByDay[day];
+          return scores.length > 0 ? scores.reduce((a, b) => a + b) / scores.length : 0;
+        });
     
-      return {
-        label: subject,
-        data: averages.slice(-7),
-        backgroundColor: getRandomColor(),
-      };
+        return {
+          label: subject,
+          data: averages.slice(-5),
+          backgroundColor: getRandomColor(),
+        };
+      }
     });    
-
-    // const pieData = {
-    //   labels: Object.keys(subjectData),
-    //   datasets: [{
-    //     data: Object.keys(subjectData).map(subject => {
-    //       const scores = subjectData[subject].scores;
-    //       return scores.length > 0 ? scores.reduce((a, b) => a + b) / scores.length : 0; // Average score per subject
-    //     }),
-    //     backgroundColor: Object.keys(subjectData).map(() => getRandomColor()),
-    //   }],
-    // };
 
     setChartData({
       line: {
         labels: Object.values(subjectData)[0]?.dates || [],
         datasets: lineDatasets,
       },
-      // area: {
-      //   labels: Object.values(subjectData)[0]?.dates || [],
-      //   datasets: areaDatasets,
-      // },
       bar: {
-        labels: dayLabels.slice(-5).map(label => {
+        labels: selectedDay ? [new Date(selectedDay).toLocaleDateString('en-US', { weekday: 'short' })] : newDayLabels.slice(-5).map(label => {
           const date = new Date(label);
-          return date.toLocaleDateString('en-US', { weekday: 'short' }); // e.g., "Mon"
+          return date.toLocaleDateString('en-US', { weekday: 'short' });
         }),
         datasets: barDatasets,
       },
-      // pie: pieData,
     });
   
     setShowGraph(true);
@@ -181,30 +171,31 @@ const PersonalRecords = () => {
     if (showGraph) {
       generateChartData();
     }
-  }, [selectedCourse, quizRecords]);
+  }, [selectedCourse, selectedDay, quizRecords]);
   
   useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-        if (currentUser) {
-          setUser(currentUser);
-          try {
-            const userDocRef = doc(db, 'users', currentUser.uid);
-            const userDoc = await getDoc(userDocRef);
-            if (userDoc.exists()) {
-              setUsername(userDoc.data().username);
-            } else {
-              setUsername(currentUser.displayName || 'User');
-            }
-          } catch (error) {
-            console.error('Error fetching user data:', error);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        try {
+          const userDocRef = doc(db, 'users', currentUser.uid);
+          const userDoc = await getDoc(userDocRef);
+          if (userDoc.exists()) {
+            setUsername(userDoc.data().username);
+          } else {
+            setUsername(currentUser.displayName || 'User');
           }
-          setLoading(false);
-        } else {
-          navigate('/login');
+        } catch (error) {
+          console.error('Error fetching user data:', error);
         }
-      });
-      return () => unsubscribe();
-    }, [navigate]);
+        setLoading(false);
+      } else {
+        navigate('/login');
+      }
+    });
+    return () => unsubscribe();
+  }, [navigate]);
+
   useEffect(() => {
     const fetchQuizRecords = async () => {
       const currentUser = auth.currentUser;
@@ -213,19 +204,19 @@ const PersonalRecords = () => {
         try {
           const quizScoresRef = collection(db, 'users', currentUser.uid, 'quizScores');
           const unsubscribe = onSnapshot(quizScoresRef, (querySnapshot) => {
-          const records = querySnapshot.docs.map((doc) => doc.data());
-          let totalScore = 0;
-          let totalQuestions = 0;
-          records.forEach((record) => {
-            totalScore += record.score;
-            totalQuestions += record.totalQuestions;
+            const records = querySnapshot.docs.map((doc) => doc.data());
+            let totalScore = 0;
+            let totalQuestions = 0;
+            records.forEach((record) => {
+              totalScore += record.score;
+              totalQuestions += record.totalQuestions;
+            });
+            const overall = calculateOverallRating(totalScore, totalQuestions);
+            setOverallRating(overall);
+            setQuizRecords(records);
+            setLoading(false);
           });
-          const overall = calculateOverallRating(totalScore, totalQuestions);
-          setOverallRating(overall);
-          setQuizRecords(records);
-          setLoading(false);
-        });
-        return() => unsubscribe();
+          return () => unsubscribe();
         } catch (error) {
           console.error('Error fetching quiz scores:', error);
         } 
@@ -236,8 +227,8 @@ const PersonalRecords = () => {
 
     fetchQuizRecords();
     return () => {
-        setLoading(true);
-      };
+      setLoading(true);
+    };
   }, [navigate]);
 
   const resetQuizScores = async () => {
@@ -255,11 +246,11 @@ const PersonalRecords = () => {
 
           const userDocRef = doc(db, 'users', currentUser.uid);
           await updateDoc(userDocRef, {
-          streak: 0,
-          lastQuizDate: null,
-        });
+            streak: 0,
+            lastQuizDate: null,
+          });
 
-        setQuizRecords([]);
+          setQuizRecords([]);
           console.log('All quiz scores have been deleted.');
         }
       } catch (error) {
@@ -276,49 +267,49 @@ const PersonalRecords = () => {
 
   return (
     <div style={styles.container}>
-    <div style={styles.background}></div>
-    <div style={styles.title}>
+      <div style={styles.background}></div>
+      <div style={styles.title}>
         <div style={styles.ratingcontainer}>
-        <h2>{username}'s Quiz Records</h2>
+          <h2>{username}'s Quiz Records</h2>
         </div>
         <StreakTracker/>
-    </div>
-    <div style={styles.content}>
-      {quizRecords.length === 0 ? (
-        <div style={styles.noDataContainer}>
-          <p style={{fontSize: '50px', fontWeight: 900}}>No quiz records available.</p>
-        </div>
-      ) : (
-        <div style={styles.recordsContainer}>
-          {quizRecords.map((record, index) => {
-            const rating = calculateRating(record.score, record.totalQuestions);
-            return (
-            <div key={index} style={styles.recordCard}>
-              <h3 style={styles.quizName}>{record.subject}</h3>
-              <p style={styles.recordDetails}>Difficulty: {record.difficulty}</p>
-              <p style={styles.recordDetails}>Score: {record.score}/{record.totalQuestions}</p>
-              <p style={styles.recordDetails}>Date Taken: {record.dateTaken ? new Date(record.dateTaken.seconds * 1000).toLocaleString() : 'N/A'}</p>
-              <div style={styles.starRating}>
-                <p style={styles.recordDetails}>Quiz Potential: {Array.from({ length: 5 }, (_, i) => (
-                  <span key={i} style={i < rating ? styles.filledStar : styles.emptyStar}>
-                    ★
-                  </span>
-                ))}</p>
-              </div>
-            </div>
-          );
-        })}
-        </div>
-      )}
-    </div>
-        <div style={styles.button}>
-          <div style={styles.buttonContainer}>
-            <button onClick={() => navigate(-1)} style={styles.backButton}>Go Back</button>
-            <button onClick={generateChartData} style={styles.generateGraphButton}>Generate Progress Graph</button>
-            <button onClick={resetQuizScores} style={styles.resetButton}>Reset All Scores</button>
+      </div>
+      <div style={styles.content}>
+        {quizRecords.length === 0 ? (
+          <div style={styles.noDataContainer}>
+            <p style={{fontSize: '50px', fontWeight: 900}}>No quiz records available.</p>
           </div>
+        ) : (
+          <div style={styles.recordsContainer}>
+            {quizRecords.map((record, index) => {
+              const rating = calculateRating(record.score, record.totalQuestions);
+              return (
+                <div key={index} style={styles.recordCard}>
+                  <h3 style={styles.quizName}>{record.subject}</h3>
+                  <p style={styles.recordDetails}>Difficulty: {record.difficulty}</p>
+                  <p style={styles.recordDetails}>Score: {record.score}/{record.totalQuestions}</p>
+                  <p style={styles.recordDetails}>Date Taken: {record.dateTaken ? new Date(record.dateTaken.seconds * 1000).toLocaleString() : 'N/A'}</p>
+                  <div style={styles.starRating}>
+                    <p style={styles.recordDetails}>Quiz Potential: {Array.from({ length: 5 }, (_, i) => (
+                      <span key={i} style={i < rating ? styles.filledStar : styles.emptyStar}>
+                        ★
+                      </span>
+                    ))}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      <div style={styles.button}>
+        <div style={styles.buttonContainer}>
+          <button onClick={() => navigate(-1)} style={styles.backButton}>Go Back</button>
+          <button onClick={generateChartData} style={styles.generateGraphButton}>Generate Progress Graph</button>
+          <button onClick={resetQuizScores} style={styles.resetButton}>Reset All Scores</button>
         </div>
-        {showGraph && (
+      </div>
+      {showGraph && (
         <div style={styles.graphContainer}>
           <button 
             style={styles.closeButton} 
@@ -327,11 +318,11 @@ const PersonalRecords = () => {
             ×
           </button>
           <p style={styles.recordDetails1}>
-              Progress Snapshot:
-                {Array.from({ length: 5 }, (_, i) => (
-                <span key={i} style={i < (selectedCourse ? getCourseRating(selectedCourse) : overallRating) ? styles.filledStar1 : styles.emptyStar1}>
+            Progress Snapshot:
+            {Array.from({ length: 5 }, (_, i) => (
+              <span key={i} style={i < (selectedCourse ? getCourseRating(selectedCourse) : overallRating) ? styles.filledStar1 : styles.emptyStar1}>
                 ★
-                </span>
+              </span>
             ))}
           </p>
           <div style={styles.dropdownContainer}>
@@ -355,18 +346,26 @@ const PersonalRecords = () => {
               <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Line Graph: Performance Over Time</p>
               <Line data={chartData.line} />
             </div>
-            {/* <div style={{ backgroundColor: '#fff', padding: '15px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-              <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Area Graph: Performance Over Time</p>
-              <Line data={chartData.area} />
-            </div> */}
             <div style={{ backgroundColor: '#fff', padding: '15px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-              <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Bar Chart: Weekly Scores</p>
+              <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Bar Chart: {selectedDay ? 'Daily Average Score' : 'Weekly Average Scores'}</p>
+              <div style={styles.dropdownContainer}>
+                <label htmlFor="daySelect">Select Day:</label>
+                <select 
+                  id="daySelect" 
+                  value={selectedDay} 
+                  onChange={(e) => setSelectedDay(e.target.value)}
+                  style={styles.dropdown}
+                >
+                  <option value="">All Days</option>
+                  {dayLabels.map((day, index) => (
+                    <option key={index} value={day}>
+                      {new Date(day).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <Bar data={chartData.bar} />
             </div>
-            {/* <div style={{ backgroundColor: '#fff', padding: '15px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-              <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Pie Chart: Score Distribution</p>
-              <Pie data={chartData.pie} />
-            </div> */}
           </div>
         </div>
       )}
@@ -564,7 +563,7 @@ title: {
     right: '10px',
     background: 'transparent',
     border: 'none',
-    fontSize: '24px',
+    fontSize: '30px',
     color: '#888',
     cursor: 'pointer',
     padding: '5px 10px',
@@ -573,7 +572,7 @@ title: {
     marginBottom: '20px',
     display: 'flex',
     alignItems: 'center',
-    gap: '10px'
+    gap: '10px',
   },
   dropdown: {
     padding: '10px',

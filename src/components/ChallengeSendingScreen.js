@@ -5,7 +5,7 @@ import { collection, onSnapshot, addDoc, doc, updateDoc, getDoc } from 'firebase
 import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
 import logo from '../assets/main.jpg';
 import logo1 from '../assets/logo1.jpg';
-import { courseData } from './courseData'; 
+import { courseData } from '../questions/courseData'; 
 import { dotStream } from 'ldrs';
 
 const ChallengeSendingScreen = () => {
@@ -209,7 +209,7 @@ const ChallengeSendingScreen = () => {
                       <ul style={styles.userList}>{userList}</ul>
                     ) : (
                       <div style={styles.noDataContainer}>
-                        <p style={styles.noDataMessage}>No users available for your program of study</p>
+                        <p style={styles.noDataMessage}>Sorry, no users available for your program of study at the moment. Come back later.</p>
                       </div>
                     )}
                   </div>

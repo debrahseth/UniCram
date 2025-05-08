@@ -5,6 +5,7 @@ import { auth, db } from '../firebase';
 import { signInWithEmailAndPassword, sendPasswordResetEmail  } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import logo from '../assets/op.jpg';
+// import logo1 from '../assets/welcomeImage.jpg';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -74,7 +75,7 @@ const Login = () => {
 
   return (
     <div style={styles.container}>
-
+      <div style={styles.background}></div>
       <div style={styles.header}>
         <h1 style={styles.appName}>Prime Academy</h1>
         <p style={styles.welcomeNote}>Welcome back! Please login to continue.</p>
@@ -164,12 +165,25 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: 'white',
     padding: '0 20px',
     fontFamily: 'Poppins, sans-serif',
     flexDirection: 'row',
     overflow: 'hidden',
   },
+  // background : {
+  //   content: '""',
+  //   position: 'fixed',
+  //   top: 0,
+  //   left: 0,
+  //   right: 0,
+  //   bottom: 0,
+  //   backgroundImage: `url(${logo1})`, 
+  //   backgroundPosition: 'center', 
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  //   opacity: 0.9,
+  //   zIndex: -2,
+  // },
   header: {
     position: 'absolute',
     top: '20px',
@@ -206,7 +220,6 @@ const styles = {
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.9)',
   },
   formContainer: {
-    backgroundColor: 'white',
     borderRadius: '8px',
     padding: '25px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.7)',

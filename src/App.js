@@ -18,6 +18,7 @@ import QuizCompleted from './components/QuizCompleted';
 import UserListScreen from './components/UserListScreen';
 import TestYourself from './components/TestYourself';
 import ReviewQuiz from './components/ReviewQuiz';
+import About from './components/About';
 import './App.css';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/users" element={<UserListScreen />} />
         <Route path="/test-yourself" element={<TestYourself />} />
         <Route path="/review" element={<ReviewQuiz />} />
+        <Route path="/about" element={<About />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

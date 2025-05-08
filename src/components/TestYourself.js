@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { courseData1 } from './courseData1';
-import { courseData2 } from './courseData2';
-import { courseData3 } from './courseData3';
+import { courseData1 } from '../questions/courseData1';
+import { courseData2 } from '../questions/courseData2';
+import { courseData3 } from '../questions/courseData3';
+import { courseData4 } from '../questions/courseData4';
 import { db, auth } from '../firebase';
 import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
 import logo from "../assets/op.jpg";
@@ -57,7 +58,7 @@ const TestYourself = () => {
       fetchUserData();
     }
   }, []);
-  
+
   const handleCourseSelect = (course) => {
     setSelectedCourse(course);
     setStage('difficulty');
@@ -71,19 +72,19 @@ const TestYourself = () => {
   useEffect(() => {
     if (selectedCourse && selectedDifficulty) {
       let questionsToDisplay = [];
-  
+
       const getQuestionsFromSources = (course, difficulty) => {
         let data =
           courseData1[course]?.[difficulty] ||
           courseData2[course]?.[difficulty] ||
-          courseData3[course]?.[difficulty];
-  
+          courseData3[course]?.[difficulty] ||
+          courseData4[course]?.[difficulty];
+
         return data ? [...data] : [];
       };
-  
+
       if (selectedDifficulty === 'Random') {
         const allDifficulties = ['Easy', 'Medium', 'Hard'];
-        
         allDifficulties.forEach((level) => {
           const difficultyData = getQuestionsFromSources(selectedCourse, level);
           if (difficultyData.length > 0) {
@@ -92,20 +93,18 @@ const TestYourself = () => {
             console.warn(`Difficulty data not found for ${selectedCourse} at ${level}`);
           }
         });
-  
         questionsToDisplay = questionsToDisplay.sort(() => Math.random() - 0.5);
       } else {
         questionsToDisplay = getQuestionsFromSources(selectedCourse, selectedDifficulty);
-  
         if (questionsToDisplay.length === 0) {
           console.warn(`Difficulty data not found for ${selectedCourse} at ${selectedDifficulty}`);
         }
       }
-  
+
       setQuestions(questionsToDisplay);
     }
-  }, [selectedCourse, selectedDifficulty]);  
-  
+  }, [selectedCourse, selectedDifficulty]);
+
   useEffect(() => {
     if (stage === 'quiz') {
       const durations = {
@@ -113,14 +112,12 @@ const TestYourself = () => {
         Medium: 1800,
         Hard: 2700,
         Random: 3600,
-        General: 5400,
       };
-
       setTimer(durations[selectedDifficulty] || durations.Default);
       setTimerActive(true);
     }
   }, [stage, selectedDifficulty]);
-  
+
   useEffect(() => {
     let interval;
     if (timerActive && timer > 0) {
@@ -131,7 +128,6 @@ const TestYourself = () => {
       setQuizFinished(true);
       clearInterval(interval);
     }
-
     return () => clearInterval(interval);
   }, [timerActive, timer]);
 
@@ -150,36 +146,78 @@ const TestYourself = () => {
     }));
   };
 
+  const filteredQuestions = questions.filter(q => q.type !== 'Preamble');
+  const totalFilteredQuestions = filteredQuestions.length;
+  const getCurrentFilteredIndex = () => {
+    let questionCount = 0;
+    for (let i = 0; i <= currentQuestionIndex; i++) {
+      if (questions[i].type !== 'Preamble') {
+        questionCount++;
+      }
+    }
+    return questionCount;
+  };
+
+  const progress = totalFilteredQuestions > 0 ? (getCurrentFilteredIndex() / totalFilteredQuestions * 100) : 0;
+
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setInputValue('');
+      setShowDiagram(true);
+    }
+  };
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setInputValue('');
+      setShowDiagram(true);
     }
   };
 
   const calculateScore = () => {
     return questions.reduce((score, question, index) => {
-      return score + (selectedAnswers[index] === question.answer ? 1 : 0);
+      if (question.type === 'Preamble') return score;
+
+      const userAnswer = (selectedAnswers[index] || '').trim().toLowerCase();
+      if (question.type === 'Fill-in' && Array.isArray(question.answer)) {
+        const rangeAnswer = question.answer[0];
+        if (rangeAnswer.includes('to')) {
+          const [min, max] = rangeAnswer.split('to').map(Number);
+          const userNumber = Number(userAnswer);
+          if (!isNaN(userNumber) && userNumber >= min && userNumber <= max) {
+            return score + 1;
+          }
+          return score;
+        }
+      }
+      if (Array.isArray(question.answer)) {
+        const isCorrect = question.answer.some(
+          (ans) => ans.trim().toLowerCase() === userAnswer
+        );
+        return score + (isCorrect ? 1 : 0);
+      } else {
+        return score + (userAnswer === question.answer.trim().toLowerCase() ? 1 : 0);
+      }
     }, 0);
   };
+
   const saveScoreToFirestore = async (score) => {
-
-    const totalQuestions = questions.length;
+    const totalQuestions = filteredQuestions.length;
     const currentUser = auth.currentUser;
-
     const subjectName = selectedCourse;
-  try{
-    const userDocRef = doc(firestore, 'users', currentUser.uid);
-    const userQuizScoresCollectionRef = collection(userDocRef, 'quizScores');
-
-    await addDoc(userQuizScoresCollectionRef, {
-      difficulty: selectedDifficulty,
-      subject: subjectName,
-      score,
-      totalQuestions,
-      dateTaken: new Date(),
-    });
-
-    console.log('Score saved successfully!');
+    try {
+      const userDocRef = doc(firestore, 'users', currentUser.uid);
+      const userQuizScoresCollectionRef = collection(userDocRef, 'quizScores');
+      await addDoc(userQuizScoresCollectionRef, {
+        difficulty: selectedDifficulty,
+        subject: subjectName,
+        score,
+        totalQuestions,
+        dateTaken: new Date(),
+      });
+      console.log('Score saved successfully!');
     } catch (error) {
       console.error('Error saving score:', error);
     }
@@ -189,13 +227,15 @@ const TestYourself = () => {
     setQuizFinished(true);
     const score = calculateScore();
     await saveScoreToFirestore(score);
+    speechSynthesis.cancel();
   };
 
   const calculatePercentage = () => {
     const score = calculateScore();
-    return (score / questions.length) * 100;
+    const total = filteredQuestions.length;
+    return total > 0 ? (score / total) * 100 : 0;
   };
-  
+
   const getCongratulatoryMessage = () => {
     const percentage = calculatePercentage();
     if (percentage >= 90) {
@@ -208,8 +248,6 @@ const TestYourself = () => {
       return "Better luck next time!";
     }
   };
-
-  const progress = (currentQuestionIndex + 1) / questions.length * 100;
 
   useEffect(() => {
     setTimeout(() => {
@@ -225,91 +263,90 @@ const TestYourself = () => {
     }
   }, [readAloud, currentQuestionIndex]);
 
-  dotStream.register()
+  dotStream.register();
 
   return (
     <div>
-       <div style={styles.container}>
-       <div style={styles.background}></div>
+      <div style={styles.container}>
+        <div style={styles.background}></div>
         {stage === 'course' && (
           <>
-          <div style={styles.mainContainer}>
-            <h2 style={styles.header}>Choose a Course</h2>
-            <div style={styles.courseSelector}>
-            {loading ? (
-            <div style={styles.noDataContainer}>
-              <p style={styles.noDataMessage}>Loading courses<l-dot-stream size="60" speed="2.5"  color="black"></l-dot-stream></p>
+            <div style={styles.mainContainer}>
+              <h2 style={styles.header}>Choose a Course</h2>
+              <div style={styles.courseSelector}>
+                {loading ? (
+                  <div style={styles.noDataContainer}>
+                    <p style={styles.noDataMessage}>Loading courses<l-dot-stream size="60" speed="2.5" color="black"></l-dot-stream></p>
+                  </div>
+                ) : Object.keys({ ...courseData1, ...courseData2, ...courseData3, ...courseData4 })
+                  .filter((subject) => {
+                    const course = courseData1[subject] || courseData2[subject] || courseData3[subject] || courseData4[subject];
+                    return (
+                      (course.programOfStudy === "All Programs" || course.programOfStudy.includes(programOfStudy)) &&
+                      course.levelOfStudy === levelOfStudy &&
+                      course.semesterOfStudy === semesterOfStudy
+                    );
+                  }).length > 0 ? (
+                    Object.keys({ ...courseData1, ...courseData2, ...courseData3, ...courseData4 })
+                      .filter((subject) => {
+                        const course = courseData1[subject] || courseData2[subject] || courseData3[subject] || courseData4[subject];
+                        return (
+                          (course.programOfStudy === "All Programs" || course.programOfStudy.includes(programOfStudy)) &&
+                          course.levelOfStudy === levelOfStudy &&
+                          course.semesterOfStudy === semesterOfStudy
+                        );
+                      }).map((course) => (
+                        <button
+                          key={course}
+                          style={styles.courseButton}
+                          onClick={() => handleCourseSelect(course)}
+                        >
+                          {course}
+                        </button>
+                      ))
+                  ) : (
+                    <div style={styles.noDataContainer}>
+                      <p style={styles.noDataMessage}>No courses available for your program of study.</p>
+                    </div>
+                  )}
+              </div>
+              <div style={styles.buttonContainment}>
+                <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
+                  Go Back
+                </button>
+              </div>
             </div>
-              ) : Object.keys({ ...courseData1, ...courseData2, ...courseData3 })
-              .filter((subject) => {
-                const course = courseData1[subject] || courseData2[subject] || courseData3[subject];
-                return(
-                  course.programOfStudy === programOfStudy && 
-                  course.levelOfStudy === levelOfStudy && 
-                  course.semesterOfStudy === semesterOfStudy
-                );
-              }).length > 0 ? (
-                Object.keys({ ...courseData1, ...courseData2, ...courseData3 })
-                .filter((subject) => {
-                  const course= courseData1[subject] || courseData2[subject] || courseData3[subject];
-                  return(
-                    course.programOfStudy === programOfStudy && 
-                    course.levelOfStudy === levelOfStudy && 
-                    course.semesterOfStudy === semesterOfStudy
-                  );
-                }).map((course) => (
-                  <button
-                    key={course}
-                    style={styles.courseButton}
-                    onClick={() => handleCourseSelect(course)}
-                  >
-                    {course}
-                  </button>
-                ))
-              ) : (
-                <div style={styles.noDataContainer}>
-                  <p style={styles.noDataMessage}>No courses available for your program of study.</p>
-                </div>  
-              )}
-            </div>  
-            <div style={styles.buttonContainment}>
-              <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
-                Go Back
-              </button>
-            </div>
-          </div>  
           </>
         )}
         {stage === 'difficulty' && selectedCourse && (
           <>
-          <div style={styles.parentContainer}>
-            <h2 style={styles.header}>Choose Duration for {selectedCourse} Quiz</h2>
-            <div style={styles.difficultySelector}>
-              <button onClick={() => handleDifficultySelect('Easy')} style={styles.courseButton}>25 minutes</button>
-              <button onClick={() => handleDifficultySelect('Medium')} style={styles.courseButton}>30 minutes</button>
-              <button onClick={() => handleDifficultySelect('Hard')} style={styles.courseButton}>45 minutes</button>
-              <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>1 hour</button>
-              <button onClick={() => handleDifficultySelect('General')} style={styles.courseButton}>1 hour - 30 minutes</button>
-            </div> 
-            <div style={styles.buttonContainment}>
-              <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
-                Go Back
-              </button>
+            <div style={styles.parentContainer}>
+              <h2 style={styles.header}>Choose Duration for {selectedCourse} Quiz</h2>
+              <div style={styles.difficultySelector}>
+                <button onClick={() => handleDifficultySelect('Easy')} style={styles.courseButton}>25 minutes</button>
+                <button onClick={() => handleDifficultySelect('Medium')} style={styles.courseButton}>30 minutes</button>
+                <button onClick={() => handleDifficultySelect('Hard')} style={styles.courseButton}>45 minutes</button>
+                <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>1 hour</button>
+              </div>
+              <div style={styles.buttonContainment}>
+                <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
+                  Go Back
+                </button>
+              </div>
             </div>
-          </div>  
           </>
-        )}   
-      </div>  
-      {stage === 'quiz' && questions.length > 0 && !quizFinished && (
-        <> 
-        <div style={styles.container}>
-          <div style={styles.background}></div>
+        )}
+      </div>
+      {stage === 'quiz' && totalFilteredQuestions > 0 && !quizFinished && (
+        <>
+          <div style={styles.container}>
+            <div style={styles.background}></div>
             <div style={styles.timerContainer}>
               <p style={styles.questionNumber}>{selectedCourse} - {selectedDifficulty} Quiz</p>
               <p style={styles.questionNumber}>Time Left: {Math.floor(timer / 3600)}hr : {String(Math.floor((timer % 3600) / 60)).padStart(2, '0')}mins : {String(timer % 60).padStart(2, '0')}s</p>
-              <p style={styles.questionNumber}>Question {currentQuestionIndex + 1} / {questions.length}</p>
+              <p style={styles.questionNumber}>{questions[currentQuestionIndex]?.type === 'Preamble' ? 'Preamble' : `Question ${getCurrentFilteredIndex()} / ${totalFilteredQuestions}`}</p>
               <div style={styles.progressBar}>
-                  <div style={{...styles.progressFill,width: `${progress}%`,}}/>
+                <div style={{ ...styles.progressFill, width: `${progress}%` }} />
               </div>
               <div style={styles.readingControlsContainer}>
                 {!readAloud ? (
@@ -318,8 +355,9 @@ const TestYourself = () => {
                     onClick={() => {
                       setReadAloud(true);
                       setIsPaused(false);
-                    }}>
-                    🔊 Start Reading
+                    }}
+                  >
+                    🔊
                   </button>
                 ) : (
                   <>
@@ -335,7 +373,7 @@ const TestYourself = () => {
                         }
                       }}
                     >
-                      {isPaused ? '▶️ Resume' : '⏸️ Pause'}
+                      {isPaused ? '▶️' : '⏸️'}
                     </button>
                     <button
                       style={{ ...styles.toggleButton1, backgroundColor: '#dc3545' }}
@@ -345,152 +383,179 @@ const TestYourself = () => {
                         setIsPaused(false);
                       }}
                     >
-                      🛑 Stop
+                      🛑
                     </button>
                   </>
                 )}
               </div>
             </div>
-          <div style={styles.cont}>
-            <p style={styles.question}>Question {currentQuestionIndex + 1}: {questions[currentQuestionIndex].question}</p>
-          </div>
-          <div style={styles.optionsContainer}>
-            {questions[currentQuestionIndex].image && (
-              <button
-                style={styles.toggleButton}
-                onClick={() => setShowDiagram(!showDiagram)}
-              >
-                {showDiagram ? 'Hide Diagram' : 'Show Diagram'}
-              </button>
-            )}
-            {questions[currentQuestionIndex].image && showDiagram && (
-              <img
-                src={questions[currentQuestionIndex].image}
-                alt="Question Diagram"
-                style={styles.diagramImage}
-                onClick={() => handleZoomImage(questions[currentQuestionIndex].image)}
-              />
-            )}
-            {questions[currentQuestionIndex].type === 'Multiple Choice' ? (
-              questions[currentQuestionIndex].options.map((option, index) => (
-                <button
-                  key={index}
-                  style={{
-                    ...styles.optionButton,
-                    backgroundColor: selectedAnswers[currentQuestionIndex] === option ? '#4CAF50' : '#f0f0f0',
-                  }}
-                  onClick={() => handleSelectAnswer(option)}
-                >
-                  {option}
-                </button>
-              ))
-            ) : questions[currentQuestionIndex].type === 'True/False' ? (
-              <div style={styles.Container}>
-                <button
-                  style={{
-                    ...styles.optionButton,
-                    backgroundColor: selectedAnswers[currentQuestionIndex] === 'True' ? '#4CAF50' : '#f0f0f0',
-                  }}
-                  onClick={() => handleSelectAnswer('True')}
-                >
-                  True
-                </button>
-                <button
-                  style={{
-                    ...styles.optionButton,
-                    backgroundColor: selectedAnswers[currentQuestionIndex] === 'False' ? '#4CAF50' : '#f0f0f0',
-                  }}
-                  onClick={() => handleSelectAnswer('False')}
-                >
-                  False
-                </button>
-              </div>
-            ) : questions[currentQuestionIndex].type === 'Diagram' ? (
-              <>
-                <input
-                  type="text"
-                  placeholder="Type your answer"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onBlur={(e) => {
-                    handleTypeAnswer(e.target.value.trim().toLowerCase());
-                    setInputValue('');
-                  }}
-                  style={styles.inputField1}
-                />
-              </>
-            ) : (
-              <input
-                type="text"
-                placeholder="Type your answer"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onBlur={(e) => {
-                  handleTypeAnswer(e.target.value.trim().toLowerCase());
-                  setInputValue('');
-                }}
-                style={styles.inputField}
-              />
-            )}
-            {zoomedImage && (
-              <div style={styles.modalOverlay} onClick={() => setZoomedImage(null)}>
-                <img src={zoomedImage} alt="Zoomed Diagram" style={styles.zoomedImage} />
-              </div>
-            )}
-          </div>
-          <div style={styles.navigation}>
-            {currentQuestionIndex < questions.length - 1 ? (
-              <button style={styles.nextButton} onClick={handleNextQuestion}>
-                Next Question
-              </button>
-            ) : (
-              <button style={styles.submitButton} onClick={handleSubmitQuiz}>
-                Submit Quiz
-              </button>
-            )}
-          </div>
-        </div>
-              </>
-            )}       
-      {quizFinished && (
-      <div style={styles.container}>
-        <div style={styles.headContainer}>
-          <div style={styles.head}>
-            <h2 style={{fontSize: '50px'}}> Quiz Results</h2>
-            <p style={styles.congratulatoryMessage}>{getCongratulatoryMessage()}</p>
-          </div>
-        </div>
-        <div style={styles.scoresContainer}>
-          <div style={styles.contain}>
-            <div style={styles.mainContainer}>
-            <h2 style={styles.title}>Your Score</h2> 
-            <div style={styles.miniScoresContainer}>
-              <div style={styles.miniContain}>
-                {calculateScore()} / {questions.length}
-              </div>
-            </div>   
-          </div>
-        </div> 
-        <div style={styles.contain}>
-          <div style={styles.mainContainer}>
-            <h2 style={styles.title}>Percentage</h2> 
-            <div style={styles.miniScoresContainer}>
-              <div style={styles.miniContain}>
-                {Math.floor(calculatePercentage())}%
-              </div>
-            </div>  
+            <div style={styles.cont}>
+              {questions[currentQuestionIndex].type === 'Preamble' ? (
+                <p style={styles.question}><strong>Preamble:</strong> {questions[currentQuestionIndex].question}</p>
+              ) : (
+                <p style={styles.question}>Question {getCurrentFilteredIndex()}: {questions[currentQuestionIndex].question}</p>
+              )}
             </div>
-          </div>  
+            <div style={styles.optionsContainer}>
+              {questions[currentQuestionIndex].type === 'Preamble' ? (
+                <div style={styles.preambleContainer}>
+                  {questions[currentQuestionIndex].text &&
+                  (questions[currentQuestionIndex].text.startsWith('http') ||
+                    questions[currentQuestionIndex].text.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i)) ? (
+                    <img
+                      src={questions[currentQuestionIndex].text}
+                      alt="Preamble Diagram"
+                      style={styles.diagramImage}
+                    />
+                  ) : (
+                    <p>{questions[currentQuestionIndex].text}</p>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {questions[currentQuestionIndex].image && (
+                    <button
+                      style={styles.toggleButton}
+                      onClick={() => setShowDiagram(!showDiagram)}
+                    >
+                      {showDiagram ? 'Hide Diagram' : 'Show Diagram'}
+                    </button>
+                  )}
+                  {questions[currentQuestionIndex].image && showDiagram && (
+                    <img
+                      src={questions[currentQuestionIndex].image}
+                      alt="Question Diagram"
+                      style={styles.diagramImage}
+                      onClick={() => handleZoomImage(questions[currentQuestionIndex].image)}
+                    />
+                  )}
+                  {questions[currentQuestionIndex].type === 'Multiple Choice' ? (
+                    questions[currentQuestionIndex].options.map((option, index) => (
+                      <button
+                        key={index}
+                        style={{
+                          ...styles.optionButton,
+                          backgroundColor: selectedAnswers[currentQuestionIndex] === option ? '#4CAF50' : '#f0f0f0',
+                        }}
+                        onClick={() => handleSelectAnswer(option)}
+                      >
+                        {option}
+                      </button>
+                    ))
+                  ) : questions[currentQuestionIndex].type === 'True/False' ? (
+                    <div style={styles.Container}>
+                      <button
+                        style={{
+                          ...styles.optionButton,
+                          backgroundColor: selectedAnswers[currentQuestionIndex] === 'True' ? '#4CAF50' : '#f0f0f0',
+                        }}
+                        onClick={() => handleSelectAnswer('True')}
+                      >
+                        True
+                      </button>
+                      <button
+                        style={{
+                          ...styles.optionButton,
+                          backgroundColor: selectedAnswers[currentQuestionIndex] === 'False' ? '#4CAF50' : '#f0f0f0',
+                        }}
+                        onClick={() => handleSelectAnswer('False')}
+                      >
+                        False
+                      </button>
+                    </div>
+                  ) : questions[currentQuestionIndex].type === 'Diagram' ? (
+                    <>
+                      <input
+                        type="text"
+                        placeholder="Type your answer"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        onBlur={(e) => {
+                          handleTypeAnswer(e.target.value.trim().toLowerCase());
+                          setInputValue('');
+                        }}
+                        style={styles.inputField1}
+                      />
+                    </>
+                  ) : (
+                    <input
+                      type="text"
+                      placeholder="Type your answer"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      onBlur={(e) => {
+                        handleTypeAnswer(e.target.value.trim().toLowerCase());
+                        setInputValue('');
+                      }}
+                      style={styles.inputField}
+                    />
+                  )}
+                  {zoomedImage && (
+                    <div style={styles.modalOverlay} onClick={() => setZoomedImage(null)}>
+                      <img src={zoomedImage} alt="Zoomed Diagram" style={styles.zoomedImage} />
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+            <div style={styles.navigation}>
+              {currentQuestionIndex > 0 && (
+                <button style={styles.prevButton} onClick={handlePreviousQuestion}>
+                  Previous Question
+                </button>
+              )}
+              {currentQuestionIndex < questions.length - 1 ? (
+                <button style={styles.nextButton} onClick={handleNextQuestion}>
+                  Next Question
+                </button>
+              ) : (
+                <button style={styles.submitButton} onClick={handleSubmitQuiz}>
+                  Submit Quiz
+                </button>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+      {quizFinished && (
+        <div style={styles.container}>
+          <div style={styles.headContainer}>
+            <div style={styles.head}>
+              <h2 style={{ fontSize: '50px' }}> Quiz Results</h2>
+              <p style={styles.congratulatoryMessage}>{getCongratulatoryMessage()}</p>
+            </div>
+          </div>
+          <div style={styles.scoresContainer}>
+            <div style={styles.contain}>
+              <div style={styles.mainContainer}>
+                <h2 style={styles.title}>Your Score</h2>
+                <div style={styles.miniScoresContainer}>
+                  <div style={styles.miniContain}>
+                    {calculateScore()} / {filteredQuestions.length}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style={styles.contain}>
+              <div style={styles.mainContainer}>
+                <h2 style={styles.title}>Percentage</h2>
+                <div style={styles.miniScoresContainer}>
+                  <div style={styles.miniContain}>
+                    {Math.floor(calculatePercentage())}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={styles.buttonContainer}>
+            <button style={styles.reviewButton} onClick={() => navigate('/review', { state: { selectedAnswers, questions } })}>
+              Review Quiz
+            </button>
+            <button style={styles.restartButton} onClick={() => navigate('/dashboard')}>
+              Go Home
+            </button>
+          </div>
         </div>
-        <div style={styles.buttonContainer}>
-          <button style={styles.reviewButton} onClick={() => navigate('/review', { state: { selectedAnswers, questions } })}>
-            Review Quiz
-          </button>
-          <button style={styles.restartButton} onClick={() => navigate('/dashboard')}>
-            Go Home
-          </button>
-        </div>
-      </div>
       )}
     </div>
   );
@@ -632,7 +697,7 @@ question: {
 },
 optionsContainer: {
   position: 'fixed',
-  top: '400px',
+  top: '370px',
   left: '50%',
   transform: 'translateX(-50%)',
   display: 'flex',
@@ -690,9 +755,9 @@ navigation: {
   position: 'fixed',
   bottom: '10px',
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center', 
+  justifyContent: 'space-between', 
   width: '90%',
   padding: '10px',
   textAlign: 'center',
@@ -703,8 +768,10 @@ navigation: {
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
   marginLeft: "auto",
   marginRight: "auto",
+  gap: '10px'
 },
 nextButton: {
+  flex: 1,
   padding: '15px 30px',
   fontSize: '1.2rem',
   backgroundColor: '#2196F3',
@@ -713,12 +780,23 @@ nextButton: {
   borderRadius: '10px',
   cursor: 'pointer',
   transition: 'background-color 0.3s',
-  width: '90%'
 },
-submitButton: {
+prevButton: {
+  flex: 1,
   padding: '15px 30px',
   fontSize: '1.2rem',
-  backgroundColor: '#FF5722',
+  backgroundColor: 'red',
+  color: 'white',
+  border: 'none',
+  borderRadius: '10px',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s',
+},
+submitButton: {
+  flex: 1,
+  padding: '15px 30px',
+  fontSize: '1.2rem',
+  backgroundColor: 'green',
   color: 'white',
   border: 'none',
   borderRadius: '10px',
@@ -946,9 +1024,12 @@ toggleButton: {
   borderRadius: '5px',
 },
 diagramImage: {
-  width: '100px',
-  height: '100px',
+  width: '650px',
+  height: '110%',
   cursor: 'pointer',
+  display: 'block',
+  margin: '0 auto',
+  borderRadius: '10px'
 },
 modalOverlay: {
   position: 'fixed',
@@ -983,6 +1064,20 @@ toggleButton1: {
   fontWeight: 'bold',
   fontSize: '20px',
   transition: '0.3s ease',
+},
+preambleContainer: {
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+  padding: '20px',
+  borderRadius: '8px',
+  fontSize: '1.3rem',
+  color: '#333',
+  textAlign: 'justify',
+  lineHeight: '1.6',
+  height: '250px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'white',
 }
 };
 export default TestYourself;

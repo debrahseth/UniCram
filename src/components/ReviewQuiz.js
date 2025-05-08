@@ -4,35 +4,85 @@ import logo from '../assets/op.jpg';
 
 const ReviewQuiz = () => {
   const { state } = useLocation();
-  const { selectedAnswers, questions } = state;
+  const { selectedAnswers, questions } = state || {};
   const navigate = useNavigate();
+
+  if (!state || !selectedAnswers || !questions) {
+    return (
+      <div style={styles.container}>
+        <div style={styles.background}></div>
+        <div style={styles.head}>
+          <h2 style={styles.header}>Error</h2>
+          <p>No quiz data available to review.</p>
+          <button style={styles.restartButton} onClick={() => navigate('/dashboard')}>
+            Go Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const filteredQuestions = questions
+    .map((q, index) => ({ ...q, originalIndex: index }))
+    .filter(q => q.type !== 'Preamble');
 
   return (
     <div style={styles.container}>
       <div style={styles.background}></div>
       <div style={styles.head}>
         <h2 style={styles.header}>Review Your Quiz</h2>
-      </div>  
-      <div style={styles.scrollableContainer}>
-      {questions.map((question, index) => {
-        const userAnswer = selectedAnswers[index];
-        const isCorrect = userAnswer === question.answer;
-        return (
-          <div key={index} style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
-            <p style={styles.questionText}>Question: {question.question}</p>
-            <p>
-              <strong>Your answer:</strong> {userAnswer || "No answer"}
-            </p>
-            <p style={{ color: isCorrect ? 'green' : 'red' }}>
-              <strong>Correct answer:</strong> {question.answer}
-            </p>
-          </div>
-        );
-      })}
       </div>
-        <button style={styles.restartButton} onClick={() => navigate('/dashboard')}>
-          Go Home
-        </button>
+      <div style={styles.scrollableContainer}>
+        {filteredQuestions.map((question, index) => {
+          const rawUserAnswer = selectedAnswers[question.originalIndex];
+          const userAnswer = (rawUserAnswer || '').trim().toLowerCase();
+          let isCorrect = false;
+          let displayCorrectAnswer = '';
+
+          if (question.type === 'Fill-in' && Array.isArray(question.answer)) {
+            const rangeAnswer = question.answer[0];
+            if (rangeAnswer && rangeAnswer.includes('to')) {
+              const [min, max] = rangeAnswer.split('to').map(Number);
+              const userNumber = Number(userAnswer);
+              isCorrect = !isNaN(userNumber) && userNumber >= min && userNumber <= max;
+              displayCorrectAnswer = `${rangeAnswer}`;
+            } else {
+              isCorrect = question.answer.some(
+                ans => ans.trim().toLowerCase() === userAnswer
+              );
+              displayCorrectAnswer = question.answer.join(', ');
+            }
+          } else if (Array.isArray(question.answer)) {
+            isCorrect = question.answer.some(
+              ans => ans.trim().toLowerCase() === userAnswer
+            );
+            displayCorrectAnswer = question.answer.join(', ');
+          } else if (typeof question.answer === 'string') {
+            isCorrect = userAnswer === question.answer.trim().toLowerCase();
+            displayCorrectAnswer = question.answer;
+          } else {
+            displayCorrectAnswer = 'Unknown';
+          }
+
+          return (
+            <div key={index} style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
+              <p style={styles.questionText}>Question: {question.question}</p>
+              <p style={{ color: isCorrect ? 'green' : 'red' }}>
+                <strong>Your answer:</strong> {userAnswer || 'No answer'}
+              </p>
+              <p>
+                <strong>Correct answer:</strong> {displayCorrectAnswer}
+              </p>
+              <p>
+                <strong>Explanation:</strong> {question.explanation || 'No explanation provided'}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+      <button style={styles.restartButton} onClick={() => navigate('/dashboard')}>
+        Go Home
+      </button>
     </div>
   );
 };
@@ -84,28 +134,28 @@ const styles = {
     backgroundColor: '#f9f9f9',
     padding: '10px',
     borderRadius: '10px',
+    marginBottom: '10px'
   },
   oddRow: {
     backgroundColor: '#f0f0f0',
     padding: '10px',
     borderRadius: '10px',
+    marginBottom: '10px'
   },
   questionText: {
-    fontSize: '1.5rem',
+    fontSize: '1.3rem',
     marginBottom: '10px',
   },
   restartButton: {
-    padding: '5px 30px',
+    padding: '5px 20px',
     fontSize: '40px',
     color: 'white',
     borderRadius: '10px',
     cursor: 'pointer',
     transition: 'background-color 0.3s',
     width: '90%',
-    bottom: '20',
-    left: '0',
     backgroundColor: 'gold',
-    boxShadow: '0 -4px 8px rgba(3, 3, 3, 0.1)',
+    boxShadow: '0 4px 8px rgba(3, 3, 3, 0.5)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

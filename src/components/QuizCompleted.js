@@ -53,25 +53,21 @@ const QuizCompleted = () => {
     };
   }, [challengeId]);
 
-  // Add useEffect to determine the winner and trigger voice announcement
   useEffect(() => {
     if (isSenderScoreLoaded && isReceiverScoreLoaded) {
       let winnerName = null;
-      let loserName = null;
       if (senderScores > receiverScores) {
         winnerName = senderUsername;
-        loserName = receiverUsername;
         setWinner('sender');
       } else if (receiverScores > senderScores) {
         winnerName = receiverUsername;
-        loserName = senderUsername;
         setWinner('receiver');
       } else {
         setWinner('tie');
       }
 
       if (winnerName) {
-        const utterance = new SpeechSynthesisUtterance(`Congratulations ${winnerName}! You did an amazing job and came out on top!. ${loserName}, don't worry, — every great champion started with a few setbacks. Keep pushing, your moment is coming soon!. Congrats to you all!.`);
+        const utterance = new SpeechSynthesisUtterance(`Congratulations ${winnerName}! You did an amazing job and came out on top!.`);
         utterance.lang = 'en-US';
         utterance.volume = 1;
         utterance.rate = 1;
@@ -154,7 +150,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  winnerContainer: { // New style for the winner's container animation
+  winnerContainer: {
     animation: 'celebrate 2s infinite',
     border: '3px solid transparent',
     background: 'linear-gradient(white, white) padding-box, linear-gradient(45deg, #FFD700, #FF4500, #FFD700) border-box',
@@ -296,7 +292,6 @@ const styles = {
   },
 };
 
-// Add CSS keyframes for the celebration animation
 const styleSheet = document.createElement("style");
 styleSheet.type = "text/css";
 styleSheet.innerText = `

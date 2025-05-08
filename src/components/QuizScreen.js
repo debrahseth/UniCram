@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { doc, getDoc, setDoc, collection, updateDoc } from 'firebase/firestore';
-import { courseData } from './courseData';
+import { courseData } from '../questions/courseData';
 import '../styles.css';
 import { getAuth } from 'firebase/auth';
 import { FaClock } from 'react-icons/fa';
