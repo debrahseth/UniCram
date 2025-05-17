@@ -1607,6 +1607,549 @@ export const courseData2 = {
           }
         ]},
 // Level 200, Semester 2, Chemical Engineering
+"Engineering Drawing":{
+  programOfStudy: 'Chemical Engineering',
+  semesterOfStudy: 'Semester 2',
+  levelOfStudy: 'Level 200',
+  Easy : [
+  {
+      question: "The toolbar at the top of the AutoCAD 2008 window is ", 
+      answer: " The Standard toolbar",
+      type: "Multiple Choice",
+      options: ['The Draw toolbar  ',' The Modify toolbar','The Standard toolbar ',' The Properties toolbar ']
+  },
+  {
+      question: "The DesignCenter palette can be opened from the: ",
+      answer: " Standard toolbars",
+      type: "Multiple Choice",
+      options: [' Layer toolbar ',' Properties toolbar','Modify toolbar',' Standard toolbar']
+  },
+  {
+      question: ".Press the F9 key of the keyboard for:  ",
+      answer: " Snap on/off",
+      type: "Multiple Choice",
+      options: [' Grid on/off ',' Snap on/off ','Ortho on/off ','Osnap on/off ']
+  },
+  {
+      question: "In the coordinate system of AutoCAD 2008:",
+      answer: "Positive x figures are to the right",
+      type: "Multiple Choice",
+      options: [' Positive x figures are to the left ',' Positive x figures are to the right ',' Positive x figures are in the direction vertically upwards',' Positive x figures are in the direction vertically downwards']
+  },
+  {
+      question: "Drawing templates are held in files with the file extension: ",
+      answer: "*.dwt ",
+      type: "Multiple Choice",
+      options: [' *.dwt  ','  -*.dwg ',') *.bmp ',' *.dwr. ']
+  },
+
+
+  {
+      question: " A left-click on a name  in a drop-down menu showing three dots (...) appearing after the name means that: ",
+      answer: "  A dialog will appear on screen",
+      type: "Multiple Choice",
+      options: [' A command name will appear at the command line','  A dialog will appear on screen ','A sub-menu will appea','A tool will be activated. ']
+  },
+  {
+      question: "AutoCAD 2008 can be opened with:",
+      answer: " A left-click on the AutoCAD 2008 shortcut icon in the Windows desktop ",
+      type: "Multiple Choice",
+      options: ['A left-click on the AutoCAD 2008 shortcut icon in the Windows desktop ',' By typing acad at the keyboard  ',' Automatically when the computer is switched on',' By selecting from a list which appears on screen when the computer is switched on']
+  },
+  {
+      question: "The term dragging means:",
+      answer: "Holding down the left-hand button of the mouse on an item can be moved to another point on screen ",
+      type: "Multiple Choice",
+      options: [' Left-click on an item and the item can be moved to another position on screen',' Double-click on an item. The item can then be moved to another point on screen; ','Holding down the left-hand button of the mouse on an item can be moved to another point on screen ',' Press the right-hand button of the mouse. This allows an item to be moved anywhere on screen']
+  },
+  {
+      question: "An arrow appearing after a name in a drop-down menu means that: ",
+      answer: " A sub-menu will appear",
+      type: "Multiple Choice",
+      options: [' A command name will appear at the command line ',' dialog will appear on screen ','  A sub-menu will appear',' A tool will be activated.']
+  },
+  {
+      question: "  A tool tip is:",
+      answer: "The tool name appearing in a rectangle when the cursor is placed on a tool icon ",
+      type: "Multiple Choice",
+      options: ['The tool name appearing in a rectangle when the cursor is placed on a tool icon ',' The name given to a tool ',' The instruction which appears at the left-hand end of the status bar when a tool is chosen','The instruction which appears at the left-hand end of the status bar when a tool is chosen ']
+  },
+  {
+      question: " To call the Line tool from the command line, the following abbreviation can be entered: ",
+      answer: "l ",
+      type: "Multiple Choice",
+      options: ['lin ','li ','l ','ln ']
+  },
+  {
+      question: "When the F6 key of the keyboard is pressed, the following facility is toggled on/off:  ",
+      answer: "DUCS",
+      type: "Multiple Choice",
+      options: ['snap ','ortho ','DUCS','DYN ']
+  },
+  {
+      question: "The  key F9 toggles on/off: ",
+      answer: " Snap ",
+      type: "Multiple Choice",
+      options: [' Snap',' ortho ','Grid',' DYN']
+  },
+  {
+      question: " When entering absolute coordinate numbers at the command line, the coordinates are preceded by: ",
+      answer: "There is no need to enter anything in front of the coordinate numbers",
+      type: "Multiple Choice",
+      options: ['  The letter a',' The symbol @ ','The letters ab ','There is no need to enter anything in front of the coordinate numbers']
+  },
+  {
+      question: "The command line abbreviation for the Circle tool is: ",
+      answer: " c ",
+      type: "Multiple Choice",
+      options: ['cir ','c','ci ','cl ']
+  },
+  {
+      question: " The Arc tool can be called by entering the following abbreviation at the command line:",
+      answer: " a ",
+      type: "Multiple Choice",
+      options: ['ar ',' a ',' ac',' There is no abbreviation. The name arc must be entered in full. ']
+  },
+  {
+      question: "The set variable PELLIPSE can be set to either 0 or 1 when it allows the following actions:",
+      answer: "  When set to 1 the Edit Polyline tool to be used on ellipses ",
+      type: "Multiple Choice",
+      options: ['When set to 0 the Edit Polyline tool to be used on ellipses ',' When set to 1 the Edit Polyline tool to be used on ellipses ',' When set to 0 it allows ellipses to be drawn with the major axis at any angle','  When set to 0 ellipses become polylines. ']
+  },
+  {
+      question: "When saving an AutoCAD 2008 drawing it is filed with the extension: ",
+      answer: ".dwg ",
+      type: "Multiple Choice",
+      options: [' *.drw',' *.dwg ',' .dwt ',' *dg. ']
+  },
+  {
+      question: "The Dynamic Input (DYN) system can be toggled on/off by pressing which key of the keyboard: ",
+      answer: "F12 ",
+      type: "Multiple Choice",
+      options: ['F6  ','F7 ','F12','F3 ']
+  },
+  {
+      question: " What is the function of entering commandline at the keyboard:",
+      answer: "It places the command palette at the bottom of the screen. ",
+      type: "Multiple Choice",
+      options: ['It enables the command line to be used for entering command ',' It brings back the command palette when it has been hidden','It can only be used when DYN is set on to allow Dynamic Input to work ',' It places the command palette at the bottom of the screen.']
+  },
+  {
+      question: "The Polyline Edit tool can only be used when working with polylines: ",
+      answer: " FALSE ",
+      type: "Multiple Choice",
+      options: [' TRUE ',' FALSE ',]
+  },
+  {
+      question: " What is the purpose of the set variable MIRRTEXT:",
+      answer: " To enable text to be mirrored with a drawing, when the Mirror tool is in use  ",
+      type: "Multiple Choice",
+      options: [' To ensure that text is mirrored correctly ',' To enable text to be mirrored with a drawing, when the Mirror tool is in use  ','To make sure that text is deleted from drawings when acted upon by the Mirror tool ','  To show text clearly in drawings acted upon by the Mirror tool ']
+  },
+  {
+      question: "When using the Rotate tool the angle of rotation is in the following direction: ",
+      answer: " Anticlockwise ",
+      type: "Multiple Choice",
+      options: [' clockwise','  Anticlockwise',' The direction in which the cursor is moved',' There is no fixed rotation direction ']
+  },
+  {
+      question: " When using the Stretch tool:",
+      answer: " The tool has no effect upon circles ",
+      type: "Multiple Choice",
+      options: [' Circles can be stretched into ellipses   ',' The tool has no effect upon circles ',' Be careful because circles can be erased ',' Treat circles like any other part of the drawing being stretched ']
+  },
+  {
+      question: " When using the Break tool on circles and/or arcs: ",
+      answer: "  Breaks can only be made in an anticlockwise direction",
+      type: "Multiple Choice",
+      options: [' Breaks can be made in any direction ','  Breaks can only be made in a clockwise direction ',' Breaks can only be made in an anticlockwise direction',' Break cannot be made in circles or arcs.'  ]
+  },
+  {
+      question: " The Join tool can be used for joining ",
+      answer: " Only arcs or lines in line with each other ",
+      type: "Multiple Choice",
+      options: [' Any two arcs ','Only arcs or lines in line with each other','Any two lines or plines']
+  },
+  {
+      question: "An aligned dimension is one which: ",
+      answer: " Is in line with the object being dimensioned",
+      type: "Multiple Choice",
+      options: ['Is aligned to the previous dimension;  ',' Is in line with the object being dimensioned ','Can only be used when placing a dimension with a radius  ']
+  },
+  {
+      question: " The “style name” of a text refers to:  ",
+      answer: " The font in use",
+      type: "Multiple Choice",
+      options: [' The font in use','The height of the text','The height of the text ']
+  },
+  {
+      question: " The difference between Singleline text and Multiline text is:  ",
+      answer: " Singleline text is text entered directly at the command line. Multiline text must be entered in a window",
+      type: "Multiple Choice",
+      options: [' Only one line of text can be added to a drawing with Single Line text, whereas many lines of text can be added using Multiline text   ','  Singleline text can be added in one style only. Multiline text can be added in any style. ','  Singleline text is text entered directly at the command line. Multiline text must be entered in a window ']
+  },
+  {
+      question: " In first angle orthographic projection an end view is: ",
+      answer: " Always placed to the right of the front view",
+      type: "Multiple Choice",
+      options: [' Always placed to the right of the front view ',' Always placed to the right of the front view  ',' Always placed to the left of the front view',' Placed either side of the front view irrespective of the viewing position']
+  },
+  {
+      question: " In third angle orthographic projection a plan is: ",
+      answer: " Placed either above or below the front view depending upon whether the viewing is from above or below ",
+      type: "Multiple Choice",
+      options: [' Placed either above or below the front view depending upon whether the viewing is from above or below ','Always placed below the front view','  Placed either above or below no matter which viewing direction is chosen.',' Always placed above the front view']
+  },
+  {
+      question: "  Isometric drawing is: ",
+      answer: " A 2D (two-dimensional) pictorial view of the object",
+      type: "Multiple Choice",
+      options: [' A true 3D (three-dimensional) pictorial view of the object being drawn ',' A 2D (two-dimensional) pictorial view of the object ',' A 2D (two-dimensional) pictorial view of the object  ','  None of the items a, b or c ']
+  },
+  {
+      question: " If a layer is locked:",
+      answer: " Details can be added to a locked layer",
+      type: "Multiple Choice",
+      options: [' Details can be added to a locked layer','Details can be erased from a locked layer ',' Details cannot be added or erased from a locked layer  ',') Details can be added to a locked layer but they disappear when the drawing file is saved ']
+  },
+  {
+      question: " When a layer is turned off: ",
+      answer: " Details on the layer cannot be seen",
+      type: "Multiple Choice",
+      options: [' File space is saved when saving the file',') It makes no real difference. Details can still be added to the layer','  Details cannot be erased from the layer','  Details on the layer cannot be seen']
+  },
+  {
+      question: "  Associative hatching is a term given to: ",
+      answer: ") Hatching which is associated with objects which are moved within a hatched area ",
+      type: "",
+      options: ['Types of hatching which can be joined together ','Hatching which is associated with the colour of the area being hatched  ',' ) Hatching which is associated with objects which are moved within a hatched area ']
+  },
+  {
+      question: "  The Hatch and Gradient dialog can be called to screen: ",
+      answer: "By any one of the choices as given in a., b. or c. ",
+      type: "Multiple Choice",
+      options: ['By any one of the choices as given in a., b. or c. ','By clicking the Hatch tool icon in the  Draw toolbar ',' ) By entering the abbreviation h at the command line ']
+  },
+  {
+      question: "When hatching a sectional view in an engineering drawing ",
+      answer: ") By entering the abbreviation h at the command line ",
+      type: "Multiple Choice",
+      options: [' Every detail cut by a section plane must be hatched   ','It is up to the operator constructing the drawing which parts are hatched   ',' ) By entering the abbreviation h at the command line']
+  },
+  {
+      question: " When Advanced hatching is set to Normal all parts of a drawing will be hatched:   ",
+      answer: " ",
+      type: "Multiple Choice",
+      options: ['','','']
+  },
+  {
+      question: "  When text is entered in a hatched area: ",
+      answer: " False",
+      type: "Multiple Choice",
+      options: ['True  ','False ',' None',]
+  },
+  {
+      question: "  When text is entered in a hatched area:  ",
+      answer: "The text will be surrounded by a non-hatched area only if Advanced Normal is set on",
+      type: "Multiple Choice",
+      options: ['The text will be surrounded by a non-hatched area only if Advanced Normal is set on  ',' The text will be surrounded by a non-hatched area only if Advanced Outer is set on','The text will be surrounded by a non-hatched area only if Advanced Ignore is set on; ',' The text will be surrounded by a non-hatched area if any of the Advanced settings are set on ',]
+  },
+  {
+      question: "  Which of the following is correct? ",
+      answer: " When a block has been constructed and saved, the file data is saved as part of the file in which the block was constructed ",
+      type: "Multiple Choice",
+      options: ['When a block has been constructed and saved the data is saved as file with a name in a named directory  ',' When a block has been constructed and saved, the file data is saved as part of the file in which the block was constructed  ','When a block has been constructed and saved, the file data is saved as a separate file from the drawing in which the block was constructed','When a block has been constructed and saved, the file data is saved as new file ']
+  },
+  {
+      question: " The DesignCenter is:   ",
+      answer: " A palette ",
+      type: "Multiple Choice",
+      options: ['  A drop-down menu  ','A dialog ',' A palette ']
+  },
+  {
+      question: "Which of the following statement is correct? ",
+      answer: " The Purge tool can be use to delete unwanted detail from any drawing ",
+      type: "Multiple Choice",
+      options: ['The Purge tool can only be used when inserting blocks  ','The Purge tool can be use to delete unwanted detail from any drawing',' The Purge tool can only be used only for deleting exploded blocks from drawings ']
+  },
+  {
+      question: " When copying a drawing constructed in AutoCAD 2008 using the Copy command from the Edit  drop down menu, the drawing can be pasted into documents being worked in other applications. The method  of copying and pasting makes use of:  ",
+      answer: " The drawing is transferred via the Clipboard. ",
+      type: "Multiple Choice",
+      options: [' A DXF file ',' An EPS file',' Any item in any application can be automatically copied into another application',' The drawing is transferred via the Clipboard. ']
+  },
+  {
+      question: " When a drawing is saved as an EPS  file and the EPS file is inserted into a document being worked in another application: ",
+      answer: "Changes made in the AutoCAD drawing will automatically be updated to change in the drawing in the other application ",
+      type: "Multiple Choice",
+      options: ['Changes made in the AutoCAD drawing will automatically be updated to change in the drawing in the other application ',' Changes made in the AutoCAD drawing are not reflected in the document into which the drawing has been inserted ','Changes made in the AutoCAD drawing are only changed in the inserted drawing after both the drawing and the document have been saved to file ']
+  },
+  {
+      question: " The reason for saving an AutoCAD drawing as a DXF file is:    ",
+      answer: "  The DXF file can be opened in any other Computer Aided Design (CAD) application",
+      type: "Multiple Choice",
+      options: [' The DXF file can be opened in any other Computer Aided Design (CAD) application  ','DXF files take up less space on a file than the AutoCAD DWG file  ','DXF files can be opened in a Microsoft Word document   ']
+  },
+  {
+      question: " External references (xrefs) can be described as:  ",
+      answer: "  They are different to blocks in that changes in an original external reference are reflected in the drawing in which the xref is inserted",
+      type: "Multiple Choice",
+      options: [' They are the same as blocks and are saved within the drawing file in which they were constructed, but can be inserted in other drawings ','  They are different to blocks in that changes in an original external reference are reflected in the drawing in which the xref is inserted','They are blocks which are saved to file names in their own right']
+  } ,
+  {
+      question: " Which files with the following file name extensions are “raster” files? ",
+      answer: "*.bmp",
+      type: "Multiple Choice",
+      options: ['*.bmp ','*.dwg  ',' *.dxf ',]
+  },
+  {
+      question: "An AutoCAD sheet set is:  ",
+      answer: " A number of AutoCAD drawings saved in Paper Space format and held in a file ",
+      type: "Multiple Choice",
+      options: [' A number of drawings which have been printed from AutoCAD drawings and saved in an envelope',' A number of AutoCAD drawings saved in Paper Space format and held in a file  ',' Any drawings relating to a specific architectural, building or engineering process ','  A series of printed AutoCAD drawings']
+  },
+  {
+      question: " Drawing for a sheet set must be ",
+      answer: " Saved in Paper Space format ",
+      type: "Multiple Choice",
+      options: ['Saved in Model Space format ',' Saved in Paper Space format ',' Saved in either Model Space or Paper Space format ','Saved in *.dwf format']
+  }],
+Medium: [
+  {
+      question: "DWF is an abbreviation for a file extension. The abbreviation stands for:  ",
+      answer: " Design Web Format. ",
+      type: "Multiple Choice",
+      options: [' Drawing with files ','Design with file  ',' Design Web File ',' Design Web Format ']
+  },
+  {
+      question: "  DWF files can be included as attachments in an email. Is this statement:    ",
+      answer: "True ",
+      type: "Multiple Choice",
+      options: ['True ',' Only partly true ',' Incorrect',' Only when sent as a zip file']
+  },
+  {
+      question: "  The Region tool can be called by entering the following abbreviation at the command line when using Dynamic Input  ",
+      answer: " reg",
+      type: "Multiple Choice",
+      options: ['re ','reg ','regi',' There is no abbreviation for this command. ']
+  },
+  {
+      question: " When using the Extrude tool the set variable ISOLINES must be set to  ",
+      answer: "  Any number below 2047.",
+      type: "Multiple Choice",
+      options: ['4 ','16 ',' Any number ',' Any number below 2047.']
+  },
+  {
+      question: " When using the Extrude tool which of the following can be extruded?  ",
+      answer: " Regions ",
+      type: "Multiple Choice",
+      options: [' Regions','An outline constructed using the Line tool',' Closed plines',' Another extrusion']
+  },
+  {
+      question: " When using the Revolve tool which of the following can be extruded?  ",
+      answer: " Closed plines",
+      type: "Multiple Choice",
+      options: [' An outline constructed using the Line tool ','Circles ',' Closed plines ',' Ellipses ']
+  },
+  {
+      question: "  Can the Union tool be used to form 3D solid drawings from a number of objects constructed using any of the 3D Objects tools Box, Sphere, Cylinder, Cone, Torus and Wedge? ",
+      answer: "No",
+      type: "Multiple Choice",
+      options: ['Yes ','No ','Only from the Box and Cone tools ',' Yes, but not from the Torus tool']
+  },
+  {
+      question: " Which of the following tools from the 2D Draw control panel can be used when constructing 3D solid model drawings - Move, Copy, Chamfer, Fillet, Mirror, Rotate, Scale? ",
+      answer: "  Any of them",
+      type: "Multiple Choice",
+      options: [' None of them',' Only the Chamfer and Fillet tools',' Any of them','  Only Move and Copy.']
+  },
+  {
+      question: "  Why is the name Boolean operators given to the tools Union, Subtract and Intersect?   ",
+      answer: " It is based on the name of the scientist George Boole ",
+      type: "Multiple Choice",
+      options: [' It is the name made up for this purpose by computer programmers ',' It is just a name selected for this purpose',' It is based on the name of the scientist George Boole ',' Boolean is a name always given to this type of construction. ']
+  },
+  {
+      question: " Is it possible to form unions between  solids constructed using the Extrude tool and solids formed using the 3D Objects tools? ",
+      answer: "No ",
+      type: "Multiple Choice",
+      options: ['Yes','No','Only when the 3D Objects tool is the Box or Sphere tool ','Only when the 3D Objects tool is the Cone tool. ']
+  },
+  {
+      question: " When constructing 3D model drawings in multiple viewports: ",
+      answer: "The set variable UCSFOLLOW must be set to off ",
+      type: "Multiple Choice",
+      options: ['The set variable UCSFOLLOW must be set to on ',' The set variable UCSFOLLOW must be set to off',' It does not matter whether the set variable UCSFOLLOW is set on or off','The set variable UCSFOLLOW must be set to 3  ']
+  },
+  {
+      question: "  When constructing 3D model drawings in multiple viewports: ",
+      answer: " It does not matter whether the UCS icons are showing in viewports or not",
+      type: "Multiple Choice",
+      options: [' The UCS icons must not be showing in each viewport  ',' It does not matter whether the UCS icons are showing in viewports or not  ',' The UCS icon must be showing in the isometric view viewport  ','  The UCS icon must be showing in the Front and Plan viewports. ']
+  },
+  {
+      question: " When constructing 3D model drawings in multiple viewports: ",
+      answer: " Each viewport is set to different viewpoints when a multiple viewport is chosen from the Viewports dialog only if the Setup popup list is set to 3D.",
+      type: "Multiple Choice",
+      options: [' Each viewport must be set independently to different viewpoints from the Visual Styles menu  ',' Only when working in a particular viewport will its viewpoint need to be set ','Each viewport is set to different viewpoints when a multiple viewport is chosen from the Viewports dialog',' Each viewport is set to different viewpoints when a multiple viewport is chosen from the Viewports dialog only if the Setup popup list is set to 3D.']
+  },
+  {
+      question: " Is it possible to construct a polar array from a 3D solid model drawing using the Array tool from the Modify toolbar?  ",
+      answer: "Yes",
+      type: "Multiple Choice",
+      options: ['No','Yes',' If your answer is Option a or No, with which tool can one construct an array from a 3D solid model drawing',' Only if the 3D solid model drawing is placed in the World UCS.']
+  },
+  {
+      question: "  From which of the following toolbars can the Mass Properties tool be called? ",
+      answer: " Inquiry ",
+      type: "Multiple Choice",
+      options: ['Modify','Draw','standard',' Inquiry']
+  },
+  {
+      question: "The purpose of the Viewpoint Presets dialog is: ",
+      answer: "To set a 3D solid model drawing in any form of viewing position ",
+      type: "Multiple Choice",
+      options: ['To set a 3D solid model drawing in any form of viewing position','To set a 3D solid model drawing in an isometric view',' To set a 3D solid model drawing in a perspective view',' To set a 3D solid model drawing is an orthographic view.']
+  },
+  {
+      question: "The Slice tool is used for slicing a 3D solid model into: ",
+      answer: "Into as many parts as are required ",
+      type: "Multiple Choice",
+      options: [' Two parts ','Two parts ready for the calling of the Section tool  ',' Into as many parts as are required ',' To remove a part not wanted in a 3D solid model drawing. ']
+  },
+  {
+      question: "  When using the Section tool on a 3D solid model drawing ",
+      answer: " ",
+      type: "Multiple Choice",
+      options: [' Hatching of the resulting sectional view is automatic ','The section outline must be removed from the 3D solid model drawing','Only a sectional view outline is formed ','The resulting sectional view automatically appears as a separate view in the drawing area.']
+  },
+  {
+      question: " Before viewing positions can be set from the Viewpoint Preset dialog the set variable UCSFOLLOW must first be set:",
+      answer: " It does not matter whether it is set on or off",
+      type: "Multiple Choice",
+      options: [' On ',' Off ','To the figure of 2 ',' It does not matter whether it is set on or off. ']
+  },
+  {
+      question: "Is it possible to mirror a 3D solid model drawing using the Mirror tool from the Modify toolbar? ",
+      answer: "Yes",
+      type: "Multiple Choice",
+      options: ['No','Yes',' If your answer is Option a or No, with which tool can one mirror a 3D solid model drawing?',' Only if the 3D solid model drawing is placed in the World UCS.']
+  },
+  {
+      question: " Can Ambient lighting be set at a figure before rendering a 3D model? ",
+      answer: "No",
+      type: "Multiple Choice",
+      options: ['Yes','No ',' Requires a setting in a dialog',' Set to a figure of 0.3.']
+  },
+  {
+      question: " When setting lighting before rendering a 3D model Distant light can be described as: ",
+      answer: " A light the value of which diminishes in intensity the further the light position is set from the 3D model ",
+      type: "Multiple Choice",
+      options: [' A light the value of which diminishes in intensity the further the light position is set from the 3D model ',' Its light value is of the same intensity no matter how far the light position is set from the 3D model   ',' Its intensity increases when set in front and above the 3D model compared with its being set to the side and above the model ','A light which sheds rays in all directions from its set position. ']
+  },
+  {
+      question: "Which in your opinion gives the best rendering results; ",
+      answer: "Presentation  ",
+      type: "Multiple Choice",
+      options: ['Medium','High','Presentation','They are all as good as each other?']
+  },
+  {
+      question: ". Can a 3D model which has been Conceptual shaded when using the 3D Orbit tool be rendered after attaching materials: ",
+      answer: " Yes",
+      type: "Multiple Choice",
+      options: ['Yes  ','NO ',' After materials have been added to a 3D model it cannot be Conceptual shaded  ','The 3D Orbit tool cannot be used after rendering has taken place. ']
+  },
+  {
+      question: " When printing or plotting a 3D model, which of the following statements is correct: ",
+      answer: "A rendered 3D model in a single viewport can be plotted in full colour",
+      type: "Multiple Choice",
+      options: ['A rendered 3D model in a single viewport can be plotted in full colour ',' A Conceptual shaded 3D model in a single viewport can be plotted in full colour ',' A four-view viewport screen of a rendered 3D model in Model Space can be plotted in full colour',' A four-view viewport screen of a Conceptual shaded 3D model in Model Space can be plotted in full colour. ']
+  },
+  {
+      question: "  The term UCS stands for:  ",
+      answer: " User Coordinate System ",
+      type: "Multiple Choice",
+      options: ['User Coordinate State ','Using Cordinates Screen   ','  User Coordinate System ','User Coordinate Set ']
+  },
+  {
+      question: " Before the UCS system can be used: ",
+      answer: "The set variable UCSFOLLOW must be set to 1 ",
+      type: "Multiple Choice",
+      options: ['The set variable UCSFOLLOW must be set to 1  ','The set variable UCSFOLLOW must be set to 0   ','It does not matter whether the set variable UCSFOLLOW is set to any number, the UCS system will still operate   ','  The set variable UCSFOLLOW does not need to be set because it becomes operative when the UCS is in use.. ']
+  },
+  {
+      question: "Before the UCS system can be used, the UCS icon: ",
+      answer: " Need not appear anywhere on screen",
+      type: "Multiple Choice",
+      options: [' Must be showing somewhere on screen ',' Need not appear anywhere on screen ','Must be showing at the bottom left-hand corner of the screen','The UCS icon can only show on screen if the setting of the set variable UCSFOLLOW is correct.  ']
+  },
+  {
+      question: "The term UCS WORLD applies to:  ",
+      answer: " The standard XY plane which appears when AutoCAD is loaded on screen",
+      type: "Multiple Choice",
+      options: ['The plane on which the operator is working at the time   ',' The standard XY plane which appears when AutoCAD is loaded on screen  ',' Any one of the orthogonal planes  ','  Any plane set when working in the UCS.  ']
+  },
+  {
+      question: " A 2D outline constructed using the line and circle tools can be extruded to form a 3D model: ",
+      answer: " Yes",
+      type: "Multiple Choice",
+      options: [' Yes ','NO',' Only if is first made into a region ',' Either if it first made into a region or if its outline is edited to form a closed polyline. ']
+  },
+  {
+      question: "When calling the Extrude tool the following abbreviation can be entered at the command line::",
+      answer:" ext.",
+      type: "Multiple Choice",
+      options: [' ex  ','.extr ','There is no abbreviation. The name extrude must be entered in full',' ext. ']
+  },
+  {
+      question: " When a selected face of a 3D solid model drawing is selected by the Move Faces tool from the Solids Editing toolbar, the face is: ",
+      answer: "Moved in such a manner that the body of the 3D solid to which the face is attached is extruded",
+      type: "Multiple Choice",
+      options: [' Moved away from the 3D solid as a separate entity  ','Moved in such a manner that the body of the 3D solid to which the face is attached is extruded ',' Moved to be placed on another 3D model ','The whole of the 3D model is moved.  ']
+  },
+  {
+      question: " Is it possible to use the Extrude faces tool from the Solids Editing toolbar on a region constructed from a closed polyline?   ",
+      answer: " No - a region of any type cannot be acted upon by this tool",
+      type: "Multiple Choice",
+      options: [' Yes, any region can have its face extruded using this tool ','  Yes, if the region has not been obtained by using any of the Boolean operators  ',' No - a region of any type cannot be acted upon by this tool  ','Yes, providing the line of extrusion is a straight line or polyline. ']
+  },
+  {
+      question: " The Boolean operators - Union, Subtract and Intersect tools are found in the toolbar:    ",
+      answer: " Solids Editing",
+      type: "Multiple Choice",
+      options: [' Modeling ',' UCS ',' Solids Editing ',' UCS II. ']
+  },
+  {
+      question: " The Solprof tool is used for the following purpose:    ",
+      answer: "To produce an outline-only drawing from a 3D solid model drawing ",
+      type: "Multiple Choice",
+      options: ['To produce a profile for a 3D solid model drawing in a database   ','To produce an outline-only drawing from a 3D solid model drawing   ','To provide a profile similar to a front view from a 3D solid model drawing  ','o change a 3D solid model drawing from a Model Space drawing to a Paper Space drawing. ']
+  },
+  {
+      question: " A polygonal viewport can be constructed in a Model Space viewport:  ",
+      answer: "This is not true. A polygonal viewport can only be constructed in Paper Space viewports",
+      type: "Multiple Choice",
+      options: ['This is not true. A polygonal viewport can only be constructed in Paper Space viewports  ','es. A polygonal viewport can be constructed in either Model Space or Paper Space ',' Yes. A polygonal viewport can be constructed in Model Space by clicking the MODEL button when in paper Space ',' Yes providing there is only a single viewport on screen.']
+  },
+  {
+      question: "  A drawing can only be printed or plotted from a Paper Space drawing:  ",
+      answer: " Drawings can be printed or plotted from either Model Space or Paper Space",
+      type: "Multiple Choice",
+      options: [ 'This correct' ,' Yes - providing the MODEL button has been clicked','  Drawings can be printed or plotted from either Model Space or Paper Space',' Drawings can be printed from Paper Space, but plotted only from Model Space  ']
+  },
+  {
+      question: "  A file name with the following extension shows that the file is a raster file:    ",
+      answer: " *.bmp",
+      type: "Multiple Choice",
+      options: ['*.dwg',' *.dwt',' *.bmp',' *.dxf. ']
+  },
+  {
+      question: "  When a photograph has been inserted in an AutoCAD drawing on screen, when the drawing is printed or plotted, the photograph does not print or plot with the drawing:   ",
+      answer: "This is not true. The photograph will print or plot along with the drawing",
+      type: "Multiple Choice",
+      options: [' This is correct ',' This is not true. The photograph will print or plot along with the drawing','This is true only if the photograph was inserted in a drawing in paper Space','This is true only if the photograph was inserted in a drawing in Model Space.']
+  },
+]},
 'Heat Transport Processes': {
   programOfStudy: "Chemical Engineering",
   levelOfStudy: "Level 200",
@@ -2905,34 +3448,6 @@ export const courseData2 = {
       answer: "",
     }
   ]},
-'Drawing for Engineers': {
-  programOfStudy: "Chemical Engineering",
-  levelOfStudy: "Level 200",
-  semesterOfStudy: "Semester 2",
-  Easy: [
-    {
-      question: "",
-      type: "",
-      options: ["","","",""],
-      answer: ""
-    }
-  ],
-  Medium: [
-    {
-      question: "",
-      type: "",
-      options: ["","","",""],
-      answer: ""
-    }
-  ],
-  Hard: [
-    {
-      question: "",
-      type: "",
-      options: ["","","",""],
-      answer: "",
-    }
-  ]},
 'Strength of Materials': {
   programOfStudy: "Chemical Engineering",
   levelOfStudy: "Level 200",
@@ -3048,7 +3563,7 @@ export const courseData2 = {
         type: 'True/False'
     },
     {
-        question: "Use the above preamble to answer questions 21 and 22.",
+        question: "Use the preamble below to answer questions 21 and 22.",
         text: 'A tensile is carried out on a bar of mild steel of diameter 5cm. The bar yields under a load of 65kN. It reaches a maximum load of 120kN, and breaks finally at a load of 55kN',
         type: 'Preamble',
     },
@@ -3323,8 +3838,9 @@ export const courseData2 = {
       options: [' By the proportional limit',' By the elastic limit',' By a strain offset method','By the ultimate strength']
   },
   {
-      type: "Figure 1 shows a rectangle with a hole of radius 25mm as its diameter. Use the information to answer the next three questions",
-      text: 'fig 1',
+      question: "Use the information to answer questions 11 - 13",
+      type: "Preamble",
+      text: [require('../images/som-1.jpg'),'Figure 1 shows a rectangle with a hole of radius 25mm as its diameter.'],
   },
   {
       question: 'Assuming the rectangle to be perfect(without hole),determine its moment of inertia with respect to the x-axis',
@@ -3345,8 +3861,9 @@ export const courseData2 = {
       options: ['1.012x10^6 mm^4','1.012x10^8 mm^4','1.012x10^10 mm^4','1.012x10^12 mm^4']
   },
   {
+      question: "Use the information below to answer the questions 14-19",
       type: "Preamble",
-      text: 'fig. 2. The steel rod shown in fig 6 is fixed to a wall at its left end. It has three applied forces. 5kN is applied at B,3kN at C and 1kN at D. The area of the rod between A and B is 1000mm^2, that between B and C is 500mm^2 and that between C and d is 250mm^2. Take E=210GPa. Use the above information to answer the next five questions',
+      text: [require('../images/som-2.jpg'),'The steel rod shown, is fixed to a wall at its left end. It has three applied forces. 5kN is applied at B, 3kN at C and 1kN at D. The area of the rod between A and B is 1000mm^2, that between B and C is 500mm^2 and that between C and d is 250mm^2. Take E = 210GPa.'],
   },
   {
       question: 'What is the maximum stress in the system?',
@@ -3380,26 +3897,28 @@ export const courseData2 = {
   },
   {
       type: 'Preamble',
-      text: 'fig. 3',
+      text: require('../images/som-3.jpg'),
+      question: 'Use this diagram to answer questions 19 and 20.'
   },
   {
-      question: 'What is the reaction support at point a in figure 5?',
+      question: "What is the reaction support at point 'A' in the previous figure.",
       type: 'Multiple Choice',
       answer: '2.29kN',
       options: ['1.89kN','2.29kN','3.45kN','none of the above']
   },
   {
-      question: 'Calculate the reaction support at point B in figure 3',
+      question: 'Calculate the reaction support at point B in the figure.',
       type: 'Multiple Choice',
       answer: '26.22kN',
       options: ['18.23kN','26.22kN','30.11kN','none of the above']
   },
   {
       type: 'Preamble',
-      text: 'Table 1, Figure 7, A horizontal bar AB is hinged at A and has a load of 7kN attached at B in the figure 7 above. Assume the bar AB to be rigid and of a negligible weight. If the bare is supported by bronze rod 3.0m long and a steel rod 0.75m long, use the data in the table 1 below to answer the questions',
+      text: ['A horizontal bar AB is hinged at A and has a load of 7kN attached at B in the figure. Assume the bar AB to be rigid and of a negligible weight. If the bare is supported by bronze rod 3.0m long and a steel rod 0.75m long.',require('../images/som-5.jpg')],
+      question: 'Use the data in the figure below to answer the following questions'
   },
   {
-      question: 'What is the support force (in kn) supplied by bronze rod?',
+      question: 'What is the support force (in kN) supplied by bronze rod?',
       type: 'Multiple Choice',
       answer: '2.65',
       options: ['1.25','1.83','2.65','3.41']
@@ -3418,35 +3937,37 @@ export const courseData2 = {
   },
   {
       type: "Preamble",
-      text: 'fig. 4',
+      text: require('../images/som-4.jpg'),
+      question: 'Use Figure 3 to answer the following questions.'
   },
   {
-      question: 'Calculate the total area of fig. 4',
+      question: 'Calculate the total area of figure 3.',
       type: 'Multiple Choice',
       answer: '420 mm^2',
       options: ['420mm^2','315mm^2','504mm^2','none of the above']
   },
   {
-      question: 'Determine the coordinates of the centroid of figure 4',
+      question: 'Determine the coordinates of the centroid of figure 3.',
       type: 'Multiple Choice',
       answer: '(11,10)',
       options: ['(10,11)','(11,10)','(12,15)','(15,12)']
   },
   {
-      question: 'Calculate the moment of inertia Ix (in mm^4) of fig. 4 with respect to the x-axis',
+      question: 'Calculate the moment of inertia Ix (in mm^4) of figure 3 with respect to the x-axis.',
       type: 'Multiple Choice',
       answer: '35640',
       options: ['35640','85000','49250','none of the above']
   },
   {
-      question: 'Determine the moment of Inertia Ixc(in mm^4) of figure 4 with respevt to an axis through the centroid and parallel to the x-axis',
+      question: 'Determine the moment of Inertia Ixc(in mm^4) of figure 3 with respect to an axis through the centroid and parallel to the x-axis',
       type: 'Multiple Choice',
       answer: 'none of the above',
       options: ['6520','7890','9450','none of the above']
   },
   {
       type: "Preamble",
-      text: 'Use fig. 5 to answer the next 3 questions, take alpha to be 30 degrees and beta to be 45 degrees',
+      text: ['Take alpha to be 30 degrees and beta to be 45 degrees',require('../images/som-6.jpg')],
+      question: 'Use the figure below to answer the next 3 questions.'
   },
   {
       question: 'Find the resultant reaction at the pin support',
@@ -3468,7 +3989,8 @@ export const courseData2 = {
   },
   {
       type: "Preamble",
-      text: 'Use this information to anwer the next six questions, fig. 6',
+      text: require('../images/som-7.jpg'),
+      question: 'Use the information given in the diagam to answer the next six questions.'
   },
   {
       question: 'Estimate the modulus of elasticity of brass',
@@ -3508,7 +4030,8 @@ export const courseData2 = {
   },
   {
       type: "Preamble",
-      text: 'The 10m long beam shown in fig 8 is simply supported at its ends and carries concentrated loads of 30kN and %0kN at a distance of 3m from each end.',
+      text: ['The 10m long beam shown in the figure is simply supported at its ends and carries concentrated loads of 30kN and 50kN at a distance of 3m from each end.',require('../images/som-8.jpg')],
+      question: 'Using the figure and information given below, answer questions 37 and 38.'
   },
   {
       question: 'Find reactions R2',
@@ -3524,7 +4047,8 @@ export const courseData2 = {
   },
   {
       type: "Preamble",
-      text: 'A semicircular area of radius 150mm has a rectangular cutout of diameter 50mm x 100mm in fig. 9',
+      text: ['A semicircular area of radius 150mm has a rectangular cutout of diameter 50mm x 100mm in the figure.',require('../images/som-9.jpg')],
+      question: 'Use the diagram to answer the following questions.'
   },
   {
       question: 'What is the moment of inertia Ix with respect to the x-axis?',
@@ -3546,10 +4070,11 @@ export const courseData2 = {
   },
   {
       type: "Preamble",
-      text: 'Use fig. 10',
+      text: require('../images/som-10.jpg'),
+      question: 'Given the distances 40mm and 15mm on the diagram, use it to answer question 42.'
   },
   {
-      question: 'Locate the centroid, Y of the material shown in the figure below',
+      question: 'Locate the centroid, Y of the material shown in the previous figure.',
       type: 'Multiple Choice',
       answer: '59.7mm',
       options: ['50.9mm','59.7mm','69.7mm','67.9mm']
@@ -3647,5 +4172,1106 @@ export const courseData2 = {
       options: ["","","",""],
       answer: "",
     }
-  ]
-}}
+]},
+// Level 300, Semester 2, Chemical Engineering
+'Introduction to Economics' : {
+programOfStudy: "Chemical Engineering",
+levelOfStudy: "Level 300",
+semesterOfStudy: "Semester 2",
+elective: true,
+Easy:[
+    {
+        question: 'Which of the following would normally NOT be considered as a macroeconomic issue?',
+        type: 'Multiple Choice',
+        answer: 'the price of butter',
+        options: ['economic growth','inflation','unemployment','the price of butter']
+    },
+    { 
+        question: 'Which of the following is an extensive property?',
+        type: 'Multiple Choice',
+        answer: 'an increase in the overall price level',
+        options: ['an increase in the overall price level','an increase in the overall level of economic activity','a decrease in the overall price level','a decrease in the overall level of economic activity']
+    },
+    {
+        question: 'The amount by which an assets value falls in a given period is',
+        type: 'Multiple Choice',
+        answer: 'depreciation',
+        options: ['the net value','inflation','deflation','depreciaion.']
+    },
+    {
+        question: 'If GDP exceeds GNP, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'receipts of factor income from the rest of the world exceed payments of factor income to the rest of the world',
+        options: ['a budget deficit exists', 'a trade surplus exists', 'a trade deficit exists', 'receipts of factor income from the rest of the world exceed payments of factor income to the rest of the world']
+    },
+    {
+        question: 'If GDP is less than GNP, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'none of the above',
+        options: ['a budget deficit exists', 'a trade surplus exists', 'a trade deficit exists', 'none of the above']
+    },
+    {
+        question: 'Net national product (NNP) is equal to',
+        type: 'Multiple Choice',
+        answer: 'GNP minus consumption of fixed capital',
+        options: ['personal income minus taxes', 'GNP minus consumption of fixed capital', 'GDP plus consumption of fixed capital', 'national income plus consumption of fixed capital']
+    },
+    {
+        question: 'Which of the following is NOT a component of consumption?',
+        type: 'Multiple Choice',
+        answer: 'purchase of a new condominium',
+        options: ['nondurable goods', 'purchase of a new condominium', 'education expenses', 'none of the above']
+    },
+    {
+        question: 'Changes in business inventories will be positive when',
+        type: 'Multiple Choice',
+        answer: 'production exceeds sales',
+        options: ['production exceeds sales', 'production is less than sales', 'a trade surplus exists', 'a budget surplus exists']
+    },
+    {
+        question: 'Suppose exports are greater than imports. Given this information, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'a trade surplus exists',
+        options: ['a trade surplus exists', 'GNP > GDP', 'GNP < GDP', 'the change in business inventories is positive']
+    },
+    {
+        question: 'Which of the following is NOT included in National Income?',
+        type: 'Multiple Choice',
+        answer: 'indirect taxes',
+        options: ['indirect taxes', 'wages and salaries', 'net interest', 'rental income of persons']
+    },
+    {
+        question: 'Which of the following is included in National Income?',
+        type: 'Multiple Choice',
+        answer: "proprietors' income",
+        options: ['indirect taxes', 'consumption of fixed capital', "proprietors' income", 'all of the above']
+    },
+    {
+        question: 'Which of the following is not included in investment?',
+        type: 'Multiple Choice',
+        answer: 'nondurable goods',
+        options: ['the purchase of new equipment by firms', 'nondurable goods', 'the purchase of a new home', 'none of the above']
+    },
+    {
+        question: 'If GDP is more than GNP, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'none of the above',
+        options: ['a budget deficit exists', 'a trade surplus exists', 'a trade deficit exists', 'none of the above']
+    },
+    {
+        question: 'Suppose exports are greater than imports. Given this information, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'a trade surplus exists.',
+        options: ['a trade surplus exists.', 'GNP > GDP.', 'GNP < GDP.', 'the change in business inventories is positive.']
+    },
+    {
+        question: 'Which of the following is NOT included in National Income?',
+        type: 'Multiple Choice',
+        answer: 'indirect taxes',
+        options: ['indirect taxes', 'wages and salaries', 'net interest', 'rental income of persons']
+    },
+    {
+        question: 'Which of the following is included in National Income?',
+        type: 'Multiple Choice',
+        answer: "proprietors' income",
+        options: ['indirect taxes', 'consumption of fixed capital', "proprietors' income", 'all of the above']
+    },
+    {
+        question: 'Which of the following is not included in investment?',
+        type: 'Multiple Choice',
+        answer: 'nondurable goods',
+        options: ['the purchase of new equipment by firms', 'nondurable goods', 'the purchase of a new home', 'none of the above']
+    },
+    {
+        question: 'If GDP is more than GNP, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'none of the above',
+        options: ['a budget deficit exists', 'a trade surplus exists', 'a trade deficit exists', 'none of the above']
+    },
+    {
+        question: 'Changes in business inventories will be negative when',
+        type: 'Multiple Choice',
+        answer: 'production is less than sales.',
+        options: ['production exceeds sales.', 'production is less than sales.', 'a trade surplus exists.', 'a budget surplus exists.']
+    },
+    {
+        question: 'Suppose exports are less than imports. Given this information, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'a trade deficit exists.',
+        options: ['a trade deficit exists.', 'GNP > GDP.', 'GNP < GDP.', 'the change in business inventories is positive.']
+    },
+    {
+        question: '"Ordinary least squares" is a technique that can be used to',
+        type: 'Multiple Choice',
+        answer: 'obtain a line describing consumption behavior in the real world.',
+        options: ['identify the best model.', 'determine which variables in a model are endogenous and which are exogenous.', 'obtain a bar graph showing successive quarterly increases in output.', 'obtain a line describing consumption behavior in the real world.', 'determine the direction of causation between consumption and income.']
+    },
+    {
+        question: 'When we estimate a regression to determine the relationship between changes in consumption and changes in current income, we find that',
+        type: 'Multiple Choice',
+        answer: 'none of the above',
+        options: ['there are no residuals.', 'the R2 is zero.', 'the MPC is larger than one.', 'all of the above', 'none of the above']
+    },
+    {
+        question: 'When we use ordinary least squares to determine the relationship between changes in consumption and changes in both current and lagged income, we find that',
+        type: 'Multiple Choice',
+        answer: 'current income has a greater impact on consumption than income lagged one quarter.',
+        options: ['only current income influences current consumption.', 'current income has no impact on current consumption.', 'consumption is not affected by income in any quarter.', "current income, last quarter's income, and income two quarter's ago all have the same impact on current consumption.", 'current income has a greater impact on consumption than income lagged one quarter.']
+    },
+    {
+        question: 'When estimating a regression line, a high R2 tells us we have',
+        type: 'Multiple Choice',
+        answer: 'a good fit.',
+        options: ['a good fit.', 'large residuals.', 'correctly determined the direction of causation.', 'all of the above', 'none of the above']
+    },
+    {
+        question: 'A large "T-statistic" tells us that',
+        type: 'Multiple Choice',
+        answer: 'we can be confident that our estimated coefficient is not zero.',
+        options: ['a tiny change in the independent variable will cause a relatively large change in the dependent variable.', 'we do not have enough data to obtain an accurate regression line.', 'we can be confident that our estimated coefficient is not zero.', 'we should have included more "lags" in our model.', 'we have incorrectly switched the dependent and independent variables in our model.']
+    },
+    {
+        question: 'Which of the following problems would lead an economist to use instrument variable methods?',
+        type: 'Multiple Choice',
+        answer: 'the dependent variable has an impact on the independent variable.',
+        options: ['the dependent variable has an impact on the independent variable.', 'there are too few quarters of data.', 'there are too many independent variables.', 'the R2 is too high.', 'the residuals are too small.']
+    },
+    {
+        question: 'A key step in using instrument variable methods is to',
+        type: 'Multiple Choice',
+        answer: 'find one or more exogenous variables that influence your dependent variable.',
+        options: ['find one or more exogenous variables that influence your dependent variable.', 'decrease the number of lags in the regression equation.', 'conduct interviews to determine how accurate your data really is.', 'run the regression on two different computers to see if the results differ.', 'eliminate the dependent variable.']
+    },
+    {
+        question: 'In 2010, output per capita in the United States was approximately equal to',
+        type: 'Multiple Choice',
+        answer: '$47,300.',
+        options: ['$15,500.', '$25,800.', '$43,800.', '$47,300.']
+    },
+    {
+        question: 'The most recent financial crisis started in',
+        type: 'Multiple Choice',
+        answer: 'housing market.',
+        options: ['stock market.', 'bond market.', 'foreign exchange market.', 'housing market.']
+    },
+    {
+        question: 'The standard of living typically refers to',
+        type: 'Multiple Choice',
+        answer: 'output per capita.',
+        options: ['the rate of unemployment.', 'output per capita.', 'wealth per capita.', 'all of the above']
+    },
+    {
+        question: 'In 2010, the U.S. budget deficit as a percentage of U.S. output was approximately equal to',
+        type: 'Multiple Choice',
+        answer: '9%.',
+        options: ['1.7%.', '9%.', '6%.', '16.2%.']
+    },
+    {
+        question: 'In 2010, the unemployment in the U.S. was',
+        type: 'Multiple Choice',
+        answer: '9.6%.',
+        options: ['5%.', '11%.', '9.6%.', '4.6%.']
+    },
+    {
+        question: 'Economists have suggested that the relatively higher unemployment in Europe has been caused by which of the following?',
+        type: 'Multiple Choice',
+        answer: 'all of the above',
+        options: ['relatively high unemployment benefits', 'relatively high level of worker protection', 'inadequate macroeconomic policies', 'increased labor costs', 'all of the above']
+    },
+    {
+        question: 'Which of the following countries had the lowest level of output per capita in 2010?',
+        type: 'Multiple Choice',
+        answer: 'Spain',
+        options: ['Spain', 'France', 'Italy', 'German']
+    },
+    {
+        question: 'At what point could the Euro be used as currency?',
+        type: 'Multiple Choice',
+        answer: 'January 1, 2002',
+        options: ['January 1, 1998', 'January 1, 1999', 'January 1, 2000', 'January 1, 2002']
+    },
+    {
+        question: 'In 2010, output per capita in China was approximately equal to',
+        type: 'Multiple Choice',
+        answer: '$4,300.',
+        options: ['$2,100.', '$4,300.', '$22,100.', '$32,100.']
+    },
+    {
+        question: 'Inflation represents',
+        type: 'Multiple Choice',
+        answer: 'an increase in the aggregate price level.',
+        options: ['an increase in output.', 'an increase in the aggregate price level.', 'an increase in the unemployment rate.', 'a recession.']
+    },
+    {
+        question: 'Between 2000 and 2010, the annual rate of output growth in China was approximately equal to',
+        type: 'Multiple Choice',
+        answer: '10%.',
+        options: ['2%.', '5%.', '10%.', '20%.']
+    },
+    {
+        question: 'Which of the following explains the relatively high growth rate of output in China since 1980?',
+        type: 'Multiple Choice',
+        answer: 'a transition from central planning to a market economy',
+        options: ['accumulation of capital', 'technological progress', 'a transition from central planning to a market economy', 'all of the above']
+    },
+    {
+        question: 'How many countries are in the European Union?',
+        type: 'Multiple Choice',
+        answer: '27',
+        options: ['27', '6', '21', '17']
+    },
+    {
+        question: 'How many countries are in the Euro area?',
+        type: 'Multiple Choice',
+        answer: '17',
+        options: ['17', '27', '21', '11']
+    },
+    {
+        question: 'Most economists believe that the source of European high unemployment in the past two decades is',
+        type: 'Multiple Choice',
+        answer: 'labor market institutions.',
+        options: ['labor market institutions.', 'tight monetary policy.', 'tight fiscal policy.', 'financial crisis.']
+    },
+    {
+        question: 'Fill in the blank for the following: GDP is the value of all ________ produced in a given period.',
+        type: 'Multiple Choice',
+        answer: 'final goods and services',
+        options: ['final and intermediate goods and services produced by the private sector only', 'final goods and services', 'final and intermediate goods and services, plus raw materials', 'all of the above', 'none of the above']
+    },
+    {
+        question: 'When using the income approach to measure GDP, the largest share of GDP generally consists of',
+        type: 'Multiple Choice',
+        answer: 'labor income.',
+        options: ['interest income.', 'labor income.', 'indirect taxes.', 'profits.', 'capital income.']
+    },
+    {
+        question: 'For this question, assume that 1980 is the base year. Given macroeconomic conditions in the United States over the past three decades, we know that',
+        type: 'Multiple Choice',
+        answer: 'real GDP and nominal GDP were equal in 1980.',
+        options: ['nominal GDP is always smaller than real GDP since 1980.', 'real GDP and nominal GDP would be equal for the entire period.', 'real GDP is larger than nominal GDP from 2002 to 2008.', 'real GDP and nominal GDP were equal in 1980.', 'none of the above']
+    },
+    {
+        question: 'Suppose nominal GDP increased in a given year. Based on this information, we know with certainty that',
+        type: 'Multiple Choice',
+        answer: 'either real output or the price level (GDP deflator) have increased.',
+        options: ['real output has increased.', 'the price level (GDP deflator) has increased.', 'real output and the price level (GDP deflator) have both increased.', 'either real output or the price level (GDP deflator) have increased.', 'real output has increased and the price level has decreased.']
+    },
+    {
+        question: 'If nominal GDP rises from $100 trillion to $120 trillion, while the GDP deflator rises from 2.0 to 2.2, the percentage change in real GDP is approximately equal to',
+        type: 'Multiple Choice',
+        answer: '9.1%.',
+        options: ['-10%.', '10%.', '20%.', '9.1%.', '0%.']
+    },
+    {
+        question: 'Hedonic pricing is',
+        type: 'Multiple Choice',
+        answer: 'the process of pricing individual characteristics of a good or service.',
+        options: ['the way that luxury goods are priced in a market economy.', 'the tendency for the inflation rate to rise by greater and greater amounts.', 'the tendency for nominal GDP to rise when the price level rises.', 'the process of translating nominal GDP into real GDP.', 'the process of pricing individual characteristics of a good or service.']
+    },
+    {
+        question: 'In a given year, suppose a company spends $100 million on intermediate goods and $200 million on wages, with no other expenses. Also assume that its total sales are $800 million. The value added by this company equals',
+        type: 'Multiple Choice',
+        answer: '$700 million.',
+        options: ['$200 million.', '$300 million.', '$500 million.', '$700 million.', '$800 million.']
+    },
+    {
+        question: 'A firm\'s value added equals',
+        type: 'Multiple Choice',
+        answer: 'its revenue minus its cost of intermediate goods.',
+        options: ['its revenue minus all of its costs.', 'its revenue minus its wages.', 'its revenue minus its wages and profit.', 'its revenue minus its cost of intermediate goods.', 'none of the above']
+    },  
+    {
+        question: 'In the short run, national income is determined by aggregate demand.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    ],
+Medium:[    
+    {
+        question: 'In equilibrium, injections must be less than withdrawals.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'The 45° line shows points where aggregate demand equals national income.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'The marginal propensity to consume (mpc) is always greater than 1.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'If income increases by Gh¢100 and consumption increases by Gh¢80, the mpc is 0.8.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'Savings and consumption together equal total income.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'The marginal propensity to save (mps) equals 1 minus the mpc.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'A high mpc leads to a lower multiplier.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'Imports decrease when national income increases.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'The marginal propensity to import (mpm) is the change in imports divided by the change in income.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'Injections are considered endogenous variables.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'Investment is an example of an injection.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'If government expenditure exceeds taxes, there is a budget surplus.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'The total marginal propensity to withdraw (mpw) is the sum of mps, mpt, and mpm.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'If injections exceed withdrawals, national income rises.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'The multiplier is calculated as 1 divided by mpw.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'A progressive tax system has a constant marginal tax rate.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'The consumption function can be written as C = Co + cY.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'An increase in the marginal propensity to save increases the size of the multiplier.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'In the long run, people tend to consume more as their income increases.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: ' A shift upward in the injection curve increases equilibrium national income.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'Aggregate expenditure (AE) is equal to Cd + J.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: ' The multiplier effect occurs instantly and in one round.',
+        answer: 'False',
+        type: 'True/False'
+    },
+    {
+        question: 'A fall in aggregate expenditure leads to a fall in national income.',
+        answer: 'True',
+        type: 'True/False'
+    },
+    {
+        question: 'At equilibrium, national income is equal to aggregate expenditure.',
+        answer: 'True',
+        type: 'True/False'
+    },   
+    ],
+Hard:[
+    {
+        question: 'The foundation of macroeconomics was laid by __________.',
+        answer: 'John Maynard Keynes',
+        type: 'Fill in'
+    },
+    {
+        question: 'Macroeconomics deals with the economy as a __________.',
+        answer: 'whole',
+        type: 'Fill in'
+    },
+    {
+        question: 'Economic growth measures increase in __________.',
+        answer: 'output',
+        type: 'Fill in'
+    },
+    {
+        question: 'Inflation is a rise in the __________ level.',
+        answer: 'price',
+        type: 'Fill in'
+    },
+    {
+        question: 'Unemployment means people are __________.',
+        answer: 'jobless',
+        type: 'Fill in'
+    },
+    {
+        question: 'Exchange rate involves one countrys __________.',
+        answer: 'currency',
+        type: 'Fill in'
+    },
+    {
+        question: 'Balance of payments records a country’s __________.',
+        answer: 'transactions',
+        type: 'Fill in'
+    },
+    {
+        question: 'One macroeconomic goal is full __________.',
+        answer: 'employment',
+        type: 'Fill in'
+    },
+    {
+        question: 'Inflation control ensures __________ prices.',
+        answer: 'stable',
+        type: 'Fill in'
+    },
+    {
+        question: 'Aggregate demand is represented as __________.',
+        answer: 'AD',
+        type: 'Fill in'
+    },
+    {
+        question: '“C” in AD stands for __________.',
+        answer: 'consumption',
+        type: 'Fill in'
+    },
+    {
+        question: '“I” in AD stands for __________.',
+        answer: 'investment',
+        type: 'Fill in'
+    },
+    {
+        question: '“G” in AD stands for __________.',
+        answer: 'government',
+        type: 'Fill in'
+    },
+    {
+        question: '“X” in AD stands for __________.',
+        answer: 'exports',
+        type: 'Fill in'
+    },
+    {
+        question: '“M” in AD stands for __________.',
+        answer: 'imports',
+        type: 'Fill in'
+    },
+    {
+        question: 'The business cycle includes peak and __________.',
+        answer: 'recession',
+        type: 'Fill in'
+    },
+    {
+        question: 'Real GDP uses __________ year prices.',
+        answer: 'base',
+        type: 'Fill in'
+    },
+    {
+        question: 'Nominal GDP ignores __________.',
+        answer: 'inflation',
+        type: 'Fill in'
+    },
+    {
+        question: 'The expenditure method calculates total __________.',
+        answer: 'spending',
+        type: 'Fill in'
+    },
+    {
+        question: 'The income method includes __________ earned.',
+        answer: 'wages',
+        type: 'Fill in'
+    },
+    {
+        question: 'The product method values __________ goods.',
+        answer: 'final',
+        type: 'Fill in'
+    },
+    {
+        question: ' GDP is measured by output, income, and __________ methods.',
+        answer: 'expenditure',
+        type: 'Fill in'
+    },
+    {
+        question: 'More injections than withdrawals increase __________.',
+        answer: 'income',
+        type: 'Fill in'
+    },
+    {
+        question: 'Government spending is an __________.',
+        answer: 'injection',
+        type: 'Fill in'
+    },
+    {
+        question: 'Savings are a form of __________.',
+        answer: 'withdrawal',
+        type: 'Fill in'
+    }
+]},
+'Chemical Reaction Engineering': {
+    programOfStudy: "Chemical Engineering",
+    levelOfStudy: "Level 300",
+    semesterOfStudy: "Semester 2",
+Easy: [
+    {
+        question: 'What is the weight of catalyst required for 70% conversion in a packed-bed reactor with k = 68.33 h⁻¹·L/gcat, F_A0 = 1370 mol/h, v_0 = 68.33 L/h?',
+        type: 'Multiple Choice',
+        answer: '1.204 g',
+        options: ['0.591 g', '1.204 g', '2.035 g', '3.7 g']
+    },
+    {
+        question: 'The rate constant for a first-order reaction with a half-life of 19.8 min at 100°C is 0.035 min⁻¹.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the rate constant (in min⁻¹) for a first-order reaction with a half-life of 19.8 min.',
+        type: 'Fill-in',
+        answer: '0.035'
+    },
+    {
+        question: 'What is the order of a reaction with rate law -r_A = k C_A^2?',
+        type: 'Multiple Choice',
+        answer: '2',
+        options: ['0', '1', '2', '3']
+    },
+    {
+        question: 'The half-life of a first-order reaction is independent of initial concentration.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the half-life (in min) of a first-order reaction with k = 0.0693 min⁻¹.',
+        type: 'Fill-in',
+        answer: '10'
+    },
+    {
+        question: 'What is the unit of a first-order reaction rate constant?',
+        type: 'Multiple Choice',
+        answer: 'time⁻¹',
+        options: ['mol/L', 'time⁻¹', 'L/mol·time', 'dimensionless']
+    },
+    {
+        question: 'A batch reactor operates at constant volume for liquid-phase reactions.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the unit of a second-order reaction rate constant?',
+        type: 'Multiple Choice',
+        answer: 'L/mol·time',
+        options: ['time⁻¹', 'L/mol·time', 'mol/L·time', 'dimensionless']
+    },
+    {
+        question: 'The rate law for a zero-order reaction is -r_A = k.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the half-life (in min) of a first-order reaction with k = 0.03465 min⁻¹.',
+        type: 'Fill-in',
+        answer: '20'
+    },
+    {
+        question: 'What is the order of a reaction with rate law -r_A = k?',
+        type: 'Multiple Choice',
+        answer: '0',
+        options: ['0', '1', '2', '3']
+    },
+    {
+        question: 'The Arrhenius equation relates rate constant to temperature.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the space time (in min) for a reactor with V = 500 L and v_0 = 100 L/min?',
+        type: 'Fill-in',
+        answer: '5'
+    },
+    {
+        question: 'A CSTR is a continuous stirred-tank reactor.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a CSTR with k = 0.1 min⁻¹ and space time = 10 min?',
+        type: 'Multiple Choice',
+        answer: '0.5',
+        options: ['0.3', '0.5', '0.7', '0.9']
+    },
+    {
+        question: 'The rate constant increases with temperature for an exothermic reaction.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the rate constant (in min⁻¹) for a first-order reaction with half-life 13.86 min.',
+        type: 'Fill-in',
+        answer: '0.05'
+    },
+    {
+        question: 'What is the unit of reaction rate in mol/L·s?',
+        type: 'Multiple Choice',
+        answer: 'mol/L·time',
+        options: ['mol/L', 'mol/L·time', 'L/mol·time', 'time⁻¹']
+    },
+    {
+        question: 'A PFR is a plug flow reactor.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the order of a reaction with rate law -r_A = k C_A C_B?',
+        type: 'Multiple Choice',
+        answer: '2',
+        options: ['0', '1', '2', '3']
+    },
+    {
+        question: 'The half-life of a second-order reaction depends on initial concentration.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the space time (in min) for a reactor with V = 200 L and v_0 = 50 L/min.',
+        type: 'Fill-in',
+        answer: '4'
+    },
+    {
+        question: 'The rate law determines the reaction order.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a PFR with k = 0.05 min⁻¹ and space time = 10 min?',
+        type: 'Multiple Choice',
+        answer: '0.39',
+        options: ['0.39', '0.5', '0.61', '0.75']
+    },
+    {
+        question: 'A catalyst increases the rate of a reaction.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the half-life (in min) of a first-order reaction with k = 0.0231 min⁻¹.',
+        type: 'Fill-in',
+        answer: '30'
+    },
+    {
+        question: 'What is the unit of a zero-order reaction rate constant?',
+        type: 'Multiple Choice',
+        answer: 'mol/L·time',
+        options: ['mol/L·time', 'time⁻¹', 'L/mol·time', 'dimensionless']
+    },
+    {
+        question: 'The rate of a first-order reaction decreases with time.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a CSTR with k = 0.2 min⁻¹ and space time = 5 min?',
+        type: 'Multiple Choice',
+        answer: '0.5',
+        options: ['0.3', '0.5', '0.7', '0.9']
+    },
+    {
+        question: 'The rate constant is constant at a fixed temperature.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the rate constant (in min⁻¹) for a first-order reaction with half-life 34.65 min.',
+        type: 'Fill-in',
+        answer: '0.02'
+    },
+    {
+        question: 'What is the order of a reaction with rate law -r_A = k C_A^0.5?',
+        type: 'Multiple Choice',
+        answer: '0.5',
+        options: ['0', '0.5', '1', '2']
+    },
+    {
+        question: 'A batch reactor is used for small-scale production.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the space time (in min) for a reactor with V = 1000 L and v_0 = 200 L/min?',
+        type: 'Fill-in',
+        answer: '5'
+    },
+    {
+        question: 'The rate law for a first-order reaction is -r_A = k C_A.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a PFR with k = 0.1 min⁻¹ and space time = 5 min?',
+        type: 'Multiple Choice',
+        answer: '0.39',
+        options: ['0.39', '0.5', '0.61', '0.75']
+    },
+    {
+        question: 'The half-life of a zero-order reaction is proportional to initial concentration.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the half-life (in min) of a first-order reaction with k = 0.017325 min⁻¹.',
+        type: 'Fill-in',
+        answer: '40'
+    },
+    {
+        question: 'What is the unit of a third-order reaction rate constant?',
+        type: 'Multiple Choice',
+        answer: 'L²/mol²·time',
+        options: ['time⁻¹', 'L/mol·time', 'L²/mol²·time', 'mol/L·time']
+    }
+],
+Medium: [
+    {
+        question: 'What is the reactor volume for a packed-bed reactor with catalyst weight 1.204 g, catalyst density 3700 kg/m³, and void fraction 0.45?',
+        type: 'Multiple Choice',
+        answer: '0.591 cm³',
+        options: ['0.591 cm³', '1.204 cm³', '2.035 cm³', '3.7 cm³']
+    },
+    {
+        question: 'What is the activation energy for benzoyl peroxide decomposition if half-lives are 19.8 min at 100°C and 438 min at 70°C?',
+        type: 'Fill-in',
+        answer: '110 kJ/mol'
+    },
+    {
+        question: 'What is the rate constant in h⁻¹ for a reaction with rate -r_A = 0.005 mol/cm³·min, if concentration is in mol/L?',
+        type: 'Multiple Choice',
+        answer: '300 h⁻¹',
+        options: ['150 h⁻¹', '300 h⁻¹', '450 h⁻¹', '600 h⁻¹']
+    },
+    {
+        question: 'For a first-order reaction in a CSTR with k = 0.2 min⁻¹, v_0 = 50 L/min, V = 200 L, what is the conversion?',
+        type: 'Multiple Choice',
+        answer: '0.67',
+        options: ['0.44', '0.57', '0.67', '0.80']
+    },
+    {
+        question: 'In a PFR, the conversion increases with increasing reactor volume.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the space time (in min) for a PFR with V = 1000 L and v_0 = 100 L/min?',
+        type: 'Fill-in',
+        answer: '10'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a PFR with k = 0.1 min⁻¹ and space time = 10 min?',
+        type: 'Multiple=&gt; Multiple Choice',
+        answer: '0.63',
+        options: ['0.39', '0.5', '0.63', '0.75']
+    },
+    {
+        question: 'The rate law for a second-order reaction is -r_A = k C_A^2.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the time (in min) for 50% conversion in a first-order batch reactor with k = 0.1 min⁻¹.',
+        type: 'Fill-in',
+        answer: '6.93'
+    },
+    {
+        question: 'What is the conversion for a second-order reaction in a CSTR with k = 0.01 L/mol·min, v_0 = 100 L/min, V = 500 L, C_A0 = 1 mol/L?',
+        type: 'Multiple Choice',
+        answer: '0.38',
+        options: ['0.38', '0.5', '0.62', '0.75']
+    },
+    {
+        question: 'The Damköhler number is used to characterize reactor performance.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the rate constant (in min⁻¹) for a first-order reaction with half-life 6.93 min.',
+        type: 'Fill-in',
+        answer: '0.1'
+    },
+    {
+        question: 'What is the volume of a CSTR for a first-order reaction with k = 0.05 min⁻¹, v_0 = 200 L/min, and 60% conversion?',
+        type: 'Multiple Choice',
+        answer: '428.6 L',
+        options: ['300 L', '428.6 L', '500 L', '600 L']
+    },
+    {
+        question: 'A PBR operates with a pressure drop.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the half-life (in min) for a second-order reaction with k = 0.02 L/mol·min and C_A0 = 1 mol/L?',
+        type: 'Fill-in',
+        answer: '50'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a PFR with k = 0.15 min⁻¹ and space time = 8 min?',
+        type: 'Multiple Choice',
+        answer: '0.70',
+        options: ['0.50', '0.60', '0.70', '0.80']
+    },
+    {
+        question: 'The rate constant for a first-order reaction doubles when temperature increases by 10°C.',
+        type: 'True/False',
+        answer: 'False'
+    },
+    {
+        question: 'Calculate the space time (in min) for a CSTR with V = 1500 L and v_0 = 300 L/min.',
+        type: 'Fill-in',
+        answer: '5'
+    },
+    {
+        question: 'What is the order of a reaction with rate law -r_A = k C_A C_B^2?',
+        type: 'Multiple Choice',
+        answer: '3',
+        options: ['1', '2', '3', '4']
+    },
+    {
+        question: 'A catalyst decreases the activation energy of a reaction.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a CSTR with k = 0.3 min⁻¹ and space time = 4 min?',
+        type: 'Multiple Choice',
+        answer: '0.55',
+        options: ['0.45', '0.55', '0.65', '0.75']
+    },
+    {
+        question: 'The Arrhenius equation includes the pre-exponential factor.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the time (in min) for 75% conversion in a first-order batch reactor with k = 0.05 min⁻¹.',
+        type: 'Fill-in',
+        answer: '27.73'
+    },
+    {
+        question: 'What is the volume of a PFR for a first-order reaction with k = 0.1 min⁻¹, v_0 = 100 L/min, and 50% conversion?',
+        type: 'Multiple Choice',
+        answer: '693.1 L',
+        options: ['500 L', '693.1 L', '800 L', '1000 L']
+    },
+    {
+        question: 'The rate of a second-order reaction is proportional to the square of concentration.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the half-life (in min) for a first-order reaction with k = 0.01386 min⁻¹?',
+        type: 'Fill-in',
+        answer: '50'
+    },
+    {
+        question: 'What is the conversion for a second-order reaction in a PFR with k = 0.02 L/mol·min, v_0 = 50 L/min, V = 200 L, C_A0 = 1 mol/L?',
+        type: 'Multiple Choice',
+        answer: '0.45',
+        options: ['0.35', '0.45', '0.55', '0.65']
+    },
+    {
+        question: 'A CSTR requires less volume than a PFR for the same conversion in a first-order reaction.',
+        type: 'True/False',
+        answer: 'False'
+    },
+    {
+        question: 'Calculate the rate constant (in min⁻¹) for a first-order reaction with half-life 17.33 min.',
+        type: 'Fill-in',
+        answer: '0.04'
+    },
+    {
+        question: 'What is the order of a reaction with rate law -r_A = k C_A^1.5?',
+        type: 'Multiple Choice',
+        answer: '1.5',
+        options: ['0.5', '1', '1.5', '2']
+    },
+    {
+        question: 'The rate constant for a zero-order reaction is independent of concentration.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the space time (in min) for a PFR with V = 2000 L and v_0 = 400 L/min?',
+        type: 'Fill-in',
+        answer: '5'
+    },
+    {
+        question: 'A catalyst increases the equilibrium constant of a reaction.',
+        type: 'True/False',
+        answer: 'False'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a PFR with k = 0.08 min⁻¹ and space time = 12 min?',
+        type: 'Multiple Choice',
+        answer: '0.62',
+        options: ['0.52', '0.62', '0.72', '0.82']
+    },
+    {
+        question: 'The half-life of a first-order reaction is constant at a fixed temperature.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the time (in min) for 90% conversion in a first-order batch reactor with k = 0.02 min⁻¹.',
+        type: 'Fill-in',
+        answer: '115.13'
+    },
+    {
+        question: 'What is the volume of a CSTR for a first-order reaction with k = 0.12 min⁻¹, v_0 = 150 L/min, and 70% conversion?',
+        type: 'Multiple Choice',
+        answer: '291.7 L',
+        options: ['200 L', '291.7 L', '400 L', '500 L']
+    },
+    {
+        question: 'The rate law for a third-order reaction is -r_A = k C_A^3.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the half-life (in min) for a second-order reaction with k = 0.01 L/mol·min and C_A0 = 2 mol/L?',
+        type: 'Fill-in',
+        answer: '50'
+    }],
+Hard: [
+    {
+        question: 'What is the activation energy (kJ/mol) for the decomposition of 2N₂O₅, given rate constants 7.87 × 10³ s⁻¹ at 273 K and 4.87 × 10⁷ s⁻¹ at 338 K?',
+        type: 'Fill-in',
+        answer: '103'
+    },
+    {
+        question: 'For a second-order reaction in a batch reactor with k = 0.01 L/mol·min, C_A0 = 2 mol/L, what is the time (min) to reach 50% conversion?',
+        type: 'Multiple Choice',
+        answer: '50 min',
+        options: ['25 min', '50 min', '75 min', '100 min']
+    },
+    {
+        question: 'The Damköhler number for a first-order reaction is dimensionless.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the activation energy (kJ/mol) for a reaction with rate constants 1.0 × 10⁻³ s⁻¹ at 300 K and 2.0 × 10⁻² s⁻¹ at 320 K.',
+        type: 'Fill-in',
+        answer: '85'
+    },
+    {
+        question: 'What is the catalyst weight (g) for a packed-bed reactor with k = 50 h⁻¹·L/gcat, F_A0 = 1000 mol/h, v_0 = 50 L/h, and 80% conversion?',
+        type: 'Multiple Choice',
+        answer: '1.609 g',
+        options: ['1.0 g', '1.609 g', '2.0 g', '2.5 g']
+    },
+    {
+        question: 'A non-isothermal reactor requires an energy balance.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'What is the time (in min) for 75% conversion in a second-order batch reactor with k = 0.02 L/mol·min, C_A0 = 1 mol/L?',
+        type: 'Fill-in',
+        answer: '150'
+    },
+    {
+        question: 'What is the volume (cm³) of a packed-bed reactor with catalyst weight 2 g, catalyst density 4000 kg/m³, and void fraction 0.4?',
+        type: 'Multiple Choice',
+        answer: '0.833 cm³',
+        options: ['0.5 cm³', '0.833 cm³', '1.0 cm³', '1.5 cm³']
+    },
+    {
+        question: 'The rate constant for a reversible reaction depends on the equilibrium constant.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the activation energy (kJ/mol) for a reaction with rate constants 5.0 × 10⁻³ s⁻¹ at 310 K and 5.0 × 10⁻² s⁻¹ at 330 K.',
+        type: 'Fill-in',
+        answer: '77'
+    },
+    {
+        question: 'What is the conversion for a second-order reaction in a CSTR with k = 0.015 L/mol·min, v_0 = 80 L/min, V = 400 L, C_A0 = 1.5 mol/L?',
+        type: 'Multiple Choice',
+        answer: '0.42',
+        options: ['0.32', '0.42', '0.52', '0.62']
+    },
+    {
+        question: 'The effectiveness factor of a catalyst is always less than 1.',
+        type: 'True/False',
+        answer: 'False'
+    },
+    {
+        question: 'What is the time (in min) for 90% conversion in a second-order batch reactor with k = 0.01 L/mol·min, C_A0 = 2 mol/L?',
+        type: 'Fill-in',
+        answer: '450'
+    },
+    {
+        question: 'What is the catalyst weight (g) for a packed-bed reactor with k = 100 h⁻¹·L/gcat, F_A0 = 2000 mol/h, v_0 = 100 L/h, and 90% conversion?',
+        type: 'Multiple Choice',
+        answer: '2.303 g',
+        options: ['1.5 g', '2.303 g', '3.0 g', '3.5 g']
+    },
+    {
+        question: 'The Thiele modulus is used to assess diffusion limitations in catalysts.',
+        type: 'True/False',
+        answer: 'True'
+    },
+    {
+        question: 'Calculate the activation energy (kJ/mol) for a reaction with rate constants 2.0 × 10⁻³ s⁻¹ at 290 K and 3.0 × 10⁻² s⁻¹ at 310 K.',
+        type: 'Fill-in',
+        answer: '90'
+    },
+    {
+        question: 'What is the volume (L) of a PFR for a second-order reaction with k = 0.02 L/mol·min, v_0 = 100 L/min, C_A0 = 1 mol/L, and 60% conversion?',
+        type: 'Multiple Choice',
+        answer: '937.5 L',
+        options: ['700 L', '937.5 L', '1100 L', '1300 L']
+    },
+    {
+        question: 'The rate of a catalytic reaction is independent of catalyst surface area.',
+        type: 'True/False',
+        answer: 'False'
+    },
+    {
+        question: 'What is the half-life (in min) for a third-order reaction with k = 0.01 L²/mol²·min and C_A0 = 1 mol/L?',
+        type: 'Fill-in',
+        answer: '50'
+    },
+    {
+        question: 'What is the conversion for a first-order reaction in a PFR with k = 0.07 min⁻¹ and space time = 15 min?',
+        type: 'Multiple Choice',
+        answer: '0.65',
+        options: ['0.55', '0.65', '0.75', '0.85']
+    }
+]},
+}

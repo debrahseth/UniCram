@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, onSnapshot, addDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { FaPaperPlane, FaArrowCircleLeft } from 'react-icons/fa';
 import logo from '../assets/main.jpg';
-import logo1 from '../assets/logo1.jpg';
+import logo1 from '../assets/op.jpg';
 import { courseData } from '../questions/courseData'; 
 import { dotStream } from 'ldrs';
 
@@ -19,6 +19,8 @@ const ChallengeSendingScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const metadataFields = ['programOfStudy', 'levelOfStudy', 'semesterOfStudy'];
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const ChallengeSendingScreen = () => {
   
         if (userSnap.exists()) {
           const loggedInUserData = userSnap.data();
-          const { levelOfStudy, semesterOfStudy, programOfStudy } = loggedInUserData;
+          const { levelOfStudy, programOfStudy } = loggedInUserData;
           setUserData(loggedInUserData);
   
           const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
@@ -46,7 +48,6 @@ const ChallengeSendingScreen = () => {
                   return (
                     doc.id !== currentUser.uid &&
                     userData.levelOfStudy === levelOfStudy &&
-                    userData.semesterOfStudy === semesterOfStudy &&
                     userData.programOfStudy === programOfStudy
                   );
                 })
@@ -256,7 +257,8 @@ const ChallengeSendingScreen = () => {
                 style={{ width: '100%', padding: '10px', marginBottom: '15px' }}
               >
                 <option value="">Choose Difficulty</option>
-                {selectedSubject && Object.keys(courseData[selectedSubject]).map((difficulty) => (
+                {selectedSubject &&
+                Object.keys(courseData[selectedSubject]).filter((key) => !['programOfStudy', 'levelOfStudy', 'semesterOfStudy'].includes(key)).map((difficulty) => (
                   <option key={difficulty} value={difficulty}>
                     {difficulty}
                   </option>

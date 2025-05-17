@@ -14,13 +14,13 @@ const Profile = () => {
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [recordLoading, setRecordLoading] = useState(false);
   const [programLoading, setProgramLoading] = useState(false);
-  // const [collegeLoading, setCollegeLoading] = useState(false);
+  const [contactLoading, setContactLoading] = useState(false);
   const [levelLoading, setLevelLoading] = useState(false);
   const [semesterLoading, setSemesterLoading] = useState(false);
   const [programOfStudy, setProgramOfStudy] = useState('');
   const [levelOfStudy, setLevelOfStudy] = useState('');
   const [semesterOfStudy, setSemesterOfStudy] = useState('');
-  // const [collegeOfStudy, setCollegeOfStudy] = useState('');
+  const [userNumber, setUserNumber] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const navigate = useNavigate();
@@ -51,7 +51,6 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      try {
         const currentUser = auth.currentUser;
 
         if (currentUser) {
@@ -65,19 +64,13 @@ const Profile = () => {
               programOfStudy: userDoc.data().programOfStudy || 'No Program of Study',
               semesterOfStudy: userDoc.data().semesterOfStudy || 'No Semester of Study',
               levelOfStudy: userDoc.data().levelOfStudy || 'No Level of Study',
-              // collegeOfStudy: userDoc.data().collegeOfStudy || 'No College of Study',
+              userNumber: userDoc.data().userNumber|| 'No Contact Number',
             });
             setProgramOfStudy(userDoc.data().programOfStudy || '');
             setSemesterOfStudy(userDoc.data().semesterOfStudy || '');
             setLevelOfStudy(userDoc.data().levelOfStudy || '');
-            // setCollegeOfStudy(userDoc.data().collegeOfStudy || '');
-          } else {
-            console.log('User document not found');
+            setUserNumber(userDoc.data().userNumber || '');
           }
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
         setLoading(false);
       }
     };
@@ -87,6 +80,13 @@ const Profile = () => {
     }
   }, [currentUser]);
 
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = globalStyles;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);  
+
   dotWave.register()
   spiral.register()
   metronome.register()
@@ -94,7 +94,6 @@ const Profile = () => {
 
   const handleLogout = async () => {
     setLogoutLoading(true);
-    try {
       if (currentUser) {
         const userDocRef = doc(db, 'users', currentUser.uid);
         await updateDoc(userDocRef, {
@@ -104,10 +103,7 @@ const Profile = () => {
       await auth.signOut();
       setLogoutLoading(false);
       navigate('/login');
-    } catch (error) {
-      console.error('Error during logout:', error.message);
       setLogoutLoading(false);
-    }
   };
 
   const useInactivityLogout = (timeoutDuration = 300000) => {
@@ -130,32 +126,28 @@ const Profile = () => {
   
   const handleUpdateProgramOfStudy = async () => {
     setProgramLoading(true);
-    try {
       if (currentUser) {
         const userDocRef = doc(db, 'users', currentUser.uid);
         await updateDoc(userDocRef, {
           programOfStudy: programOfStudy,
+          selectedElectives: []
         });
         setUserDetails((prevDetails) => ({
           ...prevDetails,
           programOfStudy: programOfStudy,
         }));
         alert('Program of Study updated');
-      }
-    } catch (error) {
-      console.error('Error updating program of study:', error);
-    } finally {
       setProgramLoading(false);
     }
   };
 
   const handleUpdateLevelOfStudy = async () => {
     setLevelLoading(true);
-    try {
       if (currentUser) {
         const userDocRef = doc(db, 'users', currentUser.uid);
         await updateDoc(userDocRef, {
           levelOfStudy:levelOfStudy,
+          selectedElectives: []
         });
         setUserDetails((prevDetails) => ({
           ...prevDetails,
@@ -163,20 +155,34 @@ const Profile = () => {
         }));
         alert('Level of Study updated');
       }
-    } catch (error) {
-      console.error('Error updating level of study:', error);
-    } finally {
       setLevelLoading(false);
-    }
+  };
+
+  const handleUpdateContact = async () => {
+    setContactLoading(true);
+      if (currentUser && userNumber.trim() !== "") {
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        await updateDoc(userDocRef, {
+          userNumber: userNumber.trim(),
+        });
+        setUserDetails((prevDetails) => ({
+          ...prevDetails,
+          userNumber: userNumber.trim(),
+        }));
+        alert('Contact number updated');
+      } else {
+        alert("Please enter a valid contact number.");
+      }
+      setContactLoading(false);
   };
 
   const handleUpdateSemesterOfStudy = async () => {
     setSemesterLoading(true);
-    try {
       if (currentUser) {
         const userDocRef = doc(db, 'users', currentUser.uid);
         await updateDoc(userDocRef, {
           semesterOfStudy:semesterOfStudy,
+          selectedElectives: []
         });
         setUserDetails((prevDetails) => ({
           ...prevDetails,
@@ -184,16 +190,11 @@ const Profile = () => {
         }));
         alert('Semester of Study updated');
       }
-    } catch (error) {
-      console.error('Error updating semester of study:', error);
-    } finally {
       setSemesterLoading(false);
-    }
   };
 
   // const handleUpdateCollegeOfStudy = async () => {
   //   setCollegeLoading(true);
-  //   try {
   //     if (currentUser) {
   //       const userDocRef = doc(db, 'users', currentUser.uid);
   //       await updateDoc(userDocRef, {
@@ -205,11 +206,6 @@ const Profile = () => {
   //       }));
   //       alert('College of Study updated');
   //     }
-  //   } catch (error) {
-  //     console.error('Error updating college of study:', error);
-  //   } finally {
-  //     setCollegeLoading(false);
-  //   }
   // };
 
   const handleRecord = async () => {
@@ -275,22 +271,32 @@ const Profile = () => {
               />
             </div>
             <div style={styles.inputGroup}>
+              <label style={styles.label}><i className="fa fa-phone" style={styles.icon}></i>Contact Number:</label>
+                <input
+                  type="tel"
+                  value={userNumber}
+                  onChange={(e) => setUserNumber(e.target.value)}
+                  placeholder="Enter contact number"
+                  style={styles.contactInput}
+                />
+            </div> 
+            {/* <div style={styles.inputGroup}>
               <label style={styles.label}><i className="fa fa-building" style={styles.icon}></i>College of Study:</label>
               <input
               value='College of Engineering'
               readOnly
-              // onChange={(e) => setCollegeOfStudy(e.target.value)}
+              onChange={(e) => setCollegeOfStudy(e.target.value)}
               style={styles.programInput}
               />
-                {/* <option value="">Select College</option>
+                <option value="">Select College</option>
                 <option value="College of Engineering">College of Engineering</option>
                 <option value="College of Science">College of Science</option>
                 <option value="College of Health Sciences">College of Health</option>
                 <option value="College of Humanities and Social Sciences">College of Social Sciences</option>
                 <option value="College of Art and Built Environment">College of Art and Built Environment</option>
                 <option value="College of Agriculture and Natural Resources">College of Agriculture and Natural Resources</option>
-              </select> */}
-            </div>
+              </select>
+            </div> */}
               {/* <button onClick={handleUpdateCollegeOfStudy} style={styles.updateButton1} disabled={collegeLoading}>
                 {collegeLoading ? (
                   <div className="spinner-button"> 
@@ -300,9 +306,18 @@ const Profile = () => {
                   'Update College of Study'
                 )}
               </button> */}
-                <button onClick={handleRecord} style={styles.recordButton}>
-                  <i className="fa fa-trophy"></i> My Achievements <i className="fa fa-trophy"></i>
-                </button>
+              <button onClick={handleUpdateContact} style={styles.updateButton2} disabled={contactLoading}>
+                {contactLoading ? (
+                  <div className="spinner-button"> 
+                    Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+                  </div>
+                ) : (
+                  'Update Contact Number'
+                )}
+              </button>
+              <button onClick={() => navigate('/about')} style={styles.updateButton2}>
+                About Us
+              </button>
               <div style={styles.update}>
                 <button onClick={() => navigate(-1)} style={styles.goBackButton}>
                   <FaArrowLeft style={styles.icon} /> Go Back
@@ -390,30 +405,45 @@ const Profile = () => {
             )}
           </button>
           <div style={styles.update}>
-          <button onClick={handleUpdateLevelOfStudy} style={styles.updateButton} disabled={levelLoading}>
-          {levelLoading ? (
-            <div className="spinner-button"> 
-              Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
-            </div>
-          ) : (
-            'Update Level'
-          )}
-          </button>
-          <button onClick={handleUpdateSemesterOfStudy} style={styles.updateButton} disabled={semesterLoading}>
-            {semesterLoading ? (
+            <button onClick={handleUpdateLevelOfStudy} style={styles.updateButton} disabled={levelLoading}>
+            {levelLoading ? (
               <div className="spinner-button"> 
                 Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
               </div>
             ) : (
-              'Update Semester'
+              'Update Level'
             )}
-          </button>
+            </button>
+            <button onClick={handleUpdateSemesterOfStudy} style={styles.updateButton} disabled={semesterLoading}>
+              {semesterLoading ? (
+                <div className="spinner-button"> 
+                  Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+                </div>
+              ) : (
+                'Update Semester'
+              )}
+            </button>
           </div>
+          <button onClick={handleRecord} style={styles.recordButton}>
+            <i className="fa fa-trophy"></i> My Achievements <i className="fa fa-trophy"></i>
+          </button>
         </div>
       </div> 
-        <div style={styles.footer}>
-          <p>© 2025 Prime Academy. All rights reserved.</p>
+      <div style={styles.scrollingContainer}>
+        <div style={styles.scrollingText}>
+        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
+            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
+            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
+            You’re not just studying — you’re building a future to be proud of. 🌟
+            Every quiz you take is one step closer to mastering your field! 🌟
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
+            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
+            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
+            You’re not just studying — you’re building a future to be proud of. 🌟
+            Every quiz you take is one step closer to mastering your field! 🌟    
         </div>
+      </div>
     </div>
   );
 };
@@ -422,17 +452,18 @@ const styles = {
   container: {
     backgroundColor: '#f4f7fc',
     display: 'flex',
-    height: '90vh',
+    height: '100vh',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: '90px'
   },
   contain: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between', 
     width: '100%',
-    height: '80vh',
+    height: '100vh',
     padding: '20px',
     boxSizing: 'border-box',
   },  
@@ -586,7 +617,7 @@ const styles = {
     cursor: 'not-allowed',
     marginTop: '10px'
   },
-  programInput: {
+  contactInput: {
     width: '96%',
     padding: '12px',
     fontSize: '20px',
@@ -594,6 +625,17 @@ const styles = {
     border: '1px solid #ddd',
     backgroundColor: '#f4f7fc',
     cursor: 'text',
+    marginTop: '10px',
+    marginBottom: '2.5px'
+  },
+  programInput: {
+    width: '96%',
+    padding: '12px',
+    fontSize: '20px',
+    borderRadius: '5px',
+    border: '1px solid #ddd',
+    backgroundColor: '#f4f7fc',
+    cursor: 'pointer',
     marginTop: '10px',
     maxHeight: '200px',
     overflowY: 'auto',
@@ -618,18 +660,48 @@ const styles = {
     fontSize: '15px',
     marginRight: '8px',
   },
-  footer: {
+  scrollingContainer: {
     position: 'fixed',
-    bottom: '0',
-    left: '0',
+    bottom: 10,
+    left: 0,
     width: '100%',
-    padding: '15px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '0.9rem',
-    fontFamily: 'Poppins, sans-serif',
+    height: '40px',
+    backgroundColor: '#f0f0f0',
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'center',
+    boxShadow: '0 -8px 10px rgba(0,0,0,0.5)',
+    animation: 'flyIn 1.5s ease-out',
+  },
+  scrollingText: {
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+    fontSize: '20px',
+    color: '#333',
+    animation: 'scrollText 60s linear infinite',
   },
 };
+
+const globalStyles = `
+  @keyframes scrollText {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes flyIn {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+`;
 
 export default Profile;

@@ -65,7 +65,6 @@ const StreakTracker = () => {
     }
   };
 
-  // Sync streak and lastQuizDate changes to Firestore
   useEffect(() => {
     if (user && streak !== null && lastQuizDate !== undefined) {
       const userDocRef = doc(db, 'users', user.uid);
@@ -73,8 +72,6 @@ const StreakTracker = () => {
         streak, 
         lastQuizDate: lastQuizDate ? lastQuizDate : null 
       }, { merge: true })
-        .then(() => console.log('Streak updated in Firestore:', { streak, lastQuizDate }))
-        .catch(error => console.error('Error updating streak in Firestore:', error));
     }
   }, [user, streak, lastQuizDate]);
 
@@ -122,7 +119,9 @@ const styles = {
   header: {
     position: 'absolute',
     top: '120px',
-    right: '20px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    alignItems: 'center',
     zIndex: 3,
   },
   streakContainer: {
@@ -131,9 +130,10 @@ const styles = {
     padding: '5px 10px',
     borderRadius: '5px',
     boxShadow: '0 8px 10px rgba(0, 0, 0, 0.5)',
+    border: '2px solid white'
   },
   streakIcon: {
-    fontSize: '20px',
+    fontSize: '25px',
     marginRight: '5px',
   },
   streakText: {

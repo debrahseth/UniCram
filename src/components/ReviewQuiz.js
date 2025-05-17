@@ -45,12 +45,12 @@ const ReviewQuiz = () => {
               const [min, max] = rangeAnswer.split('to').map(Number);
               const userNumber = Number(userAnswer);
               isCorrect = !isNaN(userNumber) && userNumber >= min && userNumber <= max;
-              displayCorrectAnswer = `${rangeAnswer}`;
+              displayCorrectAnswer = isCorrect ? userAnswer : `${rangeAnswer}`;
             } else {
               isCorrect = question.answer.some(
                 ans => ans.trim().toLowerCase() === userAnswer
               );
-              displayCorrectAnswer = question.answer.join(', ');
+              displayCorrectAnswer = isCorrect ? userAnswer : question.answer.join(', ');
             }
           } else if (Array.isArray(question.answer)) {
             isCorrect = question.answer.some(
@@ -59,7 +59,7 @@ const ReviewQuiz = () => {
             displayCorrectAnswer = question.answer.join(', ');
           } else if (typeof question.answer === 'string') {
             isCorrect = userAnswer === question.answer.trim().toLowerCase();
-            displayCorrectAnswer = question.answer;
+            displayCorrectAnswer = isCorrect ? userAnswer : question.answer;
           } else {
             displayCorrectAnswer = 'Unknown';
           }

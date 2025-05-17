@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { spiral } from 'ldrs';
-import welcomeImage from '../assets/welcomeImage.jpg';
 import logo from '../assets/welcome1.jpg';
 
 const SplashScreen = () => {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [displayedGreeting, setDisplayedGreeting] = useState('');
+  const [hasStartedTyping, setHasStartedTyping] = useState(false);
+
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) {
-      return 'Good Morning';
+      return 'GOOD MORNING';
     } else if (hour < 18) {
-      return 'Good Afternoon';
+      return 'GOOD AFTERNOON';
     } else {
-      return 'Good Evening';
+      return 'GOOD EVENING';
     }
   };
 
@@ -27,44 +29,52 @@ const SplashScreen = () => {
     const fetchUserInfo = async () => {
       const user = auth.currentUser;
       if (user) {
-        try {
           const userDocRef = doc(db, 'users', user.uid);
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
             setUsername(userDoc.data().username);
           }
-        } catch (error) {
-          console.error('Error fetching user info:', error);
-        }
       }
     };
     fetchUserInfo();
     const timer = setTimeout(() => {
       setLoading(false);
       navigate('/dashboard');
+      alert("For better UI experience, set your screen zoom to 75% or 80%. Thank you")
     }, 5000);
 
     return () => clearTimeout(timer);
   }, [navigate]);
+
+  useEffect(() => {
+    if (username && !hasStartedTyping) {
+      const fullText = `${getGreeting()}, ${username || 'User'}!`;
+      let index = -1;
+
+      setDisplayedGreeting('');
+
+      const typingInterval = setInterval(() => {
+        setDisplayedGreeting((prev) => prev + fullText.charAt(index));
+        index++;
+        if (index >= fullText.length) clearInterval(typingInterval);
+      }, 150);
+      setHasStartedTyping(true);
+    }
+  }, [username, hasStartedTyping]);
 
   return (
     <div style={styles.container}>
       {loading ? (
         <>
           <div style={styles.content}>
+          <img src={logo} alt="Welcome" style={styles.welcomeImage} />
             <div style={styles.textContainer}> 
-              <div style={styles.profilePictureContainer}>
-                <img
-                  src={logo}
-                  alt="Study Group Logo"
-                  style={styles.profilePicture}
-                />
-              </div>
-              <h2 style={styles.greeting}>{getGreeting()}, {username || 'User'}!</h2>
+              <h2 style={styles.greeting}>
+                {displayedGreeting || 'WELCOME'}
+              </h2>
               <p style={styles.message}>Prime Academy is getting things ready for you...</p>
               <l-spiral size="50" speed="0.9" color="black"></l-spiral>
             </div>
-            <img src={welcomeImage} alt="Welcome" style={styles.welcomeImage} />
           </div>
         </>
       ) : (
@@ -98,20 +108,6 @@ const styles = {
     animation: "fadeIn 2s forwards",
     transform: "translateY(10px)",
   },
-  profilePictureContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: "center", 
-    width: "100%", 
-    marginBottom: '20px',
-  },
-  profilePicture: {
-    width: '250px',
-    height: '250px',
-    borderRadius: '10%',
-    objectFit: 'cover',
-    display: "block",
-  },
   textContainer: {
     display: "flex",
     flexDirection: "column",
@@ -125,6 +121,7 @@ const styles = {
     fontWeight: "bold",
     marginBottom: "15px",
     color: "#333",
+    minHeight: "48px",
   },
   message: {
     fontSize: "22px",
@@ -143,7 +140,7 @@ const styles = {
   '@keyframes fadeIn': {
     from: { opacity: 0 },
     to: { opacity: 1 }
-  }
+  },
 };
 
 export default SplashScreen;

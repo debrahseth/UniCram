@@ -1,0 +1,47 @@
+[
+    {
+        "question": "What is the primary source of energy for Earth's climate system?",
+        "options": [
+            "The Sun",
+            "Geothermal Energy",
+            "Nuclear Energy",
+            "Wind Energy",
+            "Linked List"
+        ],
+        "correctAnswer": "The Sun",
+        "levelOfStudy": "Level 200",
+        "course": "Physical Chemistry",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1",
+        "imageUrl": "/images/thermo.png"
+    },
+    {
+        "question": "Which data structure uses LIFO (Last In, First Out)?",
+        "options": [
+            "Queue",
+            "Stack",
+            "Array",
+            "Linked List"
+        ],
+        "correctAnswer": "Stack",
+        "levelOfStudy": "Level 200",
+        "course": "Physical Chemistry",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1",
+        "imageUrl": "/images/op.jpg"
+    },
+    {
+        "question": "What is the time complexity of binary search?",
+        "options": [
+            "O(n)",
+            "O(log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correctAnswer": "O(log n)",
+        "levelOfStudy": "Level 200",
+        "course": "Physical Chemistry",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    }
+]

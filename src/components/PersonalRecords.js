@@ -177,7 +177,6 @@ const PersonalRecords = () => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        try {
           const userDocRef = doc(db, 'users', currentUser.uid);
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
@@ -185,9 +184,6 @@ const PersonalRecords = () => {
           } else {
             setUsername(currentUser.displayName || 'User');
           }
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-        }
         setLoading(false);
       } else {
         navigate('/login');
@@ -201,7 +197,6 @@ const PersonalRecords = () => {
       const currentUser = auth.currentUser;
 
       if (currentUser) {
-        try {
           const quizScoresRef = collection(db, 'users', currentUser.uid, 'quizScores');
           const unsubscribe = onSnapshot(quizScoresRef, (querySnapshot) => {
             const records = querySnapshot.docs.map((doc) => doc.data());
@@ -217,14 +212,10 @@ const PersonalRecords = () => {
             setLoading(false);
           });
           return () => unsubscribe();
-        } catch (error) {
-          console.error('Error fetching quiz scores:', error);
-        } 
       } else {
         navigate('/login');
       }
     };
-
     fetchQuizRecords();
     return () => {
       setLoading(true);
@@ -235,7 +226,6 @@ const PersonalRecords = () => {
     const currentUser = auth.currentUser;
 
     if (currentUser) {
-      try {
         const quizScoresRef = collection(db, 'users', currentUser.uid, 'quizScores');
         const querySnapshot = await getDocs(quizScoresRef);
         const confirmReset = window.confirm('Are you sure you want to delete all your quiz scores? This action cannot be undone.');
@@ -243,19 +233,8 @@ const PersonalRecords = () => {
         if (confirmReset) {
           const deletePromises = querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
           await Promise.all(deletePromises);
-
-          const userDocRef = doc(db, 'users', currentUser.uid);
-          await updateDoc(userDocRef, {
-            streak: 0,
-            lastQuizDate: null,
-          });
-
           setQuizRecords([]);
-          console.log('All quiz scores have been deleted.');
         }
-      } catch (error) {
-        console.error('Error deleting quiz scores:', error);
-      }
     } else {
       navigate('/login');
     }

@@ -5,7 +5,6 @@ let inactivityTimeout;
 
 const handleLogout = async (auth, db, currentUser, navigate, setLogoutLoading) => {
   setLogoutLoading(true);
-  try {
     if (currentUser) {
       const userDocRef = doc(db, 'users', currentUser.uid);
       await updateDoc(userDocRef, {
@@ -15,10 +14,7 @@ const handleLogout = async (auth, db, currentUser, navigate, setLogoutLoading) =
     await auth.signOut();
     setLogoutLoading(false);
     navigate('/login');
-  } catch (error) {
-    console.error('Error during logout:', error.message);
     setLogoutLoading(false);
-  }
 };
 
 const useInactivityLogout = (auth, db, currentUser, navigate, setLogoutLoading, timeoutDuration = 300000) => {

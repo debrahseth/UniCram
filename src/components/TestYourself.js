@@ -5,7 +5,7 @@ import { courseData2 } from '../questions/courseData2';
 import { courseData3 } from '../questions/courseData3';
 import { courseData4 } from '../questions/courseData4';
 import { db, auth } from '../firebase';
-import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, addDoc, updateDoc } from 'firebase/firestore';
 import logo from "../assets/op.jpg";
 import { dotStream } from 'ldrs';
 
@@ -30,6 +30,9 @@ const TestYourself = () => {
   const [loading, setLoading] = useState(true);
   const [readAloud, setReadAloud] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [showElectiveModal, setShowElectiveModal] = useState(false);
+  const [selectedElectives, setSelectedElectives] = useState([]);
+  const [availableCourses, setAvailableCourses] = useState([]);
 
   const handleZoomImage = (image) => {
     setZoomedImage(image);
@@ -37,7 +40,6 @@ const TestYourself = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      try {
         const userDocRef = doc(db, 'users', auth.currentUser.uid);
         const userDoc = await getDoc(userDocRef);
 
@@ -46,18 +48,44 @@ const TestYourself = () => {
           setProgramOfStudy(userData.programOfStudy || '');
           setLevelOfStudy(userData.levelOfStudy || '');
           setSemesterOfStudy(userData.semesterOfStudy || '');
-        } else {
-          console.log('No user data found!');
+          
+          setSelectedElectives(userData.selectedElectives || []);
+          const allCourseData = { ...courseData1, ...courseData2, ...courseData3, ...courseData4 };
+          const matchingCourses = Object.entries(allCourseData).filter(
+            ([, course]) =>
+              (course.programOfStudy === "All Programs" || course.programOfStudy.includes(userData.programOfStudy)) &&
+              course.levelOfStudy === userData.levelOfStudy &&
+              course.semesterOfStudy === userData.semesterOfStudy
+          );
+          setAvailableCourses(matchingCourses);
+          const electiveCourses = matchingCourses.filter(([, course]) => course.elective);
+          if (electiveCourses.length > 0 && (!userData.selectedElectives || userData.selectedElectives.length === 0)) {
+            setShowElectiveModal(true);
+          }
         }
-      } catch (error) {
-        console.error("Error fetching user's data:", error);
-      }
     };
 
     if (auth.currentUser) {
       fetchUserData();
     }
   }, []);
+
+  const handleElectiveChange = (e) => {
+    const selected = Array.from(e.target.selectedOptions, (option) => option.value);
+    setSelectedElectives(selected);
+  };
+
+  const handleConfirmElectives = async () => {
+      const userDocRef = doc(db, 'users', auth.currentUser.uid);
+      await updateDoc(userDocRef, {
+        selectedElectives: selectedElectives,
+      });
+    setShowElectiveModal(false);
+  };
+
+  const handleCloseElectiveModal = () => {
+    setShowElectiveModal(false);
+  };
 
   const handleCourseSelect = (course) => {
     setSelectedCourse(course);
@@ -89,16 +117,11 @@ const TestYourself = () => {
           const difficultyData = getQuestionsFromSources(selectedCourse, level);
           if (difficultyData.length > 0) {
             questionsToDisplay = [...questionsToDisplay, ...difficultyData];
-          } else {
-            console.warn(`Difficulty data not found for ${selectedCourse} at ${level}`);
           }
         });
         questionsToDisplay = questionsToDisplay.sort(() => Math.random() - 0.5);
       } else {
         questionsToDisplay = getQuestionsFromSources(selectedCourse, selectedDifficulty);
-        if (questionsToDisplay.length === 0) {
-          console.warn(`Difficulty data not found for ${selectedCourse} at ${selectedDifficulty}`);
-        }
       }
 
       setQuestions(questionsToDisplay);
@@ -207,7 +230,6 @@ const TestYourself = () => {
     const totalQuestions = filteredQuestions.length;
     const currentUser = auth.currentUser;
     const subjectName = selectedCourse;
-    try {
       const userDocRef = doc(firestore, 'users', currentUser.uid);
       const userQuizScoresCollectionRef = collection(userDocRef, 'quizScores');
       await addDoc(userQuizScoresCollectionRef, {
@@ -217,10 +239,6 @@ const TestYourself = () => {
         totalQuestions,
         dateTaken: new Date(),
       });
-      console.log('Score saved successfully!');
-    } catch (error) {
-      console.error('Error saving score:', error);
-    }
   };
 
   const handleSubmitQuiz = async () => {
@@ -278,28 +296,18 @@ const TestYourself = () => {
                   <div style={styles.noDataContainer}>
                     <p style={styles.noDataMessage}>Loading courses<l-dot-stream size="60" speed="2.5" color="black"></l-dot-stream></p>
                   </div>
-                ) : Object.keys({ ...courseData1, ...courseData2, ...courseData3, ...courseData4 })
-                  .filter((subject) => {
-                    const course = courseData1[subject] || courseData2[subject] || courseData3[subject] || courseData4[subject];
-                    return (
-                      (course.programOfStudy === "All Programs" || course.programOfStudy.includes(programOfStudy)) &&
-                      course.levelOfStudy === levelOfStudy &&
-                      course.semesterOfStudy === semesterOfStudy
-                    );
-                  }).length > 0 ? (
-                    Object.keys({ ...courseData1, ...courseData2, ...courseData3, ...courseData4 })
-                      .filter((subject) => {
-                        const course = courseData1[subject] || courseData2[subject] || courseData3[subject] || courseData4[subject];
-                        return (
-                          (course.programOfStudy === "All Programs" || course.programOfStudy.includes(programOfStudy)) &&
-                          course.levelOfStudy === levelOfStudy &&
-                          course.semesterOfStudy === semesterOfStudy
-                        );
-                      }).map((course) => (
+                ) : availableCourses.length > 0 ? (
+                    availableCourses
+                      .filter(([courseName, course]) =>
+                        !course.elective || selectedElectives.includes(courseName)
+                      )
+                      .map(([course]) => (
                         <button
                           key={course}
                           style={styles.courseButton}
                           onClick={() => handleCourseSelect(course)}
+                          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.01)')}
+                          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                         >
                           {course}
                         </button>
@@ -323,10 +331,14 @@ const TestYourself = () => {
             <div style={styles.parentContainer}>
               <h2 style={styles.header}>Choose Duration for {selectedCourse} Quiz</h2>
               <div style={styles.difficultySelector}>
-                <button onClick={() => handleDifficultySelect('Easy')} style={styles.courseButton}>25 minutes</button>
-                <button onClick={() => handleDifficultySelect('Medium')} style={styles.courseButton}>30 minutes</button>
-                <button onClick={() => handleDifficultySelect('Hard')} style={styles.courseButton}>45 minutes</button>
-                <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}>1 hour</button>
+                <button onClick={() => handleDifficultySelect('Easy')} style={styles.courseButton}onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.01)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}>25 minutes</button>
+                <button onClick={() => handleDifficultySelect('Medium')} style={styles.courseButton}onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.01)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}>30 minutes</button>
+                <button onClick={() => handleDifficultySelect('Hard')} style={styles.courseButton}onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.01)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}>45 minutes</button>
+                <button onClick={() => handleDifficultySelect('Random')} style={styles.courseButton}onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.01)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}>1 hour</button>
               </div>
               <div style={styles.buttonContainment}>
                 <button onClick={() => navigate('/dashboard')} style={styles.goBackButton}>
@@ -342,7 +354,7 @@ const TestYourself = () => {
           <div style={styles.container}>
             <div style={styles.background}></div>
             <div style={styles.timerContainer}>
-              <p style={styles.questionNumber}>{selectedCourse} - {selectedDifficulty} Quiz</p>
+              <p style={styles.questionNumber}>{selectedCourse} Quiz</p>
               <p style={styles.questionNumber}>Time Left: {Math.floor(timer / 3600)}hr : {String(Math.floor((timer % 3600) / 60)).padStart(2, '0')}mins : {String(timer % 60).padStart(2, '0')}s</p>
               <p style={styles.questionNumber}>{questions[currentQuestionIndex]?.type === 'Preamble' ? 'Preamble' : `Question ${getCurrentFilteredIndex()} / ${totalFilteredQuestions}`}</p>
               <div style={styles.progressBar}>
@@ -398,19 +410,33 @@ const TestYourself = () => {
             </div>
             <div style={styles.optionsContainer}>
               {questions[currentQuestionIndex].type === 'Preamble' ? (
-                <div style={styles.preambleContainer}>
-                  {questions[currentQuestionIndex].text &&
-                  (questions[currentQuestionIndex].text.startsWith('http') ||
-                    questions[currentQuestionIndex].text.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i)) ? (
-                    <img
-                      src={questions[currentQuestionIndex].text}
-                      alt="Preamble Diagram"
-                      style={styles.diagramImage}
-                    />
-                  ) : (
-                    <p>{questions[currentQuestionIndex].text}</p>
-                  )}
-                </div>
+<div style={styles.preambleContainer}>
+  {Array.isArray(questions[currentQuestionIndex].text) ? (
+    questions[currentQuestionIndex].text.map((item, index) =>
+      item.startsWith('http') || item.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) ? (
+        <img
+          key={index}
+          src={item}
+          alt={`Preamble Diagram ${index + 1}`}
+          style={styles.diagramImage}
+        />
+      ) : (
+        <p key={index} style={{width: '50%'}}>{item}</p>
+      )
+    )
+  ) : questions[currentQuestionIndex].text &&
+    (questions[currentQuestionIndex].text.startsWith('http') ||
+      questions[currentQuestionIndex].text.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i)) ? (
+    <img
+      src={questions[currentQuestionIndex].text}
+      alt="Preamble Diagram"
+      style={styles.diagramImage}
+    />
+  ) : (
+    <p>{questions[currentQuestionIndex].text}</p>
+  )}
+</div>
+
               ) : (
                 <>
                   {questions[currentQuestionIndex].image && (
@@ -443,7 +469,7 @@ const TestYourself = () => {
                       </button>
                     ))
                   ) : questions[currentQuestionIndex].type === 'True/False' ? (
-                    <div style={styles.Container}>
+                    <>
                       <button
                         style={{
                           ...styles.optionButton,
@@ -462,7 +488,7 @@ const TestYourself = () => {
                       >
                         False
                       </button>
-                    </div>
+                    </>
                   ) : questions[currentQuestionIndex].type === 'Diagram' ? (
                     <>
                       <input
@@ -557,6 +583,41 @@ const TestYourself = () => {
           </div>
         </div>
       )}
+      {showElectiveModal && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h3 style={modalStyles.title}>SELECT YOUR ELECTIVES</h3>
+            <p style={modalStyles.text}>
+              Please select the elective courses you are taking for {programOfStudy}, {levelOfStudy}, {semesterOfStudy}.
+            </p>
+            <select
+              multiple
+              value={selectedElectives}
+              onChange={handleElectiveChange}
+              style={modalStyles.select}
+            >
+              {availableCourses
+                .filter(([, course]) => course.elective)
+                .map(([courseName]) => (
+                  <option key={courseName} value={courseName}>
+                    {courseName}
+                  </option>
+                ))}
+            </select>
+            <p style={modalStyles.hint}>
+              Hold Ctrl/Cmd to select multiple electives
+            </p>
+            <div style={modalStyles.buttonContainer}>
+              <button onClick={handleConfirmElectives} style={modalStyles.acceptButton}>
+                Confirm
+              </button>
+              <button onClick={handleCloseElectiveModal} style={modalStyles.closeButton}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -636,6 +697,7 @@ courseSelector: {
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
 },
 parentContainer: {
+  height: '83vh',
   width: '90vw',
   display: 'flex',
   justifyContent: 'center',
@@ -644,9 +706,9 @@ difficultySelector: {
   display: 'flex',
   flex: 1,
   flexDirection: 'column',
-  gap: '30px',
+  gap: '50px',
   textAlign: 'center',
-  marginTop: '230px',
+  marginTop: '160px',
   padding: "20px",
   opacity: "0.9",
   borderRadius: '8px',
@@ -660,7 +722,7 @@ courseButton: {
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   color: 'white',
   padding: '15px 25px',
-  fontSize: '30px',
+  fontSize: '40px',
   fontWeight: '900',
   cursor: 'pointer',
   border: 'none',
@@ -697,7 +759,7 @@ question: {
 },
 optionsContainer: {
   position: 'fixed',
-  top: '370px',
+  top: '50%',
   left: '50%',
   transform: 'translateX(-50%)',
   display: 'flex',
@@ -709,22 +771,9 @@ optionsContainer: {
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   padding: '8px',
   width: '80%',
-  marginTop: '35px'
-},  
-Container: {
-  position: 'fixed',
-  top: '40px',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
-  zIndex: 1,
-  opacity: 0.9,
-  borderRadius: '10px',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  padding: '8px',
-  width: '80%'
+  marginTop: '35px',
+  overflowY: 'auto',
+  maxHeight: '250px'
 },
 progressBar: {
   width: '100%',
@@ -735,7 +784,7 @@ progressBar: {
 },
 progressFill: {
   height: '100%',
-  backgroundColor: '#4CAF50',
+  backgroundColor: 'gold',
   borderRadius: '10px',
 },
 questionNumber: {
@@ -901,7 +950,6 @@ inputField: {
   borderRadius: '8px',
   border: '1px solid #ccc',
   width: '80%',
-  marginTop: '150px',
   marginLeft: "auto",
   marginRight: "auto",
 },
@@ -920,10 +968,9 @@ inputField1: {
   marginRight: "auto",
 },
 mainContainer: {
-  height: "86vh",
+  height: "83vh",
   display: "flex",
   flexDirection: "column",
-  position: "relative",
   overflow: "hidden",
   width: "100%",
   alignItems: 'center',
@@ -1013,6 +1060,8 @@ cont: {
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
   padding: '5px',
   marginTop: '8px',
+  overflowY: 'auto',
+  maxHeight: '180px'
 },
 toggleButton: {
   padding: '8px',
@@ -1078,6 +1127,80 @@ preambleContainer: {
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: 'white',
+  gap: 10,
 }
+};
+const modalStyles = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+  },
+  modal: {
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '10px',
+    width: '600px',
+    maxWidth: '90%',
+    textAlign: 'center',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  },
+  title: {
+    fontSize: '30px',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+    color: '#333',
+  },
+  text: {
+    fontSize: '25px',
+    marginBottom: '15px',
+    color: '#555',
+  },
+  select: {
+    width: '100%',
+    padding: '10px',
+    margin: '10px 0',
+    borderRadius: '8px',
+    border: '3px solid #ccc',
+    minHeight: '150px',
+    fontSize: '20px',
+    textAlign: 'center',
+  },
+  hint: {
+    fontSize: '15px',
+    color: '#666',
+    marginBottom: '15px',
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  acceptButton: {
+    backgroundColor: '#4CAF50',
+    color: '#fff',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontSize: '20px',
+    width: '45%'
+  },
+  closeButton: {
+    backgroundColor: '#dc3545',
+    color: '#fff',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontSize: '20px',
+    width: '45%'
+  },
 };
 export default TestYourself;

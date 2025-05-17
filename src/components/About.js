@@ -60,10 +60,11 @@ const About = () => {
   };
 
   const paragraphStyle = {
-    fontSize: '1.2rem',
-    lineHeight: '1.8',
-    maxWidth: '900px',
+    fontSize: '1.5rem',
+    lineHeight: '1.9',
+    maxWidth: '1600px',
     margin: '0 auto 20px',
+    fontWeight: '700',
     textAlign: 'justify',
   };
 
@@ -140,7 +141,7 @@ const About = () => {
             { title: 'Answer Review', desc: 'Review quiz answers with explanations to understand mistakes and improve your knowledge.' },
             { title: 'Streak System', desc: 'Stay motivated by building daily streaks through consistent quiz practice.' },
             { title: 'Secure Authentication', desc: 'Log in or sign up safely with Firebase-powered authentication.' },
-            { title: 'Responsive Design', desc: 'Access Prime Academy on any device with a seamless, user-friendly interface.' },
+            { title: 'Daily Challenges', desc: 'Test your knowledge every day with personalized quizzes tailored to your course. Earn points, climb the leaderboard, and stay sharp!' },
             { title: 'Personalized Dashboard', desc: 'Access a tailored dashboard displaying your quiz history, streaks, and performance metrics, helping you stay organized and focused.' },
             { title: 'Daily Average Insights', desc: 'Analyze your daily quiz performance with average scores per subject, enabling you to track consistency and improvement.' },
             { title: 'Course Filtering', desc: 'Filter quizzes and performance data by specific courses to focus on subjects that matter most to your studies.' },
@@ -173,12 +174,12 @@ const About = () => {
       <div style={buttonContainerStyle}>
         <button
           style={buttonStyle}
-          onClick={() => navigate('/')}
+          onClick={() => navigate(-1)}
           onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
           onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
         >
           <FaHome style={{ marginRight: '10px', fontSize: '1.5rem' }} />
-          Back to Home
+          Go Back
         </button>
       </div>
     </div>

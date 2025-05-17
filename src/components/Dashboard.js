@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, query, collection, where, onSnapshot, Timestamp, getDocs } from 'firebase/firestore';
 import logo from '../assets/op.jpg';
 import useInactivityLogout from './useInactivityLogout';
 import StreakTracker from './StreakTracker';
@@ -15,6 +15,10 @@ const Dashboard = () => {
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentUserId, setCurrentUserId] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [userDetails, setUserDetails] = useState(null);
+  const [hasTakenDailyQuiz, setHasTakenDailyQuiz] = useState(false);
+  const [showRulesModal, setShowRulesModal] = useState(false);
   const currentUser = auth.currentUser; 
   const quotes = [
     { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
@@ -69,12 +73,33 @@ const Dashboard = () => {
           const userDocRef = doc(db, 'users', currentUser.uid);
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
-            setUsername(userDoc.data().username);
+            const userData = userDoc.data();
+            setUsername(userData.username);
+            setUserDetails({
+              levelOfStudy: userData.levelOfStudy,
+              programOfStudy: userData.programOfStudy,
+              semesterOfStudy: userData.semesterOfStudy
+            });
+
+            // const today = new Date();
+            // today.setHours(0, 0, 0, 0);
+            // const quizQuery = query(
+            //   collection(db, 'dailyQuizzes'),
+            //   where('userId', '==', currentUser.uid),
+            //   where('timestamp', '>=', Timestamp.fromDate(today))
+            // );
+            // const quizSnapshot = await getDocs(quizQuery);
+            // const hasTakenToday = !quizSnapshot.empty;
+            // setHasTakenDailyQuiz(hasTakenToday);
+            // setHasTakenDailyQuiz(!quizSnapshot.empty);
+            // setShowModal(!hasTakenToday); 
           } else {
             setUsername(currentUser.displayName || 'User');
+            // setShowModal(true);
           }
         } catch (error) {
           console.error('Error fetching user data:', error);
+          // setShowModal(true);
         }
         setLoading(false);
       } else {
@@ -111,10 +136,40 @@ const Dashboard = () => {
     }
   }, [currentUserId]);
 
+  useEffect(() => {
+      const style = document.createElement("style");
+      style.innerHTML = globalStyles;
+      document.head.appendChild(style);
+      return () => document.head.removeChild(style);
+    }, []); 
+
   dotStream.register()
   spiral.register()
 
   useInactivityLogout(auth, db, currentUser, navigate, setLogoutLoading);
+
+  const handleTakeChallenge = () => {
+    setShowRulesModal(true);
+  };
+
+  const handleAcceptRules = () => {
+    setShowRulesModal(false);
+    navigate('/daily-challenge', {
+      state: {
+        levelOfStudy: userDetails.levelOfStudy,
+        programOfStudy: userDetails.programOfStudy,
+        semesterOfStudy: userDetails.semesterOfStudy
+      }
+    });
+  };
+
+  const handleDeclineRules = () => {
+    setShowRulesModal(false);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   if (loading) {
     return (
@@ -150,8 +205,10 @@ const Dashboard = () => {
         <div style={styles.buttonContainer}>
           {/* <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Compete Now</button> */}
           <button onClick={() => navigate('/test-yourself')} style={styles.startQuizButton}>Practice Quiz</button>
-          <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button>
-          <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button>
+          {/* <button onClick={() => navigate('/live-quiz')} style={styles.startQuizButton}>Live Quizzes</button> */}
+          <button onClick={() => navigate('/weekly-leaderboard')} style={styles.startQuizButton}>Weekly Leader Board</button>
+          {/* <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button> */}
+          {/* <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button> */}
         </div>
       </div>
         {/* <button onClick={() => navigate('/users')} style={styles.userButton}>Meet the Brain Snacks Community</button> */}
@@ -160,10 +217,10 @@ const Dashboard = () => {
         <div style={styles.motivationalQuotes}>
         <h3 style={styles.title}>Motivational Quotes</h3>
           <div style={styles.quoteCard}>
-            <p style={styles.quoteText} className="quote-text">
+            <p style={styles.quoteText}>
               "{quotes[currentQuoteIndex].text}"
             </p>
-            <p style={styles.quoteAuthor}>- {quotes[currentQuoteIndex].author}</p>
+            <p style={styles.quoteAuthor}>~ {quotes[currentQuoteIndex].author}</p>
         </div>
         </div>
         <div style={styles.studyTips}>
@@ -176,12 +233,71 @@ const Dashboard = () => {
         </div>
       </div>
       </div>
-      <div style={styles.footer}>
-        <p>© 2025 Prime Academy. All rights reserved.</p>
+      <div style={styles.scrollingContainer}>
+        <div style={styles.scrollingText}>
+        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
+            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
+            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
+            You’re not just studying — you’re building a future to be proud of. 🌟
+            Every quiz you take is one step closer to mastering your field! 🌟
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
+            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
+            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
+            You’re not just studying — you’re building a future to be proud of. 🌟
+            Every quiz you take is one step closer to mastering your field! 🌟    
+        </div>
       </div> 
+      {showModal && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h3 style={modalStyles.title}>DAILY CHALLENGE</h3>
+            <p style={modalStyles.text}>
+              {username}, are you ready to test your knowledge? 
+            </p>
+            <p style={modalStyles.text}>
+              Take today's challenge tailored to your {userDetails?.programOfStudy} studies!
+            </p>
+            <div style={modalStyles.buttonContainer}>
+              <button onClick={handleTakeChallenge} style={modalStyles.acceptButton}>
+                ACCEPT
+              </button>
+              {showRulesModal && (
+                <div style={modalStyles.overlay}>
+                  <div style={modalStyles.modal}>
+                    <h2 style={modalStyles.title}>DAILY CHALLENGE RULES</h2>
+                    <p style={modalStyles.text}>
+                      • You have one chance per day to take this quiz.<br />
+                      • No going back to previous questions.<br />
+                      • Complete all questions in one sitting.<br />
+                      • Your score will appear on the weekly leaderboard.<br />
+                      • For each correct answer, you earn 10 points.<br />
+                      • For each incorrect answer, you lose 5 points.<br />
+                      • Choose wisely.<br />
+                          <br/> GOOD LUCK !!!
+                    </p>
+                    <div style={modalStyles.buttonContainer}>
+                      <button style={modalStyles.acceptButton} onClick={handleAcceptRules}>
+                        Accept & Start
+                      </button>
+                      <button style={modalStyles.closeButton} onClick={handleDeclineRules}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <button onClick={handleCloseModal} style={modalStyles.closeButton}>
+                DECLINE
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
+
 const styles = {
   container: {
     display: 'flex',
@@ -211,7 +327,7 @@ const styles = {
     marginLeft: 'auto',
     marginRight: 'auto',
     backgroundColor: '#FFD700',
-    padding: '20px',
+    padding: '23px',
     textAlign: 'center',
     borderRadius: '10px 10px 10px 10px',
     position: 'relative',
@@ -237,10 +353,10 @@ const styles = {
     marginTop: '20px',    
     overflowY: 'auto',
     opacity: '0.9',
-    width: '100%'
+    width: '98%'
   },
   label :{
-    fontSize: '40px',
+    fontSize: '45px',
   },
   title: {
     fontSize: '30px',
@@ -322,7 +438,7 @@ const styles = {
     margin: '10px auto',      
   },
   startQuizButton: {
-    fontSize: '25px',
+    fontSize: '40px',
     fontWeight: '900',
     backgroundColor: '#FFD700',
     color: 'black',
@@ -331,6 +447,7 @@ const styles = {
     width: '80%',
     transition: 'background-color 0.3s',
     textAlign: 'center',
+    border: '2px solid black'
   },
   icon: {
     marginRight: '8px',
@@ -338,7 +455,8 @@ const styles = {
     color: 'black',
     backgroundColor: 'white',
     padding: '15px',
-    borderRadius: '50px'
+    borderRadius: '50px',
+    border: '2px solid black'
   },
   leaderboardButton: {
     position: 'absolute',
@@ -360,18 +478,121 @@ const styles = {
     fontSize: '1.5rem',
     cursor: 'pointer',
   },
-  footer: {
+  scrollingContainer: {
     position: 'fixed',
-    bottom: '0',
-    left: '0',
+    bottom: 10,
+    left: 0,
     width: '100%',
-    padding: '15px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '1rem',
-    fontFamily: 'Poppins, sans-serif',
+    height: '40px',
+    backgroundColor: '#f0f0f0',
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'center',
+    boxShadow: '0 -8px 10px rgba(0,0,0,0.5)',
+    animation: 'flyIn 1.5s ease-out',
+  },
+  scrollingText: {
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+    fontSize: '20px',
+    color: '#333',
+    animation: 'scrollText 60s linear infinite',
   },
 };
+
+const modalStyles = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+  },
+  modal: {
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '8px',
+    maxWidth: '700px',
+    width: '90%',
+    textAlign: 'center',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    animation: 'flyInUp 1s ease-out',
+  },
+  title: {
+    marginBottom: '15px',
+    fontSize: '35px',
+    fontWeight: 900,
+    color: '#333',
+  },
+  text: {
+    marginBottom: '20px',
+    fontSize: '25px',
+    color: '#555',
+    textAlign: 'center'
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+  },
+  acceptButton: {
+    padding: '10px 20px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: '2px solid black',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontSize: '20px',
+    fontWeight: 900
+  },
+  closeButton: {
+    padding: '10px 20px',
+    backgroundColor: '#dc3545',
+    color: '#fff',
+    border: '2px solid black',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontSize: '20px',
+    fontWeight: 900
+  }
+};
+
+const globalStyles = `
+  @keyframes scrollText {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes flyIn {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes flyInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+`;
 
 export default Dashboard;

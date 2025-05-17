@@ -53,13 +53,23 @@ const UserListScreen = () => {
       <div style={styles.scrollableContainer}>
         {users.length > 0 ? (
           <table style={styles.table}>
+            <thead>
+              <tr>
+                <th style={styles.tableHeader}>Username</th>
+                <th style={styles.tableHeader}>Program</th>
+                <th style={styles.tableHeader}>Level</th>
+                {/* <th style={styles.tableHeader}>Streak</th> */}
+                <th style={styles.tableHeader}>Contact</th>
+              </tr>
+            </thead>
             <tbody>
               {users.map((user, index) => (
                 <tr key={user.id} style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
                   <td style={styles.tableCell1}>{user.username}</td>
-                  <td style={styles.tableCell1}>BSc. {user.programOfStudy || 'No Program'}</td>
+                  <td style={styles.tableCell1}>{user.programOfStudy || 'No Program'}</td>
                   <td style={styles.tableCell1}>{user.levelOfStudy || 'No Level'}</td>
-                  <td style={styles.tableCell1}>{user.streak || '-'} 🔥</td>
+                  {/* <td style={styles.tableCell1}>{user.streak || '-'} 🔥</td> */}
+                  <td style={styles.tableCell1}>{user.userNumber || '-'}</td>
                 </tr>
               ))}
             </tbody>
@@ -127,6 +137,16 @@ const styles = {
   table: {
     width: '100%',
     borderCollapse: 'collapse',
+  },
+  tableHeader: {
+    position: 'sticky',
+    top: 0,
+    backgroundColor: '#f2f2f2',
+    padding: '10px',
+    textAlign: 'center',
+    zIndex: 1,
+    borderBottom: '2px solid #ccc',
+    fontSize: '25px'
   },
   tableCell1: {
     padding: '20px',

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -19,7 +18,9 @@ import UserListScreen from './components/UserListScreen';
 import TestYourself from './components/TestYourself';
 import ReviewQuiz from './components/ReviewQuiz';
 import About from './components/About';
-import './App.css';
+import DailyChallenge from './components/DailyChallenge';
+import WeeklyLeaderBoard from './components/WeeklyLeaderBoard';
+import LiveQuiz from './components/LiveQuiz';
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
         <Route path="/test-yourself" element={<TestYourself />} />
         <Route path="/review" element={<ReviewQuiz />} />
         <Route path="/about" element={<About />} />
+        <Route path="/daily-challenge" element={<DailyChallenge />} />
+        <Route path="/weekly-leaderboard" element={<WeeklyLeaderBoard />} />
+        <Route path="/live-quiz" element={<LiveQuiz />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

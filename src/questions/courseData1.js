@@ -503,7 +503,7 @@ Medium: [
         }
     ]},
 'Algebra' : {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: "All Programs",
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 1",
     Easy: [
@@ -3700,7 +3700,7 @@ semesterOfStudy: "Semester 2",
         },
         {
             question: 'If the source and the observer are moving toward each other.',
-            answer: ['215.3 Hz'],
+            answer: '215.3 Hz',
             type: 'Multiple Choice',
             options: ['200.0 Hz','140.0 Hz','185.8 Hz','215.3 Hz']
         },
@@ -3750,7 +3750,8 @@ semesterOfStudy: "Semester 2",
             type: 'True/False'
         },
         {
-          text: "Given the peak of the radiation curve for a certain black body occurs at a wavelength of 8000 Å. Use tis to answer the following questions.",
+          question: ' Use this to answer the following questions.',
+          text: "Given the peak of the radiation curve for a certain black body occurs at a wavelength of 8000 Å.",
           type: "Preamble"
         },
         {
@@ -4883,7 +4884,7 @@ Hard: [
   }
 ]},
 'Basic Electronics' : {
-programOfStudy: "Chemical Engineering",
+programOfStudy: ["Chemical Engineering","Electrical and Electronics Engineering"],
 levelOfStudy: "Level 100",
 semesterOfStudy: "Semester 2",
 Easy: [
@@ -5671,7 +5672,7 @@ Hard: [
   },
 ]},
 'Calculus with Analysis' : {
-programOfStudy: "Chemical Engineering",
+programOfStudy: ["Chemical Engineering","Electrical and Electronics Engineering"],
 levelOfStudy: "Level 100",
 semesterOfStudy: "Semester 2",
 Easy: [
