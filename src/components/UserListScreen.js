@@ -10,6 +10,7 @@ const UserListScreen = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +22,9 @@ const UserListScreen = () => {
           id: doc.id,
           ...doc.data(),
         }));
+        usersList.sort((a, b) =>
+        a.username?.toLowerCase().localeCompare(b.username?.toLowerCase())
+        );
         setUsers(usersList);
         setIsLoading(false);
       },
@@ -31,6 +35,15 @@ const UserListScreen = () => {
     );
     return () => unsubscribe();
   }, []);
+
+  const filteredUsers = users.filter((user) => {
+  const term = searchTerm.toLowerCase();
+  return (
+    user.username?.toLowerCase().includes(term) ||
+    user.programOfStudy?.toLowerCase().includes(term) ||
+    user.levelOfStudy?.toLowerCase().includes(term)
+  );
+  });
 
   if (isLoading) {
     return (
@@ -50,6 +63,13 @@ const UserListScreen = () => {
       <div style={styles.background}></div>
       <h1 style={styles.header}>THE PRIME ACADEMY COMMUNITY</h1>
 
+      <input
+        type="text"
+        placeholder="Search by username, program, or level..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{padding: '10px',marginBottom: '15px',width: '90%',fontSize: '16px',borderRadius: '5px',border: '1px solid #ccc'}}
+      />
       <div style={styles.scrollableContainer}>
         {users.length > 0 ? (
           <table style={styles.table}>
@@ -58,17 +78,15 @@ const UserListScreen = () => {
                 <th style={styles.tableHeader}>Username</th>
                 <th style={styles.tableHeader}>Program</th>
                 <th style={styles.tableHeader}>Level</th>
-                {/* <th style={styles.tableHeader}>Streak</th> */}
                 <th style={styles.tableHeader}>Contact</th>
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
+              {filteredUsers.map((user, index) => (
                 <tr key={user.id} style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
                   <td style={styles.tableCell1}>{user.username}</td>
                   <td style={styles.tableCell1}>{user.programOfStudy || 'No Program'}</td>
                   <td style={styles.tableCell1}>{user.levelOfStudy || 'No Level'}</td>
-                  {/* <td style={styles.tableCell1}>{user.streak || '-'} 🔥</td> */}
                   <td style={styles.tableCell1}>{user.userNumber || '-'}</td>
                 </tr>
               ))}

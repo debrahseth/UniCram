@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import { auth, db } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import logo from '../assets/op.jpg';
 
@@ -19,7 +19,10 @@ const Signup = () => {
   const [semesterOfStudy, setSemesterOfStudy] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [verificationSent, setVerificationSent] = useState(false);
+  const [tempUserData, setTempUserData] = useState(null);
   const navigate = useNavigate();
+
   const programs = [
     "Agricultural Engineering",
     "Aerospace Engineering",
@@ -53,13 +56,34 @@ const Signup = () => {
 
   const handleCloseModal = () => {
     setModalOpen(false);
+    setVerificationSent(false);
   };
 
   const handleSubmit = async () => {
     setLoading(true);
+    setError('');
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+
+      await sendEmailVerification(user);
+      setVerificationSent(true);
+
+      setTempUserData({
+        uid: user.uid,
+        username,
+        email,
+        programOfStudy,
+        levelOfStudy,
+        semesterOfStudy,
+        status: 'online',
+      });
+
+      const verificationCheck = setInterval(async () => {
+        await user.reload();
+        if (user.emailVerified) {
+          clearInterval(verificationCheck);
+
       await setDoc(doc(db, 'users', user.uid), {
         username: username,
         email: email,
@@ -68,30 +92,43 @@ const Signup = () => {
         semesterOfStudy: semesterOfStudy,
         status: 'online',
       });
-      // const response = await fetch('https://prime-api-server-debrahseth-study-group-projects.vercel.app/send-email', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     to: email,
-      //     username: username
-      //   }),
-      // });
+      const response = await fetch('https://https://prime-api-server-ej0hs1az9-study-group-projects.vercel.app/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: email,
+          username: username
+        }),
+      });
 
-      // if (!response.ok) {
-      //   const errorData = await response.json();
-      //   console.error('Failed to send email:', errorData);
-      //   throw new Error('Failed to send welcome email');
-      // }
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Failed to send email:', errorData);
+        throw new Error('Failed to send welcome email');
+      }
   
+      setModalOpen(false);
+      setLoading(false);
       navigate('/splash');
+    }
+  }, 2000);
+
     } catch (error) {
       console.error('Error during sign-up:', error);
       setError(error.message);
     } finally {
-      setModalOpen(false);
       setLoading(false);
     }
 };
+
+const handleResendVerification = async () => {
+    try {
+      await sendEmailVerification(auth.currentUser);
+      setError('Verification email resent. Please check your inbox.');
+    } catch (error) {
+      setError('Failed to resend verification email. Please try again.');
+    }
+  };
 
   return (
     <div style={styles.container}>
@@ -163,6 +200,24 @@ const Signup = () => {
       {modalOpen && (
         <div style={styles.modal}>
           <div style={styles.modalContent}>
+          {verificationSent ? (
+              <>
+                <h2>Email Verification</h2>
+                <p>
+                  A verification email has been sent to {email}. Please check your inbox, open the email, and click the verification link to complete your signup. You must verify your email before you can successfully sign up and access Prime Academy.
+                </p>
+                <p>
+                  <em>Didn't receive the email? Check your spam or junk folder.</em>
+                </p>
+                <button onClick={handleResendVerification} style={styles.button}>
+                  Resend Verification Email
+                </button>
+                <button onClick={handleCloseModal} style={styles.button}>
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <>
             <h2>Enter Your Details</h2> 
             <label style={styles.label}>Program of Study:</label>
             <div style={styles.dropdownContainer} onClick={() => setIsOpen(!isOpen)}>
@@ -224,6 +279,8 @@ const Signup = () => {
           </button>
           )}
           <button onClick={handleCloseModal} style={styles.button}>Cancel</button>
+          </>
+        )}  
         </div>  
       </div>
       )}

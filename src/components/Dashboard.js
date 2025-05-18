@@ -81,25 +81,25 @@ const Dashboard = () => {
               semesterOfStudy: userData.semesterOfStudy
             });
 
-            // const today = new Date();
-            // today.setHours(0, 0, 0, 0);
-            // const quizQuery = query(
-            //   collection(db, 'dailyQuizzes'),
-            //   where('userId', '==', currentUser.uid),
-            //   where('timestamp', '>=', Timestamp.fromDate(today))
-            // );
-            // const quizSnapshot = await getDocs(quizQuery);
-            // const hasTakenToday = !quizSnapshot.empty;
-            // setHasTakenDailyQuiz(hasTakenToday);
-            // setHasTakenDailyQuiz(!quizSnapshot.empty);
-            // setShowModal(!hasTakenToday); 
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const quizQuery = query(
+              collection(db, 'dailyQuizzes'),
+              where('userId', '==', currentUser.uid),
+              where('timestamp', '>=', Timestamp.fromDate(today))
+            );
+            const quizSnapshot = await getDocs(quizQuery);
+            const hasTakenToday = !quizSnapshot.empty;
+            setHasTakenDailyQuiz(hasTakenToday);
+            setHasTakenDailyQuiz(!quizSnapshot.empty);
+            setShowModal(!hasTakenToday); 
           } else {
             setUsername(currentUser.displayName || 'User');
-            // setShowModal(true);
+            setShowModal(true);
           }
         } catch (error) {
           console.error('Error fetching user data:', error);
-          // setShowModal(true);
+          setShowModal(true);
         }
         setLoading(false);
       } else {
