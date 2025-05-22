@@ -66,6 +66,7 @@ const Profile = () => {
   ];
 
   let inactivityTimeout;
+  const { logoutLoading: forcedLogoutLoading } = useForcedLogout();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(authInstance, (user) => {
@@ -141,7 +142,6 @@ const Profile = () => {
       setLogoutLoading(true);
       await signOut(auth);
       navigate("/login");
-      alert("You have been logged out by an admin.");
     } catch (error) {
       console.error("Error during forced logout:", error);
     } finally {
@@ -342,7 +342,7 @@ const Profile = () => {
     );
   }
 
-  if (logoutLoading) {
+  if (logoutLoading || forcedLogoutLoading) {
     return (
       <div className="spinner-container">
         <p>Logging out...</p>

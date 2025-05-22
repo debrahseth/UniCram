@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { useForcedLogout } from "../hooks/useForcedLogout";
 import {
   doc,
   getDoc,
@@ -115,6 +116,7 @@ const Dashboard = () => {
   ];
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+  const { logoutLoading: forcedLogoutLoading } = useForcedLogout();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -233,7 +235,7 @@ const Dashboard = () => {
     );
   }
 
-  if (logoutLoading) {
+  if (logoutLoading || forcedLogoutLoading) {
     return (
       <div className="spinner-container">
         <p>Logging out...</p>
