@@ -1,35 +1,37 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { db } from '../firebase';
-import { collection, onSnapshot } from 'firebase/firestore';
-import '../styles.css';
-import { FaChevronLeft } from 'react-icons/fa';
-import logo from '../assets/op.jpg';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { db } from "../firebase";
+import { collection, onSnapshot } from "firebase/firestore";
+import "../styles.css";
+import { FaChevronLeft } from "react-icons/fa";
+import logo from "../assets/op.jpg";
 
 const UserListScreen = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const usersRef = collection(db, 'users');
+    const usersRef = collection(db, "users");
     const unsubscribe = onSnapshot(
       usersRef,
       (snapshot) => {
-        const usersList = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        const usersList = snapshot.docs
+          .map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+          .filter((user) => user.role !== "admin");
         usersList.sort((a, b) =>
-        a.username?.toLowerCase().localeCompare(b.username?.toLowerCase())
+          a.username?.toLowerCase().localeCompare(b.username?.toLowerCase())
         );
         setUsers(usersList);
         setIsLoading(false);
       },
       (err) => {
-        setError('Failed to load users');
+        setError("Failed to load users");
         setIsLoading(false);
       }
     );
@@ -37,12 +39,12 @@ const UserListScreen = () => {
   }, []);
 
   const filteredUsers = users.filter((user) => {
-  const term = searchTerm.toLowerCase();
-  return (
-    user.username?.toLowerCase().includes(term) ||
-    user.programOfStudy?.toLowerCase().includes(term) ||
-    user.levelOfStudy?.toLowerCase().includes(term)
-  );
+    const term = searchTerm.toLowerCase();
+    return (
+      user.username?.toLowerCase().includes(term) ||
+      user.programOfStudy?.toLowerCase().includes(term) ||
+      user.levelOfStudy?.toLowerCase().includes(term)
+    );
   });
 
   if (isLoading) {
@@ -68,7 +70,14 @@ const UserListScreen = () => {
         placeholder="Search by username, program, or level..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{padding: '10px',marginBottom: '15px',width: '90%',fontSize: '16px',borderRadius: '5px',border: '1px solid #ccc'}}
+        style={{
+          padding: "10px",
+          marginBottom: "15px",
+          width: "90%",
+          fontSize: "16px",
+          borderRadius: "5px",
+          border: "1px solid #ccc",
+        }}
       />
       <div style={styles.scrollableContainer}>
         {users.length > 0 ? (
@@ -83,11 +92,18 @@ const UserListScreen = () => {
             </thead>
             <tbody>
               {filteredUsers.map((user, index) => (
-                <tr key={user.id} style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
+                <tr
+                  key={user.id}
+                  style={index % 2 === 0 ? styles.evenRow : styles.oddRow}
+                >
                   <td style={styles.tableCell1}>{user.username}</td>
-                  <td style={styles.tableCell1}>{user.programOfStudy || 'No Program'}</td>
-                  <td style={styles.tableCell1}>{user.levelOfStudy || 'No Level'}</td>
-                  <td style={styles.tableCell1}>{user.userNumber || '-'}</td>
+                  <td style={styles.tableCell1}>
+                    {user.programOfStudy || "No Program"}
+                  </td>
+                  <td style={styles.tableCell1}>
+                    {user.levelOfStudy || "No Level"}
+                  </td>
+                  <td style={styles.tableCell1}>{user.userNumber || "-"}</td>
                 </tr>
               ))}
             </tbody>
@@ -107,104 +123,104 @@ const UserListScreen = () => {
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    height: '100vh',
-    position: 'relative',
-    overflow: 'hidden',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    height: "100vh",
+    position: "relative",
+    overflow: "hidden",
   },
   background: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     backgroundImage: `url(${logo})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     opacity: 0.9,
     zIndex: -1,
   },
   header: {
-    fontSize: '40px',
-    fontWeight: '900',
-    marginBottom: '20px',
-    width: '90%',
-    backgroundColor: '#FFD700',
-    padding: '20px',
-    textAlign: 'center',
-    borderRadius: '10px',
-    position: 'relative',
+    fontSize: "40px",
+    fontWeight: "900",
+    marginBottom: "20px",
+    width: "90%",
+    backgroundColor: "#FFD700",
+    padding: "20px",
+    textAlign: "center",
+    borderRadius: "10px",
+    position: "relative",
     zIndex: 1,
   },
   scrollableContainer: {
     flex: 1,
-    marginTop: '5px',
-    marginBottom: '100px',
-    overflowY: 'auto',
-    opacity: '0.9',
-    width: '90%',
+    marginTop: "5px",
+    marginBottom: "100px",
+    overflowY: "auto",
+    opacity: "0.9",
+    width: "90%",
     height: "auto",
-    borderRadius: '10px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    backgroundColor: 'white',
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "white",
   },
   table: {
-    width: '100%',
-    borderCollapse: 'collapse',
+    width: "100%",
+    borderCollapse: "collapse",
   },
   tableHeader: {
-    position: 'sticky',
+    position: "sticky",
     top: 0,
-    backgroundColor: '#f2f2f2',
-    padding: '10px',
-    textAlign: 'center',
+    backgroundColor: "#f2f2f2",
+    padding: "10px",
+    textAlign: "center",
     zIndex: 1,
-    borderBottom: '2px solid #ccc',
-    fontSize: '25px'
+    borderBottom: "2px solid #ccc",
+    fontSize: "25px",
   },
   tableCell1: {
-    padding: '20px',
-    borderBottom: '2px solid #ddd',
-    fontSize: '25px',
-    fontWeight: '500',
-    textAlign: 'center',
+    padding: "20px",
+    borderBottom: "2px solid #ddd",
+    fontSize: "25px",
+    fontWeight: "500",
+    textAlign: "center",
   },
   evenRow: {
-    backgroundColor: '#f9f9f9',
+    backgroundColor: "#f9f9f9",
   },
   oddRow: {
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
   },
   goBackButton: {
-    backgroundColor: '#2196F3',
-    color: 'white',
-    padding: '10px 10px',
-    fontSize: '25px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    borderRadius: '10px',
-    marginTop: '20px',
-    marginBottom: '20px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    transition: 'background-color 0.3s ease',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '60%',
+    backgroundColor: "#2196F3",
+    color: "white",
+    padding: "10px 10px",
+    fontSize: "25px",
+    fontWeight: "600",
+    cursor: "pointer",
+    borderRadius: "10px",
+    marginTop: "20px",
+    marginBottom: "20px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    transition: "background-color 0.3s ease",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "60%",
   },
   buttonContainment: {
-    width: '100%',
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "100%",
+    position: "fixed",
+    bottom: "0",
+    left: "0",
+    boxShadow: "0 -4px 8px rgba(0, 0, 0, 0.1)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 };
 

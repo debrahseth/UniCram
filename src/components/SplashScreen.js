@@ -1,46 +1,48 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { spiral } from 'ldrs';
-import logo from '../assets/welcome1.jpg';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { spiral } from "ldrs";
+import logo from "../assets/welcome1.jpg";
 
 const SplashScreen = () => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [displayedGreeting, setDisplayedGreeting] = useState('');
+  const [displayedGreeting, setDisplayedGreeting] = useState("");
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
 
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) {
-      return 'GOOD MORNING';
+      return "GOOD MORNING";
     } else if (hour < 18) {
-      return 'GOOD AFTERNOON';
+      return "GOOD AFTERNOON";
     } else {
-      return 'GOOD EVENING';
+      return "GOOD EVENING";
     }
   };
 
-  spiral.register()
+  spiral.register();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       const user = auth.currentUser;
       if (user) {
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDoc = await getDoc(userDocRef);
-          if (userDoc.exists()) {
-            setUsername(userDoc.data().username);
-          }
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          setUsername(userDoc.data().username);
+        }
       }
     };
     fetchUserInfo();
     const timer = setTimeout(() => {
       setLoading(false);
-      navigate('/dashboard');
-      alert("For better UI experience, set your screen zoom to 75% or 80%. Thank you")
+      navigate("/dashboard");
+      alert(
+        "For better UI experience, set your screen zoom to 75% or 80%. Thank you"
+      );
     }, 5000);
 
     return () => clearTimeout(timer);
@@ -48,10 +50,10 @@ const SplashScreen = () => {
 
   useEffect(() => {
     if (username && !hasStartedTyping) {
-      const fullText = `${getGreeting()}, ${username || 'User'}!`;
+      const fullText = `${getGreeting()}, ${username || "User"}!`;
       let index = -1;
 
-      setDisplayedGreeting('');
+      setDisplayedGreeting("");
 
       const typingInterval = setInterval(() => {
         setDisplayedGreeting((prev) => prev + fullText.charAt(index));
@@ -67,12 +69,12 @@ const SplashScreen = () => {
       {loading ? (
         <>
           <div style={styles.content}>
-          <img src={logo} alt="Welcome" style={styles.welcomeImage} />
-            <div style={styles.textContainer}> 
-              <h2 style={styles.greeting}>
-                {displayedGreeting || 'WELCOME'}
-              </h2>
-              <p style={styles.message}>Prime Academy is getting things ready for you...</p>
+            <img src={logo} alt="Welcome" style={styles.welcomeImage} />
+            <div style={styles.textContainer}>
+              <h2 style={styles.greeting}>{displayedGreeting || "WELCOME"}</h2>
+              <p style={styles.message}>
+                Prime Academy is getting things ready for you...
+              </p>
               <l-spiral size="50" speed="0.9" color="black"></l-spiral>
             </div>
           </div>
@@ -81,7 +83,7 @@ const SplashScreen = () => {
         <h2 style={styles.greeting}>Navigating to Dashboard...</h2>
       )}
     </div>
-  );  
+  );
 };
 
 const styles = {
@@ -137,9 +139,9 @@ const styles = {
     borderRadius: "10px",
     animation: "fadeIn 2s ease-in-out",
   },
-  '@keyframes fadeIn': {
+  "@keyframes fadeIn": {
     from: { opacity: 0 },
-    to: { opacity: 1 }
+    to: { opacity: 1 },
   },
 };
 

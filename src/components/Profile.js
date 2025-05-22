@@ -1,28 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaSignOutAlt, FaArrowLeft } from 'react-icons/fa';
-import { db } from '../firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import logo1 from '../assets/op.jpg';
-import logo from '../assets/download.png';
-import { dotWave, metronome, spiral, lineSpinner } from 'ldrs'
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaSignOutAlt, FaArrowLeft, FaTrash } from "react-icons/fa";
+import { db } from "../firebase";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  getFirestore,
+  getDocs,
+  collection,
+} from "firebase/firestore";
+import { getAuth, deleteUser } from "firebase/auth";
+import logo1 from "../assets/op.jpg";
+import logo from "../assets/download.png";
+import { dotWave, metronome, spiral, lineSpinner } from "ldrs";
 
 const Profile = () => {
-  const [userDetails, setUserDetails] = useState({ username: '', email: '', programOfStudy: '', levelOfStudy: '', semesterOfStudy: '' });
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    email: "",
+    programOfStudy: "",
+    levelOfStudy: "",
+    semesterOfStudy: "",
+  });
   const [loading, setLoading] = useState(true);
   const [logoutLoading, setLogoutLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const [recordLoading, setRecordLoading] = useState(false);
   const [programLoading, setProgramLoading] = useState(false);
   const [contactLoading, setContactLoading] = useState(false);
   const [levelLoading, setLevelLoading] = useState(false);
   const [semesterLoading, setSemesterLoading] = useState(false);
-  const [programOfStudy, setProgramOfStudy] = useState('');
-  const [levelOfStudy, setLevelOfStudy] = useState('');
-  const [semesterOfStudy, setSemesterOfStudy] = useState('');
-  const [userNumber, setUserNumber] = useState('');
+  const [programOfStudy, setProgramOfStudy] = useState("");
+  const [levelOfStudy, setLevelOfStudy] = useState("");
+  const [semesterOfStudy, setSemesterOfStudy] = useState("");
+  const [userNumber, setUserNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
   const currentUser = auth.currentUser;
@@ -51,26 +67,31 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-        const currentUser = auth.currentUser;
+      const currentUser = auth.currentUser;
 
-        if (currentUser) {
-          const userDocRef = doc(db, 'users', currentUser.uid);
-          const userDoc = await getDoc(userDocRef);
+      if (currentUser) {
+        const userDocRef = doc(db, "users", currentUser.uid);
+        const userDoc = await getDoc(userDocRef);
 
-          if (userDoc.exists()) {
-            setUserDetails({
-              username: userDoc.data().username || currentUser.displayName || 'No Username',
-              email: currentUser.email || 'No Email',
-              programOfStudy: userDoc.data().programOfStudy || 'No Program of Study',
-              semesterOfStudy: userDoc.data().semesterOfStudy || 'No Semester of Study',
-              levelOfStudy: userDoc.data().levelOfStudy || 'No Level of Study',
-              userNumber: userDoc.data().userNumber|| 'No Contact Number',
-            });
-            setProgramOfStudy(userDoc.data().programOfStudy || '');
-            setSemesterOfStudy(userDoc.data().semesterOfStudy || '');
-            setLevelOfStudy(userDoc.data().levelOfStudy || '');
-            setUserNumber(userDoc.data().userNumber || '');
-          }
+        if (userDoc.exists()) {
+          setUserDetails({
+            username:
+              userDoc.data().username ||
+              currentUser.displayName ||
+              "No Username",
+            email: currentUser.email || "No Email",
+            programOfStudy:
+              userDoc.data().programOfStudy || "No Program of Study",
+            semesterOfStudy:
+              userDoc.data().semesterOfStudy || "No Semester of Study",
+            levelOfStudy: userDoc.data().levelOfStudy || "No Level of Study",
+            userNumber: userDoc.data().userNumber || "No Contact Number",
+          });
+          setProgramOfStudy(userDoc.data().programOfStudy || "");
+          setSemesterOfStudy(userDoc.data().semesterOfStudy || "");
+          setLevelOfStudy(userDoc.data().levelOfStudy || "");
+          setUserNumber(userDoc.data().userNumber || "");
+        }
         setLoading(false);
       }
     };
@@ -85,25 +106,25 @@ const Profile = () => {
     style.innerHTML = globalStyles;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
-  }, []);  
+  }, []);
 
-  dotWave.register()
-  spiral.register()
-  metronome.register()
-  lineSpinner.register()
+  dotWave.register();
+  spiral.register();
+  metronome.register();
+  lineSpinner.register();
 
   const handleLogout = async () => {
     setLogoutLoading(true);
-      if (currentUser) {
-        const userDocRef = doc(db, 'users', currentUser.uid);
-        await updateDoc(userDocRef, {
-          status: 'offline',
-        });
-      }
-      await auth.signOut();
-      setLogoutLoading(false);
-      navigate('/login');
-      setLogoutLoading(false);
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      await updateDoc(userDocRef, {
+        status: "offline",
+      });
+    }
+    await auth.signOut();
+    setLogoutLoading(false);
+    navigate("/login");
+    setLogoutLoading(false);
   };
 
   const useInactivityLogout = (timeoutDuration = 300000) => {
@@ -112,85 +133,117 @@ const Profile = () => {
         clearTimeout(inactivityTimeout);
         inactivityTimeout = setTimeout(handleLogout, timeoutDuration);
       };
-      window.addEventListener('mousemove', resetInactivityTimer);
-      window.addEventListener('keydown', resetInactivityTimer);
+      window.addEventListener("mousemove", resetInactivityTimer);
+      window.addEventListener("keydown", resetInactivityTimer);
       resetInactivityTimer();
       return () => {
         clearTimeout(inactivityTimeout);
-        window.removeEventListener('mousemove', resetInactivityTimer);
-        window.removeEventListener('keydown', resetInactivityTimer);
+        window.removeEventListener("mousemove", resetInactivityTimer);
+        window.removeEventListener("keydown", resetInactivityTimer);
       };
     }, [timeoutDuration]);
   };
   useInactivityLogout();
-  
+
+  const handleDeleteAccount = async () => {
+    setDeleteLoading(true);
+    const auth = getAuth();
+    const db = getFirestore();
+    const user = auth.currentUser;
+
+    if (user) {
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const quizScoresRef = collection(db, "users", user.uid, "quizScores");
+        const quizScoresSnapshot = await getDocs(quizScoresRef);
+        const deletePromises = quizScoresSnapshot.docs.map((doc) =>
+          deleteDoc(doc.ref)
+        );
+        await Promise.all(deletePromises);
+        await deleteDoc(userDocRef);
+        await deleteUser(user);
+
+        alert("Account and data deleted successfully.");
+        setDeleteLoading(false);
+        navigate("/");
+      } catch (error) {
+        console.error("Error deleting account:", error);
+        alert("Failed to delete account. You may need to re-authenticate.");
+        setDeleteLoading(false);
+      }
+    } else {
+      alert("No user is signed in.");
+      setDeleteLoading(false);
+    }
+  };
+
   const handleUpdateProgramOfStudy = async () => {
     setProgramLoading(true);
-      if (currentUser) {
-        const userDocRef = doc(db, 'users', currentUser.uid);
-        await updateDoc(userDocRef, {
-          programOfStudy: programOfStudy,
-          selectedElectives: []
-        });
-        setUserDetails((prevDetails) => ({
-          ...prevDetails,
-          programOfStudy: programOfStudy,
-        }));
-        alert('Program of Study updated');
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      await updateDoc(userDocRef, {
+        programOfStudy: programOfStudy,
+        selectedElectives: [],
+      });
+      setUserDetails((prevDetails) => ({
+        ...prevDetails,
+        programOfStudy: programOfStudy,
+      }));
+      alert("Program of Study updated");
       setProgramLoading(false);
     }
   };
 
   const handleUpdateLevelOfStudy = async () => {
     setLevelLoading(true);
-      if (currentUser) {
-        const userDocRef = doc(db, 'users', currentUser.uid);
-        await updateDoc(userDocRef, {
-          levelOfStudy:levelOfStudy,
-          selectedElectives: []
-        });
-        setUserDetails((prevDetails) => ({
-          ...prevDetails,
-          levelOfStudy: levelOfStudy,
-        }));
-        alert('Level of Study updated');
-      }
-      setLevelLoading(false);
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      await updateDoc(userDocRef, {
+        levelOfStudy: levelOfStudy,
+        selectedElectives: [],
+      });
+      setUserDetails((prevDetails) => ({
+        ...prevDetails,
+        levelOfStudy: levelOfStudy,
+      }));
+      alert("Level of Study updated");
+    }
+    setLevelLoading(false);
   };
 
   const handleUpdateContact = async () => {
     setContactLoading(true);
-      if (currentUser && userNumber.trim() !== "") {
-        const userDocRef = doc(db, 'users', currentUser.uid);
-        await updateDoc(userDocRef, {
-          userNumber: userNumber.trim(),
-        });
-        setUserDetails((prevDetails) => ({
-          ...prevDetails,
-          userNumber: userNumber.trim(),
-        }));
-        alert('Contact number updated');
-      } else {
-        alert("Please enter a valid contact number.");
-      }
-      setContactLoading(false);
+    if (currentUser && userNumber.trim() !== "") {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      await updateDoc(userDocRef, {
+        userNumber: userNumber.trim(),
+      });
+      setUserDetails((prevDetails) => ({
+        ...prevDetails,
+        userNumber: userNumber.trim(),
+      }));
+      alert("Contact number updated");
+    } else {
+      alert("Please enter a valid contact number.");
+    }
+    setContactLoading(false);
   };
 
   const handleUpdateSemesterOfStudy = async () => {
     setSemesterLoading(true);
-      if (currentUser) {
-        const userDocRef = doc(db, 'users', currentUser.uid);
-        await updateDoc(userDocRef, {
-          semesterOfStudy:semesterOfStudy,
-          selectedElectives: []
-        });
-        setUserDetails((prevDetails) => ({
-          ...prevDetails,
-          semesterOfStudy: semesterOfStudy,
-        }));
-        alert('Semester of Study updated');
-      }
-      setSemesterLoading(false);
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      await updateDoc(userDocRef, {
+        semesterOfStudy: semesterOfStudy,
+        selectedElectives: [],
+      });
+      setUserDetails((prevDetails) => ({
+        ...prevDetails,
+        semesterOfStudy: semesterOfStudy,
+      }));
+      alert("Semester of Study updated");
+    }
+    setSemesterLoading(false);
   };
 
   // const handleUpdateCollegeOfStudy = async () => {
@@ -210,15 +263,18 @@ const Profile = () => {
 
   const handleRecord = async () => {
     setRecordLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    navigate('/record');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    navigate("/record");
     setRecordLoading(false);
-  }
+  };
 
   if (loading) {
     return (
       <div className="spinner-container">
-        <p style={{fontSize: '36px', color: 'blue'}}>Loading Profile <l-metronome  size="40"  speed="1.6"   color="blue" ></l-metronome></p>
+        <p style={{ fontSize: "36px", color: "blue" }}>
+          Loading Profile{" "}
+          <l-metronome size="40" speed="1.6" color="blue"></l-metronome>
+        </p>
       </div>
     );
   }
@@ -226,7 +282,15 @@ const Profile = () => {
   if (recordLoading) {
     return (
       <div className="spinner-container">
-        <p style={{fontSize: '36px', color: 'blue'}}>Loading Records <l-line-spinner size="40" stroke="3" speed="1" color="blue" ></l-line-spinner></p>
+        <p style={{ fontSize: "36px", color: "blue" }}>
+          Loading Records{" "}
+          <l-line-spinner
+            size="40"
+            stroke="3"
+            speed="1"
+            color="blue"
+          ></l-line-spinner>
+        </p>
       </div>
     );
   }
@@ -235,52 +299,58 @@ const Profile = () => {
     return (
       <div className="spinner-container">
         <p>Logging out...</p>
-        <l-spiral size="40" speed="0.9"  color="blue"></l-spiral>
+        <l-spiral size="40" speed="0.9" color="blue"></l-spiral>
       </div>
     );
   }
 
   return (
     <div style={styles.container}>
-        <h3 style={styles.profileTitle}>Profile Details</h3>
-        <div style={styles.contain}>
-          <div style={styles.profileCard}> 
+      <h3 style={styles.profileTitle}>Profile Details</h3>
+      <div style={styles.contain}>
+        <div style={styles.profileCard}>
           <div style={styles.profilePictureContainer}>
-          <img
-            src={logo}
-            alt="Study Group Logo"
-            style={styles.profilePicture}
-          />
+            <img
+              src={logo}
+              alt="Study Group Logo"
+              style={styles.profilePicture}
+            />
           </div>
-            <div style={styles.inputGroup}>
-              <label style={styles.label}><i className="fa fa-user" style={styles.icon}></i>Username:</label>
-              <input
-                type="text"
-                value={userDetails.username}
-                readOnly
-                style={styles.input}
-              />
-            </div>
-            <div style={styles.inputGroup}>
-              <label style={styles.label}><i className="fa fa-envelope" style={styles.icon}></i>Email:</label>
-              <input
-                type="email"
-                value={userDetails.email}
-                readOnly
-                style={styles.input}
-              />
-            </div>
-            <div style={styles.inputGroup}>
-              <label style={styles.label}><i className="fa fa-phone" style={styles.icon}></i>Contact Number:</label>
-                <input
-                  type="tel"
-                  value={userNumber}
-                  onChange={(e) => setUserNumber(e.target.value)}
-                  placeholder="Enter contact number"
-                  style={styles.contactInput}
-                />
-            </div> 
-            {/* <div style={styles.inputGroup}>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>
+              <i className="fa fa-user" style={styles.icon}></i>Username:
+            </label>
+            <input
+              type="text"
+              value={userDetails.username}
+              readOnly
+              style={styles.input}
+            />
+          </div>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>
+              <i className="fa fa-envelope" style={styles.icon}></i>Email:
+            </label>
+            <input
+              type="email"
+              value={userDetails.email}
+              readOnly
+              style={styles.input}
+            />
+          </div>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>
+              <i className="fa fa-phone" style={styles.icon}></i>Contact Number:
+            </label>
+            <input
+              type="tel"
+              value={userNumber}
+              onChange={(e) => setUserNumber(e.target.value)}
+              placeholder="Enter contact number"
+              style={styles.contactInput}
+            />
+          </div>
+          {/* <div style={styles.inputGroup}>
               <label style={styles.label}><i className="fa fa-building" style={styles.icon}></i>College of Study:</label>
               <input
               value='College of Engineering'
@@ -297,7 +367,7 @@ const Profile = () => {
                 <option value="College of Agriculture and Natural Resources">College of Agriculture and Natural Resources</option>
               </select>
             </div> */}
-              {/* <button onClick={handleUpdateCollegeOfStudy} style={styles.updateButton1} disabled={collegeLoading}>
+          {/* <button onClick={handleUpdateCollegeOfStudy} style={styles.updateButton1} disabled={collegeLoading}>
                 {collegeLoading ? (
                   <div className="spinner-button"> 
                     Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
@@ -306,43 +376,65 @@ const Profile = () => {
                   'Update College of Study'
                 )}
               </button> */}
-              <button onClick={handleUpdateContact} style={styles.updateButton2} disabled={contactLoading}>
-                {contactLoading ? (
-                  <div className="spinner-button"> 
-                    Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
-                  </div>
-                ) : (
-                  'Update Contact Number'
-                )}
-              </button>
-              <button onClick={() => navigate('/about')} style={styles.updateButton2}>
-                About Us
-              </button>
-              <div style={styles.update}>
-                <button onClick={() => navigate(-1)} style={styles.goBackButton}>
-                  <FaArrowLeft style={styles.icon} /> Go Back
-                </button>
-                <button onClick={handleLogout} style={styles.logoutButton}>
-                  <FaSignOutAlt style={styles.icon} /> Logout
-                </button>
+          <button
+            onClick={handleUpdateContact}
+            style={styles.updateButton2}
+            disabled={contactLoading}
+          >
+            {contactLoading ? (
+              <div className="spinner-button">
+                Updating{" "}
+                <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
               </div>
+            ) : (
+              "Update Contact Number"
+            )}
+          </button>
+          <button onClick={() => navigate(-1)} style={styles.goBackButton}>
+            <FaArrowLeft style={styles.icon} /> Go Back
+          </button>
+          <div style={styles.update}>
+            <button
+              onClick={() => setShowDeleteModal(true)}
+              style={styles.logoutButton}
+              disabled={deleteLoading}
+            >
+              {deleteLoading ? (
+                <div className="spinner-button">
+                  Deleting{" "}
+                  <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+                </div>
+              ) : (
+                <>
+                  <FaTrash style={styles.icon} /> Delete Account
+                </>
+              )}
+            </button>
+            <button onClick={handleLogout} style={styles.logoutButton}>
+              <FaSignOutAlt style={styles.icon} /> Logout
+            </button>
           </div>
-          <div style={styles.profileCard}> 
-            <div style={styles.profilePictureContainer}>
+        </div>
+        <div style={styles.profileCard}>
+          <div style={styles.profilePictureContainer}>
             <img
               src={logo1}
               alt="Study Group Logo"
               style={styles.profilePicture}
             />
-            </div>
-            <div style={styles.inputGroup}>
-              <label style={styles.label}>
-                <i className="fa fa-graduation-cap" style={styles.icon}></i>Program of Study:
-              </label>
-              <div style={styles.dropdownContainer} onClick={() => setIsOpen(!isOpen)}>
-                <div style={styles.programInput}>
-                  {programOfStudy || "Select Program"}
-                </div>
+          </div>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>
+              <i className="fa fa-graduation-cap" style={styles.icon}></i>
+              Program of Study:
+            </label>
+            <div
+              style={styles.dropdownContainer}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <div style={styles.programInput}>
+                {programOfStudy || "Select Program"}
+              </div>
               {isOpen && (
                 <div style={styles.dropdownMenu}>
                   {programs.map((program, index) => (
@@ -350,9 +442,12 @@ const Profile = () => {
                       key={index}
                       style={{
                         ...styles.dropdownItem,
-                        ...(hoveredIndex === index ? styles.dropdownItemHover : {}),}}
-                        onMouseEnter={() => setHoveredIndex(index)}
-                        onMouseLeave={() => setHoveredIndex(null)}
+                        ...(hoveredIndex === index
+                          ? styles.dropdownItemHover
+                          : {}),
+                      }}
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onMouseLeave={() => setHoveredIndex(null)}
                       onClick={() => {
                         setProgramOfStudy(program);
                         setIsOpen(false);
@@ -363,11 +458,12 @@ const Profile = () => {
                   ))}
                 </div>
               )}
-            </div> 
-          </div>              
+            </div>
+          </div>
           <div style={styles.inputGroup}>
             <label style={styles.label}>
-              <i className="fa fa-list-ol" style={styles.icon}></i>Level of Study:
+              <i className="fa fa-list-ol" style={styles.icon}></i>Level of
+              Study:
             </label>
             <select
               value={levelOfStudy}
@@ -383,7 +479,8 @@ const Profile = () => {
           </div>
           <div style={styles.inputGroup}>
             <label style={styles.label}>
-              <i className="fa fa-calendar" style={styles.icon}></i>Semester of Study:
+              <i className="fa fa-calendar" style={styles.icon}></i>Semester of
+              Study:
             </label>
             <select
               value={semesterOfStudy}
@@ -395,89 +492,143 @@ const Profile = () => {
               <option value="Semester 2">Semester 2</option>
             </select>
           </div>
-          <button onClick={handleUpdateProgramOfStudy} style={styles.updateButton2} disabled={programLoading}>
+          <button
+            onClick={handleUpdateProgramOfStudy}
+            style={styles.updateButton2}
+            disabled={programLoading}
+          >
             {programLoading ? (
-              <div className="spinner-button"> 
-                Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+              <div className="spinner-button">
+                Updating{" "}
+                <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
               </div>
             ) : (
-              'Update Program of Study'
+              "Update Program of Study"
             )}
           </button>
           <div style={styles.update}>
-            <button onClick={handleUpdateLevelOfStudy} style={styles.updateButton} disabled={levelLoading}>
-            {levelLoading ? (
-              <div className="spinner-button"> 
-                Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
-              </div>
-            ) : (
-              'Update Level'
-            )}
-            </button>
-            <button onClick={handleUpdateSemesterOfStudy} style={styles.updateButton} disabled={semesterLoading}>
-              {semesterLoading ? (
-                <div className="spinner-button"> 
-                  Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+            <button
+              onClick={handleUpdateLevelOfStudy}
+              style={styles.updateButton}
+              disabled={levelLoading}
+            >
+              {levelLoading ? (
+                <div className="spinner-button">
+                  Updating{" "}
+                  <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
                 </div>
               ) : (
-                'Update Semester'
+                "Update Level"
+              )}
+            </button>
+            <button
+              onClick={handleUpdateSemesterOfStudy}
+              style={styles.updateButton}
+              disabled={semesterLoading}
+            >
+              {semesterLoading ? (
+                <div className="spinner-button">
+                  Updating{" "}
+                  <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+                </div>
+              ) : (
+                "Update Semester"
               )}
             </button>
           </div>
           <button onClick={handleRecord} style={styles.recordButton}>
-            <i className="fa fa-trophy"></i> My Achievements <i className="fa fa-trophy"></i>
+            <i className="fa fa-trophy"></i> My Achievements{" "}
+            <i className="fa fa-trophy"></i>
           </button>
         </div>
-      </div> 
+      </div>
       <div style={styles.scrollingContainer}>
         <div style={styles.scrollingText}>
-        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
-            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
-            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
-            You’re not just studying — you’re building a future to be proud of. 🌟
-            Every quiz you take is one step closer to mastering your field! 🌟
-            &nbsp;&nbsp;&nbsp;&nbsp;
-        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
-            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
-            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
-            You’re not just studying — you’re building a future to be proud of. 🌟
-            Every quiz you take is one step closer to mastering your field! 🌟    
+          🌟 Every small effort you make today builds the success of tomorrow.
+          Keep pushing, keep learning — your dreams are worth it! 🌟 Your
+          journey matters. Keep striving, keep growing. Prime Academy believes
+          in you! 🌟 Success is the sum of small efforts repeated every day.
+          Keep pushing! 🌟 You’re not just studying — you’re building a future
+          to be proud of. 🌟 Every quiz you take is one step closer to mastering
+          your field! 🌟 &nbsp;&nbsp;&nbsp;&nbsp; 🌟 Every small effort you make
+          today builds the success of tomorrow. Keep pushing, keep learning —
+          your dreams are worth it! 🌟 Your journey matters. Keep striving, keep
+          growing. Prime Academy believes in you! 🌟 Success is the sum of small
+          efforts repeated every day. Keep pushing! 🌟 You’re not just studying
+          — you’re building a future to be proud of. 🌟 Every quiz you take is
+          one step closer to mastering your field! 🌟
         </div>
       </div>
+      {showDeleteModal && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modalContent}>
+            <h3 style={{ textDecoration: "underline", textAlign: "center" }}>
+              Confirm Deletion
+            </h3>
+            <p>
+              Are you sure you want to permanently delete your account and all
+              data?
+            </p>
+            <div style={styles.modalActions}>
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                style={{ ...styles.modalButton, ...styles.cancelButton }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  handleDeleteAccount();
+                }}
+                disabled={deleteLoading}
+                style={{
+                  ...styles.modalButton,
+                  ...styles.deleteConfirmButton,
+                  ...(deleteLoading
+                    ? { opacity: 0.7, cursor: "not-allowed" }
+                    : {}),
+                }}
+              >
+                Yes, Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 const styles = {
   container: {
-    backgroundColor: '#f4f7fc',
-    display: 'flex',
-    height: '100vh',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: '90px'
+    display: "flex",
+    height: "100vh",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: "90px",
   },
   contain: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between', 
-    width: '100%',
-    height: '100vh',
-    padding: '20px',
-    boxSizing: 'border-box',
-  },  
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    height: "100vh",
+    padding: "20px",
+    boxSizing: "border-box",
+  },
   logoutButton: {
-    backgroundColor: '#FF4C4C',
-    padding: '10px 20px',
-    color: '#fff',
-    fontSize: '20px',
-    fontWeight: '800',
-    border: 'none',
-    borderRadius: '20px',
-    cursor: 'pointer',
-    marginTop: '10px',
-    width: '48%',
+    backgroundColor: "#FF4C4C",
+    padding: "10px 20px",
+    color: "#fff",
+    fontSize: "20px",
+    fontWeight: "800",
+    border: "none",
+    borderRadius: "20px",
+    cursor: "pointer",
+    marginTop: "10px",
+    width: "48%",
   },
   dropdownContainer: {
     width: "96.5%",
@@ -508,177 +659,225 @@ const styles = {
     backgroundColor: "#f0f0f0",
   },
   recordButton: {
-    backgroundColor: '#FFD700',
-    color: 'white',
-    border: 'none',
-    borderRadius: '50px',
-    padding: '10px 15px',
-    fontSize: '20px',
-    cursor: 'pointer',
-    display: 'flex',
-    gap: '10px',
-    transition: 'background-color 0.3s',
-    width: '100%',
-    fontWeight: '800',
-    marginTop: '10px',
-    justifyContent: 'center',
-  },  
+    backgroundColor: "#FFD700",
+    color: "white",
+    border: "none",
+    borderRadius: "50px",
+    padding: "10px 15px",
+    fontSize: "20px",
+    cursor: "pointer",
+    display: "flex",
+    gap: "10px",
+    transition: "background-color 0.3s",
+    width: "100%",
+    fontWeight: "800",
+    marginTop: "10px",
+    justifyContent: "center",
+  },
   goBackButton: {
-    backgroundColor: '#4CAF50',
-    padding: '10px 20px',
-    color: '#fff',
-    fontSize: '20px',
-    fontWeight: '800',
-    border: 'none',
-    borderRadius: '20px',
-    cursor: 'pointer',
-    marginTop: '10px',
-    width: '48%',
+    backgroundColor: "#4CAF50",
+    padding: "10px 20px",
+    color: "#fff",
+    fontSize: "20px",
+    fontWeight: "800",
+    border: "none",
+    borderRadius: "20px",
+    cursor: "pointer",
+    marginTop: "10px",
+    width: "100%",
   },
   updateButton: {
-    padding: '10px 20px',
-    backgroundColor: '#3498db',
-    color: '#fff',
-    fontSize: '20px',
-    fontWeight: '800',
-    border: 'none',
-    borderRadius: '20px',
-    cursor: 'pointer',
-    marginTop: '10px',
-    width: '48%',
+    padding: "10px 20px",
+    backgroundColor: "#3498db",
+    color: "#fff",
+    fontSize: "20px",
+    fontWeight: "800",
+    border: "none",
+    borderRadius: "20px",
+    cursor: "pointer",
+    marginTop: "10px",
+    width: "48%",
   },
   updateButton1: {
-    padding: '10px 20px',
-    backgroundColor: '#3498db',
-    color: '#fff',
-    fontSize: '20px',
-    fontWeight: '800',
-    border: 'none',
-    borderRadius: '20px',
-    cursor: 'pointer',
-    marginTop: '10px',
-    width: '100%',
+    padding: "10px 20px",
+    backgroundColor: "#3498db",
+    color: "#fff",
+    fontSize: "20px",
+    fontWeight: "800",
+    border: "none",
+    borderRadius: "20px",
+    cursor: "pointer",
+    marginTop: "10px",
+    width: "100%",
   },
   updateButton2: {
-    padding: '10px 20px',
-    backgroundColor: '#3498db',
-    color: '#fff',
-    fontSize: '20px',
-    fontWeight: '800',
-    border: 'none',
-    borderRadius: '20px',
-    cursor: 'pointer',
-    marginTop: '10px',
-    width: '100%',
+    padding: "10px 20px",
+    backgroundColor: "#3498db",
+    color: "#fff",
+    fontSize: "20px",
+    fontWeight: "800",
+    border: "none",
+    borderRadius: "20px",
+    cursor: "pointer",
+    marginTop: "10px",
+    width: "100%",
   },
   update: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between', 
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   profileCard: {
-    borderRadius: '10px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
-    padding: '10px',
-    width: '48%',
-    textAlign: 'left',
-    display: 'flex',
-    flexDirection: 'column',
+    borderRadius: "10px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.5)",
+    padding: "10px",
+    width: "48%",
+    textAlign: "left",
+    display: "flex",
+    flexDirection: "column",
   },
   profileTitle: {
-    textAlign: 'center',
-    fontSize: '40px',
-    fontWeight: '900px',
-    color: '#333',
-    marginBottom: '5px',
+    textAlign: "center",
+    fontSize: "50px",
+    fontWeight: "900",
+    color: "#333",
+    marginBottom: "5px",
+    textTransform: "uppercase",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.8)",
+    borderRadius: "10px",
+    padding: "20px",
+    width: "80%",
   },
   profilePictureContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '20px',
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: "20px",
   },
   profilePicture: {
-    width: '150px',
-    height: '150px',
-    borderRadius: '50%',
-    objectFit: 'cover',
+    width: "150px",
+    height: "150px",
+    borderRadius: "50%",
+    objectFit: "cover",
   },
   inputGroup: {
-    marginBottom: '10px',
-    width: '100%',
+    marginBottom: "10px",
+    width: "100%",
   },
   input: {
-    width: '96%',
-    padding: '12px',
-    fontSize: '20px',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
-    backgroundColor: '#f4f7fc',
-    cursor: 'not-allowed',
-    marginTop: '10px'
+    width: "96%",
+    padding: "12px",
+    fontSize: "20px",
+    borderRadius: "5px",
+    border: "1px solid #ddd",
+    cursor: "not-allowed",
+    marginTop: "10px",
   },
   contactInput: {
-    width: '96%',
-    padding: '12px',
-    fontSize: '20px',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
-    backgroundColor: '#f4f7fc',
-    cursor: 'text',
-    marginTop: '10px',
-    marginBottom: '2.5px'
+    width: "96%",
+    padding: "12px",
+    fontSize: "20px",
+    borderRadius: "5px",
+    border: "1px solid #ddd",
+    cursor: "text",
+    marginTop: "10px",
+    marginBottom: "2.5px",
   },
   programInput: {
-    width: '96%',
-    padding: '12px',
-    fontSize: '20px',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
-    backgroundColor: '#f4f7fc',
-    cursor: 'pointer',
-    marginTop: '10px',
-    maxHeight: '200px',
-    overflowY: 'auto',
+    width: "96%",
+    padding: "12px",
+    fontSize: "20px",
+    borderRadius: "5px",
+    border: "1px solid #ddd",
+    cursor: "pointer",
+    marginTop: "10px",
+    maxHeight: "200px",
+    overflowY: "auto",
   },
   buttonContainer: {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    width: '100%',
-    backgroundColor: '#fff',
-    padding: '10px 0',
-    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: "100%",
+    backgroundColor: "#fff",
+    padding: "10px 0",
+    boxShadow: "0 -4px 8px rgba(0, 0, 0, 0.1)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     zIndex: 10,
   },
-  label:{
-    fontSize: '20px',
+  label: {
+    fontSize: "20px",
   },
   icon: {
-    fontSize: '15px',
-    marginRight: '8px',
+    fontSize: "15px",
+    marginRight: "8px",
   },
   scrollingContainer: {
-    position: 'fixed',
+    position: "fixed",
     bottom: 10,
     left: 0,
-    width: '100%',
-    height: '40px',
-    backgroundColor: '#f0f0f0',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    boxShadow: '0 -8px 10px rgba(0,0,0,0.5)',
-    animation: 'flyIn 1.5s ease-out',
+    width: "100%",
+    height: "40px",
+    backgroundColor: "#f0f0f0",
+    overflow: "hidden",
+    display: "flex",
+    alignItems: "center",
+    boxShadow: "0 -8px 10px rgba(0,0,0,0.5)",
+    animation: "flyIn 1.5s ease-out",
   },
   scrollingText: {
-    display: 'inline-block',
-    whiteSpace: 'nowrap',
-    fontSize: '20px',
-    color: '#333',
-    animation: 'scrollText 60s linear infinite',
+    display: "inline-block",
+    whiteSpace: "nowrap",
+    fontSize: "20px",
+    color: "#333",
+    animation: "scrollText 60s linear infinite",
+  },
+  modalOverlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(0,0,0,0.6)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 999,
+  },
+  modalContent: {
+    background: "white",
+    padding: "2rem",
+    borderRadius: "10px",
+    maxWidth: "400px",
+    width: "90%",
+  },
+  modalActions: {
+    display: "flex",
+    justifyContent: "flex-end",
+    gap: "1rem",
+    marginTop: "1rem",
+  },
+  modalButton: {
+    padding: "10px 16px",
+    fontSize: "15px",
+    borderRadius: "6px",
+    border: "none",
+    cursor: "pointer",
+    fontWeight: "bold",
+    transition: "background-color 0.3s ease",
+  },
+  cancelButton: {
+    backgroundColor: "#e0e0e0",
+    color: "#333",
+    marginRight: "10px",
+  },
+  deleteConfirmButton: {
+    backgroundColor: "#d32f2f",
+    color: "#fff",
+  },
+  deleteConfirmButtonHover: {
+    backgroundColor: "#b71c1c",
   },
 };
 

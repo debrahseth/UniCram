@@ -1,17 +1,26 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../firebase';
-import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, query, collection, where, onSnapshot, Timestamp, getDocs } from 'firebase/firestore';
-import logo from '../assets/op.jpg';
-import useInactivityLogout from './useInactivityLogout';
-import StreakTracker from './StreakTracker';
-import { dotStream, spiral } from 'ldrs'
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import {
+  doc,
+  getDoc,
+  query,
+  collection,
+  where,
+  onSnapshot,
+  Timestamp,
+  getDocs,
+} from "firebase/firestore";
+import logo from "../assets/op.jpg";
+import useInactivityLogout from "./useInactivityLogout";
+import StreakTracker from "./StreakTracker";
+import { dotStream, spiral } from "ldrs";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentUserId, setCurrentUserId] = useState(null);
@@ -19,23 +28,65 @@ const Dashboard = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [hasTakenDailyQuiz, setHasTakenDailyQuiz] = useState(false);
   const [showRulesModal, setShowRulesModal] = useState(false);
-  const currentUser = auth.currentUser; 
+  const currentUser = auth.currentUser;
   const quotes = [
-    { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-    { text: "The best way to predict the future is to create it.", author: "Abraham Lincoln" },
-    { text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela" },
-    { text: "Success is the sum of small efforts, repeated day in and day out.", author: "Robert Collier" },
+    {
+      text: "The future belongs to those who believe in the beauty of their dreams.",
+      author: "Eleanor Roosevelt",
+    },
+    {
+      text: "The best way to predict the future is to create it.",
+      author: "Abraham Lincoln",
+    },
+    {
+      text: "Education is the most powerful weapon which you can use to change the world.",
+      author: "Nelson Mandela",
+    },
+    {
+      text: "Success is the sum of small efforts, repeated day in and day out.",
+      author: "Robert Collier",
+    },
     { text: "Don’t wait for opportunity. Create it.", author: "Anonymous" },
-    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-    { text: "An investment in knowledge pays the best interest.", author: "Benjamin Franklin" },
-    { text: "The more that you read, the more things you will know. The more that you learn, the more places you'll go.", author: "Dr. Seuss" },
-    { text: "Education is the key to unlocking the world, a passport to freedom.", author: "Oprah Winfrey" },
-    { text: "Learning never exhausts the mind, it only ignites it.", author: "Leonardo da Vinci" },
-    { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
-    { text: "The beautiful thing about learning is that no one can take it away from you.", author: "B.B. King" },
-    { text: "Education is not preparation for life; education is life itself.", author: "John Dewey" },
-    { text: "What we learn with pleasure we never forget.", author: "Alfred Mercier" },
-    { text: "It is the mark of an educated mind to be able to entertain a thought without accepting it.", author: "Aristotle" },
+    {
+      text: "The only way to do great work is to love what you do.",
+      author: "Steve Jobs",
+    },
+    {
+      text: "An investment in knowledge pays the best interest.",
+      author: "Benjamin Franklin",
+    },
+    {
+      text: "The more that you read, the more things you will know. The more that you learn, the more places you'll go.",
+      author: "Dr. Seuss",
+    },
+    {
+      text: "Education is the key to unlocking the world, a passport to freedom.",
+      author: "Oprah Winfrey",
+    },
+    {
+      text: "Learning never exhausts the mind, it only ignites it.",
+      author: "Leonardo da Vinci",
+    },
+    {
+      text: "The only limit to our realization of tomorrow is our doubts of today.",
+      author: "Franklin D. Roosevelt",
+    },
+    {
+      text: "The beautiful thing about learning is that no one can take it away from you.",
+      author: "B.B. King",
+    },
+    {
+      text: "Education is not preparation for life; education is life itself.",
+      author: "John Dewey",
+    },
+    {
+      text: "What we learn with pleasure we never forget.",
+      author: "Alfred Mercier",
+    },
+    {
+      text: "It is the mark of an educated mind to be able to entertain a thought without accepting it.",
+      author: "Aristotle",
+    },
   ];
 
   const studyTips = [
@@ -70,7 +121,7 @@ const Dashboard = () => {
       if (currentUser) {
         setUser(currentUser);
         try {
-          const userDocRef = doc(db, 'users', currentUser.uid);
+          const userDocRef = doc(db, "users", currentUser.uid);
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
             const userData = userDoc.data();
@@ -78,32 +129,32 @@ const Dashboard = () => {
             setUserDetails({
               levelOfStudy: userData.levelOfStudy,
               programOfStudy: userData.programOfStudy,
-              semesterOfStudy: userData.semesterOfStudy
+              semesterOfStudy: userData.semesterOfStudy,
             });
 
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const quizQuery = query(
-              collection(db, 'dailyQuizzes'),
-              where('userId', '==', currentUser.uid),
-              where('timestamp', '>=', Timestamp.fromDate(today))
-            );
-            const quizSnapshot = await getDocs(quizQuery);
-            const hasTakenToday = !quizSnapshot.empty;
-            setHasTakenDailyQuiz(hasTakenToday);
-            setHasTakenDailyQuiz(!quizSnapshot.empty);
-            setShowModal(!hasTakenToday); 
+            // const today = new Date();
+            // today.setHours(0, 0, 0, 0);
+            // const quizQuery = query(
+            //   collection(db, "dailyQuizzes"),
+            //   where("userId", "==", currentUser.uid),
+            //   where("timestamp", ">=", Timestamp.fromDate(today))
+            // );
+            // const quizSnapshot = await getDocs(quizQuery);
+            // const hasTakenToday = !quizSnapshot.empty;
+            // setHasTakenDailyQuiz(hasTakenToday);
+            // setHasTakenDailyQuiz(!quizSnapshot.empty);
+            // setShowModal(!hasTakenToday);
           } else {
-            setUsername(currentUser.displayName || 'User');
+            setUsername(currentUser.displayName || "User");
             setShowModal(true);
           }
         } catch (error) {
-          console.error('Error fetching user data:', error);
+          console.error("Error fetching user data:", error);
           setShowModal(true);
         }
         setLoading(false);
       } else {
-        navigate('/login');
+        navigate("/login");
       }
     });
     return () => unsubscribe();
@@ -123,13 +174,13 @@ const Dashboard = () => {
     }
     if (currentUserId) {
       const challengesQuery = query(
-        collection(db, 'challenges'),
-        where('receiverId', '==', currentUserId),
-        where('status', '==', 'pending')
+        collection(db, "challenges"),
+        where("receiverId", "==", currentUserId),
+        where("status", "==", "pending")
       );
       const unsubscribe = onSnapshot(challengesQuery, (snapshot) => {
         if (!snapshot.empty) {
-          alert('You have received a new challenge!');
+          alert("You have received a new challenge!");
         }
       });
       return () => unsubscribe();
@@ -137,14 +188,14 @@ const Dashboard = () => {
   }, [currentUserId]);
 
   useEffect(() => {
-      const style = document.createElement("style");
-      style.innerHTML = globalStyles;
-      document.head.appendChild(style);
-      return () => document.head.removeChild(style);
-    }, []); 
+    const style = document.createElement("style");
+    style.innerHTML = globalStyles;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
 
-  dotStream.register()
-  spiral.register()
+  dotStream.register();
+  spiral.register();
 
   useInactivityLogout(auth, db, currentUser, navigate, setLogoutLoading);
 
@@ -154,12 +205,12 @@ const Dashboard = () => {
 
   const handleAcceptRules = () => {
     setShowRulesModal(false);
-    navigate('/daily-challenge', {
+    navigate("/daily-challenge", {
       state: {
         levelOfStudy: userDetails.levelOfStudy,
         programOfStudy: userDetails.programOfStudy,
-        semesterOfStudy: userDetails.semesterOfStudy
-      }
+        semesterOfStudy: userDetails.semesterOfStudy,
+      },
     });
   };
 
@@ -174,7 +225,10 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="spinner-container">
-        <p style={{fontSize: '36px', color: 'blue'}}>Loading <l-dot-stream size="60" speed="2.5"  color="blue"></l-dot-stream></p>
+        <p style={{ fontSize: "36px", color: "blue" }}>
+          Loading{" "}
+          <l-dot-stream size="60" speed="2.5" color="blue"></l-dot-stream>
+        </p>
       </div>
     );
   }
@@ -183,7 +237,7 @@ const Dashboard = () => {
     return (
       <div className="spinner-container">
         <p>Logging out...</p>
-        <l-spiral size="40" speed="0.9"  color="blue"></l-spiral>
+        <l-spiral size="40" speed="0.9" color="blue"></l-spiral>
       </div>
     );
   }
@@ -192,74 +246,100 @@ const Dashboard = () => {
     <div style={styles.container}>
       <div style={styles.background}></div>
       <div style={styles.header}>
-        <button onClick={() => navigate('/users')} style={styles.leaderboardButton}>
+        <button
+          onClick={() => navigate("/users")}
+          style={styles.leaderboardButton}
+        >
           <i className="fa fa-users" style={styles.icon}></i>
         </button>
-        <h2 style={styles.label}>Welcome, {username || 'User'}!</h2>
-        <button onClick={() => navigate('/profile')} style={styles.profileButton}>
+        <h2 style={styles.label}>Welcome, {username || "User"}!</h2>
+        <button
+          onClick={() => navigate("/profile")}
+          style={styles.profileButton}
+        >
           <i className="fa fa-user" style={styles.icon}></i>
         </button>
-        <StreakTracker/>
+        <StreakTracker />
       </div>
       <div style={styles.button}>
         <div style={styles.buttonContainer}>
           {/* <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Compete Now</button> */}
-          <button onClick={() => navigate('/test-yourself')} style={styles.startQuizButton}>Practice Quiz</button>
+          <button
+            onClick={() => navigate("/test-yourself")}
+            style={styles.startQuizButton}
+          >
+            Practice Quiz
+          </button>
           {/* <button onClick={() => navigate('/live-quiz')} style={styles.startQuizButton}>Live Quizzes</button> */}
-          <button onClick={() => navigate('/weekly-leaderboard')} style={styles.startQuizButton}>Weekly Leader Board</button>
+          <button
+            onClick={() => navigate("/weekly-leaderboard")}
+            style={styles.startQuizButton}
+          >
+            Weekly Leader Board
+          </button>
           {/* <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button> */}
           {/* <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button> */}
         </div>
       </div>
-        {/* <button onClick={() => navigate('/users')} style={styles.userButton}>Meet the Brain Snacks Community</button> */}
+      {/* <button onClick={() => navigate('/users')} style={styles.userButton}>Meet the Brain Snacks Community</button> */}
       <div style={styles.scrollableContainer}>
-      <div style={styles.content}>
-        <div style={styles.motivationalQuotes}>
-        <h3 style={styles.title}>Motivational Quotes</h3>
-          <div style={styles.quoteCard}>
-            <p style={styles.quoteText}>
-              "{quotes[currentQuoteIndex].text}"
-            </p>
-            <p style={styles.quoteAuthor}>~ {quotes[currentQuoteIndex].author}</p>
+        <div style={styles.content}>
+          <div style={styles.motivationalQuotes}>
+            <h3 style={styles.title}>Motivational Quotes</h3>
+            <div style={styles.quoteCard}>
+              <p style={styles.quoteText}>"{quotes[currentQuoteIndex].text}"</p>
+              <p style={styles.quoteAuthor}>
+                ~ {quotes[currentQuoteIndex].author}
+              </p>
+            </div>
+          </div>
+          <div style={styles.studyTips}>
+            <h3 style={styles.title}>Study Tips for Success</h3>
+            <div style={styles.studyCard}>
+              <ul style={styles.tipsList}>
+                {studyTips.map((tip, index) => (
+                  <li key={index} style={styles.tipItem}>
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-        </div>
-        <div style={styles.studyTips}>
-          <h3 style={styles.title}>Study Tips for Success</h3>
-          <ul style={styles.tipsList}>
-            {studyTips.map((tip, index) => (
-              <li key={index} style={styles.tipItem}>{tip}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
       </div>
       <div style={styles.scrollingContainer}>
         <div style={styles.scrollingText}>
-        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
-            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
-            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
-            You’re not just studying — you’re building a future to be proud of. 🌟
-            Every quiz you take is one step closer to mastering your field! 🌟
-            &nbsp;&nbsp;&nbsp;&nbsp;
-        🌟 Every small effort you make today builds the success of tomorrow. Keep pushing, keep learning — your dreams are worth it! 🌟
-            Your journey matters. Keep striving, keep growing. Prime Academy believes in you! 🌟
-            Success is the sum of small efforts repeated every day. Keep pushing! 🌟
-            You’re not just studying — you’re building a future to be proud of. 🌟
-            Every quiz you take is one step closer to mastering your field! 🌟    
+          🌟 Every small effort you make today builds the success of tomorrow.
+          Keep pushing, keep learning — your dreams are worth it! 🌟 Your
+          journey matters. Keep striving, keep growing. Prime Academy believes
+          in you! 🌟 Success is the sum of small efforts repeated every day.
+          Keep pushing! 🌟 You’re not just studying — you’re building a future
+          to be proud of. 🌟 Every quiz you take is one step closer to mastering
+          your field! 🌟 &nbsp;&nbsp;&nbsp;&nbsp; 🌟 Every small effort you make
+          today builds the success of tomorrow. Keep pushing, keep learning —
+          your dreams are worth it! 🌟 Your journey matters. Keep striving, keep
+          growing. Prime Academy believes in you! 🌟 Success is the sum of small
+          efforts repeated every day. Keep pushing! 🌟 You’re not just studying
+          — you’re building a future to be proud of. 🌟 Every quiz you take is
+          one step closer to mastering your field! 🌟
         </div>
-      </div> 
+      </div>
       {showModal && (
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
             <h3 style={modalStyles.title}>DAILY CHALLENGE</h3>
             <p style={modalStyles.text}>
-              {username}, are you ready to test your knowledge? 
+              {username}, are you ready to test your knowledge?
             </p>
             <p style={modalStyles.text}>
-              Take today's challenge tailored to your {userDetails?.programOfStudy} studies!
+              Take today's challenge tailored to your{" "}
+              {userDetails?.programOfStudy} studies!
             </p>
             <div style={modalStyles.buttonContainer}>
-              <button onClick={handleTakeChallenge} style={modalStyles.acceptButton}>
+              <button
+                onClick={handleTakeChallenge}
+                style={modalStyles.acceptButton}
+              >
                 ACCEPT
               </button>
               {showRulesModal && (
@@ -267,27 +347,43 @@ const Dashboard = () => {
                   <div style={modalStyles.modal}>
                     <h2 style={modalStyles.title}>DAILY CHALLENGE RULES</h2>
                     <p style={modalStyles.text}>
-                      • You have one chance per day to take this quiz.<br />
-                      • No going back to previous questions.<br />
-                      • Complete all questions in one sitting.<br />
-                      • Your score will appear on the weekly leaderboard.<br />
-                      • For each correct answer, you earn 10 points.<br />
-                      • For each incorrect answer, you lose 5 points.<br />
-                      • Choose wisely.<br />
-                          <br/> GOOD LUCK !!!
+                      • You have one chance per day to take this quiz.
+                      <br />
+                      • No going back to previous questions.
+                      <br />
+                      • Complete all questions in one sitting.
+                      <br />
+                      • Your score will appear on the weekly leaderboard.
+                      <br />
+                      • For each correct answer, you earn 10 points.
+                      <br />
+                      • For each incorrect answer, you lose 5 points.
+                      <br />
+                      • Choose wisely.
+                      <br />
+                      <br /> GOOD LUCK !!!
                     </p>
                     <div style={modalStyles.buttonContainer}>
-                      <button style={modalStyles.acceptButton} onClick={handleAcceptRules}>
+                      <button
+                        style={modalStyles.acceptButton}
+                        onClick={handleAcceptRules}
+                      >
                         Accept & Start
                       </button>
-                      <button style={modalStyles.closeButton} onClick={handleDeclineRules}>
+                      <button
+                        style={modalStyles.closeButton}
+                        onClick={handleDeclineRules}
+                      >
                         Cancel
                       </button>
                     </div>
                   </div>
                 </div>
               )}
-              <button onClick={handleCloseModal} style={modalStyles.closeButton}>
+              <button
+                onClick={handleCloseModal}
+                style={modalStyles.closeButton}
+              >
                 DECLINE
               </button>
             </div>
@@ -300,266 +396,274 @@ const Dashboard = () => {
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    height: '90.5vh',
-    position: 'relative',
-    overflow: 'hidden',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    height: "90.5vh",
+    position: "relative",
+    overflow: "hidden",
   },
   background: {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundImage: `url(${logo})`, 
-    backgroundPosition: 'center', 
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage: `url(${logo})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     opacity: 0.3,
     zIndex: -1,
   },
   header: {
-    width: '95%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    backgroundColor: '#FFD700',
-    padding: '23px',
-    textAlign: 'center',
-    borderRadius: '10px 10px 10px 10px',
-    position: 'relative',
+    width: "95%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    backgroundColor: "#FFD700",
+    padding: "23px",
+    textAlign: "center",
+    borderRadius: "10px 10px 10px 10px",
+    position: "relative",
     zIndex: 2,
-    top: '10px',
+    top: "10px",
     opacity: 0.8,
-    marginBottom: '20px',
+    marginBottom: "20px",
   },
   content: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '95%',
-    padding: '20px',
-    marginLeft: '25px',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "95%",
+    padding: "20px",
+    marginLeft: "25px",
     zIndex: 2,
     opacity: 0.9,
-    flex: 1,         
+    flex: 1,
   },
   scrollableContainer: {
-    flex: 1,     
-    marginTop: '20px',    
-    overflowY: 'auto',
-    opacity: '0.9',
-    width: '98%'
+    flex: 1,
+    marginTop: "20px",
+    overflowY: "auto",
+    opacity: "0.9",
+    width: "98%",
   },
-  label :{
-    fontSize: '45px',
+  label: {
+    fontSize: "45px",
   },
   title: {
-    fontSize: '30px',
+    fontSize: "30px",
   },
   button: {
-    padding: '10px',
-    display: 'flex',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-    width: '90%',
-    marginTop: '10px',
-    flexDirection: 'row',
+    padding: "10px",
+    display: "flex",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+    width: "90%",
+    marginTop: "10px",
+    flexDirection: "row",
   },
   userButton: {
-    padding: '15px',
-    display: 'flex',
-    borderRadius: '10px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
-    width: '90%',
-    marginTop: '10px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '25px',
-    fontWeight: '800',
-    color: 'black',
-    backgroundColor: '#AED6F1',
-    flexDirection: 'row',
-    opacity: '0.7',
-  }, 
+    padding: "15px",
+    display: "flex",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
+    width: "90%",
+    marginTop: "10px",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "25px",
+    fontWeight: "800",
+    color: "black",
+    backgroundColor: "#AED6F1",
+    flexDirection: "row",
+    opacity: "0.7",
+  },
   motivationalQuotes: {
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-    width: '100%',
-    marginBottom: '20px',
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+    width: "100%",
+    marginBottom: "20px",
   },
   quoteCard: {
-    textAlign: 'center',
-    fontStyle: 'italic',
-    padding: '15px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)',
+    textAlign: "center",
+    fontStyle: "italic",
+    padding: "15px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
     opacity: 1,
-    transition: 'opacity 1s ease-in-out',
+    transition: "opacity 1s ease-in-out",
+  },
+  studyCard: {
+    textAlign: "justify",
+    padding: "15px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+    opacity: 1,
+    transition: "opacity 1s ease-in-out",
   },
   quoteText: {
-    fontSize: '35px',
-    color: '#000000',
-    marginBottom: '10px',
+    fontSize: "35px",
+    color: "#000000",
+    marginBottom: "10px",
     opacity: 5,
-    transition: 'opacity 1s ease-in-out',
+    transition: "opacity 1s ease-in-out",
   },
   quoteAuthor: {
-    fontSize: '25px',
-    color: '#555',
+    fontSize: "25px",
+    color: "#555",
   },
   studyTips: {
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
-    width: '100%',
-    marginBottom: '20px',
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)",
+    width: "100%",
+    marginBottom: "20px",
   },
   tipsList: {
-    listStyleType: 'disc',
-    paddingLeft: '20px',
-    color: '#000000',
-    fontSize: '25px',
+    listStyleType: "disc",
+    paddingLeft: "20px",
+    color: "#000000",
+    fontSize: "25px",
   },
   tipItem: {
-    marginBottom: '10px',
+    marginBottom: "10px",
   },
   buttonContainer: {
-    display: 'flex',
-    justifyContent: 'space-evenly', 
-    alignItems: 'center', 
-    gap: '20px',        
-    width: '100%',       
-    margin: '10px auto',      
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    gap: "20px",
+    width: "100%",
+    margin: "10px auto",
   },
   startQuizButton: {
-    fontSize: '40px',
-    fontWeight: '900',
-    backgroundColor: '#FFD700',
-    color: 'black',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    width: '80%',
-    transition: 'background-color 0.3s',
-    textAlign: 'center',
-    border: '2px solid black'
+    fontSize: "40px",
+    fontWeight: "900",
+    backgroundColor: "#FFD700",
+    color: "black",
+    borderRadius: "8px",
+    cursor: "pointer",
+    width: "80%",
+    transition: "background-color 0.3s",
+    textAlign: "center",
+    border: "2px solid black",
   },
   icon: {
-    marginRight: '8px',
-    fontSize: '40px',
-    color: 'black',
-    backgroundColor: 'white',
-    padding: '15px',
-    borderRadius: '50px',
-    border: '2px solid black'
+    marginRight: "8px",
+    fontSize: "40px",
+    color: "black",
+    backgroundColor: "white",
+    padding: "15px",
+    borderRadius: "50px",
+    border: "2px solid black",
   },
   leaderboardButton: {
-    position: 'absolute',
-    left: '20px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    backgroundColor: 'transparent',
-    border: 'none',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
+    position: "absolute",
+    left: "20px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    backgroundColor: "transparent",
+    border: "none",
+    fontSize: "1.5rem",
+    cursor: "pointer",
   },
   profileButton: {
-    position: 'absolute',
-    right: '20px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    backgroundColor: 'transparent',
-    border: 'none',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
+    position: "absolute",
+    right: "20px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    backgroundColor: "transparent",
+    border: "none",
+    fontSize: "1.5rem",
+    cursor: "pointer",
   },
   scrollingContainer: {
-    position: 'fixed',
+    position: "fixed",
     bottom: 10,
     left: 0,
-    width: '100%',
-    height: '40px',
-    backgroundColor: '#f0f0f0',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    boxShadow: '0 -8px 10px rgba(0,0,0,0.5)',
-    animation: 'flyIn 1.5s ease-out',
+    width: "100%",
+    height: "40px",
+    backgroundColor: "#f0f0f0",
+    overflow: "hidden",
+    display: "flex",
+    alignItems: "center",
+    boxShadow: "0 -8px 10px rgba(0,0,0,0.5)",
+    animation: "flyIn 1.5s ease-out",
   },
   scrollingText: {
-    display: 'inline-block',
-    whiteSpace: 'nowrap',
-    fontSize: '20px',
-    color: '#333',
-    animation: 'scrollText 60s linear infinite',
+    display: "inline-block",
+    whiteSpace: "nowrap",
+    fontSize: "20px",
+    color: "#333",
+    animation: "scrollText 60s linear infinite",
   },
 };
 
 const modalStyles = {
   overlay: {
-    position: 'fixed',
+    position: "fixed",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     zIndex: 1000,
   },
   modal: {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '8px',
-    maxWidth: '700px',
-    width: '90%',
-    textAlign: 'center',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-    animation: 'flyInUp 1s ease-out',
+    backgroundColor: "#fff",
+    padding: "20px",
+    borderRadius: "8px",
+    maxWidth: "700px",
+    width: "90%",
+    textAlign: "center",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+    animation: "flyInUp 1s ease-out",
   },
   title: {
-    marginBottom: '15px',
-    fontSize: '35px',
+    marginBottom: "15px",
+    fontSize: "35px",
     fontWeight: 900,
-    color: '#333',
+    color: "#333",
   },
   text: {
-    marginBottom: '20px',
-    fontSize: '25px',
-    color: '#555',
-    textAlign: 'center'
+    marginBottom: "20px",
+    fontSize: "25px",
+    color: "#555",
+    textAlign: "center",
   },
   buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '20px',
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
   },
   acceptButton: {
-    padding: '10px 20px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: '2px solid black',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontSize: '20px',
-    fontWeight: 900
+    padding: "10px 20px",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    border: "2px solid black",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "20px",
+    fontWeight: 900,
   },
   closeButton: {
-    padding: '10px 20px',
-    backgroundColor: '#dc3545',
-    color: '#fff',
-    border: '2px solid black',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontSize: '20px',
-    fontWeight: 900
-  }
+    padding: "10px 20px",
+    backgroundColor: "#dc3545",
+    color: "#fff",
+    border: "2px solid black",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "20px",
+    fontWeight: 900,
+  },
 };
 
 const globalStyles = `

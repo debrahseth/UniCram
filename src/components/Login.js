@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'font-awesome/css/font-awesome.min.css';
-import { auth, db } from '../firebase';
-import { signInWithEmailAndPassword, sendPasswordResetEmail  } from 'firebase/auth';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import logo from '../assets/op.jpg';
-// import logo1 from '../assets/welcomeImage.jpg';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "font-awesome/css/font-awesome.min.css";
+import { auth, db } from "../firebase";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import logo from "../assets/op.jpg";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [loadingReset, setLoadingReset] = useState(false); 
+  const [loadingReset, setLoadingReset] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedEmail = localStorage.getItem('email');
-    const savedPassword = localStorage.getItem('password');
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
     if (savedEmail && savedPassword) {
       setEmail(savedEmail);
       setPassword(savedPassword);
@@ -33,22 +35,32 @@ const Login = () => {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
-      const userDocRef = doc(db, 'users', user.uid);
+      const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
       if (userDoc.exists()) {
-        await updateDoc(userDocRef, { status: 'online' });
-        if (rememberMe) {
-          localStorage.setItem('email', email);
-          localStorage.setItem('password', password);
+        const userData = userDoc.data();
+        await updateDoc(userDocRef, { status: "online" });
+
+        if (userData.role === "admin") {
+          navigate("/admin-dashboard");
         } else {
-          localStorage.removeItem('email');
-          localStorage.removeItem('password');
+          if (rememberMe) {
+            localStorage.setItem("email", email);
+            localStorage.setItem("password", password);
+          } else {
+            localStorage.removeItem("email");
+            localStorage.removeItem("password");
+          }
+          navigate("/splash");
         }
-        navigate('/splash');
       } else {
-        setError('User does not exist in the system.');
+        setError("User does not exist in the system.");
       }
     } catch (error) {
       setError(error.message);
@@ -59,13 +71,13 @@ const Login = () => {
 
   const handlePasswordReset = async () => {
     if (!email) {
-      setError('Please enter your email to reset password.');
+      setError("Please enter your email to reset password.");
       return;
     }
     setLoadingReset(true);
     try {
       await sendPasswordResetEmail(auth, email);
-      setError('Password reset email sent. Please check your inbox.');
+      setError("Password reset email sent. Please check your inbox.");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -78,7 +90,9 @@ const Login = () => {
       <div style={styles.background}></div>
       <div style={styles.header}>
         <h1 style={styles.appName}>Prime Academy</h1>
-        <p style={styles.welcomeNote}>Welcome back! Please login to continue.</p>
+        <p style={styles.welcomeNote}>
+          Welcome back! Please login to continue.
+        </p>
       </div>
 
       <div style={styles.logoContainer}>
@@ -111,11 +125,13 @@ const Login = () => {
             onClick={() => setPasswordVisible(!passwordVisible)}
             style={styles.toggleButton}
           >
-            <i className={`fa ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+            <i
+              className={`fa ${passwordVisible ? "fa-eye-slash" : "fa-eye"}`}
+            ></i>
           </button>
         </div>
         <div style={styles.rememberMeContainer}>
-        <label style={styles.rememberMeLabel}>
+          <label style={styles.rememberMeLabel}>
             <input
               type="checkbox"
               checked={rememberMe}
@@ -131,11 +147,11 @@ const Login = () => {
           >
             {loadingReset ? (
               <i className="fa fa-spinner fa-spin" style={styles.spinner}></i> // Spinner while loading
-            ) : ( 
-              'Forgot Password?'
+            ) : (
+              "Forgot Password?"
             )}
           </button>
-        </div>  
+        </div>
         {error && <p style={styles.error}>{error}</p>}
         {loading ? (
           <div style={styles.loading}>
@@ -143,17 +159,23 @@ const Login = () => {
             Logging in...
           </div>
         ) : (
-          <button onClick={handleLogin} style={styles.button} disabled={loading}>
+          <button
+            onClick={handleLogin}
+            style={styles.button}
+            disabled={loading}
+          >
             Login
           </button>
         )}
-        <button onClick={() => navigate('/')} style={styles.button}>
+        <button onClick={() => navigate("/")} style={styles.button}>
           Go Back
         </button>
       </div>
 
       <div style={styles.footerStyle}>
-        <p style={{fontSize: '30px'}}>© 2025 Prime Academy. All rights reserved.</p>
+        <p style={{ fontSize: "30px" }}>
+          © 2025 Prime Academy. All rights reserved.
+        </p>
       </div>
     </div>
   );
@@ -161,173 +183,164 @@ const Login = () => {
 
 const styles = {
   container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    padding: '0 20px',
-    fontFamily: 'Poppins, sans-serif',
-    flexDirection: 'row',
-    overflow: 'hidden',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    padding: "0 20px",
+    fontFamily: "Poppins, sans-serif",
+    flexDirection: "row",
+    overflow: "hidden",
   },
-  // background : {
-  //   content: '""',
-  //   position: 'fixed',
-  //   top: 0,
-  //   left: 0,
-  //   right: 0,
-  //   bottom: 0,
-  //   backgroundImage: `url(${logo1})`, 
-  //   backgroundPosition: 'center', 
-  //   backgroundSize: 'cover',
-  //   backgroundRepeat: 'no-repeat',
-  //   opacity: 0.9,
-  //   zIndex: -2,
-  // },
   header: {
-    position: 'absolute',
-    top: '20px',
-    transform: 'translateX(-50%)',
-    textAlign: 'center',
+    position: "absolute",
+    top: "20px",
+    transform: "translateX(-50%)",
+    textAlign: "center",
     zIndex: 10,
     opacity: 0,
-    animation: 'fadeInUp 1s ease forwards 0.5s',
+    animation: "fadeInUp 1s ease forwards 0.5s",
+    boxShadow: "0 8px 10px rgba(0,0,0,0.8)",
+    width: "90%",
+    borderRadius: "10px",
   },
   appName: {
-    fontSize: '36px',
-    fontWeight: '700',
-    color: '#333',
+    fontSize: "40px",
+    fontWeight: "700",
+    color: "#333",
+    textTransform: "uppercase",
   },
   welcomeNote: {
-    fontSize: '18px',
-    color: '#666',
+    fontSize: "25px",
+    color: "#666",
   },
   logoContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    maxWidth: '500px',
-    padding: '10px',
-    flex: '1',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    maxWidth: "500px",
+    padding: "10px",
+    flex: "1",
     opacity: 0,
-    animation: 'fadeInUp 1s ease forwards 0.8s',
+    animation: "fadeInUp 1s ease forwards 0.8s",
   },
   logo: {
-    maxWidth: '92%',
-    height: 'auto',
-    borderRadius: '8px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.9)',
+    maxWidth: "90%",
+    height: "auto",
+    borderRadius: "8px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.9)",
   },
   formContainer: {
-    borderRadius: '8px',
-    padding: '25px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.7)',
-    width: '100%',
-    maxWidth: '600px',
+    borderRadius: "8px",
+    padding: "27px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.7)",
+    width: "100%",
+    maxWidth: "600px",
     opacity: 0,
-    animation: 'fadeInUp 1s ease forwards 1s',
-    transition: 'all 0.3s ease-in-out',
+    animation: "fadeInUp 1s ease forwards 1s",
+    transition: "all 0.3s ease-in-out",
   },
   title: {
-    textAlign: 'center',
-    marginBottom: '30px',
-    fontSize: '28px',
-    fontWeight: '600',
-    color: '#333',
+    textAlign: "center",
+    marginBottom: "30px",
+    fontSize: "28px",
+    fontWeight: "600",
+    color: "#333",
+    textTransform: "uppercase",
   },
   inputGroup: {
-    position: 'relative',
-    marginBottom: '25px',
+    position: "relative",
+    marginBottom: "25px",
   },
   icon: {
-    position: 'absolute',
-    top: '50%',
-    left: '15px',
-    transform: 'translateY(-50%)',
-    color: '#999',
+    position: "absolute",
+    top: "50%",
+    left: "15px",
+    transform: "translateY(-50%)",
+    color: "#999",
   },
   input: {
-    width: '82%',
-    padding: '14px 40px',
-    fontSize: '16px',
-    borderRadius: '8px',
-    border: '1px solid #ddd',
-    outline: 'none',
-    transition: 'border-color 0.3s',
+    width: "85%",
+    padding: "14px 40px",
+    fontSize: "16px",
+    borderRadius: "8px",
+    border: "1px solid #ddd",
+    outline: "none",
+    transition: "border-color 0.3s",
   },
   button: {
-    width: '100%',
-    padding: '14px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '8px',
-    fontSize: '25px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-    marginTop: '15px',
+    width: "100%",
+    padding: "14px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    fontSize: "25px",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
+    marginTop: "15px",
   },
   error: {
-    color: 'red',
-    fontSize: '14px',
-    textAlign: 'center',
-    marginBottom: '15px',
+    color: "red",
+    fontSize: "14px",
+    textAlign: "center",
+    marginBottom: "15px",
   },
   loading: {
-    textAlign: 'center',
-    fontSize: '16px',
-    color: '#4CAF50',
-    marginTop: '20px',
+    textAlign: "center",
+    fontSize: "16px",
+    color: "#4CAF50",
+    marginTop: "20px",
   },
   spinner: {
-    fontSize: '24px',
-    marginRight: '10px',
+    fontSize: "24px",
+    marginRight: "10px",
   },
   toggleButton: {
-    position: 'absolute',
-    right: '15px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    color: '#999',
-    fontSize: '25px',
+    position: "absolute",
+    right: "15px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    color: "#999",
+    fontSize: "25px",
   },
   footerStyle: {
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    width: '100%',
-    padding: '12px',
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '0.9rem',
-    fontFamily: 'Poppins, sans-serif',
+    position: "fixed",
+    bottom: "0",
+    left: "0",
+    width: "100%",
+    padding: "12px",
+    backgroundColor: "#333",
+    color: "#fff",
+    textAlign: "center",
+    fontSize: "0.9rem",
+    fontFamily: "Poppins, sans-serif",
   },
   rememberMeContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginTop: '10px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    marginTop: "10px",
   },
   rememberMeLabel: {
-    fontSize: '14px',
-    display: 'flex',
-    alignItems: 'center',
+    fontSize: "14px",
+    display: "flex",
+    alignItems: "center",
   },
   checkbox: {
-    marginRight: '5px',
+    marginRight: "5px",
   },
   forgotPasswordButton: {
-    background: 'none',
-    border: 'none',
-    color: '#007bff',
-    cursor: 'pointer',
-    fontSize: '14px',
+    background: "none",
+    border: "none",
+    color: "#007bff",
+    cursor: "pointer",
+    fontSize: "14px",
   },
 };
 
@@ -366,6 +379,6 @@ const keyframes = `
 }
 `;
 
-document.head.insertAdjacentHTML('beforeend', `<style>${keyframes}</style>`);
+document.head.insertAdjacentHTML("beforeend", `<style>${keyframes}</style>`);
 
 export default Login;
