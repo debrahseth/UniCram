@@ -66,7 +66,6 @@ const Profile = () => {
   ];
 
   let inactivityTimeout;
-  const { logoutLoading: forcedLogoutLoading } = useForcedLogout();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(authInstance, (user) => {
@@ -342,7 +341,7 @@ const Profile = () => {
     );
   }
 
-  if (logoutLoading || forcedLogoutLoading) {
+  if (logoutLoading) {
     return (
       <div className="spinner-container">
         <p>Logging out...</p>

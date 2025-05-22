@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { useForcedLogout } from "../hooks/useForcedLogout";
+import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
 import {
   doc,
   getDoc,
@@ -29,7 +28,8 @@ const Dashboard = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [hasTakenDailyQuiz, setHasTakenDailyQuiz] = useState(false);
   const [showRulesModal, setShowRulesModal] = useState(false);
-  const currentUser = auth.currentUser;
+  const authInstance = getAuth();
+  const [currentUser, setCurrentUser] = useState(null);
   const quotes = [
     {
       text: "The future belongs to those who believe in the beauty of their dreams.",
@@ -116,7 +116,16 @@ const Dashboard = () => {
   ];
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
-  const { logoutLoading: forcedLogoutLoading } = useForcedLogout();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(authInstance, (user) => {
+      setCurrentUser(user);
+      if (!user) {
+        navigate("/login");
+      }
+    });
+    return () => unsubscribe();
+  }, [authInstance, navigate]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -195,6 +204,42 @@ const Dashboard = () => {
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
   }, []);
+  useEffect(() => {
+    let unsubscribeStatus;
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      unsubscribeStatus = onSnapshot(
+        userDocRef,
+        (docSnapshot) => {
+          if (docSnapshot.exists()) {
+            const userData = docSnapshot.data();
+            if (userData.status === "offline") {
+              handleForcedLogout();
+            }
+          }
+        },
+        (error) => {
+          console.error("Error checking user status:", error);
+        }
+      );
+    }
+
+    return () => {
+      if (unsubscribeStatus) unsubscribeStatus();
+    };
+  }, [currentUser]);
+
+  const handleForcedLogout = async () => {
+    try {
+      setLogoutLoading(true);
+      await signOut(auth);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during forced logout:", error);
+    } finally {
+      setLogoutLoading(false);
+    }
+  };
 
   dotStream.register();
   spiral.register();
@@ -235,7 +280,7 @@ const Dashboard = () => {
     );
   }
 
-  if (logoutLoading || forcedLogoutLoading) {
+  if (logoutLoading) {
     return (
       <div className="spinner-container">
         <p>Logging out...</p>
