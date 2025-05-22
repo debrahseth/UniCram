@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSignOutAlt, FaArrowLeft, FaTrash } from "react-icons/fa";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
+  onSnapshot,
   doc,
   getDoc,
   updateDoc,
@@ -40,8 +42,8 @@ const Profile = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const navigate = useNavigate();
-  const auth = getAuth();
-  const currentUser = auth.currentUser;
+  const authInstance = getAuth();
+  const [currentUser, setCurrentUser] = useState(null);
   const programs = [
     "Agricultural Engineering",
     "Aerospace Engineering",
@@ -66,9 +68,17 @@ const Profile = () => {
   let inactivityTimeout;
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      const currentUser = auth.currentUser;
+    const unsubscribe = onAuthStateChanged(authInstance, (user) => {
+      setCurrentUser(user);
+      if (!user) {
+        navigate("/login");
+      }
+    });
+    return () => unsubscribe();
+  }, [authInstance, navigate]);
 
+  useEffect(() => {
+    const fetchUserDetails = async () => {
       if (currentUser) {
         const userDocRef = doc(db, "users", currentUser.uid);
         const userDoc = await getDoc(userDocRef);
@@ -102,6 +112,44 @@ const Profile = () => {
   }, [currentUser]);
 
   useEffect(() => {
+    let unsubscribeStatus;
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      unsubscribeStatus = onSnapshot(
+        userDocRef,
+        (docSnapshot) => {
+          if (docSnapshot.exists()) {
+            const userData = docSnapshot.data();
+            if (userData.status === "offline") {
+              handleForcedLogout();
+            }
+          }
+        },
+        (error) => {
+          console.error("Error checking user status:", error);
+        }
+      );
+    }
+
+    return () => {
+      if (unsubscribeStatus) unsubscribeStatus();
+    };
+  }, [currentUser]);
+
+  const handleForcedLogout = async () => {
+    try {
+      setLogoutLoading(true);
+      await signOut(auth);
+      navigate("/login");
+      alert("You have been logged out by an admin.");
+    } catch (error) {
+      console.error("Error during forced logout:", error);
+    } finally {
+      setLogoutLoading(false);
+    }
+  };
+
+  useEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = globalStyles;
     document.head.appendChild(style);
@@ -124,7 +172,6 @@ const Profile = () => {
     await auth.signOut();
     setLogoutLoading(false);
     navigate("/login");
-    setLogoutLoading(false);
   };
 
   const useInactivityLogout = (timeoutDuration = 300000) => {

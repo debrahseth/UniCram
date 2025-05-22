@@ -10,12 +10,18 @@ import {
   updateDoc,
   // deleteDoc,
 } from "firebase/firestore";
-import { signOut } from "firebase/auth";
+import {
+  getAuth,
+  signOut,
+  onAuthStateChanged,
+  useAuthState,
+} from "firebase/auth";
 import emailjs from "@emailjs/browser";
 import { Bar } from "react-chartjs-2";
 
 const AdminDashboard = () => {
   const [message, setMessage] = useState("");
+  const [logoutLoading, setLogoutLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -43,6 +49,8 @@ const AdminDashboard = () => {
   const [usersError, setUsersError] = useState("");
   const [updateSuccess, setUpdateSuccess] = useState("");
   const [displayMode, setDisplayMode] = useState("all");
+  const [currentUser, setCurrentUser] = useState(null);
+  const authInstance = getAuth();
 
   const programAbbreviations = {
     "Agricultural Engineering": "Agri Eng",
@@ -68,6 +76,13 @@ const AdminDashboard = () => {
   const abbreviatedLabels = Object.keys(analytics.programDistribution).map(
     (program) => programAbbreviations[program] || program
   );
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(authInstance, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, [authInstance]);
 
   useEffect(() => {
     const verifyAdmin = async () => {
@@ -133,119 +148,209 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   useEffect(() => {
-    const fetchQuizScores = async () => {
+    let unsubscribeUsers;
+
+    const fetchQuizScores = () => {
       setQuizScoresLoading(true);
       setQuizScoresError("");
+
       try {
         const usersRef = collection(db, "users");
-        const usersSnapshot = await getDocs(usersRef);
-        let totalScore = 0;
-        let totalQuizzes = 0;
-        const scoresByLevel = {};
-        const scoresByProgram = {};
-        const allScores = [];
+        unsubscribeUsers = onSnapshot(
+          usersRef,
+          (usersSnapshot) => {
+            let totalScore = 0;
+            let totalQuizzes = 0;
+            const scoresByLevel = {};
+            const scoresByProgram = {};
+            const allScores = [];
 
-        for (const userDoc of usersSnapshot.docs) {
-          const userData = userDoc.data();
-          const username = userData.username || `User_${userDoc.id}`; // Fallback if username is missing
-          const quizScoresRef = collection(
-            db,
-            "users",
-            userDoc.id,
-            "quizScores"
-          );
-          const quizSnapshot = await getDocs(quizScoresRef);
+            const unsubscribes = [];
 
-          quizSnapshot.forEach((quizDoc) => {
-            const data = quizDoc.data();
-            const scorePercentage = data.totalQuestions
-              ? (data.score / data.totalQuestions) * 100
-              : 0;
-            totalScore += data.score || 0;
-            totalQuizzes += 1;
-            allScores.push({
-              username,
-              level: userData.levelOfStudy || "Unknown",
-              program: userData.programOfStudy || "Unknown",
-              subject: data.subject || "Unknown",
-              score: data.score || 0,
-              totalQuestions: data.totalQuestions || 1,
-              percentage: scorePercentage.toFixed(1) + "%",
+            usersSnapshot.docs.forEach((userDoc) => {
+              const userData = userDoc.data();
+              const username = userData.username || `User_${userDoc.id}`;
+              const quizScoresRef = collection(
+                db,
+                "users",
+                userDoc.id,
+                "quizScores"
+              );
+
+              const unsubscribeQuiz = onSnapshot(
+                quizScoresRef,
+                (quizSnapshot) => {
+                  quizSnapshot.docChanges().forEach((change) => {
+                    if (change.type === "added" || change.type === "modified") {
+                      const data = change.doc.data();
+                      const scorePercentage = data.totalQuestions
+                        ? (data.score / data.totalQuestions) * 100
+                        : 0;
+                      totalScore += data.score || 0;
+                      totalQuizzes += 1;
+                      allScores.push({
+                        username,
+                        level: userData.levelOfStudy || "Unknown",
+                        program: userData.programOfStudy || "Unknown",
+                        subject: data.subject || "Unknown",
+                        score: data.score || 0,
+                        totalQuestions: data.totalQuestions || 1,
+                        percentage: scorePercentage.toFixed(1) + "%",
+                      });
+
+                      const level = userData.levelOfStudy || "Unknown";
+                      scoresByLevel[level] = scoresByLevel[level] || [];
+                      scoresByLevel[level].push(data.score || 0);
+
+                      const program = userData.programOfStudy || "Unknown";
+                      scoresByProgram[program] = scoresByProgram[program] || [];
+                      scoresByProgram[program].push(data.score || 0);
+                    } else if (change.type === "removed") {
+                      totalScore = 0;
+                      totalQuizzes = 0;
+                      allScores.length = 0;
+                      Object.keys(scoresByLevel).forEach(
+                        (key) => (scoresByLevel[key] = [])
+                      );
+                      Object.keys(scoresByProgram).forEach(
+                        (key) => (scoresByProgram[key] = [])
+                      );
+
+                      usersSnapshot.docs.forEach((doc) => {
+                        const userDataInner = doc.data();
+                        const usernameInner =
+                          userDataInner.username || `User_${doc.id}`;
+                        const quizScoresRefInner = collection(
+                          db,
+                          "users",
+                          doc.id,
+                          "quizScores"
+                        );
+                        onSnapshot(quizScoresRefInner, (innerSnapshot) => {
+                          innerSnapshot.forEach((quizDoc) => {
+                            const data = quizDoc.data();
+                            const scorePercentage = data.totalQuestions
+                              ? (data.score / data.totalQuestions) * 100
+                              : 0;
+                            totalScore += data.score || 0;
+                            totalQuizzes += 1;
+                            allScores.push({
+                              username: usernameInner,
+                              level: userDataInner.levelOfStudy || "Unknown",
+                              program:
+                                userDataInner.programOfStudy || "Unknown",
+                              subject: data.subject || "Unknown",
+                              score: data.score || 0,
+                              totalQuestions: data.totalQuestions || 1,
+                              percentage: scorePercentage.toFixed(1) + "%",
+                            });
+
+                            const level =
+                              userDataInner.levelOfStudy || "Unknown";
+                            scoresByLevel[level] = scoresByLevel[level] || [];
+                            scoresByLevel[level].push(data.score || 0);
+
+                            const program =
+                              userDataInner.programOfStudy || "Unknown";
+                            scoresByProgram[program] =
+                              scoresByProgram[program] || [];
+                            scoresByProgram[program].push(data.score || 0);
+                          });
+                        });
+                      });
+                    }
+                  });
+
+                  if (totalQuizzes === 0) {
+                    setQuizScoresError("No quiz scores found for any users.");
+                  }
+
+                  const averageScore =
+                    totalQuizzes > 0 ? totalScore / totalQuizzes : 0;
+                  const topPerformersByLevel = Object.entries(
+                    scoresByLevel
+                  ).map(([level, scores]) => ({
+                    level,
+                    topPerformers: allScores
+                      .filter((s) => s.level === level)
+                      .sort(
+                        (a, b) =>
+                          (b.score / b.totalQuestions || 0) -
+                          (a.score / a.totalQuestions || 0)
+                      )
+                      .slice(0, 5)
+                      .map((s) => ({
+                        username: s.username,
+                        subject: s.subject,
+                        totalQuestions: s.totalQuestions,
+                        percentage: s.percentage,
+                      })),
+                    averageScore:
+                      (
+                        scores.reduce((a, b) => a + b, 0) / scores.length
+                      ).toFixed(1) || "0",
+                  }));
+                  const topPerformersByProgram = Object.entries(
+                    scoresByProgram
+                  ).map(([program, scores]) => ({
+                    program,
+                    topPerformers: allScores
+                      .filter((s) => s.program === program)
+                      .sort(
+                        (a, b) =>
+                          (b.score / b.totalQuestions || 0) -
+                          (a.score / a.totalQuestions || 0)
+                      )
+                      .slice(0, 5)
+                      .map((s) => ({
+                        username: s.username,
+                        subject: s.subject,
+                        totalQuestions: s.totalQuestions,
+                        percentage: s.percentage,
+                      })),
+                    averageScore:
+                      (
+                        scores.reduce((a, b) => a + b, 0) / scores.length
+                      ).toFixed(1) || "0",
+                  }));
+
+                  setQuizScoresSummary({
+                    averageScore: averageScore.toFixed(1),
+                    topPerformersByLevel,
+                    topPerformersByProgram,
+                  });
+                },
+                (error) => {
+                  setQuizScoresError(
+                    "Failed to load quiz scores: " + error.message
+                  );
+                }
+              );
+
+              unsubscribes.push(unsubscribeQuiz);
             });
-
-            const level = userData.levelOfStudy || "Unknown";
-            scoresByLevel[level] = scoresByLevel[level] || [];
-            scoresByLevel[level].push(data.score || 0);
-
-            const program = userData.programOfStudy || "Unknown";
-            scoresByProgram[program] = scoresByProgram[program] || [];
-            scoresByProgram[program].push(data.score || 0);
-          });
-        }
-
-        if (totalQuizzes === 0) {
-          setQuizScoresError("No quiz scores found for any users.");
-        }
-
-        const averageScore = totalQuizzes > 0 ? totalScore / totalQuizzes : 0;
-        const topPerformersByLevel = Object.entries(scoresByLevel).map(
-          ([level, scores]) => ({
-            level,
-            topPerformers: allScores
-              .filter((s) => s.level === level)
-              .sort(
-                (a, b) =>
-                  (b.score / b.totalQuestions || 0) -
-                  (a.score / a.totalQuestions || 0)
-              )
-              .slice(0, 5)
-              .map((s) => ({
-                username: s.username,
-                subject: s.subject,
-                totalQuestions: s.totalQuestions,
-                percentage: s.percentage,
-              })),
-            averageScore:
-              (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) ||
-              "0",
-          })
+            usersSnapshot.docChanges().forEach((change) => {
+              if (change.type === "removed") {
+                unsubscribes.forEach((unsub) => unsub());
+              }
+            });
+          },
+          (error) => {
+            setQuizScoresError("Failed to load users: " + error.message);
+          }
         );
-        const topPerformersByProgram = Object.entries(scoresByProgram).map(
-          ([program, scores]) => ({
-            program,
-            topPerformers: allScores
-              .filter((s) => s.program === program)
-              .sort(
-                (a, b) =>
-                  (b.score / b.totalQuestions || 0) -
-                  (a.score / a.totalQuestions || 0)
-              )
-              .slice(0, 5)
-              .map((s) => ({
-                username: s.username,
-                subject: s.subject,
-                totalQuestions: s.totalQuestions,
-                percentage: s.percentage,
-              })),
-            averageScore:
-              (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) ||
-              "0",
-          })
-        );
-
-        setQuizScoresSummary({
-          averageScore: averageScore.toFixed(1),
-          topPerformersByLevel,
-          topPerformersByProgram,
-        });
       } catch (error) {
-        setQuizScoresError("Failed to load quiz scores: " + error.message);
+        setQuizScoresError(
+          "Failed to initialize quiz scores: " + error.message
+        );
       } finally {
         setQuizScoresLoading(false);
       }
     };
-
     fetchQuizScores();
+    return () => {
+      if (unsubscribeUsers) unsubscribeUsers();
+    };
   }, []);
 
   useEffect(() => {
@@ -266,7 +371,7 @@ const AdminDashboard = () => {
                 status: doc.data().status || "offline",
                 role: doc.data().role || "user",
               }))
-              .filter((user) => user.id !== auth.currentUser?.uid); // Exclude the admin
+              .filter((user) => user.id !== auth.currentUser?.uid);
             setUsers(usersList);
             setUsersLoading(false);
           },
@@ -332,11 +437,28 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = async () => {
+    setLogoutLoading(true);
+    setError("");
+
     try {
+      if (currentUser) {
+        const userDocRef = doc(db, "users", currentUser.uid);
+        try {
+          await updateDoc(userDocRef, {
+            status: "offline",
+          });
+        } catch (error) {
+          console.error("Failed to update user status:", error);
+          setError("Failed to update status. Proceeding with logout...");
+        }
+      }
       await signOut(auth);
       navigate("/login");
     } catch (error) {
-      setError("Failed to logout. Please try again.");
+      console.error("Logout error:", error);
+      setError("Failed to log out. Please try again.");
+    } finally {
+      setLogoutLoading(false);
     }
   };
 
