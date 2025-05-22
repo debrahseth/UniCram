@@ -22,21 +22,8 @@ import DailyChallenge from "./components/DailyChallenge";
 import WeeklyLeaderBoard from "./components/WeeklyLeaderBoard";
 import LiveQuiz from "./components/LiveQuiz";
 import AdminDashboard from "./components/AdminDashboard";
-import { useForcedLogout } from "./hooks/useForcedLogout";
 
 function App() {
-  const { logoutLoading } = useForcedLogout();
-
-  if (logoutLoading) {
-    return (
-      <div
-        className="spinner-container"
-        style={{ textAlign: "center", padding: "50px" }}
-      >
-        <p style={{ fontSize: "24px", color: "blue" }}>Logging out...</p>
-      </div>
-    );
-  }
   return (
     <Router>
       <Routes>
