@@ -27,6 +27,8 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false);
   const [quizScoresLoading, setQuizScoresLoading] = useState(false);
   const [quizScoresError, setQuizScoresError] = useState(null);
+  const [selectedProgram, setSelectedProgram] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState("");
   const [analytics, setAnalytics] = useState({
     totalUsers: 0,
     onlineUsers: 0,
@@ -161,8 +163,6 @@ const AdminDashboard = () => {
           (usersSnapshot) => {
             let totalScore = 0;
             let totalQuizzes = 0;
-            const scoresByLevel = {};
-            const scoresByProgram = {};
             const allScores = [];
 
             const unsubscribes = [];
@@ -197,24 +197,10 @@ const AdminDashboard = () => {
                         totalQuestions: data.totalQuestions || 1,
                         percentage: scorePercentage.toFixed(1) + "%",
                       });
-
-                      const level = userData.levelOfStudy || "Unknown";
-                      scoresByLevel[level] = scoresByLevel[level] || [];
-                      scoresByLevel[level].push(data.score || 0);
-
-                      const program = userData.programOfStudy || "Unknown";
-                      scoresByProgram[program] = scoresByProgram[program] || [];
-                      scoresByProgram[program].push(data.score || 0);
                     } else if (change.type === "removed") {
                       totalScore = 0;
                       totalQuizzes = 0;
                       allScores.length = 0;
-                      Object.keys(scoresByLevel).forEach(
-                        (key) => (scoresByLevel[key] = [])
-                      );
-                      Object.keys(scoresByProgram).forEach(
-                        (key) => (scoresByProgram[key] = [])
-                      );
 
                       usersSnapshot.docs.forEach((doc) => {
                         const userDataInner = doc.data();
@@ -244,17 +230,6 @@ const AdminDashboard = () => {
                               totalQuestions: data.totalQuestions || 1,
                               percentage: scorePercentage.toFixed(1) + "%",
                             });
-
-                            const level =
-                              userDataInner.levelOfStudy || "Unknown";
-                            scoresByLevel[level] = scoresByLevel[level] || [];
-                            scoresByLevel[level].push(data.score || 0);
-
-                            const program =
-                              userDataInner.programOfStudy || "Unknown";
-                            scoresByProgram[program] =
-                              scoresByProgram[program] || [];
-                            scoresByProgram[program].push(data.score || 0);
                           });
                         });
                       });
@@ -267,56 +242,46 @@ const AdminDashboard = () => {
 
                   const averageScore =
                     totalQuizzes > 0 ? totalScore / totalQuizzes : 0;
-                  const topPerformersByLevel = Object.entries(
-                    scoresByLevel
-                  ).map(([level, scores]) => ({
-                    level,
-                    topPerformers: allScores
-                      .filter((s) => s.level === level)
-                      .sort(
-                        (a, b) =>
-                          (b.score / b.totalQuestions || 0) -
-                          (a.score / a.totalQuestions || 0)
-                      )
-                      .slice(0, 5)
-                      .map((s) => ({
-                        username: s.username,
-                        subject: s.subject,
-                        totalQuestions: s.totalQuestions,
-                        percentage: s.percentage,
-                      })),
-                    averageScore:
-                      (
-                        scores.reduce((a, b) => a + b, 0) / scores.length
-                      ).toFixed(1) || "0",
-                  }));
                   const topPerformersByProgram = Object.entries(
-                    scoresByProgram
-                  ).map(([program, scores]) => ({
+                    allScores.reduce((acc, score) => {
+                      const programKey = score.program;
+                      acc[programKey] = acc[programKey] || {};
+                      const levelKey = score.level;
+                      acc[programKey][levelKey] =
+                        acc[programKey][levelKey] || {};
+                      const subjectKey = score.subject;
+                      acc[programKey][levelKey][subjectKey] =
+                        acc[programKey][levelKey][subjectKey] || [];
+                      acc[programKey][levelKey][subjectKey].push(score);
+                      return acc;
+                    }, {})
+                  ).map(([program, levels]) => ({
                     program,
-                    topPerformers: allScores
-                      .filter((s) => s.program === program)
-                      .sort(
-                        (a, b) =>
-                          (b.score / b.totalQuestions || 0) -
-                          (a.score / a.totalQuestions || 0)
-                      )
-                      .slice(0, 5)
-                      .map((s) => ({
-                        username: s.username,
-                        subject: s.subject,
-                        totalQuestions: s.totalQuestions,
-                        percentage: s.percentage,
-                      })),
-                    averageScore:
-                      (
-                        scores.reduce((a, b) => a + b, 0) / scores.length
-                      ).toFixed(1) || "0",
+                    levels: Object.entries(levels).map(([level, subjects]) => ({
+                      level,
+                      subjects: Object.entries(subjects).map(
+                        ([subject, scores]) => ({
+                          subject,
+                          topPerformers: scores
+                            .sort(
+                              (a, b) =>
+                                (b.score / b.totalQuestions || 0) -
+                                (a.score / a.totalQuestions || 0)
+                            )
+                            .slice(0, 5)
+                            .map((s) => ({
+                              username: s.username,
+                              score: s.score,
+                              totalQuestions: s.totalQuestions,
+                              percentage: s.percentage,
+                            })),
+                        })
+                      ),
+                    })),
                   }));
 
                   setQuizScoresSummary({
                     averageScore: averageScore.toFixed(1),
-                    topPerformersByLevel,
                     topPerformersByProgram,
                   });
                 },
@@ -329,6 +294,7 @@ const AdminDashboard = () => {
 
               unsubscribes.push(unsubscribeQuiz);
             });
+
             usersSnapshot.docChanges().forEach((change) => {
               if (change.type === "removed") {
                 unsubscribes.forEach((unsub) => unsub());
@@ -347,7 +313,9 @@ const AdminDashboard = () => {
         setQuizScoresLoading(false);
       }
     };
+
     fetchQuizScores();
+
     return () => {
       if (unsubscribeUsers) unsubscribeUsers();
     };
@@ -664,107 +632,253 @@ const AdminDashboard = () => {
             ) : quizScoresError ? (
               <p style={modalStyles.error}>{quizScoresError}</p>
             ) : (
-              <div style={modalStyles.content}>
-                <p>
-                  <strong>Overall Average Score:</strong>{" "}
-                  {quizScoresSummary.averageScore}
-                </p>
-                <h3 style={modalStyles.head}>
-                  Top Performers by Level of Study
-                </h3>
-                {quizScoresSummary.topPerformersByLevel.map(
-                  ({ level, topPerformers, averageScore }, index) => (
-                    <div key={index} style={{ marginBottom: "20px" }}>
-                      <h4>
-                        {level} (Average: {averageScore})
-                      </h4>
-                      <table style={tableStyles.table}>
-                        <thead>
-                          <tr>
-                            <th style={tableStyles.th}>Username</th>
-                            <th style={tableStyles.th}>Subject</th>
-                            <th style={tableStyles.th}>Total Questions</th>
-                            <th style={tableStyles.th}>Score (%)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {topPerformers.length > 0 ? (
-                            topPerformers.map((performer, i) => (
-                              <tr key={i} style={tableStyles.tr}>
-                                <td style={tableStyles.td}>
-                                  {performer.username}
-                                </td>
-                                <td style={tableStyles.td}>
-                                  {performer.subject}
-                                </td>
-                                <td style={tableStyles.td}>
-                                  {performer.totalQuestions}
-                                </td>
-                                <td style={tableStyles.td}>
-                                  {performer.percentage}
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <tr>
-                              <td colSpan="3" style={tableStyles.noDataTd}>
-                                No top performers for this level.
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  )
-                )}
-                <h3 style={modalStyles.head}>
-                  Top Performers by Program of Study
-                </h3>
-                {quizScoresSummary.topPerformersByProgram.map(
-                  ({ program, topPerformers, averageScore }, index) => (
-                    <div key={index} style={{ marginBottom: "20px" }}>
-                      <h4>
-                        {program} (Average: {averageScore})
-                      </h4>
-                      <table style={tableStyles.table}>
-                        <thead>
-                          <tr>
-                            <th style={tableStyles.th}>Username</th>
-                            <th style={tableStyles.th}>Subject</th>
-                            <th style={tableStyles.th}>Total Questions</th>
-                            <th style={tableStyles.th}>Score (%)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {topPerformers.length > 0 ? (
-                            topPerformers.map((performer, i) => (
-                              <tr key={i} style={tableStyles.tr}>
-                                <td style={tableStyles.td}>
-                                  {performer.username}
-                                </td>
-                                <td style={tableStyles.td}>
-                                  {performer.subject}
-                                </td>
-                                <td style={tableStyles.td}>
-                                  {performer.totalQuestions}
-                                </td>
-                                <td style={tableStyles.td}>
-                                  {performer.percentage}
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <tr>
-                              <td colSpan="3" style={tableStyles.noDataTd}>
-                                No top performers for this program.
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  )
-                )}
+              <div>
+                <div
+                  style={{ marginBottom: "20px", display: "flex", gap: "15px" }}
+                >
+                  <div>
+                    <label
+                      htmlFor="programFilter"
+                      style={{ marginRight: "10px", fontWeight: "bold" }}
+                    >
+                      Program of Study:
+                    </label>
+                    <select
+                      id="programFilter"
+                      value={selectedProgram}
+                      onChange={(e) => setSelectedProgram(e.target.value)}
+                      style={{
+                        padding: "5px",
+                        borderRadius: "4px",
+                        border: "1px solid #ccc",
+                      }}
+                    >
+                      <option value="">All Programs</option>
+                      {[
+                        ...new Set(
+                          quizScoresSummary.topPerformersByProgram.map(
+                            (item) => item.program
+                          )
+                        ),
+                      ]
+                        .sort()
+                        .map((program, index) => (
+                          <option key={index} value={program}>
+                            {program}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="levelFilter"
+                      style={{ marginRight: "10px", fontWeight: "bold" }}
+                    >
+                      Level of Study:
+                    </label>
+                    <select
+                      id="levelFilter"
+                      value={selectedLevel}
+                      onChange={(e) => setSelectedLevel(e.target.value)}
+                      style={{
+                        padding: "5px",
+                        borderRadius: "4px",
+                        border: "1px solid #ccc",
+                      }}
+                    >
+                      <option value="">All Levels</option>
+                      {[
+                        ...new Set(
+                          quizScoresSummary.topPerformersByProgram.flatMap(
+                            (item) => item.levels.map((level) => level.level)
+                          )
+                        ),
+                      ]
+                        .sort()
+                        .map((level, index) => (
+                          <option key={index} value={level}>
+                            {level}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+                {/* <p>
+                  <strong>Overall Average Score (Filtered):</strong>{" "}
+                  {(() => {
+                    const filteredScores =
+                      quizScoresSummary.topPerformersByProgram
+                        .filter(
+                          (item) =>
+                            !selectedProgram || item.program === selectedProgram
+                        )
+                        .flatMap((item) => item.levels)
+                        .filter(
+                          (level) =>
+                            !selectedLevel || level.level === selectedLevel
+                        )
+                        .flatMap((level) => level.subjects)
+                        .flatMap((subject) => subject.topPerformers);
+
+                    const totalScore = filteredScores.reduce(
+                      (sum, performer) => sum + performer.score,
+                      0
+                    );
+                    const totalQuizzes = filteredScores.length;
+                    return totalQuizzes > 0
+                      ? (totalScore / totalQuizzes).toFixed(1)
+                      : "0.0";
+                  })()}
+                </p> */}
+
+                <div style={modalStyles.content1}>
+                  <h3 style={modalStyles.head}>
+                    Top Performers by Program and Level of Study
+                  </h3>
+                  {(() => {
+                    const filteredPrograms =
+                      quizScoresSummary.topPerformersByProgram.filter(
+                        (item) =>
+                          !selectedProgram || item.program === selectedProgram
+                      );
+
+                    const hasData = filteredPrograms.some((program) =>
+                      program.levels.some((level) =>
+                        level.subjects.some(
+                          (subject) => subject.topPerformers.length > 0
+                        )
+                      )
+                    );
+
+                    if (!hasData) {
+                      return (
+                        <p
+                          style={{
+                            color: "#ff0000",
+                            fontStyle: "italic",
+                            textAlign: "center",
+                          }}
+                        >
+                          No data available for the selected filters.
+                        </p>
+                      );
+                    }
+
+                    return filteredPrograms.map(
+                      ({ program, levels }, programIndex) => (
+                        <div
+                          key={programIndex}
+                          style={{ marginBottom: "30px" }}
+                        >
+                          <h4
+                            style={{ fontSize: "1.5em", marginBottom: "10px" }}
+                          >
+                            {program}
+                          </h4>
+                          {levels
+                            .filter(
+                              (level) =>
+                                !selectedLevel || level.level === selectedLevel
+                            )
+                            .map(({ level, subjects }, levelIndex) => (
+                              <div
+                                key={levelIndex}
+                                style={{
+                                  marginBottom: "20px",
+                                  marginLeft: "20px",
+                                }}
+                              >
+                                <h5
+                                  style={{
+                                    fontSize: "1.3em",
+                                    marginBottom: "10px",
+                                  }}
+                                >
+                                  {level}
+                                </h5>
+                                {subjects.map(
+                                  (
+                                    { subject, topPerformers },
+                                    subjectIndex
+                                  ) => (
+                                    <div
+                                      key={subjectIndex}
+                                      style={{
+                                        marginBottom: "15px",
+                                        marginLeft: "20px",
+                                      }}
+                                    >
+                                      <h6
+                                        style={{
+                                          fontSize: "1.1em",
+                                          marginBottom: "5px",
+                                        }}
+                                      >
+                                        {subject}
+                                      </h6>
+                                      <table style={tableStyles.table}>
+                                        <thead>
+                                          <tr>
+                                            <th style={tableStyles.th}>
+                                              Username
+                                            </th>
+                                            <th style={tableStyles.th}>
+                                              Score
+                                            </th>
+                                            <th style={tableStyles.th}>
+                                              Total Questions
+                                            </th>
+                                            <th style={tableStyles.th}>
+                                              Score (%)
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {topPerformers.length > 0 ? (
+                                            topPerformers.map(
+                                              (performer, i) => (
+                                                <tr
+                                                  key={i}
+                                                  style={tableStyles.tr}
+                                                >
+                                                  <td style={tableStyles.td}>
+                                                    {performer.username}
+                                                  </td>
+                                                  <td style={tableStyles.td}>
+                                                    {performer.score}
+                                                  </td>
+                                                  <td style={tableStyles.td}>
+                                                    {performer.totalQuestions}
+                                                  </td>
+                                                  <td style={tableStyles.td}>
+                                                    {performer.percentage}
+                                                  </td>
+                                                </tr>
+                                              )
+                                            )
+                                          ) : (
+                                            <tr>
+                                              <td
+                                                colSpan="4"
+                                                style={tableStyles.noDataTd}
+                                              >
+                                                No top performers for this
+                                                subject.
+                                              </td>
+                                            </tr>
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            ))}
+                        </div>
+                      )
+                    );
+                  })()}
+                </div>
               </div>
             )}
             <button
@@ -776,6 +890,7 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
+
       {showUsersModal && (
         <div style={modalStyles1.overlay}>
           <div style={modalStyles1.modal}>
@@ -829,11 +944,51 @@ const AdminDashboard = () => {
                 <table style={tableStyles.table}>
                   <thead>
                     <tr>
-                      <th style={tableStyles.th}>Username</th>
-                      <th style={tableStyles.th}>Level of Study</th>
-                      <th style={tableStyles.th}>Program of Study</th>
-                      <th style={tableStyles.th}>Status</th>
-                      <th style={tableStyles.th}>Role</th>
+                      <th
+                        style={{
+                          ...tableStyles.th,
+                          position: "sticky",
+                          top: "0",
+                        }}
+                      >
+                        Username
+                      </th>
+                      <th
+                        style={{
+                          ...tableStyles.th,
+                          position: "sticky",
+                          top: "0",
+                        }}
+                      >
+                        Level of Study
+                      </th>
+                      <th
+                        style={{
+                          ...tableStyles.th,
+                          position: "sticky",
+                          top: "0",
+                        }}
+                      >
+                        Program of Study
+                      </th>
+                      <th
+                        style={{
+                          ...tableStyles.th,
+                          position: "sticky",
+                          top: "0",
+                        }}
+                      >
+                        Status
+                      </th>
+                      <th
+                        style={{
+                          ...tableStyles.th,
+                          position: "sticky",
+                          top: "0",
+                        }}
+                      >
+                        Role
+                      </th>
                       {/* <th style={tableStyles.th}>Actions</th> */}
                     </tr>
                   </thead>
@@ -1105,22 +1260,29 @@ const modalStyles = {
     borderRadius: "10px",
     width: "80%",
     maxHeight: "80vh",
-    overflowY: "auto",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
   title: {
-    fontSize: "24px",
+    fontSize: "30px",
     fontWeight: "600",
     marginBottom: "15px",
     color: "#333",
     textAlign: "center",
     textTransform: "uppercase",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.6)",
+    width: "80%",
+    borderRadius: "10px",
+    padding: "10px",
+    margin: "30px auto",
   },
   head: {
     textAlign: "center",
+    fontSize: "25px",
   },
-  content: {
-    marginBottom: "20px",
+  content1: {
+    marginBottom: "10px",
+    overflowY: "auto",
+    maxHeight: "480px",
   },
   closeButton: {
     padding: "10px 20px",
@@ -1195,7 +1357,6 @@ const modalStyles1 = {
     borderRadius: "10px",
     width: "90%",
     maxHeight: "80vh",
-    overflowY: "auto",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
   title: {
@@ -1207,7 +1368,9 @@ const modalStyles1 = {
     textTransform: "uppercase",
   },
   content: {
-    marginBottom: "20px",
+    marginBottom: "5px",
+    overflowY: "auto",
+    maxHeight: "550px",
   },
   closeButton: {
     padding: "10px 20px",
