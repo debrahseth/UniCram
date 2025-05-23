@@ -137,15 +137,10 @@ const Profile = () => {
   }, [currentUser]);
 
   const handleForcedLogout = async () => {
-    try {
-      setLogoutLoading(true);
-      await signOut(auth);
-      navigate("/login");
-    } catch (error) {
-      console.error("Error during forced logout:", error);
-    } finally {
-      setLogoutLoading(false);
-    }
+    setLogoutLoading(true);
+    await signOut(auth);
+    navigate("/login");
+    setLogoutLoading(false);
   };
 
   useEffect(() => {

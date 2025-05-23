@@ -22,6 +22,8 @@ import DailyChallenge from "./components/DailyChallenge";
 import WeeklyLeaderBoard from "./components/WeeklyLeaderBoard";
 import LiveQuiz from "./components/LiveQuiz";
 import AdminDashboard from "./components/AdminDashboard";
+import TopPerformers from "./components/TopPerformers";
+import Messages from "./components/Messages";
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
         <Route path="/weekly-leaderboard" element={<WeeklyLeaderBoard />} />
         <Route path="/live-quiz" element={<LiveQuiz />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/top-performers" element={<TopPerformers />} />
+        <Route path="/messages" element={<Messages />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

@@ -10,12 +10,7 @@ import {
   updateDoc,
   // deleteDoc,
 } from "firebase/firestore";
-import {
-  getAuth,
-  signOut,
-  onAuthStateChanged,
-  useAuthState,
-} from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import emailjs from "@emailjs/browser";
 import { Bar } from "react-chartjs-2";
 
@@ -480,6 +475,15 @@ const AdminDashboard = () => {
     return user.status === displayMode;
   });
 
+  if (logoutLoading) {
+    return (
+      <div className="spinner-container">
+        <p>Logging out...</p>
+        <l-spiral size="40" speed="0.9" color="blue"></l-spiral>
+      </div>
+    );
+  }
+
   return (
     <div style={styles.container}>
       <div style={styles.header}>
@@ -589,31 +593,53 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div style={styles.messageSection}>
-          <h2 style={styles.title}>Send Message to All Users</h2>
-          <textarea
-            placeholder="Type your message here..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            style={styles.textarea}
-            rows="5"
-          />
-          {error && <p style={styles.error}>{error}</p>}
-          {success && <p style={styles.success}>{success}</p>}
-          {loading ? (
-            <div style={styles.loading}>
-              <i className="fa fa-spinner fa-spin" style={styles.spinner}></i>
-              Sending message...
-            </div>
-          ) : (
+        <div style={styles.leftSection}>
+          <div style={styles.messageSection}>
+            <h2 style={styles.title}>Send Message to All Users</h2>
+            <textarea
+              placeholder="Type your message here..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              style={styles.textarea}
+              rows="5"
+            />
+            {error && <p style={styles.error}>{error}</p>}
+            {success && <p style={styles.success}>{success}</p>}
+            {loading ? (
+              <div style={styles.loading}>
+                <i className="fa fa-spinner fa-spin" style={styles.spinner}></i>
+                Sending message...
+              </div>
+            ) : (
+              <button
+                onClick={handleSendMessage}
+                style={styles.button}
+                disabled={loading}
+              >
+                SEND MESSAGE
+              </button>
+            )}
+          </div>
+          <div style={styles.buttonRow}>
             <button
-              onClick={handleSendMessage}
-              style={styles.button}
-              disabled={loading}
+              onClick={() => navigate("/weekly-leaderboard")}
+              style={styles.logoutButton}
             >
-              SEND MESSAGE
+              🥇🥈🥉
             </button>
-          )}
+            <button
+              onClick={() => navigate("/top-performers")}
+              style={styles.logoutButton}
+            >
+              👑
+            </button>
+            {/* <button
+              onClick={() => navigate("/weekly-leaderboard")}
+              style={styles.logoutButton}
+            >
+              🥇🥈🥉
+            </button> */}
+          </div>
         </div>
       </div>
 
@@ -1106,6 +1132,14 @@ const styles = {
     fontWeight: "700",
     color: "black",
     textTransform: "uppercase",
+  },
+  buttonRow: {
+    display: "flex",
+    gap: "10px",
+    justifyContent: "space-between",
+    boxShadow: "0 4px 4px rgba(0,0,0,0.5)",
+    padding: "10px",
+    borderRadius: "20px",
   },
   logoutButton: {
     padding: "20px",

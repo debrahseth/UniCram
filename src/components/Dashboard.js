@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
-import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
   doc,
   getDoc,
@@ -9,6 +9,7 @@ import {
   collection,
   where,
   onSnapshot,
+  setDoc,
   Timestamp,
   getDocs,
 } from "firebase/firestore";
@@ -19,17 +20,15 @@ import { dotStream, spiral } from "ldrs";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [username, setUsername] = useState("");
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [currentUserId, setCurrentUserId] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
-  const [hasTakenDailyQuiz, setHasTakenDailyQuiz] = useState(false);
   const [showRulesModal, setShowRulesModal] = useState(false);
-  const authInstance = getAuth();
-  const [currentUser, setCurrentUser] = useState(null);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [hasTakenDailyQuiz, setHasTakenDailyQuiz] = useState(false);
   const quotes = [
     {
       text: "The future belongs to those who believe in the beauty of their dreams.",
@@ -118,57 +117,123 @@ const Dashboard = () => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(authInstance, (user) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
       if (!user) {
         navigate("/login");
+        return;
       }
-    });
-    return () => unsubscribe();
-  }, [authInstance, navigate]);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        try {
-          const userDocRef = doc(db, "users", currentUser.uid);
-          const userDoc = await getDoc(userDocRef);
-          if (userDoc.exists()) {
-            const userData = userDoc.data();
-            setUsername(userData.username);
-            setUserDetails({
-              levelOfStudy: userData.levelOfStudy,
-              programOfStudy: userData.programOfStudy,
-              semesterOfStudy: userData.semesterOfStudy,
-            });
-
-            // const today = new Date();
-            // today.setHours(0, 0, 0, 0);
-            // const quizQuery = query(
-            //   collection(db, "dailyQuizzes"),
-            //   where("userId", "==", currentUser.uid),
-            //   where("timestamp", ">=", Timestamp.fromDate(today))
-            // );
-            // const quizSnapshot = await getDocs(quizQuery);
-            // const hasTakenToday = !quizSnapshot.empty;
-            // setHasTakenDailyQuiz(hasTakenToday);
-            // setHasTakenDailyQuiz(!quizSnapshot.empty);
-            // setShowModal(!hasTakenToday);
-          } else {
-            setUsername(currentUser.displayName || "User");
-            setShowModal(true);
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setUsername(userData.username);
+          setUserDetails({
+            levelOfStudy: userData.levelOfStudy,
+            programOfStudy: userData.programOfStudy,
+            semesterOfStudy: userData.semesterOfStudy,
+          });
+          // const today = new Date();
+          // today.setHours(0, 0, 0, 0);
+          // const quizQuery = query(
+          //   collection(db, "dailyQuizzes"),
+          //   where("userId", "==", currentUser.uid),
+          //   where("timestamp", ">=", Timestamp.fromDate(today))
+          // );
+          // const quizSnapshot = await getDocs(quizQuery);
+          // const hasTakenToday = !quizSnapshot.empty;
+          // setHasTakenDailyQuiz(hasTakenToday);
+          // setHasTakenDailyQuiz(!quizSnapshot.empty);
+          // setShowModal(!hasTakenToday);
+        } else {
+          await setDoc(userDocRef, {
+            username: user.displayName || "User",
+            role: "user",
+            status: "online",
+          });
+          setUsername(user.displayName || "User");
           setShowModal(true);
         }
+        if (Notification.permission !== "granted") {
+          Notification.requestPermission();
+        }
+        const messagesQuery = query(
+          collection(db, "messages"),
+          where("userId", "==", user.uid)
+        );
+
+        const unsubscribeMessages = onSnapshot(
+          messagesQuery,
+          (querySnapshot) => {
+            const userMessages = querySnapshot.docs.map((doc) => doc.data());
+            const unread = userMessages.filter(
+              (message) => !message.read
+            ).length;
+            setUnreadCount(unread);
+            querySnapshot.docChanges().forEach((change) => {
+              if (change.type === "added") {
+                const message = change.doc.data();
+                if (!message.read && Notification.permission === "granted") {
+                  new Notification("New Message Received!", {
+                    body: message.message,
+                    icon: "../assets/op.jpg",
+                  });
+                }
+              }
+            });
+          },
+          (error) => {
+            console.error("Error fetching messages:", error);
+          }
+        );
+        const challengesQuery = query(
+          collection(db, "challenges"),
+          where("receiverId", "==", user.uid),
+          where("status", "==", "pending")
+        );
+        const unsubscribeChallenges = onSnapshot(
+          challengesQuery,
+          (snapshot) => {
+            if (!snapshot.empty) {
+              alert("You have received a new challenge!");
+            }
+          },
+          (error) => {
+            console.error("Error fetching challenges:", error);
+          }
+        );
+        const unsubscribeStatus = onSnapshot(
+          userDocRef,
+          (docSnapshot) => {
+            if (docSnapshot.exists()) {
+              const userData = docSnapshot.data();
+              if (userData.status === "offline") {
+                handleForcedLogout();
+              }
+            }
+          },
+          (error) => {
+            console.error("Error checking user status:", error);
+          }
+        );
+
         setLoading(false);
-      } else {
-        navigate("/login");
+
+        return () => {
+          unsubscribeMessages();
+          unsubscribeChallenges();
+          unsubscribeStatus();
+        };
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setShowModal(true);
+        setLoading(false);
       }
     });
-    return () => unsubscribe();
+
+    return () => unsubscribeAuth();
   }, [navigate]);
 
   useEffect(() => {
@@ -179,55 +244,11 @@ const Dashboard = () => {
   }, [quotes.length]);
 
   useEffect(() => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      setCurrentUserId(currentUser.uid);
-    }
-    if (currentUserId) {
-      const challengesQuery = query(
-        collection(db, "challenges"),
-        where("receiverId", "==", currentUserId),
-        where("status", "==", "pending")
-      );
-      const unsubscribe = onSnapshot(challengesQuery, (snapshot) => {
-        if (!snapshot.empty) {
-          alert("You have received a new challenge!");
-        }
-      });
-      return () => unsubscribe();
-    }
-  }, [currentUserId]);
-
-  useEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = globalStyles;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
   }, []);
-  useEffect(() => {
-    let unsubscribeStatus;
-    if (currentUser) {
-      const userDocRef = doc(db, "users", currentUser.uid);
-      unsubscribeStatus = onSnapshot(
-        userDocRef,
-        (docSnapshot) => {
-          if (docSnapshot.exists()) {
-            const userData = docSnapshot.data();
-            if (userData.status === "offline") {
-              handleForcedLogout();
-            }
-          }
-        },
-        (error) => {
-          console.error("Error checking user status:", error);
-        }
-      );
-    }
-
-    return () => {
-      if (unsubscribeStatus) unsubscribeStatus();
-    };
-  }, [currentUser]);
 
   const handleForcedLogout = async () => {
     try {
@@ -289,6 +310,10 @@ const Dashboard = () => {
     );
   }
 
+  if (!currentUser) {
+    return null;
+  }
+
   return (
     <div style={styles.container}>
       <div style={styles.background}></div>
@@ -318,6 +343,17 @@ const Dashboard = () => {
             Practice Quiz
           </button>
           {/* <button onClick={() => navigate('/live-quiz')} style={styles.startQuizButton}>Live Quizzes</button> */}
+          <>
+            <button
+              onClick={() => navigate("/messages")}
+              style={{ ...styles.startQuizButton, position: "relative" }}
+            >
+              Notifications
+              {unreadCount > 0 && (
+                <span style={styles.badge}>{unreadCount}</span>
+              )}
+            </button>
+          </>
           <button
             onClick={() => navigate("/weekly-leaderboard")}
             style={styles.startQuizButton}
@@ -648,6 +684,20 @@ const styles = {
     fontSize: "20px",
     color: "#333",
     animation: "scrollText 60s linear infinite",
+  },
+  badge: {
+    position: "absolute",
+    top: "20px",
+    right: "15px",
+    backgroundColor: "red",
+    color: "white",
+    borderRadius: "30px",
+    padding: "4px 8px",
+    fontSize: "16px",
+    fontWeight: "800",
+    minWidth: "24px",
+    textAlign: "center",
+    lineHeight: "1",
   },
 };
 
