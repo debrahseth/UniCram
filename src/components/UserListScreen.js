@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { db, auth } from "../firebase";
+import { collection, onSnapshot, onAuthStateChanged } from "firebase/firestore";
 import "../styles.css";
 import { FaChevronLeft } from "react-icons/fa";
 import logo from "../assets/op.jpg";
@@ -11,9 +11,20 @@ const UserListScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          setIsAdmin(userDoc.data().role === "admin");
+        }
+      }
+    });
+
     const usersRef = collection(db, "users");
     const unsubscribe = onSnapshot(
       usersRef,
@@ -23,7 +34,7 @@ const UserListScreen = () => {
             id: doc.id,
             ...doc.data(),
           }))
-          .filter((user) => user.role !== "admin");
+          .filter((user) => user.role !== "admin" || !isAdmin);
         usersList.sort((a, b) =>
           a.username?.toLowerCase().localeCompare(b.username?.toLowerCase())
         );
@@ -35,8 +46,12 @@ const UserListScreen = () => {
         setIsLoading(false);
       }
     );
-    return () => unsubscribe();
-  }, []);
+
+    return () => {
+      unsubscribeAuth();
+      unsubscribe();
+    };
+  }, [navigate]);
 
   const filteredUsers = users.filter((user) => {
     const term = searchTerm.toLowerCase();
@@ -88,6 +103,7 @@ const UserListScreen = () => {
                 <th style={styles.tableHeader}>Program</th>
                 <th style={styles.tableHeader}>Level</th>
                 <th style={styles.tableHeader}>Contact</th>
+                {isAdmin && <th style={styles.tableHeader}>Streak</th>}
               </tr>
             </thead>
             <tbody>
@@ -104,6 +120,11 @@ const UserListScreen = () => {
                     {user.levelOfStudy || "No Level"}
                   </td>
                   <td style={styles.tableCell1}>{user.userNumber || "-"}</td>
+                  {isAdmin && (
+                    <td style={styles.tableCell1}>
+                      {user.streak !== undefined ? user.streak : "N/A"}
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -221,6 +242,9 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  icon: {
+    marginRight: "8px",
   },
 };
 
