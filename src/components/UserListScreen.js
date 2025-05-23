@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, auth } from "../firebase";
-import { collection, onSnapshot, onAuthStateChanged } from "firebase/firestore";
+import { collection, onSnapshot, getDoc, doc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import "../styles.css";
 import { FaChevronLeft } from "react-icons/fa";
 import logo from "../assets/op.jpg";
@@ -34,7 +35,7 @@ const UserListScreen = () => {
             id: doc.id,
             ...doc.data(),
           }))
-          .filter((user) => user.role !== "admin" || !isAdmin);
+          .filter((user) => user.role !== "admin");
         usersList.sort((a, b) =>
           a.username?.toLowerCase().localeCompare(b.username?.toLowerCase())
         );
@@ -122,7 +123,7 @@ const UserListScreen = () => {
                   <td style={styles.tableCell1}>{user.userNumber || "-"}</td>
                   {isAdmin && (
                     <td style={styles.tableCell1}>
-                      {user.streak !== undefined ? user.streak : "N/A"}
+                      {user.streak !== undefined ? user.streak : "0"} 🔥
                     </td>
                   )}
                 </tr>

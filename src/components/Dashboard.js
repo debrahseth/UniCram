@@ -117,6 +117,10 @@ const Dashboard = () => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
 
   useEffect(() => {
+    let unsubscribeMessages = () => {};
+    let unsubscribeChallenges = () => {};
+    let unsubscribeStatus = () => {};
+
     const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
       if (!user) {
@@ -156,76 +160,48 @@ const Dashboard = () => {
           setUsername(user.displayName || "User");
           setShowModal(true);
         }
-        if (Notification.permission !== "granted") {
-          Notification.requestPermission();
-        }
         const messagesQuery = query(
           collection(db, "messages"),
           where("userId", "==", user.uid)
         );
-
-        const unsubscribeMessages = onSnapshot(
-          messagesQuery,
-          (querySnapshot) => {
-            const userMessages = querySnapshot.docs.map((doc) => doc.data());
-            const unread = userMessages.filter(
-              (message) => !message.read
-            ).length;
-            setUnreadCount(unread);
-            querySnapshot.docChanges().forEach((change) => {
-              if (change.type === "added") {
-                const message = change.doc.data();
-                if (!message.read && Notification.permission === "granted") {
-                  new Notification("New Message Received!", {
-                    body: message.message,
-                    icon: "../assets/op.jpg",
-                  });
-                }
+        unsubscribeMessages = onSnapshot(messagesQuery, (querySnapshot) => {
+          const userMessages = querySnapshot.docs.map((doc) => doc.data());
+          const unread = userMessages.filter((message) => !message.read).length;
+          setUnreadCount(unread);
+          querySnapshot.docChanges().forEach((change) => {
+            if (change.type === "added") {
+              const message = change.doc.data();
+              if (!message.read && Notification.permission === "granted") {
+                new Notification("New Message Received!", {
+                  body: message.message,
+                  icon: logo,
+                });
               }
-            });
-          },
-          (error) => {
-            console.error("Error fetching messages:", error);
-          }
-        );
+            }
+          });
+        });
+
         const challengesQuery = query(
           collection(db, "challenges"),
           where("receiverId", "==", user.uid),
           where("status", "==", "pending")
         );
-        const unsubscribeChallenges = onSnapshot(
-          challengesQuery,
-          (snapshot) => {
-            if (!snapshot.empty) {
-              alert("You have received a new challenge!");
-            }
-          },
-          (error) => {
-            console.error("Error fetching challenges:", error);
+        unsubscribeChallenges = onSnapshot(challengesQuery, (snapshot) => {
+          if (!snapshot.empty) {
+            alert("You have received a new challenge!");
           }
-        );
-        const unsubscribeStatus = onSnapshot(
-          userDocRef,
-          (docSnapshot) => {
-            if (docSnapshot.exists()) {
-              const userData = docSnapshot.data();
-              if (userData.status === "offline") {
-                handleForcedLogout();
-              }
+        });
+
+        unsubscribeStatus = onSnapshot(userDocRef, (docSnapshot) => {
+          if (docSnapshot.exists()) {
+            const userData = docSnapshot.data();
+            if (userData.status === "offline") {
+              handleForcedLogout();
             }
-          },
-          (error) => {
-            console.error("Error checking user status:", error);
           }
-        );
+        });
 
         setLoading(false);
-
-        return () => {
-          unsubscribeMessages();
-          unsubscribeChallenges();
-          unsubscribeStatus();
-        };
       } catch (error) {
         console.error("Error fetching user data:", error);
         setShowModal(true);
@@ -233,7 +209,12 @@ const Dashboard = () => {
       }
     });
 
-    return () => unsubscribeAuth();
+    return () => {
+      unsubscribeAuth();
+      unsubscribeMessages();
+      unsubscribeChallenges();
+      unsubscribeStatus();
+    };
   }, [navigate]);
 
   useEffect(() => {

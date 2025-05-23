@@ -8,7 +8,7 @@ import {
   getDoc,
   onSnapshot,
   updateDoc,
-  // deleteDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import emailjs from "@emailjs/browser";
@@ -470,6 +470,31 @@ const AdminDashboard = () => {
   //   }
   // };
 
+  const handleDeleteAllMessages = async () => {
+    if (
+      !window.confirm(
+        "Are you sure you want to delete all messages in the system? This action cannot be undone."
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const messagesCollection = collection(db, "messages");
+      const querySnapshot = await getDocs(messagesCollection);
+
+      const deletePromises = querySnapshot.docs.map((doc) =>
+        deleteDoc(doc.ref)
+      );
+      await Promise.all(deletePromises);
+
+      alert("All messages deleted successfully.");
+    } catch (error) {
+      console.error("Error deleting messages:", error);
+      alert("Failed to delete messages. Please try again.");
+    }
+  };
+
   const filteredUsers = users.filter((user) => {
     if (displayMode === "all") return true;
     return user.status === displayMode;
@@ -622,23 +647,23 @@ const AdminDashboard = () => {
           </div>
           <div style={styles.buttonRow}>
             <button
+              onClick={() => navigate("/top-performers")}
+              style={{ ...styles.logoutButton, width: "30%" }}
+            >
+              👑
+            </button>
+            <button
               onClick={() => navigate("/weekly-leaderboard")}
-              style={styles.logoutButton}
+              style={{ ...styles.logoutButton, width: "30%" }}
             >
               🥇🥈🥉
             </button>
             <button
-              onClick={() => navigate("/top-performers")}
-              style={styles.logoutButton}
+              onClick={handleDeleteAllMessages}
+              style={{ ...styles.logoutButton, width: "30%" }}
             >
-              👑
+              🗑️
             </button>
-            {/* <button
-              onClick={() => navigate("/weekly-leaderboard")}
-              style={styles.logoutButton}
-            >
-              🥇🥈🥉
-            </button> */}
           </div>
         </div>
       </div>

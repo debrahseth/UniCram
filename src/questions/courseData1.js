@@ -9776,7 +9776,7 @@ export const courseData1 = {
   "Calculus With Analysis": {
     programOfStudy: "All Programs",
     levelOfStudy: "Level 100",
-    semesterOfStudy: "Semester 1",
+    semesterOfStudy: "Semester 2",
   },
   Easy: [
     {

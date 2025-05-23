@@ -41,6 +41,7 @@ const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [userDocUnsubscribe, setUserDocUnsubscribe] = useState(null);
   const navigate = useNavigate();
   const authInstance = getAuth();
   const [currentUser, setCurrentUser] = useState(null);
@@ -112,35 +113,37 @@ const Profile = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    let unsubscribeStatus;
-    if (currentUser) {
-      const userDocRef = doc(db, "users", currentUser.uid);
-      unsubscribeStatus = onSnapshot(
-        userDocRef,
-        (docSnapshot) => {
-          if (docSnapshot.exists()) {
-            const userData = docSnapshot.data();
-            if (userData.status === "offline") {
-              handleForcedLogout();
-            }
-          }
-        },
-        (error) => {
-          console.error("Error checking user status:", error);
+    if (!currentUser) return;
+
+    const userDocRef = doc(db, "users", currentUser.uid);
+    const unsubscribe = onSnapshot(userDocRef, (docSnapshot) => {
+      if (!docSnapshot.exists()) return;
+      const userData = docSnapshot.data();
+      if (userData.status === "offline") {
+        if (!logoutLoading) {
+          handleForcedLogout();
         }
-      );
-    }
+      }
+    });
+
+    setUserDocUnsubscribe(() => unsubscribe);
 
     return () => {
-      if (unsubscribeStatus) unsubscribeStatus();
+      unsubscribe();
     };
-  }, [currentUser]);
+  }, [currentUser, logoutLoading]);
 
   const handleForcedLogout = async () => {
+    if (logoutLoading) return;
     setLogoutLoading(true);
-    await signOut(auth);
-    navigate("/login");
-    setLogoutLoading(false);
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (err) {
+      console.error("Error during forced logout:", err);
+    } finally {
+      setLogoutLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -157,6 +160,8 @@ const Profile = () => {
 
   const handleLogout = async () => {
     setLogoutLoading(true);
+    if (userDocUnsubscribe) userDocUnsubscribe();
+
     if (currentUser) {
       const userDocRef = doc(db, "users", currentUser.uid);
       await updateDoc(userDocRef, {
@@ -188,6 +193,8 @@ const Profile = () => {
 
   const handleDeleteAccount = async () => {
     setDeleteLoading(true);
+    if (userDocUnsubscribe) userDocUnsubscribe();
+
     const auth = getAuth();
     const db = getFirestore();
     const user = auth.currentUser;
@@ -287,21 +294,6 @@ const Profile = () => {
     setSemesterLoading(false);
   };
 
-  // const handleUpdateCollegeOfStudy = async () => {
-  //   setCollegeLoading(true);
-  //     if (currentUser) {
-  //       const userDocRef = doc(db, 'users', currentUser.uid);
-  //       await updateDoc(userDocRef, {
-  //         collegeOfStudy:collegeOfStudy,
-  //       });
-  //       setUserDetails((prevDetails) => ({
-  //         ...prevDetails,
-  //         collegeOfStudy: collegeOfStudy,
-  //       }));
-  //       alert('College of Study updated');
-  //     }
-  // };
-
   const handleRecord = async () => {
     setRecordLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -391,32 +383,6 @@ const Profile = () => {
               style={styles.contactInput}
             />
           </div>
-          {/* <div style={styles.inputGroup}>
-              <label style={styles.label}><i className="fa fa-building" style={styles.icon}></i>College of Study:</label>
-              <input
-              value='College of Engineering'
-              readOnly
-              onChange={(e) => setCollegeOfStudy(e.target.value)}
-              style={styles.programInput}
-              />
-                <option value="">Select College</option>
-                <option value="College of Engineering">College of Engineering</option>
-                <option value="College of Science">College of Science</option>
-                <option value="College of Health Sciences">College of Health</option>
-                <option value="College of Humanities and Social Sciences">College of Social Sciences</option>
-                <option value="College of Art and Built Environment">College of Art and Built Environment</option>
-                <option value="College of Agriculture and Natural Resources">College of Agriculture and Natural Resources</option>
-              </select>
-            </div> */}
-          {/* <button onClick={handleUpdateCollegeOfStudy} style={styles.updateButton1} disabled={collegeLoading}>
-                {collegeLoading ? (
-                  <div className="spinner-button"> 
-                    Updating <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
-                  </div>
-                ) : (
-                  'Update College of Study'
-                )}
-              </button> */}
           <button
             onClick={handleUpdateContact}
             style={styles.updateButton2}

@@ -83,7 +83,17 @@ const Messages = () => {
               <div key={message.id} style={styles.messageCard}>
                 <p style={styles.messageText}>{message.message}</p>
                 <p style={styles.messageTimestamp}>
-                  {message.timestamp.toDate().toLocaleString()}
+                  <span>Date:</span>
+                  <span>
+                    {" "}
+                    {message.timestamp.toDate().toLocaleDateString()}
+                  </span>
+                  <br />
+                  <span>Time:</span>
+                  <span>
+                    {" "}
+                    {message.timestamp.toDate().toLocaleTimeString()}
+                  </span>
                 </p>
                 <p style={styles.messageStatus}>
                   Status: {message.read ? "Read" : "Unread"}
