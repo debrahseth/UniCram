@@ -12,6 +12,7 @@ import {
   getFirestore,
   getDocs,
   collection,
+  Timestamp,
 } from "firebase/firestore";
 import { getAuth, deleteUser } from "firebase/auth";
 import logo1 from "../assets/op.jpg";
@@ -65,8 +66,6 @@ const Profile = () => {
     "Petroleum Engineering",
     "Telecommunications Engineering",
   ];
-
-  let inactivityTimeout;
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(authInstance, (user) => {
@@ -164,31 +163,54 @@ const Profile = () => {
 
     if (currentUser) {
       const userDocRef = doc(db, "users", currentUser.uid);
-      await updateDoc(userDocRef, {
-        status: "offline",
-      });
+      try {
+        await updateDoc(userDocRef, {
+          status: "offline",
+          lastActivity: Timestamp.fromDate(new Date()),
+        });
+      } catch (error) {
+        console.error("Error updating status on logout:", error);
+      }
     }
-    await auth.signOut();
-    setLogoutLoading(false);
-    navigate("/login");
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    } finally {
+      setLogoutLoading(false);
+    }
   };
 
-  const useInactivityLogout = (timeoutDuration = 300000) => {
+  const useInactivityLogout = (timeoutDuration = 5 * 60 * 1000) => {
     useEffect(() => {
+      if (!currentUser) return;
+
+      let inactivityTimeout;
+
       const resetInactivityTimer = () => {
-        clearTimeout(inactivityTimeout);
-        inactivityTimeout = setTimeout(handleLogout, timeoutDuration);
+        if (inactivityTimeout) clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(() => {
+          handleLogout();
+        }, timeoutDuration);
       };
-      window.addEventListener("mousemove", resetInactivityTimer);
-      window.addEventListener("keydown", resetInactivityTimer);
+
+      const events = ["mousemove", "keydown", "scroll", "touchstart"];
+      events.forEach((event) => {
+        window.addEventListener(event, resetInactivityTimer);
+      });
+
       resetInactivityTimer();
+
       return () => {
-        clearTimeout(inactivityTimeout);
-        window.removeEventListener("mousemove", resetInactivityTimer);
-        window.removeEventListener("keydown", resetInactivityTimer);
+        if (inactivityTimeout) clearTimeout(inactivityTimeout);
+        events.forEach((event) => {
+          window.removeEventListener(event, resetInactivityTimer);
+        });
       };
-    }, [timeoutDuration]);
+    }, [currentUser, timeoutDuration]);
   };
+
   useInactivityLogout();
 
   const handleDeleteAccount = async () => {

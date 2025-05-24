@@ -136,7 +136,7 @@ const TestYourself = () => {
             questionsToDisplay = [...questionsToDisplay, ...difficultyData];
           }
         });
-        questionsToDisplay = questionsToDisplay.sort(() => Math.random() - 0.5);
+        // questionsToDisplay = questionsToDisplay.sort(() => Math.random() - 0.5);
       } else {
         questionsToDisplay = getQuestionsFromSources(
           selectedCourse,
@@ -151,10 +151,10 @@ const TestYourself = () => {
   useEffect(() => {
     if (stage === "quiz") {
       const durations = {
-        Easy: 1500,
-        Medium: 1800,
-        Hard: 2700,
-        Random: 3600,
+        Easy: 2700,
+        Medium: 3600,
+        Hard: 5400,
+        Random: 6300,
       };
       setTimer(durations[selectedDifficulty] || durations.Default);
       setTimerActive(true);
@@ -422,7 +422,7 @@ const TestYourself = () => {
                     (e.currentTarget.style.transform = "scale(1)")
                   }
                 >
-                  25 minutes
+                  45 minutes
                 </button>
                 <button
                   onClick={() => handleDifficultySelect("Medium")}
@@ -434,7 +434,7 @@ const TestYourself = () => {
                     (e.currentTarget.style.transform = "scale(1)")
                   }
                 >
-                  30 minutes
+                  1 hour
                 </button>
                 <button
                   onClick={() => handleDifficultySelect("Hard")}
@@ -446,7 +446,7 @@ const TestYourself = () => {
                     (e.currentTarget.style.transform = "scale(1)")
                   }
                 >
-                  45 minutes
+                  1 hour - 30 minutes
                 </button>
                 <button
                   onClick={() => handleDifficultySelect("Random")}
@@ -458,7 +458,7 @@ const TestYourself = () => {
                     (e.currentTarget.style.transform = "scale(1)")
                   }
                 >
-                  1 hour
+                  1 hour - 45 minutes
                 </button>
               </div>
               <div style={styles.buttonContainment}>

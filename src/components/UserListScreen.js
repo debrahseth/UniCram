@@ -123,7 +123,7 @@ const UserListScreen = () => {
                   <td style={styles.tableCell1}>{user.userNumber || "-"}</td>
                   {isAdmin && (
                     <td style={styles.tableCell1}>
-                      {user.streak !== undefined ? user.streak : "0"} 🔥
+                      {user.streak !== undefined ? user.streak + "🔥" : "-"}
                     </td>
                   )}
                 </tr>

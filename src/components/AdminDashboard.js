@@ -9,10 +9,12 @@ import {
   onSnapshot,
   updateDoc,
   deleteDoc,
+  Timestamp,
 } from "firebase/firestore";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import emailjs from "@emailjs/browser";
 import { Bar } from "react-chartjs-2";
+import { formatDistanceToNow, format } from "date-fns";
 
 const AdminDashboard = () => {
   const [message, setMessage] = useState("");
@@ -48,6 +50,19 @@ const AdminDashboard = () => {
   const [displayMode, setDisplayMode] = useState("all");
   const [currentUser, setCurrentUser] = useState(null);
   const authInstance = getAuth();
+  const [password, setPassword] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteOption, setDeleteOption] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [showSmsModal, setShowSmsModal] = useState(false);
+  const [smsMessage, setSmsMessage] = useState("");
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [smsLoading, setSmsLoading] = useState(false);
+  const [smsSuccess, setSmsSuccess] = useState("");
+  const [smsError, setSmsError] = useState("");
+  const correctPassword = "Admin123";
 
   const programAbbreviations = {
     "Agricultural Engineering": "Agri Eng",
@@ -333,6 +348,8 @@ const AdminDashboard = () => {
                 programOfStudy: doc.data().programOfStudy || "Unknown",
                 status: doc.data().status || "offline",
                 role: doc.data().role || "user",
+                lastActivity: doc.data().lastActivity || null,
+                phoneNumber: doc.data().userNumber || "",
               }))
               .filter((user) => user.id !== auth.currentUser?.uid);
             setUsers(usersList);
@@ -431,6 +448,7 @@ const AdminDashboard = () => {
       const userRef = doc(db, "users", userId);
       await updateDoc(userRef, {
         status: currentStatus === "online" ? "offline" : "online",
+        lastActivity: Timestamp.fromDate(new Date()),
       });
       setUpdateSuccess("User status updated successfully!");
     } catch (error) {
@@ -470,28 +488,117 @@ const AdminDashboard = () => {
   //   }
   // };
 
-  const handleDeleteAllMessages = async () => {
-    if (
-      !window.confirm(
-        "Are you sure you want to delete all messages in the system? This action cannot be undone."
-      )
-    ) {
+  const deleteQuizScores = async (challengeDocId) => {
+    const quizScoresRef = collection(
+      db,
+      "challenges",
+      challengeDocId,
+      "scores"
+    );
+    const quizScoresSnapshot = await getDocs(quizScoresRef);
+    quizScoresSnapshot.forEach(async (doc) => {
+      await deleteDoc(doc.ref);
+    });
+  };
+
+  const deleteChallenges = async () => {
+    const challengesRef = collection(db, "challenges");
+    const challengesSnapshot = await getDocs(challengesRef);
+    challengesSnapshot.forEach(async (doc) => {
+      await deleteQuizScores(doc.id);
+      await deleteDoc(doc.ref);
+    });
+  };
+
+  const handleDeleteAction = async () => {
+    if (password !== correctPassword) {
+      setPasswordError("Incorrect password. Please try again.");
       return;
     }
+    setDeleteLoading(true);
+    try {
+      if (deleteOption === "messages") {
+        const messagesCollection = collection(db, "messages");
+        const querySnapshot = await getDocs(messagesCollection);
+        const deletePromises = querySnapshot.docs.map((doc) =>
+          deleteDoc(doc.ref)
+        );
+        await Promise.all(deletePromises);
+        alert("All messages deleted successfully.");
+      } else if (deleteOption === "dailyQuizzes") {
+        const dailyQuizzesCollection = collection(db, "dailyQuizzes");
+        const querySnapshot = await getDocs(dailyQuizzesCollection);
+        const deletePromises = querySnapshot.docs.map((doc) =>
+          deleteDoc(doc.ref)
+        );
+        await Promise.all(deletePromises);
+        alert("All Daily Quizzes deleted successfully.");
+      } else if (deleteOption === "challenges") {
+        await deleteChallenges();
+        alert("All challenges and their scores deleted successfully.");
+      }
+
+      setPassword("");
+      setDeleteLoading(false);
+      setShowDeleteModal(false);
+      setDeleteOption("");
+    } catch (error) {
+      console.error(`Error deleting ${deleteOption}:`, error);
+      alert(`Failed to delete ${deleteOption}. Please try again.`);
+    }
+  };
+
+  const formatPhoneNumber = (number) => {
+    if (!number || typeof number !== "string") return null;
+    const digits = number.replace(/\D/g, "");
+    if (digits.startsWith("0") && digits.length === 10) {
+      return `+233${digits.slice(1)}`;
+    }
+    return digits.length >= 10 && digits.startsWith("+") ? digits : null;
+  };
+
+  const handleSendSms = async () => {
+    if (!smsMessage || selectedUsers.length === 0) {
+      setSmsError("Please enter a message and select at least one user.");
+      return;
+    }
+    setSmsLoading(true);
+    setSmsError("");
+    setSmsSuccess("");
 
     try {
-      const messagesCollection = collection(db, "messages");
-      const querySnapshot = await getDocs(messagesCollection);
+      emailjs.init("J1JJdUVnwGNm1_468");
 
-      const deletePromises = querySnapshot.docs.map((doc) =>
-        deleteDoc(doc.ref)
-      );
-      await Promise.all(deletePromises);
+      const phoneNumbers = selectedUsers
+        .map((userId) => {
+          const user = users.find((u) => u.id === userId);
+          return user?.phoneNumber ? formatPhoneNumber(user.phoneNumber) : null;
+        })
+        .filter((num) => num);
 
-      alert("All messages deleted successfully.");
+      if (phoneNumbers.length === 0) {
+        setSmsError("No valid phone numbers found for selected users.");
+        setSmsLoading(false);
+        return;
+      }
+
+      const templateParams = {
+        message: smsMessage,
+        to: phoneNumbers,
+        from_name: "Prime Academy",
+        subject: "SMS from Prime Academy",
+      };
+
+      await emailjs.send("service_ocrml1s", "template_sms", templateParams);
+
+      setSmsSuccess("SMS sent successfully to selected users!");
+      setSmsMessage("");
+      setSelectedUsers([]);
     } catch (error) {
-      console.error("Error deleting messages:", error);
-      alert("Failed to delete messages. Please try again.");
+      console.error("Error sending SMS:", error);
+      setSmsError("An error occurred while sending SMS: " + error.message);
+    } finally {
+      setSmsLoading(false);
     }
   };
 
@@ -620,7 +727,7 @@ const AdminDashboard = () => {
 
         <div style={styles.leftSection}>
           <div style={styles.messageSection}>
-            <h2 style={styles.title}>Send Message to All Users</h2>
+            <h2 style={styles.title}>Send Message to All Users Via Email</h2>
             <textarea
               placeholder="Type your message here..."
               value={message}
@@ -648,25 +755,107 @@ const AdminDashboard = () => {
           <div style={styles.buttonRow}>
             <button
               onClick={() => navigate("/top-performers")}
-              style={{ ...styles.logoutButton, width: "30%" }}
+              style={{ ...styles.logoutButton, width: "20%" }}
             >
               👑
             </button>
             <button
+              onClick={() => setShowSmsModal(true)}
+              style={{ ...styles.logoutButton, width: "20%" }}
+            >
+              ✉️
+            </button>
+            <button
               onClick={() => navigate("/weekly-leaderboard")}
-              style={{ ...styles.logoutButton, width: "30%" }}
+              style={{ ...styles.logoutButton, width: "20%" }}
             >
               🥇🥈🥉
             </button>
             <button
-              onClick={handleDeleteAllMessages}
-              style={{ ...styles.logoutButton, width: "30%" }}
+              onClick={() => setShowDeleteModal(true)}
+              style={{ ...styles.logoutButton, width: "20%" }}
             >
               🗑️
             </button>
           </div>
         </div>
       </div>
+
+      {showDeleteModal && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h2 style={modalStyles.title}>Delete Data</h2>
+            <div style={{ marginBottom: "100px" }}>
+              <label style={{ marginRight: "10px", fontWeight: "bold" }}>
+                Select what to delete:
+              </label>
+              <select
+                value={deleteOption}
+                onChange={(e) => setDeleteOption(e.target.value)}
+                style={{
+                  padding: "5px",
+                  borderRadius: "4px",
+                  border: "1px solid #ccc",
+                  width: "200px",
+                }}
+              >
+                <option value="">-- Select Option --</option>
+                <option value="messages">All Messages</option>
+                <option value="challenges">All Challenges</option>
+                <option value="dailyQuizzes">Leaderboard Data</option>
+              </select>
+            </div>
+            <div style={styles.inputGroup}>
+              <input
+                type={passwordVisible ? "text" : "password"}
+                placeholder="Enter Password to Confirm"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={styles.passwordInput}
+              />
+              <button
+                type="button"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+                style={styles.toggleButton}
+              >
+                <i
+                  className={`fa ${
+                    passwordVisible ? "fa-eye-slash" : "fa-eye"
+                  }`}
+                ></i>
+              </button>
+              {passwordError && <p style={styles.errorText}>{passwordError}</p>}
+            </div>
+            <div style={styles.buttonContainer}>
+              <button
+                onClick={handleDeleteAction}
+                style={styles.confirmButton}
+                disabled={!deleteOption}
+              >
+                {deleteLoading ? (
+                  <>
+                    Deleting{" "}
+                    <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+                  </>
+                ) : (
+                  "Confirm Delete"
+                )}
+              </button>
+              <button
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  setDeleteOption("");
+                  setPassword("");
+                  setPasswordError("");
+                }}
+                style={styles.cancelButton}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showQuizScoresModal && (
         <div style={modalStyles.overlay}>
@@ -880,7 +1069,7 @@ const AdminDashboard = () => {
                                               Total Questions
                                             </th>
                                             <th style={tableStyles.th}>
-                                              Score (%)
+                                              Percentage Pass (%)
                                             </th>
                                           </tr>
                                         </thead>
@@ -1040,6 +1229,24 @@ const AdminDashboard = () => {
                       >
                         Role
                       </th>
+                      <th
+                        style={{
+                          ...tableStyles.th,
+                          position: "sticky",
+                          top: "0",
+                        }}
+                      >
+                        Last Seen
+                      </th>
+                      <th
+                        style={{
+                          ...tableStyles.th,
+                          position: "sticky",
+                          top: "0",
+                        }}
+                      >
+                        Last Seen Date
+                      </th>
                       {/* <th style={tableStyles.th}>Actions</th> */}
                     </tr>
                   </thead>
@@ -1087,6 +1294,24 @@ const AdminDashboard = () => {
                               : "Set Admin"}
                           </button>
                         </td>
+                        <td style={tableStyles.td}>
+                          {user.status === "online"
+                            ? "Online"
+                            : user.lastActivity
+                            ? `Last seen ${formatDistanceToNow(
+                                user.lastActivity.toDate(),
+                                { addSuffix: true }
+                              )}`
+                            : "Never"}
+                        </td>
+                        <td style={tableStyles.td}>
+                          {user.lastActivity
+                            ? format(
+                                user.lastActivity.toDate(),
+                                "MMMM d, yyyy, h:mm a"
+                              )
+                            : "Never"}
+                        </td>
                         {/* <td style={tableStyles.td}>
                           <button
                             onClick={() => handleDeleteUser(user.id)}
@@ -1123,6 +1348,191 @@ const AdminDashboard = () => {
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {showSmsModal && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h2 style={modalStyles.title}>Send SMS to Users</h2>
+            {usersLoading ? (
+              <div style={modalStyles.loading}>
+                <i
+                  className="fa fa-spinner fa-spin"
+                  style={modalStyles.spinner}
+                ></i>
+                Loading users...
+              </div>
+            ) : (
+              <div>
+                <label
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Select Users:
+                </label>
+                <div style={{ display: "flex", gap: "20px" }}>
+                  <div
+                    style={{
+                      flex: 1,
+                      maxHeight: "180px",
+                      overflowY: "auto",
+                      border: "1px solid #ccc",
+                      borderRadius: "8px",
+                      padding: "10px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <table style={{ width: "100%" }}>
+                      <thead>
+                        <tr>
+                          <th style={{ textAlign: "left" }}>User</th>
+                          <th style={{ textAlign: "left" }}>Phone / Contact</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredUsers
+                          .slice(0, Math.ceil(filteredUsers.length / 2))
+                          .map((user) => (
+                            <tr key={user.id}>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  id={user.id}
+                                  checked={selectedUsers.includes(user.id)}
+                                  onChange={(e) => {
+                                    if (e.target.checked) {
+                                      setSelectedUsers([
+                                        ...selectedUsers,
+                                        user.id,
+                                      ]);
+                                    } else {
+                                      setSelectedUsers(
+                                        selectedUsers.filter(
+                                          (id) => id !== user.id
+                                        )
+                                      );
+                                    }
+                                  }}
+                                />
+                                <label
+                                  htmlFor={user.id}
+                                  style={{ marginLeft: "5px" }}
+                                >
+                                  {user.username}
+                                </label>
+                              </td>
+                              <td>
+                                {formatPhoneNumber(user.phoneNumber) || "N/A"}
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div
+                    style={{
+                      flex: 1,
+                      maxHeight: "180px",
+                      overflowY: "auto",
+                      border: "1px solid #ccc",
+                      borderRadius: "8px",
+                      padding: "10px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <table style={{ width: "100%" }}>
+                      <thead>
+                        <tr>
+                          <th style={{ textAlign: "left" }}>User</th>
+                          <th style={{ textAlign: "left" }}>Phone / Contact</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredUsers
+                          .slice(Math.ceil(filteredUsers.length / 2))
+                          .map((user) => (
+                            <tr key={user.id}>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  id={user.id}
+                                  checked={selectedUsers.includes(user.id)}
+                                  onChange={(e) => {
+                                    if (e.target.checked) {
+                                      setSelectedUsers([
+                                        ...selectedUsers,
+                                        user.id,
+                                      ]);
+                                    } else {
+                                      setSelectedUsers(
+                                        selectedUsers.filter(
+                                          (id) => id !== user.id
+                                        )
+                                      );
+                                    }
+                                  }}
+                                />
+                                <label
+                                  htmlFor={user.id}
+                                  style={{ marginLeft: "5px" }}
+                                >
+                                  {user.username}
+                                </label>
+                              </td>
+                              <td>
+                                {formatPhoneNumber(user.phoneNumber) || "N/A"}
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <textarea
+                  placeholder="Type your SMS message here..."
+                  value={smsMessage}
+                  onChange={(e) => setSmsMessage(e.target.value)}
+                  style={{ ...styles.textarea, width: "98.5%" }}
+                  rows="4"
+                />
+                {smsError && <p style={styles.error}>{smsError}</p>}
+                {smsSuccess && <p style={styles.success}>{smsSuccess}</p>}
+                {smsLoading ? (
+                  <div style={styles.loading}>
+                    <i
+                      className="fa fa-spinner fa-spin"
+                      style={styles.spinner}
+                    ></i>
+                    Sending SMS...
+                  </div>
+                ) : (
+                  <div style={styles.buttonContainer}>
+                    <button
+                      onClick={handleSendSms}
+                      style={styles.confirmButton}
+                      disabled={smsLoading}
+                    >
+                      SEND SMS
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowSmsModal(false);
+                        setSmsMessage("");
+                        setSelectedUsers([]);
+                        setSmsError("");
+                        setSmsSuccess("");
+                      }}
+                      style={styles.cancelButton}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -1235,6 +1645,7 @@ const styles = {
     fontWeight: "600",
     color: "#333",
     textTransform: "uppercase",
+    textAlign: "center",
   },
   subTitle: {
     marginTop: "10px",
@@ -1297,6 +1708,71 @@ const styles = {
   spinner: {
     fontSize: "20px",
     marginRight: "8px",
+  },
+  passwordInput: {
+    padding: "10px",
+    fontSize: "20px",
+    width: "90%",
+    marginBottom: "10px",
+    borderRadius: "8px",
+    border: "2px solid #ddd",
+    outline: "none",
+    transition: "border-color 0.3s",
+  },
+  toggleButton: {
+    position: "absolute",
+    right: "50px",
+    top: "42%",
+    transform: "translateY(-50%)",
+    background: "none",
+    border: "2px solid #ddd",
+    borderRadius: "40px",
+    cursor: "pointer",
+    color: "#999",
+    fontSize: "20px",
+    padding: "8px",
+  },
+  confirmButton: {
+    backgroundColor: "green",
+    color: "white",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    marginLeft: "10px",
+    width: "45%",
+    fontSize: "20px",
+    textTransform: "uppercase",
+    fontWeight: "bolder",
+  },
+  cancelButton: {
+    backgroundColor: "red",
+    color: "white",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    marginLeft: "10px",
+    width: "45%",
+    fontSize: "20px",
+    textTransform: "uppercase",
+    fontWeight: "bolder",
+  },
+  errorText: {
+    color: "red",
+    fontSize: "14px",
+  },
+  inputGroup: {
+    position: "relative",
+    marginBottom: "70px",
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    boxShadow: "0 4px 4px rgba(0,0,0,0.6)",
+    padding: "10px",
+    borderRadius: "10px",
   },
 };
 

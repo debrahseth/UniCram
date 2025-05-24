@@ -1,53 +1,51 @@
 import { useEffect } from "react";
-import { doc, updateDoc } from "firebase/firestore";
-
-let inactivityTimeout;
-
-const handleLogout = async (
-  auth,
-  db,
-  currentUser,
-  navigate,
-  setLogoutLoading
-) => {
-  setLogoutLoading(true);
-  if (currentUser) {
-    const userDocRef = doc(db, "users", currentUser.uid);
-    await updateDoc(userDocRef, {
-      status: "offline",
-    });
-  }
-  await auth.signOut();
-  setLogoutLoading(false);
-  navigate("/login");
-  setLogoutLoading(false);
-};
+import { doc, updateDoc, Timestamp } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 
 const useInactivityLogout = (
   auth,
   db,
   currentUser,
   navigate,
-  setLogoutLoading,
-  timeoutDuration = 300000
+  setLogoutLoading
 ) => {
   useEffect(() => {
-    const resetInactivityTimer = () => {
-      clearTimeout(inactivityTimeout);
-      inactivityTimeout = setTimeout(
-        () => handleLogout(auth, db, currentUser, navigate, setLogoutLoading),
-        timeoutDuration
-      );
+    if (!currentUser) return;
+
+    let inactivityTimeout;
+    const INACTIVITY_TIMEOUT = 5 * 60 * 1000;
+
+    const resetTimeout = () => {
+      if (inactivityTimeout) clearTimeout(inactivityTimeout);
+      inactivityTimeout = setTimeout(async () => {
+        try {
+          setLogoutLoading(true);
+          const userDocRef = doc(db, "users", currentUser.uid);
+          await updateDoc(userDocRef, {
+            status: "offline",
+            lastActivity: Timestamp.fromDate(new Date()),
+          });
+          await signOut(auth);
+          navigate("/login");
+        } catch (error) {
+          console.error("Error during inactivity logout:", error);
+        } finally {
+          setLogoutLoading(false);
+        }
+      }, INACTIVITY_TIMEOUT);
     };
-    window.addEventListener("mousemove", resetInactivityTimer);
-    window.addEventListener("keydown", resetInactivityTimer);
-    resetInactivityTimer();
+    const events = ["mousemove", "keydown", "scroll", "touchstart"];
+    events.forEach((event) => {
+      window.addEventListener(event, resetTimeout);
+    });
+    resetTimeout();
     return () => {
-      clearTimeout(inactivityTimeout);
-      window.removeEventListener("mousemove", resetInactivityTimer);
-      window.removeEventListener("keydown", resetInactivityTimer);
+      events.forEach((event) => {
+        window.removeEventListener(event, resetTimeout);
+      });
+      if (inactivityTimeout) clearTimeout(inactivityTimeout);
     };
-  }, [auth, db, currentUser, navigate, setLogoutLoading, timeoutDuration]);
+  }, [auth, db, currentUser, navigate, setLogoutLoading]);
 };
 
 export default useInactivityLogout;

@@ -99,6 +99,7 @@ const Signup = () => {
         levelOfStudy,
         semesterOfStudy,
         status: "online",
+        role: "user",
       });
 
       const verificationCheck = setInterval(async () => {
@@ -113,6 +114,7 @@ const Signup = () => {
             levelOfStudy: levelOfStudy,
             semesterOfStudy: semesterOfStudy,
             status: "online",
+            role: "user",
           });
           // const response = await fetch(
           //   "https://prime-api-server.vercel.app/send-email",

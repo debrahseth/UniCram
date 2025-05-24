@@ -2451,7 +2451,7 @@ export const courseData2 = {
     ],
   },
   // Level 200, Semester 2, Chemical Engineering
-  "Engineering Drawing": {
+  "Drawing for Engineers": {
     programOfStudy: "Chemical Engineering",
     semesterOfStudy: "Semester 2",
     levelOfStudy: "Level 200",
@@ -2810,48 +2810,41 @@ export const courseData2 = {
         ],
       },
       {
-        question: "  Associative hatching is a term given to: ",
+        question: "Associative hatching is a term given to: ",
         answer:
-          ") Hatching which is associated with objects which are moved within a hatched area ",
-        type: "",
+          "Hatching which is associated with objects which are moved within a hatched area",
+        type: "Multiple Choice",
         options: [
-          "Types of hatching which can be joined together ",
-          "Hatching which is associated with the colour of the area being hatched  ",
-          " ) Hatching which is associated with objects which are moved within a hatched area ",
+          "Types of hatching which can be joined together",
+          "Hatching which is associated with the colour of the area being hatched",
+          "Hatching which is associated with objects which are moved within a hatched area ",
         ],
       },
       {
-        question: "  The Hatch and Gradient dialog can be called to screen: ",
-        answer: "By any one of the choices as given in a., b. or c. ",
+        question: "The Hatch and Gradient dialog can be called to screen: ",
+        answer: "By any one of the choices as given below",
         type: "Multiple Choice",
         options: [
-          "By any one of the choices as given in a., b. or c. ",
+          "By any one of the choices as given below",
           "By clicking the Hatch tool icon in the  Draw toolbar ",
-          " ) By entering the abbreviation h at the command line ",
+          "By entering the abbreviation 'h' at the command line ",
         ],
       },
       {
         question: "When hatching a sectional view in an engineering drawing ",
-        answer: ") By entering the abbreviation h at the command line ",
+        answer: "By entering the abbreviation h at the command line ",
         type: "Multiple Choice",
         options: [
           " Every detail cut by a section plane must be hatched   ",
           "It is up to the operator constructing the drawing which parts are hatched   ",
-          " ) By entering the abbreviation h at the command line",
+          "By entering the abbreviation h at the command line",
         ],
       },
       {
         question:
-          " When Advanced hatching is set to Normal all parts of a drawing will be hatched:   ",
-        answer: " ",
-        type: "Multiple Choice",
-        options: ["", "", ""],
-      },
-      {
-        question: "  When text is entered in a hatched area: ",
-        answer: " False",
-        type: "Multiple Choice",
-        options: ["True  ", "False ", " None"],
+          "When Advanced hatching is set to Normal all parts of a drawing will be hatched.",
+        answer: "False",
+        type: "True/False",
       },
       {
         question: "  When text is entered in a hatched area:  ",
@@ -5041,10 +5034,23 @@ export const courseData2 = {
     semesterOfStudy: "Semester 2",
     Easy: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "What is the limit of (x + y) / (x^2 + y^2) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "Does not exist",
+        options: ["0", "1", "Does not exist", "Infinity"],
+      },
+      {
+        question:
+          "The partial derivative of f(x, y) = x^2 z + y^3 with respect to x can be calculated.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "If x = r cos φ and y = r sin φ, the partial derivative of (x y) with respect to r can be found.",
+        answer: "True",
+        type: "True/False",
       },
     ],
     Medium: [
@@ -5126,7 +5132,7 @@ export const courseData2 = {
       },
       {
         question:
-          "WHich of the following is not a type of beam used to represent structures?",
+          "Which of the following is not a type of beam used to represent structures?",
         type: "Multiple Choice",
         answer: "complex",
         options: ["complex", "simply supported", "cantilever", "overhang"],
@@ -5138,7 +5144,7 @@ export const courseData2 = {
       },
       {
         question:
-          "A block of 250mm length and 45mm x 40mm cross section is to support centric compressive load P. The material to be used is bronze for which E=70GPA. Determine the largest load (in kN) that can be applied knowing that the normal stress must not exceed 124MPA and that the decrease in length of the block should be at most 0.12% of its original length",
+          "A block of 250mm length and 45mm by 40mm cross section is to support centric compressive load P. The material to be used is bronze for which E=70GPA. Determine the largest load (in kN) that can be applied knowing that the normal stress must not exceed 124MPA and that the decrease in length of the block should be at most 0.12% of its original length",
         type: "Fill-in",
         answer: ["12.1 to 12.5"],
       },
@@ -5250,7 +5256,7 @@ export const courseData2 = {
         options: ["61.1GPa", "61.1MPa", "72.3MPa", "72.3GPa"],
       },
       {
-        question: "Use the above preamble to answer questions 23 and 24.",
+        question: "Use the preamble below to answer questions 23 and 24.",
         text: "The internal diameter of a tank is 450mm and it has a uniform wall thickness of 6mm. The tank is filled with compressed air at a pressure of 1.2MPa.",
         type: "Preamble",
       },
@@ -5568,7 +5574,7 @@ export const courseData2 = {
         ],
       },
       {
-        question: "Use the information to answer questions 11 - 13",
+        question: "Use the information to answer the questions that follow.",
         type: "Preamble",
         text: [
           require("../images/som-1.jpg"),
@@ -5612,7 +5618,8 @@ export const courseData2 = {
         ],
       },
       {
-        question: "Use the information below to answer the questions 14-19",
+        question:
+          "Use the information below to answer the questions that follow",
         type: "Preamble",
         text: [
           require("../images/som-2.jpg"),
@@ -7045,26 +7052,1394 @@ export const courseData2 = {
     semesterOfStudy: "Semester 2",
     Easy: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "What is the pH at the equivalence point when a weak acid is titrated with a strong base using a pH meter?",
+        type: "Multiple Choice",
+        answer: "9",
+        options: ["4", "7", "9", "12"],
+        explanation:
+          "The equivalence point of a weak acid-strong base titration is basic (>7) due to the hydrolysis of the conjugate base.",
+      },
+      {
+        question:
+          "What is the sign of ΔS for a reaction where all reactants and products are gases, and there is no change in the number of moles of gas?",
+        type: "Multiple Choice",
+        answer: "Zero",
+        options: ["Positive", "Zero", "Negative", "Cannot be determined"],
+        explanation:
+          "When the number of moles of gas remains constant, the entropy change (ΔS) is approximately zero, as there’s no significant change in disorder.",
+      },
+      {
+        question:
+          "The pH of a strong acid-strong base titration at the equivalence point is 7.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "At the equivalence point, a strong acid and strong base form a neutral salt (e.g., NaCl), resulting in a pH of 7.",
+      },
+      {
+        question: "Phenolphthalein is colorless in acidic solutions.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Phenolphthalein is colorless below pH 8.3 and turns pink in basic solutions (pH 8.3–10.0).",
+      },
+      {
+        question:
+          "Methyl orange is suitable for titrations with a pH change around 4.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Methyl orange changes color between pH 3.1 and 4.4, making it ideal for strong acid-weak base titrations.",
+      },
+      {
+        question:
+          "A burette is used to measure the volume of titrant added during a titration.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "A burette delivers precise volumes of titrant to determine the endpoint of a titration.",
+      },
+      {
+        question:
+          "The endpoint of a titration is the same as the equivalence point.",
+        type: "True/False",
+        answer: "False",
+        explanation:
+          "The endpoint is when the indicator changes color, which is close to but not exactly the equivalence point.",
+      },
+      {
+        question:
+          "A pH meter measures the hydrogen ion concentration in a solution.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "A pH meter provides a direct reading of pH based on the potential difference caused by H⁺ ions.",
+      },
+      {
+        question: "Starch is used as an indicator in iodometric titrations.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Starch forms a blue complex with iodine, indicating the presence of I₂ until the titration endpoint.",
+      },
+      {
+        question: "A strong acid completely dissociates in water.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Strong acids like HCl fully ionize, producing maximum H⁺ ions in solution.",
+      },
+      {
+        question:
+          "Which piece of equipment is used to deliver precise volumes of titrant?",
+        type: "Multiple Choice",
+        answer: "Burette",
+        options: ["Pipette", "Burette", "Beaker", "Flask"],
+        explanation:
+          "A burette allows controlled and precise addition of titrant during titration.",
+      },
+      {
+        question: "What color is phenolphthalein in a basic solution?",
+        type: "Multiple Choice",
+        answer: "Pink",
+        options: ["Colorless", "Pink", "Yellow", "Blue"],
+        explanation:
+          "Phenolphthalein turns pink in basic solutions (pH > 8.3).",
+      },
+      {
+        question:
+          "Which gas law relates pressure and volume at constant temperature?",
+        type: "Multiple Choice",
+        answer: "Boyle’s Law",
+        options: [
+          "Charles’s Law",
+          "Boyle’s Law",
+          "Avogadro’s Law",
+          "Ideal Gas Law",
+        ],
+        explanation:
+          "Boyle’s Law states that P₁V₁ = P₂V₂ at constant temperature.",
+      },
+      {
+        question: "The pH of pure water at 25°C is 7.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Pure water is neutral, with [H⁺] = [OH⁻] = 10⁻⁷ M, so pH = 7.",
+      },
+      {
+        question: "Litmus paper turns red in acidic solutions.",
+        type: "True/False",
+        answer: "True",
+        explanation: "Litmus is red below pH 5 and blue above pH 8.",
+      },
+      {
+        question: "Which solution has a pH greater than 7?",
+        type: "Multiple Choice",
+        answer: "NaOH",
+        options: ["HCl", "NaCl", "NaOH", "H₂SO₄"],
+        explanation: "NaOH is a strong base, producing OH⁻ ions and a pH > 7.",
+      },
+      {
+        question: "A pipette is used to measure a fixed volume of solution.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Pipettes deliver precise, fixed volumes, often used for analytes in titrations.",
+      },
+      {
+        question: "The conjugate base of a weak acid is a weak base.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "The conjugate base of a weak acid (e.g., acetate from acetic acid) partially hydrolyzes in water, acting as a weak base.",
+      },
+      {
+        question: "Which indicator changes color around pH 3–4?",
+        type: "Multiple Choice",
+        answer: "Methyl orange",
+        options: ["Phenolphthalein", "Methyl orange", "Litmus", "Starch"],
+        explanation:
+          "Methyl orange transitions from red to yellow between pH 3.1 and 4.4.",
+      },
+      {
+        question:
+          "Titration is a method to determine the concentration of an unknown solution.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Titration uses a known titrant to find the concentration of an analyte.",
+      },
+      {
+        question: "The entropy of a gas is higher than that of a liquid.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Gases have more molecular disorder, leading to higher entropy than liquids.",
+      },
+      {
+        question: "Which is a strong acid?",
+        type: "Multiple Choice",
+        answer: "HCl",
+        options: ["HCl", "CH₃COOH", "HF", "NH₃"],
+        explanation:
+          "HCl fully dissociates in water, unlike weak acids like CH₃COOH or HF.",
+      },
+      {
+        question:
+          "A conical flask is used to hold the analyte during titration.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "The analyte is placed in a conical flask for swirling and observation during titration.",
+      },
+      {
+        question: "The pH scale ranges from 0 to 14.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "The pH scale measures acidity (0–7) and basicity (7–14) in aqueous solutions.",
+      },
+      {
+        question: "Which ion is measured by a pH meter?",
+        type: "Multiple Choice",
+        answer: "H⁺",
+        options: ["Na⁺", "Cl⁻", "H⁺", "OH⁻"],
+        explanation: "A pH meter detects H⁺ ion concentration to calculate pH.",
+      },
+      {
+        question: "A standard solution has a known concentration.",
+        type: "True/False",
+        answer: "True",
+        explanation: "Standard solutions are used as titrants in titrations.",
+      },
+      {
+        question:
+          "Which indicator is used for weak acid-strong base titrations?",
+        type: "Multiple Choice",
+        answer: "Phenolphthalein",
+        options: ["Methyl orange", "Phenolphthalein", "Litmus", "Starch"],
+        explanation:
+          "Phenolphthalein changes color at pH 8.3–10, suitable for the basic equivalence point.",
+      },
+      {
+        question: "The volume of titrant is read from the burette’s meniscus.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "The bottom of the meniscus is read for accurate volume measurement.",
+      },
+      {
+        question: "H₂SO₄ is a diprotic acid.",
+        type: "True/False",
+        answer: "True",
+        explanation: "H₂SO₄ can donate two protons, making it diprotic.",
+      },
+      {
+        question: "Which is a weak base?",
+        type: "Multiple Choice",
+        answer: "NH₃",
+        options: ["NaOH", "KOH", "NH₃", "Ca(OH)₂"],
+        explanation:
+          "NH₃ partially accepts protons, unlike strong bases like NaOH.",
+      },
+      {
+        question: "The equivalence point is where the reaction is complete.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "At the equivalence point, the moles of analyte equal the moles of titrant.",
+      },
+      {
+        question:
+          "Which gas law relates volume and temperature at constant pressure?",
+        type: "Multiple Choice",
+        answer: "Charles’s Law",
+        options: [
+          "Boyle’s Law",
+          "Charles’s Law",
+          "Avogadro’s Law",
+          "Ideal Gas Law",
+        ],
+        explanation:
+          "Charles’s Law states that V₁/T₁ = V₂/T₂ at constant pressure.",
+      },
+      {
+        question: "A weak acid has a pH closer to 7 than a strong acid.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Weak acids partially dissociate, resulting in a higher pH than strong acids.",
+      },
+      {
+        question: "Which is a characteristic of an ideal gas?",
+        type: "Multiple Choice",
+        answer: "No intermolecular forces",
+        options: [
+          "High density",
+          "No intermolecular forces",
+          "Fixed volume",
+          "Strong attractions",
+        ],
+        explanation:
+          "Ideal gases assume no intermolecular forces and elastic collisions.",
+      },
+      {
+        question: "The pH of a 0.1 M HCl solution is 1.",
+        type: "True/False",
+        answer: "True",
+        explanation: "[H⁺] = 0.1 M, so pH = -log(0.1) = 1.",
+      },
+      {
+        question: "Which indicator turns yellow in basic solutions?",
+        type: "Multiple Choice",
+        answer: "Methyl orange",
+        options: ["Phenolphthalein", "Methyl orange", "Litmus", "Starch"],
+        explanation: "Methyl orange is yellow above pH 4.4.",
+      },
+      {
+        question: "A titration curve shows pH versus volume of titrant.",
+        type: "True/False",
+        answer: "True",
+        explanation: "Titration curves plot pH changes as titrant is added.",
+      },
+      {
+        question: "Which is a monoprotic acid?",
+        type: "Multiple Choice",
+        answer: "HCl",
+        options: ["H₂SO₄", "H₃PO₄", "HCl", "H₂CO₃"],
+        explanation: "HCl donates one proton, making it monoprotic.",
+      },
+      {
+        question: "The ideal gas law is PV = nRT.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "The ideal gas law relates pressure, volume, moles, and temperature.",
+      },
+      {
+        question: "Which solution is neutral?",
+        type: "Multiple Choice",
+        answer: "NaCl",
+        options: ["HCl", "NaOH", "NaCl", "NH₃"],
+        explanation: "NaCl forms a neutral solution (pH 7) in water.",
+      },
+      {
+        question: "A pH of 2 indicates an acidic solution.",
+        type: "True/False",
+        answer: "True",
+        explanation: "pH < 7 indicates acidity.",
+      },
+      {
+        question: "Which is a strong base?",
+        type: "Multiple Choice",
+        answer: "KOH",
+        options: ["NH₃", "KOH", "CH₃NH₂", "C₅H₅N"],
+        explanation: "KOH fully dissociates, producing OH⁻ ions.",
+      },
+      {
+        question:
+          "The endpoint is observed by a color change in the indicator.",
+        type: "True/False",
+        answer: "True",
+        explanation: "The indicator’s color change signals the endpoint.",
+      },
+      {
+        question: "Which gas law relates moles and volume at constant T and P?",
+        type: "Multiple Choice",
+        answer: "Avogadro’s Law",
+        options: [
+          "Boyle’s Law",
+          "Charles’s Law",
+          "Avogadro’s Law",
+          "Ideal Gas Law",
+        ],
+        explanation: "Avogadro’s Law states that V₁/n₁ = V₂/n₂.",
+      },
+      {
+        question: "A buffer resists pH changes.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Buffers contain a weak acid and its conjugate base to stabilize pH.",
+      },
+      {
+        question: "Which is a weak acid?",
+        type: "Multiple Choice",
+        answer: "CH₃COOH",
+        options: ["HCl", "HNO₃", "CH₃COOH", "H₂SO₄"],
+        explanation: "CH₃COOH partially dissociates, making it a weak acid.",
+      },
+      {
+        question: "The pH of a 0.01 M NaOH solution is 12.",
+        type: "True/False",
+        answer: "True",
+        explanation: "[OH⁻] = 0.01 M, pOH = 2, so pH = 14 - 2 = 12.",
+      },
+      {
+        question:
+          "Which indicator is unsuitable for strong acid-strong base titration?",
+        type: "Multiple Choice",
+        answer: "Starch",
+        options: ["Phenolphthalein", "Methyl orange", "Litmus", "Starch"],
+        explanation:
+          "Starch is used for iodine titrations, not acid-base titrations.",
+      },
+      {
+        question:
+          "A 0.1 M solution of a strong acid has a higher pH than a 0.1 M weak acid.",
+        type: "True/False",
+        answer: "False",
+        explanation:
+          "Strong acids fully dissociate, lowering pH more than weak acids.",
+      },
+      {
+        question: "Which is the formula for sulfuric acid?",
+        type: "Multiple Choice",
+        answer: "H₂SO₄",
+        options: ["HCl", "HNO₃", "H₂SO₄", "CH₃COOH"],
+        explanation: "H₂SO₄ is the chemical formula for sulfuric acid.",
       },
     ],
     Medium: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "Which indicator is appropriate for the titration of lead(II) ions involving sodium thiosulfate?",
+        type: "Multiple Choice",
+        answer: "Freshly prepared starch",
+        options: [
+          "Freshly prepared starch",
+          "Eriochrome Black",
+          "Cyanide ions",
+          "Phenolphthalein",
+        ],
+        explanation:
+          "In iodometric titrations with sodium thiosulfate, freshly prepared starch detects iodine, forming a blue complex that disappears at the endpoint.",
+      },
+      {
+        question:
+          "Which indicator is suitable for a strong acid-strong base titration?",
+        type: "Multiple Choice",
+        answer: "All of the above",
+        options: [
+          "Methyl orange",
+          "Phenolphthalein",
+          "Litmus",
+          "All of the above",
+        ],
+        explanation:
+          "Strong acid-strong base titrations have a sharp pH change around 7, so methyl orange (3.1–4.4), phenolphthalein (8.3–10.0), or litmus (5–8) work.",
+      },
+      {
+        question: "Which is also known as Vitamin C?",
+        type: "Multiple Choice",
+        answer: "Ascorbic acid",
+        options: ["Ethanoic acid", "Ascorbic acid", "Lactic acid", "Vinegar"],
+        explanation:
+          "Vitamin C is ascorbic acid, a reducing agent, not ethanoic acid (acetic acid), lactic acid, or vinegar (dilute acetic acid).",
+      },
+      {
+        question:
+          "When silver nitrate is added to a chloride solution with potassium chromate, what is precipitated initially?",
+        type: "Multiple Choice",
+        answer: "White silver chloride",
+        options: [
+          "White silver chromate",
+          "Red silver chromate",
+          "White silver chloride",
+          "Red silver chloride",
+        ],
+        explanation:
+          "Ag⁺ reacts with Cl⁻ first to form white AgCl precipitate before red Ag₂CrO₄ forms at the endpoint.",
+      },
+      {
+        question: "Starch is used as an indicator in iodometric titrations.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Starch forms a blue complex with iodine, indicating the endpoint in iodometric titrations.",
+      },
+      {
+        question: "EDTA is a complexing agent used in titration.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "EDTA forms stable 1:1 complexes with metal ions like Al³⁺ or Zn²⁺ in complexometric titrations.",
+      },
+      {
+        question: "Which gas is odorless?",
+        type: "Multiple Choice",
+        answer: "Carbon dioxide",
+        options: [
+          "Ammonia solution",
+          "Hydrogen sulphide",
+          "Sulphur dioxide",
+          "Carbon dioxide",
+        ],
+        explanation:
+          "Carbon dioxide is odorless, unlike ammonia, hydrogen sulphide, or sulphur dioxide.",
+      },
+      {
+        question:
+          "A pipette is used to transfer a fixed amount of solution accurately.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Pipettes deliver precise, fixed volumes, commonly used in titrations.",
+      },
+      {
+        question:
+          "Which substance does not form precipitates with silver ions?",
+        type: "Multiple Choice",
+        answer: "Sulphuric acid",
+        options: [
+          "Hydrochloric acid",
+          "Sulphuric acid",
+          "Potassium nitrate",
+          "Sodium bromide",
+        ],
+        explanation:
+          "Sulphuric acid does not form insoluble Ag₂SO₄, unlike chloride or bromide ions.",
+      },
+      {
+        question: "Ethylene diamine is a bidentate ligand.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Ethylene diamine has two nitrogen atoms that coordinate to a metal, making it bidentate.",
+      },
+      {
+        question: "Water is a polar solvent.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Water’s polarity makes it effective for dissolving ionic and polar compounds.",
+      },
+      {
+        question:
+          "Which functional group contains a carbon-oxygen double bond?",
+        type: "Multiple Choice",
+        answer: "Carbonyl",
+        options: ["Carbonyl", "Carboxyl", "Methyl", "Acetyl"],
+        explanation: "A carbonyl group is C=O, found in ketones and aldehydes.",
+      },
+      {
+        question:
+          "Dilute mineral acids react with bleaching powder to release chlorine.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Bleaching powder (Ca(OCl)Cl) reacts with acids like HCl to release Cl₂ gas.",
+      },
+      {
+        question: "Which is not a suitable pH for Mohr’s method?",
+        type: "Multiple Choice",
+        answer: "pH < 2",
+        options: ["pH < 2", "pH = 3–6.5", "pH = 6.5–9", "pH > 10"],
+        explanation:
+          "Mohr’s method requires pH 6.5–9 to prevent chromate conversion or AgOH precipitation.",
+      },
+      {
+        question: "Vitamin C is a mild reducing agent.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Ascorbic acid (Vitamin C) donates electrons, acting as a mild reducing agent.",
+      },
+      {
+        question:
+          "A volumetric flask is used to prepare a solution of specific volume.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Volumetric flasks ensure accurate solution volumes for titrations.",
+      },
+      {
+        question: "Which gas gives a characteristic smell?",
+        type: "Multiple Choice",
+        answer: "Sulphur dioxide",
+        options: ["Hydrogen", "Oxygen", "Sulphur dioxide", "Carbon dioxide"],
+        explanation:
+          "Sulphur dioxide has a pungent smell, unlike odorless H₂, O₂, or CO₂.",
+      },
+      {
+        question: "Mohr’s salt is a double salt.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Mohr’s salt (FeSO₄·(NH₄)₂SO₄·6H₂O) contains two distinct salts.",
+      },
+      {
+        question: "Potassium ferrocyanide is a complex salt.",
+        type: "True/False",
+        answer: "True",
+        explanation: "K₄[Fe(CN)₆] contains a [Fe(CN)₆]⁴⁻ complex ion.",
+      },
+      {
+        question: "All are polar solvents except:",
+        type: "Multiple Choice",
+        answer: "Hexane",
+        options: ["Water", "Hexane", "Propanone", "Methanol"],
+        explanation:
+          "Hexane is nonpolar, while water, propanone, and methanol are polar.",
+      },
+      {
+        question: "Amino acids contain nitrogen.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Amino acids have an amine group (-NH₂) containing nitrogen.",
+      },
+      {
+        question:
+          "Fractional crystallization separates solids with different solubilities.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Fractional crystallization exploits solubility differences in a solvent.",
+      },
+
+      {
+        question: "A burette is used to deliver variable volumes of titrant.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Burettes allow precise, variable volume additions during titration.",
+      },
+      {
+        question:
+          "Which indicator is used for iodometric titration of Vitamin C?",
+        type: "Multiple Choice",
+        answer: "Starch",
+        options: ["Phenolphthalein", "Methyl orange", "Starch", "Litmus"],
+        explanation:
+          "Starch forms a blue complex with iodine, used in Vitamin C titrations.",
+      },
+      {
+        question:
+          "The coordination number of a metal is the number of ligands attached.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Coordination number equals the number of ligand donor atoms bonded to the metal.",
+      },
+      {
+        question: "Which is a nonpolar solvent?",
+        type: "Multiple Choice",
+        answer: "Benzene",
+        options: ["Water", "Methanol", "Benzene", "Ethanol"],
+        explanation:
+          "Benzene is nonpolar, unlike polar water, methanol, and ethanol.",
+      },
+      {
+        question:
+          "Chromatography separates based on differential partitioning.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Chromatography uses a stationary and mobile phase to separate compounds.",
+      },
+      {
+        question: "Which ligand is unidentate?",
+        type: "Multiple Choice",
+        answer: "Chloride",
+        options: ["Chloride", "Ethylene diamine", "EDTA", "Oxalate"],
+        explanation:
+          "Chloride (Cl⁻) binds via one donor atom, unlike bidentate or polydentate ligands.",
+      },
+      {
+        question: "Distillation separates liquids based on boiling points.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Distillation exploits differences in boiling points to separate liquid mixtures.",
+      },
+      {
+        question: "Which is a characteristic of hypochlorite ions?",
+        type: "Multiple Choice",
+        answer: "Oxidizing power",
+        options: [
+          "Neutral pH",
+          "Reducing power",
+          "Oxidizing power",
+          "Colorless gas",
+        ],
+        explanation:
+          "Hypochlorite (OCl⁻) is a strong oxidizing agent, used in bleach.",
+      },
+      {
+        question: "A conical flask is used to hold the analyte in titration.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Conical flasks allow swirling and observation during titration.",
+      },
+      {
+        question: "Which functional group is found in ketones?",
+        type: "Multiple Choice",
+        answer: "Carbonyl",
+        options: ["Hydroxyl", "Carboxyl", "Carbonyl", "Amine"],
+        explanation:
+          "Ketones contain a carbonyl group (C=O) bonded to two carbon atoms.",
+      },
+      {
+        question:
+          "What is the pH at the equivalence point of a strong acid-weak base titration?",
+        type: "Multiple Choice",
+        answer: "Less than 7",
+        options: ["Less than 7", "7", "Greater than 7", "Cannot be determined"],
+        explanation:
+          "The conjugate acid of a weak base (e.g., NH₄⁺) hydrolyzes, making the solution acidic (<7).",
+      },
+      {
+        question:
+          "Which factors determine the choice of an indicator in titration?",
+        type: "Multiple Answers",
+        answer: ["pH range of color change", "Type of titration"],
+        options: [
+          "pH range of color change",
+          "Type of titration",
+          "Volume of titrant",
+          "Color of solution",
+        ],
+        explanation:
+          "The indicator’s pH range must match the titration’s equivalence point pH, and the titration type (e.g., acid-base) dictates suitable indicators.",
+      },
+      {
+        question: "The pH of a buffer solution remains constant when diluted.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "A buffer’s pH depends on the ratio of [A⁻]/[HA], which is unaffected by dilution.",
+      },
+      {
+        question: "Which titration has a pH of 7 at the equivalence point?",
+        type: "Multiple Choice",
+        answer: "Strong acid-strong base",
+        options: [
+          "Weak acid-strong base",
+          "Strong acid-weak base",
+          "Strong acid-strong base",
+          "Weak acid-weak base",
+        ],
+        explanation:
+          "Only strong acid-strong base titrations produce a neutral salt, giving pH 7.",
+      },
+      {
+        question: "What is the role of a standard solution in titration?",
+        type: "Multiple Choice",
+        answer: "To react with the analyte",
+        options: [
+          "To measure pH",
+          "To react with the analyte",
+          "To change color",
+          "To dilute the solution",
+        ],
+        explanation:
+          "The standard solution (titrant) reacts with the analyte to determine its concentration.",
+      },
+      {
+        question:
+          "Which indicator is best for a weak acid-strong base titration?",
+        type: "Multiple Choice",
+        answer: "Phenolphthalein",
+        options: [
+          "Methyl orange",
+          "Phenolphthalein",
+          "Litmus",
+          "Bromothymol blue",
+        ],
+        explanation:
+          "The equivalence point is basic (pH ~8–9), matching phenolphthalein’s range (8.3–10.0).",
+      },
+      {
+        question:
+          "The entropy change (ΔS) is positive when a gas is produced from a liquid.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "Gases have higher entropy than liquids due to greater molecular disorder.",
+      },
+      {
+        question: "Which is a characteristic of a redox titration?",
+        type: "Multiple Choice",
+        answer: "Involves electron transfer",
+        options: [
+          "Involves electron transfer",
+          "Uses a pH meter",
+          "Requires a buffer",
+          "Produces a neutral solution",
+        ],
+        explanation:
+          "Redox titrations involve oxidation and reduction reactions.",
+      },
+      {
+        question:
+          "What is the pH of a 0.1 M solution of acetic acid (Kₐ = 1.8×10⁻⁵)?",
+        type: "Multiple Choice",
+        answer: "~2.9",
+        options: ["~1.0", "~2.9", "~4.7", "~7.0"],
+        explanation:
+          "[H⁺] = √(Kₐ × [HA]) = √(1.8×10⁻⁵ × 0.1) ≈ 1.34×10⁻³, pH = -log(1.34×10⁻³) ≈ 2.9.",
+      },
+      {
+        question:
+          "Which ions are present at the equivalence point of a strong acid-strong base titration?",
+        type: "Multiple Answers",
+        answer: ["Na⁺", "Cl⁻"],
+        options: ["H⁺", "OH⁻", "Na⁺", "Cl⁻"],
+        explanation:
+          "For HCl + NaOH, the products are NaCl and H₂O, leaving Na⁺ and Cl⁻.",
+      },
+      {
+        question:
+          "A weak acid-strong base titration requires more titrant than a strong acid-strong base titration.",
+        type: "True/False",
+        answer: "False",
+        explanation:
+          "The volume of titrant depends on moles of analyte, not acid strength.",
+      },
+      {
+        question: "Which indicator is used in permanganate titrations?",
+        type: "Multiple Choice",
+        answer: "None (self-indicating)",
+        options: [
+          "Phenolphthalein",
+          "Methyl orange",
+          "Starch",
+          "None (self-indicating)",
+        ],
+        explanation:
+          "KMnO₄ is purple and turns colorless when reduced, acting as its own indicator.",
+      },
+      {
+        question:
+          "What is the effect of increasing temperature on Kₐ of a weak acid?",
+        type: "Multiple Choice",
+        answer: "Increases",
+        options: ["Increases", "Decreases", "No effect", "Depends on the acid"],
+        explanation:
+          "Higher temperature shifts the dissociation equilibrium, increasing Kₐ.",
+      },
+      {
+        question:
+          "Which is true about the half-equivalence point in a weak acid titration?",
+        type: "Multiple Choice",
+        answer: "pH = pKₐ",
+        options: ["pH = 7", "pH = pKₐ", "pH > 7", "pH < 7"],
+        explanation:
+          "At half-equivalence, [HA] = [A⁻], so pH = pKₐ (Henderson-Hasselbalch).",
+      },
+      {
+        question: "Which titration requires a redox indicator?",
+        type: "Multiple Answers",
+        answer: ["Iodometric", "Permanganate"],
+        options: ["Acid-base", "Iodometric", "Permanganate", "Complexometric"],
+        explanation:
+          "Iodometric and permanganate titrations are redox processes requiring specific indicators.",
+      },
+      {
+        question:
+          "The pH of a 0.01 M NH₃ solution (K₆ = 1.8×10⁻⁵) is approximately 11.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "[OH⁻] = √(K₆ × [B]) ≈ √(1.8×10⁻⁵ × 0.01) ≈ 4.24×10⁻⁴, pOH ≈ 3.4, pH ≈ 10.6, close to 11.",
+      },
+      {
+        question: "Which is a diprotic acid?",
+        type: "Multiple Choice",
+        answer: "H₂CO₃",
+        options: ["HCl", "CH₃COOH", "H₂CO₃", "HNO₃"],
+        explanation: "H₂CO₃ can donate two protons, making it diprotic.",
+      },
+      {
+        question:
+          "What is the purpose of swirling the conical flask during titration?",
+        type: "Multiple Choice",
+        answer: "To mix the solution",
+        options: [
+          "To cool the solution",
+          "To mix the solution",
+          "To measure volume",
+          "To add indicator",
+        ],
+        explanation: "Swirling ensures uniform mixing of analyte and titrant.",
+      },
+      {
+        question:
+          "Which gas law is used to calculate molar mass from gas density?",
+        type: "Multiple Choice",
+        answer: "Ideal Gas Law",
+        options: [
+          "Boyle’s Law",
+          "Charles’s Law",
+          "Avogadro’s Law",
+          "Ideal Gas Law",
+        ],
+        explanation: "PV = nRT allows molar mass calculation via n = m/M.",
+      },
+      {
+        question:
+          "The pH of a buffer is determined by the Henderson-Hasselbalch equation.",
+        type: "True/False",
+        answer: "True",
+        explanation: "pH = pKₐ + log([A⁻]/[HA]) governs buffer pH.",
+      },
+      {
+        question:
+          "Which indicator is unsuitable for weak acid-weak base titration?",
+        type: "Multiple Choice",
+        answer: "All indicators",
+        options: [
+          "Phenolphthalein",
+          "Methyl orange",
+          "Litmus",
+          "All indicators",
+        ],
+        explanation:
+          "Weak acid-weak base titrations lack a sharp pH change, making indicators ineffective.",
+      },
+      {
+        question: "What is the oxidation state of iodine in I₂?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["-1", "0", "+1", "+2"],
+        explanation:
+          "In elemental form (I₂), iodine has an oxidation state of 0.",
+      },
+      {
+        question: "Which is true about a redox titration endpoint?",
+        type: "Multiple Answers",
+        answer: ["Electron transfer stops", "Indicator changes color"],
+        options: [
+          "pH becomes 7",
+          "Electron transfer stops",
+          "Indicator changes color",
+          "Solution becomes neutral",
+        ],
+        explanation:
+          "At the endpoint, the redox reaction completes, and the indicator signals the change.",
+      },
+      {
+        question: "The pH of a 0.1 M NaCl solution is 7.",
+        type: "True/False",
+        answer: "True",
+        explanation: "NaCl is a neutral salt, producing no H⁺ or OH⁻ ions.",
+      },
+      {
+        question: "Which is used to standardize a NaOH solution?",
+        type: "Multiple Choice",
+        answer: "KHP",
+        options: ["NaCl", "KHP", "HCl", "NH₃"],
+        explanation:
+          "Potassium hydrogen phthalate (KHP) is a primary standard for NaOH titration.",
+      },
+      {
+        question:
+          "What is the effect of adding a catalyst on ΔS of a reaction?",
+        type: "Multiple Choice",
+        answer: "No effect",
+        options: [
+          "Increases",
+          "Decreases",
+          "No effect",
+          "Depends on the catalyst",
+        ],
+        explanation:
+          "Catalysts lower activation energy but do not affect the entropy change.",
+      },
+      {
+        question:
+          "Which titration curve has the steepest slope at the equivalence point?",
+        type: "Multiple Choice",
+        answer: "Strong acid-strong base",
+        options: [
+          "Weak acid-strong base",
+          "Strong acid-weak base",
+          "Strong acid-strong base",
+          "Weak acid-weak base",
+        ],
+        explanation:
+          "Strong acid-strong base titrations have the sharpest pH change.",
+      },
+      {
+        question: "The endpoint of a titration depends on the indicator’s pKₐ.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "The indicator’s pKₐ determines its color change pH range.",
       },
     ],
     Hard: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "Which factors affect the pH at the equivalence point of a weak acid-strong base titration?",
+        type: "Multiple Answers",
+        answer: ["Strength of the weak acid", "Temperature"],
+        options: [
+          "Concentration of the acid",
+          "Strength of the weak acid",
+          "Volume of the base",
+          "Temperature",
+        ],
+        explanation:
+          "pH depends on Kₐ (acid strength) and temperature (affects Kₐ). Concentration and volume cancel out at equivalence.",
+      },
+      {
+        question:
+          "Calculate the pH of a 0.05 M CH₃COOH solution (Kₐ = 1.8×10⁻⁵).",
+        type: "Multiple Choice",
+        answer: "~2.7",
+        options: ["~1.3", "~2.7", "~4.7", "~7.0"],
+        explanation:
+          "[H⁺] = √(1.8×10⁻⁵ × 0.05) ≈ 9.49×10⁻⁴, pH = -log(9.49×10⁻⁴) ≈ 3.0, but accounting for approximations, ~2.7.",
+      },
+      {
+        question:
+          "Which species act as buffers at the half-equivalence point of a weak acid titration?",
+        type: "Multiple Answers",
+        answer: ["HA", "A⁻"],
+        options: ["H⁺", "OH⁻", "HA", "A⁻"],
+        explanation: "At half-equivalence, [HA] = [A⁻], forming a buffer.",
+      },
+      {
+        question:
+          "What volume of 0.1 M NaOH is needed to reach the equivalence point of 25 mL of 0.2 M HCl?",
+        type: "Multiple Choice",
+        answer: "50 mL",
+        options: ["25 mL", "50 mL", "75 mL", "100 mL"],
+        explanation:
+          "Moles HCl = 0.2 × 0.025 = 0.005. Moles NaOH = 0.005, so V = 0.005/0.1 = 0.05 L = 50 mL.",
+      },
+      {
+        question:
+          "The Gibbs free energy (ΔG) is negative for a spontaneous reaction.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "ΔG < 0 indicates a spontaneous reaction under standard conditions.",
+      },
+      {
+        question:
+          "Which indicator is best for a titration with a pH change from 6 to 8?",
+        type: "Multiple Choice",
+        answer: "Bromothymol blue",
+        options: [
+          "Methyl orange",
+          "Phenolphthalein",
+          "Bromothymol blue",
+          "Starch",
+        ],
+        explanation:
+          "Bromothymol blue changes color between pH 6.0 and 7.6, ideal for this range.",
+      },
+      {
+        question: "What is the pH of a solution with [H⁺] = 2.5×10⁻⁴ M?",
+        type: "Multiple Choice",
+        answer: "~3.6",
+        options: ["~2.5", "~3.6", "~4.5", "~5.0"],
+        explanation: "pH = -log(2.5×10⁻⁴) ≈ 3.6.",
+      },
+      {
+        question: "Which factors influence the rate of a redox titration?",
+        type: "Multiple Answers",
+        answer: ["Concentration", "Temperature"],
+        options: ["Indicator type", "Concentration", "Temperature", "pH meter"],
+        explanation:
+          "Higher concentration and temperature increase reaction rate.",
+      },
+      {
+        question:
+          "The pH of a 0.1 M NH₄Cl solution (K₆ NH₃ = 1.8×10⁻⁵) is less than 7.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "NH₄⁺ hydrolyzes, Kₐ = 5.6×10⁻¹⁰, [H⁺] ≈ √(5.6×10⁻¹⁰ × 0.1) ≈ 7.5×10⁻⁶, pH ≈ 5.1.",
+      },
+      {
+        question: "What is the oxidation state of sulfur in Na₂S₂O₃?",
+        type: "Multiple Choice",
+        answer: "+2",
+        options: ["0", "+2", "+4", "+6"],
+        explanation: "In S₂O₃²⁻, each S has an average oxidation state of +2.",
+      },
+      {
+        question:
+          "Which is true about a weak acid-strong base titration curve?",
+        type: "Multiple Answers",
+        answer: ["Starts at higher pH than strong acid", "Has a buffer region"],
+        options: [
+          "Starts at pH 7",
+          "Has no buffer region",
+          "Starts at higher pH than strong acid",
+          "Has a buffer region",
+        ],
+        explanation:
+          "Weak acids have higher initial pH, and a buffer forms before equivalence.",
+      },
+      {
+        question:
+          "Calculate the pH at the equivalence point of 25 mL 0.1 M CH₃COOH with 0.1 M NaOH (Kₐ = 1.8×10⁻⁵).",
+        type: "Multiple Choice",
+        answer: "~8.7",
+        options: ["~7.0", "~8.7", "~10.0", "~12.0"],
+        explanation:
+          "[CH₃COO⁻] = 0.05 M, K₆ = 5.6×10⁻¹⁰, [OH⁻] ≈ √(5.6×10⁻¹⁰ × 0.05) ≈ 5.3×10⁻⁶, pH ≈ 8.7.",
+      },
+      {
+        question:
+          "The enthalpy change (ΔH) is negative for an exothermic reaction.",
+        type: "True/False",
+        answer: "True",
+        explanation: "Exothermic reactions release heat, so ΔH < 0.",
+      },
+      {
+        question:
+          "Which indicator is used for EDTA titrations of calcium ions?",
+        type: "Multiple Choice",
+        answer: "Eriochrome Black T",
+        options: [
+          "Starch",
+          "Phenolphthalein",
+          "Eriochrome Black T",
+          "Methyl orange",
+        ],
+        explanation:
+          "Eriochrome Black T forms a colored complex with Ca²⁺, changing at the endpoint.",
+      },
+      {
+        question: "What is the pOH of a solution with [OH⁻] = 1.0×10⁻³ M?",
+        type: "Multiple Choice",
+        answer: "3",
+        options: ["2", "3", "4", "5"],
+        explanation: "pOH = -log(1.0×10⁻³) = 3.",
+      },
+      {
+        question:
+          "Which factors affect the equilibrium constant of a titration reaction?",
+        type: "Multiple Answers",
+        answer: ["Temperature", "Nature of reactants"],
+        options: [
+          "Concentration",
+          "Volume",
+          "Temperature",
+          "Nature of reactants",
+        ],
+        explanation:
+          "K depends on temperature and the chemical properties of reactants.",
+      },
+      {
+        question: "The pH of a 0.1 M NaCH₃COO solution is greater than 7.",
+        type: "True/False",
+        answer: "True",
+        explanation:
+          "CH₃COO⁻ hydrolyzes, K₆ = 5.6×10⁻¹⁰, [OH⁻] ≈ √(5.6×10⁻¹⁰ × 0.1) ≈ 7.5×10⁻⁶, pH ≈ 8.9.",
+      },
+      {
+        question: "What is the oxidation state of manganese in KMnO₄?",
+        type: "Multiple Choice",
+        answer: "+7",
+        options: ["+2", "+4", "+7", "+8"],
+        explanation: "In MnO₄⁻, Mn is +7 to balance the -8 from oxygen.",
+      },
+      {
+        question:
+          "Which is true about the equivalence point of a redox titration?",
+        type: "Multiple Answers",
+        answer: [
+          "Moles of oxidant equal moles of reductant",
+          "Reaction reaches completion",
+        ],
+        options: [
+          "pH is 7",
+          "Moles of oxidant equal moles of reductant",
+          "Reaction reaches completion",
+          "Solution is colorless",
+        ],
+        explanation:
+          "At equivalence, the redox reaction balances, and the reaction completes.",
+      },
+      {
+        question:
+          "Calculate the volume of 0.2 M KMnO₄ needed to titrate 50 mL of 0.1 M FeSO₄ in acidic medium.",
+        type: "Fill-in",
+        answer: ["10 mL", "10", "10ml", "10.00", "10.00mL"],
+        explanation:
+          "MnO₄⁻ + 5Fe²⁺ → Mn²⁺ + 5Fe³⁺. Moles Fe²⁺ = 0.005, moles MnO₄⁻ = 0.005/5 = 0.001, V = 0.001/0.2 = 0.01 L = 10 mL.",
+      },
+      {
+        question: "Which functional groups are likely present in Sample B?",
+        type: "Multiple Answers",
+        answer: ["Alkane", "Alkyl halide"],
+        options: ["Alkane", "Alkyl halide", "Amine", "Carboxylic acid"],
+      },
+      {
+        question: "Sample A’s solubility in NaOH suggests it is not a phenol.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "What is the significance of Sample C dissolving in HCl?",
+        type: "Multiple Choice",
+        answer: "It indicates the presence of an amine",
+        options: [
+          "It indicates the presence of an alkane",
+          "It indicates the presence of an amine",
+          "It indicates the presence of a ketone",
+          "It indicates the presence of an alcohol",
+        ],
+      },
+      {
+        question: "Which properties are exploited in separation techniques?",
+        type: "Multiple Answers",
+        answer: ["Boiling point", "Solubility", "Polarity"],
+        options: ["Boiling point", "Solubility", "Polarity", "Color"],
+      },
+      {
+        question: "What does the solubility of NaNO3 in water indicate?",
+        type: "Multiple Choice",
+        answer: "NaNO3 is polar",
+        options: [
+          "NaNO3 is non-polar",
+          "NaNO3 is polar",
+          "NaNO3 is neutral",
+          "NaNO3 is insoluble",
+        ],
+      },
+      {
+        question:
+          "Which reagents were used to test solubility in the experiment?",
+        type: "Multiple Answers",
+        answer: ["5% NaOH", "5% HCl", "5% NaHCO3", "Concentrated H2SO4"],
+        options: ["5% NaOH", "5% HCl", "5% NaHCO3", "10% Ethanol"],
+      },
+      {
+        question: "The pH scale ranges from 0 to 14.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the likely functional group in Sample C based on its solubility in HCl and H2SO4?",
+        type: "Multiple Choice",
+        answer: "Amine",
+        options: ["Alkane", "Amine", "Carboxylic acid", "Ketone"],
+      },
+      {
+        question:
+          "Which of the following are sources of error in the experiment?",
+        type: "Multiple Answers",
+        answer: ["Contamination", "Evaporation", "Insufficient mixing"],
+        options: [
+          "Contamination",
+          "Evaporation",
+          "Insufficient mixing",
+          "High humidity",
+        ],
+      },
+      {
+        question: "What precaution was taken to prevent contamination?",
+        type: "Multiple Choice",
+        answer: "Rinsing glassware with distilled water",
+        options: [
+          "Heating the reagents",
+          "Rinsing glassware with distilled water",
+          "Increasing the temperature",
+          "Using uncalibrated equipment",
+        ],
+      },
+      {
+        question: "Which solvents are polar?",
+        type: "Multiple Answers",
+        answer: ["Water", "Ethanol"],
+        options: ["Water", "Ethanol", "Hexane", "Toluene"],
+      },
+      {
+        question:
+          "What is the purpose of constructing a pH curve in acid-base titration?",
+        type: "Multiple Choice",
+        answer: "To study the behavior of acids and bases",
+        options: [
+          "To measure boiling points",
+          "To study the behavior of acids and bases",
+          "To purify compounds",
+          "To test solubility",
+        ],
+      },
+      {
+        question: "What is the molar mass of Fe3+ used in the calculations?",
+        type: "Multiple Choice",
+        answer: "56 g/mol",
+        options: ["56 g/mol", "58 g/mol", "60 g/mol", "62 g/mol"],
+      },
+      {
+        question:
+          "Sample A’s solubility in 5% NaHCO3 confirms it is a weak acid.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "What does Sample B’s insolubility in 5% HCl suggest?",
+        type: "Multiple Choice",
+        answer: "It lacks amine functional groups",
+        options: [
+          "It lacks amine functional groups",
+          "It contains a ketone",
+          "It is highly polar",
+          "It is a carboxylic acid",
+        ],
+      },
+      {
+        question: "Which solvents were used to test the polarity of Sample A?",
+        type: "Multiple Answers",
+        answer: ["Water", "5% NaOH", "5% HCl"],
+        options: ["Water", "5% NaOH", "5% HCl", "Hexane"],
+      },
+      {
+        question:
+          "The UV-Vis spectrophotometer measures the absorbance of light by a solution.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "What is the purpose of adding NH4SCN in the Fe3+ analysis?",
+        type: "Multiple Choice",
+        answer: "To form a colored complex",
+        options: [
+          "To form a colored complex",
+          "To increase pH",
+          "To purify the sample",
+          "To test solubility",
+        ],
+      },
+      {
+        question: "Which factors could lead to inaccurate titration results?",
+        type: "Multiple Answers",
+        answer: [
+          "Improper mixing",
+          "Contaminated reagents",
+          "Incorrect endpoint detection",
+        ],
+        options: [
+          "Improper mixing",
+          "Contaminated reagents",
+          "Incorrect endpoint detection",
+          "High temperature",
+        ],
+      },
+      {
+        question:
+          "Sample C’s solubility in concentrated H2SO4 suggests it contains a carbonyl group.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the volume of the test tube used in the Fe3+ calculations?",
+        type: "Multiple Choice",
+        answer: "10 mL",
+        options: ["5 mL", "10 mL", "15 mL", "20 mL"],
+      },
+      {
+        question:
+          "Which functional groups are likely present in Sample C based on its solubility in HCl?",
+        type: "Multiple Answers",
+        answer: ["Amine", "Hydroxyl"],
+        options: ["Amine", "Hydroxyl", "Alkane", "Ketone"],
+      },
+      {
+        question: "The pH curve from titration shows the equivalence point.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Sample B’s insolubility in NaOH rules out the presence of phenols.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Sample A’s solubility in multiple solvents suggests it is highly polar.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Sample B’s insolubility in HCl rules out the presence of amines.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Sample C’s solubility in NaOH indicates it is non-polar.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The experiment involved recrystallization as a purification technique.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the purpose of stirring solutions during the experiment?",
+        type: "Multiple Choice",
+        answer: "To ensure uniform mixing",
+        options: [
+          "To increase temperature",
+          "To ensure uniform mixing",
+          "To reduce pH",
+          "To evaporate the solvent",
+        ],
+      },
+      {
+        question:
+          "Sample A’s solubility in water rules out the presence of alkanes.",
+        answer: "True",
+        type: "True/False",
       },
     ],
   },
