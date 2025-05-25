@@ -103,8 +103,12 @@ const UserListScreen = () => {
                 <th style={styles.tableHeader}>Username</th>
                 <th style={styles.tableHeader}>Program</th>
                 <th style={styles.tableHeader}>Level</th>
-                <th style={styles.tableHeader}>Contact</th>
-                {isAdmin && <th style={styles.tableHeader}>Streak</th>}
+                {isAdmin && (
+                  <>
+                    <th style={styles.tableHeader}>Contact</th>
+                    <th style={styles.tableHeader}>Streak</th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -120,11 +124,15 @@ const UserListScreen = () => {
                   <td style={styles.tableCell1}>
                     {user.levelOfStudy || "No Level"}
                   </td>
-                  <td style={styles.tableCell1}>{user.userNumber || "-"}</td>
                   {isAdmin && (
-                    <td style={styles.tableCell1}>
-                      {user.streak !== undefined ? user.streak + "🔥" : "-"}
-                    </td>
+                    <>
+                      <td style={styles.tableCell1}>
+                        {user.userNumber || "-"}
+                      </td>
+                      <td style={styles.tableCell1}>
+                        {user.streak !== undefined ? user.streak + "🔥" : "-"}
+                      </td>
+                    </>
                   )}
                 </tr>
               ))}

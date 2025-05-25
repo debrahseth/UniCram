@@ -1,6 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaArrowCircleLeft, FaPaperPlane, FaSync } from "react-icons/fa";
+import {
+  FaArrowCircleLeft,
+  FaPaperPlane,
+  FaSync,
+  FaTimes,
+  FaArrowDown,
+} from "react-icons/fa";
 import { db, auth } from "../firebase";
 import {
   collection,
@@ -28,10 +34,12 @@ const TextingScreen = () => {
   const [error, setError] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [formData, setFormData] = useState({
-    username: "",
     about: "",
-    userNumber: "",
   });
+  const messageContainerRef = useRef(null);
+  const bottomRef = useRef(null);
+  const [isAtBottom, setIsAtBottom] = useState(true);
+  const [loadingProfile, setLoadingProfile] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -118,6 +126,7 @@ const TextingScreen = () => {
     }
 
     const fetchSelectedUserProfile = async () => {
+      setLoadingProfile(true);
       try {
         const userDoc = await getDoc(doc(db, "users", selectedUser.id));
         if (userDoc.exists()) {
@@ -127,6 +136,8 @@ const TextingScreen = () => {
         }
       } catch (err) {
         setError("Failed to load user profile: " + err.message);
+      } finally {
+        setLoadingProfile(false);
       }
     };
 
@@ -169,6 +180,29 @@ const TextingScreen = () => {
     return () => unsubscribe();
   }, [selectedUser]);
 
+  useEffect(() => {
+    const container = messageContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      if (!container) return;
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      setIsAtBottom(scrollHeight - scrollTop - clientHeight < 50);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => {
+      container?.removeEventListener("scroll", handleScroll);
+    };
+  }, [selectedUser]);
+
+  useEffect(() => {
+    if (isAtBottom && bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   const handleSendMessage = async () => {
     if (!newMessage.trim() || !selectedUser) return;
 
@@ -205,9 +239,7 @@ const TextingScreen = () => {
     try {
       const userRef = doc(db, "users", auth.currentUser.uid);
       await updateDoc(userRef, {
-        username: formData.username,
         about: formData.about,
-        number: formData.userNumber,
       });
       setCurrentUserProfile({
         ...currentUserProfile,
@@ -222,7 +254,7 @@ const TextingScreen = () => {
 
   if (loading) {
     return (
-      <div style={styles.spinnerContainer}>
+      <div style={{ ...styles.spinnerContainer, height: "100vh" }}>
         <div style={styles.spinner}></div>
         <p>Loading...</p>
       </div>
@@ -296,44 +328,66 @@ const TextingScreen = () => {
         <div style={styles.chatContainer}>
           {selectedUser ? (
             <>
-              <h3 style={styles.sectionTitle}>
-                Chat with {selectedUser.username}
-              </h3>
-              <div style={styles.messageContainer}>
+              <div style={styles.chatHeader}>
+                <h3 style={styles.sectionTitle}>
+                  Chat with {selectedUser.username}
+                </h3>
+                <button
+                  onClick={() => setSelectedUser(null)}
+                  style={styles.closeButton}
+                >
+                  <FaTimes size={20} />
+                </button>
+              </div>
+              <div ref={messageContainerRef} style={styles.messageContainer}>
                 {messages.length === 0 ? (
                   <p style={styles.noDataMessage}>
                     No messages yet. Start the conversation!
                   </p>
                 ) : (
-                  messages.map((msg, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        ...styles.messageBubble,
-                        alignSelf:
-                          msg.senderId === auth.currentUser.uid
-                            ? "flex-end"
-                            : "flex-start",
-                        backgroundColor:
-                          msg.senderId === auth.currentUser.uid
-                            ? "#007bff"
-                            : "#f1f1f1",
-                        color:
-                          msg.senderId === auth.currentUser.uid
-                            ? "white"
-                            : "black",
-                      }}
-                    >
-                      <p style={styles.messageText}>{msg.content}</p>
-                      <p style={styles.messageTimestamp}>
-                        {msg.timestamp.toDate().toLocaleString("en-US", {
-                          timeStyle: "short",
-                        })}
-                      </p>
-                    </div>
-                  ))
+                  <>
+                    {messages.map((msg, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          ...styles.messageBubble,
+                          alignSelf:
+                            msg.senderId === auth.currentUser.uid
+                              ? "flex-end"
+                              : "flex-start",
+                          backgroundColor:
+                            msg.senderId === auth.currentUser.uid
+                              ? "#007bff"
+                              : "#f1f1f1",
+                          color:
+                            msg.senderId === auth.currentUser.uid
+                              ? "white"
+                              : "black",
+                        }}
+                      >
+                        <p style={styles.messageText}>{msg.content}</p>
+                        <p style={styles.messageTimestamp}>
+                          {msg.timestamp.toDate().toLocaleString("en-US", {
+                            timeStyle: "short",
+                          })}
+                        </p>
+                      </div>
+                    ))}
+                    <div ref={bottomRef} />
+                  </>
                 )}
               </div>
+              {!isAtBottom && (
+                <button
+                  style={styles.scrollButton}
+                  onClick={() => {
+                    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  aria-label="Jumpt to latest message"
+                >
+                  <FaArrowDown size={20} />
+                </button>
+              )}
               <div style={styles.inputContainer}>
                 <textarea
                   value={newMessage}
@@ -351,7 +405,11 @@ const TextingScreen = () => {
           )}
         </div>
         <div style={styles.profileContainer}>
-          <h3 style={styles.sectionTitle}>User Profile</h3>
+          <h3 style={styles.sectionTitle}>
+            {loadingProfile
+              ? "Loading Profile..."
+              : `${selectedUserProfile?.username || "User"}'s Profile`}
+          </h3>
           <div style={styles.profilePictureContainer}>
             <img
               src={logo}
@@ -359,48 +417,50 @@ const TextingScreen = () => {
               style={styles.profilePicture}
             />
           </div>
-          {selectedUser && selectedUserProfile ? (
-            <div style={styles.profileDetails}>
-              <p style={styles.profileField}>
-                <strong>Username:</strong>
-                <br />{" "}
-                <span style={{ marginLeft: "10px" }}>
-                  {selectedUserProfile.username || "Unknown"}
-                </span>
-              </p>
-              <p style={styles.profileField}>
-                <strong>Program of Study:</strong>
-                <br />{" "}
-                <span style={{ marginLeft: "10px" }}>
-                  {selectedUserProfile.programOfStudy || "Unknown"}
-                </span>
-              </p>
-              <p style={styles.profileField}>
-                <strong>Level of Study:</strong>
-                <br />{" "}
-                <span style={{ marginLeft: "10px" }}>
-                  {selectedUserProfile.levelOfStudy || "Unknown"}
-                </span>
-              </p>
-              <p style={styles.profileField}>
-                <strong>Phone Number:</strong>
-                <br />{" "}
-                <span style={{ marginLeft: "10px" }}>
-                  {selectedUserProfile.userNumber || "Unknown"}
-                </span>
-              </p>
-              <p style={styles.profileField}>
-                <strong>About {selectedUserProfile.username}:</strong>
-                <br />{" "}
-                <span style={{ textAlign: "justify", display: "block" }}>
-                  {selectedUserProfile.about || "No About"}
-                </span>
-              </p>
-            </div>
-          ) : (
-            <p style={styles.noDataMessage}>
-              Select a user to view their profile.
-            </p>
+          {selectedUser && (
+            <>
+              {loadingProfile ? (
+                <div style={styles.spinnerContainer}>
+                  <div style={styles.spinner}></div>
+                  <p style={styles.noDataMessage}>Loading profile...</p>
+                </div>
+              ) : selectedUserProfile ? (
+                <div style={styles.profileDetails}>
+                  <p style={styles.profileField}>
+                    <strong>Username:</strong>
+                    <br />{" "}
+                    <span style={{ marginLeft: "10px" }}>
+                      {selectedUserProfile.username || "Unknown"}
+                    </span>
+                  </p>
+                  <p style={styles.profileField}>
+                    <strong>Program of Study:</strong>
+                    <br />{" "}
+                    <span style={{ marginLeft: "10px" }}>
+                      {selectedUserProfile.programOfStudy || "Unknown"}
+                    </span>
+                  </p>
+                  <p style={styles.profileField}>
+                    <strong>Level of Study:</strong>
+                    <br />{" "}
+                    <span style={{ marginLeft: "10px" }}>
+                      {selectedUserProfile.levelOfStudy || "Unknown"}
+                    </span>
+                  </p>
+                  <p style={styles.profileField}>
+                    <strong>About {selectedUserProfile.username}:</strong>
+                    <br />{" "}
+                    <span style={{ textAlign: "justify", display: "block" }}>
+                      {selectedUserProfile.about || "No About"}
+                    </span>
+                  </p>
+                </div>
+              ) : (
+                <p style={styles.noDataMessage}>
+                  Select a user to view their profile.
+                </p>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -419,26 +479,6 @@ const TextingScreen = () => {
           <div style={styles.modal}>
             <h2 style={styles.sectionTitle}>Update Profile</h2>
             <div style={styles.formContainer}>
-              <label style={styles.formLabel}>Username</label>
-              <input
-                type="text"
-                value={formData.username}
-                onChange={(e) =>
-                  setFormData({ ...formData, username: e.target.value })
-                }
-                style={styles.formInput}
-                placeholder="Enter your username"
-              />
-              <label style={styles.formLabel}>Phone Number</label>
-              <input
-                type="tel"
-                value={formData.userNumber}
-                onChange={(e) =>
-                  setFormData({ ...formData, userNumber: e.target.value })
-                }
-                style={styles.formInput}
-                placeholder="Enter your contact number"
-              />
               <label style={styles.formLabel}>About Me</label>
               <textarea
                 type="text"
@@ -480,6 +520,9 @@ const styles = {
     padding: "20px",
     color: "#333",
     minHeight: "95vh",
+    position: "fixed",
+    left: "50%",
+    transform: "translateX(-50%)",
   },
   background: {
     content: '""',
@@ -591,6 +634,20 @@ const styles = {
     padding: "10px",
     boxShadow: "0 8px 4px rgba(0,0,0,0.8)",
     borderRadius: "10px",
+  },
+  chatHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "10px",
+  },
+  closeButton: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    color: "#dc3545",
+    fontSize: "20px",
+    padding: "5px",
   },
   messageContainer: {
     flex: 1,
@@ -763,7 +820,6 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "100vh",
   },
   spinner: {
     width: "30px",
@@ -793,6 +849,18 @@ const styles = {
     justifyContent: "center",
     fontSize: "8px",
     fontWeight: "bold",
+  },
+  scrollButton: {
+    marginTop: "5px",
+    marginBottom: "5px",
+    padding: "8px 12px",
+    color: "black",
+    border: "none",
+    cursor: "pointer",
+    alignSelf: "center",
+    boxShadow: "0 4px 4px rgba(0,0,0,0.5)",
+    borderRadius: "8px",
+    width: "10%",
   },
 };
 
