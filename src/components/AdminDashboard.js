@@ -56,12 +56,22 @@ const AdminDashboard = () => {
   const [passwordError, setPasswordError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const [showSmsModal, setShowSmsModal] = useState(false);
-  const [smsMessage, setSmsMessage] = useState("");
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [smsLoading, setSmsLoading] = useState(false);
-  const [smsSuccess, setSmsSuccess] = useState("");
-  const [smsError, setSmsError] = useState("");
+  // const [showSmsModal, setShowSmsModal] = useState(false);
+  // const [smsMessage, setSmsMessage] = useState("");
+  // const [selectedUsers, setSelectedUsers] = useState([]);
+  // const [smsLoading, setSmsLoading] = useState(false);
+  // const [smsSuccess, setSmsSuccess] = useState("");
+  // const [smsError, setSmsError] = useState("");
+  const [showMessagesModal, setShowMessagesModal] = useState(false);
+  const [showManageAdminsModal, setShowManageAdminsModal] = useState(false);
+  const [adminUsers, setAdminUsers] = useState([]);
+  const [loadingAdmins, setLoadingAdmins] = useState(false);
+  const [errorAdmins, setErrorAdmins] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [messagesLoading, setMessagesLoading] = useState(false);
+  const [messagesError, setMessagesError] = useState("");
+  const [deleteMessageSuccess, setDeleteMessageSuccess] = useState("");
+  const [deleteMessageError, setDeleteMessageError] = useState("");
   const correctPassword = "Admin123";
 
   const programAbbreviations = {
@@ -88,6 +98,42 @@ const AdminDashboard = () => {
   const abbreviatedLabels = Object.keys(analytics.programDistribution).map(
     (program) => programAbbreviations[program] || program
   );
+
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      setLoadingAdmins(true);
+      setErrorAdmins(null);
+      try {
+        const usersSnapshot = await getDocs(collection(db, "users"));
+        const admins = usersSnapshot.docs
+          .filter((doc) => doc.data().role === "admin")
+          .map((doc) => ({
+            id: doc.id,
+            username: doc.data().username || "Unknown",
+          }));
+        setAdminUsers(admins);
+      } catch (error) {
+        setErrorAdmins("Failed to load admin users: " + error.message);
+      } finally {
+        setLoadingAdmins(false);
+      }
+    };
+
+    if (showManageAdminsModal) {
+      fetchAdmins();
+    }
+  }, [showManageAdminsModal]);
+
+  const handleRemoveAdmin = async (userId) => {
+    try {
+      const userRef = doc(db, "users", userId);
+      await updateDoc(userRef, { role: "user" });
+      setAdminUsers(adminUsers.filter((user) => user.id !== userId));
+      alert(`Admin rights removed from user`);
+    } catch (error) {
+      setErrorAdmins("Failed to remove admin: " + error.message);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(authInstance, (user) => {
@@ -370,6 +416,47 @@ const AdminDashboard = () => {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    const fetchMessages = () => {
+      setMessagesLoading(true);
+      setMessagesError("");
+      try {
+        const messagesRef = collection(db, "messages");
+        const unsubscribe = onSnapshot(
+          messagesRef,
+          (snapshot) => {
+            const messagesList = snapshot.docs
+              .map((doc) => {
+                const data = doc.data();
+                return {
+                  id: doc.id,
+                  content: data.message,
+                  recipients: data.userId ? [data.userId] : [],
+                  sentAt: data.timestamp?.toDate() || new Date(),
+                  readBy: data.read && data.userId ? [data.userId] : [],
+                  sender: data.sender || "admin",
+                  isGroup: data.isGroup || false,
+                };
+              })
+              .filter((msg) => msg.sender === "admin");
+            setMessages(messagesList);
+            setMessagesLoading(false);
+          },
+          (err) => {
+            setMessagesError("Failed to load messages: " + err.message);
+            setMessagesLoading(false);
+          }
+        );
+        return () => unsubscribe();
+      } catch (error) {
+        setMessagesError("Failed to initialize messages: " + error.message);
+        setMessagesLoading(false);
+      }
+    };
+
+    fetchMessages();
+  }, []);
+
   const handleSendMessage = async () => {
     if (!message) {
       setError("Please enter a message to send.");
@@ -413,6 +500,24 @@ const AdminDashboard = () => {
       setError("An error occurred while sending the message: " + error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDeleteMessage = async (messageId) => {
+    if (!window.confirm("Are you sure you want to delete this message?")) {
+      return;
+    }
+
+    setDeleteMessageSuccess("");
+    setDeleteMessageError("");
+
+    try {
+      const messageDocRef = doc(db, "messages", messageId);
+      await deleteDoc(messageDocRef);
+      setDeleteMessageSuccess("Message deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting message:", error);
+      setDeleteMessageError("Failed to delete message: " + error.message);
     }
   };
 
@@ -533,6 +638,14 @@ const AdminDashboard = () => {
         );
         await Promise.all(deletePromises);
         alert("All Daily Quizzes deleted successfully.");
+      } else if (deleteOption === "text") {
+        const textCollection = collection(db, "text");
+        const querySnapshot = await getDocs(textCollection);
+        const deletePromises = querySnapshot.docs.map((doc) =>
+          deleteDoc(doc.ref)
+        );
+        await Promise.all(deletePromises);
+        alert("All Text Data deleted successfully.");
       } else if (deleteOption === "challenges") {
         await deleteChallenges();
         alert("All challenges and their scores deleted successfully.");
@@ -548,59 +661,59 @@ const AdminDashboard = () => {
     }
   };
 
-  const formatPhoneNumber = (number) => {
-    if (!number || typeof number !== "string") return null;
-    const digits = number.replace(/\D/g, "");
-    if (digits.startsWith("0") && digits.length === 10) {
-      return `+233${digits.slice(1)}`;
-    }
-    return digits.length >= 10 && digits.startsWith("+") ? digits : null;
-  };
+  // const formatPhoneNumber = (number) => {
+  //   if (!number || typeof number !== "string") return null;
+  //   const digits = number.replace(/\D/g, "");
+  //   if (digits.startsWith("0") && digits.length === 10) {
+  //     return `+233${digits.slice(1)}`;
+  //   }
+  //   return digits.length >= 10 && digits.startsWith("+") ? digits : null;
+  // };
 
-  const handleSendSms = async () => {
-    if (!smsMessage || selectedUsers.length === 0) {
-      setSmsError("Please enter a message and select at least one user.");
-      return;
-    }
-    setSmsLoading(true);
-    setSmsError("");
-    setSmsSuccess("");
+  // const handleSendSms = async () => {
+  //   if (!smsMessage || selectedUsers.length === 0) {
+  //     setSmsError("Please enter a message and select at least one user.");
+  //     return;
+  //   }
+  //   setSmsLoading(true);
+  //   setSmsError("");
+  //   setSmsSuccess("");
 
-    try {
-      emailjs.init("J1JJdUVnwGNm1_468");
+  //   try {
+  //     emailjs.init("J1JJdUVnwGNm1_468");
 
-      const phoneNumbers = selectedUsers
-        .map((userId) => {
-          const user = users.find((u) => u.id === userId);
-          return user?.phoneNumber ? formatPhoneNumber(user.phoneNumber) : null;
-        })
-        .filter((num) => num);
+  //     const phoneNumbers = selectedUsers
+  //       .map((userId) => {
+  //         const user = users.find((u) => u.id === userId);
+  //         return user?.phoneNumber ? formatPhoneNumber(user.phoneNumber) : null;
+  //       })
+  //       .filter((num) => num);
 
-      if (phoneNumbers.length === 0) {
-        setSmsError("No valid phone numbers found for selected users.");
-        setSmsLoading(false);
-        return;
-      }
+  //     if (phoneNumbers.length === 0) {
+  //       setSmsError("No valid phone numbers found for selected users.");
+  //       setSmsLoading(false);
+  //       return;
+  //     }
 
-      const templateParams = {
-        message: smsMessage,
-        to: phoneNumbers,
-        from_name: "Prime Academy",
-        subject: "SMS from Prime Academy",
-      };
+  //     const templateParams = {
+  //       message: smsMessage,
+  //       to: phoneNumbers,
+  //       from_name: "Prime Academy",
+  //       subject: "SMS from Prime Academy",
+  //     };
 
-      await emailjs.send("service_ocrml1s", "template_sms", templateParams);
+  //     await emailjs.send("service_ocrml1s", "template_sms", templateParams);
 
-      setSmsSuccess("SMS sent successfully to selected users!");
-      setSmsMessage("");
-      setSelectedUsers([]);
-    } catch (error) {
-      console.error("Error sending SMS:", error);
-      setSmsError("An error occurred while sending SMS: " + error.message);
-    } finally {
-      setSmsLoading(false);
-    }
-  };
+  //     setSmsSuccess("SMS sent successfully to selected users!");
+  //     setSmsMessage("");
+  //     setSelectedUsers([]);
+  //   } catch (error) {
+  //     console.error("Error sending SMS:", error);
+  //     setSmsError("An error occurred while sending SMS: " + error.message);
+  //   } finally {
+  //     setSmsLoading(false);
+  //   }
+  // };
 
   const filteredUsers = users.filter((user) => {
     if (displayMode === "all") return true;
@@ -760,7 +873,7 @@ const AdminDashboard = () => {
               👑
             </button>
             <button
-              onClick={() => setShowSmsModal(true)}
+              onClick={() => setShowMessagesModal(true)}
               style={{ ...styles.logoutButton, width: "20%" }}
             >
               ✉️
@@ -776,6 +889,12 @@ const AdminDashboard = () => {
               style={{ ...styles.logoutButton, width: "20%" }}
             >
               🗑️
+            </button>
+            <button
+              onClick={() => setShowManageAdminsModal(true)}
+              style={{ ...styles.logoutButton, width: "20%" }}
+            >
+              🧑‍💻
             </button>
           </div>
         </div>
@@ -803,6 +922,7 @@ const AdminDashboard = () => {
                 <option value="messages">All Messages</option>
                 <option value="challenges">All Challenges</option>
                 <option value="dailyQuizzes">Leaderboard Data</option>
+                <option value="text">Text Data</option>
               </select>
             </div>
             <div style={styles.inputGroup}>
@@ -1245,7 +1365,7 @@ const AdminDashboard = () => {
                           top: "0",
                         }}
                       >
-                        Last Seen Date
+                        Date
                       </th>
                       {/* <th style={tableStyles.th}>Actions</th> */}
                     </tr>
@@ -1352,7 +1472,7 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {showSmsModal && (
+      {/* {showSmsModal && (
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
             <h2 style={modalStyles.title}>Send SMS to Users</h2>
@@ -1533,6 +1653,156 @@ const AdminDashboard = () => {
                 )}
               </div>
             )}
+          </div>
+        </div>
+      )} */}
+
+      {showMessagesModal && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h2 style={modalStyles.title}>Sent Messages</h2>
+            {messagesLoading ? (
+              <div style={modalStyles.loading}>
+                <i
+                  className="fa fa-spinner fa-spin"
+                  style={modalStyles.spinner}
+                ></i>
+                Loading messages...
+              </div>
+            ) : messagesError ? (
+              <p style={modalStyles.error}>{messagesError}</p>
+            ) : (
+              <div style={modalStyles.content1}>
+                <table style={tableStyles.table}>
+                  <thead>
+                    <tr>
+                      <th style={tableStyles.th}>Message</th>
+                      <th style={tableStyles.th}>Sent To</th>
+                      <th style={tableStyles.th}>Sent At</th>
+                      <th style={tableStyles.th}>Read By</th>
+                      <th style={tableStyles.th}>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {messages.length > 0 ? (
+                      messages.map((msg) => {
+                        const recipients = msg.recipients;
+                        const recipientNames = msg.isGroup
+                          ? "All Users"
+                          : users
+                              .filter((user) => recipients.includes(user.id))
+                              .map((user) => user.username)
+                              .join(", ") || "Unknown Users";
+                        const readByNames = msg.readBy
+                          ? users
+                              .filter((user) => msg.readBy.includes(user.id))
+                              .map((user) => user.username)
+                              .join(", ") || "None"
+                          : "None";
+                        const isRead = msg.readBy && msg.readBy.length > 0;
+
+                        return (
+                          <tr key={msg.id} style={tableStyles.tr}>
+                            <td
+                              style={{
+                                ...tableStyles.td,
+                                textAlign: "justify",
+                                width: "400px",
+                              }}
+                            >
+                              {msg.content}
+                            </td>
+                            <td style={tableStyles.td}>{recipientNames}</td>
+                            <td style={tableStyles.td}>
+                              {formatDistanceToNow(msg.sentAt, {
+                                addSuffix: true,
+                              })}
+                            </td>
+                            <td style={tableStyles.td}>
+                              <span style={{ color: isRead ? "green" : "red" }}>
+                                {readByNames} {isRead ? "(Read)" : "(Unread)"}
+                              </span>
+                            </td>
+                            <td style={tableStyles.td}>
+                              <button
+                                onClick={() => handleDeleteMessage(msg.id)}
+                              >
+                                🗑️
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <tr>
+                        <td colSpan="4" style={tableStyles.noDataTd}>
+                          No messages found.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            <button
+              onClick={() => setShowMessagesModal(false)}
+              style={modalStyles.closeButton}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showManageAdminsModal && (
+        <div style={manageAdminsModalStyles.overlay}>
+          <div style={manageAdminsModalStyles.modal}>
+            <h2 style={manageAdminsModalStyles.title}>Manage Admin Users</h2>
+            {loadingAdmins ? (
+              <div style={manageAdminsModalStyles.loading}>
+                <i
+                  className="fa fa-spinner fa-spin"
+                  style={manageAdminsModalStyles.spinner}
+                ></i>
+                Loading admin users...
+              </div>
+            ) : errorAdmins ? (
+              <p style={manageAdminsModalStyles.error}>{errorAdmins}</p>
+            ) : (
+              <div style={manageAdminsModalStyles.content}>
+                {adminUsers.length === 0 ? (
+                  <p style={manageAdminsModalStyles.noDataMessage}>
+                    No admin users found.
+                  </p>
+                ) : (
+                  <ul style={manageAdminsModalStyles.userList}>
+                    {adminUsers.map((user) => (
+                      <li
+                        key={user.id}
+                        style={manageAdminsModalStyles.userItem}
+                      >
+                        <span style={manageAdminsModalStyles.userName}>
+                          {user.username}
+                        </span>
+                        <button
+                          onClick={() => handleRemoveAdmin(user.id)}
+                          style={manageAdminsModalStyles.removeButton}
+                          disabled={user.id === auth.currentUser.uid} // Prevent self-removal
+                        >
+                          Remove Admin
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+            <button
+              onClick={() => setShowManageAdminsModal(false)}
+              style={manageAdminsModalStyles.closeButton}
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
@@ -1903,9 +2173,9 @@ const modalStyles1 = {
     textTransform: "uppercase",
   },
   content: {
-    marginBottom: "5px",
+    marginBottom: "10px",
     overflowY: "auto",
-    maxHeight: "550px",
+    maxHeight: "530px",
   },
   closeButton: {
     padding: "10px 20px",
@@ -1936,6 +2206,94 @@ const modalStyles1 = {
   noData: {
     color: "#666",
     fontStyle: "italic",
+  },
+};
+const manageAdminsModalStyles = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1000,
+  },
+  modal: {
+    background: "#fff",
+    padding: "20px",
+    borderRadius: "5px",
+    width: "750px",
+    maxHeight: "80vh",
+    overflowY: "auto",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+  },
+  title: {
+    fontSize: "24px",
+    marginBottom: "15px",
+    color: "#333",
+    textAlign: "center",
+  },
+  content: {
+    marginBottom: "20px",
+  },
+  loading: {
+    textAlign: "center",
+    color: "#007bff",
+    fontSize: "16px",
+  },
+  spinner: {
+    fontSize: "24px",
+    marginRight: "10px",
+  },
+  error: {
+    color: "#dc3545",
+    textAlign: "center",
+    fontSize: "16px",
+  },
+  noDataMessage: {
+    textAlign: "center",
+    color: "#666",
+    fontStyle: "italic",
+    fontSize: "16px",
+  },
+  userList: {
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+  },
+  userItem: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "10px",
+    borderBottom: "1px solid #eee",
+  },
+  userName: {
+    fontSize: "20px",
+    color: "#333",
+  },
+  removeButton: {
+    padding: "5px 10px",
+    backgroundColor: "#f44336",
+    color: "white",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "14px",
+    transition: "background-color 0.3s",
+  },
+  closeButton: {
+    padding: "10px 20px",
+    backgroundColor: "#dc3545",
+    color: "white",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    width: "100%",
+    fontSize: "16px",
   },
 };
 export default AdminDashboard;

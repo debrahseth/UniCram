@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaArrowCircleLeft } from "react-icons/fa";
+import { FaArrowCircleLeft, FaEnvelope } from "react-icons/fa";
 import { db, auth } from "../firebase";
 import {
   collection,
@@ -15,6 +15,7 @@ import logo from "../assets/op.jpg";
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [textUnreadCount, setTextUnreadCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,11 +34,7 @@ const Messages = () => {
         id: doc.id,
         ...doc.data(),
       }));
-
-      // Sort messages by timestamp (newest first)
       userMessages.sort((a, b) => b.timestamp.toDate() - a.timestamp.toDate());
-
-      // Mark unread messages as read
       userMessages.forEach(async (message) => {
         if (!message.read) {
           const messageRef = doc(db, "messages", message.id);
@@ -51,6 +48,34 @@ const Messages = () => {
 
     return () => unsubscribe();
   }, [navigate]);
+
+  useEffect(() => {
+    if (!auth.currentUser) return;
+
+    const textQuery = query(
+      collection(db, "text"),
+      where("userIds", "array-contains", auth.currentUser.uid)
+    );
+
+    const unsubscribe = onSnapshot(textQuery, (querySnapshot) => {
+      let unread = 0;
+      querySnapshot.forEach((doc) => {
+        const conversation = doc.data();
+        const messages = conversation.messages || [];
+        messages.forEach((message) => {
+          if (
+            message.senderId !== auth.currentUser.uid &&
+            message.read === false
+          ) {
+            unread++;
+          }
+        });
+      });
+      setTextUnreadCount(unread);
+    });
+
+    return () => unsubscribe();
+  }, [auth.currentUser]);
 
   if (loading) {
     return (
@@ -71,6 +96,18 @@ const Messages = () => {
           </button>
         </div>
         <h2 style={{ fontSize: "36px" }}>YOUR MESSAGES</h2>
+        <div style={styles.messageButtonContainer}>
+          <button
+            onClick={() => navigate("/texting")}
+            style={styles.messageButton}
+          >
+            <FaEnvelope size={20} />
+            Send Message
+            {textUnreadCount > 0 && (
+              <span style={styles.badge}>{textUnreadCount}</span>
+            )}
+          </button>
+        </div>
       </div>
       <div style={styles.scrollableContainer}>
         {messages.length === 0 ? (
@@ -166,6 +203,19 @@ const styles = {
     gap: "12px",
     transition: "background-color 0.3s",
   },
+  messageButton: {
+    backgroundColor: "white",
+    color: "black",
+    border: "2px solid black",
+    borderRadius: "30px",
+    padding: "10px 30px",
+    fontSize: "25px",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    transition: "background-color 0.3s",
+  },
   messageList: {
     display: "flex",
     flexDirection: "column",
@@ -211,6 +261,11 @@ const styles = {
     top: "40px",
     left: "15px",
   },
+  messageButtonContainer: {
+    position: "absolute",
+    top: "40px",
+    right: "30px",
+  },
   footer: {
     position: "fixed",
     bottom: "0",
@@ -222,6 +277,21 @@ const styles = {
     textAlign: "center",
     fontSize: "1.1rem",
     fontFamily: "Poppins, sans-serif",
+  },
+  badge: {
+    position: "absolute",
+    top: "15px",
+    right: "5px",
+    backgroundColor: "red",
+    color: "white",
+    borderRadius: "50%",
+    width: "20px",
+    height: "20px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "12px",
+    fontWeight: "bold",
   },
 };
 

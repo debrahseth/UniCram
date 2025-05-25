@@ -24,6 +24,7 @@ import LiveQuiz from "./components/LiveQuiz";
 import AdminDashboard from "./components/AdminDashboard";
 import TopPerformers from "./components/TopPerformers";
 import Messages from "./components/Messages";
+import TextingScreen from "./components/TextingScreen";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/top-performers" element={<TopPerformers />} />
         <Route path="/messages" element={<Messages />} />
+        <Route path="/texting" element={<TextingScreen />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

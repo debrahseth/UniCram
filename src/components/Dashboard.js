@@ -28,6 +28,7 @@ const Dashboard = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [showRulesModal, setShowRulesModal] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [textUnreadCount, setTextUnreadCount] = useState(0);
   const [hasTakenDailyQuiz, setHasTakenDailyQuiz] = useState(false);
   const quotes = [
     {
@@ -115,6 +116,34 @@ const Dashboard = () => {
   ];
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
+  useEffect(() => {
+    if (!auth.currentUser) return;
+
+    const textQuery = query(
+      collection(db, "text"),
+      where("userIds", "array-contains", auth.currentUser.uid)
+    );
+
+    const unsubscribe = onSnapshot(textQuery, (querySnapshot) => {
+      let unread = 0;
+      querySnapshot.forEach((doc) => {
+        const conversation = doc.data();
+        const messages = conversation.messages || [];
+        messages.forEach((message) => {
+          if (
+            message.senderId !== auth.currentUser.uid &&
+            message.read === false
+          ) {
+            unread++;
+          }
+        });
+      });
+      setTextUnreadCount(unread);
+    });
+
+    return () => unsubscribe();
+  }, [auth.currentUser]);
 
   useEffect(() => {
     let unsubscribeMessages = () => {};
@@ -332,6 +361,9 @@ const Dashboard = () => {
               Notifications
               {unreadCount > 0 && (
                 <span style={styles.badge}>{unreadCount}</span>
+              )}
+              {textUnreadCount > 0 && (
+                <span style={styles.badge}>{textUnreadCount}</span>
               )}
             </button>
           </>

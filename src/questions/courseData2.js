@@ -5070,32 +5070,1127 @@ export const courseData2 = {
       },
     ],
   },
-  "Chemical Process Calculation II": {
+  "Chemical Process Calculations": {
     programOfStudy: "Chemical Engineering",
     levelOfStudy: "Level 200",
     semesterOfStudy: "Semester 2",
     Easy: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "A reactor processes 100 kg/h of methane. If the molar mass of methane is 16 g/mol, how many moles are processed per hour?",
+        type: "Multiple Choice",
+        answer: "6250 mol/h",
+        options: ["6250 mol/h", "1600 mol/h", "100 mol/h", "16 mol/h"],
+      },
+      {
+        question:
+          "In a steady-state process, the mass flow rate into a system equals the mass flow rate out.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A stream contains 60% water and 40% ethanol by mass. If 200 kg of the stream is processed, how much ethanol is present?",
+        type: "Multiple Choice",
+        answer: "80 kg",
+        options: ["60 kg", "80 kg", "120 kg", "140 kg"],
+      },
+      {
+        question:
+          "The ideal gas law can be used for liquids under high pressure.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "In a combustion reaction, 1 mol of propane (C3H8) reacts completely with oxygen. How many moles of CO2 are produced?",
+        type: "Multiple Choice",
+        answer: "3 mol",
+        options: ["1 mol", "2 mol", "3 mol", "4 mol"],
+      },
+      {
+        question:
+          "A material balance assumes no accumulation in a batch process.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tank contains 500 L of a solution with 10% NaCl by mass. If the density is 1.1 g/cm³, what is the mass of NaCl?",
+        type: "Multiple Choice",
+        answer: "55 kg",
+        options: ["50 kg", "55 kg", "60 kg", "65 kg"],
+      },
+      {
+        question: "The heat capacity of a substance varies with temperature.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas at 2 atm and 300 K is compressed to 4 atm at constant temperature. What is the new volume if the initial volume is 10 L?",
+        type: "Multiple Choice",
+        answer: "5 L",
+        options: ["2.5 L", "5 L", "10 L", "20 L"],
+      },
+      {
+        question: "In a closed system, the total mass remains constant.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A process requires 1000 kg of steam at 100°C. If the latent heat of vaporization is 2257 kJ/kg, how much heat is needed to produce the steam from water at 100°C?",
+        type: "Multiple Choice",
+        answer: "2257 MJ",
+        options: ["225.7 MJ", "1000 MJ", "2257 MJ", "4514 MJ"],
+      },
+      {
+        question: "A process with no heat transfer is called isothermal.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reaction produces 50 mol of nitrogen gas. If the gas is at 1 atm and 25°C, what is its volume? (R = 0.0821 L·atm/mol·K)",
+        type: "Multiple Choice",
+        answer: "1224 L",
+        options: ["611 L", "1224 L", "2448 L", "4896 L"],
+      },
+      {
+        question:
+          "The law of conservation of mass applies to reactive systems.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A stream of 200 kg/h contains 30% methanol. If 50 kg/h of methanol is removed, what is the new methanol mass fraction?",
+        type: "Multiple Choice",
+        answer: "15.4%",
+        options: ["15.4%", "20.0%", "25.0%", "30.0%"],
+      },
+      {
+        question:
+          "Energy balances include both kinetic and potential energy terms in most chemical processes.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A heater raises the temperature of 100 kg of water from 20°C to 80°C. If the specific heat of water is 4.18 kJ/kg·°C, how much heat is required?",
+        type: "Multiple Choice",
+        answer: "4180 kJ",
+        options: ["2508 kJ", "3344 kJ", "4180 kJ", "5016 kJ"],
+      },
+      {
+        question:
+          "A system at steady state has constant temperature throughout.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "In a reaction, 2 mol of hydrogen reacts with 1 mol of oxygen to form water. How many moles of water are produced?",
+        type: "Multiple Choice",
+        answer: "2 mol",
+        options: ["1 mol", "2 mol", "3 mol", "4 mol"],
+      },
+      {
+        question:
+          "The molar flow rate is calculated by dividing the mass flow rate by the molar mass.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas occupies 20 L at 1 atm. If the pressure increases to 2 atm at constant temperature, what is the new volume?",
+        type: "Multiple Choice",
+        answer: "10 L",
+        options: ["5 L", "10 L", "20 L", "40 L"],
+      },
+      {
+        question:
+          "The enthalpy of a substance includes its internal energy and pressure-volume work.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A process separates 100 kg of a mixture containing 25% salt. How much salt is recovered?",
+        type: "Multiple Choice",
+        answer: "25 kg",
+        options: ["15 kg", "20 kg", "25 kg", "30 kg"],
+      },
+      {
+        question: "A batch process operates with constant flow rates.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A compressor processes 10 mol/s of air at 300 K. If the ideal gas constant is 8.314 J/mol·K, what is the volumetric flow rate at 1 atm?",
+        type: "Multiple Choice",
+        answer: "0.249 m³/s",
+        options: ["0.0249 m³/s", "0.249 m³/s", "2.49 m³/s", "24.9 m³/s"],
+      },
+      {
+        question: "The specific heat of a gas is constant at all pressures.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tank holds 200 kg of a 15% sugar solution. If 50 kg of water is added, what is the new sugar mass fraction?",
+        type: "Multiple Choice",
+        answer: "12.0%",
+        options: ["10.0%", "12.0%", "13.0%", "15.0%"],
+      },
+      {
+        question: "A heat exchanger transfers heat without mixing the fluids.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reaction consumes 4 mol of methane. If the reaction is CH4 + 2O2 → CO2 + 2H2O, how many moles of oxygen are needed?",
+        type: "Multiple Choice",
+        answer: "8 mol",
+        options: ["2 mol", "4 mol", "6 mol", "8 mol"],
+      },
+      {
+        question:
+          "The first law of thermodynamics states that energy cannot be created or destroyed.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A pump delivers 100 L/min of water. If the density is 1000 kg/m³, what is the mass flow rate?",
+        type: "Multiple Choice",
+        answer: "10 kg/s",
+        options: ["6 kg/s", "10 kg/s", "100 kg/s", "1000 kg/s"],
+      },
+      {
+        question: "A process with constant volume is isochoric.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas is heated from 25°C to 125°C at constant pressure. If the volume increases by 20%, what was the initial volume if the final volume is 12 L?",
+        type: "Multiple Choice",
+        answer: "10 L",
+        options: ["8 L", "10 L", "12 L", "14 L"],
+      },
+      {
+        question:
+          "A steady-state process has no change in system properties over time.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor produces 100 kg/h of a product with 80% yield. How much reactant was consumed if the product’s molar mass is 50 g/mol and the reactant’s is 100 g/mol?",
+        type: "Multiple Choice",
+        answer: "125 kg/h",
+        options: ["125 kg/h", "150 kg/h", "175 kg/h", "200 kg/h"],
+      },
+      {
+        question: "A process with no work done is adiabatic.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A stream of 500 kg/h contains 20% ethanol. If 100 kg/h of pure ethanol is added, what is the new ethanol mass fraction?",
+        type: "Multiple Choice",
+        answer: "33.3%",
+        options: ["25%", "30%", "33.3%", "40%"],
+      },
+      {
+        question:
+          "The enthalpy change of a reaction depends on the reaction path.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas at 300 K and 1 atm has a volume of 10 L. If the temperature increases to 600 K at constant pressure, what is the new volume?",
+        type: "Multiple Choice",
+        answer: "20 L",
+        options: ["5 L", "10 L", "20 L", "40 L"],
+      },
+      {
+        question:
+          "A material balance for a reactive system accounts for moles of each species.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A cooler lowers the temperature of 200 kg of oil from 100°C to 40°C. If the specific heat of oil is 2.0 kJ/kg·°C, how much heat is removed?",
+        type: "Multiple Choice",
+        answer: "2400 kJ",
+        options: ["2400 kJ", "4000 kJ", "4800 kJ", "6000 kJ"],
+      },
+      {
+        question: "A process at constant pressure is isobaric.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reaction requires 3 mol of ammonia. If the reaction is 2NH3 → N2 + 3H2, how many moles of hydrogen are produced?",
+        type: "Multiple Choice",
+        answer: "4.5 mol",
+        options: ["3 mol", "4.5 mol", "6 mol", "9 mol"],
+      },
+      {
+        question: "The ideal gas law assumes negligible intermolecular forces.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tank holds 1000 kg of a solution with 5% acid. If 200 kg of water is removed, what is the new acid mass fraction?",
+        type: "Multiple Choice",
+        answer: "6.25%",
+        options: ["5.0%", "6.25%", "7.5%", "10.0%"],
+      },
+      {
+        question:
+          "A heat exchanger operates at steady state in most chemical processes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas is compressed from 10 m³ to 5 m³ at constant temperature. If the initial pressure is 1 atm, what is the final pressure?",
+        type: "Multiple Choice",
+        answer: "2 atm",
+        options: ["0.5 atm", "1 atm", "2 atm", "4 atm"],
+      },
+      {
+        question:
+          "The energy balance for a closed system includes work done by the system.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A process requires 100 mol of CO2. If the gas is at 2 atm and 400 K, what is its volume? (R = 0.0821 L·atm/mol·K)",
+        type: "Multiple Choice",
+        answer: "1642 L",
+        options: ["1642 L", "3284 L", "4926 L", "6568 L"],
+      },
+      {
+        question:
+          "A stoichiometric ratio determines the limiting reactant in a reaction.",
+        answer: "True",
+        type: "True/False",
       },
     ],
     Medium: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "A reactor processes 200 kg/h of a 40% NaOH solution. If 50 kg/h of water is evaporated, what is the new NaOH mass fraction?",
+        type: "Multiple Choice",
+        answer: "53.3%",
+        options: ["48.0%", "53.3%", "60.0%", "66.7%"],
+      },
+      {
+        question:
+          "The enthalpy of a reaction is independent of pressure for ideal gases.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas mixture contains 60% N2 and 40% O2 by mole. If the total pressure is 5 atm, what is the partial pressure of O2?",
+        type: "Multiple Choice",
+        answer: "2 atm",
+        options: ["1 atm", "2 atm", "3 atm", "4 atm"],
+      },
+      {
+        question:
+          "A reaction has a 75% yield. If 100 kg of product (molar mass 50 g/mol) is produced, how many moles of reactant (molar mass 100 g/mol) were consumed?",
+        type: "Multiple Choice",
+        answer: "2667 mol",
+        options: ["2000 mol", "2667 mol", "3000 mol", "4000 mol"],
+      },
+      {
+        question:
+          "A recycle stream in a process increases the overall conversion of reactants.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A heat exchanger cools 500 kg/h of oil from 150°C to 50°C. If the specific heat of oil is 2.5 kJ/kg·°C, how much heat is transferred?",
+        type: "Multiple Choice",
+        answer: "12,500 kJ/h",
+        options: ["6250 kJ/h", "12,500 kJ/h", "25,000 kJ/h", "50,000 kJ/h"],
+      },
+      {
+        question:
+          "A reactor consumes 10 mol/s of A and 5 mol/s of B in the reaction A + 2B → C. What is the limiting reactant?",
+        type: "Multiple Choice",
+        answer: "B",
+        options: ["A", "B", "Both are equal", "Cannot determine"],
+      },
+      {
+        question:
+          "The extent of reaction is used to calculate moles produced in a reactive system.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas at 1 atm and 300 K is heated to 450 K at constant volume. What is the new pressure?",
+        type: "Multiple Choice",
+        answer: "1.5 atm",
+        options: ["1.5 atm", "2.0 atm", "2.5 atm", "3.0 atm"],
+      },
+      {
+        question:
+          "A distillation column separates 1000 kg/h of a 50% ethanol-water mixture. If the top product is 90% ethanol, what is the ethanol flow rate in the top product if 400 kg/h is recovered?",
+        type: "Multiple Choice",
+        answer: "360 kg/h",
+        options: ["360 kg/h", "400 kg/h", "450 kg/h", "500 kg/h"],
+      },
+      {
+        question:
+          "The heat of reaction depends on the physical state of reactants and products.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor produces 200 mol/h of CO2 from the combustion of methane. How many moles of methane were consumed?",
+        type: "Multiple Choice",
+        answer: "200 mol/h",
+        options: ["66.7 mol/h", "100 mol/h", "200 mol/h", "400 mol/h"],
+      },
+      {
+        question:
+          "A pump delivers 50 m³/h of water at 25°C. If the density is 1000 kg/m³ and the specific heat is 4.18 kJ/kg·°C, how much heat is needed to raise the temperature to 75°C?",
+        type: "Multiple Choice",
+        answer: "10,450 MJ/h",
+        options: ["6270 MJ/h", "10,450 MJ/h", "12,540 MJ/h", "20,900 MJ/h"],
+      },
+      {
+        question:
+          "A bypass stream in a process reduces the load on a unit operation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas mixture has 2 mol of CO and 3 mol of N2 at 2 atm. What is the partial pressure of CO?",
+        type: "Multiple Choice",
+        answer: "0.8 atm",
+        options: ["0.8 atm", "1.2 atm", "1.6 atm", "2.0 atm"],
+      },
+      {
+        question:
+          "A reactor operates at 80% conversion. If 100 mol/h of reactant is fed, how much reactant remains unreacted?",
+        type: "Multiple Choice",
+        answer: "20 mol/h",
+        options: ["10 mol/h", "20 mol/h", "30 mol/h", "40 mol/h"],
+      },
+      {
+        question:
+          "The heat of vaporization is required to calculate energy balances for phase changes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tank mixes 200 kg/h of a 10% acid solution with 300 kg/h of a 20% acid solution. What is the acid mass fraction in the mixed stream?",
+        type: "Multiple Choice",
+        answer: "16.0%",
+        options: ["12.0%", "15.0%", "16.0%", "18.0%"],
+      },
+      {
+        question:
+          "A gas is cooled from 500 K to 250 K at constant pressure. If the initial volume is 8 m³, what is the final volume?",
+        type: "Multiple Choice",
+        answer: "4 m³",
+        options: ["2 m³", "4 m³", "6 m³", "8 m³"],
+      },
+      {
+        question:
+          "A reaction has ΔH = -100 kJ/mol. If 2 mol of reactant is consumed, how much heat is released?",
+        type: "Multiple Choice",
+        answer: "200 kJ",
+        options: ["50 kJ", "100 kJ", "200 kJ", "400 kJ"],
+      },
+      {
+        question: "A purge stream removes impurities from a recycle loop.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor feeds 100 kg/h of ethanol (C2H5OH, molar mass 46 g/mol). If 50% is converted to acetaldehyde (C2H4O, molar mass 44 g/mol), what is the acetaldehyde production rate?",
+        type: "Multiple Choice",
+        answer: "47.8 kg/h",
+        options: ["47.8 kg/h", "50.0 kg/h", "52.2 kg/h", "55.0 kg/h"],
+      },
+      {
+        question:
+          "The compressibility factor corrects the ideal gas law for real gases.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A heat exchanger heats 1000 kg/h of water from 25°C to 85°C. If the specific heat is 4.18 kJ/kg·°C, how much heat is required?",
+        type: "Multiple Choice",
+        answer: "5016 MJ/h",
+        options: ["2508 MJ/h", "5016 MJ/h", "7524 MJ/h", "10,032 MJ/h"],
+      },
+      {
+        question:
+          "A reactor processes 50 mol/h of A in the reaction 2A → B. If the conversion is 60%, how many moles of B are produced?",
+        type: "Multiple Choice",
+        answer: "15 mol/h",
+        options: ["15 mol/h", "20 mol/h", "25 mol/h", "30 mol/h"],
+      },
+      {
+        question:
+          "The heat of formation is used to calculate reaction enthalpies.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A gas mixture at 3 atm contains 25% CO2 by mole. If the total molar flow rate is 400 mol/h, what is the CO2 flow rate?",
+        type: "Multiple Choice",
+        answer: "100 mol/h",
+        options: ["50 mol/h", "75 mol/h", "100 mol/h", "150 mol/h"],
+      },
+      {
+        question:
+          "A reactor combusts 100 kg/h of carbon. How much oxygen (molar mass 32 g/mol) is required? (C + O2 → CO2)",
+        type: "Multiple Choice",
+        answer: "266.7 kg/h",
+        options: ["100 kg/h", "200 kg/h", "266.7 kg/h", "400 kg/h"],
+      },
+      {
+        question:
+          "A multi-stage compressor requires less work than a single-stage compressor for the same pressure ratio.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tank mixes 100 kg/h of a 30% salt solution with 200 kg/h of a 10% salt solution. What is the salt mass fraction in the mixture?",
+        type: "Multiple Choice",
+        answer: "16.7%",
+        options: ["15.0%", "16.7%", "20.0%", "23.3%"],
+      },
+      {
+        question:
+          "Which of the following are components of an energy balance? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Enthalpy", "Work", "Kinetic energy"],
+        options: ["Enthalpy", "Work", "Kinetic energy", "Density"],
+      },
+      {
+        question:
+          "A reactor feeds 100 mol/h of A and 200 mol/h of B in the reaction A + B → C. If A is the limiting reactant, what is the maximum moles of C produced?",
+        type: "Multiple Choice",
+        answer: "100 mol/h",
+        options: ["50 mol/h", "100 mol/h", "150 mol/h", "200 mol/h"],
+      },
+      {
+        question: "Raoult’s law applies to ideal solutions.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Which of the following are steps in solving a material balance? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Draw a process flow diagram",
+          "Write mass balance equations",
+          "Solve for unknowns",
+        ],
+        options: [
+          "Draw a process flow diagram",
+          "Write mass balance equations",
+          "Solve for unknowns",
+          "Calculate profits",
+        ],
+      },
+      {
+        question:
+          "A gas is compressed from 1 atm to 3 atm at 300 K. If the initial volume is 10 m³, what is the work done? (Assume isothermal, ideal gas)",
+        type: "Multiple Choice",
+        answer: "202.65 kJ",
+        options: ["202.65 kJ", "405.30 kJ", "607.95 kJ", "810.60 kJ"],
+      },
+      {
+        question:
+          "A reactor produces 50 kg/h of a product with 90% yield. How much reactant (molar mass 100 g/mol) is consumed if the product’s molar mass is 50 g/mol?",
+        type: "Multiple Choice",
+        answer: "55.6 kg/h",
+        options: ["55.6 kg/h", "60.0 kg/h", "66.7 kg/h", "75.0 kg/h"],
+      },
+      {
+        question:
+          "The Gibbs phase rule determines the degrees of freedom in a system.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Which of the following are assumptions in an ideal gas calculation? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["No intermolecular forces", "Molecules have no volume"],
+        options: [
+          "No intermolecular forces",
+          "Molecules have no volume",
+          "Constant pressure",
+          "Linear temperature dependence",
+        ],
+      },
+      {
+        question:
+          "A heat exchanger cools 200 kg/h of gas from 200°C to 100°C. If the specific heat is 1.0 kJ/kg·°C, how much heat is transferred?",
+        type: "Multiple Choice",
+        answer: "20,000 kJ/h",
+        options: ["10,000 kJ/h", "20,000 kJ/h", "30,000 kJ/h", "40,000 kJ/h"],
+      },
+      {
+        question:
+          "A reactor feeds 100 mol/h of A in the reaction 2A → B + C. If the conversion is 50%, how many moles of B are produced?",
+        type: "Multiple Choice",
+        answer: "25 mol/h",
+        options: ["25 mol/h", "50 mol/h", "75 mol/h", "100 mol/h"],
+      },
+      {
+        question:
+          "A steady-state energy balance assumes no accumulation of energy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Which of the following are factors affecting reaction yield? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Reaction conditions",
+          "Catalyst efficiency",
+          "Side reactions",
+        ],
+        options: [
+          "Reaction conditions",
+          "Catalyst efficiency",
+          "Side reactions",
+          "Equipment cost",
+        ],
+      },
+      {
+        question:
+          "A gas at 2 atm and 400 K has a volume of 5 m³. If the pressure decreases to 1 atm at constant temperature, what is the new volume?",
+        type: "Multiple Choice",
+        answer: "10 m³",
+        options: ["2.5 m³", "5 m³", "10 m³", "20 m³"],
+      },
+      {
+        question:
+          "A reactor combusts 50 kg/h of methane. How much CO2 (molar mass 44 g/mol) is produced? (CH4 + 2O2 → CO2 + 2H2O)",
+        type: "Multiple Choice",
+        answer: "137.5 kg/h",
+        options: ["137.5 kg/h", "150.0 kg/h", "162.5 kg/h", "175.0 kg/h"],
+      },
+      {
+        question: "The vapor pressure of a liquid increases with temperature.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Which of the following are components of a material balance for a reactive system? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Moles of reactants",
+          "Moles of products",
+          "Extent of reaction",
+        ],
+        options: [
+          "Moles of reactants",
+          "Moles of products",
+          "Extent of reaction",
+          "Equipment size",
+        ],
+      },
+      {
+        question:
+          "A pump delivers 20 m³/h of a liquid with a density of 1200 kg/m³. What is the mass flow rate?",
+        type: "Multiple Choice",
+        answer: "24,000 kg/h",
+        options: ["12,000 kg/h", "18,000 kg/h", "24,000 kg/h", "30,000 kg/h"],
+      },
+      {
+        question:
+          "A reactor feeds 200 mol/h of A and 100 mol/h of B in the reaction A + 2B → C. What is the limiting reactant?",
+        type: "Multiple Choice",
+        answer: "B",
+        options: ["A", "B", "Both are equal", "Cannot determine"],
+      },
+      {
+        question: "The heat of combustion is always exothermic.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Which of the following are methods to solve energy balances? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Use enthalpy data",
+          "Apply first law of thermodynamics",
+          "Account for phase changes",
+        ],
+        options: [
+          "Use enthalpy data",
+          "Apply first law of thermodynamics",
+          "Account for phase changes",
+          "Calculate equipment cost",
+        ],
       },
     ],
     Hard: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "A reactor feeds 100 kg/h of methanol (CH3OH, molar mass 32 g/mol) and combusts it completely. How much oxygen (molar mass 32 g/mol) is required? (2CH3OH + 3O2 → 2CO2 + 4H2O)",
+        type: "Multiple Choice",
+        answer: "150 kg/h",
+        options: ["150 kg/h", "200 kg/h", "225 kg/h", "300 kg/h"],
+      },
+      {
+        question:
+          "The heat of reaction varies with temperature for non-ideal systems.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A distillation column processes 1000 kg/h of a 60% ethanol mixture. If the bottom product is 10% ethanol and 600 kg/h, what is the ethanol in the top product?",
+        type: "Multiple Choice",
+        answer: "540 kg/h",
+        options: ["360 kg/h", "400 kg/h", "540 kg/h", "600 kg/h"],
+      },
+      {
+        question:
+          "Which of the following are factors affecting phase equilibria? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Temperature", "Pressure", "Composition"],
+        options: ["Temperature", "Pressure", "Composition", "Equipment size"],
+      },
+      {
+        question:
+          "A recycle stream can reduce the fresh feed requirement in a process.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor operates at 70% conversion for the reaction A → B. If 100 mol/h of A is fed and 20 mol/h of B is recycled, how much B is produced?",
+        type: "Multiple Choice",
+        answer: "70 mol/h",
+        options: ["70 mol/h", "90 mol/h", "110 mol/h", "130 mol/h"],
+      },
+      {
+        question:
+          "Which of the following are components of a multi-component material balance? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Mole fractions", "Flow rates", "Reaction stoichiometry"],
+        options: [
+          "Mole fractions",
+          "Flow rates",
+          "Reaction stoichiometry",
+          "Equipment cost",
+        ],
+      },
+      {
+        question:
+          "The Antoine equation predicts vapor pressure as a function of temperature.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A heat exchanger heats 200 kg/h of water from 20°C to 100°C and vaporizes it. If Cp = 4.18 kJ/kg·°C and ΔHvap = 2257 kJ/kg, how much heat is required?",
+        type: "Multiple Choice",
+        answer: "531,400 kJ/h",
+        options: [
+          "482,600 kJ/h",
+          "531,400 kJ/h",
+          "580,200 kJ/h",
+          "629,000 kJ/h",
+        ],
+      },
+      {
+        question:
+          "Which of the following are assumptions in a steady-state energy balance? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "No accumulation",
+          "Constant properties",
+          "Defined boundaries",
+        ],
+        options: [
+          "No accumulation",
+          "Constant properties",
+          "Defined boundaries",
+          "Variable flow rates",
+        ],
+      },
+      {
+        question:
+          "The extent of reaction simplifies material balances for multiple reactions.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor feeds 100 mol/h of A and 150 mol/h of B in the reaction 2A + B → C. If A is 80% converted, how much C is produced?",
+        type: "Multiple Choice",
+        answer: "40 mol/h",
+        options: ["40 mol/h", "50 mol/h", "60 mol/h", "80 mol/h"],
+      },
+      {
+        question:
+          "Which of the following are methods to optimize a process? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Recycle streams", "Heat integration", "Catalyst selection"],
+        options: [
+          "Recycle streams",
+          "Heat integration",
+          "Catalyst selection",
+          "Increase equipment size",
+        ],
+      },
+      {
+        question:
+          "A non-ideal gas requires a compressibility factor in calculations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor combusts 50 kg/h of ethane (C2H6, molar mass 30 g/mol). How much CO2 (molar mass 44 g/mol) is produced? (2C2H6 + 7O2 → 4CO2 + 6H2O)",
+        type: "Multiple Choice",
+        answer: "146.7 kg/h",
+        options: ["146.7 kg/h", "176.0 kg/h", "205.3 kg/h", "234.7 kg/h"],
+      },
+      {
+        question:
+          "Which of the following are factors affecting reaction conversion? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Temperature", "Pressure", "Catalyst"],
+        options: ["Temperature", "Pressure", "Catalyst", "Equipment cost"],
+      },
+      {
+        question:
+          "A material balance for a multi-component system requires mole balances for each species.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A distillation column separates 500 kg/h of a 70% methanol mixture. If the top product is 95% methanol and 300 kg/h, what is the methanol in the bottom product?",
+        type: "Multiple Choice",
+        answer: "85 kg/h",
+        options: ["85 kg/h", "100 kg/h", "115 kg/h", "130 kg/h"],
+      },
+      {
+        question:
+          "Which of the following are components of a reactive system balance? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Stoichiometry", "Conversion", "Extent of reaction"],
+        options: [
+          "Stoichiometry",
+          "Conversion",
+          "Extent of reaction",
+          "Equipment size",
+        ],
+      },
+      {
+        question: "The heat of mixing is significant for non-ideal solutions.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor feeds 200 mol/h of A in the reaction A → 2B. If 60% of A is converted and 50 mol/h of B is recycled, what is the net B production?",
+        type: "Multiple Choice",
+        answer: "120 mol/h",
+        options: ["120 mol/h", "140 mol/h", "170 mol/h", "240 mol/h"],
+      },
+      {
+        question:
+          "Which of the following are assumptions in a distillation calculation? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Vapor-liquid equilibrium",
+          "Constant molar overflow",
+          "Ideal stages",
+        ],
+        options: [
+          "Vapor-liquid equilibrium",
+          "Constant molar overflow",
+          "Ideal stages",
+          "Variable pressure",
+        ],
+      },
+      {
+        question:
+          "The Clausius-Clapeyron equation relates vapor pressure to temperature.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A heat exchanger cools 1000 kg/h of gas from 300°C to 100°C. If Cp = 1.2 kJ/kg·°C and 50% of the gas condenses (ΔHcond = 500 kJ/kg), how much heat is transferred?",
+        type: "Multiple Choice",
+        answer: "490,000 kJ/h",
+        options: [
+          "240,000 kJ/h",
+          "370,000 kJ/h",
+          "490,000 kJ/h",
+          "610,000 kJ/h",
+        ],
+      },
+      {
+        question:
+          "Which of the following are methods to calculate reaction enthalpy? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Heat of formation", "Bond energies", "Hess’s law"],
+        options: [
+          "Heat of formation",
+          "Bond energies",
+          "Hess’s law",
+          "Equipment efficiency",
+        ],
+      },
+      {
+        question:
+          "A process with multiple reactions requires a selectivity calculation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor feeds 100 mol/h of A and 200 mol/h of B in the reaction A + 2B → C. If B is 50% converted, how much C is produced?",
+        type: "Multiple Choice",
+        answer: "50 mol/h",
+        options: ["50 mol/h", "75 mol/h", "100 mol/h", "150 mol/h"],
+      },
+      {
+        question:
+          "Which of the following are factors affecting heat exchanger performance? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Flow rates",
+          "Temperature difference",
+          "Heat transfer coefficient",
+        ],
+        options: [
+          "Flow rates",
+          "Temperature difference",
+          "Heat transfer coefficient",
+          "Equipment cost",
+        ],
+      },
+      {
+        question:
+          "The fugacity corrects for non-ideal behavior in phase equilibria.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor processes 100 kg/h of benzene (C6H6, molar mass 78 g/mol) with 90% conversion to cyclohexane (C6H12, molar mass 84 g/mol). What is the cyclohexane production rate?",
+        type: "Multiple Choice",
+        answer: "97.2 kg/h",
+        options: ["97.2 kg/h", "100.8 kg/h", "104.4 kg/h", "108.0 kg/h"],
+      },
+      {
+        question:
+          "Which of the following are steps in solving an energy balance for a reactive system? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Calculate reaction enthalpy",
+          "Account for phase changes",
+          "Include work terms",
+        ],
+        options: [
+          "Calculate reaction enthalpy",
+          "Account for phase changes",
+          "Include work terms",
+          "Estimate equipment cost",
+        ],
+      },
+      {
+        question:
+          "A process with a high recycle ratio increases energy consumption.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A distillation column processes 1000 kg/h of a 50% benzene mixture. If the top product is 90% benzene and 400 kg/h, what is the benzene in the bottom product?",
+        type: "Multiple Choice",
+        answer: "140 kg/h",
+        options: ["140 kg/h", "160 kg/h", "180 kg/h", "200 kg/h"],
+      },
+      {
+        question:
+          "Which of the following are assumptions in a reactor design calculation? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Uniform mixing", "Known kinetics", "Constant temperature"],
+        options: [
+          "Uniform mixing",
+          "Known kinetics",
+          "Constant temperature",
+          "Variable yield",
+        ],
+      },
+      {
+        question: "The second law of thermodynamics limits process efficiency.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor feeds 100 mol/h of A in the reaction 3A → B + 2C with 80% conversion. How much B is produced?",
+        type: "Multiple Choice",
+        answer: "26.7 mol/h",
+        options: ["26.7 mol/h", "33.3 mol/h", "40.0 mol/h", "53.3 mol/h"],
+      },
+      {
+        question:
+          "Which of the following are factors affecting vapor-liquid equilibrium? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Temperature", "Pressure", "Mole fraction"],
+        options: ["Temperature", "Pressure", "Mole fraction", "Flow rate"],
+      },
+      {
+        question:
+          "A heat exchanger with counter-current flow is more efficient than parallel flow.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor combusts 100 kg/h of propane (C3H8, molar mass 44 g/mol). How much O2 (molar mass 32 g/mol) is required? (C3H8 + 5O2 → 3CO2 + 4H2O)",
+        type: "Multiple Choice",
+        answer: "363.6 kg/h",
+        options: ["363.6 kg/h", "400.0 kg/h", "454.5 kg/h", "500.0 kg/h"],
+      },
+      {
+        question:
+          "Which of the following are methods to calculate work in a process? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Pressure-volume work", "Shaft work", "Electrical work"],
+        options: [
+          "Pressure-volume work",
+          "Shaft work",
+          "Electrical work",
+          "Heat transfer",
+        ],
+      },
+      {
+        question:
+          "A process with multiple components requires a component balance for each species.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor feeds 100 mol/h of A and 100 mol/h of B in the reaction A + B → C with 70% conversion of A. If 20 mol/h of C is recycled, what is the net C production?",
+        type: "Multiple Choice",
+        answer: "70 mol/h",
+        options: ["50 mol/h", "70 mol/h", "90 mol/h", "110 mol/h"],
+      },
+      {
+        question:
+          "Which of the following are factors affecting reaction kinetics? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Temperature", "Catalyst", "Concentration"],
+        options: ["Temperature", "Catalyst", "Concentration", "Equipment size"],
+      },
+      {
+        question:
+          "The dew point is the temperature at which a gas mixture begins to condense.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A heat exchanger heats 500 kg/h of oil from 50°C to 150°C. If Cp = 2.0 kJ/kg·°C and 20% of the oil vaporizes (ΔHvap = 300 kJ/kg), how much heat is required?",
+        type: "Multiple Choice",
+        answer: "130,000 kJ/h",
+        options: [
+          "110,000 kJ/h",
+          "130,000 kJ/h",
+          "150,000 kJ/h",
+          "170,000 kJ/h",
+        ],
+      },
+      {
+        question:
+          "Which of the following are assumptions in a phase equilibrium calculation? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Ideal solution behavior",
+          "Equilibrium conditions",
+          "Known vapor pressures",
+        ],
+        options: [
+          "Ideal solution behavior",
+          "Equilibrium conditions",
+          "Known vapor pressures",
+          "Constant flow",
+        ],
+      },
+      {
+        question:
+          "A process with a high selectivity produces more desired product relative to byproducts.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A reactor processes 100 kg/h of ethanol with 80% conversion to ethylene (C2H4, molar mass 28 g/mol). What is the ethylene production rate? (C2H5OH → C2H4 + H2O)",
+        type: "Multiple Choice",
+        answer: "48.7 kg/h",
+        options: ["48.7 kg/h", "51.3 kg/h", "54.8 kg/h", "58.2 kg/h"],
+      },
+      {
+        question:
+          "Which of the following are methods to improve process efficiency? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Heat recovery", "Recycle streams", "Process integration"],
+        options: [
+          "Heat recovery",
+          "Recycle streams",
+          "Process integration",
+          "Increase equipment size",
+        ],
+      },
+      {
+        question:
+          "The bubble point is the temperature at which a liquid mixture begins to vaporize.",
+        answer: "True",
+        type: "True/False",
       },
     ],
   },

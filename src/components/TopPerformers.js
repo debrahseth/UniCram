@@ -222,6 +222,8 @@ const TopPerformers = () => {
           message: messageContent,
           timestamp: Timestamp.fromDate(new Date()),
           read: false,
+          sender: "admin",
+          isGroup: false,
         });
       });
 
@@ -262,7 +264,8 @@ const TopPerformers = () => {
       <div style={styles.header}>
         <div style={styles.buttonContainer}>
           <button onClick={() => navigate(-1)} style={styles.backButton}>
-            <FaArrowCircleLeft size={20} /> Go Back
+            <FaArrowCircleLeft size={20} />
+            {/* Go Back */}
           </button>
         </div>
         <h2 style={{ fontSize: "40px" }}>TOP PERFORMERS</h2>
@@ -271,7 +274,8 @@ const TopPerformers = () => {
             onClick={() => setShowMessageModal(true)}
             style={styles.messageButton}
           >
-            <FaEnvelope size={20} /> Send Message
+            {/* Send Message  */}
+            <FaEnvelope size={20} />
           </button>
         </div>
       </div>
