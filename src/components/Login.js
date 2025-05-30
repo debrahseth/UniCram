@@ -48,7 +48,7 @@ const Login = () => {
         await updateDoc(userDocRef, { status: "online" });
 
         if (userData.role === "admin") {
-          navigate("/admin-dashboard");
+          navigate("/admin-splash");
         } else {
           if (rememberMe) {
             localStorage.setItem("email", email);

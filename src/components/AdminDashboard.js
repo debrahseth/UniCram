@@ -15,6 +15,7 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import emailjs from "@emailjs/browser";
 import { Bar } from "react-chartjs-2";
 import { formatDistanceToNow, format } from "date-fns";
+import { FaPaperPlane } from "react-icons/fa";
 
 const AdminDashboard = () => {
   const [message, setMessage] = useState("");
@@ -110,6 +111,7 @@ const AdminDashboard = () => {
           .map((doc) => ({
             id: doc.id,
             username: doc.data().username || "Unknown",
+            status: doc.data().status || "Unknown",
           }));
         setAdminUsers(admins);
       } catch (error) {
@@ -397,7 +399,7 @@ const AdminDashboard = () => {
                 lastActivity: doc.data().lastActivity || null,
                 phoneNumber: doc.data().userNumber || "",
               }))
-              .filter((user) => user.id !== auth.currentUser?.uid);
+              .filter((user) => user.role !== "admin");
             setUsers(usersList);
             setUsersLoading(false);
           },
@@ -455,6 +457,13 @@ const AdminDashboard = () => {
     };
 
     fetchMessages();
+  }, []);
+
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = globalStyles;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
   }, []);
 
   const handleSendMessage = async () => {
@@ -862,6 +871,7 @@ const AdminDashboard = () => {
                 disabled={loading}
               >
                 SEND MESSAGE
+                <FaPaperPlane />
               </button>
             )}
           </div>
@@ -872,6 +882,12 @@ const AdminDashboard = () => {
             >
               👑
             </button>
+            {/* <button
+              onClick={() => navigate("/admin-complaint")}
+              style={{ ...styles.logoutButton, width: "20%" }}
+            >
+              ✉️
+            </button> */}
             <button
               onClick={() => setShowMessagesModal(true)}
               style={{ ...styles.logoutButton, width: "20%" }}
@@ -915,14 +931,14 @@ const AdminDashboard = () => {
                   padding: "5px",
                   borderRadius: "4px",
                   border: "1px solid #ccc",
-                  width: "200px",
+                  width: "800px",
                 }}
               >
                 <option value="">-- Select Option --</option>
                 <option value="messages">All Messages</option>
                 <option value="challenges">All Challenges</option>
-                <option value="dailyQuizzes">Leaderboard Data</option>
-                <option value="text">Text Data</option>
+                <option value="dailyQuizzes">All Leaderboard Data</option>
+                <option value="text">All Text Data</option>
               </select>
             </div>
             <div style={styles.inputGroup}>
@@ -1726,6 +1742,17 @@ const AdminDashboard = () => {
                             <td style={tableStyles.td}>
                               <button
                                 onClick={() => handleDeleteMessage(msg.id)}
+                                style={{
+                                  backgroundColor: "white",
+                                  border: "2px solid #ddd",
+                                  borderRadius: "30px",
+                                  padding: "8px",
+                                  fontSize: "15px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  transition: "background-color 0.3s",
+                                }}
                               >
                                 🗑️
                               </button>
@@ -1784,10 +1811,13 @@ const AdminDashboard = () => {
                         <span style={manageAdminsModalStyles.userName}>
                           {user.username}
                         </span>
+                        <span style={manageAdminsModalStyles.userName}>
+                          {user.status}
+                        </span>
                         <button
                           onClick={() => handleRemoveAdmin(user.id)}
                           style={manageAdminsModalStyles.removeButton}
-                          disabled={user.id === auth.currentUser.uid} // Prevent self-removal
+                          disabled={user.id === auth.currentUser.uid}
                         >
                           Remove Admin
                         </button>
@@ -1806,6 +1836,34 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
+      <div style={styles.scrollingContainer}>
+        <div style={styles.scrollingText}>
+          🌟 Behind every smooth user experience is an admin making things
+          happen. Your attention to detail, your problem-solving, and your
+          dedication keep Prime Academy running strong. 🌟 🌟 Every ticket
+          resolved, every report reviewed, every system checked — it all
+          matters. You're not just managing data; you're enabling dreams. 🌟 🌟
+          Leadership isn't always visible, but its effects are powerful. You're
+          building the foundation others grow from. 🌟 🌟 Prime Academy’s
+          progress is powered by people like you. Keep optimizing, keep
+          improving — your impact is immeasurable. 🌟 🌟 Remember: every system
+          you maintain is a student’s smooth path to success. Your excellence
+          behind the scenes shapes the future. 🌟 🌟 Great systems. Happy users.
+          Strong academy. That’s your influence at work. 🌟      🌟 Behind every
+          smooth user experience is an admin making things happen. Your
+          attention to detail, your problem-solving, and your dedication keep
+          Prime Academy running strong. 🌟 🌟 Every ticket resolved, every
+          report reviewed, every system checked — it all matters. You're not
+          just managing data; you're enabling dreams. 🌟 🌟 Leadership isn't
+          always visible, but its effects are powerful. You're building the
+          foundation others grow from. 🌟 🌟 Prime Academy’s progress is powered
+          by people like you. Keep optimizing, keep improving — your impact is
+          immeasurable. 🌟 🌟 Remember: every system you maintain is a student’s
+          smooth path to success. Your excellence behind the scenes shapes the
+          future. 🌟 🌟 Great systems. Happy users. Strong academy. That’s your
+          influence at work. 🌟
+        </div>
+      </div>
     </div>
   );
 };
@@ -1819,6 +1877,8 @@ const styles = {
     height: "100vh",
     padding: "0 20px",
     fontFamily: "Poppins, sans-serif",
+    position: "fixed",
+    width: "97.5%",
   },
   header: {
     position: "absolute",
@@ -1863,7 +1923,7 @@ const styles = {
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.7)",
     width: "98%",
     backgroundColor: "rgba(255, 255, 255, 0.9)",
-    height: "70vh",
+    height: "68vh",
     marginTop: "120px",
     display: "flex",
     flexDirection: "row",
@@ -1958,6 +2018,9 @@ const styles = {
     fontSize: "16px",
     cursor: "pointer",
     transition: "background-color 0.3s",
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
   },
   error: {
     color: "red",
@@ -2043,6 +2106,26 @@ const styles = {
     boxShadow: "0 4px 4px rgba(0,0,0,0.6)",
     padding: "10px",
     borderRadius: "10px",
+  },
+  scrollingContainer: {
+    position: "fixed",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: "40px",
+    backgroundColor: "#f0f0f0",
+    overflow: "hidden",
+    display: "flex",
+    alignItems: "center",
+    boxShadow: "0 -8px 10px rgba(0,0,0,0.5)",
+    animation: "flyIn 1.5s ease-out",
+  },
+  scrollingText: {
+    display: "inline-block",
+    whiteSpace: "nowrap",
+    fontSize: "20px",
+    color: "#333",
+    animation: "scrollText 120s linear infinite",
   },
 };
 
@@ -2296,4 +2379,25 @@ const manageAdminsModalStyles = {
     fontSize: "16px",
   },
 };
+const globalStyles = `
+  @keyframes scrollText {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes flyIn {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+`;
 export default AdminDashboard;

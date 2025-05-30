@@ -163,21 +163,12 @@ const Profile = () => {
 
     if (currentUser) {
       const userDocRef = doc(db, "users", currentUser.uid);
-      try {
-        await updateDoc(userDocRef, {
-          status: "offline",
-          lastActivity: Timestamp.fromDate(new Date()),
-        });
-      } catch (error) {
-        console.error("Error updating status on logout:", error);
-      }
-    }
-    try {
+      await updateDoc(userDocRef, {
+        status: "offline",
+        lastActivity: Timestamp.fromDate(new Date()),
+      });
       await signOut(auth);
       navigate("/login");
-    } catch (error) {
-      console.error("Error signing out:", error);
-    } finally {
       setLogoutLoading(false);
     }
   };
@@ -503,7 +494,7 @@ const Profile = () => {
               <option value="Level 100">Level 100</option>
               <option value="Level 200">Level 200</option>
               <option value="Level 300">Level 300</option>
-              <option value="Level 400">Level 400</option>
+              {/* <option value="Level 400">Level 400</option> */}
             </select>
           </div>
           <div style={styles.inputGroup}>

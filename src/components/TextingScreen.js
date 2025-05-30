@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaArrowCircleLeft,
-  FaPaperPlane,
+  // FaPaperPlane,
   FaSync,
   FaTimes,
   FaArrowDown,
@@ -20,6 +20,31 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import logo from "../assets/op.jpg";
+import logo1 from "../assets/welcome1.jpg";
+import { dotWave } from "ldrs";
+
+const formatLastSeen = (lastActivity) => {
+  if (!lastActivity) return "Last seen: Never";
+
+  const now = new Date();
+  const lastSeenDate = lastActivity.toDate();
+  const diffMs = now - lastSeenDate;
+  const diffMins = Math.floor(diffMs / (1000 * 60));
+  const diffHours = Math.floor(diffMins / 60);
+  const diffDays = Math.floor(diffHours / 24);
+
+  if (diffMins < 1) return "Last seen: Just now";
+  if (diffMins < 60)
+    return `Last seen: ${diffMins} minute${diffMins === 1 ? "" : "s"} ago`;
+  if (diffHours < 24)
+    return `Last seen: ${diffHours} hour${diffHours === 1 ? "" : "s"} ago`;
+  if (diffDays < 7)
+    return `Last seen: ${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
+  return `Last seen: ${lastSeenDate.toLocaleDateString()} at ${lastSeenDate.toLocaleTimeString(
+    [],
+    { hour: "2-digit", minute: "2-digit" }
+  )}`;
+};
 
 const TextingScreen = () => {
   const [currentUserProgram, setCurrentUserProgram] = useState("");
@@ -33,13 +58,26 @@ const TextingScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [saveLoading, setSaveLoading] = useState(false);
   const [formData, setFormData] = useState({
+    fullname: "",
     about: "",
+    userNumber: "",
+    visibility: {
+      username: true,
+      fullname: true,
+      userNumber: true,
+      programOfStudy: true,
+      levelOfStudy: true,
+      about: true,
+      lastActivity: true,
+    },
   });
   const messageContainerRef = useRef(null);
   const bottomRef = useRef(null);
   const [isAtBottom, setIsAtBottom] = useState(true);
   const [loadingProfile, setLoadingProfile] = useState(false);
+  const [initialFormData, setInitialFormData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,6 +100,22 @@ const TextingScreen = () => {
         }
         const userData = currentUserDoc.data();
         setCurrentUserProgram(userData.programOfStudy || "");
+        setCurrentUserProfile(userData);
+
+        setFormData({
+          fullname: userData.fullname || "",
+          about: userData.about || "",
+          userNumber: userData.userNumber || "",
+          visibility: userData.visibility || {
+            username: true,
+            fullname: true,
+            userNumber: true,
+            programOfStudy: true,
+            levelOfStudy: true,
+            about: true,
+            lastActivity: true,
+          },
+        });
 
         const usersQuery = query(
           collection(db, "users"),
@@ -125,20 +179,25 @@ const TextingScreen = () => {
       return;
     }
 
-    const fetchSelectedUserProfile = async () => {
+    const fetchSelectedUserProfile = () => {
       setLoadingProfile(true);
-      try {
-        const userDoc = await getDoc(doc(db, "users", selectedUser.id));
-        if (userDoc.exists()) {
-          setSelectedUserProfile(userDoc.data());
-        } else {
-          setError("Selected user's profile not found.");
+      const userRef = doc(db, "users", selectedUser.id);
+      const unsubscribe = onSnapshot(
+        userRef,
+        (userDoc) => {
+          if (userDoc.exists()) {
+            setSelectedUserProfile(userDoc.data());
+          } else {
+            setError("Selected user's profile not found.");
+          }
+          setLoadingProfile(false);
+        },
+        (err) => {
+          setError("Failed to load user profile: " + err.message);
+          setLoadingProfile(false);
         }
-      } catch (err) {
-        setError("Failed to load user profile: " + err.message);
-      } finally {
-        setLoadingProfile(false);
-      }
+      );
+      return () => unsubscribe();
     };
 
     fetchSelectedUserProfile();
@@ -218,6 +277,10 @@ const TextingScreen = () => {
     };
 
     try {
+      await updateDoc(doc(db, "users", auth.currentUser.uid), {
+        lastActivity: Timestamp.fromDate(new Date()),
+      });
+
       const docSnapshot = await getDoc(conversationRef);
       if (docSnapshot.exists()) {
         await updateDoc(conversationRef, {
@@ -236,21 +299,42 @@ const TextingScreen = () => {
   };
 
   const handleUpdateProfile = async () => {
+    setSaveLoading(true);
     try {
       const userRef = doc(db, "users", auth.currentUser.uid);
       await updateDoc(userRef, {
         about: formData.about,
+        userNumber: formData.userNumber,
+        fullname: formData.fullname,
+        visibility: formData.visibility,
       });
       setCurrentUserProfile({
         ...currentUserProfile,
-        ...formData,
+        about: formData.about,
+        userNumber: formData.userNumber,
+        fullname: formData.fullname,
+        visibility: formData.visibility,
       });
       setShowUpdateModal(false);
       alert("Profile updated successfully!");
     } catch (err) {
       setError("Failed to update profile: " + err.message);
+    } finally {
+      setSaveLoading(false);
     }
   };
+
+  const toggleVisibility = (field) => {
+    setFormData({
+      ...formData,
+      visibility: {
+        ...formData.visibility,
+        [field]: !formData.visibility[field],
+      },
+    });
+  };
+
+  dotWave.register();
 
   if (loading) {
     return (
@@ -329,9 +413,17 @@ const TextingScreen = () => {
           {selectedUser ? (
             <>
               <div style={styles.chatHeader}>
-                <h3 style={styles.sectionTitle}>
-                  Chat with {selectedUser.username}
-                </h3>
+                <div>
+                  <h3 style={styles.sectionTitle}>
+                    Chat with {selectedUser.username}
+                  </h3>
+                  {selectedUserProfile?.visibility?.lastActivity !== false &&
+                    selectedUserProfile && (
+                      <p style={styles.lastSeen}>
+                        {formatLastSeen(selectedUserProfile.lastActivity)}
+                      </p>
+                    )}
+                </div>
                 <button
                   onClick={() => setSelectedUser(null)}
                   style={styles.closeButton}
@@ -383,7 +475,7 @@ const TextingScreen = () => {
                   onClick={() => {
                     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  aria-label="Jumpt to latest message"
+                  aria-label="Jump to latest message"
                 >
                   <FaArrowDown size={20} />
                 </button>
@@ -394,11 +486,26 @@ const TextingScreen = () => {
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Type your message..."
                   style={styles.messageInput}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendMessage();
+                    }
+                  }}
                 />
-                <button onClick={handleSendMessage} style={styles.sendButton}>
+                {/* <button onClick={handleSendMessage} style={styles.sendButton}>
                   <FaPaperPlane /> Send
-                </button>
+                </button> */}
               </div>
+              {/* <p
+                style={{
+                  fontSize: "10px",
+                  color: "green",
+                  textAlign: "center",
+                }}
+              >
+                Press enter to send message
+              </p> */}
             </>
           ) : (
             <p style={styles.noDataMessage}>Select a user to start chatting.</p>
@@ -408,59 +515,87 @@ const TextingScreen = () => {
           <h3 style={styles.sectionTitle}>
             {loadingProfile
               ? "Loading Profile..."
-              : `${selectedUserProfile?.username || "User"}'s Profile`}
+              : selectedUserProfile
+              ? `${selectedUserProfile.username || "User"}'s Profile`
+              : "User Profile"}
           </h3>
           <div style={styles.profilePictureContainer}>
             <img
-              src={logo}
+              src={logo1}
               alt="Study Group Logo"
               style={styles.profilePicture}
             />
           </div>
-          {selectedUser && (
-            <>
-              {loadingProfile ? (
-                <div style={styles.spinnerContainer}>
-                  <div style={styles.spinner}></div>
-                  <p style={styles.noDataMessage}>Loading profile...</p>
-                </div>
-              ) : selectedUserProfile ? (
-                <div style={styles.profileDetails}>
-                  <p style={styles.profileField}>
-                    <strong>Username:</strong>
-                    <br />{" "}
-                    <span style={{ marginLeft: "10px" }}>
-                      {selectedUserProfile.username || "Unknown"}
-                    </span>
-                  </p>
-                  <p style={styles.profileField}>
-                    <strong>Program of Study:</strong>
-                    <br />{" "}
-                    <span style={{ marginLeft: "10px" }}>
-                      {selectedUserProfile.programOfStudy || "Unknown"}
-                    </span>
-                  </p>
-                  <p style={styles.profileField}>
-                    <strong>Level of Study:</strong>
-                    <br />{" "}
-                    <span style={{ marginLeft: "10px" }}>
-                      {selectedUserProfile.levelOfStudy || "Unknown"}
-                    </span>
-                  </p>
-                  <p style={styles.profileField}>
-                    <strong>About {selectedUserProfile.username}:</strong>
-                    <br />{" "}
-                    <span style={{ textAlign: "justify", display: "block" }}>
-                      {selectedUserProfile.about || "No About"}
-                    </span>
-                  </p>
-                </div>
-              ) : (
-                <p style={styles.noDataMessage}>
-                  Select a user to view their profile.
+          {!selectedUser ? (
+            <p style={styles.noDataMessage}>
+              Please select a user to view their profile.
+            </p>
+          ) : loadingProfile ? (
+            <div style={styles.spinnerContainer}>
+              <div style={styles.spinner}></div>
+              <p style={styles.noDataMessage}>Loading profile...</p>
+            </div>
+          ) : selectedUserProfile ? (
+            <div style={styles.profileDetails}>
+              {selectedUserProfile.visibility?.username !== false && (
+                <p style={styles.profileField}>
+                  <strong>Username:</strong>
+                  <br />{" "}
+                  <span style={{ marginLeft: "10px" }}>
+                    {selectedUserProfile.username || "Unknown"}
+                  </span>
                 </p>
               )}
-            </>
+              {selectedUserProfile.visibility?.fullname !== false && (
+                <p style={styles.profileField}>
+                  <strong>Full Name:</strong>
+                  <br />{" "}
+                  <span style={{ marginLeft: "10px" }}>
+                    {selectedUserProfile.fullname || "Unknown"}
+                  </span>
+                </p>
+              )}
+              {selectedUserProfile.visibility?.userNumber !== false && (
+                <p style={styles.profileField}>
+                  <strong>Contact Number:</strong>
+                  <br />{" "}
+                  <span style={{ marginLeft: "10px" }}>
+                    {selectedUserProfile.userNumber || "Unknown"}
+                  </span>
+                </p>
+              )}
+              {selectedUserProfile.visibility?.programOfStudy !== false && (
+                <p style={styles.profileField}>
+                  <strong>Program of Study:</strong>
+                  <br />{" "}
+                  <span style={{ marginLeft: "10px" }}>
+                    {selectedUserProfile.programOfStudy || "Unknown"}
+                  </span>
+                </p>
+              )}
+              {selectedUserProfile.visibility?.levelOfStudy !== false && (
+                <p style={styles.profileField}>
+                  <strong>Level of Study:</strong>
+                  <br />{" "}
+                  <span style={{ marginLeft: "10px" }}>
+                    {selectedUserProfile.levelOfStudy || "Unknown"}
+                  </span>
+                </p>
+              )}
+              {selectedUserProfile.visibility?.about !== false && (
+                <p style={styles.profileField}>
+                  <strong>About {selectedUserProfile.username}:</strong>
+                  <br />{" "}
+                  <span style={{ textAlign: "justify", display: "block" }}>
+                    {selectedUserProfile.about || "No About"}
+                  </span>
+                </p>
+              )}
+            </div>
+          ) : (
+            <p style={styles.noDataMessage}>
+              Select a user to view their profile.
+            </p>
           )}
         </div>
       </div>
@@ -468,7 +603,10 @@ const TextingScreen = () => {
         <FaArrowCircleLeft size={20} /> Go Back
       </button>
       <button
-        onClick={() => setShowUpdateModal(true)}
+        onClick={() => {
+          setInitialFormData(formData);
+          setShowUpdateModal(true);
+        }}
         style={styles.updateButton}
       >
         <FaSync size={20} /> Update My Profile
@@ -479,6 +617,17 @@ const TextingScreen = () => {
           <div style={styles.modal}>
             <h2 style={styles.sectionTitle}>Update Profile</h2>
             <div style={styles.formContainer}>
+              <label style={styles.formLabel}>Full Name</label>
+              <input
+                type="text"
+                value={formData.fullname}
+                onChange={(e) =>
+                  setFormData({ ...formData, fullname: e.target.value })
+                }
+                style={styles.formInput}
+                placeholder="Your full name..."
+              />
+
               <label style={styles.formLabel}>About Me</label>
               <textarea
                 type="text"
@@ -490,15 +639,195 @@ const TextingScreen = () => {
                 placeholder="Tell us about yourself..."
                 rows="5"
               />
+
+              <div style={{ display: "flex", gap: "2rem" }}>
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <label style={styles.formLabel}>
+                      Show Full Name on Profile
+                    </label>
+                    <label style={styles.toggleLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.visibility.fullname}
+                        onChange={() => toggleVisibility("fullname")}
+                        style={styles.toggleInput}
+                      />
+                    </label>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <label style={styles.formLabel}>
+                      Show About Me on Profile
+                    </label>
+                    <label style={styles.toggleLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.visibility.about}
+                        onChange={() => toggleVisibility("about")}
+                        style={styles.toggleInput}
+                      />
+                    </label>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <label style={styles.formLabel}>
+                      Show Username on Profile
+                    </label>
+                    <label style={styles.toggleLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.visibility.username}
+                        onChange={() => toggleVisibility("username")}
+                        style={styles.toggleInput}
+                      />
+                    </label>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <label style={styles.formLabel}>Show Last Seen</label>
+                    <label style={styles.toggleLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.visibility.lastActivity}
+                        onChange={() => toggleVisibility("lastActivity")}
+                        style={styles.toggleInput}
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <label style={styles.formLabel}>
+                      Show Contact on Profile
+                    </label>
+                    <label style={styles.toggleLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.visibility.userNumber}
+                        onChange={() => toggleVisibility("userNumber")}
+                        style={styles.toggleInput}
+                      />
+                    </label>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <label style={styles.formLabel}>
+                      Show Program of Study on Profile
+                    </label>
+                    <label style={styles.toggleLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.visibility.programOfStudy}
+                        onChange={() => toggleVisibility("programOfStudy")}
+                        style={styles.toggleInput}
+                      />
+                    </label>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <label style={styles.formLabel}>
+                      Show Level of Study on Profile
+                    </label>
+                    <label style={styles.toggleLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.visibility.levelOfStudy}
+                        onChange={() => toggleVisibility("levelOfStudy")}
+                        style={styles.toggleInput}
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
               <div style={styles.modalButtons}>
                 <button
                   onClick={handleUpdateProfile}
                   style={styles.submitButton}
                 >
-                  Save Changes
+                  {saveLoading ? (
+                    <div className="spinner-button">
+                      Updating Profile{" "}
+                      <l-dot-wave
+                        size="20"
+                        speed="1"
+                        color="white"
+                      ></l-dot-wave>
+                    </div>
+                  ) : (
+                    "Save Changes"
+                  )}
                 </button>
                 <button
-                  onClick={() => setShowUpdateModal(false)}
+                  onClick={() => {
+                    setFormData(initialFormData);
+                    setShowUpdateModal(false);
+                  }}
                   style={styles.cancelButton}
                 >
                   Cancel
@@ -559,7 +888,7 @@ const styles = {
     fontSize: "20px",
     position: "fixed",
     bottom: "32px",
-    left: "50px",
+    left: "30px",
     padding: "15px",
     boxShadow: "0 4px 4px rgba(0,0,0,0.7)",
     borderRadius: "10px",
@@ -578,7 +907,7 @@ const styles = {
     fontSize: "20px",
     position: "fixed",
     bottom: "32px",
-    right: "50px",
+    right: "30px",
     padding: "15px",
     boxShadow: "0 4px 4px rgba(0,0,0,0.7)",
     borderRadius: "10px",
@@ -639,7 +968,12 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "10px",
+    marginBottom: "5px",
+  },
+  lastSeen: {
+    fontSize: "16px",
+    color: "#666",
+    marginLeft: "10px",
   },
   closeButton: {
     background: "none",
@@ -813,7 +1147,8 @@ const styles = {
     textAlign: "center",
     color: "#666",
     fontStyle: "italic",
-    fontSize: "16px",
+    fontSize: "25px",
+    marginTop: "100px",
   },
   spinnerContainer: {
     display: "flex",
@@ -862,6 +1197,24 @@ const styles = {
     borderRadius: "8px",
     width: "10%",
   },
+  toggleLabel: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    fontSize: "14px",
+    color: "#333",
+  },
+  toggleInput: {
+    width: "20px",
+    height: "20px",
+  },
 };
+const keyframes = `
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+document.head.insertAdjacentHTML("beforeend", `<style>${keyframes}</style>`);
 
 export default TextingScreen;

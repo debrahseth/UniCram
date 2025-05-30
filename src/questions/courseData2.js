@@ -2452,7 +2452,7 @@ export const courseData2 = {
   },
   // Level 200, Semester 2, Chemical Engineering
   "Drawing for Engineers": {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: ["Chemical Engineering", "Petroleum Engineering"],
     semesterOfStudy: "Semester 2",
     levelOfStudy: "Level 200",
     Easy: [
@@ -3419,7 +3419,7 @@ export const courseData2 = {
     ],
   },
   "Heat Transport Processes": {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: ["Chemical Engineering", "Petroleum Engineering"],
     levelOfStudy: "Level 200",
     semesterOfStudy: "Semester 2",
     Easy: [
@@ -5035,6 +5035,1185 @@ export const courseData2 = {
     Easy: [
       {
         question:
+          "What is the partial derivative of f(x, y) = x^2 y + y^3 with respect to x?",
+        type: "Fill-in",
+        answer: "2xy",
+      },
+      {
+        question: "Is the function f(x, y) = x^2 + y^2 continuous at (0, 0)?",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x y^2 with respect to y?",
+        type: "Fill-in",
+        answer: "2xy",
+      },
+      {
+        question: "Is the domain of f(x, y) = sqrt(x + y) all real numbers?",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What is the value of the limit of (x + y)/(x^2 + y^2) as (x, y) approaches (0, 0) along y = x?",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "2", "Does not exist"],
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = e^(x + y) with respect to x?",
+        type: "Fill-in",
+        answer: ["e^(x + y)", "e^(x+y)"],
+      },
+      {
+        question:
+          "Is the function f(x, y) = x^3 + y^3 differentiable everywhere?",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "What is the limit of sin(x)/x as x approaches 0?",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["1", "0", "-1", "Does not exist"],
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x^2 + 3x y with respect to y?",
+        type: "Fill-in",
+        answer: "3x",
+      },
+      {
+        question: "Is the function f(x, y) = 1/(x - y) defined at x = y?",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = cos(x + y) with respect to x?",
+        type: "Fill-in",
+        answer: ["-sin(x + y)", "-sin(x+y)"],
+      },
+      {
+        question:
+          "What is the limit of (x^2 + y^2) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "-1", "Does not exist"],
+      },
+      {
+        question: "Is the function f(x, y) = ln(x^2 + y^2) defined at (0, 0)?",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x y^3 with respect to y?",
+        type: "Fill-in",
+        answer: "3xy^2",
+      },
+      {
+        question: "What is the limit of x^2 / (x^2 + 1) as x approaches 0?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "1/2", "Does not exist"],
+      },
+      {
+        question:
+          "Is the function f(x, y) = x^2 - y^2 differentiable everywhere?",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = e^x sin(y) with respect to x?",
+        type: "Fill-in",
+        answer: ["e^x sin(y)", "e^xsin(y)"],
+      },
+      {
+        question:
+          "What is the limit of y / (x^2 + y^2) as (x, y) approaches (0, 0) along y = x?",
+        type: "Multiple Choice",
+        answer: "1/2",
+        options: ["0", "1/2", "1", "Does not exist"],
+      },
+      {
+        question:
+          "Can the function f(x, y) = sqrt(x^2 + y^2 - 1) be defined at (0, 0)?",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x^2 + 2x y with respect to y?",
+        type: "Fill-in",
+        answer: "2x",
+      },
+      {
+        question:
+          "Find the solution for the integral from 0 to 16sqrt(2) of 1/sqrt(2-x) dx.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: [
+          "16sqrt(2)/5",
+          "64sqrt(2)/15",
+          "6sqrt(2)/5",
+          "14sqrt(2)/15",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Which of the following vector fields is conservative with a potential function of f(x, y) = x y^2?",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: [
+          "y^2 i + x j",
+          "x i + y j",
+          "y^2 i - x j",
+          "-y^2 i + x j",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Find the gradient vector field of the function f(x, y) = (4y - y^2) cos x.",
+        type: "Multiple Choice",
+        answer: "{-(4y - y^2) sin x, (4 - 2y) cos x}",
+        options: [
+          "{(4y - y^2) sin x, - (4 - 2y) cos x}",
+          "{-(4y - y^2) sin x, (4 - 2y) cos x}",
+          "{(4y - y^2) sin x, (4 - 2y) cos x}",
+          "{-(4y - y^2) sin x, (4 - 2y) cos x}",
+          "None of the above",
+        ],
+      },
+      {
+        question: "All the following statements are true except:",
+        type: "Multiple Choice",
+        answer: "A region D is open if it isn’t closed",
+        options: [
+          "A region D is connected if we can connect any two points in the region with a path that lies completely in D",
+          "A region D is simply-connected if it is connected and it contains no holes",
+          "A region D is open if it isn’t closed",
+          "A path C is simple if it doesn’t cross itself",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Determine the limit of sin(x^2 + y^2)/(x^2 + y^2) as (x, y) approaches (0, 0) if it exists.",
+        type: "Multiple Choice",
+        answer: "1",
+        options: [
+          "1",
+          "The limit does not exist",
+          "-1",
+          "0",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Given the equation of an ellipse x^2/16 + y^2/25 = 1, determine its parametric equations.",
+        type: "Multiple Choice",
+        answer: "x = 4 cos t, y = 5 sin t",
+        options: [
+          "x = 4 cos t, y = 4 sin t",
+          "x = 4 cos t, y = 5 sin t",
+          "x = 5 cos t, y = 5 sin t",
+          "x = 5 cos t, y = 4 sin t",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Find ∂g/∂x₁ if g(x₁, x₂, x₃, x₄) = (x₁ sin(e^(x₄)))/(x₂ + x₄).",
+        type: "Fill-in",
+        answer: "sin(e^(x₄))/(x₂ + x₄)",
+      },
+      {
+        question:
+          "If f: ℝⁿ → ℝ, a point A in the domain of f is called a local (relative) minimum if there is an open ball B(A, r) centered at A such that __________ for all P ∈ B(A, r).",
+        type: "Multiple Choice",
+        answer: "f(P) - f(A) >= 0",
+        options: [
+          "f(P) - f(A) >= 0",
+          "f(P) - f(A) <= 0",
+          "f(P) - f(A) = 0",
+          "f(P) - f(A) > 0",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Determine ALL points for which p(x, y) = ln(xy - 1) is continuous.",
+        type: "Multiple Choice",
+        answer: "xy - 1 > 0",
+        options: [
+          "xy - 1 >= 0",
+          "xy - 1 > 0",
+          "xy - 1 < 0",
+          "xy - 1 <= 0",
+          "None of the above",
+        ],
+      },
+      {
+        question: "Which of the following is NOT true?",
+        type: "Multiple Choice",
+        answer:
+          "A polynomial function of two variables is discontinuous at every point in ℝ²",
+        options: [
+          "A rational function of two variables continuous on an open ball if it is continuous at every point in the open ball",
+          "A function f of n variables is continuous on an open ball if it is continuous at every point in the open ball",
+          "A function is differentiable if its partial derivatives exist and are continuous",
+          "A polynomial function of two variables is discontinuous at every point in ℝ²",
+          "None of the above",
+        ],
+      },
+      {
+        question: "What is the domain of f(x, y) = 1/(x^2 - y^2)?",
+        type: "Multiple Choice",
+        answer: "{(x, y) | x^2 - y^2 != 0}",
+        options: [
+          "{(x, y) | x^2 - y^2 = 0}",
+          "{(x, y) | x^2 - y^2 != 0}",
+          "{(x, y) | x^2 - y^2 > 0}",
+          "{(x, y) | x^2 - y^2 < 0}",
+        ],
+      },
+      {
+        question:
+          "Is the function f(x, y) = 1/(x^2 + y^2) continuous at (0, 0)?",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "What is the range of f(x, y) = x^2 + y^2?",
+        type: "Multiple Choice",
+        answer: "[0, infinity)",
+        options: [
+          "[0, infinity)",
+          "(-infinity, 0)",
+          "(-infinity, infinity)",
+          "(0, infinity)",
+        ],
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = tan(x y) with respect to x?",
+        type: "Fill-in",
+        answer: "y sec^2(x y)",
+      },
+      {
+        question:
+          "What is the limit of (x + y)/(x^2 + y^2 + 1) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "2", "Does not exist"],
+      },
+      {
+        question:
+          "If k is a positive constant and (x, t) = 0.5x/sqrt(k t), let f(x, t) = integral from 0 to (x,t) of e^(-u^2) du. What is f_x?",
+        type: "Multiple Choice",
+        answer: "e^(-g^2) ∂g/∂x",
+        options: [
+          "e^(-g^2) ∂g/∂x",
+          "-e^(-g^2) ∂g/∂x",
+          "e^(g^2) ∂g/∂x",
+          "-e^(g^2) ∂g/∂x",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "The two equations 2x = v^2 - u^2 and y = u v define u and v as functions of x and y. Find {u_x, u_y}.",
+        type: "Multiple Choice",
+        answer: "{-v/(u^2 + v^2), -u/(u^2 + v^2)}",
+        options: [
+          "{v/(u^2 + v^2), u/(u^2 + v^2)}",
+          "{-v/(u^2 + v^2), -u/(u^2 + v^2)}",
+          "{u^2 + v^2, u^2 + v^2}",
+          "{u^2 - v^2, u^2 - v^2}",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Find the slope of the function g(x, y, z) = x e^(y z) + x y e^z at the point P(-2, 1, 1) in the direction of the vector v = i - 2j + 3k.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: [
+          "8e sqrt(14)/7",
+          "-8e sqrt(14)/7",
+          "e sqrt(14)/7",
+          "-e sqrt(14)/7",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Consider the function f(x, y) = 3x^2 y + y^3 - 3x^2 - 3y^2 + 2. Find the point that corresponds to the local maximum of f.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: ["(1, 1)", "(0, 2)", "(0, 0)", "(-1, 1)", "None of the above"],
+      },
+      {
+        question:
+          "What is the local minimum value of f(x, y) = 3x^2 y + y^3 - 3x^2 - 3y^2 + 2?",
+        type: "Multiple Choice",
+        answer: "-2",
+        options: ["0", "6", "-2", "2", "None of the above"],
+      },
+      {
+        question:
+          "Evaluate the line integral over C of sin(x^3) dx + x y + 6 dy where C is the path starting at i, going by a straight line to j then down to the origin, then back to i.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: ["-4/3", "-1/6", "4/3", "1/6", "None of the above"],
+      },
+      {
+        question:
+          "Let r = sqrt(x^2 + y^2), x = A sin ω t, y = B cos ω t. Find the derivative of e^(k r) with respect to t.",
+        type: "Multiple Choice",
+        answer: "x y ω k (A - B) e^(k r)",
+        options: [
+          "-x y ω k r^2 (A - B) e^(k r)",
+          "-x y ω k r^2 (A - B) e^(k r)",
+          "x y ω k r^2 (A - B) e^(k r)",
+          "x y ω k (A - B) e^(k r)",
+          "None of the above",
+        ],
+      },
+      {
+        question: "Solve the integral from 0 to 3π of cos^4 θ dθ.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: ["3π/8", "7π/8", "6π/8", "8π/8", "None of the above"],
+      },
+      {
+        question:
+          "Evaluate the integral from 0 to a of y^4 sqrt(a^2 - y^2) dy.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: [
+          "π a^4/16",
+          "π a^4/16",
+          "π a^4/2",
+          "π a^4/6",
+          "None of the above",
+        ],
+      },
+      {
+        question: "Solve the integral from 0 to 1 of dx / sqrt(-ln x).",
+        type: "Multiple Choice",
+        answer: "sqrt(π)",
+        options: [
+          "π",
+          "sqrt(π)",
+          "0.5 sqrt(π)",
+          "2 sqrt(π)",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Given the function h(x, y), where h(x, y) = x y^2/(x^2 + y^2) if (x, y) != (0, 0), 2 if (x, y) = (0, 0), which of the following statements is true about h(x, y)?",
+        type: "Multiple Choice",
+        answer: "The function is discontinuous at the point (0, 0)",
+        options: [
+          "lim_{(x,y)→(0,0)} h(x, y) = 0",
+          "h(0, 0) does not exist",
+          "The function is discontinuous at the point (0, 0)",
+          "The function is continuous at the point where x^2 + y^2 >= 0",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Evaluate the line integral over C of x y^2 ds where C is the right half of the circle, x^2 + y^2 = 16.",
+        type: "Multiple Choice",
+        answer: "4096/5",
+        options: [
+          "8192/5",
+          "-8192/5",
+          "4096/5",
+          "-4096/5",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Let f(t) = (t^2, 1 + t^2) and g(x₁, x₂) = (2x₁ - x₂)^3, and let r = g ∘ f. Find the derivative of r at t = 2.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: ["12", "-12", "7", "3", "None of the above"],
+      },
+      {
+        question:
+          "Find the derivative of f(x, y, z) = x cos y + 3z^2 - x z at (1, π, 1) in the direction of the vector (3, -2, 2).",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: [
+          "10/sqrt(17)",
+          "-10/sqrt(17)",
+          "10/sqrt(3)",
+          "10/3",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Evaluate the line integral over C of x ds, where C is the curve y = x^2 and -1 <= x <= 1.",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["1", "0", "-1", "4", "None of the above"],
+      },
+      {
+        question:
+          "Given f(x, y) = x^2 + 2x y, what can be concluded about its critical points?",
+        type: "Multiple Choice",
+        answer: "f has a saddle point at (0, 0)",
+        options: [
+          "f has a local maximum at (0, 0)",
+          "f has a local minimum at (0, 0)",
+          "f has a saddle point at (0, 0)",
+          "No conclusion can be drawn",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Given f(x, y) = (x^2 + y^2) ln(x^2 + y^2), find lim_{(x,y)→(0,0)} f(x, y) if it exists.",
+        type: "Multiple Choice",
+        answer: "0",
+        options: [
+          "0",
+          "1",
+          "-1",
+          "The limit does not exist",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Evaluate the line integral over C of F · dr where F(x, y, z) = x z i - y z k and C is the line segment from (-1, 2, 0) to (3, 0, 1).",
+        type: "Multiple Choice",
+        answer: "3",
+        options: ["4", "3", "-4", "5", "None of the above"],
+      },
+      {
+        question:
+          "Rewrite the integral over D of f(x, y) dA, where D is the triangular region with vertices (2, 2), (2, 5) and (3, 4), with the appropriate limits and first with respect to y followed by x.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: [
+          "∫₂³ ∫₂^(2x-1) f(x, y) dy dx + ∫₂³ ∫_(2x+1)^5 f(x, y) dy dx",
+          "∫₂³ ∫_2^(2x-1) f(x, y) dx dy + ∫_2³ ∫_(2x+1)^5 f(x, y) dx dy",
+          "∫_2³ ∫_2^(2x-1) f(x, y) dx dy + ∫_2^(3/2x) f(x, y) dx dy",
+          "∫_2³ ∫_2^5 f(x, y) dx dy",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Express the integral over D of x^2 dA as an iterated integral in polar coordinates, where D is the region bounded above by the circle x^2 + y^2 = a^2 and below by the lines y = -x and y = x.",
+        type: "Multiple Choice",
+        answer: "∫_(π/4)^(3π/4) ∫₀^a r^3 cos^2 θ dθ dr",
+        options: [
+          "∫₀^(π/4) ∫₀^(a/√2) r^3 cos^2 θ dθ dr",
+          "∫_(π/4)^(3π/4) ∫₀^(a/√2) r^3 cos^2 θ dθ dr",
+          "∫_(π/4)^(3π/4) ∫₀^(a/√2) r^3 cos^2 θ dθ dr",
+          "∫_(π/4)^(3π/4) ∫₀^a r^3 cos^2 θ dθ dr",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Evaluate the double integral over S of y dx dy where S is the region in ℝ² bounded by the curves x^2 + y^2 = 9 and y - x^2 = 1.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: ["320/3", "-320/3", "640/3", "-640/3", "None of the above"],
+      },
+      {
+        question:
+          "Find the area S, where S is the region in ℝ² bounded by the curves y = 1 - (x - 2)^2 and y = -(1 - (x - 2)^2).",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: ["60", "40/3", "20/5", "10/3", "None of the above"],
+      },
+      {
+        question:
+          "What is the limit of (x^2 y)/(x^4 + y^2) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "Does not exist",
+        options: ["1", "1/2", "0", "Does not exist"],
+      },
+      {
+        question:
+          "What is the directional derivative of f(x, y) = x^2 + y^2 at (1, 1) in the direction of the vector (1, 1)?",
+        type: "Fill-in",
+        answer: "2 sqrt(2)",
+      },
+      {
+        question:
+          "What is the value of the double integral over the unit disk x^2 + y^2 <= 1 of (x^2 + y^2) dA?",
+        type: "Multiple Choice",
+        answer: "π/4",
+        options: ["π/2", "π/4", "π", "2π"],
+      },
+      {
+        question: "If f(x, y, z) = x^2 ln(y - z), find ∂f/∂y.",
+        type: "Fill-in",
+        answer: "x^2 / (y - z)",
+      },
+      {
+        question:
+          "The expression 2x ln(y - z) ∂x/∂y + (x^2 / (y - z)) ∂z/∂y is the partial derivative of f(x, y, z) = x^2 ln(y - z) with respect to y.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "If z = x ln y, x = u^2 + v^2, and y = u^2 - v^2, find ∂z/∂u.",
+        type: "Fill-in",
+        answer: "2u (u^2 + v^2)/(u^2 - v^2) + (u^2 + v^2) ln(u^2 - v^2)",
+      },
+      {
+        question:
+          "The function f(x, y) = (x^3 - y^3)/(x^2 - y^2) for (x, y) ≠ (0, 0) and 0 at (x, y) = (0, 0) is continuous but not differentiable at the origin.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Determine the type of extremum of f(x, y) = (x^2 / 2) + 3y^2 + 9y^2 - 3y - 9y - 9x.",
+        type: "Multiple Choice",
+        answer: "Saddle points",
+        options: [
+          "Local maxima",
+          "Local minima",
+          "Inflection",
+          "Saddle points",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "A point P has spherical coordinates (8, 2π/3, -π/6). Find the Cartesian coordinates for P.",
+        type: "Multiple Choice",
+        answer: "(6, -2√3, -4)",
+        options: [
+          "(6, 2√3, -4)",
+          "(6, -2√3, 4)",
+          "(6, -2√3, -4)",
+          "(3, -2√3, -4)",
+          "None of the above",
+        ],
+      },
+      {
+        question: "If z = x^2 e^y, x = sin t, y = t^2, find dz/dt.",
+        type: "Fill-in",
+        answer: "2 sin t cos t e^(t^2) + 2 t sin^2 t e^(t^2)",
+      },
+      {
+        question:
+          "The direction in which f(x, y) = x^2 + y^2 increases most rapidly at the point (1, 1) is (1/√2)i + (1/√2)j.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Find the direction in which f(x, y) = x^2 + y^2 decreases most rapidly at the point (1, 1).",
+        type: "Multiple Choice",
+        answer: "-(1/√2)i - (1/√2)j",
+        options: [
+          "(1/√2)i + (1/√2)j",
+          "-(1/√2)i - (1/√2)j",
+          "-(1/√2)i + (1/√2)j",
+          "(1/√2)i - (1/√2)j",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "What are the directions of zero change in f(x, y) at (1, 1)?",
+        type: "Multiple Choice",
+        answer: "(1/√2)i - (1/√2)j and -(1/√2)i + (1/√2)j",
+        options: [
+          "(1/√2)i + (1/√2)j and (1/√2)i - (1/√2)j",
+          "(1/√2)i - (1/√2)j and -(1/√2)i + (1/√2)j",
+          "-(1/√2)i + (1/√2)j and (1/√2)i - (1/√2)j",
+          "(1/√2)i - (1/√2)j and -(1/√2)i + (1/√2)j",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "For the function f(x, y) = x y / (x^2 + y^2), find the value of f(2, 1).",
+        type: "Fill-in",
+        answer: "1/5",
+      },
+      {
+        question:
+          "Consider the rate of pressure and volume changing at a temperature of 300 K and pressure of 83.137 kPa/s. Find the mole of an ideal gas in kilopascals.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: ["-0.005", "-0.00415", "0.00415", "None of the above"],
+      },
+      {
+        question: "The domain of f(x, y) = sqrt(25 - x^2 - y^2) is ℝ^2.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "For f(x, y) = 1/(x^2 + y^2), the range is ℝ.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "If f(x, y) = cos(x + y), find f_x(x, y).",
+        type: "Fill-in",
+        answer: "-sin(x + y)",
+      },
+      {
+        question: "The function f(x, y) = x^2 + y^2 is continuous at (0, 0).",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the value of f_y(x, y) if f(x, y) = x^2 y + y^3.",
+        type: "Fill-in",
+        answer: "x^2 + 3y^2",
+      },
+      {
+        question: "The range of f(x, y) = sin(x) is [-1, 1].",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "If f(x, y) = e^(x^2 + y^2), find ∂f/∂x.",
+        type: "Fill-in",
+        answer: "2x e^(x^2 + y^2)",
+      },
+      {
+        question:
+          "The function f(x, y) = ln(x^2 + y^2) is defined for all (x, y) in ℝ^2.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Find the partial derivative ∂f/∂y for f(x, y) = x y^2.",
+        type: "Fill-in",
+        answer: "2x y",
+      },
+      {
+        question:
+          "The equation z = x^2 - y^2 represents a hyperbolic paraboloid.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "If f(x, y, z) = x^2 + y^2 + z^2, find the gradient at (1, 1, 1).",
+        type: "Fill-in",
+        answer: "2i + 2j + 2k",
+      },
+      {
+        question: "The level curve of f(x, y) = x^2 + y^2 is a circle.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the domain of f(x, y) = sqrt(x^2 + y^2 - 4).",
+        type: "Multiple Choice",
+        answer: "{ (x, y) | x^2 + y^2 >= 4 }",
+        options: [
+          "{ (x, y) | x^2 + y^2 < 4 }",
+          "{ (x, y) | x^2 + y^2 <= 4 }",
+          "{ (x, y) | x^2 + y^2 > 4 }",
+          "{ (x, y) | x^2 + y^2 >= 4 }",
+          "None of the above",
+        ],
+      },
+      {
+        question: "The function f(x, y) = 1/(x - y) is continuous at (1, 1).",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "If f(x, y) = x^3 + 3x y^2, find f_x(1, 1).",
+        type: "Fill-in",
+        answer: "6",
+      },
+      {
+        question: "The second partial derivative f_yy of f(x, y) = x^2 y is 0.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Find the equation of the tangent line to y = x^2 at x = 1.",
+        type: "Fill-in",
+        answer: "y = 2x - 1",
+      },
+      {
+        question: "The integral ∫_0^1 ∫_0^1 x y dx dy equals 1/4.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "If f(x, y) = sin(x y), find f_y(0, π).",
+        type: "Fill-in",
+        answer: "0",
+      },
+      {
+        question:
+          "The vector field F = ∇f is conservative if f is a scalar function.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the critical points of f(x, y) = x^2 - y^2.",
+        type: "Multiple Choice",
+        answer: "(0, 0)",
+        options: [
+          "(0, 0)",
+          "(0, 0) and (1, 1)",
+          "(0, 0) and (-1, -1)",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "The function f(x, y) = e^(x + y) is differentiable everywhere.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Evaluate ∫_C F · dr where C is the parabola x = t, y = 2 - t^2, -2 <= t <= 1, and F = (2x e^(x^2 - 1) cos y)i - (e^(x^2 - 1) sin y)j.",
+        type: "Multiple Choice",
+        answer: "1 - e^(-3)",
+        options: [
+          "e^3 - 1",
+          "(1/2) (e^3 + e^(-1))",
+          "e^3 - e^(-1)",
+          "1 - e^(-3)",
+          "None of the above",
+        ],
+      },
+      {
+        question: "Which of the following statements is/are TRUE?",
+        type: "Multiple Choice",
+        answer:
+          "A rational function of two variables is continuous at every point in its domain.",
+        options: [
+          "A polynomial function of two variables is continuous at every point in ℝ^2.",
+          "A rational function of two variables is continuous at every point in its domain.",
+          "If f and g are continuous at A(a₁, a₂, ..., aₙ), then f + g is continuous at A.",
+          "All of the above",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Use a triple integral to find the volume of the tetrahedron bounded by the planes x + 2y + z = 2, x = 2y, x = 0, and z = 0.",
+        type: "Multiple Choice",
+        answer: "1/3",
+        options: ["1/2", "1/3", "1/4", "1/5", "None of the above"],
+      },
+      {
+        question:
+          "Find the directional derivative of f(x, y, z) = x cos y + 3z^2 - xz at (1, π, 1) in the direction of the vector [3, -2, 2].",
+        type: "Multiple Choice",
+        answer: "10/√17",
+        options: ["10/√17", "17/√10", "1/√17", "√17/10", "None of the above"],
+      },
+      {
+        question:
+          "Evaluate ∫∫_D (x + 2y) dA where D is the region bounded by the parabolas y = 2x^2 and y = 1 + x^2.",
+        type: "Multiple Choice",
+        answer: "16/15",
+        options: ["32/15", "16/15", "8/15", "4/15", "None of the above"],
+      },
+      {
+        question: "Evaluate ∂z/∂u if x = u^2 - v^2 and y = 2uv.",
+        type: "Multiple Choice",
+        answer: "None of the above",
+        options: [
+          "2u^2 + 2v^2 > 0",
+          "3u^2 + 3v^2 > 0",
+          "2u^2 + 2v^2 < 0",
+          "4u^2 + 4v^2 < 0",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Find the tangent plane to the elliptic paraboloid z = 2x^2 + y^2 at the point (1, 1, 3).",
+        type: "Multiple Choice",
+        answer: "z = 4x + 2y - 3",
+        options: [
+          "z = 4x - 2y - 3",
+          "z = 4x - 2y + 3",
+          "z = -4x - 2y + 3",
+          "z = 4x + 2y - 3",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Find the linearization L(x, y) of the function f(x, y) = e^x cos y at the point (0, 0).",
+        type: "Multiple Choice",
+        answer: "1 - πy",
+        options: ["1 + πy", "πy", "1 - πy", "πy - 1", "None of the above"],
+      },
+      {
+        question:
+          "Find the directional derivative of f(x, y) = x^3 - 3xy + 4y^2 at (1, 2) in the direction of the unit vector with angle θ = π/6.",
+        type: "Multiple Choice",
+        answer: "(1/2) [3√3 x^2 - 3x + (8 - 3√3)y]",
+        options: [
+          "(1/2) [3√3 x^2 - 3x + (8 - 3√3)y]",
+          "(1/3) [3√3 x^2 - 3x + (8 - 3√3)y]",
+          "(1/2) [2√3 x^2 - 3x + (8 - 3√3)y]",
+          "(1/2) [3√2 x^2 - 3x + (8 - 3√3)y]",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Find the absolute maximum value of f(x, y) = 1 + 4x - 5y on the closed triangular region with vertices (0, 0), (2, 0), and (0, 3).",
+        type: "Multiple Choice",
+        answer: "9",
+        options: ["7", "8", "9", "10", "None of the above"],
+      },
+      {
+        question:
+          "Evaluate ∫∫_D xy dA where D is the region bounded by the line y = x - 1 and the parabola y^2 = 2x + 6.",
+        type: "Multiple Choice",
+        answer: "36",
+        options: ["35", "36", "37", "38", "None of the above"],
+      },
+      {
+        question:
+          "Find the surface area of the portion of the sphere of radius 4 that lies inside the cylinder x^2 + y^2 = 12 and above the xy-plane.",
+        type: "Multiple Choice",
+        answer: "18π",
+        options: ["11π", "14π", "16π", "18π", "None of the above"],
+      },
+      {
+        question:
+          "Reverse the order of integration for ∫_0^2 ∫_0^(x^2) f(x, y) dy dx.",
+        type: "Multiple Choice",
+        answer: "∫_0^4 ∫_0^(√y) f(x, y) dx dy",
+        options: [
+          "∫_0^4 ∫_0^(√y) f(x, y) dx dy",
+          "∫_0^2 ∫_0^(y^2) f(x, y) dx dy",
+          "∫_0^4 ∫_0^(y^2) f(x, y) dx dy",
+          "∫_0^2 ∫_0^(√x) f(x, y) dx dy",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Evaluate ∫_C F · dr where F(x, y, z) = x^2 i - yz j and C is the line segment from (-1, 2, 0) to (3, 0, 1).",
+        type: "Multiple Choice",
+        answer: "3",
+        options: ["2", "3", "4", "5", "None of the above"],
+      },
+      {
+        question:
+          "Find the volume of the solid that lies under the surface z = xy and above the triangle with vertices (1, 1), (4, 1), and (1, 2).",
+        type: "Multiple Choice",
+        answer: "31/8",
+        options: ["31/8", "31/3", "33/8", "33/3", "None of the above"],
+      },
+      {
+        question:
+          "Find the points on the cone x^2 = y^2 + z^2 that are closest to the point (4, 2, 0) using Lagrange multipliers.",
+        type: "Multiple Choice",
+        answer: "(2, 1, √3)",
+        options: [
+          "(2, 1, -√3)",
+          "(2, 1, √3)",
+          "(3, 1, √2)",
+          "(3, 1, -√2)",
+          "None of the above",
+        ],
+      },
+      {
+        question: "Find lim_{(x, y) → (0, 0)} (x^2 y^2)/(x^2 + y^2).",
+        type: "Multiple Choice",
+        answer: "Does not exist",
+        options: ["∞", "0", "Does not exist", "1/2", "None of the above"],
+      },
+      {
+        question: "Find ∂^2 U/∂y ∂z if U = ln(x^2 + 2y^2 + 3z^2).",
+        type: "Multiple Choice",
+        answer: "12yz/(x^2 + 2y^2 + 3z^2)^2",
+        options: [
+          "12yz/(x^2 + 2y^2 + 3z^2)^2",
+          "6yz/(x^2 + 2y^2 + 3z^2)^2",
+          "3yz/(x^2 + 2y^2 + 3z^2)^2",
+          "2yz/(x^2 + 2y^2 + 3z^2)^2",
+          "None of the above",
+        ],
+      },
+      {
+        question: "Find ∂z/∂t if z = e^x cos t, x = s t, t = sqrt(s^2 + t^2).",
+        type: "Multiple Choice",
+        answer: "e^(st)(cos t - (s^2 t / sqrt(s^2 + t^2)) sin t)",
+        options: [
+          "e^(st)(cos t - (s^2 t / sqrt(s^2 + t^2)) sin t)",
+          "e^(st)(cos t + (s^2 t / sqrt(s^2 + t^2)) sin t)",
+          "e^(st)(sin t - (s^2 t / sqrt(s^2 + t^2)) cos t)",
+          "e^(st)(sin t + (s^2 t / sqrt(s^2 + t^2)) cos t)",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Find the volume of the solid bounded by the surface z = 6 - xy and the planes x = 2, x = -2, y = 0, y = 3, and z = 0.",
+        type: "Multiple Choice",
+        answer: "25",
+        options: ["72", "25", "38", "31", "None of the above"],
+      },
+      {
+        question: "Find ∂f/∂y if f(x, y) = e^y.",
+        type: "Fill-in",
+        answer: "e^y",
+      },
+      {
+        question: "Which of these is an open ball in ℝ^2?",
+        type: "Multiple Choice",
+        answer: "x^2 + y^2 < 4",
+        options: [
+          "x^2 = y^2",
+          "x^2 + y^2 = 4",
+          "x^2 + y^2 < 4",
+          "x^2 + y^2 <= 4",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "Evaluate ∫∫_D (x + 2y) dA where D is the region bounded by the parabolas y = 2x^2 and y = 1 + x^2.",
+        type: "Multiple Choice",
+        answer: "32",
+        options: ["-21", "32", "-32", "-15", "None of the above"],
+      },
+      {
+        question:
+          "Find the limit lim_{(x, y) → (0, 0)} f(x, y) where f(x, y) = (1 - cos(x + y))/(x + y)^2 and f(x, y) = sqrt(x^2 + y^2).",
+        type: "Multiple Choice",
+        answer: "[1, 2]",
+        options: ["[1, 0]", "[1, 2]", "[1, 1]", "[1, 3]", "None of the above"],
+      },
+      {
+        question:
+          "If x^2 + y^2 + z^2 < 10, then the function is defined and real for all points.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Given that z = tan^(-1)(2x + y), x = s t, y = s ln t, find ∂z/∂s.",
+        type: "Multiple Choice",
+        answer: "(2t + ln t)/(1 + (2st + s ln t)^2)",
+        options: [
+          "(2st + ln t)/(1 + (2st + s ln t)^2)",
+          "(2t + ln t)/(1 + (2st + s ln t)^2)",
+          "(2st + s)/(1 + (2st + s ln t)^2)",
+          "(2t + s)/(1 + (2st + s ln t)^2)",
+          "None of the above",
+        ],
+      },
+      {
+        question: "Evaluate ∂/∂x (x e^y + yz = -x^2 + 100).",
+        type: "Multiple Choice",
+        answer: "(-e^y - 2x e^x)/(y + 2x)",
+        options: [
+          "(e^y + z e^x)/(y + x^2)",
+          "(e^y - z e^x)/(y - x^2)",
+          "(-e^y + z e^x)/(y + x^2)",
+          "(-e^y - 2x e^x)/(y + 2x)",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "If f(x, y) = 3x^2 y + y^3 - 3x^2 - 3y^2 + 2, find lim_{(x,y) → (0,0)} f(x, y) if it exists.",
+        type: "Multiple Choice",
+        answer: "2",
+        options: ["2", "0", "1", "Does not exist", "None of the above"],
+      },
+    ],
+    Medium: [
+      {
+        question:
+          "What is the rate of change of pressure when the temperature is 300K (decreasing at 0.1K/s) and the volume is 15L (increasing at 0.4L/s), given PV = 2.32T?",
+        type: "Multiple Choice",
+        answer: "-0.016 kPa/s",
+        options: ["-0.016 kPa/s", "0.016 kPa/s", "-0.032 kPa/s", "0.032 kPa/s"],
+      },
+      {
+        question:
+          "What is the partial derivative of (x y) with respect to s, where x = 2s + 3t and y = s - 2t?",
+        type: "Multiple Choice",
+        answer: "2y + 3x",
+        options: ["2y + 3x", "s - 2t", "4s - t", "2x + y"],
+      },
+      {
+        question:
+          "The double integral from 0 to 3 and 0 to √(9 - y^2) of (x + y^2) dx dy can be evaluated.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the divergence of F(x, y, z) = (x^2 + y^2) i + x y z j + x y^2 k?",
+        type: "Fill-in",
+        answer: "2x + y",
+      },
+      {
+        question: "What is the domain of f(x, y) = x ln(y^2 - x)?",
+        type: "Multiple Choice",
+        answer: "{(x, y) | x < y^2}",
+        options: [
+          "{(x, y) | x <= y^2}",
+          "{(x, y) | x < y^2}",
+          "{(x, y) | x > y^2}",
+          "{(x, y) | x >= y^2}",
+        ],
+      },
+      {
+        question: "What is the domain of f(x, y) = sqrt(x + y + 1) / (x - 1)?",
+        type: "Multiple Choice",
+        answer: "{(x, y) | x + y + 1 >= 0, x != 1}",
+        options: [
+          "{(x, y) | x + y + 1 >= 0}",
+          "{(x, y) | x + y + 1 > 0}",
+          "{(x, y) | x + y + 1 > 0, x != 1}",
+          "{(x, y) | x + y + 1 >= 0, x != 1}",
+        ],
+      },
+      {
+        question: "What is the range of h(x, y) = sqrt(9 - x^2 - y^2)?",
+        type: "Multiple Choice",
+        answer: "[0, 3]",
+        options: ["[0, 3)", "(0, 3)", "(0, 3]", "[0, 3]"],
+      },
+      {
+        question:
+          "What are the partial derivatives of f(x, y) = sin(x/(1 + y)) with respect to x and y?",
+        type: "Multiple Choice",
+        answer: "cos(x/(1 + y)) * 1/(1 + y), -cos(x/(1 + y)) * x/(1 + y)^2",
+        options: [
+          "cos(x/(1 + y)) * 1/(1 + y), -cos(x/(1 + y)) * x/(1 + y)^2",
+          "cos(x/(1 + y)) * x/(1 + y), -cos(x/(1 + y)) * x/(1 + y)^2",
+          "cos(x/(1 + y)) * 1/(1 + y), -cos(x/(1 + y)) * x/(1 + y)",
+          "cos(x/(1 + y)) * x/(1 + y), -cos(x/(1 + y)) * y/(1 + y)^2",
+        ],
+      },
+      {
+        question: "What is f_x(3, 4) for f(x, y) = ln(x + sqrt(x^2 + y^2))?",
+        type: "Multiple Choice",
+        answer: "1/5",
+        options: ["1/2", "2/5", "1/5", "2/7"],
+      },
+      {
+        question: "What is the domain of f(x, y, z) = ln(z - y) + x y sin(x)?",
+        type: "Multiple Choice",
+        answer: "{(x, y, z) | z > y}",
+        options: [
+          "{(x, y, z) | z > y}",
+          "{(x, y, z) | z >= y}",
+          "{(x, y, z) | z < y}",
+          "{(x, y, z) | z <= y}",
+        ],
+      },
+      {
+        question:
+          "What is the equation of the tangent plane to z = 2x^2 + y^2 at (1, 1, 3)?",
+        type: "Multiple Choice",
+        answer: "z = 4x + 2y - 3",
+        options: [
+          "z = 4x - 2y - 3",
+          "z = 4x - 2y + 3",
+          "z = -4x - 2y + 3",
+          "z = 4x + 2y - 3",
+        ],
+      },
+      {
+        question: "What is the differential dz for z = x^2 + 3x y - y^2?",
+        type: "Multiple Choice",
+        answer: "(2x + 3y) dx + (3x - 2y) dy",
+        options: [
+          "(2x - 3y) dx + (3x - 2y) dy",
+          "(2x + 3y) dx + (3x - 2y) dy",
+          "(2x + 3y) dx + (3x + 2y) dy",
+          "(3x + 2y) dx + (2x + 3y) dy",
+        ],
+      },
+      {
+        question: "What is the domain of f(x, y) = 1 / (x^2 - y)?",
+        type: "Multiple Choice",
+        answer: "{(x, y) | x^2 - y > 0}",
+        options: [
+          "{(x, y) | x^2 - y != 0}",
+          "{(x, y) | x^2 - y > 0}",
+          "{(x, y) | x^2 - y < 0}",
+          "{(x, y) | x^2 - y = 0}",
+        ],
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x^2 y + y^3 with respect to y?",
+        type: "Fill-in",
+        answer: "x^2 + 3y^2",
+      },
+      {
+        question:
+          "Is the function f(x, y) = 1 / (x - y)^2 continuous at x = y?",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "What is the range of f(x, y) = x^2 + y^2?",
+        type: "Multiple Choice",
+        answer: "[0, infinity)",
+        options: [
+          "[0, infinity)",
+          "(-infinity, 0)",
+          "(-infinity, infinity)",
+          "(0, infinity)",
+        ],
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = cos(x y) with respect to x?",
+        type: "Fill-in",
+        answer: "-y sin(x y)",
+      },
+      {
+        question:
+          "What is the limit of (x + y)^2 / (x^2 + y^2) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["1", "0", "2", "Does not exist"],
+      },
+      {
+        question:
+          "Can the function f(x, y) = sqrt(x^2 + y^2 - 1) be defined at (0, 0)?",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
           "What is the limit of (x + y) / (x^2 + y^2) as (x, y) approaches (0, 0)?",
         type: "Multiple Choice",
         answer: "Does not exist",
@@ -5053,24 +6232,301 @@ export const courseData2 = {
         type: "True/False",
       },
     ],
-    Medium: [
-      {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
-      },
-    ],
     Hard: [
       {
-        question: "",
-        type: "",
-        options: ["", "", "", ""],
-        answer: "",
+        question:
+          "What is the volume of the solid below the surface 16x y + 200 and above the region bounded by y = x^2 and y = 8 - x^2?",
+        type: "Multiple Choice",
+        answer: "2048",
+        options: ["1024", "2048", "4096", "8192"],
+      },
+      {
+        question:
+          "What is the value of the integral of (x^2 + y^2) dy dx from 0 to 4 and 0 to √(16 - x^2)?",
+        type: "Multiple Choice",
+        answer: "64π/3",
+        options: ["64π/3", "32π/3", "16π/3", "8π/3"],
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x^3 + y^3 + 2x y^2 with respect to x?",
+        type: "Fill-in",
+        answer: "3x^2 + 2y^2",
+      },
+      {
+        question:
+          "What is the volume under the surface z = x^2 + y^2 and above the x y-plane bounded by x^2 + y^2 = 9?",
+        type: "Fill-in",
+        answer: "27π",
+      },
+      {
+        question:
+          "What is the Jacobian of the transformation where x = r cos θ and y = r sin θ?",
+        type: "Fill-in",
+        answer: "r",
+      },
+      {
+        question:
+          "What is the value of the limit of sin(x y)/(x y) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["1", "0", "-1", "Does not exist"],
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = e^(x y) with respect to x?",
+        type: "Fill-in",
+        answer: "y e^(x y)",
+      },
+      {
+        question:
+          "Can the partial derivative of f(x, y) = x^2 + y^2 with respect to y be found?",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x^3 y with respect to x?",
+        type: "Fill-in",
+        answer: "3x^2 y",
+      },
+      {
+        question:
+          "What is the limit of x y / (x + y) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "-1", "Does not exist"],
+      },
+      {
+        question: "Is the function f(x, y) = x + y continuous at (0, 0)?",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x^2 y^2 with respect to y?",
+        type: "Fill-in",
+        answer: "2x^2 y",
+      },
+      {
+        question:
+          "What is the value of the limit of (x^2 + y^2) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "2", "Does not exist"],
+      },
+      {
+        question:
+          "Can the function f(x, y) = 1/(x - y) be differentiated at x = y?",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = sin(x + y) with respect to x?",
+        type: "Fill-in",
+        answer: "cos(x + y)",
+      },
+      {
+        question: "Is the domain of f(x, y) = sqrt(x) all real numbers?",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x y^3 with respect to y?",
+        type: "Fill-in",
+        answer: "3x y^2",
+      },
+      {
+        question: "What is the limit of x^2 / (x^2 + 1) as x approaches 0?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "1/2", "Does not exist"],
+      },
+      {
+        question: "Is f(x, y) = x^2 - y^2 differentiable everywhere?",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = e^x cos(y) with respect to x?",
+        type: "Fill-in",
+        answer: "e^x cos(y)",
+      },
+      {
+        question:
+          "What is the value of the limit of y / (x^2 + y^2) as (x, y) approaches (0, 0) along y = x?",
+        type: "Multiple Choice",
+        answer: "1/2",
+        options: ["0", "1/2", "1", "Does not exist"],
+      },
+      {
+        question:
+          "Can the function f(x, y) = ln(x^2 + y^2) be defined at (0, 0)?",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the partial derivative of f(x, y) = x^2 + 2x y with respect to y?",
+        type: "Fill-in",
+        answer: "2x",
+      },
+      {
+        question: "What is the limit of (sin x) / x as x approaches 0?",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["1", "0", "-1", "Does not exist"],
+      },
+      {
+        question:
+          "Is the function f(x, y) = x^3 + y^3 continuous at all points?",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "What is the value of the limit of (x^2 - y^2)/(x^2 + y^2) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "Does not exist",
+        options: ["1", "-1", "0", "Does not exist"],
+      },
+      {
+        question:
+          "What is the value of the limit of x y/(x^2 + y^2) as (x, y) approaches (0, 0)?",
+        type: "Multiple Choice",
+        answer: "Does not exist",
+        options: ["0", "1/2", "1", "Does not exist"],
+      },
+      {
+        question:
+          "What type of discontinuity does f(x, y) = x y^2/(x^2 + y^2) if (x, y) != (0, 0), 0 if (x, y) = (0, 0) have at (0, 0)?",
+        type: "Multiple Choice",
+        answer: "Essential",
+        options: [
+          "Removable",
+          "Essential",
+          "Removable and Essential",
+          "Insufficient information",
+        ],
+      },
+      {
+        question:
+          "What are the partial derivatives of the implicit function defined by x^2 + y^2 + 6x y z + z^3 = 1 with respect to x and y?",
+        type: "Multiple Choice",
+        answer: "-(x^2 + 2y z)/(z^3 + 2x y), -(y^2 + 2x z)/(z^3 + 2x y)",
+        options: [
+          "(x^2 + 2y z)/(z^3 + 2x y), (y^2 + 2x z)/(z^3 + 2x y)",
+          "-(x^2 + 2y z)/(z^3 + 2x y), -(y^2 + 2x z)/(z^3 + 2x y)",
+          "(x^2 + 2y z)/(z^3 + 2x y), (y^2 + 2x z)/(z^3 + 2x y)",
+          "-(x^2 + 2y z)/(z^3 + 2x y), (y^2 + 2y z)/(z^3 + 2x y)",
+        ],
+      },
+      {
+        question:
+          "What is the value of the integral of x dx dy over the region below y = x, above the x-axis, and to the left of y = -x + 2?",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "2", "3", "None"],
+      },
+      {
+        question: "What is f_{yz} for f(x, y, z) = sin(3x + y z)?",
+        type: "Multiple Choice",
+        answer: "cos(3x + y z) - y z^2 sin(3x + y z)",
+        options: [
+          "cos(3x + y z) - y z^2 sin(3x + y z)",
+          "-9 cos(3x + y z) - 9y z sin(3x + y z)",
+          "9 cos(3x + y z) + 9y z sin(3x + y z)",
+          "9y cos(3x + y z) + 9y z sin(3x + y z)",
+        ],
+      },
+      {
+        question:
+          "What is the equation of the cone 2z^2 = x^2 + y^2 in spherical coordinates?",
+        type: "Multiple Choice",
+        answer: "tan φ = sqrt(2)",
+        options: [
+          "tan φ = sqrt(2)",
+          "tan φ = 1",
+          "sec φ = sqrt(2)",
+          "csc φ = 1",
+          "cot^2 φ = 1",
+        ],
+      },
+      {
+        question:
+          "What are the rectangular coordinates for the spherical point (ρ, θ, φ) = (8, π/4, π/3)?",
+        type: "Multiple Choice",
+        answer: "(4, 4sqrt(2), 4)",
+        options: [
+          "(4, 4sqrt(2), 4)",
+          "(4, 2sqrt(6), 4sqrt(2))",
+          "(4, 2sqrt(6), 2sqrt(6))",
+          "(4, 2sqrt(2), 4sqrt(2))",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "What is the volume inside the sphere x^2 + y^2 + z^2 = 2z and paraboloid z = x^2 + y^2?",
+        type: "Multiple Choice",
+        answer: "(2 + π)/4",
+        options: ["(1 + 2π)/4", "(1 + 4π)/2", "(2 + π)/4", "(1 + π)/4", "π"],
+      },
+      {
+        question: "What is the linearization of f(x, y) = e^(4y) at (π, 0)?",
+        type: "Multiple Choice",
+        answer: "1 + 4y",
+        options: ["1 + 4y", "π y", "1 - π y", "π y - 1"],
+      },
+      {
+        question:
+          "What is the linear approximation of f(x, y) = sqrt(20 - x^2 - 7y^2) at (2, 1) for f(1.98, 1.08)?",
+        type: "Multiple Choice",
+        answer: "-(2/3)x - (7/3)y + 20/3; 2.826",
+        options: [
+          "(2/3)x + (7/3)y + 20/3; 2.846",
+          "-(2/3)x - (7/3)y + 20/3; 2.826",
+          "(2/3)x + (7/3)y - 20/3; 2.846",
+          "(2/3)x + (7/3)y + 20/3; 2.864",
+        ],
+      },
+      {
+        question:
+          "What is the value of the double integral of (1 + x^2 + y^2)^2 dy dx over x^2 + y^2 <= 1?",
+        type: "Multiple Choice",
+        answer: "π/8",
+        options: ["0", "π/16", "π/8", "π/4", "π"],
+      },
+      {
+        question:
+          "What is the directional derivative of f = x^2 y z along the curve x = e^u, y = 2 sin u + 1, z = u - cos u at u = 0?",
+        type: "Fill-in",
+        answer: "sqrt(6)/2",
+      },
+      {
+        question:
+          "What is φ'(a) for φ(a) = integral from a to a^2 of sin x / x dx where a != 0?",
+        type: "Multiple Choice",
+        answer: "3 sin a^3 - 2 sin a^2 / (a^3 - a cos a^2)",
+        options: [
+          "3 sin a^3 - 2 sin a^2 / (a^3 - a cos a^2)",
+          "sin a^2 - sin a / (a sin a - cos a^2)",
+          "3 cos a^3 - 2 cos a^2 / (a^3 - a cos a)",
+          "None of the above",
+        ],
+      },
+      {
+        question:
+          "What is a unit normal to the surface 2x^2 + 4y z - 5z^2 = -10 at (3, -1, 2)?",
+        type: "Fill-in",
+        answer: "(3i - 2j - 6k)/7",
       },
     ],
   },
-  "Chemical Process Calculations": {
+  "Chemical Process Calculations II": {
     programOfStudy: "Chemical Engineering",
     levelOfStudy: "Level 200",
     semesterOfStudy: "Semester 2",
@@ -9540,7 +10996,7 @@ export const courseData2 = {
   },
   // Level 300, Semester 2, Chemical Engineering
   "Introduction to Economics 2": {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: ["Chemical Engineering", "Geomatic Engineering"],
     levelOfStudy: "Level 300",
     semesterOfStudy: "Semester 2",
     elective: true,
@@ -16765,7 +18221,7 @@ export const courseData2 = {
     ],
   },
   "French for Communication Purposes 2": {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: ["Chemical Engineering", "Geomatic Engineering"],
     levelOfStudy: "Level 300",
     semesterOfStudy: "Semester 2",
     elective: true,

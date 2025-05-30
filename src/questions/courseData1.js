@@ -4278,7 +4278,7 @@ export const courseData1 = {
   },
   // Level 100, Semester 2, Chemical Engineering
   "General Physics": {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: ["Chemical Engineering", "Petroleum Engineering"],
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 2",
     Easy: [
@@ -5387,7 +5387,7 @@ export const courseData1 = {
     ],
   },
   "Introduction to Information Technology": {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: ["Chemical Engineering", "Geomatic Engineering"],
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 2",
     Easy: [
@@ -6508,7 +6508,7 @@ export const courseData1 = {
     ],
   },
   "Basic Mechanics": {
-    programOfStudy: "Chemical Engineering",
+    programOfStudy: ["Chemical Engineering", "Petroleum Engineering"],
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 2",
     Easy: [
@@ -6775,6 +6775,8 @@ export const courseData1 = {
     programOfStudy: [
       "Chemical Engineering",
       "Electrical and Electronics Engineering",
+      "Petroleum Engineering",
+      "Geomatic Engineering",
     ],
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 2",
@@ -7894,40 +7896,12 @@ export const courseData1 = {
       },
     ],
   },
-  "Calculus with Analysis": {
+  "Physical Chemistry": {
     programOfStudy: [
       "Chemical Engineering",
-      "Electrical and Electronics Engineering",
+      "Petrochemical Engineering",
+      "Petroleum Engineering",
     ],
-    levelOfStudy: "Level 100",
-    semesterOfStudy: "Semester 2",
-    Easy: [
-      {
-        question: "",
-        type: "Multiple Choice",
-        options: ["", "", "", ""],
-        answer: "",
-      },
-    ],
-    Medium: [
-      {
-        question: "",
-        type: "Multiple Choice",
-        options: ["", "", "", ""],
-        answer: "",
-      },
-    ],
-    Hard: [
-      {
-        question: "",
-        type: "Multiple Choice",
-        options: ["", "", "", ""],
-        answer: "",
-      },
-    ],
-  },
-  "Physical Chemistry": {
-    programOfStudy: "Chemical Engineering",
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 2",
     Easy: [
@@ -9777,541 +9751,542 @@ export const courseData1 = {
     programOfStudy: "All Programs",
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 2",
+    Easy: [
+      {
+        question: "The symbol used to represent the set of natural numbers is:",
+        type: "Multiple Choice",
+        answer: "ℕ",
+        options: ["ℤ", "ℚ", "ℝ", "ℕ"],
+      },
+      {
+        question: "The set of real numbers includes irrational numbers.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The symbol used to represent the set of rational numbers is:",
+        type: "Multiple Choice",
+        answer: "ℚ",
+        options: ["ℕ", "ℤ", "ℚ", "ℝ"],
+      },
+      {
+        question: "The empty set has no elements.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The symbol used to represent the set of integers is:",
+        type: "Multiple Choice",
+        answer: "ℤ",
+        options: ["ℕ", "ℤ", "ℚ", "ℝ"],
+      },
+      {
+        question: "A bounded set has both an upper and lower bound.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The limit of a constant function f(x) = c is:",
+        type: "Multiple Choice",
+        answer: "c",
+        options: ["0", "c", "∞", "-∞"],
+      },
+      {
+        question: "The derivative of a constant is zero.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The symbol for the empty set is:",
+        type: "Multiple Choice",
+        answer: "∅",
+        options: ["{}", "∅", "ℕ", "ℤ"],
+      },
+      {
+        question:
+          "A sequence is a function whose domain is the set of natural numbers.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The integral of 1 with respect to x is:",
+        type: "Multiple Choice",
+        answer: "x + C",
+        options: ["x + C", "1/x + C", "x^2/2 + C", "C"],
+      },
+      {
+        question: "A function is continuous if it has no breaks in its graph.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The set of natural numbers is bounded below.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The limit of f(x) = x as x approaches 2 is:",
+        type: "Multiple Choice",
+        answer: "2",
+        options: ["0", "1", "2", "∞"],
+      },
+      {
+        question: "The derivative of x^2 is 2x.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The symbol for set inclusion is:",
+        type: "Multiple Choice",
+        answer: "⊆",
+        options: ["∈", "⊆", "∪", "∩"],
+      },
+      {
+        question: "A cluster point of a set must be an element of the set.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The integral of x dx is x^2/2 + C.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The set of rational numbers is countable.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The limit of 1/x as x approaches infinity is:",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "∞", "-∞"],
+      },
+      {
+        question:
+          "A monotonic sequence is either non-decreasing or non-increasing.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The derivative of sin(x) is cos(x).",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The set of real numbers is bounded.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The symbol for set intersection is:",
+        type: "Multiple Choice",
+        answer: "∩",
+        options: ["∈", "⊆", "∪", "∩"],
+      },
+      {
+        question:
+          "The Fundamental Theorem of Calculus relates differentiation and integration.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The limit of a sum is the sum of the limits, if they exist.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The derivative of e^x is e^x.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The set {1, 2, 3} is finite.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The integral of cos(x) dx is sin(x) + C.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The limit of x^2 as x approaches 3 is:",
+        type: "Multiple Choice",
+        answer: "9",
+        options: ["3", "6", "9", "12"],
+      },
+      {
+        question: "A convergent sequence is bounded.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The derivative of ln(x) is 1/x.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The set of irrational numbers is countable.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The symbol for set union is:",
+        type: "Multiple Choice",
+        answer: "∪",
+        options: ["∈", "⊆", "∪", "∩"],
+      },
+      {
+        question:
+          "A function is differentiable at a point if it is continuous there.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The integral of x^2 dx is x^3/3 + C.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The limit of (x + 1)/x as x approaches infinity is:",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "2", "∞"],
+      },
+      {
+        question: "The set of integers is bounded.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The derivative of x^3 is 3x^2.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The set {1, 2, 3, 4, 5} has no cluster point.",
+        type: "True/False",
+        answer: "True",
+      },
+    ],
+    Medium: [
+      {
+        question:
+          "Given the set A = {1/x | x = 1, 2, 3, ...}, what is the cluster point of A?",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["1", "0", "1/2", "∞"],
+      },
+      {
+        question: "The set A = {1/x | x = 1, 2, 3, ...} is bounded above.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Given the set A = {1/x | x = 1, 2, 3, ...}, what is the least upper bound of A?",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "1/2", "∞"],
+      },
+      {
+        question: "The set A = {1/x | x = 1, 2, 3, ...} has a minimum element.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Evaluate the limit: lim(x→2) (x^2 - 4)/(x - 2).",
+        type: "Multiple Choice",
+        answer: "4",
+        options: ["2", "4", "8", "∞"],
+      },
+      {
+        question: "The sequence {1/n} is convergent.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The set A = {1/x | x = 1, 2, 3, ...} is bounded below by 0.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the derivative of f(x) = x^2 + 3x + 2.",
+        type: "Multiple Choice",
+        answer: "2x + 3",
+        options: ["2x + 3", "x^2 + 3", "2x + 2", "3x + 2"],
+      },
+      {
+        question:
+          "What are the properties of the set A = {1/x | x = 1, 2, 3, ...}? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Bounded above", "Bounded below", "Countable"],
+        options: ["Bounded above", "Bounded below", "Countable", "Finite"],
+      },
+      {
+        question: "The sequence {(-1)^n} is convergent.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Evaluate the integral: ∫(0 to 1) x dx.",
+        type: "Multiple Choice",
+        answer: "1/2",
+        options: ["1/2", "1", "2", "0"],
+      },
+      {
+        question:
+          "The set A = {1/x | x = 1, 2, 3, ...} has 1 as a cluster point.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Find the limit: lim(x→0) sin(x)/x.",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "∞", "-1"],
+      },
+      {
+        question: "The set {1, 2, 3, 4, 5} has a least upper bound of 5.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The function f(x) = 1/x is continuous at x = 1.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the derivative of f(x) = e^(2x).",
+        type: "Multiple Choice",
+        answer: "2e^(2x)",
+        options: ["e^(2x)", "2e^(2x)", "e^x", "2e^x"],
+      },
+      {
+        question: "The set A = {1/x | x = 1, 2, 3, ...} is countable.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Evaluate the integral: ∫(0 to π) sin(x) dx.",
+        type: "Multiple Choice",
+        answer: "2",
+        options: ["0", "1", "2", "π"],
+      },
+      {
+        question: "The sequence {n} is bounded.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Find the limit: lim(x→1) (x^2 - 1)/(x - 1).",
+        type: "Multiple Choice",
+        answer: "2",
+        options: ["1", "2", "0", "∞"],
+      },
+      {
+        question: "The set A = {1/x | x = 1, 2, 3, ...} has a maximum element.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The sequence {1 + 1/n} converges to 1.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the derivative of f(x) = cos(x).",
+        type: "Multiple Choice",
+        answer: "-sin(x)",
+        options: ["sin(x)", "-sin(x)", "cos(x)", "-cos(x)"],
+      },
+      {
+        question: "The set of real numbers has a least upper bound.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Evaluate the integral: ∫(1 to 2) x^2 dx.",
+        type: "Multiple Choice",
+        answer: "7/3",
+        options: ["7/3", "8/3", "4", "2"],
+      },
+      {
+        question: "The function f(x) = |x| is differentiable at x = 0.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What are the bounds of the set {1, 2, 3, 4, 5}? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Least upper bound: 5", "Greatest lower bound: 1"],
+        options: [
+          "Least upper bound: 5",
+          "Greatest lower bound: 1",
+          "Least upper bound: 6",
+          "Greatest lower bound: 0",
+        ],
+      },
+      {
+        question: "Find the limit: lim(x→∞) (2x + 1)/(x + 1).",
+        type: "Multiple Choice",
+        answer: "2",
+        options: ["1", "2", "∞", "0"],
+      },
+      {
+        question: "The sequence {(-1)^n/n} is convergent.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the derivative of f(x) = x^4.",
+        type: "Multiple Choice",
+        answer: "4x^3",
+        options: ["4x^3", "x^3", "4x^4", "3x^4"],
+      },
+      {
+        question:
+          "The set A = {1/x | x = 1, 2, 3, ...} has a finite number of elements.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Evaluate the integral: ∫(0 to 1) e^x dx.",
+        type: "Multiple Choice",
+        answer: "e - 1",
+        options: ["e", "e - 1", "1", "0"],
+      },
+      {
+        question: "A bounded monotonic sequence is convergent.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the limit: lim(x→0) (1 - cos(x))/x^2.",
+        type: "Multiple Choice",
+        answer: "1/2",
+        options: ["0", "1/2", "1", "∞"],
+      },
+      {
+        question: "The set of integers has a greatest lower bound.",
+        type: "True/False",
+        answer: "False",
+      },
+    ],
+    Hard: [
+      {
+        question:
+          "Given the set A = {1/x | x = 1, 2, 3, ...}, calculate the distance between the cluster point and the least upper bound.",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "1/2", "∞"],
+      },
+      {
+        question:
+          "The set A = {1/x | x = 1, 2, 3, ...} has multiple cluster points.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What are the bounds and cluster points of A = {1/x | x = 1, 2, 3, ...}? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: [
+          "Least upper bound: 1",
+          "Greatest lower bound: 0",
+          "Cluster point: 0",
+        ],
+        options: [
+          "Least upper bound: 1",
+          "Greatest lower bound: 0",
+          "Cluster point: 0",
+          "Cluster point: 1",
+        ],
+      },
+      {
+        question: "Evaluate the limit: lim(x→0) (x - sin(x))/x^3.",
+        type: "Multiple Choice",
+        answer: "1/6",
+        options: ["0", "1/6", "1/3", "∞"],
+      },
+      {
+        question: "A set with no cluster points is always finite.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Find the points of discontinuity for f(x) = 1/(x - 1).",
+        type: "Fill-in",
+        answer: ["x = 1", "1", "x=1"],
+      },
+      {
+        question: "Evaluate the integral: ∫(0 to 1) x e^x dx.",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "e", "e - 1"],
+      },
+      {
+        question: "The sequence {n^2} is convergent.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What are the critical points of f(x) = x^3 - 3x? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["x = -1", "x = 1"],
+        options: ["x = -1", "x = 0", "x = 1", "x = 3"],
+      },
+      {
+        question:
+          "Given the set A = {1/x | x = 1, 2, 3, ...}, calculate the number of elements less than 0.1.",
+        type: "Multiple Choice",
+        answer: "9",
+        options: ["8", "9", "10", "∞"],
+      },
+      {
+        question: "The function f(x) = x^2 is uniformly continuous on ℝ.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Evaluate the limit: lim(x→∞) x/e^x.",
+        type: "Multiple Choice",
+        answer: "0",
+        options: ["0", "1", "∞", "-∞"],
+      },
+      {
+        question: "The sequence {1/n^2} converges to 0.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Find the area under the curve y = x^2 from x = 0 to x = 1.",
+        type: "Multiple Choice",
+        answer: "1/3",
+        options: ["1/3", "1/2", "1", "2"],
+      },
+      {
+        question: "Evaluate the integral: ∫(0 to π/2) cos(x) dx.",
+        type: "Multiple Choice",
+        answer: "1",
+        options: ["0", "1", "π/2", "2"],
+      },
+      {
+        question: "The set of rational numbers is closed.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "What are the convergence properties of the sequence {1 + (-1)^n/n}? (Select all that apply)",
+        type: "Multiple Answers",
+        answer: ["Convergent", "Bounded"],
+        options: ["Convergent", "Bounded", "Monotonic", "Divergent"],
+      },
+    ],
   },
-  Easy: [
-    {
-      question: "The symbol used to represent the set of natural numbers is:",
-      type: "Multiple Choice",
-      answer: "ℕ",
-      options: ["ℤ", "ℚ", "ℝ", "ℕ"],
-    },
-    {
-      question: "The set of real numbers includes irrational numbers.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The symbol used to represent the set of rational numbers is:",
-      type: "Multiple Choice",
-      answer: "ℚ",
-      options: ["ℕ", "ℤ", "ℚ", "ℝ"],
-    },
-    {
-      question: "The empty set has no elements.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The symbol used to represent the set of integers is:",
-      type: "Multiple Choice",
-      answer: "ℤ",
-      options: ["ℕ", "ℤ", "ℚ", "ℝ"],
-    },
-    {
-      question: "A bounded set has both an upper and lower bound.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The limit of a constant function f(x) = c is:",
-      type: "Multiple Choice",
-      answer: "c",
-      options: ["0", "c", "∞", "-∞"],
-    },
-    {
-      question: "The derivative of a constant is zero.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The symbol for the empty set is:",
-      type: "Multiple Choice",
-      answer: "∅",
-      options: ["{}", "∅", "ℕ", "ℤ"],
-    },
-    {
-      question:
-        "A sequence is a function whose domain is the set of natural numbers.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The integral of 1 with respect to x is:",
-      type: "Multiple Choice",
-      answer: "x + C",
-      options: ["x + C", "1/x + C", "x^2/2 + C", "C"],
-    },
-    {
-      question: "A function is continuous if it has no breaks in its graph.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The set of natural numbers is bounded below.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The limit of f(x) = x as x approaches 2 is:",
-      type: "Multiple Choice",
-      answer: "2",
-      options: ["0", "1", "2", "∞"],
-    },
-    {
-      question: "The derivative of x^2 is 2x.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The symbol for set inclusion is:",
-      type: "Multiple Choice",
-      answer: "⊆",
-      options: ["∈", "⊆", "∪", "∩"],
-    },
-    {
-      question: "A cluster point of a set must be an element of the set.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "The integral of x dx is x^2/2 + C.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The set of rational numbers is countable.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The limit of 1/x as x approaches infinity is:",
-      type: "Multiple Choice",
-      answer: "0",
-      options: ["0", "1", "∞", "-∞"],
-    },
-    {
-      question:
-        "A monotonic sequence is either non-decreasing or non-increasing.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The derivative of sin(x) is cos(x).",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The set of real numbers is bounded.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "The symbol for set intersection is:",
-      type: "Multiple Choice",
-      answer: "∩",
-      options: ["∈", "⊆", "∪", "∩"],
-    },
-    {
-      question:
-        "The Fundamental Theorem of Calculus relates differentiation and integration.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The limit of a sum is the sum of the limits, if they exist.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The derivative of e^x is e^x.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The set {1, 2, 3} is finite.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The integral of cos(x) dx is sin(x) + C.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The limit of x^2 as x approaches 3 is:",
-      type: "Multiple Choice",
-      answer: "9",
-      options: ["3", "6", "9", "12"],
-    },
-    {
-      question: "A convergent sequence is bounded.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The derivative of ln(x) is 1/x.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The set of irrational numbers is countable.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "The symbol for set union is:",
-      type: "Multiple Choice",
-      answer: "∪",
-      options: ["∈", "⊆", "∪", "∩"],
-    },
-    {
-      question:
-        "A function is differentiable at a point if it is continuous there.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "The integral of x^2 dx is x^3/3 + C.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The limit of (x + 1)/x as x approaches infinity is:",
-      type: "Multiple Choice",
-      answer: "1",
-      options: ["0", "1", "2", "∞"],
-    },
-    {
-      question: "The set of integers is bounded.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "The derivative of x^3 is 3x^2.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The set {1, 2, 3, 4, 5} has no cluster point.",
-      type: "True/False",
-      answer: "True",
-    },
-  ],
-  Medium: [
-    {
-      question:
-        "Given the set A = {1/x | x = 1, 2, 3, ...}, what is the cluster point of A?",
-      type: "Multiple Choice",
-      answer: "0",
-      options: ["1", "0", "1/2", "∞"],
-    },
-    {
-      question: "The set A = {1/x | x = 1, 2, 3, ...} is bounded above.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question:
-        "Given the set A = {1/x | x = 1, 2, 3, ...}, what is the least upper bound of A?",
-      type: "Multiple Choice",
-      answer: "1",
-      options: ["0", "1", "1/2", "∞"],
-    },
-    {
-      question: "The set A = {1/x | x = 1, 2, 3, ...} has a minimum element.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Evaluate the limit: lim(x→2) (x^2 - 4)/(x - 2).",
-      type: "Multiple Choice",
-      answer: "4",
-      options: ["2", "4", "8", "∞"],
-    },
-    {
-      question: "The sequence {1/n} is convergent.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The set A = {1/x | x = 1, 2, 3, ...} is bounded below by 0.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "Find the derivative of f(x) = x^2 + 3x + 2.",
-      type: "Multiple Choice",
-      answer: "2x + 3",
-      options: ["2x + 3", "x^2 + 3", "2x + 2", "3x + 2"],
-    },
-    {
-      question:
-        "What are the properties of the set A = {1/x | x = 1, 2, 3, ...}? (Select all that apply)",
-      type: "Multiple Answers",
-      answer: ["Bounded above", "Bounded below", "Countable"],
-      options: ["Bounded above", "Bounded below", "Countable", "Finite"],
-    },
-    {
-      question: "The sequence {(-1)^n} is convergent.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Evaluate the integral: ∫(0 to 1) x dx.",
-      type: "Multiple Choice",
-      answer: "1/2",
-      options: ["1/2", "1", "2", "0"],
-    },
-    {
-      question:
-        "The set A = {1/x | x = 1, 2, 3, ...} has 1 as a cluster point.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Find the limit: lim(x→0) sin(x)/x.",
-      type: "Multiple Choice",
-      answer: "1",
-      options: ["0", "1", "∞", "-1"],
-    },
-    {
-      question: "The set {1, 2, 3, 4, 5} has a least upper bound of 5.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The function f(x) = 1/x is continuous at x = 1.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "Find the derivative of f(x) = e^(2x).",
-      type: "Multiple Choice",
-      answer: "2e^(2x)",
-      options: ["e^(2x)", "2e^(2x)", "e^x", "2e^x"],
-    },
-    {
-      question: "The set A = {1/x | x = 1, 2, 3, ...} is countable.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "Evaluate the integral: ∫(0 to π) sin(x) dx.",
-      type: "Multiple Choice",
-      answer: "2",
-      options: ["0", "1", "2", "π"],
-    },
-    {
-      question: "The sequence {n} is bounded.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Find the limit: lim(x→1) (x^2 - 1)/(x - 1).",
-      type: "Multiple Choice",
-      answer: "2",
-      options: ["1", "2", "0", "∞"],
-    },
-    {
-      question: "The set A = {1/x | x = 1, 2, 3, ...} has a maximum element.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "The sequence {1 + 1/n} converges to 1.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "Find the derivative of f(x) = cos(x).",
-      type: "Multiple Choice",
-      answer: "-sin(x)",
-      options: ["sin(x)", "-sin(x)", "cos(x)", "-cos(x)"],
-    },
-    {
-      question: "The set of real numbers has a least upper bound.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Evaluate the integral: ∫(1 to 2) x^2 dx.",
-      type: "Multiple Choice",
-      answer: "7/3",
-      options: ["7/3", "8/3", "4", "2"],
-    },
-    {
-      question: "The function f(x) = |x| is differentiable at x = 0.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question:
-        "What are the bounds of the set {1, 2, 3, 4, 5}? (Select all that apply)",
-      type: "Multiple Answers",
-      answer: ["Least upper bound: 5", "Greatest lower bound: 1"],
-      options: [
-        "Least upper bound: 5",
-        "Greatest lower bound: 1",
-        "Least upper bound: 6",
-        "Greatest lower bound: 0",
-      ],
-    },
-    {
-      question: "Find the limit: lim(x→∞) (2x + 1)/(x + 1).",
-      type: "Multiple Choice",
-      answer: "2",
-      options: ["1", "2", "∞", "0"],
-    },
-    {
-      question: "The sequence {(-1)^n/n} is convergent.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "Find the derivative of f(x) = x^4.",
-      type: "Multiple Choice",
-      answer: "4x^3",
-      options: ["4x^3", "x^3", "4x^4", "3x^4"],
-    },
-    {
-      question:
-        "The set A = {1/x | x = 1, 2, 3, ...} has a finite number of elements.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Evaluate the integral: ∫(0 to 1) e^x dx.",
-      type: "Multiple Choice",
-      answer: "e - 1",
-      options: ["e", "e - 1", "1", "0"],
-    },
-    {
-      question: "A bounded monotonic sequence is convergent.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "Find the limit: lim(x→0) (1 - cos(x))/x^2.",
-      type: "Multiple Choice",
-      answer: "1/2",
-      options: ["0", "1/2", "1", "∞"],
-    },
-    {
-      question: "The set of integers has a greatest lower bound.",
-      type: "True/False",
-      answer: "False",
-    },
-  ],
-  Hard: [
-    {
-      question:
-        "Given the set A = {1/x | x = 1, 2, 3, ...}, calculate the distance between the cluster point and the least upper bound.",
-      type: "Multiple Choice",
-      answer: "1",
-      options: ["0", "1", "1/2", "∞"],
-    },
-    {
-      question:
-        "The set A = {1/x | x = 1, 2, 3, ...} has multiple cluster points.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question:
-        "What are the bounds and cluster points of A = {1/x | x = 1, 2, 3, ...}? (Select all that apply)",
-      type: "Multiple Answers",
-      answer: [
-        "Least upper bound: 1",
-        "Greatest lower bound: 0",
-        "Cluster point: 0",
-      ],
-      options: [
-        "Least upper bound: 1",
-        "Greatest lower bound: 0",
-        "Cluster point: 0",
-        "Cluster point: 1",
-      ],
-    },
-    {
-      question: "Evaluate the limit: lim(x→0) (x - sin(x))/x^3.",
-      type: "Multiple Choice",
-      answer: "1/6",
-      options: ["0", "1/6", "1/3", "∞"],
-    },
-    {
-      question: "A set with no cluster points is always finite.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Find the points of discontinuity for f(x) = 1/(x - 1).",
-      type: "Fill-in",
-      answer: ["x = 1", "1", "x=1"],
-    },
-    {
-      question: "Evaluate the integral: ∫(0 to 1) x e^x dx.",
-      type: "Multiple Choice",
-      answer: "1",
-      options: ["0", "1", "e", "e - 1"],
-    },
-    {
-      question: "The sequence {n^2} is convergent.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question:
-        "What are the critical points of f(x) = x^3 - 3x? (Select all that apply)",
-      type: "Multiple Answers",
-      answer: ["x = -1", "x = 1"],
-      options: ["x = -1", "x = 0", "x = 1", "x = 3"],
-    },
-    {
-      question:
-        "Given the set A = {1/x | x = 1, 2, 3, ...}, calculate the number of elements less than 0.1.",
-      type: "Multiple Choice",
-      answer: "9",
-      options: ["8", "9", "10", "∞"],
-    },
-    {
-      question: "The function f(x) = x^2 is uniformly continuous on ℝ.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question: "Evaluate the limit: lim(x→∞) x/e^x.",
-      type: "Multiple Choice",
-      answer: "0",
-      options: ["0", "1", "∞", "-∞"],
-    },
-    {
-      question: "The sequence {1/n^2} converges to 0.",
-      type: "True/False",
-      answer: "True",
-    },
-    {
-      question: "Find the area under the curve y = x^2 from x = 0 to x = 1.",
-      type: "Multiple Choice",
-      answer: "1/3",
-      options: ["1/3", "1/2", "1", "2"],
-    },
-    {
-      question: "Evaluate the integral: ∫(0 to π/2) cos(x) dx.",
-      type: "Multiple Choice",
-      answer: "1",
-      options: ["0", "1", "π/2", "2"],
-    },
-    {
-      question: "The set of rational numbers is closed.",
-      type: "True/False",
-      answer: "False",
-    },
-    {
-      question:
-        "What are the convergence properties of the sequence {1 + (-1)^n/n}? (Select all that apply)",
-      type: "Multiple Answers",
-      answer: ["Convergent", "Bounded"],
-      options: ["Convergent", "Bounded", "Monotonic", "Divergent"],
-    },
-  ],
 };

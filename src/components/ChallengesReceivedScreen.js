@@ -9,7 +9,6 @@ import {
   doc,
   deleteDoc,
   onSnapshot,
-  getDocs,
 } from "firebase/firestore";
 import { FaCheck, FaTimes, FaArrowCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

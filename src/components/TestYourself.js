@@ -4,6 +4,9 @@ import { courseData1 } from "../questions/courseData1";
 import { courseData2 } from "../questions/courseData2";
 import { courseData3 } from "../questions/courseData3";
 import { courseData4 } from "../questions/courseData4";
+import { courseData5 } from "../questions/courseData5";
+import { courseData6 } from "../questions/courseData6";
+import { courseData7 } from "../questions/courseData7";
 import { db, auth } from "../firebase";
 import { doc, getDoc, collection, addDoc, updateDoc } from "firebase/firestore";
 import logo from "../assets/op.jpg";
@@ -55,6 +58,9 @@ const TestYourself = () => {
           ...courseData2,
           ...courseData3,
           ...courseData4,
+          ...courseData5,
+          ...courseData6,
+          ...courseData7,
         };
         const matchingCourses = Object.entries(allCourseData).filter(
           ([, course]) =>
@@ -101,6 +107,7 @@ const TestYourself = () => {
   };
 
   const handleCloseElectiveModal = () => {
+    setSelectedElectives([]);
     setShowElectiveModal(false);
   };
 
@@ -786,36 +793,67 @@ const TestYourself = () => {
               Please select the elective courses you are taking for{" "}
               {programOfStudy}, {levelOfStudy}, {semesterOfStudy}.
             </p>
-            <select
-              multiple
-              value={selectedElectives}
-              onChange={handleElectiveChange}
-              style={modalStyles.select}
-            >
-              {availableCourses
-                .filter(([, course]) => course.elective)
-                .map(([courseName]) => (
-                  <option key={courseName} value={courseName}>
-                    {courseName}
-                  </option>
-                ))}
-            </select>
-            <p style={modalStyles.hint}>
-              Hold Ctrl/Cmd to select multiple electives
-            </p>
+
+            {availableCourses.filter(([, course]) => course.elective).length ===
+            0 ? (
+              <p
+                style={{
+                  ...modalStyles.select,
+                  color: "red",
+                  fontWeight: "bold",
+                  width: "580px",
+                  alignContent: "center",
+                  textTransform: "uppercase",
+                }}
+              >
+                No elective courses available for you this semester.
+              </p>
+            ) : (
+              <>
+                <select
+                  multiple
+                  value={selectedElectives}
+                  onChange={handleElectiveChange}
+                  style={modalStyles.select}
+                >
+                  {availableCourses
+                    .filter(([, course]) => course.elective)
+                    .map(([courseName]) => (
+                      <option key={courseName} value={courseName}>
+                        {courseName}
+                      </option>
+                    ))}
+                </select>
+                <p style={modalStyles.hint}>
+                  Hold Ctrl/Cmd to select multiple electives
+                </p>
+              </>
+            )}
             <div style={modalStyles.buttonContainer}>
-              <button
-                onClick={handleConfirmElectives}
-                style={modalStyles.acceptButton}
-              >
-                Confirm
-              </button>
-              <button
-                onClick={handleCloseElectiveModal}
-                style={modalStyles.closeButton}
-              >
-                Cancel
-              </button>
+              {availableCourses.filter(([, course]) => course.elective)
+                .length === 0 ? (
+                <button
+                  onClick={handleCloseElectiveModal}
+                  style={{ ...modalStyles.acceptButton, width: "90%" }}
+                >
+                  OKAY
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={handleConfirmElectives}
+                    style={modalStyles.acceptButton}
+                  >
+                    CONFIRM
+                  </button>
+                  <button
+                    onClick={handleCloseElectiveModal}
+                    style={modalStyles.closeButton}
+                  >
+                    CANCEL
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

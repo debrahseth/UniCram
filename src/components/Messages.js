@@ -95,7 +95,7 @@ const Messages = () => {
             <FaArrowCircleLeft size={20} /> Go Back
           </button>
         </div>
-        <h2 style={{ fontSize: "36px" }}>YOUR MESSAGES</h2>
+        <h2 style={{ fontSize: "36px" }}>MESSAGES FROM PRIME ACADEMY ADMIN</h2>
         <div style={styles.messageButtonContainer}>
           <button
             onClick={() => navigate("/texting")}
@@ -140,9 +140,14 @@ const Messages = () => {
           </div>
         )}
       </div>
-      <div style={styles.footer}>
-        <p>© 2025 StudyGroup. All rights reserved.</p>
-      </div>
+      {/* <div style={styles.buttonContainment}>
+        <button
+          onClick={() => navigate("/complaint")}
+          style={styles.goBackButton}
+        >
+          File A Complaint
+        </button>
+      </div> */}
     </div>
   );
 };
@@ -266,18 +271,33 @@ const styles = {
     top: "40px",
     right: "30px",
   },
-  footer: {
-    position: "fixed",
-    bottom: "0",
-    left: "0",
-    width: "100%",
-    padding: "15px",
-    backgroundColor: "#333",
-    color: "#fff",
-    textAlign: "center",
-    fontSize: "1.1rem",
-    fontFamily: "Poppins, sans-serif",
-  },
+  // goBackButton: {
+  //   backgroundColor: "#2196F3",
+  //   color: "white",
+  //   padding: "10px 10px",
+  //   fontSize: "25px",
+  //   fontWeight: "600",
+  //   cursor: "pointer",
+  //   borderRadius: "10px",
+  //   marginTop: "20px",
+  //   marginBottom: "20px",
+  //   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  //   transition: "background-color 0.3s ease",
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   width: "60%",
+  // },
+  // buttonContainment: {
+  //   width: "100%",
+  //   position: "fixed",
+  //   bottom: "0",
+  //   left: "0",
+  //   boxShadow: "0 -4px 8px rgba(0, 0, 0, 0.1)",
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
   badge: {
     position: "absolute",
     top: "15px",

@@ -25,6 +25,9 @@ import AdminDashboard from "./components/AdminDashboard";
 import TopPerformers from "./components/TopPerformers";
 import Messages from "./components/Messages";
 import TextingScreen from "./components/TextingScreen";
+import AdminSplashScreen from "./components/AdminSplashScreen";
+import ComplaintScreen from "./components/ComplaintScreen";
+import AdminComplaintsScreen from "./components/AdminComplaintsScreen";
 
 function App() {
   return (
@@ -39,6 +42,7 @@ function App() {
         <Route path="/result" element={<Result />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/splash" element={<SplashScreen />} />
+        <Route path="/admin-splash" element={<AdminSplashScreen />} />
         <Route path="/record" element={<PersonalRecords />} />
         <Route path="/challenge" element={<ChallengeSendingScreen />} />
         <Route path="/received" element={<ChallengesReceivedScreen />} />
@@ -56,6 +60,8 @@ function App() {
         <Route path="/top-performers" element={<TopPerformers />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/texting" element={<TextingScreen />} />
+        <Route path="/complaint" element={<ComplaintScreen />} />
+        <Route path="/admin-complaint" element={<AdminComplaintsScreen />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

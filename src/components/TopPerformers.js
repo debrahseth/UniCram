@@ -179,6 +179,9 @@ const TopPerformers = () => {
       } else {
         recipients = Object.keys(allUsersData).filter((userId) => {
           const user = allUsersData[userId];
+          if (user.role === "admin") {
+            return false;
+          }
           switch (sendOption) {
             case "sameLevelProgram":
               if (!selectedProgram || !selectedLevel) {
@@ -200,6 +203,8 @@ const TopPerformers = () => {
                 return false;
               }
               return user.level === selectedLevel;
+            case "all users":
+              return true;
             default:
               return false;
           }
@@ -222,7 +227,7 @@ const TopPerformers = () => {
           message: messageContent,
           timestamp: Timestamp.fromDate(new Date()),
           read: false,
-          sender: "admin",
+          sender: "Prime Academy Admin",
           isGroup: false,
         });
       });
@@ -356,9 +361,18 @@ const TopPerformers = () => {
       {showMessageModal && (
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
-            <h2 style={modalStyles.title}>Send Message to User</h2>
+            <h2 style={modalStyles.title}>Send Message</h2>
             <div style={{ marginBottom: "20px" }}>
               <div style={modalStyles.radioGroup}>
+                <label>
+                  <input
+                    type="radio"
+                    value="all users"
+                    checked={sendOption === "all users"}
+                    onChange={(e) => setSendOption(e.target.value)}
+                  />{" "}
+                  All Users
+                </label>
                 <label>
                   <input
                     type="radio"
@@ -425,6 +439,17 @@ const TopPerformers = () => {
                         </option>
                       ))}
                   </select>
+                </div>
+              ) : sendOption === "all users" ? (
+                <div
+                  style={{
+                    textAlign: "center",
+                    padding: "10px",
+                    fontStyle: "italic",
+                    color: "#444",
+                  }}
+                >
+                  📢 This message will be sent to all users (excluding admins).
                 </div>
               ) : (
                 <div style={modalStyles.selectionContainer}>
