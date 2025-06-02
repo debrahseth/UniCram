@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { spiral } from "ldrs";
-import logo from "../assets/welcome1.jpg";
+import logo from "../assets/original.png";
 
 const SplashScreen = () => {
   const [username, setUsername] = useState("");

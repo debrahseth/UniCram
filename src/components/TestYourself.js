@@ -7,6 +7,8 @@ import { courseData4 } from "../questions/courseData4";
 import { courseData5 } from "../questions/courseData5";
 import { courseData6 } from "../questions/courseData6";
 import { courseData7 } from "../questions/courseData7";
+import { courseData8 } from "../questions/courseData8";
+import { courseData9 } from "../questions/courseData9";
 import { db, auth } from "../firebase";
 import { doc, getDoc, collection, addDoc, updateDoc } from "firebase/firestore";
 import logo from "../assets/op.jpg";
@@ -61,6 +63,8 @@ const TestYourself = () => {
           ...courseData5,
           ...courseData6,
           ...courseData7,
+          ...courseData8,
+          ...courseData9,
         };
         const matchingCourses = Object.entries(allCourseData).filter(
           ([, course]) =>
@@ -130,7 +134,12 @@ const TestYourself = () => {
           courseData1[course]?.[difficulty] ||
           courseData2[course]?.[difficulty] ||
           courseData3[course]?.[difficulty] ||
-          courseData4[course]?.[difficulty];
+          courseData4[course]?.[difficulty] ||
+          courseData5[course]?.[difficulty] ||
+          courseData6[course]?.[difficulty] ||
+          courseData7[course]?.[difficulty] ||
+          courseData8[course]?.[difficulty] ||
+          courseData9[course]?.[difficulty];
 
         return data ? [...data] : [];
       };
@@ -1431,9 +1440,10 @@ const modalStyles = {
     textAlign: "center",
   },
   hint: {
-    fontSize: "15px",
-    color: "#666",
+    fontSize: "18px",
+    color: "#555",
     marginBottom: "15px",
+    fontWeight: "bolder",
   },
   buttonContainer: {
     display: "flex",

@@ -22,7 +22,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/main.jpg";
+import logo from "../assets/original.png";
 import StreakTracker from "./StreakTracker";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -522,7 +522,7 @@ const styles = {
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    opacity: 0.5,
+    opacity: 0.2,
     zIndex: -1,
   },
   title: {
@@ -571,11 +571,12 @@ const styles = {
     marginBottom: "20px",
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    opacity: 1,
   },
   quizName: {
-    fontSize: "20px",
-    color: "#333",
-    marginBottom: "10px",
+    fontSize: "25px",
+    color: "black",
+    marginBottom: "5px",
   },
   ratingcontainer: {
     textAlign: "center",
@@ -587,8 +588,8 @@ const styles = {
     display: "flex",
   },
   recordDetails: {
-    fontSize: "16px",
-    color: "#555",
+    fontSize: "20px",
+    color: "black",
   },
   starRating: {
     display: "flex",

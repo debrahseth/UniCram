@@ -7,7 +7,7 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import logo from "../assets/op.jpg";
+import logo from "../assets/original.png";
 
 const Signup = () => {
   const [username, setUsername] = useState("");

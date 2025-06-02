@@ -20,10 +20,11 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import logo from "../assets/op.jpg";
-import logo1 from "../assets/welcome1.jpg";
+import logo1 from "../assets/original.png";
 import { dotWave } from "ldrs";
 
-const formatLastSeen = (lastActivity) => {
+const formatLastSeen = (lastActivity, status) => {
+  if (status === "online") return "Status: Online";
   if (!lastActivity) return "Last seen: Never";
 
   const now = new Date();
@@ -35,11 +36,26 @@ const formatLastSeen = (lastActivity) => {
 
   if (diffMins < 1) return "Last seen: Just now";
   if (diffMins < 60)
-    return `Last seen: ${diffMins} minute${diffMins === 1 ? "" : "s"} ago`;
+    return `Last seen: ${diffMins} minute${
+      diffMins === 1 ? "" : "s"
+    } ago at ${lastSeenDate.toLocaleTimeString({
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
   if (diffHours < 24)
-    return `Last seen: ${diffHours} hour${diffHours === 1 ? "" : "s"} ago`;
+    return `Last seen: ${diffHours} hour${
+      diffHours === 1 ? "" : "s"
+    } ago at ${lastSeenDate.toLocaleTimeString({
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
   if (diffDays < 7)
-    return `Last seen: ${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
+    return `Last seen: ${diffDays} day${
+      diffDays === 1 ? "" : "s"
+    } ago at ${lastSeenDate.toLocaleTimeString({
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
   return `Last seen: ${lastSeenDate.toLocaleDateString()} at ${lastSeenDate.toLocaleTimeString(
     [],
     { hour: "2-digit", minute: "2-digit" }
@@ -81,66 +97,67 @@ const TextingScreen = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!auth.currentUser) {
-      navigate("/login");
-      return;
-    }
-
-    const fetchUserData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const currentUserDoc = await getDoc(
-          doc(db, "users", auth.currentUser.uid)
-        );
-        if (!currentUserDoc.exists()) {
-          setError("User profile not found.");
-          setLoading(false);
-          return;
-        }
-        const userData = currentUserDoc.data();
-        setCurrentUserProgram(userData.programOfStudy || "");
-        setCurrentUserProfile(userData);
-
-        setFormData({
-          fullname: userData.fullname || "",
-          about: userData.about || "",
-          userNumber: userData.userNumber || "",
-          visibility: userData.visibility || {
-            username: true,
-            fullname: true,
-            userNumber: true,
-            programOfStudy: true,
-            levelOfStudy: true,
-            about: true,
-            lastActivity: true,
-          },
-        });
-
-        const usersQuery = query(
-          collection(db, "users"),
-          where("programOfStudy", "==", userData.programOfStudy),
-          where("role", "!=", "admin")
-        );
-        const unsubscribe = onSnapshot(usersQuery, (snapshot) => {
-          const usersList = snapshot.docs
-            .filter((doc) => doc.id !== auth.currentUser.uid)
-            .map((doc) => ({
-              id: doc.id,
-              username: doc.data().username || "Unknown",
-              status: doc.data().status || "Unknown",
-            }));
-          setUsersInProgram(usersList);
-          setLoading(false);
-        });
-        return () => unsubscribe();
-      } catch (err) {
-        setError("Failed to load users: " + err.message);
-        setLoading(false);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigate("/login");
+        return;
       }
-    };
 
-    fetchUserData();
+      const fetchUserData = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+          const currentUserDoc = await getDoc(doc(db, "users", user.uid));
+          if (!currentUserDoc.exists()) {
+            setError("User profile not found.");
+            setLoading(false);
+            return;
+          }
+          const userData = currentUserDoc.data();
+          setCurrentUserProgram(userData.programOfStudy || "");
+          setCurrentUserProfile(userData);
+
+          setFormData({
+            fullname: userData.fullname || "",
+            about: userData.about || "",
+            userNumber: userData.userNumber || "",
+            visibility: userData.visibility || {
+              username: true,
+              fullname: true,
+              userNumber: true,
+              programOfStudy: true,
+              levelOfStudy: true,
+              about: true,
+              lastActivity: true,
+            },
+          });
+
+          const usersQuery = query(
+            collection(db, "users"),
+            where("programOfStudy", "==", userData.programOfStudy),
+            where("role", "!=", "admin")
+          );
+          const unsubscribe = onSnapshot(usersQuery, (snapshot) => {
+            const usersList = snapshot.docs
+              .filter((doc) => doc.id !== user.uid)
+              .map((doc) => ({
+                id: doc.id,
+                username: doc.data().username || "Unknown",
+                status: doc.data().status || "Unknown",
+              }));
+            setUsersInProgram(usersList);
+            setLoading(false);
+          });
+          return () => unsubscribe();
+        } catch (err) {
+          setError("Failed to load users: " + err.message);
+          setLoading(false);
+        }
+      };
+
+      fetchUserData();
+    });
+    return () => unsubscribe();
   }, [navigate]);
 
   useEffect(() => {
@@ -275,27 +292,18 @@ const TextingScreen = () => {
       timestamp: Timestamp.fromDate(new Date()),
       read: false,
     };
-
-    try {
-      await updateDoc(doc(db, "users", auth.currentUser.uid), {
-        lastActivity: Timestamp.fromDate(new Date()),
+    const docSnapshot = await getDoc(conversationRef);
+    if (docSnapshot.exists()) {
+      await updateDoc(conversationRef, {
+        messages: [...messages, messageData],
       });
-
-      const docSnapshot = await getDoc(conversationRef);
-      if (docSnapshot.exists()) {
-        await updateDoc(conversationRef, {
-          messages: [...messages, messageData],
-        });
-      } else {
-        await setDoc(conversationRef, {
-          userIds,
-          messages: [messageData],
-        });
-      }
-      setNewMessage("");
-    } catch (err) {
-      setError("Failed to send message: " + err.message);
+    } else {
+      await setDoc(conversationRef, {
+        userIds,
+        messages: [messageData],
+      });
     }
+    setNewMessage("");
   };
 
   const handleUpdateProfile = async () => {
@@ -420,7 +428,10 @@ const TextingScreen = () => {
                   {selectedUserProfile?.visibility?.lastActivity !== false &&
                     selectedUserProfile && (
                       <p style={styles.lastSeen}>
-                        {formatLastSeen(selectedUserProfile.lastActivity)}
+                        {formatLastSeen(
+                          selectedUserProfile.lastActivity,
+                          selectedUserProfile.status
+                        )}
                       </p>
                     )}
                 </div>

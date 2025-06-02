@@ -16,7 +16,7 @@ import {
 } from "firebase/firestore";
 import { getAuth, deleteUser } from "firebase/auth";
 import logo1 from "../assets/op.jpg";
-import logo from "../assets/download.png";
+import logo from "../assets/original.png";
 import { dotWave, metronome, spiral, lineSpinner } from "ldrs";
 
 const Profile = () => {

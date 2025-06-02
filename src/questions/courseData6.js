@@ -1,5 +1,5 @@
 export const courseData6 = {
-  // Geomatic Engineering
+  // Geomatic Engineering, Level 100, Semester 2
   Cartography: {
     programOfStudy: "Geomatic Engineering",
     levelOfStudy: "Level 100",
@@ -1496,2616 +1496,6 @@ export const courseData6 = {
         question: "A map regression analysis reduces data accuracy.",
         type: "True/False",
         answer: "False",
-      },
-    ],
-  },
-  "Engineering Survey": {
-    programOfStudy: "Geomatic Engineering",
-    levelOfStudy: "Level 200",
-    semesterOfStudy: "Semester 2",
-    Easy: [
-      {
-        question:
-          "A theodolite is used to measure horizontal and vertical angles.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A chain is used to measure angles in surveying.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "Leveling is used to determine height differences between points.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station combines theodolite and EDM functions.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A compass is the most accurate instrument for measuring angles.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A benchmark is a reference point with a known elevation.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A leveling rod is used to measure horizontal distances.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "The backsight is taken on a point of unknown elevation.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A tape measure is suitable for precise long-distance measurements.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A plumb bob is used to establish vertical alignment.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A stadia rod is used in tacheometric surveying.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "The foresight is the first reading in leveling.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A tripod is essential for stabilizing surveying instruments.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A dumpy level automatically levels itself.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "An EDM measures distances using laser or infrared signals.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A plane table is used for precise angle measurements.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A contour line connects points of equal elevation.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A hand level is used for high-precision leveling.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A bearing is an angle measured from the south pole.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A topographic survey maps physical features of a site.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A steel tape is affected by temperature changes.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A turning point in leveling is a permanent benchmark.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A prism is used to reflect signals in EDM measurements.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A clinometer measures vertical distances.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A surveyor's level is used to measure horizontal angles.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A grid system is used to locate points on a map.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A ranging rod is used to mark points in a straight line.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A sextant is commonly used in land surveying.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A closed traverse starts and ends at different points.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A leveling bubble ensures a level is horizontal.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS receiver is used for angle measurements.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A crosshair in a theodolite is used for sighting.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A contour interval is the horizontal distance between contour lines.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A triangulation survey uses angle measurements to locate points.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A barometer is used to measure elevation in surveying.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A digital level uses electronic sensors for readings.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey measures only distances.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A resection method determines the position of a known point.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GPS receiver can provide coordinates in real-time.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A chaining pin is used to mark angles in surveying.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A profile leveling survey determines elevation along a line.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A theodolite can measure distances directly.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A topographic map shows only elevation data.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A leveling rod is read using a telescope on a level.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A stadia method measures angles only.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A benchmark is always a natural feature.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can store survey data electronically.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A plane table survey is highly accurate for large areas.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A magnetic compass is affected by nearby metal objects.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A leveling survey requires only one instrument setup.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A tape correction is applied for temperature changes.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey requires a clear view of the sky.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A theodolite is used for differential leveling.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A contour map is used for volume calculations.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse can be open or closed.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A leveling rod is used to measure angles.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A survey peg is used to mark temporary points.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A stadia hair is used in precise leveling.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GPS survey is less accurate than a total station survey.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A triangulation point is a temporary marker.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A leveling instrument must be set up horizontally.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A plane table requires a compass for orientation.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A survey chain is made of plastic for durability.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A control point has known coordinates.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey requires at least three known points.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A dumpy level is more accurate than a digital level.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A topographic survey includes man-made features.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A tape measure is used for high-precision surveying.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A leveling survey can determine slope gradients.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A theodolite requires manual readings.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS system uses only one satellite for positioning.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A contour line can intersect another contour line.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey measures both angles and distances.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A benchmark is used only in triangulation.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "What instrument measures horizontal and vertical angles?",
-        type: "Multiple Choice",
-        answer: "Theodolite",
-        options: ["Level", "Theodolite", "Tape", "Compass"],
-      },
-      {
-        question: "What is the purpose of leveling in surveying?",
-        type: "Multiple Choice",
-        answer: "Determine height differences",
-        options: [
-          "Measure angles",
-          "Determine height differences",
-          "Calculate area",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which device combines angle and distance measurements?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Theodolite", "Level", "Total station", "Compass"],
-      },
-      {
-        question: "What is a benchmark in surveying?",
-        type: "Multiple Choice",
-        answer: "Point with known elevation",
-        options: [
-          "Temporary marker",
-          "Point with known elevation",
-          "Angle reference",
-          "Distance marker",
-        ],
-      },
-      {
-        question: "Which reading is taken on a known elevation point?",
-        type: "Multiple Choice",
-        answer: "Backsight",
-        options: [
-          "Foresight",
-          "Backsight",
-          "Intermediate sight",
-          "Turning point",
-        ],
-      },
-      {
-        question: "What is used to measure distances in tacheometry?",
-        type: "Multiple Choice",
-        answer: "Stadia rod",
-        options: ["Leveling rod", "Stadia rod", "Tape", "Chain"],
-      },
-      {
-        question: "What does a plumb bob establish?",
-        type: "Multiple Choice",
-        answer: "Vertical alignment",
-        options: [
-          "Horizontal alignment",
-          "Vertical alignment",
-          "Angle reference",
-          "Distance",
-        ],
-      },
-      {
-        question: "What does a contour line represent?",
-        type: "Multiple Choice",
-        answer: "Equal elevation",
-        options: [
-          "Equal distance",
-          "Equal elevation",
-          "Equal slope",
-          "Equal area",
-        ],
-      },
-      {
-        question: "Which instrument is used for differential leveling?",
-        type: "Multiple Choice",
-        answer: "Level",
-        options: ["Theodolite", "Level", "Total station", "Compass"],
-      },
-      {
-        question: "What measures distances using laser signals?",
-        type: "Multiple Choice",
-        answer: "EDM",
-        options: ["Theodolite", "EDM", "Level", "Tape"],
-      },
-      {
-        question: "What is the unit of bearing in surveying?",
-        type: "Multiple Choice",
-        answer: "Degrees",
-        options: ["Meters", "Degrees", "Radians", "Grads"],
-      },
-      {
-        question: "Which survey maps physical features of a site?",
-        type: "Multiple Choice",
-        answer: "Topographic survey",
-        options: [
-          "Cadastral survey",
-          "Topographic survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is used to mark points in a straight line?",
-        type: "Multiple Choice",
-        answer: "Ranging rod",
-        options: ["Leveling rod", "Ranging rod", "Stadia rod", "Tape"],
-      },
-      {
-        question: "What is the contour interval?",
-        type: "Multiple Choice",
-        answer: "Vertical distance between contours",
-        options: [
-          "Horizontal distance",
-          "Vertical distance between contours",
-          "Slope angle",
-          "Area",
-        ],
-      },
-      {
-        question: "Which method uses angle measurements to locate points?",
-        type: "Multiple Choice",
-        answer: "Triangulation",
-        options: ["Traverse", "Triangulation", "Leveling", "Tacheometry"],
-      },
-      {
-        question: "What is a turning point in leveling?",
-        type: "Multiple Choice",
-        answer: "Temporary point for instrument setup",
-        options: [
-          "Permanent benchmark",
-          "Temporary point for instrument setup",
-          "Control point",
-          "Foresight",
-        ],
-      },
-      {
-        question: "Which instrument is stabilized by a tripod?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Tape", "Compass", "Total station", "Chain"],
-      },
-      {
-        question: "What is used to reflect EDM signals?",
-        type: "Multiple Choice",
-        answer: "Prism",
-        options: ["Mirror", "Prism", "Lens", "Tape"],
-      },
-      {
-        question: "What does a topographic map show?",
-        type: "Multiple Choice",
-        answer: "Physical features and elevation",
-        options: [
-          "Only elevation",
-          "Only distances",
-          "Physical features and elevation",
-          "Only angles",
-        ],
-      },
-      {
-        question: "Which survey uses a compass for orientation?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What corrects steel tape measurements?",
-        type: "Multiple Choice",
-        answer: "Temperature correction",
-        options: [
-          "Angle correction",
-          "Temperature correction",
-          "Slope correction",
-          "Bearing correction",
-        ],
-      },
-      {
-        question: "Which system provides real-time coordinates?",
-        type: "Multiple Choice",
-        answer: "GPS",
-        options: ["EDM", "GPS", "Theodolite", "Level"],
-      },
-      {
-        question: "What is a closed traverse?",
-        type: "Multiple Choice",
-        answer: "Starts and ends at the same point",
-        options: [
-          "Starts and ends at different points",
-          "Starts and ends at the same point",
-          "Measures only angles",
-          "Uses only GPS",
-        ],
-      },
-      {
-        question: "Which rod is used in leveling?",
-        type: "Multiple Choice",
-        answer: "Leveling rod",
-        options: ["Stadia rod", "Leveling rod", "Ranging rod", "Chaining rod"],
-      },
-      {
-        question: "What is the purpose of a resection survey?",
-        type: "Multiple Choice",
-        answer: "Determine instrument position",
-        options: [
-          "Measure distances",
-          "Determine instrument position",
-          "Calculate area",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which instrument measures slope angles?",
-        type: "Multiple Choice",
-        answer: "Clinometer",
-        options: ["Theodolite", "Level", "Clinometer", "Tape"],
-      },
-      {
-        question: "What is a control point?",
-        type: "Multiple Choice",
-        answer: "Point with known coordinates",
-        options: [
-          "Temporary marker",
-          "Point with known coordinates",
-          "Angle reference",
-          "Distance marker",
-        ],
-      },
-      {
-        question: "Which survey determines elevation along a line?",
-        type: "Multiple Choice",
-        answer: "Profile leveling",
-        options: [
-          "Differential leveling",
-          "Profile leveling",
-          "Traverse survey",
-          "Tacheometry",
-        ],
-      },
-      {
-        question: "What is used for rough leveling?",
-        type: "Multiple Choice",
-        answer: "Hand level",
-        options: [
-          "Dumpy level",
-          "Hand level",
-          "Digital level",
-          "Total station",
-        ],
-      },
-      {
-        question: "Which survey uses stadia hairs?",
-        type: "Multiple Choice",
-        answer: "Tacheometric survey",
-        options: [
-          "Leveling survey",
-          "Tacheometric survey",
-          "Traverse survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What affects a magnetic compass?",
-        type: "Multiple Choice",
-        answer: "Nearby metal objects",
-        options: [
-          "Temperature",
-          "Nearby metal objects",
-          "Elevation",
-          "Humidity",
-        ],
-      },
-      {
-        question: "Which instrument stores survey data electronically?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Theodolite", "Level", "Total station", "Compass"],
-      },
-      {
-        question: "What is the bearing of a line due north?",
-        type: "Multiple Choice",
-        answer: "0°",
-        options: ["90°", "180°", "0°", "270°"],
-      },
-      {
-        question: "Which survey is used for boundary demarcation?",
-        type: "Multiple Choice",
-        answer: "Cadastral survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is used to mark temporary points in surveying?",
-        type: "Multiple Choice",
-        answer: "Survey peg",
-        options: ["Benchmark", "Survey peg", "Control point", "Prism"],
-      },
-      {
-        question: "Which method measures both angles and distances?",
-        type: "Multiple Choice",
-        answer: "Traverse survey",
-        options: [
-          "Leveling",
-          "Traverse survey",
-          "Triangulation",
-          "Tacheometry",
-        ],
-      },
-      {
-        question: "What is the vertical angle to the horizon?",
-        type: "Multiple Choice",
-        answer: "0°",
-        options: ["90°", "0°", "180°", "45°"],
-      },
-      {
-        question: "Which instrument is used for plane table surveying?",
-        type: "Multiple Choice",
-        answer: "Alidade",
-        options: ["Theodolite", "Level", "Alidade", "Tape"],
-      },
-      {
-        question: "What is the purpose of a triangulation survey?",
-        type: "Multiple Choice",
-        answer: "Locate points using angles",
-        options: [
-          "Measure distances",
-          "Locate points using angles",
-          "Determine elevation",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which correction is applied to tape measurements?",
-        type: "Multiple Choice",
-        answer: "Slope correction",
-        options: [
-          "Angle correction",
-          "Slope correction",
-          "Bearing correction",
-          "Distance correction",
-        ],
-      },
-      {
-        question: "What is the minimum number of satellites for a GPS fix?",
-        type: "Multiple Choice",
-        answer: "4",
-        options: ["2", "3", "4", "5"],
-      },
-      {
-        question: "Which survey uses a digital level?",
-        type: "Multiple Choice",
-        answer: "Differential leveling",
-        options: [
-          "Traverse survey",
-          "Differential leveling",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is a contour map used for?",
-        type: "Multiple Choice",
-        answer: "Visualize elevation",
-        options: [
-          "Measure angles",
-          "Visualize elevation",
-          "Calculate area",
-          "Determine bearing",
-        ],
-      },
-      {
-        question: "Which instrument measures precise distances?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Theodolite", "Level", "Total station", "Tape"],
-      },
-      {
-        question: "What is the bearing of a line due east?",
-        type: "Multiple Choice",
-        answer: "90°",
-        options: ["0°", "90°", "180°", "270°"],
-      },
-      {
-        question: "Which survey maps underwater features?",
-        type: "Multiple Choice",
-        answer: "Hydrographic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is used to read a leveling rod?",
-        type: "Multiple Choice",
-        answer: "Telescope",
-        options: ["Compass", "Telescope", "Prism", "Tape"],
-      },
-      {
-        question: "Which survey requires a clear view of the sky?",
-        type: "Multiple Choice",
-        answer: "GNSS survey",
-        options: [
-          "Leveling survey",
-          "GNSS survey",
-          "Traverse survey",
-          "Tacheometric survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a traverse survey?",
-        type: "Multiple Choice",
-        answer: "Determine point coordinates",
-        options: [
-          "Measure angles only",
-          "Determine point coordinates",
-          "Calculate volume",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which instrument is used for rough angle measurements?",
-        type: "Multiple Choice",
-        answer: "Compass",
-        options: ["Theodolite", "Level", "Compass", "Total station"],
-      },
-      {
-        question: "What is a resection survey used for?",
-        type: "Multiple Choice",
-        answer: "Locate instrument position",
-        options: [
-          "Measure distances",
-          "Locate instrument position",
-          "Determine elevation",
-          "Calculate area",
-        ],
-      },
-      {
-        question: "Which rod is used in tacheometry?",
-        type: "Multiple Choice",
-        answer: "Stadia rod",
-        options: ["Leveling rod", "Stadia rod", "Ranging rod", "Chaining rod"],
-      },
-      {
-        question: "What is the bearing of a line due south?",
-        type: "Multiple Choice",
-        answer: "180°",
-        options: ["0°", "90°", "180°", "270°"],
-      },
-      {
-        question: "Which survey uses a plane table?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a control point?",
-        type: "Multiple Choice",
-        answer: "Provide known coordinates",
-        options: [
-          "Mark temporary points",
-          "Provide known coordinates",
-          "Measure angles",
-          "Determine elevation",
-        ],
-      },
-      {
-        question: "Which instrument measures vertical angles?",
-        type: "Multiple Choice",
-        answer: "Theodolite",
-        options: ["Level", "Theodolite", "Tape", "Compass"],
-      },
-      {
-        question:
-          "What is the contour interval of a map with contours at 10 m and 20 m?",
-        type: "Multiple Choice",
-        answer: "10 m",
-        options: ["5 m", "10 m", "20 m", "50 m"],
-      },
-      {
-        question: "Which survey determines property boundaries?",
-        type: "Multiple Choice",
-        answer: "Cadastral survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is used to mark points in a traverse?",
-        type: "Multiple Choice",
-        answer: "Survey peg",
-        options: ["Benchmark", "Survey peg", "Control point", "Prism"],
-      },
-      {
-        question: "Which method uses stadia hairs for measurements?",
-        type: "Multiple Choice",
-        answer: "Tacheometry",
-        options: ["Leveling", "Tacheometry", "Triangulation", "Traverse"],
-      },
-      {
-        question: "What is the bearing of a line due west?",
-        type: "Multiple Choice",
-        answer: "270°",
-        options: ["0°", "90°", "180°", "270°"],
-      },
-      {
-        question: "Which survey uses GNSS receivers?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Leveling survey",
-          "Geodetic survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is used to orient a plane table?",
-        type: "Multiple Choice",
-        answer: "Compass",
-        options: ["Theodolite", "Level", "Compass", "Tape"],
-      },
-      {
-        question: "Which survey measures large-scale earth curvature?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a leveling survey?",
-        type: "Multiple Choice",
-        answer: "Determine elevation differences",
-        options: [
-          "Measure angles",
-          "Determine elevation differences",
-          "Calculate area",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which instrument is used for precise angle measurements?",
-        type: "Multiple Choice",
-        answer: "Theodolite",
-        options: ["Level", "Theodolite", "Tape", "Compass"],
-      },
-      {
-        question: "What is a triangulation survey used for?",
-        type: "Multiple Choice",
-        answer: "Locate points using angles",
-        options: [
-          "Measure distances",
-          "Locate points using angles",
-          "Determine elevation",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which correction is applied to EDM measurements?",
-        type: "Multiple Choice",
-        answer: "Atmospheric correction",
-        options: [
-          "Angle correction",
-          "Atmospheric correction",
-          "Slope correction",
-          "Bearing correction",
-        ],
-      },
-      {
-        question: "What is the purpose of a topographic survey?",
-        type: "Multiple Choice",
-        answer: "Map physical features",
-        options: [
-          "Measure angles",
-          "Map physical features",
-          "Calculate volume",
-          "Determine bearing",
-        ],
-      },
-    ],
-    Medium: [
-      // True/False Questions (151-225)
-      {
-        question:
-          "A traverse survey requires both angle and distance measurements.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "Differential GPS improves accuracy using a single receiver.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A closed traverse has no angular error if it sums to 360°.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can perform resection surveys.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "The least squares method adjusts survey measurements.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is unaffected by atmospheric conditions.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A tacheometric survey measures distances using stadia hairs.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey ignores earth curvature.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse adjustment corrects for closure errors.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A topographic map includes contour lines and man-made features.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS receiver requires a base station for RTK surveying.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A plane table survey is suitable for high-precision mapping.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A coordinate system is used to define point locations.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey requires only one known point.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure slope distances directly.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A cadastral survey maps elevation data.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse can be computed using the Bowditch rule.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey provides absolute positioning.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A theodolite can measure distances using EDM.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A contour interval depends on the map scale.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A triangulation survey requires distance measurements.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can export data to GIS software.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A leveling survey can be performed with a total station.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A geodetic datum defines a reference surface for coordinates.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A traverse closure error is always zero in a perfect survey.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is less accurate in urban areas.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A plane table survey requires a theodolite.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A topographic survey can be used for road design.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey uses angles to known points.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station requires manual data recording.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be open or closed.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey uses spherical coordinates.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS receiver can operate in real-time kinematic mode.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A tacheometric survey is slower than a total station survey.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A cadastral survey defines property boundaries.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A leveling survey requires multiple setups for long distances.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is unaffected by tree cover.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse adjustment uses the compass rule.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A topographic map shows only natural features.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure vertical angles.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey is used for small-scale projects.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey determines point coordinates.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey requires post-processing for high accuracy.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A plane table survey is used for geodetic measurements.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be computed using coordinates.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can perform triangulation surveys.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic datum is the same as a local datum.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A GNSS survey provides coordinates in a global reference frame.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A tacheometric survey requires a leveling rod.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A cadastral survey is used for topographic mapping.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A leveling survey can determine horizontal distances.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS receiver can use GLONASS satellites.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey requires a theodolite for angles.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey uses ellipsoidal models.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure horizontal distances only.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey uses distances to known points.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is suitable for underground surveying.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A topographic survey includes elevation data.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse adjustment corrects angular errors.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can perform tacheometric surveys.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey is used for global positioning.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey requires a clear line of sight to points.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A plane table survey is faster than a total station survey.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be used for road alignment.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A cadastral survey requires GNSS for accuracy.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A leveling survey uses a total station for high accuracy.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS receiver can provide centimeter-level accuracy.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A tacheometric survey measures only horizontal distances.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic datum is used for local surveys only.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be adjusted using least squares.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure coordinates directly.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey requires a total station.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is affected by multipath errors.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A topographic survey can be used for volume calculations.",
-        answer: "True",
-        type: "True/False",
-      },
-      // Multiple Choice Questions (226-300)
-      {
-        question: "What improves GPS accuracy using a base station?",
-        type: "Multiple Choice",
-        answer: "Differential GPS",
-        options: [
-          "Static GPS",
-          "Differential GPS",
-          "Kinematic GPS",
-          "Absolute GPS",
-        ],
-      },
-      {
-        question: "Which rule adjusts traverse closure errors?",
-        type: "Multiple Choice",
-        answer: "Bowditch rule",
-        options: [
-          "Compass rule",
-          "Bowditch rule",
-          "Transit rule",
-          "Crandall rule",
-        ],
-      },
-      {
-        question: "What does a total station measure in a resection survey?",
-        type: "Multiple Choice",
-        answer: "Angles to known points",
-        options: [
-          "Distances only",
-          "Angles to known points",
-          "Elevations only",
-          "Coordinates directly",
-        ],
-      },
-      {
-        question: "Which survey uses earth curvature models?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Geodetic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a traverse survey?",
-        type: "Multiple Choice",
-        answer: "Determine point coordinates",
-        options: [
-          "Measure angles only",
-          "Determine point coordinates",
-          "Calculate volume",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which method adjusts survey measurements?",
-        type: "Multiple Choice",
-        answer: "Least squares",
-        options: [
-          "Bowditch rule",
-          "Least squares",
-          "Compass rule",
-          "Transit rule",
-        ],
-      },
-      {
-        question: "What is a geodetic datum?",
-        type: "Multiple Choice",
-        answer: "Reference surface for coordinates",
-        options: [
-          "Temporary marker",
-          "Reference surface for coordinates",
-          "Angle reference",
-          "Distance marker",
-        ],
-      },
-      {
-        question: "Which survey uses stadia hairs for distance measurements?",
-        type: "Multiple Choice",
-        answer: "Tacheometric survey",
-        options: [
-          "Leveling survey",
-          "Tacheometric survey",
-          "Traverse survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question:
-          "What is the angular closure of a closed traverse with 5 sides?",
-        type: "Multiple Choice",
-        answer: "(5-2) × 180°",
-        options: ["360°", "(5-2) × 180°", "5 × 180°", "180°"],
-      },
-      {
-        question: "Which survey defines property boundaries?",
-        type: "Multiple Choice",
-        answer: "Cadastral survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What provides centimeter-level accuracy in GNSS?",
-        type: "Multiple Choice",
-        answer: "RTK",
-        options: ["Static GPS", "RTK", "Differential GPS", "Kinematic GPS"],
-      },
-      {
-        question: "Which survey maps elevation data?",
-        type: "Multiple Choice",
-        answer: "Topographic survey",
-        options: [
-          "Cadastral survey",
-          "Topographic survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is used to compute traverse coordinates?",
-        type: "Multiple Choice",
-        answer: "Bearing and distance",
-        options: [
-          "Angles only",
-          "Bearing and distance",
-          "Elevation only",
-          "Coordinates directly",
-        ],
-      },
-      {
-        question: "Which survey uses a total station for high accuracy?",
-        type: "Multiple Choice",
-        answer: "Traverse survey",
-        options: [
-          "Leveling survey",
-          "Traverse survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What affects GNSS survey accuracy?",
-        type: "Multiple Choice",
-        answer: "Atmospheric conditions",
-        options: [
-          "Temperature",
-          "Atmospheric conditions",
-          "Elevation",
-          "Humidity",
-        ],
-      },
-      {
-        question: "Which survey uses angles to locate points?",
-        type: "Multiple Choice",
-        answer: "Triangulation",
-        options: ["Traverse", "Triangulation", "Leveling", "Tacheometry"],
-      },
-      {
-        question: "What is the purpose of a resection survey?",
-        type: "Multiple Choice",
-        answer: "Determine instrument position",
-        options: [
-          "Measure distances",
-          "Determine instrument position",
-          "Calculate area",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which survey uses a plane table?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question:
-          "What is the contour interval of a map with contours at 100 m and 110 m?",
-        type: "Multiple Choice",
-        answer: "10 m",
-        options: ["5 m", "10 m", "20 m", "50 m"],
-      },
-      {
-        question: "Which survey measures underwater features?",
-        type: "Multiple Choice",
-        answer: "Hydrographic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is used to measure slope distances?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Theodolite", "Level", "Total station", "Tape"],
-      },
-      {
-        question: "Which survey uses GNSS receivers?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Leveling survey",
-          "Geodetic survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a topographic survey?",
-        type: "Multiple Choice",
-        answer: "Map physical features",
-        options: [
-          "Measure angles",
-          "Map physical features",
-          "Calculate volume",
-          "Determine bearing",
-        ],
-      },
-      {
-        question: "Which method corrects traverse closure errors?",
-        type: "Multiple Choice",
-        answer: "Compass rule",
-        options: [
-          "Bowditch rule",
-          "Compass rule",
-          "Transit rule",
-          "Crandall rule",
-        ],
-      },
-      {
-        question: "What is the minimum number of known points for resection?",
-        type: "Multiple Choice",
-        answer: "3",
-        options: ["1", "2", "3", "4"],
-      },
-      {
-        question: "Which survey uses a total station for leveling?",
-        type: "Multiple Choice",
-        answer: "Differential leveling",
-        options: [
-          "Traverse survey",
-          "Differential leveling",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is a geodetic survey used for?",
-        type: "Multiple Choice",
-        answer: "Global positioning",
-        options: [
-          "Local mapping",
-          "Global positioning",
-          "Boundary demarcation",
-          "Road alignment",
-        ],
-      },
-      {
-        question: "Which survey uses a compass for orientation?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is the bearing of a line at 45° from north?",
-        type: "Multiple Choice",
-        answer: "45°",
-        options: ["0°", "45°", "90°", "180°"],
-      },
-      {
-        question: "Which survey determines elevation differences?",
-        type: "Multiple Choice",
-        answer: "Leveling survey",
-        options: [
-          "Traverse survey",
-          "Leveling survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is used to measure angles in a traverse?",
-        type: "Multiple Choice",
-        answer: "Theodolite",
-        options: ["Level", "Theodolite", "Tape", "Compass"],
-      },
-      {
-        question: "Which survey uses stadia hairs?",
-        type: "Multiple Choice",
-        answer: "Tacheometric survey",
-        options: [
-          "Leveling survey",
-          "Tacheometric survey",
-          "Traverse survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a cadastral survey?",
-        type: "Multiple Choice",
-        answer: "Define property boundaries",
-        options: [
-          "Map physical features",
-          "Define property boundaries",
-          "Calculate volume",
-          "Determine elevation",
-        ],
-      },
-      {
-        question: "Which survey uses a total station for high accuracy?",
-        type: "Multiple Choice",
-        answer: "Traverse survey",
-        options: [
-          "Leveling survey",
-          "Traverse survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question:
-          "What is the angular closure of a closed traverse with 4 sides?",
-        type: "Multiple Choice",
-        answer: "(4-2) × 180°",
-        options: ["360°", "(4-2) × 180°", "4 × 180°", "180°"],
-      },
-      {
-        question: "Which survey uses GNSS for global coordinates?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is used to compute traverse coordinates?",
-        type: "Multiple Choice",
-        answer: "Bearing and distance",
-        options: [
-          "Angles only",
-          "Bearing and distance",
-          "Elevation only",
-          "Coordinates directly",
-        ],
-      },
-      {
-        question: "Which survey maps elevation data?",
-        type: "Multiple Choice",
-        answer: "Topographic survey",
-        options: [
-          "Cadastral survey",
-          "Topographic survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a resection survey?",
-        type: "Multiple Choice",
-        answer: "Determine instrument position",
-        options: [
-          "Measure distances",
-          "Determine instrument position",
-          "Calculate area",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which survey uses a plane table?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question:
-          "What is the contour interval of a map with contours at 200 m and 210 m?",
-        type: "Multiple Choice",
-        answer: "10 m",
-        options: ["5 m", "10 m", "20 m", "50 m"],
-      },
-      {
-        question: "Which survey measures underwater features?",
-        type: "Multiple Choice",
-        answer: "Hydrographic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is used to measure slope distances?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Theodolite", "Level", "Total station", "Tape"],
-      },
-      {
-        question: "Which survey uses GNSS receivers?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Leveling survey",
-          "Geodetic survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a topographic survey?",
-        type: "Multiple Choice",
-        answer: "Map physical features",
-        options: [
-          "Measure angles",
-          "Map physical features",
-          "Calculate volume",
-          "Determine bearing",
-        ],
-      },
-      {
-        question: "Which method corrects traverse closure errors?",
-        type: "Multiple Choice",
-        answer: "Compass rule",
-        options: [
-          "Bowditch rule",
-          "Compass rule",
-          "Transit rule",
-          "Crandall rule",
-        ],
-      },
-      {
-        question: "What is the minimum number of known points for resection?",
-        type: "Multiple Choice",
-        answer: "3",
-        options: ["1", "2", "3", "4"],
-      },
-      {
-        question: "Which survey uses a total station for leveling?",
-        type: "Multiple Choice",
-        answer: "Differential leveling",
-        options: [
-          "Traverse survey",
-          "Differential leveling",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is a geodetic survey used for?",
-        type: "Multiple Choice",
-        answer: "Global positioning",
-        options: [
-          "Local mapping",
-          "Global positioning",
-          "Boundary demarcation",
-          "Road alignment",
-        ],
-      },
-      {
-        question: "Which survey uses a compass for orientation?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is the bearing of a line at 135° from north?",
-        type: "Multiple Choice",
-        answer: "135°",
-        options: ["45°", "90°", "135°", "180°"],
-      },
-      {
-        question: "Which survey determines elevation differences?",
-        type: "Multiple Choice",
-        answer: "Leveling survey",
-        options: [
-          "Traverse survey",
-          "Leveling survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is used to measure angles in a traverse?",
-        type: "Multiple Choice",
-        answer: "Theodolite",
-        options: ["Level", "Theodolite", "Tape", "Compass"],
-      },
-    ],
-    Hard: [
-      {
-        question:
-          "The least squares method minimizes the sum of squared residuals in survey adjustments.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey uses a flat earth model for calculations.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "RTK GNSS provides real-time centimeter-level accuracy.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A traverse adjustment using the Bowditch rule corrects only angular errors.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is immune to ionospheric delays.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A total station can perform least squares adjustments internally.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic datum like WGS84 is used for global coordinates.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey can be performed with two known points.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be adjusted using the transit rule.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey requires post-processing for static surveys.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey uses ellipsoidal heights.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure orthometric heights directly.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A GNSS survey is affected by multipath errors in urban areas.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be computed using polar coordinates.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey is used for local cadastral surveys.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can integrate with GIS software.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey provides coordinates in a local datum only.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A traverse adjustment corrects both linear and angular errors.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey uses spherical trigonometry.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey requires a minimum of four known points.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A GNSS survey can use differential corrections for accuracy.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can perform photogrammetric surveys.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey accounts for gravitational variations.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be adjusted using the Crandall rule.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is suitable for underground mine surveying.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure geodetic coordinates directly.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A geodetic survey uses a reference ellipsoid for calculations.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A resection survey uses distances to known points for accuracy.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A GNSS survey provides orthometric heights without correction.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question:
-          "A traverse survey can be computed using the least squares method.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A geodetic survey is used for tectonic plate movement studies.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can perform real-time kinematic surveys.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is affected by tropospheric delays.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A traverse survey requires a minimum of two known points for closure.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A geodetic survey uses a local datum for global coordinates.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure slope angles.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey provides high accuracy in dense forests.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A traverse adjustment using least squares is optimal.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey uses orthometric heights.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A resection survey can be performed with a theodolite.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question:
-          "A GNSS survey uses carrier-phase measurements for precision.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A total station can measure geodetic azimuths directly.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey requires precise time synchronization.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be computed using only angles.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey can use SBAS for enhanced accuracy.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey uses a flat plane coordinate system.",
-        answer: "False",
-        type: "True/False",
-      },
-      {
-        question: "A total station can integrate with GNSS receivers.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A GNSS survey is affected by satellite geometry.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A traverse survey can be adjusted using the compass rule.",
-        answer: "True",
-        type: "True/False",
-      },
-      {
-        question: "A geodetic survey is used for local topographic mapping.",
-        answer: "False",
-        type: "True/False",
-      },
-      // Multiple Choice Questions (351-400)
-      {
-        question: "What method minimizes residuals in survey adjustments?",
-        type: "Multiple Choice",
-        answer: "Least squares",
-        options: [
-          "Bowditch rule",
-          "Least squares",
-          "Compass rule",
-          "Transit rule",
-        ],
-      },
-      {
-        question: "Which datum is used for global GNSS coordinates?",
-        type: "Multiple Choice",
-        answer: "WGS84",
-        options: ["NAD83", "WGS84", "ETRS89", "GRS80"],
-      },
-      {
-        question: "What provides real-time centimeter-level GNSS accuracy?",
-        type: "Multiple Choice",
-        answer: "RTK",
-        options: ["Static GPS", "RTK", "Differential GPS", "Kinematic GPS"],
-      },
-      {
-        question: "Which rule adjusts traverse errors based on distance?",
-        type: "Multiple Choice",
-        answer: "Bowditch rule",
-        options: [
-          "Compass rule",
-          "Bowditch rule",
-          "Transit rule",
-          "Crandall rule",
-        ],
-      },
-      {
-        question: "What affects GNSS survey accuracy?",
-        type: "Multiple Choice",
-        answer: "Ionospheric delay",
-        options: ["Temperature", "Ionospheric delay", "Elevation", "Humidity"],
-      },
-      {
-        question: "Which survey uses ellipsoidal heights?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Geodetic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is the minimum number of known points for resection?",
-        type: "Multiple Choice",
-        answer: "3",
-        options: ["1", "2", "3", "4"],
-      },
-      {
-        question: "Which survey adjusts using the transit rule?",
-        type: "Multiple Choice",
-        answer: "Traverse survey",
-        options: [
-          "Leveling survey",
-          "Traverse survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a geodetic survey?",
-        type: "Multiple Choice",
-        answer: "Global positioning",
-        options: [
-          "Local mapping",
-          "Global positioning",
-          "Boundary demarcation",
-          "Road alignment",
-        ],
-      },
-      {
-        question: "Which survey uses carrier-phase GNSS measurements?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Geodetic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question:
-          "What is the angular closure of a closed traverse with 6 sides?",
-        type: "Multiple Choice",
-        answer: "(6-2) × 180°",
-        options: ["360°", "(6-2) × 180°", "6 × 180°", "180°"],
-      },
-      {
-        question: "Which survey accounts for gravitational variations?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Geodetic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is used to compute traverse coordinates?",
-        type: "Multiple Choice",
-        answer: "Polar coordinates",
-        options: [
-          "Cartesian coordinates",
-          "Polar coordinates",
-          "Spherical coordinates",
-          "Geodetic coordinates",
-        ],
-      },
-      {
-        question: "Which survey uses a total station for high precision?",
-        type: "Multiple Choice",
-        answer: "Traverse survey",
-        options: [
-          "Leveling survey",
-          "Traverse survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What affects GNSS survey accuracy in urban areas?",
-        type: "Multiple Choice",
-        answer: "Multipath errors",
-        options: ["Temperature", "Multipath errors", "Elevation", "Humidity"],
-      },
-      {
-        question: "Which survey uses spherical trigonometry?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Geodetic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a resection survey?",
-        type: "Multiple Choice",
-        answer: "Determine instrument position",
-        options: [
-          "Measure distances",
-          "Determine instrument position",
-          "Calculate area",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which survey uses a plane table?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question:
-          "What is the contour interval of a map with contours at 300 m and 310 m?",
-        type: "Multiple Choice",
-        answer: "10 m",
-        options: ["5 m", "10 m", "20 m", "50 m"],
-      },
-      {
-        question: "Which survey measures underwater features?",
-        type: "Multiple Choice",
-        answer: "Hydrographic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is used to measure slope angles?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Level", "Total station", "Tape", "Compass"],
-      },
-      {
-        question: "Which survey uses GNSS receivers?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Leveling survey",
-          "Geodetic survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a topographic survey?",
-        type: "Multiple Choice",
-        answer: "Map physical features",
-        options: [
-          "Measure angles",
-          "Map physical features",
-          "Calculate volume",
-          "Determine bearing",
-        ],
-      },
-      {
-        question: "Which method corrects traverse errors based on coordinates?",
-        type: "Multiple Choice",
-        answer: "Least squares",
-        options: [
-          "Bowditch rule",
-          "Least squares",
-          "Compass rule",
-          "Transit rule",
-        ],
-      },
-      {
-        question: "What is the minimum number of satellites for a GNSS survey?",
-        type: "Multiple Choice",
-        answer: "4",
-        options: ["2", "3", "4", "5"],
-      },
-      {
-        question: "Which survey uses a total station for leveling?",
-        type: "Multiple Choice",
-        answer: "Differential leveling",
-        options: [
-          "Traverse survey",
-          "Differential leveling",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is a geodetic survey used for?",
-        type: "Multiple Choice",
-        answer: "Global positioning",
-        options: [
-          "Local mapping",
-          "Global positioning",
-          "Boundary demarcation",
-          "Road alignment",
-        ],
-      },
-      {
-        question: "Which survey uses a compass for orientation?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is the bearing of a line at 270° from north?",
-        type: "Multiple Choice",
-        answer: "270°",
-        options: ["0°", "90°", "180°", "270°"],
-      },
-      {
-        question: "Which survey determines elevation differences?",
-        type: "Multiple Choice",
-        answer: "Leveling survey",
-        options: [
-          "Traverse survey",
-          "Leveling survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is used to measure angles in a traverse?",
-        type: "Multiple Choice",
-        answer: "Theodolite",
-        options: ["Level", "Theodolite", "Tape", "Compass"],
-      },
-      {
-        question: "Which survey uses stadia hairs?",
-        type: "Multiple Choice",
-        answer: "Tacheometric survey",
-        options: [
-          "Leveling survey",
-          "Tacheometric survey",
-          "Traverse survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a cadastral survey?",
-        type: "Multiple Choice",
-        answer: "Define property boundaries",
-        options: [
-          "Map physical features",
-          "Define property boundaries",
-          "Calculate volume",
-          "Determine elevation",
-        ],
-      },
-      {
-        question: "Which survey uses a total station for high precision?",
-        type: "Multiple Choice",
-        answer: "Traverse survey",
-        options: [
-          "Leveling survey",
-          "Traverse survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question:
-          "What is the angular closure of a closed traverse with 7 sides?",
-        type: "Multiple Choice",
-        answer: "(7-2) × 180°",
-        options: ["360°", "(7-2) × 180°", "7 × 180°", "180°"],
-      },
-      {
-        question: "Which survey uses GNSS for global coordinates?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is used to compute traverse coordinates?",
-        type: "Multiple Choice",
-        answer: "Bearing and distance",
-        options: [
-          "Angles only",
-          "Bearing and distance",
-          "Elevation only",
-          "Coordinates directly",
-        ],
-      },
-      {
-        question: "Which survey maps elevation data?",
-        type: "Multiple Choice",
-        answer: "Topographic survey",
-        options: [
-          "Cadastral survey",
-          "Topographic survey",
-          "Geodetic survey",
-          "Hydrographic survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a resection survey?",
-        type: "Multiple Choice",
-        answer: "Determine instrument position",
-        options: [
-          "Measure distances",
-          "Determine instrument position",
-          "Calculate area",
-          "Map contours",
-        ],
-      },
-      {
-        question: "Which survey uses a plane table?",
-        type: "Multiple Choice",
-        answer: "Plane table survey",
-        options: [
-          "Leveling survey",
-          "Plane table survey",
-          "Traverse survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question:
-          "What is the contour interval of a map with contours at 400 m and 410 m?",
-        type: "Multiple Choice",
-        answer: "10 m",
-        options: ["5 m", "10 m", "20 m", "50 m"],
-      },
-      {
-        question: "Which survey measures underwater features?",
-        type: "Multiple Choice",
-        answer: "Hydrographic survey",
-        options: [
-          "Topographic survey",
-          "Cadastral survey",
-          "Hydrographic survey",
-          "Geodetic survey",
-        ],
-      },
-      {
-        question: "What is used to measure slope angles?",
-        type: "Multiple Choice",
-        answer: "Total station",
-        options: ["Level", "Total station", "Tape", "Compass"],
-      },
-      {
-        question: "Which survey uses GNSS receivers?",
-        type: "Multiple Choice",
-        answer: "Geodetic survey",
-        options: [
-          "Leveling survey",
-          "Geodetic survey",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
-      },
-      {
-        question: "What is the purpose of a topographic survey?",
-        type: "Multiple Choice",
-        answer: "Map physical features",
-        options: [
-          "Measure angles",
-          "Map physical features",
-          "Calculate volume",
-          "Determine bearing",
-        ],
-      },
-      {
-        question: "Which method corrects traverse errors based on coordinates?",
-        type: "Multiple Choice",
-        answer: "Least squares",
-        options: [
-          "Bowditch rule",
-          "Least squares",
-          "Compass rule",
-          "Transit rule",
-        ],
-      },
-      {
-        question: "What is the minimum number of satellites for a GNSS survey?",
-        type: "Multiple Choice",
-        answer: "4",
-        options: ["2", "3", "4", "5"],
-      },
-      {
-        question: "Which survey uses a total station for leveling?",
-        type: "Multiple Choice",
-        answer: "Differential leveling",
-        options: [
-          "Traverse survey",
-          "Differential leveling",
-          "Tacheometric survey",
-          "Plane table survey",
-        ],
       },
     ],
   },
@@ -6291,6 +3681,2614 @@ export const courseData6 = {
           "The accuracy of a survey depends on the quality of the adjustment method.",
         answer: "True",
         type: "True/False",
+      },
+    ],
+  },
+  // Geomatic Engineering, Level 200, Semester 2
+  "Engineering Survey": {
+    programOfStudy: "Geomatic Engineering",
+    levelOfStudy: "Level 200",
+    semesterOfStudy: "Semester 2",
+    Easy: [
+      {
+        question:
+          "A theodolite is used to measure horizontal and vertical angles.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A chain is used to measure angles in surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "Leveling is used to determine height differences between points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station combines theodolite and EDM functions.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A compass is the most accurate instrument for measuring angles.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A benchmark is a reference point with a known elevation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A leveling rod is used to measure horizontal distances.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The backsight is taken on a point of unknown elevation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tape measure is suitable for precise long-distance measurements.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A plumb bob is used to establish vertical alignment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A stadia rod is used in tacheometric surveying.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The foresight is the first reading in leveling.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tripod is essential for stabilizing surveying instruments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A dumpy level automatically levels itself.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "An EDM measures distances using laser or infrared signals.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A plane table is used for precise angle measurements.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A contour line connects points of equal elevation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A hand level is used for high-precision leveling.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A bearing is an angle measured from the south pole.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A topographic survey maps physical features of a site.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A steel tape is affected by temperature changes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A turning point in leveling is a permanent benchmark.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A prism is used to reflect signals in EDM measurements.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A clinometer measures vertical distances.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A surveyor's level is used to measure horizontal angles.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A grid system is used to locate points on a map.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A ranging rod is used to mark points in a straight line.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A sextant is commonly used in land surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A closed traverse starts and ends at different points.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A leveling bubble ensures a level is horizontal.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS receiver is used for angle measurements.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A crosshair in a theodolite is used for sighting.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A contour interval is the horizontal distance between contour lines.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A triangulation survey uses angle measurements to locate points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A barometer is used to measure elevation in surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A digital level uses electronic sensors for readings.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey measures only distances.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A resection method determines the position of a known point.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GPS receiver can provide coordinates in real-time.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A chaining pin is used to mark angles in surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A profile leveling survey determines elevation along a line.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A theodolite can measure distances directly.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A topographic map shows only elevation data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A leveling rod is read using a telescope on a level.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A stadia method measures angles only.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A benchmark is always a natural feature.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can store survey data electronically.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A plane table survey is highly accurate for large areas.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A magnetic compass is affected by nearby metal objects.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A leveling survey requires only one instrument setup.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A tape correction is applied for temperature changes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey requires a clear view of the sky.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A theodolite is used for differential leveling.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A contour map is used for volume calculations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse can be open or closed.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A leveling rod is used to measure angles.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A survey peg is used to mark temporary points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A stadia hair is used in precise leveling.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GPS survey is less accurate than a total station survey.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A triangulation point is a temporary marker.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A leveling instrument must be set up horizontally.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A plane table requires a compass for orientation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A survey chain is made of plastic for durability.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A control point has known coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey requires at least three known points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A dumpy level is more accurate than a digital level.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A topographic survey includes man-made features.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A tape measure is used for high-precision surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A leveling survey can determine slope gradients.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A theodolite requires manual readings.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS system uses only one satellite for positioning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A contour line can intersect another contour line.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey measures both angles and distances.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A benchmark is used only in triangulation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "What instrument measures horizontal and vertical angles?",
+        type: "Multiple Choice",
+        answer: "Theodolite",
+        options: ["Level", "Theodolite", "Tape", "Compass"],
+      },
+      {
+        question: "What is the purpose of leveling in surveying?",
+        type: "Multiple Choice",
+        answer: "Determine height differences",
+        options: [
+          "Measure angles",
+          "Determine height differences",
+          "Calculate area",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which device combines angle and distance measurements?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Theodolite", "Level", "Total station", "Compass"],
+      },
+      {
+        question: "What is a benchmark in surveying?",
+        type: "Multiple Choice",
+        answer: "Point with known elevation",
+        options: [
+          "Temporary marker",
+          "Point with known elevation",
+          "Angle reference",
+          "Distance marker",
+        ],
+      },
+      {
+        question: "Which reading is taken on a known elevation point?",
+        type: "Multiple Choice",
+        answer: "Backsight",
+        options: [
+          "Foresight",
+          "Backsight",
+          "Intermediate sight",
+          "Turning point",
+        ],
+      },
+      {
+        question: "What is used to measure distances in tacheometry?",
+        type: "Multiple Choice",
+        answer: "Stadia rod",
+        options: ["Leveling rod", "Stadia rod", "Tape", "Chain"],
+      },
+      {
+        question: "What does a plumb bob establish?",
+        type: "Multiple Choice",
+        answer: "Vertical alignment",
+        options: [
+          "Horizontal alignment",
+          "Vertical alignment",
+          "Angle reference",
+          "Distance",
+        ],
+      },
+      {
+        question: "What does a contour line represent?",
+        type: "Multiple Choice",
+        answer: "Equal elevation",
+        options: [
+          "Equal distance",
+          "Equal elevation",
+          "Equal slope",
+          "Equal area",
+        ],
+      },
+      {
+        question: "Which instrument is used for differential leveling?",
+        type: "Multiple Choice",
+        answer: "Level",
+        options: ["Theodolite", "Level", "Total station", "Compass"],
+      },
+      {
+        question: "What measures distances using laser signals?",
+        type: "Multiple Choice",
+        answer: "EDM",
+        options: ["Theodolite", "EDM", "Level", "Tape"],
+      },
+      {
+        question: "What is the unit of bearing in surveying?",
+        type: "Multiple Choice",
+        answer: "Degrees",
+        options: ["Meters", "Degrees", "Radians", "Grads"],
+      },
+      {
+        question: "Which survey maps physical features of a site?",
+        type: "Multiple Choice",
+        answer: "Topographic survey",
+        options: [
+          "Cadastral survey",
+          "Topographic survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is used to mark points in a straight line?",
+        type: "Multiple Choice",
+        answer: "Ranging rod",
+        options: ["Leveling rod", "Ranging rod", "Stadia rod", "Tape"],
+      },
+      {
+        question: "What is the contour interval?",
+        type: "Multiple Choice",
+        answer: "Vertical distance between contours",
+        options: [
+          "Horizontal distance",
+          "Vertical distance between contours",
+          "Slope angle",
+          "Area",
+        ],
+      },
+      {
+        question: "Which method uses angle measurements to locate points?",
+        type: "Multiple Choice",
+        answer: "Triangulation",
+        options: ["Traverse", "Triangulation", "Leveling", "Tacheometry"],
+      },
+      {
+        question: "What is a turning point in leveling?",
+        type: "Multiple Choice",
+        answer: "Temporary point for instrument setup",
+        options: [
+          "Permanent benchmark",
+          "Temporary point for instrument setup",
+          "Control point",
+          "Foresight",
+        ],
+      },
+      {
+        question: "Which instrument is stabilized by a tripod?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Tape", "Compass", "Total station", "Chain"],
+      },
+      {
+        question: "What is used to reflect EDM signals?",
+        type: "Multiple Choice",
+        answer: "Prism",
+        options: ["Mirror", "Prism", "Lens", "Tape"],
+      },
+      {
+        question: "What does a topographic map show?",
+        type: "Multiple Choice",
+        answer: "Physical features and elevation",
+        options: [
+          "Only elevation",
+          "Only distances",
+          "Physical features and elevation",
+          "Only angles",
+        ],
+      },
+      {
+        question: "Which survey uses a compass for orientation?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What corrects steel tape measurements?",
+        type: "Multiple Choice",
+        answer: "Temperature correction",
+        options: [
+          "Angle correction",
+          "Temperature correction",
+          "Slope correction",
+          "Bearing correction",
+        ],
+      },
+      {
+        question: "Which system provides real-time coordinates?",
+        type: "Multiple Choice",
+        answer: "GPS",
+        options: ["EDM", "GPS", "Theodolite", "Level"],
+      },
+      {
+        question: "What is a closed traverse?",
+        type: "Multiple Choice",
+        answer: "Starts and ends at the same point",
+        options: [
+          "Starts and ends at different points",
+          "Starts and ends at the same point",
+          "Measures only angles",
+          "Uses only GPS",
+        ],
+      },
+      {
+        question: "Which rod is used in leveling?",
+        type: "Multiple Choice",
+        answer: "Leveling rod",
+        options: ["Stadia rod", "Leveling rod", "Ranging rod", "Chaining rod"],
+      },
+      {
+        question: "What is the purpose of a resection survey?",
+        type: "Multiple Choice",
+        answer: "Determine instrument position",
+        options: [
+          "Measure distances",
+          "Determine instrument position",
+          "Calculate area",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which instrument measures slope angles?",
+        type: "Multiple Choice",
+        answer: "Clinometer",
+        options: ["Theodolite", "Level", "Clinometer", "Tape"],
+      },
+      {
+        question: "What is a control point?",
+        type: "Multiple Choice",
+        answer: "Point with known coordinates",
+        options: [
+          "Temporary marker",
+          "Point with known coordinates",
+          "Angle reference",
+          "Distance marker",
+        ],
+      },
+      {
+        question: "Which survey determines elevation along a line?",
+        type: "Multiple Choice",
+        answer: "Profile leveling",
+        options: [
+          "Differential leveling",
+          "Profile leveling",
+          "Traverse survey",
+          "Tacheometry",
+        ],
+      },
+      {
+        question: "What is used for rough leveling?",
+        type: "Multiple Choice",
+        answer: "Hand level",
+        options: [
+          "Dumpy level",
+          "Hand level",
+          "Digital level",
+          "Total station",
+        ],
+      },
+      {
+        question: "Which survey uses stadia hairs?",
+        type: "Multiple Choice",
+        answer: "Tacheometric survey",
+        options: [
+          "Leveling survey",
+          "Tacheometric survey",
+          "Traverse survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What affects a magnetic compass?",
+        type: "Multiple Choice",
+        answer: "Nearby metal objects",
+        options: [
+          "Temperature",
+          "Nearby metal objects",
+          "Elevation",
+          "Humidity",
+        ],
+      },
+      {
+        question: "Which instrument stores survey data electronically?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Theodolite", "Level", "Total station", "Compass"],
+      },
+      {
+        question: "What is the bearing of a line due north?",
+        type: "Multiple Choice",
+        answer: "0°",
+        options: ["90°", "180°", "0°", "270°"],
+      },
+      {
+        question: "Which survey is used for boundary demarcation?",
+        type: "Multiple Choice",
+        answer: "Cadastral survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is used to mark temporary points in surveying?",
+        type: "Multiple Choice",
+        answer: "Survey peg",
+        options: ["Benchmark", "Survey peg", "Control point", "Prism"],
+      },
+      {
+        question: "Which method measures both angles and distances?",
+        type: "Multiple Choice",
+        answer: "Traverse survey",
+        options: [
+          "Leveling",
+          "Traverse survey",
+          "Triangulation",
+          "Tacheometry",
+        ],
+      },
+      {
+        question: "What is the vertical angle to the horizon?",
+        type: "Multiple Choice",
+        answer: "0°",
+        options: ["90°", "0°", "180°", "45°"],
+      },
+      {
+        question: "Which instrument is used for plane table surveying?",
+        type: "Multiple Choice",
+        answer: "Alidade",
+        options: ["Theodolite", "Level", "Alidade", "Tape"],
+      },
+      {
+        question: "What is the purpose of a triangulation survey?",
+        type: "Multiple Choice",
+        answer: "Locate points using angles",
+        options: [
+          "Measure distances",
+          "Locate points using angles",
+          "Determine elevation",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which correction is applied to tape measurements?",
+        type: "Multiple Choice",
+        answer: "Slope correction",
+        options: [
+          "Angle correction",
+          "Slope correction",
+          "Bearing correction",
+          "Distance correction",
+        ],
+      },
+      {
+        question: "What is the minimum number of satellites for a GPS fix?",
+        type: "Multiple Choice",
+        answer: "4",
+        options: ["2", "3", "4", "5"],
+      },
+      {
+        question: "Which survey uses a digital level?",
+        type: "Multiple Choice",
+        answer: "Differential leveling",
+        options: [
+          "Traverse survey",
+          "Differential leveling",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is a contour map used for?",
+        type: "Multiple Choice",
+        answer: "Visualize elevation",
+        options: [
+          "Measure angles",
+          "Visualize elevation",
+          "Calculate area",
+          "Determine bearing",
+        ],
+      },
+      {
+        question: "Which instrument measures precise distances?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Theodolite", "Level", "Total station", "Tape"],
+      },
+      {
+        question: "What is the bearing of a line due east?",
+        type: "Multiple Choice",
+        answer: "90°",
+        options: ["0°", "90°", "180°", "270°"],
+      },
+      {
+        question: "Which survey maps underwater features?",
+        type: "Multiple Choice",
+        answer: "Hydrographic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is used to read a leveling rod?",
+        type: "Multiple Choice",
+        answer: "Telescope",
+        options: ["Compass", "Telescope", "Prism", "Tape"],
+      },
+      {
+        question: "Which survey requires a clear view of the sky?",
+        type: "Multiple Choice",
+        answer: "GNSS survey",
+        options: [
+          "Leveling survey",
+          "GNSS survey",
+          "Traverse survey",
+          "Tacheometric survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a traverse survey?",
+        type: "Multiple Choice",
+        answer: "Determine point coordinates",
+        options: [
+          "Measure angles only",
+          "Determine point coordinates",
+          "Calculate volume",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which instrument is used for rough angle measurements?",
+        type: "Multiple Choice",
+        answer: "Compass",
+        options: ["Theodolite", "Level", "Compass", "Total station"],
+      },
+      {
+        question: "What is a resection survey used for?",
+        type: "Multiple Choice",
+        answer: "Locate instrument position",
+        options: [
+          "Measure distances",
+          "Locate instrument position",
+          "Determine elevation",
+          "Calculate area",
+        ],
+      },
+      {
+        question: "Which rod is used in tacheometry?",
+        type: "Multiple Choice",
+        answer: "Stadia rod",
+        options: ["Leveling rod", "Stadia rod", "Ranging rod", "Chaining rod"],
+      },
+      {
+        question: "What is the bearing of a line due south?",
+        type: "Multiple Choice",
+        answer: "180°",
+        options: ["0°", "90°", "180°", "270°"],
+      },
+      {
+        question: "Which survey uses a plane table?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a control point?",
+        type: "Multiple Choice",
+        answer: "Provide known coordinates",
+        options: [
+          "Mark temporary points",
+          "Provide known coordinates",
+          "Measure angles",
+          "Determine elevation",
+        ],
+      },
+      {
+        question: "Which instrument measures vertical angles?",
+        type: "Multiple Choice",
+        answer: "Theodolite",
+        options: ["Level", "Theodolite", "Tape", "Compass"],
+      },
+      {
+        question:
+          "What is the contour interval of a map with contours at 10 m and 20 m?",
+        type: "Multiple Choice",
+        answer: "10 m",
+        options: ["5 m", "10 m", "20 m", "50 m"],
+      },
+      {
+        question: "Which survey determines property boundaries?",
+        type: "Multiple Choice",
+        answer: "Cadastral survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is used to mark points in a traverse?",
+        type: "Multiple Choice",
+        answer: "Survey peg",
+        options: ["Benchmark", "Survey peg", "Control point", "Prism"],
+      },
+      {
+        question: "Which method uses stadia hairs for measurements?",
+        type: "Multiple Choice",
+        answer: "Tacheometry",
+        options: ["Leveling", "Tacheometry", "Triangulation", "Traverse"],
+      },
+      {
+        question: "What is the bearing of a line due west?",
+        type: "Multiple Choice",
+        answer: "270°",
+        options: ["0°", "90°", "180°", "270°"],
+      },
+      {
+        question: "Which survey uses GNSS receivers?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Leveling survey",
+          "Geodetic survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is used to orient a plane table?",
+        type: "Multiple Choice",
+        answer: "Compass",
+        options: ["Theodolite", "Level", "Compass", "Tape"],
+      },
+      {
+        question: "Which survey measures large-scale earth curvature?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a leveling survey?",
+        type: "Multiple Choice",
+        answer: "Determine elevation differences",
+        options: [
+          "Measure angles",
+          "Determine elevation differences",
+          "Calculate area",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which instrument is used for precise angle measurements?",
+        type: "Multiple Choice",
+        answer: "Theodolite",
+        options: ["Level", "Theodolite", "Tape", "Compass"],
+      },
+      {
+        question: "What is a triangulation survey used for?",
+        type: "Multiple Choice",
+        answer: "Locate points using angles",
+        options: [
+          "Measure distances",
+          "Locate points using angles",
+          "Determine elevation",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which correction is applied to EDM measurements?",
+        type: "Multiple Choice",
+        answer: "Atmospheric correction",
+        options: [
+          "Angle correction",
+          "Atmospheric correction",
+          "Slope correction",
+          "Bearing correction",
+        ],
+      },
+      {
+        question: "What is the purpose of a topographic survey?",
+        type: "Multiple Choice",
+        answer: "Map physical features",
+        options: [
+          "Measure angles",
+          "Map physical features",
+          "Calculate volume",
+          "Determine bearing",
+        ],
+      },
+    ],
+    Medium: [
+      {
+        question:
+          "A traverse survey requires both angle and distance measurements.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Differential GPS improves accuracy using a single receiver.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A closed traverse has no angular error if it sums to 360°.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can perform resection surveys.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The least squares method adjusts survey measurements.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is unaffected by atmospheric conditions.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tacheometric survey measures distances using stadia hairs.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey ignores earth curvature.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse adjustment corrects for closure errors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A topographic map includes contour lines and man-made features.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS receiver requires a base station for RTK surveying.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A plane table survey is suitable for high-precision mapping.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A coordinate system is used to define point locations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey requires only one known point.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure slope distances directly.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A cadastral survey maps elevation data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse can be computed using the Bowditch rule.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey provides absolute positioning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A theodolite can measure distances using EDM.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A contour interval depends on the map scale.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A triangulation survey requires distance measurements.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can export data to GIS software.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A leveling survey can be performed with a total station.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A geodetic datum defines a reference surface for coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A traverse closure error is always zero in a perfect survey.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is less accurate in urban areas.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A plane table survey requires a theodolite.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A topographic survey can be used for road design.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey uses angles to known points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station requires manual data recording.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be open or closed.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey uses spherical coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS receiver can operate in real-time kinematic mode.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A tacheometric survey is slower than a total station survey.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A cadastral survey defines property boundaries.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A leveling survey requires multiple setups for long distances.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is unaffected by tree cover.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse adjustment uses the compass rule.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A topographic map shows only natural features.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure vertical angles.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey is used for small-scale projects.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey determines point coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey requires post-processing for high accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A plane table survey is used for geodetic measurements.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be computed using coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can perform triangulation surveys.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic datum is the same as a local datum.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A GNSS survey provides coordinates in a global reference frame.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A tacheometric survey requires a leveling rod.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A cadastral survey is used for topographic mapping.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A leveling survey can determine horizontal distances.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS receiver can use GLONASS satellites.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey requires a theodolite for angles.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey uses ellipsoidal models.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure horizontal distances only.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey uses distances to known points.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is suitable for underground surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A topographic survey includes elevation data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse adjustment corrects angular errors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can perform tacheometric surveys.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey is used for global positioning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey requires a clear line of sight to points.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A plane table survey is faster than a total station survey.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be used for road alignment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A cadastral survey requires GNSS for accuracy.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A leveling survey uses a total station for high accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS receiver can provide centimeter-level accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A tacheometric survey measures only horizontal distances.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic datum is used for local surveys only.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be adjusted using least squares.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure coordinates directly.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey requires a total station.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is affected by multipath errors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A topographic survey can be used for volume calculations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "What improves GPS accuracy using a base station?",
+        type: "Multiple Choice",
+        answer: "Differential GPS",
+        options: [
+          "Static GPS",
+          "Differential GPS",
+          "Kinematic GPS",
+          "Absolute GPS",
+        ],
+      },
+      {
+        question: "Which rule adjusts traverse closure errors?",
+        type: "Multiple Choice",
+        answer: "Bowditch rule",
+        options: [
+          "Compass rule",
+          "Bowditch rule",
+          "Transit rule",
+          "Crandall rule",
+        ],
+      },
+      {
+        question: "What does a total station measure in a resection survey?",
+        type: "Multiple Choice",
+        answer: "Angles to known points",
+        options: [
+          "Distances only",
+          "Angles to known points",
+          "Elevations only",
+          "Coordinates directly",
+        ],
+      },
+      {
+        question: "Which survey uses earth curvature models?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Geodetic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a traverse survey?",
+        type: "Multiple Choice",
+        answer: "Determine point coordinates",
+        options: [
+          "Measure angles only",
+          "Determine point coordinates",
+          "Calculate volume",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which method adjusts survey measurements?",
+        type: "Multiple Choice",
+        answer: "Least squares",
+        options: [
+          "Bowditch rule",
+          "Least squares",
+          "Compass rule",
+          "Transit rule",
+        ],
+      },
+      {
+        question: "What is a geodetic datum?",
+        type: "Multiple Choice",
+        answer: "Reference surface for coordinates",
+        options: [
+          "Temporary marker",
+          "Reference surface for coordinates",
+          "Angle reference",
+          "Distance marker",
+        ],
+      },
+      {
+        question: "Which survey uses stadia hairs for distance measurements?",
+        type: "Multiple Choice",
+        answer: "Tacheometric survey",
+        options: [
+          "Leveling survey",
+          "Tacheometric survey",
+          "Traverse survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question:
+          "What is the angular closure of a closed traverse with 5 sides?",
+        type: "Multiple Choice",
+        answer: "(5-2) × 180°",
+        options: ["360°", "(5-2) × 180°", "5 × 180°", "180°"],
+      },
+      {
+        question: "Which survey defines property boundaries?",
+        type: "Multiple Choice",
+        answer: "Cadastral survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What provides centimeter-level accuracy in GNSS?",
+        type: "Multiple Choice",
+        answer: "RTK",
+        options: ["Static GPS", "RTK", "Differential GPS", "Kinematic GPS"],
+      },
+      {
+        question: "Which survey maps elevation data?",
+        type: "Multiple Choice",
+        answer: "Topographic survey",
+        options: [
+          "Cadastral survey",
+          "Topographic survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is used to compute traverse coordinates?",
+        type: "Multiple Choice",
+        answer: "Bearing and distance",
+        options: [
+          "Angles only",
+          "Bearing and distance",
+          "Elevation only",
+          "Coordinates directly",
+        ],
+      },
+      {
+        question: "Which survey uses a total station for high accuracy?",
+        type: "Multiple Choice",
+        answer: "Traverse survey",
+        options: [
+          "Leveling survey",
+          "Traverse survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What affects GNSS survey accuracy?",
+        type: "Multiple Choice",
+        answer: "Atmospheric conditions",
+        options: [
+          "Temperature",
+          "Atmospheric conditions",
+          "Elevation",
+          "Humidity",
+        ],
+      },
+      {
+        question: "Which survey uses angles to locate points?",
+        type: "Multiple Choice",
+        answer: "Triangulation",
+        options: ["Traverse", "Triangulation", "Leveling", "Tacheometry"],
+      },
+      {
+        question: "What is the purpose of a resection survey?",
+        type: "Multiple Choice",
+        answer: "Determine instrument position",
+        options: [
+          "Measure distances",
+          "Determine instrument position",
+          "Calculate area",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which survey uses a plane table?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question:
+          "What is the contour interval of a map with contours at 100 m and 110 m?",
+        type: "Multiple Choice",
+        answer: "10 m",
+        options: ["5 m", "10 m", "20 m", "50 m"],
+      },
+      {
+        question: "Which survey measures underwater features?",
+        type: "Multiple Choice",
+        answer: "Hydrographic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is used to measure slope distances?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Theodolite", "Level", "Total station", "Tape"],
+      },
+      {
+        question: "Which survey uses GNSS receivers?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Leveling survey",
+          "Geodetic survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a topographic survey?",
+        type: "Multiple Choice",
+        answer: "Map physical features",
+        options: [
+          "Measure angles",
+          "Map physical features",
+          "Calculate volume",
+          "Determine bearing",
+        ],
+      },
+      {
+        question: "Which method corrects traverse closure errors?",
+        type: "Multiple Choice",
+        answer: "Compass rule",
+        options: [
+          "Bowditch rule",
+          "Compass rule",
+          "Transit rule",
+          "Crandall rule",
+        ],
+      },
+      {
+        question: "What is the minimum number of known points for resection?",
+        type: "Multiple Choice",
+        answer: "3",
+        options: ["1", "2", "3", "4"],
+      },
+      {
+        question: "Which survey uses a total station for leveling?",
+        type: "Multiple Choice",
+        answer: "Differential leveling",
+        options: [
+          "Traverse survey",
+          "Differential leveling",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is a geodetic survey used for?",
+        type: "Multiple Choice",
+        answer: "Global positioning",
+        options: [
+          "Local mapping",
+          "Global positioning",
+          "Boundary demarcation",
+          "Road alignment",
+        ],
+      },
+      {
+        question: "Which survey uses a compass for orientation?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is the bearing of a line at 45° from north?",
+        type: "Multiple Choice",
+        answer: "45°",
+        options: ["0°", "45°", "90°", "180°"],
+      },
+      {
+        question: "Which survey determines elevation differences?",
+        type: "Multiple Choice",
+        answer: "Leveling survey",
+        options: [
+          "Traverse survey",
+          "Leveling survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is used to measure angles in a traverse?",
+        type: "Multiple Choice",
+        answer: "Theodolite",
+        options: ["Level", "Theodolite", "Tape", "Compass"],
+      },
+      {
+        question: "Which survey uses stadia hairs?",
+        type: "Multiple Choice",
+        answer: "Tacheometric survey",
+        options: [
+          "Leveling survey",
+          "Tacheometric survey",
+          "Traverse survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a cadastral survey?",
+        type: "Multiple Choice",
+        answer: "Define property boundaries",
+        options: [
+          "Map physical features",
+          "Define property boundaries",
+          "Calculate volume",
+          "Determine elevation",
+        ],
+      },
+      {
+        question: "Which survey uses a total station for high accuracy?",
+        type: "Multiple Choice",
+        answer: "Traverse survey",
+        options: [
+          "Leveling survey",
+          "Traverse survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question:
+          "What is the angular closure of a closed traverse with 4 sides?",
+        type: "Multiple Choice",
+        answer: "(4-2) × 180°",
+        options: ["360°", "(4-2) × 180°", "4 × 180°", "180°"],
+      },
+      {
+        question: "Which survey uses GNSS for global coordinates?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is used to compute traverse coordinates?",
+        type: "Multiple Choice",
+        answer: "Bearing and distance",
+        options: [
+          "Angles only",
+          "Bearing and distance",
+          "Elevation only",
+          "Coordinates directly",
+        ],
+      },
+      {
+        question: "Which survey maps elevation data?",
+        type: "Multiple Choice",
+        answer: "Topographic survey",
+        options: [
+          "Cadastral survey",
+          "Topographic survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a resection survey?",
+        type: "Multiple Choice",
+        answer: "Determine instrument position",
+        options: [
+          "Measure distances",
+          "Determine instrument position",
+          "Calculate area",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which survey uses a plane table?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question:
+          "What is the contour interval of a map with contours at 200 m and 210 m?",
+        type: "Multiple Choice",
+        answer: "10 m",
+        options: ["5 m", "10 m", "20 m", "50 m"],
+      },
+      {
+        question: "Which survey measures underwater features?",
+        type: "Multiple Choice",
+        answer: "Hydrographic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is used to measure slope distances?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Theodolite", "Level", "Total station", "Tape"],
+      },
+      {
+        question: "Which survey uses GNSS receivers?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Leveling survey",
+          "Geodetic survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a topographic survey?",
+        type: "Multiple Choice",
+        answer: "Map physical features",
+        options: [
+          "Measure angles",
+          "Map physical features",
+          "Calculate volume",
+          "Determine bearing",
+        ],
+      },
+      {
+        question: "Which method corrects traverse closure errors?",
+        type: "Multiple Choice",
+        answer: "Compass rule",
+        options: [
+          "Bowditch rule",
+          "Compass rule",
+          "Transit rule",
+          "Crandall rule",
+        ],
+      },
+      {
+        question: "What is the minimum number of known points for resection?",
+        type: "Multiple Choice",
+        answer: "3",
+        options: ["1", "2", "3", "4"],
+      },
+      {
+        question: "Which survey uses a total station for leveling?",
+        type: "Multiple Choice",
+        answer: "Differential leveling",
+        options: [
+          "Traverse survey",
+          "Differential leveling",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is a geodetic survey used for?",
+        type: "Multiple Choice",
+        answer: "Global positioning",
+        options: [
+          "Local mapping",
+          "Global positioning",
+          "Boundary demarcation",
+          "Road alignment",
+        ],
+      },
+      {
+        question: "Which survey uses a compass for orientation?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is the bearing of a line at 135° from north?",
+        type: "Multiple Choice",
+        answer: "135°",
+        options: ["45°", "90°", "135°", "180°"],
+      },
+      {
+        question: "Which survey determines elevation differences?",
+        type: "Multiple Choice",
+        answer: "Leveling survey",
+        options: [
+          "Traverse survey",
+          "Leveling survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is used to measure angles in a traverse?",
+        type: "Multiple Choice",
+        answer: "Theodolite",
+        options: ["Level", "Theodolite", "Tape", "Compass"],
+      },
+    ],
+    Hard: [
+      {
+        question:
+          "The least squares method minimizes the sum of squared residuals in survey adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey uses a flat earth model for calculations.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "RTK GNSS provides real-time centimeter-level accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A traverse adjustment using the Bowditch rule corrects only angular errors.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is immune to ionospheric delays.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A total station can perform least squares adjustments internally.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic datum like WGS84 is used for global coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey can be performed with two known points.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be adjusted using the transit rule.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey requires post-processing for static surveys.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey uses ellipsoidal heights.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure orthometric heights directly.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A GNSS survey is affected by multipath errors in urban areas.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be computed using polar coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey is used for local cadastral surveys.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can integrate with GIS software.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey provides coordinates in a local datum only.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A traverse adjustment corrects both linear and angular errors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey uses spherical trigonometry.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey requires a minimum of four known points.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A GNSS survey can use differential corrections for accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can perform photogrammetric surveys.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey accounts for gravitational variations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be adjusted using the Crandall rule.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is suitable for underground mine surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure geodetic coordinates directly.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A geodetic survey uses a reference ellipsoid for calculations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A resection survey uses distances to known points for accuracy.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A GNSS survey provides orthometric heights without correction.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "A traverse survey can be computed using the least squares method.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A geodetic survey is used for tectonic plate movement studies.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can perform real-time kinematic surveys.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is affected by tropospheric delays.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A traverse survey requires a minimum of two known points for closure.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A geodetic survey uses a local datum for global coordinates.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure slope angles.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey provides high accuracy in dense forests.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A traverse adjustment using least squares is optimal.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey uses orthometric heights.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A resection survey can be performed with a theodolite.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A GNSS survey uses carrier-phase measurements for precision.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A total station can measure geodetic azimuths directly.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey requires precise time synchronization.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be computed using only angles.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey can use SBAS for enhanced accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey uses a flat plane coordinate system.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A total station can integrate with GNSS receivers.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GNSS survey is affected by satellite geometry.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A traverse survey can be adjusted using the compass rule.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geodetic survey is used for local topographic mapping.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "What method minimizes residuals in survey adjustments?",
+        type: "Multiple Choice",
+        answer: "Least squares",
+        options: [
+          "Bowditch rule",
+          "Least squares",
+          "Compass rule",
+          "Transit rule",
+        ],
+      },
+      {
+        question: "Which datum is used for global GNSS coordinates?",
+        type: "Multiple Choice",
+        answer: "WGS84",
+        options: ["NAD83", "WGS84", "ETRS89", "GRS80"],
+      },
+      {
+        question: "What provides real-time centimeter-level GNSS accuracy?",
+        type: "Multiple Choice",
+        answer: "RTK",
+        options: ["Static GPS", "RTK", "Differential GPS", "Kinematic GPS"],
+      },
+      {
+        question: "Which rule adjusts traverse errors based on distance?",
+        type: "Multiple Choice",
+        answer: "Bowditch rule",
+        options: [
+          "Compass rule",
+          "Bowditch rule",
+          "Transit rule",
+          "Crandall rule",
+        ],
+      },
+      {
+        question: "What affects GNSS survey accuracy?",
+        type: "Multiple Choice",
+        answer: "Ionospheric delay",
+        options: ["Temperature", "Ionospheric delay", "Elevation", "Humidity"],
+      },
+      {
+        question: "Which survey uses ellipsoidal heights?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Geodetic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is the minimum number of known points for resection?",
+        type: "Multiple Choice",
+        answer: "3",
+        options: ["1", "2", "3", "4"],
+      },
+      {
+        question: "Which survey adjusts using the transit rule?",
+        type: "Multiple Choice",
+        answer: "Traverse survey",
+        options: [
+          "Leveling survey",
+          "Traverse survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a geodetic survey?",
+        type: "Multiple Choice",
+        answer: "Global positioning",
+        options: [
+          "Local mapping",
+          "Global positioning",
+          "Boundary demarcation",
+          "Road alignment",
+        ],
+      },
+      {
+        question: "Which survey uses carrier-phase GNSS measurements?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Geodetic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question:
+          "What is the angular closure of a closed traverse with 6 sides?",
+        type: "Multiple Choice",
+        answer: "(6-2) × 180°",
+        options: ["360°", "(6-2) × 180°", "6 × 180°", "180°"],
+      },
+      {
+        question: "Which survey accounts for gravitational variations?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Geodetic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is used to compute traverse coordinates?",
+        type: "Multiple Choice",
+        answer: "Polar coordinates",
+        options: [
+          "Cartesian coordinates",
+          "Polar coordinates",
+          "Spherical coordinates",
+          "Geodetic coordinates",
+        ],
+      },
+      {
+        question: "Which survey uses a total station for high precision?",
+        type: "Multiple Choice",
+        answer: "Traverse survey",
+        options: [
+          "Leveling survey",
+          "Traverse survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What affects GNSS survey accuracy in urban areas?",
+        type: "Multiple Choice",
+        answer: "Multipath errors",
+        options: ["Temperature", "Multipath errors", "Elevation", "Humidity"],
+      },
+      {
+        question: "Which survey uses spherical trigonometry?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Geodetic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a resection survey?",
+        type: "Multiple Choice",
+        answer: "Determine instrument position",
+        options: [
+          "Measure distances",
+          "Determine instrument position",
+          "Calculate area",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which survey uses a plane table?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question:
+          "What is the contour interval of a map with contours at 300 m and 310 m?",
+        type: "Multiple Choice",
+        answer: "10 m",
+        options: ["5 m", "10 m", "20 m", "50 m"],
+      },
+      {
+        question: "Which survey measures underwater features?",
+        type: "Multiple Choice",
+        answer: "Hydrographic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is used to measure slope angles?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Level", "Total station", "Tape", "Compass"],
+      },
+      {
+        question: "Which survey uses GNSS receivers?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Leveling survey",
+          "Geodetic survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a topographic survey?",
+        type: "Multiple Choice",
+        answer: "Map physical features",
+        options: [
+          "Measure angles",
+          "Map physical features",
+          "Calculate volume",
+          "Determine bearing",
+        ],
+      },
+      {
+        question: "Which method corrects traverse errors based on coordinates?",
+        type: "Multiple Choice",
+        answer: "Least squares",
+        options: [
+          "Bowditch rule",
+          "Least squares",
+          "Compass rule",
+          "Transit rule",
+        ],
+      },
+      {
+        question: "What is the minimum number of satellites for a GNSS survey?",
+        type: "Multiple Choice",
+        answer: "4",
+        options: ["2", "3", "4", "5"],
+      },
+      {
+        question: "Which survey uses a total station for leveling?",
+        type: "Multiple Choice",
+        answer: "Differential leveling",
+        options: [
+          "Traverse survey",
+          "Differential leveling",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is a geodetic survey used for?",
+        type: "Multiple Choice",
+        answer: "Global positioning",
+        options: [
+          "Local mapping",
+          "Global positioning",
+          "Boundary demarcation",
+          "Road alignment",
+        ],
+      },
+      {
+        question: "Which survey uses a compass for orientation?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is the bearing of a line at 270° from north?",
+        type: "Multiple Choice",
+        answer: "270°",
+        options: ["0°", "90°", "180°", "270°"],
+      },
+      {
+        question: "Which survey determines elevation differences?",
+        type: "Multiple Choice",
+        answer: "Leveling survey",
+        options: [
+          "Traverse survey",
+          "Leveling survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is used to measure angles in a traverse?",
+        type: "Multiple Choice",
+        answer: "Theodolite",
+        options: ["Level", "Theodolite", "Tape", "Compass"],
+      },
+      {
+        question: "Which survey uses stadia hairs?",
+        type: "Multiple Choice",
+        answer: "Tacheometric survey",
+        options: [
+          "Leveling survey",
+          "Tacheometric survey",
+          "Traverse survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a cadastral survey?",
+        type: "Multiple Choice",
+        answer: "Define property boundaries",
+        options: [
+          "Map physical features",
+          "Define property boundaries",
+          "Calculate volume",
+          "Determine elevation",
+        ],
+      },
+      {
+        question: "Which survey uses a total station for high precision?",
+        type: "Multiple Choice",
+        answer: "Traverse survey",
+        options: [
+          "Leveling survey",
+          "Traverse survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question:
+          "What is the angular closure of a closed traverse with 7 sides?",
+        type: "Multiple Choice",
+        answer: "(7-2) × 180°",
+        options: ["360°", "(7-2) × 180°", "7 × 180°", "180°"],
+      },
+      {
+        question: "Which survey uses GNSS for global coordinates?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is used to compute traverse coordinates?",
+        type: "Multiple Choice",
+        answer: "Bearing and distance",
+        options: [
+          "Angles only",
+          "Bearing and distance",
+          "Elevation only",
+          "Coordinates directly",
+        ],
+      },
+      {
+        question: "Which survey maps elevation data?",
+        type: "Multiple Choice",
+        answer: "Topographic survey",
+        options: [
+          "Cadastral survey",
+          "Topographic survey",
+          "Geodetic survey",
+          "Hydrographic survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a resection survey?",
+        type: "Multiple Choice",
+        answer: "Determine instrument position",
+        options: [
+          "Measure distances",
+          "Determine instrument position",
+          "Calculate area",
+          "Map contours",
+        ],
+      },
+      {
+        question: "Which survey uses a plane table?",
+        type: "Multiple Choice",
+        answer: "Plane table survey",
+        options: [
+          "Leveling survey",
+          "Plane table survey",
+          "Traverse survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question:
+          "What is the contour interval of a map with contours at 400 m and 410 m?",
+        type: "Multiple Choice",
+        answer: "10 m",
+        options: ["5 m", "10 m", "20 m", "50 m"],
+      },
+      {
+        question: "Which survey measures underwater features?",
+        type: "Multiple Choice",
+        answer: "Hydrographic survey",
+        options: [
+          "Topographic survey",
+          "Cadastral survey",
+          "Hydrographic survey",
+          "Geodetic survey",
+        ],
+      },
+      {
+        question: "What is used to measure slope angles?",
+        type: "Multiple Choice",
+        answer: "Total station",
+        options: ["Level", "Total station", "Tape", "Compass"],
+      },
+      {
+        question: "Which survey uses GNSS receivers?",
+        type: "Multiple Choice",
+        answer: "Geodetic survey",
+        options: [
+          "Leveling survey",
+          "Geodetic survey",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
+      },
+      {
+        question: "What is the purpose of a topographic survey?",
+        type: "Multiple Choice",
+        answer: "Map physical features",
+        options: [
+          "Measure angles",
+          "Map physical features",
+          "Calculate volume",
+          "Determine bearing",
+        ],
+      },
+      {
+        question: "Which method corrects traverse errors based on coordinates?",
+        type: "Multiple Choice",
+        answer: "Least squares",
+        options: [
+          "Bowditch rule",
+          "Least squares",
+          "Compass rule",
+          "Transit rule",
+        ],
+      },
+      {
+        question: "What is the minimum number of satellites for a GNSS survey?",
+        type: "Multiple Choice",
+        answer: "4",
+        options: ["2", "3", "4", "5"],
+      },
+      {
+        question: "Which survey uses a total station for leveling?",
+        type: "Multiple Choice",
+        answer: "Differential leveling",
+        options: [
+          "Traverse survey",
+          "Differential leveling",
+          "Tacheometric survey",
+          "Plane table survey",
+        ],
       },
     ],
   },
@@ -9807,8 +9805,8 @@ export const courseData6 = {
         type: "False",
       },
       {
-        question: "Fill-in",
-        type: "A __________ is used to measure seabed sediment properties.",
+        question: "A __________ is used to measure seabed sediment properties.",
+        type: "Fill-in",
         answer: "grab sampler",
       },
       {
@@ -15952,7 +15950,6 @@ export const courseData6 = {
         ],
       },
       {
-        question: "Fill-in",
         question: "The __________ is used to survey data visualization.",
         type: "Fill-in",
         answer: "GIS",
@@ -17885,6 +17882,12246 @@ export const courseData6 = {
         question: "A cost overrun analysis is used for mapping.",
         type: "True/False",
         answer: "False",
+      },
+    ],
+  },
+  "Satellite Surveying": {
+    programOfStudy: "Geomatic Engineering",
+    levelOfStudy: "Level 300",
+    semesterOfStudy: "Semester 2",
+    Easy: [
+      {
+        question:
+          "What does GNSS stand for in the context of satellite surveying?",
+        type: "Multiple Choice",
+        answer: "Global Navigation Satellite System",
+        options: [
+          "Global Network Satellite System",
+          "Global Navigation Satellite System",
+          "Geodetic Navigation Satellite System",
+          "Global Nautical Satellite System",
+        ],
+      },
+      {
+        question:
+          "Which segment of the GPS system includes the constellation of satellites?",
+        type: "Multiple Choice",
+        answer: "Space Segment",
+        options: [
+          "Control Segment",
+          "User Segment",
+          "Space Segment",
+          "Ground Segment",
+        ],
+      },
+      {
+        question: "What is the primary power source for GPS satellites?",
+        type: "Multiple Choice",
+        answer: "Solar panels",
+        options: [
+          "Nuclear reactors",
+          "Solar panels",
+          "Batteries",
+          "Fuel cells",
+        ],
+      },
+      {
+        question:
+          "How many operational GPS satellites are designed to be available 95% of the time?",
+        type: "Multiple Choice",
+        answer: "24",
+        options: ["18", "24", "27", "31"],
+      },
+      {
+        question:
+          "What is the approximate altitude of GPS satellites in Medium Earth Orbit (MEO)?",
+        type: "Multiple Choice",
+        answer: "20,200 km",
+        options: ["10,000 km", "15,000 km", "20,200 km", "36,000 km"],
+      },
+      {
+        question: "Which frequency band is used by the GPS L1 signal?",
+        type: "Multiple Choice",
+        answer: "1575.42 MHz",
+        options: ["1227.60 MHz", "1176.45 MHz", "1575.42 MHz", "300 MHz"],
+      },
+      {
+        question:
+          "What was the first operational satellite-based navigation system?",
+        type: "Multiple Choice",
+        answer: "Transit",
+        options: ["GPS", "Timation", "Transit", "System 621B"],
+      },
+      {
+        question: "Who invented the marine chronometer in 1730?",
+        type: "Multiple Choice",
+        answer: "Harrison",
+        options: ["Magellan", "Kirschner", "Harrison", "Sputnik"],
+      },
+      {
+        question:
+          "What type of clocks are primarily used on GPS satellites for accurate timekeeping?",
+        type: "Multiple Choice",
+        answer: "Atomic clocks",
+        options: [
+          "Quartz clocks",
+          "Atomic clocks",
+          "Mechanical clocks",
+          "Digital clocks",
+        ],
+      },
+      {
+        question: "What is the orbital period of a GPS satellite?",
+        type: "Multiple Choice",
+        answer: "11.5 hours",
+        options: ["6 hours", "11.5 hours", "24 hours", "12 hours"],
+      },
+      {
+        question: "Which organization operates the GPS satellites?",
+        type: "Multiple Choice",
+        answer: "U.S. Department of Defense",
+        options: ["NASA", "U.S. Department of Defense", "ESA", "NOAA"],
+      },
+      {
+        question:
+          "What navigation system was developed in the 1960s for worldwide coverage using VLF band?",
+        type: "Multiple Choice",
+        answer: "Omega",
+        options: ["Loran", "Omega", "Transit", "Timation"],
+      },
+      {
+        question: "What does PRN stand for in GPS signal structure?",
+        type: "Multiple Choice",
+        answer: "Pseudorandom Noise",
+        options: [
+          "Pulse Radio Navigation",
+          "Pseudorandom Noise",
+          "Precise Radio Number",
+          "Phase Random Noise",
+        ],
+      },
+      {
+        question: "Which segment of GPS includes the Master Control Station?",
+        type: "Multiple Choice",
+        answer: "Control Segment",
+        options: [
+          "Space Segment",
+          "User Segment",
+          "Control Segment",
+          "Ground Segment",
+        ],
+      },
+      {
+        question:
+          "What is the inclination angle of GPS satellite orbital planes relative to the equator?",
+        type: "Multiple Choice",
+        answer: "55 degrees",
+        options: ["45 degrees", "55 degrees", "60 degrees", "90 degrees"],
+      },
+      {
+        question:
+          "What was the Soviet spacecraft launched in 1957 that contributed to satellite navigation?",
+        type: "Multiple Choice",
+        answer: "Sputnik",
+        options: ["Sputnik", "Timation", "Transit", "NAVSTAR"],
+      },
+      {
+        question:
+          "Which GPS satellite generation introduced advanced system securities?",
+        type: "Multiple Choice",
+        answer: "Block II",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What is the primary function of monitor stations in the GPS control segment?",
+        type: "Multiple Choice",
+        answer: "Track satellite orbits",
+        options: [
+          "Broadcast signals",
+          "Track satellite orbits",
+          "Store ephemeris data",
+          "Control satellite maneuvers",
+        ],
+      },
+      {
+        question:
+          "What method does GNSS use to determine position based on time of arrival measurements?",
+        type: "Multiple Choice",
+        answer: "Trilateration",
+        options: [
+          "Triangulation",
+          "Trilateration",
+          "Hyperbolic positioning",
+          "Doppler shift",
+        ],
+      },
+      {
+        question:
+          "Which navigation system used Doppler-shifted signals for positioning?",
+        type: "Multiple Choice",
+        answer: "Transit",
+        options: ["Timation", "System 621B", "Transit", "Loran"],
+      },
+      {
+        question: "What is the wavelength range for the UHF band used in GNSS?",
+        type: "Multiple Choice",
+        answer: "10 cm - 1 m",
+        options: ["1 cm - 10 cm", "10 cm - 1 m", "1 m - 10 m", "10 m - 100 m"],
+      },
+      {
+        question:
+          "Which component of GPS satellites ensures stable timekeeping?",
+        type: "Multiple Choice",
+        answer: "Atomic clocks",
+        options: [
+          "Solar panels",
+          "Atomic clocks",
+          "Nicad batteries",
+          "Ground antennas",
+        ],
+      },
+      {
+        question: "What was the primary application of the Transit system?",
+        type: "Multiple Choice",
+        answer: "Navigation for submarines",
+        options: [
+          "Aircraft navigation",
+          "Navigation for submarines",
+          "Land surveying",
+          "Satellite tracking",
+        ],
+      },
+      {
+        question:
+          "Which GPS satellite block carried a nuclear explosion detection sensor?",
+        type: "Multiple Choice",
+        answer: "Block I",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What is the speed of radio wave propagation used in GNSS calculations?",
+        type: "Multiple Choice",
+        answer: "3 x 10^8 m/s",
+        options: [
+          "3 x 10^6 m/s",
+          "3 x 10^7 m/s",
+          "3 x 10^8 m/s",
+          "3 x 10^9 m/s",
+        ],
+      },
+      {
+        question:
+          "Which radionavigation method uses time difference of arrival measurements?",
+        type: "Multiple Choice",
+        answer: "Hyperbolic positioning",
+        options: [
+          "Trilateration",
+          "Hyperbolic positioning",
+          "Doppler shift",
+          "Bearing measurement",
+        ],
+      },
+      {
+        question:
+          "What was the name of the joint tri-service committee formed in 1968 for GPS development?",
+        type: "Multiple Choice",
+        answer: "NAVSEG",
+        options: ["NAVSTAR", "NAVSEG", "Timation", "System 621B"],
+      },
+      {
+        question: "Which GPS frequency is used for civilian applications?",
+        type: "Multiple Choice",
+        answer: "L1",
+        options: ["L1", "L2", "L5", "L3"],
+      },
+      {
+        question:
+          "What is the primary limitation of GPS receivers in dense forests?",
+        type: "Multiple Choice",
+        answer: "Inability to see satellites",
+        options: [
+          "Signal interference",
+          "Inability to see satellites",
+          "Low battery life",
+          "Inaccurate clocks",
+        ],
+      },
+      {
+        question:
+          "Which system combined Timation and System 621B technologies to form GPS?",
+        type: "Multiple Choice",
+        answer: "NAVSTAR",
+        options: ["Transit", "NAVSTAR", "Omega", "Loran"],
+      },
+      {
+        question: "The Global Positioning System is also known as ________.",
+        type: "Fill-in",
+        answer: "NAVSTAR",
+      },
+      {
+        question:
+          "The GPS constellation operates in ________ Earth Orbit (MEO).",
+        type: "Fill-in",
+        answer: "Medium",
+      },
+      {
+        question:
+          "The primary power source for GPS satellites is ________ panels.",
+        type: "Fill-in",
+        answer: "Solar",
+      },
+      {
+        question:
+          "The orbital period of a GPS satellite is approximately ________ hours.",
+        type: "Fill-in",
+        answer: "11.5",
+      },
+      {
+        question: "The GPS L1 signal operates at a frequency of ________ MHz.",
+        type: "Fill-in",
+        answer: "1575.42",
+      },
+      {
+        question:
+          "The first operational satellite navigation system was called ________.",
+        type: "Fill-in",
+        answer: "Transit",
+      },
+      {
+        question: "The marine chronometer was invented by ________ in 1730.",
+        type: "Fill-in",
+        answer: "Harrison",
+      },
+      {
+        question: "GPS satellites use ________ clocks for precise timekeeping.",
+        type: "Fill-in",
+        answer: "Atomic",
+      },
+      {
+        question: "The Soviet spacecraft launched in 1957 was named ________.",
+        type: "Fill-in",
+        answer: "Sputnik",
+      },
+      {
+        question:
+          "The GPS control segment includes the ________ Control Station located in Colorado.",
+        type: "Fill-in",
+        answer: "Master",
+      },
+      {
+        question:
+          "The GPS constellation is arranged into ________ equally-spaced orbital planes.",
+        type: "Fill-in",
+        answer: "Six",
+      },
+      {
+        question:
+          "The inclination angle of GPS orbital planes is ________ degrees.",
+        type: "Fill-in",
+        answer: "55",
+      },
+      {
+        question:
+          "The navigation system developed in the 1960s using VLF band was ________.",
+        type: "Fill-in",
+        answer: "Omega",
+      },
+      {
+        question: "The GPS signal structure uses ________ noise codes.",
+        type: "Fill-in",
+        answer: "Pseudorandom",
+      },
+      {
+        question:
+          "The Transit system was primarily used for navigation of ________.",
+        type: "Fill-in",
+        answer: "Submarines",
+      },
+      {
+        question:
+          "The speed of radio wave propagation is approximately ________ m/s.",
+        type: "Fill-in",
+        answer: "3 x 10^8",
+      },
+      {
+        question: "The GPS user segment includes all ________ receivers.",
+        type: "Fill-in",
+        answer: "GPS",
+      },
+      {
+        question:
+          "The method of determining position using time of arrival is called ________.",
+        type: "Fill-in",
+        answer: "Trilateration",
+      },
+      {
+        question: "The first Timation satellite was launched in ________.",
+        type: "Fill-in",
+        answer: "1967",
+      },
+      {
+        question:
+          "The GPS Block I satellites were launched using the ________ booster.",
+        type: "Fill-in",
+        answer: "Atlas-F",
+      },
+      {
+        question:
+          "The radionavigation method using time difference of arrival is ________ positioning.",
+        type: "Fill-in",
+        answer: "Hyperbolic",
+      },
+      {
+        question:
+          "The joint tri-service committee for GPS development was called ________.",
+        type: "Fill-in",
+        answer: "NAVSEG",
+      },
+      {
+        question: "The GPS L5 signal operates at ________ MHz.",
+        type: "Fill-in",
+        answer: "1176.45",
+      },
+      {
+        question:
+          "The Transit system used ________-shifted signals for positioning.",
+        type: "Fill-in",
+        answer: "Doppler",
+      },
+      {
+        question:
+          "The GPS constellation expansion completed in 2011 is known as ________ 24.",
+        type: "Fill-in",
+        answer: "Expandable",
+      },
+      {
+        question:
+          "The wavelength range for the UHF band is ________ to 1 meter.",
+        type: "Fill-in",
+        answer: "10 cm",
+      },
+      {
+        question:
+          "The Timation system advanced the development of ________ clocks.",
+        type: "Fill-in",
+        answer: "Atomic",
+      },
+      {
+        question:
+          "The GPS satellites broadcast their position using ________ data.",
+        type: "Fill-in",
+        answer: "Ephemeris",
+      },
+      {
+        question:
+          "The ground antennas in the GPS control segment use ________-band communications.",
+        type: "Fill-in",
+        answer: "S",
+      },
+      {
+        question:
+          "The first NAVSTAR satellites were refurbished ________ satellites.",
+        type: "Fill-in",
+        answer: "Timation",
+      },
+      {
+        question: "GPS satellites operate in Low Earth Orbit (LEO).",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The GPS system is designed to maintain at least 24 operational satellites 95% of the time.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The primary power source for GPS satellites is nuclear energy.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The GPS L1 frequency is 1575.42 MHz.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Transit system was the first operational satellite-based navigation system.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The marine chronometer was invented by Ferdinand Magellan.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "GPS satellites use quartz clocks for timekeeping.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Sputnik’s radio signals were monitored at 20.005 and 40.002 MHz.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The GPS control segment includes monitor stations and ground antennas.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "GPS satellites are arranged in four orbital planes.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The orbital inclination of GPS satellites is 55 degrees.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Omega navigation system operated in the VLF band.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Transit system provided three-dimensional positioning.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The GPS user segment includes only military receivers.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Trilateration is a method used in GNSS to determine position.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Timation system was developed by the U.S. Army.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The GPS Block I satellites had a design life of 3 years.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The speed of radio waves is approximately 3 x 10^8 m/s.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Hyperbolic positioning uses time of arrival measurements.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The NAVSEG committee was formed in 1973.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The GPS L2 frequency is 1227.60 MHz.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Transit system was available to civilian users in 1967.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "GPS receivers work effectively inside caves.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The System 621B was developed by the U.S. Air Force.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The GPS constellation expansion in 2011 was called 'Expandable 24'.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The UHF band has a wavelength range of 10 cm to 1 meter.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Timation system contributed to the development of quartz clocks.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "GPS satellites broadcast ephemeris data to users.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Ground antennas in the GPS control segment use L-band communications.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The NAVSTAR GPS system merged Timation and System 621B technologies.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "What is the primary function of the GPS control segment?",
+        type: "Multiple Choice",
+        answer: "Monitor and maintain satellite health",
+        options: [
+          "Broadcast signals",
+          "Monitor and maintain satellite health",
+          "Receive user signals",
+          "Store ephemeris data",
+        ],
+      },
+      {
+        question: "Which GPS satellite block introduced the L5 frequency?",
+        type: "Multiple Choice",
+        answer: "Block IIF",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What was the primary limitation of the Transit system for high-velocity applications?",
+        type: "Multiple Choice",
+        answer: "Inability to provide 3D positioning",
+        options: [
+          "Low accuracy",
+          "Inability to provide 3D positioning",
+          "Signal interference",
+          "Short satellite lifespan",
+        ],
+      },
+      {
+        question:
+          "Which navigation system used hyperbolic positioning with phase differences?",
+        type: "Multiple Choice",
+        answer: "Omega",
+        options: ["Transit", "Timation", "Omega", "System 621B"],
+      },
+      {
+        question:
+          "What is the accuracy range of the Transit system under favorable conditions?",
+        type: "Multiple Choice",
+        answer: "35 to 100 meters",
+        options: [
+          "10 to 50 meters",
+          "35 to 100 meters",
+          "100 to 200 meters",
+          "200 to 500 meters",
+        ],
+      },
+      {
+        question: "Which organization developed the Transit system?",
+        type: "Multiple Choice",
+        answer: "John Hopkins Applied Physics Laboratory",
+        options: [
+          "Naval Research Laboratory",
+          "John Hopkins Applied Physics Laboratory",
+          "Aerospace Corporation",
+          "U.S. Air Force",
+        ],
+      },
+      {
+        question:
+          "What type of signal did the System 621B use for precise positioning?",
+        type: "Multiple Choice",
+        answer: "Pseudorandom Noise",
+        options: [
+          "Doppler Shift",
+          "Pseudorandom Noise",
+          "Time of Arrival",
+          "Phase Difference",
+        ],
+      },
+      {
+        question:
+          "Which GPS component uploads navigation messages to satellites?",
+        type: "Multiple Choice",
+        answer: "Master Control Station",
+        options: [
+          "Monitor Stations",
+          "Ground Antennas",
+          "Master Control Station",
+          "User Receivers",
+        ],
+      },
+      {
+        question: "What is the period of revolution for a Transit satellite?",
+        type: "Multiple Choice",
+        answer: "107 minutes",
+        options: ["90 minutes", "100 minutes", "107 minutes", "120 minutes"],
+      },
+      {
+        question:
+          "Which radionavigation method measures velocity using radio Doppler shift?",
+        type: "Multiple Choice",
+        answer: "Doppler positioning",
+        options: [
+          "Trilateration",
+          "Hyperbolic positioning",
+          "Doppler positioning",
+          "Bearing measurement",
+        ],
+      },
+      {
+        question: "What was the primary application of System 621B?",
+        type: "Multiple Choice",
+        answer: "Aircraft positioning",
+        options: [
+          "Submarine navigation",
+          "Aircraft positioning",
+          "Land surveying",
+          "Missile guidance",
+        ],
+      },
+      {
+        question:
+          "How many monitoring stations are part of the GPS control segment?",
+        type: "Multiple Choice",
+        answer: "15",
+        options: ["10", "12", "15", "18"],
+      },
+      {
+        question:
+          "Which GPS satellite generation had a design life of 3 years?",
+        type: "Multiple Choice",
+        answer: "Block I",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What is the primary challenge of GNSS positioning in dense forests?",
+        type: "Multiple Choice",
+        answer: "Signal obstruction",
+        options: [
+          "Signal interference",
+          "Signal obstruction",
+          "Clock errors",
+          "Orbital inaccuracies",
+        ],
+      },
+      {
+        question: "Which navigation system was developed during World War II?",
+        type: "Multiple Choice",
+        answer: "Loran",
+        options: ["Omega", "Loran", "Transit", "Timation"],
+      },
+      {
+        question: "What was the altitude of Transit satellites?",
+        type: "Multiple Choice",
+        answer: "1075 km",
+        options: ["500 km", "1075 km", "1500 km", "2000 km"],
+      },
+      {
+        question:
+          "Which GPS frequency is used for safety-of-life applications?",
+        type: "Multiple Choice",
+        answer: "L5",
+        options: ["L1", "L2", "L5", "L3"],
+      },
+      {
+        question:
+          "What was the key contribution of the Timation system to GPS?",
+        type: "Multiple Choice",
+        answer: "Development of atomic clocks",
+        options: [
+          "Doppler shift technology",
+          "Development of atomic clocks",
+          "3D positioning",
+          "Signal encryption",
+        ],
+      },
+      {
+        question: "Which GPS satellite block was launched in February 1989?",
+        type: "Multiple Choice",
+        answer: "Block II",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What is the purpose of ground antennas in the GPS control segment?",
+        type: "Multiple Choice",
+        answer: "Communicate with satellites",
+        options: [
+          "Track satellite orbits",
+          "Communicate with satellites",
+          "Process user signals",
+          "Store ephemeris data",
+        ],
+      },
+      {
+        question: "Which method did Sputnik use to enable satellite tracking?",
+        type: "Multiple Choice",
+        answer: "Doppler shift",
+        options: [
+          "Trilateration",
+          "Doppler shift",
+          "Hyperbolic positioning",
+          "Time of arrival",
+        ],
+      },
+      {
+        question: "What is the wavelength formula used in radionavigation?",
+        type: "Multiple Choice",
+        answer: "λ = c / f",
+        options: ["λ = c * f", "λ = c / f", "λ = f / c", "λ = c + f"],
+      },
+      {
+        question:
+          "Which GPS satellite block included modernized features like L5 signals?",
+        type: "Multiple Choice",
+        answer: "Block IIF",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What was the primary limitation of the Transit system’s coverage?",
+        type: "Multiple Choice",
+        answer: "Large gaps in coverage",
+        options: [
+          "Low accuracy",
+          "Large gaps in coverage",
+          "Signal interference",
+          "Short satellite lifespan",
+        ],
+      },
+      {
+        question: "Which organization funded System 621B in 1963?",
+        type: "Multiple Choice",
+        answer: "U.S. Air Force",
+        options: [
+          "U.S. Navy",
+          "U.S. Air Force",
+          "Aerospace Corporation",
+          "John Hopkins",
+        ],
+      },
+      {
+        question:
+          "What is the frequency range of the VLF band used in radionavigation?",
+        type: "Multiple Choice",
+        answer: "<30 kHz",
+        options: ["<30 kHz", "30-300 kHz", "300 kHz-3 MHz", "3-30 MHz"],
+      },
+      {
+        question: "Which GPS component collects atmospheric data?",
+        type: "Multiple Choice",
+        answer: "Monitor Stations",
+        options: [
+          "Ground Antennas",
+          "Master Control Station",
+          "Monitor Stations",
+          "User Receivers",
+        ],
+      },
+      {
+        question:
+          "What was the accuracy of System 621B at White Sands Proving Ground?",
+        type: "Multiple Choice",
+        answer: "16 meters",
+        options: ["10 meters", "16 meters", "25 meters", "50 meters"],
+      },
+      {
+        question:
+          "Which navigation system used eight ground-based transmitters?",
+        type: "Multiple Choice",
+        answer: "Omega",
+        options: ["Loran", "Omega", "Transit", "Timation"],
+      },
+      {
+        question:
+          "What was the primary advantage of PRN signals in System 621B?",
+        type: "Multiple Choice",
+        answer: "Interference rejection",
+        options: [
+          "High accuracy",
+          "Interference rejection",
+          "Low power usage",
+          "Simple processing",
+        ],
+      },
+      {
+        question:
+          "The GPS control segment is responsible for monitoring and maintaining ________ health.",
+        type: "Fill-in",
+        answer: "Satellite",
+      },
+      {
+        question:
+          "The GPS Block ________ introduced the L5 frequency for safety-of-life applications.",
+        type: "Fill-in",
+        answer: "IIF",
+      },
+      {
+        question:
+          "The Transit system had large ________ in coverage, lasting several hours.",
+        type: "Fill-in",
+        answer: "Gaps",
+      },
+      {
+        question:
+          "The ________ navigation system used hyperbolic positioning with phase differences.",
+        type: "Fill-in",
+        answer: "Omega",
+      },
+      {
+        question:
+          "The accuracy of the Transit system under favorable conditions was between ________ and 100 meters.",
+        type: "Fill-in",
+        answer: "35",
+      },
+      {
+        question:
+          "The Transit system was developed by the ________ Applied Physics Laboratory.",
+        type: "Fill-in",
+        answer: "John Hopkins",
+      },
+      {
+        question:
+          "System 621B used ________ noise signals for precise positioning.",
+        type: "Fill-in",
+        answer: "Pseudorandom",
+      },
+      {
+        question:
+          "The ________ Control Station uploads navigation messages to GPS satellites.",
+        type: "Fill-in",
+        answer: "Master",
+      },
+      {
+        question:
+          "The period of revolution for a Transit satellite was ________ minutes.",
+        type: "Fill-in",
+        answer: "107",
+      },
+      {
+        question:
+          "The radionavigation method that measures velocity is called ________ positioning.",
+        type: "Fill-in",
+        answer: "Doppler",
+      },
+      {
+        question:
+          "System 621B was primarily developed for ________ positioning.",
+        type: "Fill-in",
+        answer: "Aircraft",
+      },
+      {
+        question:
+          "The GPS control segment includes ________ monitoring stations worldwide.",
+        type: "Fill-in",
+        answer: "15",
+      },
+      {
+        question:
+          "The GPS Block ________ satellites had a design life of 3 years.",
+        type: "Fill-in",
+        answer: "I",
+      },
+      {
+        question:
+          "The primary challenge of GNSS in dense forests is signal ________.",
+        type: "Fill-in",
+        answer: "Obstruction",
+      },
+      {
+        question:
+          "The ________ navigation system was developed during World War II.",
+        type: "Fill-in",
+        answer: "Loran",
+      },
+      {
+        question: "The altitude of Transit satellites was ________ km.",
+        type: "Fill-in",
+        answer: "1075",
+      },
+      {
+        question:
+          "The GPS ________ frequency is used for safety-of-life applications.",
+        type: "Fill-in",
+        answer: "L5",
+      },
+      {
+        question:
+          "The Timation system contributed to the development of ________ clocks.",
+        type: "Fill-in",
+        answer: "Atomic",
+      },
+      {
+        question:
+          "The GPS Block ________ satellites were launched in February 1989.",
+        type: "Fill-in",
+        answer: "II",
+      },
+      {
+        question:
+          "Ground antennas in the GPS control segment are used to ________ with satellites.",
+        type: "Fill-in",
+        answer: "Communicate",
+      },
+      {
+        question: "Sputnik enabled satellite tracking using ________ shift.",
+        type: "Fill-in",
+        answer: "Doppler",
+      },
+      {
+        question: "The wavelength formula used in radionavigation is ________.",
+        type: "Fill-in",
+        answer: "λ = c / f",
+      },
+      {
+        question:
+          "The GPS Block ________ introduced modernized features like L5 signals.",
+        type: "Fill-in",
+        answer: "IIF",
+      },
+      {
+        question:
+          "The primary limitation of the Transit system was large ________ in coverage.",
+        type: "Fill-in",
+        answer: "Gaps",
+      },
+      {
+        question: "System 621B was funded by the U.S. ________ Force in 1963.",
+        type: "Fill-in",
+        answer: "Air",
+      },
+      {
+        question:
+          "The frequency range of the VLF band is less than ________ kHz.",
+        type: "Fill-in",
+        answer: "30",
+      },
+      {
+        question:
+          "________ stations collect atmospheric data in the GPS control segment.",
+        type: "Fill-in",
+        answer: "Monitor",
+      },
+      {
+        question:
+          "System 621B achieved an accuracy of ________ meters at White Sands Proving Ground.",
+        type: "Fill-in",
+        answer: "16",
+      },
+      {
+        question:
+          "The ________ navigation system used eight ground-based transmitters.",
+        type: "Fill-in",
+        answer: "Omega",
+      },
+      {
+        question: "The primary advantage of PRN signals is ________ rejection.",
+        type: "Fill-in",
+        answer: "Interference",
+      },
+      {
+        question:
+          "The GPS control segment monitors satellite health and orbits.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The GPS Block IIF satellites introduced the L2 frequency.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The Transit system was effective for high-velocity applications like aircraft.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The Omega navigation system used hyperbolic positioning.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Transit system had an accuracy range of 35 to 100 meters under favorable conditions.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Transit system was developed by the Naval Research Laboratory.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "System 621B used pseudorandom noise signals for positioning.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Master Control Station is located in Florida.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The Transit satellite had a revolution period of 107 minutes.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Doppler positioning measures velocity using radio Doppler shift.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "System 621B was developed for submarine navigation.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The GPS control segment includes 15 monitoring stations.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The GPS Block I satellites had a design life of 10 years.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "GNSS signals are obstructed in dense forests.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Loran navigation system was developed during World War II.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Transit satellites orbited at an altitude of 20,200 km.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The GPS L5 frequency is used for safety-of-life applications.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Timation system contributed to atomic clock development.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The GPS Block II satellites were launched in 1985.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Ground antennas communicate with GPS satellites using S-band links.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Sputnik used Doppler shift for satellite tracking.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The wavelength formula in radionavigation is λ = c * f.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The GPS Block IIF satellites introduced modernized features like L5 signals.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Transit system had continuous global coverage.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "System 621B was funded by the U.S. Air Force in 1963.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The VLF band has a frequency range of less than 30 kHz.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Monitor stations collect atmospheric data for the GPS control segment.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "System 621B achieved an accuracy of 50 meters at White Sands Proving Ground.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The Omega navigation system used eight ground-based transmitters.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "PRN signals in System 621B allowed interference rejection.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "What was the primary challenge of GNSS positioning in Ghana mentioned in the course objectives?",
+        type: "Multiple Choice",
+        answer: "Signal obstructions and multipath effects",
+        options: [
+          "Signal obstructions and multipath effects",
+          "Lack of satellite coverage",
+          "Inaccurate atomic clocks",
+          "High cost of receivers",
+        ],
+      },
+      {
+        question:
+          "Which GPS satellite block was tested on various platforms like aircraft and jeeps?",
+        type: "Multiple Choice",
+        answer: "Block I",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What was the key technological advancement of the Timation system over Transit?",
+        type: "Multiple Choice",
+        answer: "Use of atomic clocks",
+        options: [
+          "Use of atomic clocks",
+          "3D positioning",
+          "Global coverage",
+          "Doppler shift technology",
+        ],
+      },
+      {
+        question:
+          "Which radionavigation system used very low frequency (VLF) signals for worldwide coverage?",
+        type: "Multiple Choice",
+        answer: "Omega",
+        options: ["Loran", "Omega", "Transit", "Timation"],
+      },
+      {
+        question:
+          "What was the primary purpose of the NAVSEG committee formed in 1968?",
+        type: "Multiple Choice",
+        answer: "Coordinate military navigation systems",
+        options: [
+          "Develop atomic clocks",
+          "Coordinate military navigation systems",
+          "Launch GPS satellites",
+          "Fund System 621B",
+        ],
+      },
+      {
+        question: "Which GPS component predicts satellite ephemerides?",
+        type: "Multiple Choice",
+        answer: "Master Control Station",
+        options: [
+          "Monitor Stations",
+          "Ground Antennas",
+          "Master Control Station",
+          "User Receivers",
+        ],
+      },
+      {
+        question: "What was the altitude range of Sputnik’s orbit?",
+        type: "Multiple Choice",
+        answer: "223 km to 1450 km",
+        options: [
+          "100 km to 500 km",
+          "223 km to 1450 km",
+          "500 km to 1000 km",
+          "1000 km to 2000 km",
+        ],
+      },
+      {
+        question:
+          "Which GPS satellite block had a 30% funding cut in the second phase?",
+        type: "Multiple Choice",
+        answer: "Block II",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What is the primary advantage of spread spectrum signaling in GNSS?",
+        type: "Multiple Choice",
+        answer: "Unique signal transmission on same frequency",
+        options: [
+          "High accuracy",
+          "Unique signal transmission on same frequency",
+          "Low power usage",
+          "Simple receiver design",
+        ],
+      },
+      {
+        question: "Which navigation system was developed by the Army?",
+        type: "Multiple Choice",
+        answer: "SECOR",
+        options: ["Transit", "Timation", "SECOR", "System 621B"],
+      },
+      {
+        question: "What was the orbital period of Sputnik?",
+        type: "Multiple Choice",
+        answer: "~100 minutes",
+        options: [
+          "~90 minutes",
+          "~100 minutes",
+          "~120 minutes",
+          "~150 minutes",
+        ],
+      },
+      {
+        question: "Which GPS frequency band is used for military applications?",
+        type: "Multiple Choice",
+        answer: "L2",
+        options: ["L1", "L2", "L5", "L3"],
+      },
+      {
+        question:
+          "What was the primary limitation of the Transit system for dynamic applications?",
+        type: "Multiple Choice",
+        answer: "Long observation times",
+        options: [
+          "Low accuracy",
+          "Long observation times",
+          "Signal interference",
+          "Short satellite lifespan",
+        ],
+      },
+      {
+        question: "Which organization developed System 621B in 1963?",
+        type: "Multiple Choice",
+        answer: "Aerospace Corporation",
+        options: [
+          "Naval Research Laboratory",
+          "Aerospace Corporation",
+          "John Hopkins",
+          "U.S. Air Force",
+        ],
+      },
+      {
+        question:
+          "What is the primary function of GNSS receivers in the user segment?",
+        type: "Multiple Choice",
+        answer: "Track and process signals",
+        options: [
+          "Broadcast signals",
+          "Track and process signals",
+          "Update ephemeris data",
+          "Control satellite orbits",
+        ],
+      },
+      {
+        question: "Which radionavigation method uses bearing measurements?",
+        type: "Multiple Choice",
+        answer: "Direction finding",
+        options: [
+          "Trilateration",
+          "Hyperbolic positioning",
+          "Direction finding",
+          "Doppler shift",
+        ],
+      },
+      {
+        question:
+          "What was the accuracy of the Transit system for static positioning?",
+        type: "Multiple Choice",
+        answer: "35 to 100 meters",
+        options: [
+          "10 to 50 meters",
+          "35 to 100 meters",
+          "100 to 200 meters",
+          "200 to 500 meters",
+        ],
+      },
+      {
+        question:
+          "Which GPS satellite block included nuclear explosion detection sensors?",
+        type: "Multiple Choice",
+        answer: "Block I",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What is the frequency range of the SHF band used in radionavigation?",
+        type: "Multiple Choice",
+        answer: "3-30 GHz",
+        options: ["30-300 kHz", "300 MHz-3 GHz", "3-30 GHz", "30-300 GHz"],
+      },
+      {
+        question: "Which GPS component is responsible for command maneuvers?",
+        type: "Multiple Choice",
+        answer: "Master Control Station",
+        options: [
+          "Monitor Stations",
+          "Ground Antennas",
+          "Master Control Station",
+          "User Receivers",
+        ],
+      },
+      {
+        question:
+          "What was the key feature of the GPS Block IIR(M) satellites?",
+        type: "Multiple Choice",
+        answer: "Modernized signals",
+        options: [
+          "Atomic clocks",
+          "Modernized signals",
+          "Solar panels",
+          "Longer lifespan",
+        ],
+      },
+      {
+        question: "Which navigation system used time-transfer technology?",
+        type: "Multiple Choice",
+        answer: "Timation",
+        options: ["Transit", "Timation", "Loran", "Omega"],
+      },
+      {
+        question: "What was the primary application of the NAVSTAR GPS system?",
+        type: "Multiple Choice",
+        answer: "Military navigation",
+        options: [
+          "Civilian navigation",
+          "Military navigation",
+          "Satellite tracking",
+          "Time transfer",
+        ],
+      },
+      {
+        question:
+          "Which GPS satellite block was launched by Rockwell International?",
+        type: "Multiple Choice",
+        answer: "Block II",
+        options: ["Block I", "Block II", "Block IIR", "Block IIF"],
+      },
+      {
+        question:
+          "What is the primary challenge of GNSS signals in urban areas?",
+        type: "Multiple Choice",
+        answer: "Multipath effects",
+        options: [
+          "Signal obstruction",
+          "Multipath effects",
+          "Clock errors",
+          "Orbital inaccuracies",
+        ],
+      },
+      {
+        question:
+          "Which radionavigation system was used for marine navigation during World War II?",
+        type: "Multiple Choice",
+        answer: "Loran",
+        options: ["Omega", "Loran", "Transit", "Timation"],
+      },
+      {
+        question: "What was the speed of Sputnik in its orbit?",
+        type: "Multiple Choice",
+        answer: "29,000 km/h",
+        options: ["15,000 km/h", "20,000 km/h", "29,000 km/h", "35,000 km/h"],
+      },
+      {
+        question:
+          "Which GPS component uses S-band communications for satellite control?",
+        type: "Multiple Choice",
+        answer: "Ground Antennas",
+        options: [
+          "Monitor Stations",
+          "Ground Antennas",
+          "Master Control Station",
+          "User Receivers",
+        ],
+      },
+      {
+        question: "What was the primary advantage of System 621B over Transit?",
+        type: "Multiple Choice",
+        answer: "3D positioning",
+        options: [
+          "Higher accuracy",
+          "3D positioning",
+          "Global coverage",
+          "Atomic clocks",
+        ],
+      },
+      {
+        question:
+          "Which GPS satellite block consisted of 33 satellites including spares?",
+        type: "Multiple Choice",
+        answer: "Block III",
+        options: ["Block I", "Block II", "Block IIR", "Block III"],
+      },
+      {
+        question:
+          "A primary challenge of GNSS positioning in Ghana is ________ effects.",
+        type: "Fill-in",
+        answer: "Multipath",
+      },
+      {
+        question:
+          "The GPS Block ________ satellites were tested on aircraft and jeeps.",
+        type: "Fill-in",
+        answer: "I",
+      },
+      {
+        question:
+          "The Timation system advanced the use of ________ clocks over Transit.",
+        type: "Fill-in",
+        answer: "Atomic",
+      },
+      {
+        question:
+          "The ________ navigation system used VLF signals for worldwide coverage.",
+        type: "Fill-in",
+        answer: "Omega",
+      },
+      {
+        question:
+          "The NAVSEG committee was formed to coordinate ________ navigation systems.",
+        type: "Fill-in",
+        answer: "Military",
+      },
+      {
+        question:
+          "The ________ Control Station predicts satellite ephemerides.",
+        type: "Fill-in",
+        answer: "Master",
+      },
+      {
+        question: "Sputnik’s orbit ranged from ________ km to 1450 km.",
+        type: "Fill-in",
+        answer: "223",
+      },
+      {
+        question:
+          "The GPS Block ________ faced a 30% funding cut in the second phase.",
+        type: "Fill-in",
+        answer: "II",
+      },
+      {
+        question:
+          "Spread spectrum signaling allows unique signal transmission on the same ________.",
+        type: "Fill-in",
+        answer: "Frequency",
+      },
+      {
+        question: "The Army developed the ________ navigation system.",
+        type: "Fill-in",
+        answer: "SECOR",
+      },
+      {
+        question:
+          "Sputnik had an orbital period of approximately ________ minutes.",
+        type: "Fill-in",
+        answer: "100",
+      },
+      {
+        question:
+          "The GPS ________ frequency is used for military applications.",
+        type: "Fill-in",
+        answer: "L2",
+      },
+      {
+        question:
+          "The Transit system required long ________ times for positioning.",
+        type: "Fill-in",
+        answer: "Observation",
+      },
+      {
+        question:
+          "System 621B was developed by the ________ Corporation in 1963.",
+        type: "Fill-in",
+        answer: "Aerospace",
+      },
+      {
+        question:
+          "GNSS receivers in the user segment ________ and process signals.",
+        type: "Fill-in",
+        answer: "Track",
+      },
+      {
+        question:
+          "The radionavigation method using bearing measurements is ________ finding.",
+        type: "Fill-in",
+        answer: "Direction",
+      },
+      {
+        question:
+          "The Transit system had an accuracy of ________ to 100 meters for static positioning.",
+        type: "Fill-in",
+        answer: "35",
+      },
+      {
+        question:
+          "The GPS Block ________ carried nuclear explosion detection sensors.",
+        type: "Fill-in",
+        answer: "I",
+      },
+      {
+        question: "The SHF band has a frequency range of ________ to 30 GHz.",
+        type: "Fill-in",
+        answer: "3",
+      },
+      {
+        question:
+          "The ________ Control Station is responsible for command maneuvers.",
+        type: "Fill-in",
+        answer: "Master",
+      },
+      {
+        question:
+          "The GPS Block IIR(M) satellites introduced ________ signals.",
+        type: "Fill-in",
+        answer: "Modernized",
+      },
+      {
+        question: "The ________ system used time-transfer technology.",
+        type: "Fill-in",
+        answer: "Timation",
+      },
+      {
+        question:
+          "The primary application of NAVSTAR GPS was ________ navigation.",
+        type: "Fill-in",
+        answer: "Military",
+      },
+      {
+        question:
+          "The GPS Block ________ satellites were launched by Rockwell International.",
+        type: "Fill-in",
+        answer: "II",
+      },
+      {
+        question:
+          "The primary challenge of GNSS in urban areas is ________ effects.",
+        type: "Fill-in",
+        answer: "Multipath",
+      },
+      {
+        question:
+          "The ________ navigation system was used for marine navigation during World War II.",
+        type: "Fill-in",
+        answer: "Loran",
+      },
+      {
+        question: "Sputnik’s orbital speed was approximately ________ km/h.",
+        type: "Fill-in",
+        answer: "29,000",
+      },
+      {
+        question:
+          "________ antennas use S-band communications for satellite control.",
+        type: "Fill-in",
+        answer: "Ground",
+      },
+      {
+        question: "System 621B introduced ________ positioning over Transit.",
+        type: "Fill-in",
+        answer: "3D",
+      },
+      {
+        question:
+          "The GPS Block ________ consisted of 33 satellites including spares.",
+        type: "Fill-in",
+        answer: "III",
+      },
+      {
+        question:
+          "GNSS positioning in Ghana is primarily challenged by multipath effects.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The GPS Block I satellites were tested on aircraft and jeeps.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Timation system used quartz clocks for timekeeping.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The Omega navigation system used VLF signals for worldwide coverage.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The NAVSEG committee was formed to develop civilian navigation systems.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The Master Control Station predicts satellite ephemerides.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Sputnik’s orbit ranged from 223 km to 1450 km.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The GPS Block II satellites faced a 50% funding cut.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Spread spectrum signaling allows multiple satellites to use the same frequency.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The SECOR navigation system was developed by the U.S. Navy.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Sputnik had an orbital period of approximately 100 minutes.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The GPS L2 frequency is used for civilian applications.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The Transit system required long observation times for positioning.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "System 621B was developed by the Aerospace Corporation.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "GNSS receivers in the user segment track and process signals.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Direction finding is a radionavigation method using bearing measurements.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Transit system had an accuracy of 10 to 50 meters.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The GPS Block I satellites carried nuclear explosion detection sensors.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The SHF band has a frequency range of 3 to 30 GHz.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Master Control Station is responsible for command maneuvers.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The GPS Block IIR(M) satellites introduced modernized signals.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The Timation system used time-transfer technology.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The NAVSTAR GPS system was primarily for civilian navigation.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The GPS Block II satellites were launched by Rockwell International.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Multipath effects are a primary challenge for GNSS in urban areas.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The Loran navigation system was used for marine navigation during World War II.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Sputnik’s orbital speed was approximately 29,000 km/h.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Ground antennas use L-band communications for satellite control.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "System 621B introduced 3D positioning over Transit.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The GPS Block III consisted of 33 satellites including spares.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "What is the frequency of the GPS L1 carrier signal?",
+        type: "Multiple Choice",
+        answer: "1575.42 MHz",
+        options: ["1227.60 MHz", "1575.42 MHz", "1176.45 MHz", "1381.05 MHz"],
+      },
+      {
+        question: "Which GPS segment includes satellites and their orbits?",
+        type: "Multiple Choice",
+        answer: "Space",
+        options: ["Control", "User", "Space", "Ground"],
+      },
+      {
+        question: "What is the chipping rate of the C/A code?",
+        type: "Multiple Choice",
+        answer: "1.023 Mbps",
+        options: ["10.23 Mbps", "1.023 Mbps", "50 bps", "5 Mbps"],
+      },
+      {
+        question:
+          "Which frequency band is used for nuclear detonation detection?",
+        type: "Multiple Choice",
+        answer: "L3",
+        options: ["L1", "L2", "L3", "L5"],
+      },
+      {
+        question: "What type of clock is used in GPS satellites?",
+        type: "Multiple Choice",
+        answer: "Cesium and Rubidium",
+        options: [
+          "Quartz",
+          "Cesium and Rubidium",
+          "Crystal",
+          "Atomic Hydrogen",
+        ],
+      },
+      {
+        question: "Which code is carried on both L1 and L2 frequencies?",
+        type: "Multiple Choice",
+        answer: "P(Y)",
+        options: ["C/A", "P(Y)", "L1C", "M"],
+      },
+      {
+        question: "What is the wavelength of the L1 carrier signal?",
+        type: "Multiple Choice",
+        answer: "19.05 cm",
+        options: ["24.45 cm", "19.05 cm", "15 cm", "30 cm"],
+      },
+      {
+        question:
+          "What is the primary purpose of the navigation data in GPS signals?",
+        type: "Multiple Choice",
+        answer: "Provide time, ephemeris, and HOW",
+        options: [
+          "Encrypt signals",
+          "Provide time, ephemeris, and HOW",
+          "Increase signal strength",
+          "Reduce multipath",
+        ],
+      },
+      {
+        question:
+          "Which GPS frequency is proposed for civilian safety-of-life signals?",
+        type: "Multiple Choice",
+        answer: "L5",
+        options: ["L1", "L2", "L4", "L5"],
+      },
+      {
+        question: "What is the repetition period of the C/A code?",
+        type: "Multiple Choice",
+        answer: "1 ms",
+        options: ["1 ms", "1 week", "50 ms", "1 hour"],
+      },
+      {
+        question:
+          "Which error source is caused by signal reflections in the receiver environment?",
+        type: "Multiple Choice",
+        answer: "Multipath",
+        options: [
+          "Ionospheric delay",
+          "Ephemeris error",
+          "Multipath",
+          "Clock drift",
+        ],
+      },
+      {
+        question: "What is the typical range error due to ephemeris errors?",
+        type: "Multiple Choice",
+        answer: "2 to 5 m",
+        options: ["0.5 to 1 m", "2 to 5 m", "10 to 15 m", "20 to 30 m"],
+      },
+      {
+        question: "Which GPS error was discontinued in 2000?",
+        type: "Multiple Choice",
+        answer: "Selective Availability",
+        options: [
+          "Anti-Spoofing",
+          "Selective Availability",
+          "Multipath",
+          "Ionospheric delay",
+        ],
+      },
+      {
+        question: "What is the fundamental frequency used in GPS satellites?",
+        type: "Multiple Choice",
+        answer: "10.23 MHz",
+        options: ["1.023 MHz", "10.23 MHz", "1575.42 MHz", "50 MHz"],
+      },
+      {
+        question: "Which code type is used for the C/A code?",
+        type: "Multiple Choice",
+        answer: "Gold",
+        options: ["Gold", "Pseudo Random", "Binary", "Encrypted"],
+      },
+      {
+        question: "What is the primary function of the GPS Control segment?",
+        type: "Multiple Choice",
+        answer: "Monitor and manage satellite operations",
+        options: [
+          "Transmit signals",
+          "Monitor and manage satellite operations",
+          "Receive signals",
+          "Encrypt codes",
+        ],
+      },
+      {
+        question:
+          "Which frequency band is being studied for ionospheric correction?",
+        type: "Multiple Choice",
+        answer: "L4",
+        options: ["L1", "L2", "L4", "L5"],
+      },
+      {
+        question: "What is the chipping rate of the P(Y) code?",
+        type: "Multiple Choice",
+        answer: "10.23 Mbps",
+        options: ["1.023 Mbps", "10.23 Mbps", "50 bps", "5 Mbps"],
+      },
+      {
+        question:
+          "Which error source is caused by the Earth’s atmosphere bending GPS signals?",
+        type: "Multiple Choice",
+        answer: "Ionospheric delay",
+        options: [
+          "Multipath",
+          "Ephemeris error",
+          "Ionospheric delay",
+          "Clock drift",
+        ],
+      },
+      {
+        question:
+          "What is the typical range error due to satellite clock drift?",
+        type: "Multiple Choice",
+        answer: "2.6 to 5.2 m",
+        options: ["0.1 to 0.5 m", "2.6 to 5.2 m", "10 to 20 m", "50 m"],
+      },
+      {
+        question: "Which GPS code is designed for easy acquisition?",
+        type: "Multiple Choice",
+        answer: "C/A",
+        options: ["P(Y)", "C/A", "L1C", "M"],
+      },
+      {
+        question: "What is the wavelength of the L2 carrier signal?",
+        type: "Multiple Choice",
+        answer: "24.45 cm",
+        options: ["19.05 cm", "24.45 cm", "15 cm", "30 cm"],
+      },
+      {
+        question:
+          "Which error source can be mitigated by using a choke ring antenna?",
+        type: "Multiple Choice",
+        answer: "Multipath",
+        options: [
+          "Ionospheric delay",
+          "Multipath",
+          "Ephemeris error",
+          "Clock drift",
+        ],
+      },
+      {
+        question: "What is the bit rate of the GPS navigation data?",
+        type: "Multiple Choice",
+        answer: "50 bps",
+        options: ["1.023 Mbps", "10.23 Mbps", "50 bps", "5 Mbps"],
+      },
+      {
+        question: "Which GPS segment includes military and civilian users?",
+        type: "Multiple Choice",
+        answer: "User",
+        options: ["Space", "Control", "User", "Ground"],
+      },
+      {
+        question: "What is the primary cause of tropospheric delay?",
+        type: "Multiple Choice",
+        answer: "Atmospheric pressure and humidity",
+        options: [
+          "Satellite clock drift",
+          "Atmospheric pressure and humidity",
+          "Signal reflection",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "Which code is used for precise positioning and is jam-resistant?",
+        type: "Multiple Choice",
+        answer: "P(Y)",
+        options: ["C/A", "P(Y)", "L1C", "M"],
+      },
+      {
+        question: "What is the typical signal-to-noise ratio for the C/A code?",
+        type: "Multiple Choice",
+        answer: "-19 dB",
+        options: ["-10 dB", "-19 dB", "0 dB", "10 dB"],
+      },
+      {
+        question:
+          "Which error source is caused by imperfect satellite orbit modeling?",
+        type: "Multiple Choice",
+        answer: "Ephemeris error",
+        options: [
+          "Multipath",
+          "Ionospheric delay",
+          "Ephemeris error",
+          "Clock drift",
+        ],
+      },
+      {
+        question:
+          "What is the recommended PDOP value for accurate GPS measurements?",
+        type: "Multiple Choice",
+        answer: "<5",
+        options: ["<2", "<5", "<10", "<15"],
+      },
+      {
+        question: "The GPS L1 carrier frequency is _______ MHz.",
+        type: "Fill-in-the-Blank",
+        answer: "1575.42",
+      },
+      {
+        question:
+          "The _______ segment of GPS includes satellites and their orbits.",
+        type: "Fill-in-the-Blank",
+        answer: "Space",
+      },
+      {
+        question: "The chipping rate of the C/A code is _______ Mbps.",
+        type: "Fill-in-the-Blank",
+        answer: "1.023",
+      },
+      {
+        question:
+          "The GPS frequency band used for nuclear detonation detection is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "L3",
+      },
+      {
+        question: "GPS satellites use _______ and _______ clocks.",
+        type: "Fill-in-the-Blank",
+        answer: "Cesium, Rubidium",
+      },
+      {
+        question: "The _______ code is carried on both L1 and L2 frequencies.",
+        type: "Fill-in-the-Blank",
+        answer: "P(Y)",
+      },
+      {
+        question: "The wavelength of the L1 carrier signal is _______ cm.",
+        type: "Fill-in-the-Blank",
+        answer: "19.05",
+      },
+      {
+        question:
+          "The navigation data in GPS signals provides time, ephemeris, and _______.",
+        type: "Fill-in-the-Blank",
+        answer: "HOW",
+      },
+      {
+        question:
+          "The GPS frequency proposed for civilian safety-of-life signals is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "L5",
+      },
+      {
+        question: "The repetition period of the C/A code is _______ ms.",
+        type: "Fill-in-the-Blank",
+        answer: "1",
+      },
+      {
+        question:
+          "The error caused by signal reflections in the receiver environment is called _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Multipath",
+      },
+      {
+        question:
+          "The typical range error due to ephemeris errors is _______ to _______ m.",
+        type: "Fill-in-the-Blank",
+        answer: "2, 5",
+      },
+      {
+        question:
+          "The GPS error discontinued in 2000 was _______ Availability.",
+        type: "Fill-in-the-Blank",
+        answer: "Selective",
+      },
+      {
+        question:
+          "The fundamental frequency used in GPS satellites is _______ MHz.",
+        type: "Fill-in-the-Blank",
+        answer: "10.23",
+      },
+      {
+        question: "The C/A code uses _______ code type.",
+        type: "Fill-in-the-Blank",
+        answer: "Gold",
+      },
+      {
+        question:
+          "The _______ segment monitors and manages satellite operations.",
+        type: "Fill-in-the-Blank",
+        answer: "Control",
+      },
+      {
+        question:
+          "The frequency band studied for ionospheric correction is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "L4",
+      },
+      {
+        question: "The chipping rate of the P(Y) code is _______ Mbps.",
+        type: "Fill-in-the-Blank",
+        answer: "10.23",
+      },
+      {
+        question:
+          "The error caused by the Earth’s atmosphere bending GPS signals is _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Ionospheric",
+      },
+      {
+        question:
+          "The typical range error due to satellite clock drift is _______ to _______ m.",
+        type: "Fill-in-the-Blank",
+        answer: "2.6, 5.2",
+      },
+      {
+        question: "The GPS code designed for easy acquisition is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "C/A",
+      },
+      {
+        question: "The wavelength of the L2 carrier signal is _______ cm.",
+        type: "Fill-in-the-Blank",
+        answer: "24.45",
+      },
+      {
+        question:
+          "The error mitigated by using a choke ring antenna is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Multipath",
+      },
+      {
+        question: "The bit rate of the GPS navigation data is _______ bps.",
+        type: "Fill-in-the-Blank",
+        answer: "50",
+      },
+      {
+        question:
+          "The GPS segment that includes military and civilian users is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "User",
+      },
+      {
+        question:
+          "The primary cause of tropospheric delay is atmospheric _______ and humidity.",
+        type: "Fill-in-the-Blank",
+        answer: "Pressure",
+      },
+      {
+        question:
+          "The GPS code used for precise positioning and jam resistance is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "P(Y)",
+      },
+      {
+        question:
+          "The typical signal-to-noise ratio for the C/A code is _______ dB.",
+        type: "Fill-in-the-Blank",
+        answer: "-19",
+      },
+      {
+        question:
+          "The error caused by imperfect satellite orbit modeling is _______ error.",
+        type: "Fill-in-the-Blank",
+        answer: "Ephemeris",
+      },
+      {
+        question:
+          "The recommended PDOP value for accurate GPS measurements is less than _______.",
+        type: "Fill-in-the-Blank",
+        answer: "5",
+      },
+      {
+        question: "The GPS L1 frequency is 1227.60 MHz.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The Space segment of GPS includes satellites and their orbits.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The C/A code has a chipping rate of 10.23 Mbps.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The L3 frequency is used for nuclear detonation detection.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "GPS satellites use quartz clocks.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The P(Y) code is carried on both L1 and L2 frequencies.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The wavelength of the L1 carrier signal is 24.45 cm.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Navigation data includes time, ephemeris, and HOW.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The L5 frequency is used for military codes.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The C/A code repeats every 1 ms.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Multipath errors are caused by signal reflections.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Ephemeris errors are typically 10 to 15 m.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Selective Availability is still active in GPS systems.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The fundamental frequency of GPS satellites is 10.23 MHz.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The C/A code uses a pseudo-random code type.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The Control segment monitors satellite operations.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The L4 frequency is used for nuclear detonation detection.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The P(Y) code has a chipping rate of 1.023 Mbps.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Ionospheric delay is caused by atmospheric bending of GPS signals.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Satellite clock drift causes range errors of 0.1 to 0.5 m.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The C/A code is designed for precise positioning.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The L2 carrier signal has a wavelength of 19.05 cm.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "A choke ring antenna can mitigate multipath errors.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "The navigation data bit rate is 1.023 Mbps.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The User segment includes military and civilian users.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Tropospheric delay is primarily caused by satellite clock drift.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The P(Y) code is jam-resistant.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The signal-to-noise ratio for the C/A code is typically 0 dB.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Ephemeris errors are caused by imperfect satellite orbit modeling.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "A PDOP value greater than 5 is recommended for accurate GPS measurements.",
+        type: "True/False",
+        answer: "False",
+      },
+    ],
+    Medium: [
+      {
+        question:
+          "Which technique is most effective in mitigating ephemeris errors for short baselines?",
+        type: "Multiple Choice",
+        answer: "Between-receiver differencing",
+        options: [
+          "Dual-frequency correction",
+          "Between-receiver differencing",
+          "Choke ring antenna",
+          "Precise clock synchronization",
+        ],
+      },
+      {
+        question:
+          "What is the primary cause of ionospheric delay in GPS signals?",
+        type: "Multiple Choice",
+        answer: "Electron density in the ionosphere",
+        options: [
+          "Satellite clock drift",
+          "Electron density in the ionosphere",
+          "Tropospheric humidity",
+          "Multipath reflections",
+        ],
+      },
+      {
+        question:
+          "Which GPS error source is most affected by satellite geometry?",
+        type: "Multiple Choice",
+        answer: "Dilution of Precision (DOP)",
+        options: [
+          "Ephemeris error",
+          "Ionospheric delay",
+          "Dilution of Precision (DOP)",
+          "Multipath",
+        ],
+      },
+      {
+        question:
+          "What is the typical range error due to ionospheric delay at zenith?",
+        type: "Multiple Choice",
+        answer: "5 to 15 m",
+        options: ["1 to 5 m", "5 to 15 m", "20 to 50 m", "100 m"],
+      },
+      {
+        question:
+          "Which component of tropospheric delay is most difficult to predict?",
+        type: "Multiple Choice",
+        answer: "Wet component",
+        options: [
+          "Dry component",
+          "Wet component",
+          "Hydrostatic component",
+          "Ionospheric component",
+        ],
+      },
+      {
+        question: "How can multipath errors be reduced in GPS measurements?",
+        type: "Multiple Choice",
+        answer: "Using a choke ring antenna",
+        options: [
+          "Using a single-frequency receiver",
+          "Using a choke ring antenna",
+          "Increasing satellite altitude",
+          "Reducing signal strength",
+        ],
+      },
+      {
+        question:
+          "What is the effect of Selective Availability on GPS accuracy?",
+        type: "Multiple Choice",
+        answer: "It dithered the satellite clock and orbit data",
+        options: [
+          "It encrypted the C/A code",
+          "It dithered the satellite clock and orbit data",
+          "It increased signal strength",
+          "It reduced ionospheric delay",
+        ],
+      },
+      {
+        question: "Which GPS frequency experiences greater ionospheric delay?",
+        type: "Multiple Choice",
+        answer: "L2",
+        options: ["L1", "L2", "L5", "L4"],
+      },
+      {
+        question:
+          "What is the typical range error due to antenna phase center variation?",
+        type: "Multiple Choice",
+        answer: "A few centimeters",
+        options: [
+          "A few millimeters",
+          "A few centimeters",
+          "1 to 2 meters",
+          "10 meters",
+        ],
+      },
+      {
+        question: "Which technique can remove satellite clock errors?",
+        type: "Multiple Choice",
+        answer: "Differencing techniques",
+        options: [
+          "Using a choke ring antenna",
+          "Differencing techniques",
+          "Increasing signal power",
+          "Single-frequency correction",
+        ],
+      },
+      {
+        question:
+          "What is the recommended HDOP value for accurate GPS measurements?",
+        type: "Multiple Choice",
+        answer: "<2.5",
+        options: ["<1", "<2.5", "<5", "<10"],
+      },
+      {
+        question:
+          "Which error source is caused by discontinuities in the integer ambiguity?",
+        type: "Multiple Choice",
+        answer: "Cycle slips",
+        options: [
+          "Multipath",
+          "Cycle slips",
+          "Ionospheric delay",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "What is the primary advantage of dual-frequency receivers in GPS?",
+        type: "Multiple Choice",
+        answer: "Correcting ionospheric delay",
+        options: [
+          "Reducing multipath",
+          "Correcting ionospheric delay",
+          "Improving signal strength",
+          "Eliminating clock drift",
+        ],
+      },
+      {
+        question:
+          "Which atmospheric layer causes the most significant GPS signal delay?",
+        type: "Multiple Choice",
+        answer: "Ionosphere",
+        options: ["Troposphere", "Ionosphere", "Stratosphere", "Mesosphere"],
+      },
+      {
+        question:
+          "What is the typical range error due to tropospheric delay at zenith?",
+        type: "Multiple Choice",
+        answer: "2.3 m",
+        options: ["0.5 m", "2.3 m", "10 m", "50 m"],
+      },
+      {
+        question:
+          "Which error source repeats every sidereal day due to satellite geometry?",
+        type: "Multiple Choice",
+        answer: "Multipath",
+        options: [
+          "Ionospheric delay",
+          "Ephemeris error",
+          "Multipath",
+          "Clock drift",
+        ],
+      },
+      {
+        question: "What is the primary cause of receiver clock errors?",
+        type: "Multiple Choice",
+        answer: "Inexpensive crystal clocks",
+        options: [
+          "Inexpensive crystal clocks",
+          "Satellite orbit errors",
+          "Ionospheric interference",
+          "Multipath reflections",
+        ],
+      },
+      {
+        question: "Which GPS error is caused by Earth’s surface kinematics?",
+        type: "Multiple Choice",
+        answer: "Solid Earth tides",
+        options: [
+          "Ionospheric delay",
+          "Solid Earth tides",
+          "Multipath",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question: "What is the effect of Anti-Spoofing on civilian GPS users?",
+        type: "Multiple Choice",
+        answer: "Increases pseudorange noise",
+        options: [
+          "Improves signal strength",
+          "Increases pseudorange noise",
+          "Reduces ionospheric delay",
+          "Eliminates multipath",
+        ],
+      },
+      {
+        question: "Which technique is used to predict DOP values?",
+        type: "Multiple Choice",
+        answer: "Using receiver position and satellite almanacs",
+        options: [
+          "Dual-frequency correction",
+          "Using receiver position and satellite almanacs",
+          "Choke ring antenna",
+          "Clock synchronization",
+        ],
+      },
+      {
+        question: "What is the primary cause of wet tropospheric delay?",
+        type: "Multiple Choice",
+        answer: "High humidity",
+        options: [
+          "Satellite clock drift",
+          "High humidity",
+          "Signal reflection",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "Which error source is most significant at low satellite elevations?",
+        type: "Multiple Choice",
+        answer: "Tropospheric delay",
+        options: [
+          "Ephemeris error",
+          "Ionospheric delay",
+          "Tropospheric delay",
+          "Multipath",
+        ],
+      },
+      {
+        question: "What is the typical range error due to multipath?",
+        type: "Multiple Choice",
+        answer: "Varies with environment",
+        options: ["1 to 5 m", "Varies with environment", "10 to 20 m", "50 m"],
+      },
+      {
+        question:
+          "Which GPS error can be corrected using precise ephemeris data?",
+        type: "Multiple Choice",
+        answer: "Ephemeris error",
+        options: [
+          "Ionospheric delay",
+          "Ephemeris error",
+          "Multipath",
+          "Clock drift",
+        ],
+      },
+      {
+        question:
+          "What is the primary cause of cycle slips in GPS measurements?",
+        type: "Multiple Choice",
+        answer: "Obstructions or low signal-to-noise ratio",
+        options: [
+          "Satellite clock drift",
+          "Obstructions or low signal-to-noise ratio",
+          "Tropospheric humidity",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "Which GPS frequency is used for the L1C code on Block III satellites?",
+        type: "Multiple Choice",
+        answer: "L1",
+        options: ["L1", "L2", "L5", "L4"],
+      },
+      {
+        question:
+          "What is the effect of ionospheric delay on carrier phase measurements?",
+        type: "Multiple Choice",
+        answer: "Speeds up the signal",
+        options: [
+          "Slows down the signal",
+          "Speeds up the signal",
+          "No effect",
+          "Increases noise",
+        ],
+      },
+      {
+        question: "Which error source is caused by refraction of GPS signals?",
+        type: "Multiple Choice",
+        answer: "Ionospheric delay",
+        options: [
+          "Multipath",
+          "Ionospheric delay",
+          "Ephemeris error",
+          "Clock drift",
+        ],
+      },
+      {
+        question:
+          "What is the typical range error due to receiver clock drift?",
+        type: "Multiple Choice",
+        answer: "Larger than satellite clock errors",
+        options: [
+          "0.1 to 0.5 m",
+          "Larger than satellite clock errors",
+          "10 to 20 m",
+          "50 m",
+        ],
+      },
+      {
+        question:
+          "Which technique can mitigate antenna phase center variations?",
+        type: "Multiple Choice",
+        answer: "Using the same antenna type and orientation",
+        options: [
+          "Dual-frequency correction",
+          "Using the same antenna type and orientation",
+          "Choke ring antenna",
+          "Clock synchronization",
+        ],
+      },
+      {
+        question:
+          "The technique most effective for mitigating ephemeris errors over short baselines is _______ differencing.",
+        type: "Fill-in-the-Blank",
+        answer: "Between-receiver",
+      },
+      {
+        question:
+          "The primary cause of ionospheric delay is _______ density in the ionosphere.",
+        type: "Fill-in-the-Blank",
+        answer: "Electron",
+      },
+      {
+        question:
+          "The error source most affected by satellite geometry is _______ of Precision.",
+        type: "Fill-in-the-Blank",
+        answer: "Dilution",
+      },
+      {
+        question:
+          "The typical range error due to ionospheric delay at zenith is _______ to _______ m.",
+        type: "Fill-in-the-Blank",
+        answer: "5, 15",
+      },
+      {
+        question:
+          "The _______ component of tropospheric delay is most difficult to predict.",
+        type: "Fill-in-the-Blank",
+        answer: "Wet",
+      },
+      {
+        question:
+          "Multipath errors can be reduced by using a _______ ring antenna.",
+        type: "Fill-in-the-Blank",
+        answer: "Choke",
+      },
+      {
+        question:
+          "Selective Availability dithered the satellite _______ and orbit data.",
+        type: "Fill-in-the-Blank",
+        answer: "Clock",
+      },
+      {
+        question:
+          "The _______ frequency experiences greater ionospheric delay.",
+        type: "Fill-in-the-Blank",
+        answer: "L2",
+      },
+      {
+        question:
+          "The typical range error due to antenna phase center variation is a few _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Centimeters",
+      },
+      {
+        question:
+          "Satellite clock errors can be removed using _______ techniques.",
+        type: "Fill-in-the-Blank",
+        answer: "Differencing",
+      },
+      {
+        question:
+          "The recommended HDOP value for accurate GPS measurements is less than _______.",
+        type: "Fill-in-the-Blank",
+        answer: "2.5",
+      },
+      {
+        question:
+          "Discontinuities in the integer ambiguity are called _______ slips.",
+        type: "Fill-in-the-Blank",
+        answer: "Cycle",
+      },
+      {
+        question:
+          "Dual-frequency receivers are primarily used to correct _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Ionospheric",
+      },
+      {
+        question:
+          "The atmospheric layer causing the most significant GPS signal delay is the _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Ionosphere",
+      },
+      {
+        question:
+          "The typical range error due to tropospheric delay at zenith is _______ m.",
+        type: "Fill-in-the-Blank",
+        answer: "2.3",
+      },
+      {
+        question:
+          "The error source that repeats every sidereal day is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Multipath",
+      },
+      {
+        question:
+          "Receiver clock errors are primarily caused by inexpensive _______ clocks.",
+        type: "Fill-in-the-Blank",
+        answer: "Crystal",
+      },
+      {
+        question:
+          "The GPS error caused by Earth’s surface kinematics is _______ Earth tides.",
+        type: "Fill-in-the-Blank",
+        answer: "Solid",
+      },
+      {
+        question: "Anti-Spoofing increases _______ noise for civilian users.",
+        type: "Fill-in-the-Blank",
+        answer: "Pseudorange",
+      },
+      {
+        question:
+          "DOP values are predicted using receiver position and satellite _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Almanacs",
+      },
+      {
+        question:
+          "The primary cause of wet tropospheric delay is high _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Humidity",
+      },
+      {
+        question:
+          "The error source most significant at low satellite elevations is _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Tropospheric",
+      },
+      {
+        question:
+          "The typical range error due to multipath _______ with environment.",
+        type: "Fill-in-the-Blank",
+        answer: "Varies",
+      },
+      {
+        question:
+          "The GPS error corrected using precise ephemeris data is _______ error.",
+        type: "Fill-in-the-Blank",
+        answer: "Ephemeris",
+      },
+      {
+        question:
+          "The primary cause of cycle slips is obstructions or low _______ ratio.",
+        type: "Fill-in-the-Blank",
+        answer: "Signal-to-noise",
+      },
+      {
+        question:
+          "The L1C code on Block III satellites is carried on the _______ frequency.",
+        type: "Fill-in-the-Blank",
+        answer: "L1",
+      },
+      {
+        question: "Ionospheric delay _______ the carrier phase signal.",
+        type: "Fill-in-the-Blank",
+        answer: "Speeds up",
+      },
+      {
+        question:
+          "The error caused by refraction of GPS signals is _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Ionospheric",
+      },
+      {
+        question:
+          "Receiver clock drift causes range errors _______ than satellite clock errors.",
+        type: "Fill-in-the-Blank",
+        answer: "Larger",
+      },
+      {
+        question:
+          "Antenna phase center variations can be mitigated by using the same antenna type and _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Orientation",
+      },
+      {
+        question:
+          "Between-receiver differencing is ineffective for mitigating ephemeris errors.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Ionospheric delay is primarily caused by electron density in the ionosphere.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Dilution of Precision (DOP) is unaffected by satellite geometry.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Ionospheric delay at zenith typically causes range errors of 1 to 5 m.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The wet component of tropospheric delay is easy to predict.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "A choke ring antenna can reduce multipath errors.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Selective Availability is still active in GPS systems.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The L2 frequency experiences less ionospheric delay than L1.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Antenna phase center variation causes range errors of several meters.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Differencing techniques can remove satellite clock errors.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "The recommended HDOP value for accurate GPS measurements is less than 5.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Cycle slips are caused by discontinuities in the integer ambiguity.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Dual-frequency receivers cannot correct ionospheric delay.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "The ionosphere causes the most significant GPS signal delay.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Tropospheric delay at zenith typically causes a range error of 10 m.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Multipath errors repeat every sidereal day.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Receiver clock errors are caused by expensive atomic clocks.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Solid Earth tides are a GPS error caused by Earth’s surface kinematics.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Anti-Spoofing reduces pseudorange noise for civilian users.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "DOP values can be predicted using satellite almanacs.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Wet tropospheric delay is caused by high humidity.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Tropospheric delay is insignificant at low satellite elevations.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Multipath errors are consistent across all environments.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Precise ephemeris data cannot correct ephemeris errors.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Cycle slips are primarily caused by high signal-to-noise ratios.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The L1C code is carried on the L2 frequency.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Ionospheric delay slows down the carrier phase signal.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Refraction of GPS signals causes ionospheric delay.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Receiver clock drift is smaller than satellite clock errors.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Antenna phase center variations can be mitigated by using different antenna types.",
+        type: "True/False",
+        answer: "False",
+      },
+    ],
+    Hard: [
+      {
+        question: "What is the pseudorange equation used in GPS measurements?",
+        type: "Multiple Choice",
+        answer: "ρ(t) = cτ + c[δt_u(t) - δt^s(t-τ)] + ε_p(t)",
+        options: [
+          "ρ(t) = cτ + ε_p(t)",
+          "ρ(t) = c[δt_u(t) - δt^s(t-τ)]",
+          "ρ(t) = cτ + c[δt_u(t) - δt^s(t-τ)] + ε_p(t)",
+          "ρ(t) = r(t) + ε_p(t)",
+        ],
+      },
+      {
+        question:
+          "Which factor most significantly contributes to ionospheric delay during extreme solar events?",
+        type: "Multiple Choice",
+        answer: "Total Electron Count (TEC)",
+        options: [
+          "Tropospheric humidity",
+          "Total Electron Count (TEC)",
+          "Satellite clock drift",
+          "Multipath reflections",
+        ],
+      },
+      {
+        question:
+          "What is the primary challenge of using dual-frequency receivers for ionospheric correction?",
+        type: "Multiple Choice",
+        answer: "Increased measurement noise",
+        options: [
+          "Reduced signal strength",
+          "Increased measurement noise",
+          "Loss of satellite almanac",
+          "Inability to phase lock",
+        ],
+      },
+      {
+        question:
+          "Which error source is most difficult to correct using differencing techniques?",
+        type: "Multiple Choice",
+        answer: "Tropospheric delay",
+        options: [
+          "Satellite clock error",
+          "Ionospheric delay",
+          "Tropospheric delay",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "What is the effect of ionospheric delay on PRN code measurements?",
+        type: "Multiple Choice",
+        answer: "Slows down the signal, increasing range",
+        options: [
+          "Speeds up, decreasing range",
+          "Slows down the signal, increasing range",
+          "No effect",
+          "Increases noise",
+        ],
+      },
+      {
+        question:
+          "Which GPS error is most affected by the 11-year sunspot cycle?",
+        type: "Multiple Choice",
+        answer: "Ionospheric delay",
+        options: [
+          "Ephemeris error",
+          "Ionospheric delay",
+          "Multipath",
+          "Clock drift",
+        ],
+      },
+      {
+        question:
+          "What is the primary cause of cycle slips during high receiver acceleration?",
+        type: "Multiple Choice",
+        answer: "Loss of carrier phase tracking",
+        options: [
+          "Loss of carrier phase",
+          "Satellite clock drift",
+          "Tropospheric humidity",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "Which technique is least effective for mitigating multipath errors?",
+        type: "Multiple Choice",
+        answer: "Increasing signal power",
+        options: [
+          "Using a choke ring antenna",
+          "Increasing signal power",
+          "Selecting a clear site",
+          "Multiple observations",
+        ],
+      },
+      {
+        question:
+          "What is the typical range error due to wet tropospheric delay?",
+        type: "Multiple Choice",
+        answer: "0.2 to 0.5 m",
+        options: ["0.2 to 0.5 m", "1 to 5 m", "10 to 20 m", "50 m"],
+      },
+      {
+        question:
+          "Which error source is most significant for long-baseline GPS surveys?",
+        type: "Multiple Choice",
+        answer: "Ionospheric delay",
+        options: [
+          "Multipath",
+          "Ionospheric delay",
+          "Ephemeris error",
+          "Clock drift",
+        ],
+      },
+      {
+        question:
+          "What is the primary limitation of single-frequency GPS receivers?",
+        type: "Multiple Choice",
+        answer: "Reliance on empirical ionospheric models",
+        options: [
+          "Inability to receive signals",
+          "Reliance on empirical ionospheric models",
+          "Loss of satellite almanac",
+          "Reduced signal strength",
+        ],
+      },
+      {
+        question: "Which GPS error is caused by atmospheric loading?",
+        type: "Multiple Choice",
+        answer: "Earth surface kinematics",
+        options: [
+          "Ionospheric delay",
+          "Earth surface kinematics",
+          "Multipath",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "What is the primary cause of tropospheric delay at low elevations?",
+        type: "Multiple Choice",
+        answer: "Increased path length through atmosphere",
+        options: [
+          "Satellite clock drift",
+          "Increased path length through atmosphere",
+          "Signal reflection",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "Which error source is most affected by receiver antenna design?",
+        type: "Multiple Choice",
+        answer: "Antenna phase center variation",
+        options: [
+          "Ionospheric delay",
+          "Antenna phase center variation",
+          "Multipath",
+          "Clock drift",
+        ],
+      },
+      {
+        question: "What is the effect of Anti-Spoofing on L2 phase noise?",
+        type: "Multiple Choice",
+        answer: "Increases from 1 mm to 1 cm",
+        options: [
+          "No effect",
+          "Increases from 1 mm to 1 cm",
+          "Decreases from 1 cm to 1 mm",
+          "Increases to 10 cm",
+        ],
+      },
+      {
+        question:
+          "Which GPS error is most significant for real-time kinematic surveys?",
+        type: "Multiple Choice",
+        answer: "Cycle slips",
+        options: [
+          "Ephemeris error",
+          "Ionospheric delay",
+          "Cycle slips",
+          "Multipath",
+        ],
+      },
+      {
+        question: "What is the primary cause of dry tropospheric delay?",
+        type: "Multiple Choice",
+        answer: "Atmospheric pressure",
+        options: [
+          "High humidity",
+          "Atmospheric pressure",
+          "Signal reflection",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "Which error source is caused by signal interference from nearby objects?",
+        type: "Multiple Choice",
+        answer: "Multipath",
+        options: [
+          "Ionospheric delay",
+          "Multipath",
+          "Ephemeris error",
+          "Clock drift",
+        ],
+      },
+      {
+        question: "What is the typical range error due to solid Earth tides?",
+        type: "Multiple Choice",
+        answer: "A few centimeters",
+        options: [
+          "A few millimeters",
+          "A few centimeters",
+          "1 to 5 meters",
+          "10 meters",
+        ],
+      },
+      {
+        question:
+          "Which technique is used to correct for ionospheric delay in dual-frequency receivers?",
+        type: "Multiple Choice",
+        answer: "Combining L1 and L2 measurements",
+        options: [
+          "Using a choke ring antenna",
+          "Combining L1 and L2 measurements",
+          "Increasing signal power",
+          "Single frequency correction",
+        ],
+      },
+      {
+        question: "What is the primary cause of ionospheric delay variations?",
+        type: "Multiple Choice",
+        answer: "Total Electron Content (TEC)",
+        options: [
+          "Satellite clock drift",
+          "Total Electron Content (TEC)",
+          "Tropospheric humidity",
+          "Multipath",
+        ],
+      },
+      {
+        question:
+          "Which error source is most affected by low satellite elevations?",
+        type: "Multiple Choice",
+        answer: "Tropospheric delay",
+        options: [
+          "Ephemeris error",
+          "Ionospheric delay",
+          "Tropospheric delay",
+          "Multipath",
+        ],
+      },
+      {
+        question:
+          "What is the effect of multipath on carrier-phase measurements?",
+        type: "Multiple Choice",
+        answer: "Introduces interference",
+        options: [
+          "No effect",
+          "Introduces interference",
+          "Speeds up signal",
+          "Reduces noise",
+        ],
+      },
+      {
+        question:
+          "Which GPS error is caused by imperfect receiver clock synchronization?",
+        type: "Multiple Choice",
+        answer: "Receiver clock error",
+        options: [
+          "Ionospheric delay",
+          "Receiver clock error",
+          "Multipath",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "What is the primary challenge of correcting wet tropospheric delay?",
+        type: "Multiple Choice",
+        answer: "High variability",
+        options: [
+          "High variability",
+          "Satellite accuracy",
+          "Signal strength",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question:
+          "Which error source is most significant for geodetic applications?",
+        type: "Multiple Choice",
+        answer: "Solid Earth tides",
+        options: [
+          "Ionospheric delay",
+          "Solid Earth tides",
+          "Multipath",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question: "What is the effect of cycle slips on GPS measurements?",
+        type: "Multiple Choice",
+        answer: "Introduces blunder errors",
+        options: [
+          "Improves accuracy",
+          "Introduces blunder errors",
+          "No effect",
+          "Reduces noise",
+        ],
+      },
+      {
+        question: "Which technique is used to predict tropospheric delays?",
+        type: "Multiple Choice",
+        answer: "Using meteorological data",
+        options: [
+          "Dual-frequency correction",
+          "Using meteorological data",
+          "Choke ring antenna",
+          "Clock synchronization",
+        ],
+      },
+      {
+        question:
+          "What is the primary cause of antenna phase center variations with elevation?",
+        type: "Multiple Choice",
+        answer: "Antenna design",
+        options: [
+          "Satellite clock drift",
+          "Antenna design",
+          "Tropospheric humidity",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question: "Which GPS error is most affected by the Earth’s rotation?",
+        type: "Multiple Choice",
+        answer: "Earth surface kinematics",
+        options: [
+          "Ionospheric delay",
+          "Earth surface kinematics",
+          "Multipath",
+          "Ephemeris error",
+        ],
+      },
+      {
+        question: "The pseudorange equation is _______",
+        type: "Fill-in-the-Blank",
+        answer: "ρ(t) = cτ + c[δt_u(t) - δt^s(t-τ)] + ε_p(t)",
+      },
+      {
+        question:
+          "The factor most significant for ionospheric delay during extreme solar events is _______ Electron Count.",
+        type: "Fill-in-the-Blank",
+        answer: "Total",
+      },
+      {
+        question:
+          "The primary challenge of dual-frequency receivers is increased _______ noise.",
+        type: "Fill-in-the-Blank",
+        answer: "Measurement",
+      },
+      {
+        question:
+          "The error most difficult to correct using differencing techniques is _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Tropospheric",
+      },
+      {
+        question: "Ionospheric delay _______ the PRN code signal.",
+        type: "Fill-in-the-Blank",
+        answer: "Slows down",
+      },
+      {
+        question:
+          "The GPS error most affected by the 11-year sunspot cycle is _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Ionospheric",
+      },
+      {
+        question:
+          "The primary cause of cycle slips during high receiver acceleration is loss of _______ tracking.",
+        type: "Fill-in-the-Blank",
+        answer: "Carrier phase",
+      },
+      {
+        question:
+          "The least effective method for mitigating multipath errors is increasing _______ power.",
+        type: "Fill-in-the-Blank",
+        answer: "Signal",
+      },
+      {
+        question:
+          "The typical range error due to wet tropospheric delay is _______ to _______ m.",
+        type: "Fill-in-the-Blank",
+        answer: "0.2, 0.5",
+      },
+      {
+        question:
+          "The error most significant for long-baseline GPS surveys is _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Ionospheric",
+      },
+      {
+        question:
+          "The primary limitation of single-frequency GPS receivers is reliance on _______ ionospheric models.",
+        type: "Fill-in-the-Blank",
+        answer: "Empirical",
+      },
+      {
+        question:
+          "The GPS error caused by atmospheric loading is _______ surface kinematics.",
+        type: "Fill-in-the-Blank",
+        answer: "Earth",
+      },
+      {
+        question:
+          "The primary cause of tropospheric delay at low elevations is increased _______ length.",
+        type: "Fill-in-the-Blank",
+        answer: "Path",
+      },
+      {
+        question:
+          "The error most affected by receiver antenna design is _______ phase center variation.",
+        type: "Fill-in-the-Blank",
+        answer: "Antenna",
+      },
+      {
+        question:
+          "Anti-Spoofing increases L2 phase noise from 1 mm to _______ cm.",
+        type: "Fill-in-the-Blank",
+        answer: "1",
+      },
+      {
+        question:
+          "The error most significant for real-time kinematic surveys is _______ slips.",
+        type: "Fill-in-the-Blank",
+        answer: "Cycle",
+      },
+      {
+        question:
+          "The primary cause of dry tropospheric delay is atmospheric _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Pressure",
+      },
+      {
+        question:
+          "The error caused by signal interference from nearby objects is _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Multipath",
+      },
+      {
+        question:
+          "The typical range error due to solid Earth tides is a few _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Centimeters",
+      },
+      {
+        question:
+          "Ionospheric delay in dual-frequency receivers is corrected by combining _______ and _______ measurements.",
+        type: "Fill-in-the-Blank",
+        answer: "L1, L2",
+      },
+      {
+        question:
+          "Ionospheric delay variations are primarily caused by _______ Electron Content.",
+        type: "Fill-in-the-Blank",
+        answer: "Total",
+      },
+      {
+        question:
+          "The error most significant at low elevations is _______ delay.",
+        type: "Fill-in-the-Blank",
+        answer: "Tropospheric",
+      },
+      {
+        question: "Multipath introduces _______ in carrier-phase measurements.",
+        type: "Fill-in-the-Blank",
+        answer: "Interference",
+      },
+      {
+        question:
+          "The error caused by imperfect receiver clock synchronization is _______ clock error.",
+        type: "Fill-in-the-Blank",
+        answer: "Receiver",
+      },
+      {
+        question:
+          "The primary challenge of correcting wet tropospheric delay is high _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Variability",
+      },
+      {
+        question:
+          "The error most significant for geodetic applications is _______ Earth tides.",
+        type: "Fill-in-the-Blank",
+        answer: "Solid",
+      },
+      {
+        question: "Cycle slips introduce _______ errors in GPS measurements.",
+        type: "Fill-in-the-Blank",
+        answer: "Blunder",
+      },
+      {
+        question: "Tropospheric delays are predicted using _______ data.",
+        type: "Fill-in-the-Blank",
+        answer: "Meteorological",
+      },
+      {
+        question:
+          "Antenna phase center variations with elevation are caused by antenna _______.",
+        type: "Fill-in-the-Blank",
+        answer: "Design",
+      },
+      {
+        question:
+          "The GPS error most affected by Earth’s rotation is _______ surface kinematics.",
+        type: "Fill-in-the-Blank",
+        answer: "Earth",
+      },
+      {
+        question:
+          "The pseudorange equation includes terms for clock biases and noise errors.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Total Electron Count (TEC) is irrelevant to ionospheric delay.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Dual-frequency receivers reduce measurement noise.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Tropospheric delay is easily corrected using differencing techniques.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Ionospheric delay speeds up PRN code measurements.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "The 11-year sunspot cycle affects ionospheric delay.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Cycle slips are caused by stable receiver signals.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Increasing signal power is effective for mitigating multipath errors.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Wet tropospheric delay causes range errors of 1 to 5 m.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Ionospheric delay is insignificant for long-baseline GPS surveys.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Single-frequency GPS receivers can accurately correct ionospheric delay.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Earth surface kinematics is caused by atmospheric loading.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Tropospheric delay at low elevations is due to increased path length.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Antenna phase center variation is caused by satellite clock drift.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Anti-Spoofing reduces L2 phase noise.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Cycle slips are insignificant for real-time kinematic surveys.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Dry tropospheric delay is primarily caused by atmospheric pressure.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Multipath is caused by signal interference is caused by satellite errors.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Solid Earth errors cause range errors of several meters.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Dual-frequency correction is ineffective for ionospheric delay.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Total variation Content (TEC) variations cause ionospheric delay.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Tropospheric errors delay is insignificant at low elevations.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Multipath errors errors have no effect on carrier-phase measurements.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Receiver errors are caused by imperfect satellite synchronization.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Wet tropospheric delay correction is highly accurate.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Solid Earth errors are insignificant for geodetic applications.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question: "Cycle errors introduce blunder errors in GPS measurements.",
+        type: "True/False",
+        answer: "True",
+      },
+      {
+        question:
+          "Tropospheric delays delays are predicted using satellite almanac.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question:
+          "Antenna phase errors with elevation are caused by satellite design.",
+        type: "True/False",
+        answer: "False",
+      },
+      {
+        question: "Earth’s errors affect Earth surface kinematics errors.",
+        type: "True/False",
+        answer: "True",
+      },
+    ],
+  },
+  "Principles of GIS": {
+    programOfStudy: "Geomatic Engineering",
+    levelOfStudy: "Level 300",
+    semesterOfStudy: "Semester 2",
+    Easy: [
+      {
+        question: "GIS stands for Geographic Information System.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A map layer represents a single theme of data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is made up of pixels.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot represent points.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for mapping in Geomatic Engineering.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A coordinate system is not needed in GIS.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Spatial data includes location information.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Attribute data describes map features.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot create 3D models.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing aligns data to a map.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is better for continuous surfaces.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is used for discrete features.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS software is not used for surveying.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A shapefile is a GIS data format.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Spatial analysis is a key GIS function.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot store non-spatial data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Map projection affects GIS accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data requires more storage than vector data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for land use planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GIS layer can contain only one data type.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineers use GIS for data visualization.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data includes topology.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is unsuitable for network analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS can integrate GPS data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital elevation model is a raster dataset.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform overlay analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Coordinate systems use latitude and longitude.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is pixel-based.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot represent lines.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for environmental monitoring.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A GIS database stores spatial and attribute data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Map scale does not affect GIS output.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for satellite imagery.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is ideal for cadastral mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot analyze temporal data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing requires control points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data has no topology.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports decision-making in Geomatic Engineering.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is less accurate than raster data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GIS layer can be edited in software.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for elevation modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data includes polygons.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot integrate remote sensing data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Map projections preserve all properties.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is suitable for terrain analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is used for road networks.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS requires a user interface.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data cannot represent discrete objects.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for urban planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A shapefile contains multiple files.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is better for large datasets.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS can perform buffer analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for weather mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data includes attributes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot create thematic maps.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing aligns raster data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is resolution-dependent.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is used for boundary mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot handle 3D data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A GIS database is relational.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for land cover mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot be converted to raster.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports spatial queries.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Map scale affects data resolution.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is unsuitable for point data.",
+        answer: "False",
+        type: "True/False",
+      },
+    ],
+    Medium: [
+      {
+        question: "GIS is used for transportation planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data includes geometric shapes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot integrate CAD data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for slope analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is topology-based.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS requires spatial data input.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "What does GIS stand for?",
+        type: "Multiple Choice",
+        answer: "Geographic Information System",
+        options: [
+          "Geographic Information System",
+          "Global Imaging System",
+          "Geomatic Information Software",
+          "General Imaging Solution",
+        ],
+      },
+      {
+        question: "What does a map layer represent?",
+        type: "Multiple Choice",
+        answer: "A single theme",
+        options: [
+          "A single theme",
+          "Multiple themes",
+          "Instrument data",
+          "Weather data",
+        ],
+      },
+      {
+        question: "What is raster data made of?",
+        type: "Multiple Choice",
+        answer: "Pixels",
+        options: ["Pixels", "Lines", "Points", "Polygons"],
+      },
+      {
+        question: "What can vector data represent?",
+        type: "Multiple Choice",
+        answer: "Points",
+        options: ["Points", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What is GIS used for in Geomatic Engineering?",
+        type: "Multiple Choice",
+        answer: "Mapping",
+        options: [
+          "Mapping",
+          "Software coding",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is required in GIS?",
+        type: "Multiple Choice",
+        answer: "Coordinate system",
+        options: [
+          "Coordinate system",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What does spatial data include?",
+        type: "Multiple Choice",
+        answer: "Location information",
+        options: [
+          "Location information",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What describes map features in GIS?",
+        type: "Multiple Choice",
+        answer: "Attribute data",
+        options: [
+          "Attribute data",
+          "Spatial data",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What can GIS create?",
+        type: "Multiple Choice",
+        answer: "3D models",
+        options: ["3D models", "2D images", "Text files", "Audio files"],
+      },
+      {
+        question: "What does georeferencing do?",
+        type: "Multiple Choice",
+        answer: "Aligns data to a map",
+        options: [
+          "Aligns data to a map",
+          "Creates data",
+          "Stores data",
+          "Calibrates instruments",
+        ],
+      },
+      {
+        question: "What is raster data better for?",
+        type: "Multiple Choice",
+        answer: "Continuous surfaces",
+        options: [
+          "Continuous surfaces",
+          "Discrete features",
+          "Network analysis",
+          "Boundary mapping",
+        ],
+      },
+      {
+        question: "What is vector data used for?",
+        type: "Multiple Choice",
+        answer: "Discrete features",
+        options: [
+          "Discrete features",
+          "Continuous surfaces",
+          "Image processing",
+          "Weather mapping",
+        ],
+      },
+      {
+        question: "What is GIS software used for?",
+        type: "Multiple Choice",
+        answer: "Surveying",
+        options: [
+          "Surveying",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a shapefile?",
+        type: "Multiple Choice",
+        answer: "A GIS data format",
+        options: [
+          "A GIS data format",
+          "A map projection",
+          "A coordinate system",
+          "A database",
+        ],
+      },
+      {
+        question: "What is a key GIS function?",
+        type: "Multiple Choice",
+        answer: "Spatial analysis",
+        options: [
+          "Spatial analysis",
+          "Data storage",
+          "Instrument calibration",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What can GIS store?",
+        type: "Multiple Choice",
+        answer: "Non-spatial data",
+        options: [
+          "Non-spatial data",
+          "Only spatial data",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What affects GIS accuracy?",
+        type: "Multiple Choice",
+        answer: "Map projection",
+        options: [
+          "Map projection",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "Which data type requires more storage?",
+        type: "Multiple Choice",
+        answer: "Raster data",
+        options: [
+          "Raster data",
+          "Vector data",
+          "Attribute data",
+          "Spatial data",
+        ],
+      },
+      {
+        question: "What is GIS used for?",
+        type: "Multiple Choice",
+        answer: "Land use planning",
+        options: [
+          "Land use planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What can a GIS layer contain?",
+        type: "Multiple Choice",
+        answer: "Multiple data types",
+        options: [
+          "Multiple data types",
+          "Only one data type",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What do Geomatic engineers use GIS for?",
+        type: "Multiple Choice",
+        answer: "Data visualization",
+        options: [
+          "Data visualization",
+          "Software coding",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does vector data include?",
+        type: "Multiple Choice",
+        answer: "Topology",
+        options: ["Topology", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What is raster data unsuitable for?",
+        type: "Multiple Choice",
+        answer: "Network analysis",
+        options: [
+          "Network analysis",
+          "Continuous surfaces",
+          "Elevation modeling",
+          "Land cover mapping",
+        ],
+      },
+      {
+        question: "What can GIS integrate?",
+        type: "Multiple Choice",
+        answer: "GPS data",
+        options: [
+          "GPS data",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What is a digital elevation model?",
+        type: "Multiple Choice",
+        answer: "A raster dataset",
+        options: [
+          "A raster dataset",
+          "A vector dataset",
+          "A map projection",
+          "A coordinate system",
+        ],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Overlay analysis",
+        options: [
+          "Overlay analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What do coordinate systems use?",
+        type: "Multiple Choice",
+        answer: "Latitude and longitude",
+        options: ["Latitude and longitude", "Pixels", "Attributes", "Textures"],
+      },
+      {
+        question: "What is raster data based on?",
+        type: "Multiple Choice",
+        answer: "Pixels",
+        options: ["Pixels", "Lines", "Points", "Polygons"],
+      },
+      {
+        question: "What can vector data represent?",
+        type: "Multiple Choice",
+        answer: "Lines",
+        options: ["Lines", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What is GIS used for?",
+        type: "Multiple Choice",
+        answer: "Environmental monitoring",
+        options: [
+          "Environmental monitoring",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does a GIS database store?",
+        type: "Multiple Choice",
+        answer: "Spatial and attribute data",
+        options: [
+          "Spatial and attribute data",
+          "Only spatial data",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What affects GIS output?",
+        type: "Multiple Choice",
+        answer: "Map scale",
+        options: [
+          "Map scale",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Satellite imagery",
+        options: [
+          "Satellite imagery",
+          "Boundary mapping",
+          "Network analysis",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What is vector data ideal for?",
+        type: "Multiple Choice",
+        answer: "Cadastral mapping",
+        options: [
+          "Cadastral mapping",
+          "Continuous surfaces",
+          "Elevation modeling",
+          "Land cover mapping",
+        ],
+      },
+      {
+        question: "What can GIS analyze?",
+        type: "Multiple Choice",
+        answer: "Temporal data",
+        options: [
+          "Temporal data",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does georeferencing require?",
+        type: "Multiple Choice",
+        answer: "Control points",
+        options: [
+          "Control points",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What does raster data lack?",
+        type: "Multiple Choice",
+        answer: "Topology",
+        options: ["Topology", "Pixels", "Attributes", "Textures"],
+      },
+      {
+        question: "What does GIS support in Geomatic Engineering?",
+        type: "Multiple Choice",
+        answer: "Decision-making",
+        options: [
+          "Decision-making",
+          "Software coding",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "Which data type is more accurate?",
+        type: "Multiple Choice",
+        answer: "Vector data",
+        options: [
+          "Vector data",
+          "Raster data",
+          "Attribute data",
+          "Spatial data",
+        ],
+      },
+      {
+        question: "What can a GIS layer be?",
+        type: "Multiple Choice",
+        answer: "Edited",
+        options: ["Edited", "Static", "Instrument data", "Calibration data"],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Elevation modeling",
+        options: [
+          "Elevation modeling",
+          "Boundary mapping",
+          "Network analysis",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data include?",
+        type: "Multiple Choice",
+        answer: "Polygons",
+        options: ["Polygons", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS integrate?",
+        type: "Multiple Choice",
+        answer: "Remote sensing data",
+        options: [
+          "Remote sensing data",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What do map projections not preserve?",
+        type: "Multiple Choice",
+        answer: "All properties",
+        options: ["All properties", "Area", "Shape", "Distance"],
+      },
+      {
+        question: "What is raster data suitable for?",
+        type: "Multiple Choice",
+        answer: "Terrain analysis",
+        options: [
+          "Terrain analysis",
+          "Boundary mapping",
+          "Network analysis",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What is vector data used for?",
+        type: "Multiple Choice",
+        answer: "Road networks",
+        options: [
+          "Road networks",
+          "Continuous surfaces",
+          "Elevation modeling",
+          "Land cover mapping",
+        ],
+      },
+      {
+        question: "What does GIS require?",
+        type: "Multiple Choice",
+        answer: "User interface",
+        options: [
+          "User interface",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What can raster data represent?",
+        type: "Multiple Choice",
+        answer: "Discrete objects",
+        options: [
+          "Discrete objects",
+          "Only continuous data",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is GIS used for?",
+        type: "Multiple Choice",
+        answer: "Urban planning",
+        options: [
+          "Urban planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does a shapefile consist of?",
+        type: "Multiple Choice",
+        answer: "Multiple files",
+        options: [
+          "Multiple files",
+          "Single file",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "Which data type is better for large datasets?",
+        type: "Multiple Choice",
+        answer: "Raster data",
+        options: [
+          "Raster data",
+          "Vector data",
+          "Attribute data",
+          "Spatial data",
+        ],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Buffer analysis",
+        options: [
+          "Buffer analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Weather mapping",
+        options: [
+          "Weather mapping",
+          "Boundary mapping",
+          "Network analysis",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data include?",
+        type: "Multiple Choice",
+        answer: "Attributes",
+        options: ["Attributes", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS create?",
+        type: "Multiple Choice",
+        answer: "Thematic maps",
+        options: [
+          "Thematic maps",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does georeferencing align?",
+        type: "Multiple Choice",
+        answer: "Raster data",
+        options: [
+          "Raster data",
+          "Vector data",
+          "Attribute data",
+          "Spatial data",
+        ],
+      },
+      {
+        question: "What is raster data?",
+        type: "Multiple Choice",
+        answer: "Resolution-dependent",
+        options: [
+          "Resolution-dependent",
+          "Resolution-independent",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is vector data used for?",
+        type: "Multiple Choice",
+        answer: "Boundary mapping",
+        options: [
+          "Boundary mapping",
+          "Continuous surfaces",
+          "Elevation modeling",
+          "Land cover mapping",
+        ],
+      },
+      {
+        question: "What can GIS handle?",
+        type: "Multiple Choice",
+        answer: "3D data",
+        options: [
+          "3D data",
+          "2D data only",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What type of database is a GIS database?",
+        type: "Multiple Choice",
+        answer: "Relational",
+        options: ["Relational", "Hierarchical", "Network", "Sequential"],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Land cover mapping",
+        options: [
+          "Land cover mapping",
+          "Boundary mapping",
+          "Network analysis",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data be converted to?",
+        type: "Multiple Choice",
+        answer: "Raster",
+        options: ["Raster", "Text", "Audio", "Video"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Spatial queries",
+        options: [
+          "Spatial queries",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What affects data resolution?",
+        type: "Multiple Choice",
+        answer: "Map scale",
+        options: [
+          "Map scale",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What is raster data suitable for?",
+        type: "Multiple Choice",
+        answer: "Point data",
+        options: [
+          "Point data",
+          "Only line data",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is GIS used for?",
+        type: "Multiple Choice",
+        answer: "Transportation planning",
+        options: [
+          "Transportation planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does vector data include?",
+        type: "Multiple Choice",
+        answer: "Geometric shapes",
+        options: ["Geometric shapes", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS integrate?",
+        type: "Multiple Choice",
+        answer: "CAD data",
+        options: [
+          "CAD data",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Slope analysis",
+        options: [
+          "Slope analysis",
+          "Boundary mapping",
+          "Network analysis",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What is vector data based on?",
+        type: "Multiple Choice",
+        answer: "Topology",
+        options: ["Topology", "Pixels", "Attributes", "Textures"],
+      },
+      {
+        question: "What does GIS require?",
+        type: "Multiple Choice",
+        answer: "Spatial data input",
+        options: [
+          "Spatial data input",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      // Medium: [
+      // True/False Questions (151-225)
+      {
+        question: "Spatial queries can filter data by location.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis combines multiple layers.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing does not require ground control points.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Buffer analysis creates zones around features.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform network analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Raster overlay requires cell alignment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports topological relationships.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Spatial interpolation estimates values between points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot integrate LiDAR data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing corrects distortion in maps.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis is used for site selection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data cannot be used for slope calculation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector overlay preserves topology.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform proximity analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Spatial join combines attributes from layers.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is unsuitable for hydrological modeling.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports network connectivity.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing aligns vector and raster data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis can cause data loss.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot analyze multi-temporal data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Buffer zones are used in environmental planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster interpolation requires a grid.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot represent adjacency.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports spatial autocorrelation analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing uses transformation equations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis is used for land use conflict resolution.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is ideal for network analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports polygon overlay.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform suitability analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Spatial queries use SQL in GIS.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for viewshed analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot store elevation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS integrates remote sensing for mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing requires a reference map.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis combines raster and vector data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data cannot support 3D analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is used for shortest path analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform statistical analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Buffer analysis is used for noise pollution mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster interpolation is used for temperature mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot represent connectivity.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports multi-criteria decision analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing corrects scale errors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis is used for flood risk mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is unsuitable for urban planning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports adjacency analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot integrate drone data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Spatial join requires common attributes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for soil mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot be used for 3D modeling.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports real-time data processing.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing aligns data to a coordinate system.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis is used for habitat mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data cannot support network connectivity.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data is used for cadastral overlays.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform visibility analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Spatial queries filter by attribute values.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is used for precipitation mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot represent elevation surfaces.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS integrates GPS for real-time tracking.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing requires image rectification.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Overlay analysis is used for zoning conflicts.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is ideal for point interpolation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports route optimization.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot analyze spatial patterns.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Buffer analysis is used for wildlife protection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster interpolation is used for elevation surfaces.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot support multi-layer analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports geospatial modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Georeferencing aligns data to real-world coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (226-300)
+      {
+        question: "What do spatial queries filter?",
+        type: "Multiple Choice",
+        answer: "Data by location",
+        options: [
+          "Data by location",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does overlay analysis combine?",
+        type: "Multiple Choice",
+        answer: "Multiple layers",
+        options: [
+          "Multiple layers",
+          "Single layer",
+          "Instrument data",
+          "Weather data",
+        ],
+      },
+      {
+        question: "What does georeferencing require?",
+        type: "Multiple Choice",
+        answer: "Ground control points",
+        options: [
+          "Ground control points",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What does buffer analysis create?",
+        type: "Multiple Choice",
+        answer: "Zones around features",
+        options: ["Zones around features", "Points", "Lines", "Polygons"],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Network analysis",
+        options: [
+          "Network analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does raster overlay require?",
+        type: "Multiple Choice",
+        answer: "Cell alignment",
+        options: [
+          "Cell alignment",
+          "Vector alignment",
+          "Attribute alignment",
+          "Topology alignment",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Topological relationships",
+        options: ["Topological relationships", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What estimates values between points?",
+        type: "Multiple Choice",
+        answer: "Spatial interpolation",
+        options: [
+          "Spatial interpolation",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What can GIS integrate?",
+        type: "Multiple Choice",
+        answer: "LiDAR data",
+        options: [
+          "LiDAR data",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What does georeferencing correct?",
+        type: "Multiple Choice",
+        answer: "Distortion in maps",
+        options: [
+          "Distortion in maps",
+          "Data storage",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is overlay analysis used for?",
+        type: "Multiple Choice",
+        answer: "Site selection",
+        options: [
+          "Site selection",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can raster data be used for?",
+        type: "Multiple Choice",
+        answer: "Slope calculation",
+        options: [
+          "Slope calculation",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector overlay preserve?",
+        type: "Multiple Choice",
+        answer: "Topology",
+        options: ["Topology", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Proximity analysis",
+        options: [
+          "Proximity analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does spatial join combine?",
+        type: "Multiple Choice",
+        answer: "Attributes from layers",
+        options: ["Attributes from layers", "Points", "Lines", "Polygons"],
+      },
+      {
+        question: "What is raster data suitable for?",
+        type: "Multiple Choice",
+        answer: "Hydrological modeling",
+        options: [
+          "Hydrological modeling",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Network connectivity",
+        options: ["Network connectivity", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does georeferencing align?",
+        type: "Multiple Choice",
+        answer: "Vector and raster data",
+        options: [
+          "Vector and raster data",
+          "Only vector data",
+          "Only raster data",
+          "Attribute data",
+        ],
+      },
+      {
+        question: "What can overlay analysis cause?",
+        type: "Multiple Choice",
+        answer: "Data loss",
+        options: [
+          "Data loss",
+          "Data gain",
+          "Instrument error",
+          "Calibration error",
+        ],
+      },
+      {
+        question: "What can GIS analyze?",
+        type: "Multiple Choice",
+        answer: "Multi-temporal data",
+        options: [
+          "Multi-temporal data",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What are buffer zones used for?",
+        type: "Multiple Choice",
+        answer: "Environmental planning",
+        options: [
+          "Environmental planning",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does raster interpolation require?",
+        type: "Multiple Choice",
+        answer: "A grid",
+        options: ["A grid", "A network", "A boundary", "A cadastral map"],
+      },
+      {
+        question: "What can vector data represent?",
+        type: "Multiple Choice",
+        answer: "Adjacency",
+        options: ["Adjacency", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Spatial autocorrelation analysis",
+        options: [
+          "Spatial autocorrelation analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does georeferencing use?",
+        type: "Multiple Choice",
+        answer: "Transformation equations",
+        options: [
+          "Transformation equations",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What is overlay analysis used for?",
+        type: "Multiple Choice",
+        answer: "Land use conflict resolution",
+        options: [
+          "Land use conflict resolution",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What is raster data ideal for?",
+        type: "Multiple Choice",
+        answer: "Network analysis",
+        options: [
+          "Network analysis",
+          "Slope calculation",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Polygon overlay",
+        options: ["Polygon overlay", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Suitability analysis",
+        options: [
+          "Suitability analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What do spatial queries use?",
+        type: "Multiple Choice",
+        answer: "SQL",
+        options: ["SQL", "Python", "Java", "C++"],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Viewshed analysis",
+        options: [
+          "Viewshed analysis",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data store?",
+        type: "Multiple Choice",
+        answer: "Elevation",
+        options: ["Elevation", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS integrate for mapping?",
+        type: "Multiple Choice",
+        answer: "Remote sensing",
+        options: [
+          "Remote sensing",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What does georeferencing require?",
+        type: "Multiple Choice",
+        answer: "A reference map",
+        options: [
+          "A reference map",
+          "A network",
+          "A boundary",
+          "A cadastral map",
+        ],
+      },
+      {
+        question: "What does overlay analysis combine?",
+        type: "Multiple Choice",
+        answer: "Raster and vector data",
+        options: [
+          "Raster and vector data",
+          "Only raster data",
+          "Only vector data",
+          "Attribute data",
+        ],
+      },
+      {
+        question: "What can raster data support?",
+        type: "Multiple Choice",
+        answer: "3D analysis",
+        options: [
+          "3D analysis",
+          "Only 2D analysis",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is vector data used for?",
+        type: "Multiple Choice",
+        answer: "Shortest path analysis",
+        options: [
+          "Shortest path analysis",
+          "Continuous surfaces",
+          "Elevation modeling",
+          "Land cover mapping",
+        ],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Statistical analysis",
+        options: [
+          "Statistical analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What is buffer analysis used for?",
+        type: "Multiple Choice",
+        answer: "Noise pollution mapping",
+        options: [
+          "Noise pollution mapping",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What is raster interpolation used for?",
+        type: "Multiple Choice",
+        answer: "Temperature mapping",
+        options: [
+          "Temperature mapping",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data represent?",
+        type: "Multiple Choice",
+        answer: "Connectivity",
+        options: ["Connectivity", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Multi-criteria decision analysis",
+        options: [
+          "Multi-criteria decision analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does georeferencing correct?",
+        type: "Multiple Choice",
+        answer: "Scale errors",
+        options: [
+          "Scale errors",
+          "Data storage",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is overlay analysis used for?",
+        type: "Multiple Choice",
+        answer: "Flood risk mapping",
+        options: [
+          "Flood risk mapping",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What is raster data suitable for?",
+        type: "Multiple Choice",
+        answer: "Urban planning",
+        options: [
+          "Urban planning",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Adjacency analysis",
+        options: ["Adjacency analysis", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS integrate?",
+        type: "Multiple Choice",
+        answer: "Drone data",
+        options: [
+          "Drone data",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What does spatial join require?",
+        type: "Multiple Choice",
+        answer: "Common attributes",
+        options: [
+          "Common attributes",
+          "Different attributes",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Soil mapping",
+        options: [
+          "Soil mapping",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data be used for?",
+        type: "Multiple Choice",
+        answer: "3D modeling",
+        options: [
+          "3D modeling",
+          "Only 2D modeling",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Real-time data processing",
+        options: [
+          "Real-time data processing",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does georeferencing align data to?",
+        type: "Multiple Choice",
+        answer: "A coordinate system",
+        options: [
+          "A coordinate system",
+          "A network",
+          "A boundary",
+          "A cadastral map",
+        ],
+      },
+      {
+        question: "What is overlay analysis used for?",
+        type: "Multiple Choice",
+        answer: "Habitat mapping",
+        options: [
+          "Habitat mapping",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does raster data not support?",
+        type: "Multiple Choice",
+        answer: "Network connectivity",
+        options: [
+          "Network connectivity",
+          "Slope calculation",
+          "Elevation modeling",
+          "Land cover mapping",
+        ],
+      },
+      {
+        question: "What is vector data used for?",
+        type: "Multiple Choice",
+        answer: "Cadastral overlays",
+        options: [
+          "Cadastral overlays",
+          "Continuous surfaces",
+          "Elevation modeling",
+          "Land cover mapping",
+        ],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Visibility analysis",
+        options: [
+          "Visibility analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What do spatial queries filter by?",
+        type: "Multiple Choice",
+        answer: "Attribute values",
+        options: [
+          "Attribute values",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is raster data used for?",
+        type: "Multiple Choice",
+        answer: "Precipitation mapping",
+        options: [
+          "Precipitation mapping",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data represent?",
+        type: "Multiple Choice",
+        answer: "Elevation surfaces",
+        options: ["Elevation surfaces", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS integrate for tracking?",
+        type: "Multiple Choice",
+        answer: "GPS",
+        options: ["GPS", "Weather data", "Population data", "Economic data"],
+      },
+      {
+        question: "What does georeferencing require?",
+        type: "Multiple Choice",
+        answer: "Image rectification",
+        options: [
+          "Image rectification",
+          "Data storage",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is overlay analysis used for?",
+        type: "Multiple Choice",
+        answer: "Zoning conflicts",
+        options: [
+          "Zoning conflicts",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What is raster data ideal for?",
+        type: "Multiple Choice",
+        answer: "Point interpolation",
+        options: [
+          "Point interpolation",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Route optimization",
+        options: ["Route optimization", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS analyze?",
+        type: "Multiple Choice",
+        answer: "Spatial patterns",
+        options: [
+          "Spatial patterns",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What is buffer analysis used for?",
+        type: "Multiple Choice",
+        answer: "Wildlife protection",
+        options: [
+          "Wildlife protection",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What is raster interpolation used for?",
+        type: "Multiple Choice",
+        answer: "Elevation surfaces",
+        options: [
+          "Elevation surfaces",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data support?",
+        type: "Multiple Choice",
+        answer: "Multi-layer analysis",
+        options: ["Multi-layer analysis", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Geospatial modeling",
+        options: [
+          "Geospatial modeling",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does georeferencing align data to?",
+        type: "Multiple Choice",
+        answer: "Real-world coordinates",
+        options: [
+          "Real-world coordinates",
+          "A network",
+          "A boundary",
+          "A cadastral map",
+        ],
+      },
+      // Difficult: [
+      // True/False Questions (301-350)
+      {
+        question: "3D GIS supports urban planning simulations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geospatial error analysis is unnecessary in GIS.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Raster data can be used for 4D modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot handle spatial uncertainty.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports big data analytics.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geospatial modeling requires high-resolution data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data can integrate time-series analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot support dynamic segmentation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS can perform geostatistical analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "3D GIS requires LiDAR for accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geospatial error can arise from data misregistration.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is unsuitable for machine learning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports complex network optimization.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot handle multi-scale analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geostatistical interpolation uses kriging.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "3D GIS is used for flood inundation modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data cannot represent uncertainty surfaces.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports spatial interpolation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS integrates IoT for real-time monitoring.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geospatial modeling ignores data resolution.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Raster data can support volumetric analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot handle temporal changes.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports cloud-based processing.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geostatistical analysis requires spatial autocorrelation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "3D GIS can model building interiors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is unsuitable for uncertainty mapping.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports spatial data mining.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform sensitivity analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geospatial error can result from projection differences.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data supports multi-dimensional analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot integrate time-stamped data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports distributed computing.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geostatistical modeling uses variograms.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "3D GIS is used for urban wind flow analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data cannot handle large datasets efficiently.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports spatial statistics.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot integrate blockchain for data security.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geospatial modeling requires validation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data supports spatial prediction.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot represent 3D surfaces.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports machine learning for classification.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geostatistical analysis ignores spatial trends.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "3D GIS requires high computational power.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data is unsuitable for spatial optimization.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Vector data supports spatio-temporal analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform uncertainty propagation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geospatial error affects decision-making.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Raster data supports high-resolution imagery.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Vector data cannot handle complex topologies.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports web-based mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (351-400)
+      {
+        question: "What does 3D GIS support?",
+        type: "Multiple Choice",
+        answer: "Urban planning simulations",
+        options: [
+          "Urban planning simulations",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What is geospatial error analysis used for?",
+        type: "Multiple Choice",
+        answer: "Accuracy assessment",
+        options: [
+          "Accuracy assessment",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What can raster data be used for?",
+        type: "Multiple Choice",
+        answer: "4D modeling",
+        options: [
+          "4D modeling",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data handle?",
+        type: "Multiple Choice",
+        answer: "Spatial uncertainty",
+        options: ["Spatial uncertainty", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Big data analytics",
+        options: [
+          "Big data analytics",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geospatial modeling require?",
+        type: "Multiple Choice",
+        answer: "High-resolution data",
+        options: [
+          "High-resolution data",
+          "Low-resolution data",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What can raster data integrate?",
+        type: "Multiple Choice",
+        answer: "Time-series analysis",
+        options: [
+          "Time-series analysis",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data support?",
+        type: "Multiple Choice",
+        answer: "Dynamic segmentation",
+        options: ["Dynamic segmentation", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Geostatistical analysis",
+        options: [
+          "Geostatistical analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does 3D GIS require for accuracy?",
+        type: "Multiple Choice",
+        answer: "LiDAR",
+        options: ["LiDAR", "Weather data", "Population data", "Economic data"],
+      },
+      {
+        question: "What can cause geospatial error?",
+        type: "Multiple Choice",
+        answer: "Data misregistration",
+        options: [
+          "Data misregistration",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is raster data suitable for?",
+        type: "Multiple Choice",
+        answer: "Machine learning",
+        options: [
+          "Machine learning",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Complex network optimization",
+        options: [
+          "Complex network optimization",
+          "Pixels",
+          "Images",
+          "Textures",
+        ],
+      },
+      {
+        question: "What can GIS handle?",
+        type: "Multiple Choice",
+        answer: "Multi-scale analysis",
+        options: [
+          "Multi-scale analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+    ],
+    Hard: [
+      {
+        question: "What does geostatistical interpolation use?",
+        type: "Multiple Choice",
+        answer: "Kriging",
+        options: [
+          "Kriging",
+          "Linear regression",
+          "Clustering",
+          "Classification",
+        ],
+      },
+      {
+        question: "What is 3D GIS used for?",
+        type: "Multiple Choice",
+        answer: "Flood inundation modeling",
+        options: [
+          "Flood inundation modeling",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can raster data represent?",
+        type: "Multiple Choice",
+        answer: "Uncertainty surfaces",
+        options: [
+          "Uncertainty surfaces",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data not support?",
+        type: "Multiple Choice",
+        answer: "Spatial interpolation",
+        options: [
+          "Spatial interpolation",
+          "Topology",
+          "Attributes",
+          "Geometric shapes",
+        ],
+      },
+      {
+        question: "What does GIS integrate for monitoring?",
+        type: "Multiple Choice",
+        answer: "IoT",
+        options: ["IoT", "Weather data", "Population data", "Economic data"],
+      },
+      {
+        question: "What does geospatial modeling consider?",
+        type: "Multiple Choice",
+        answer: "Data resolution",
+        options: [
+          "Data resolution",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What can raster data support?",
+        type: "Multiple Choice",
+        answer: "Volumetric analysis",
+        options: [
+          "Volumetric analysis",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data handle?",
+        type: "Multiple Choice",
+        answer: "Temporal changes",
+        options: ["Temporal changes", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Cloud-based processing",
+        options: [
+          "Cloud-based processing",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geostatistical analysis require?",
+        type: "Multiple Choice",
+        answer: "Spatial autocorrelation",
+        options: [
+          "Spatial autocorrelation",
+          "Linear regression",
+          "Clustering",
+          "Classification",
+        ],
+      },
+      {
+        question: "What can 3D GIS model?",
+        type: "Multiple Choice",
+        answer: "Building interiors",
+        options: [
+          "Building interiors",
+          "Weather patterns",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What is raster data suitable for?",
+        type: "Multiple Choice",
+        answer: "Uncertainty mapping",
+        options: [
+          "Uncertainty mapping",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Spatial data mining",
+        options: ["Spatial data mining", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Sensitivity analysis",
+        options: [
+          "Sensitivity analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What can cause geospatial error?",
+        type: "Multiple Choice",
+        answer: "Projection differences",
+        options: [
+          "Projection differences",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does raster data support?",
+        type: "Multiple Choice",
+        answer: "Multi-dimensional analysis",
+        options: [
+          "Multi-dimensional analysis",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data integrate?",
+        type: "Multiple Choice",
+        answer: "Time-stamped data",
+        options: ["Time-stamped data", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Distributed computing",
+        options: [
+          "Distributed computing",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geostatistical modeling use?",
+        type: "Multiple Choice",
+        answer: "Variograms",
+        options: [
+          "Variograms",
+          "Linear regression",
+          "Clustering",
+          "Classification",
+        ],
+      },
+      {
+        question: "What is 3D GIS used for?",
+        type: "Multiple Choice",
+        answer: "Urban wind flow analysis",
+        options: [
+          "Urban wind flow analysis",
+          "Weather mapping",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can raster data handle efficiently?",
+        type: "Multiple Choice",
+        answer: "Large datasets",
+        options: [
+          "Large datasets",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Spatial statistics",
+        options: ["Spatial statistics", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS integrate for security?",
+        type: "Multiple Choice",
+        answer: "Blockchain",
+        options: [
+          "Blockchain",
+          "Weather data",
+          "Population data",
+          "Economic data",
+        ],
+      },
+      {
+        question: "What does geospatial modeling require?",
+        type: "Multiple Choice",
+        answer: "Validation",
+        options: [
+          "Validation",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does raster data support?",
+        type: "Multiple Choice",
+        answer: "Spatial prediction",
+        options: [
+          "Spatial prediction",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data represent?",
+        type: "Multiple Choice",
+        answer: "3D surfaces",
+        options: ["3D surfaces", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support for classification?",
+        type: "Multiple Choice",
+        answer: "Machine learning",
+        options: [
+          "Machine learning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geostatistical analysis consider?",
+        type: "Multiple Choice",
+        answer: "Spatial trends",
+        options: [
+          "Spatial trends",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does 3D GIS require?",
+        type: "Multiple Choice",
+        answer: "High computational power",
+        options: [
+          "High computational power",
+          "Low computational power",
+          "Instrument data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What is raster data suitable for?",
+        type: "Multiple Choice",
+        answer: "Spatial optimization",
+        options: [
+          "Spatial optimization",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What does vector data support?",
+        type: "Multiple Choice",
+        answer: "Spatio-temporal analysis",
+        options: ["Spatio-temporal analysis", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What can GIS perform?",
+        type: "Multiple Choice",
+        answer: "Uncertainty propagation",
+        options: [
+          "Uncertainty propagation",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geospatial error affect?",
+        type: "Multiple Choice",
+        answer: "Decision-making",
+        options: [
+          "Decision-making",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does raster data support?",
+        type: "Multiple Choice",
+        answer: "High-resolution imagery",
+        options: [
+          "High-resolution imagery",
+          "Network analysis",
+          "Boundary mapping",
+          "Cadastral mapping",
+        ],
+      },
+      {
+        question: "What can vector data handle?",
+        type: "Multiple Choice",
+        answer: "Complex topologies",
+        options: ["Complex topologies", "Pixels", "Images", "Textures"],
+      },
+      {
+        question: "What does GIS support?",
+        type: "Multiple Choice",
+        answer: "Web-based mapping",
+        options: [
+          "Web-based mapping",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+    ],
+  },
+  "Survey Adjustment": {
+    programOfStudy: "Geomatic Engineering",
+    levelOfStudy: "Level 300",
+    semesterOfStudy: "Semester 2",
+    Easy: [
+      {
+        question: "Survey adjustment minimizes errors in measurements.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Random errors can be completely eliminated.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Least squares adjustment provides optimal estimates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors are unpredictable.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Observation equations relate measurements to unknowns.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Weights are assigned based on measurement precision.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A residual is the difference between observed and adjusted values.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is used in least squares adjustment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A higher weight indicates lower precision.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is used in leveling networks.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix contains partial derivatives.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are random errors.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Variance measures the spread of errors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A redundant observation improves adjustment accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is always diagonal.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "Least squares adjustment assumes normally distributed errors.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A condition equation enforces geometric constraints.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is applied to GNSS data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix represents error correlations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Error propagation calculates uncertainty in derived quantities.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A datum defines the reference frame for adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The chi-square test evaluates adjustment quality.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A free network adjustment requires no fixed points.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The standard deviation measures measurement precision.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Gross errors are small and random.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The adjustment process improves measurement consistency.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A singular normal matrix indicates a well-defined solution.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The law of error propagation applies to linear systems only.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The weight of an observation is inversely proportional to its variance.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is used in triangulation networks.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The residual vector indicates adjustment quality.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A high variance indicates high precision.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is updated in non-linear adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Blunders can be detected using residuals.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The variance-covariance matrix describes error distribution.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment fixes certain parameters.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal equations are solved to find unknowns.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipses represent positional uncertainty.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A higher degree of freedom improves adjustment reliability.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is used only in unweighted adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment ensures geometric closure.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is derived from the weight matrix.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors can be modeled and corrected.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The least squares method minimizes the sum of squared residuals.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A datum defect occurs in constrained adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The standard error of unit weight evaluates adjustment fit.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Redundant observations are unnecessary for adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is symmetric.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Error propagation is used in network design.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A free adjustment requires fixed coordinates.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The weight of an observation depends on its accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The chi-square test is used in unweighted adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is constant in linear adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are corrected during adjustment.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The variance-covariance matrix is used for error analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment reduces degrees of freedom.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal equations are derived from the design matrix.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipses are used in 2D adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix accounts for observation correlations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is applied to traverse networks.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The residual vector is zero in a perfect adjustment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A high standard deviation indicates low precision.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The least squares method is iterative for non-linear problems.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for error propagation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors are random in nature.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is inverted to solve for unknowns.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A datum provides a reference for coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The chi-square test assesses residual distribution.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A free network adjustment requires constraints.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The standard error measures adjustment accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Redundant observations reduce adjustment reliability.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix defines observation relationships.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are detected using statistical tests.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The variance-covariance matrix is symmetric.",
+        answer: "True",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (76-150)
+      {
+        question: "What does survey adjustment minimize?",
+        type: "Multiple Choice",
+        answer: "Measurement errors",
+        options: [
+          "Measurement errors",
+          "Instrument cost",
+          "Observation time",
+          "Data storage",
+        ],
+      },
+      {
+        question: "Which error type is unpredictable?",
+        type: "Multiple Choice",
+        answer: "Random",
+        options: ["Systematic", "Random", "Gross", "Blunder"],
+      },
+      {
+        question: "What does least squares adjustment provide?",
+        type: "Multiple Choice",
+        answer: "Optimal estimates",
+        options: [
+          "Optimal estimates",
+          "Raw data",
+          "Instrument calibration",
+          "Error elimination",
+        ],
+      },
+      {
+        question: "What relates measurements to unknowns?",
+        type: "Multiple Choice",
+        answer: "Observation equations",
+        options: [
+          "Weight matrix",
+          "Observation equations",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "How are weights assigned in survey adjustment?",
+        type: "Multiple Choice",
+        answer: "Based on precision",
+        options: [
+          "Based on precision",
+          "Randomly",
+          "Equal for all",
+          "Based on distance",
+        ],
+      },
+      {
+        question: "What is a residual in survey adjustment?",
+        type: "Multiple Choice",
+        answer: "Observed minus adjusted value",
+        options: [
+          "Observed minus adjusted value",
+          "True minus observed value",
+          "Weight minus variance",
+          "Error minus correction",
+        ],
+      },
+      {
+        question: "Which matrix is used in least squares adjustment?",
+        type: "Multiple Choice",
+        answer: "Normal matrix",
+        options: [
+          "Weight matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a higher weight indicate?",
+        type: "Multiple Choice",
+        answer: "Higher precision",
+        options: [
+          "Lower precision",
+          "Higher precision",
+          "Larger error",
+          "Smaller variance",
+        ],
+      },
+      {
+        question: "Where is survey adjustment applied?",
+        type: "Multiple Choice",
+        answer: "Leveling networks",
+        options: [
+          "Leveling networks",
+          "Data storage",
+          "Instrument design",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does the design matrix contain?",
+        type: "Multiple Choice",
+        answer: "Partial derivatives",
+        options: ["Partial derivatives", "Residuals", "Weights", "Variances"],
+      },
+      {
+        question: "Which error type is a blunder?",
+        type: "Multiple Choice",
+        answer: "Gross error",
+        options: [
+          "Random error",
+          "Systematic error",
+          "Gross error",
+          "Small error",
+        ],
+      },
+      {
+        question: "What does variance measure?",
+        type: "Multiple Choice",
+        answer: "Error spread",
+        options: [
+          "Error spread",
+          "Measurement accuracy",
+          "Instrument quality",
+          "Data volume",
+        ],
+      },
+      {
+        question: "What improves adjustment accuracy?",
+        type: "Multiple Choice",
+        answer: "Redundant observations",
+        options: [
+          "Redundant observations",
+          "Fewer measurements",
+          "Unweighted data",
+          "Fixed errors",
+        ],
+      },
+      {
+        question: "What is the weight matrix in adjustments?",
+        type: "Multiple Choice",
+        answer: "Precision-based",
+        options: ["Constant", "Precision-based", "Random", "Uniform"],
+      },
+      {
+        question: "What does least squares assume about errors?",
+        type: "Multiple Choice",
+        answer: "Normal distribution",
+        options: [
+          "Uniform distribution",
+          "Normal distribution",
+          "Random distribution",
+          "No distribution",
+        ],
+      },
+      {
+        question: "What does a condition equation enforce?",
+        type: "Multiple Choice",
+        answer: "Geometric constraints",
+        options: [
+          "Geometric constraints",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "Where is survey adjustment applied?",
+        type: "Multiple Choice",
+        answer: "GNSS data",
+        options: [
+          "GNSS data",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What does the cofactor matrix represent?",
+        type: "Multiple Choice",
+        answer: "Error correlations",
+        options: [
+          "Error correlations",
+          "Measurement weights",
+          "Residual errors",
+          "Instrument errors",
+        ],
+      },
+      {
+        question: "What does error propagation calculate?",
+        type: "Multiple Choice",
+        answer: "Uncertainty in results",
+        options: [
+          "Uncertainty in results",
+          "Instrument accuracy",
+          "Measurement time",
+          "Data volume",
+        ],
+      },
+      {
+        question: "What defines the reference frame in adjustments?",
+        type: "Multiple Choice",
+        answer: "Datum",
+        options: ["Datum", "Residual", "Weight", "Variance"],
+      },
+      {
+        question: "Which test evaluates adjustment quality?",
+        type: "Multiple Choice",
+        answer: "Chi-square test",
+        options: ["Chi-square test", "T-test", "F-test", "Z-test"],
+      },
+      {
+        question: "What does a free network adjustment require?",
+        type: "Multiple Choice",
+        answer: "No fixed points",
+        options: [
+          "No fixed points",
+          "All fixed points",
+          "Equal weights",
+          "No residuals",
+        ],
+      },
+      {
+        question: "What does standard deviation measure?",
+        type: "Multiple Choice",
+        answer: "Measurement precision",
+        options: [
+          "Measurement precision",
+          "Instrument cost",
+          "Data volume",
+          "Error type",
+        ],
+      },
+      {
+        question: "Which error type is large and non-random?",
+        type: "Multiple Choice",
+        answer: "Gross error",
+        options: [
+          "Random error",
+          "Systematic error",
+          "Gross error",
+          "Small error",
+        ],
+      },
+      {
+        question: "What does the adjustment process improve?",
+        type: "Multiple Choice",
+        answer: "Measurement consistency",
+        options: [
+          "Measurement consistency",
+          "Instrument design",
+          "Data storage",
+          "Field time",
+        ],
+      },
+      {
+        question: "What does a singular normal matrix indicate?",
+        type: "Multiple Choice",
+        answer: "Ill-defined solution",
+        options: [
+          "Ill-defined solution",
+          "Optimal solution",
+          "No solution",
+          "Perfect solution",
+        ],
+      },
+      {
+        question: "What does the law of error propagation apply to?",
+        type: "Multiple Choice",
+        answer: "Linear and non-linear systems",
+        options: [
+          "Linear systems only",
+          "Non-linear systems only",
+          "Linear and non-linear systems",
+          "No systems",
+        ],
+      },
+      {
+        question: "How is the weight of an observation determined?",
+        type: "Multiple Choice",
+        answer: "Inversely to variance",
+        options: [
+          "Directly to variance",
+          "Inversely to variance",
+          "Equal for all",
+          "Randomly",
+        ],
+      },
+      {
+        question: "Where is survey adjustment applied?",
+        type: "Multiple Choice",
+        answer: "Triangulation networks",
+        options: [
+          "Triangulation networks",
+          "Data storage",
+          "Instrument repair",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What does the residual vector indicate?",
+        type: "Multiple Choice",
+        answer: "Adjustment quality",
+        options: [
+          "Adjustment quality",
+          "Instrument accuracy",
+          "Measurement time",
+          "Data volume",
+        ],
+      },
+      {
+        question: "What does a high variance indicate?",
+        type: "Multiple Choice",
+        answer: "Low precision",
+        options: [
+          "High precision",
+          "Low precision",
+          "Small error",
+          "Large residual",
+        ],
+      },
+      {
+        question: "What is updated in non-linear adjustments?",
+        type: "Multiple Choice",
+        answer: "Design matrix",
+        options: [
+          "Weight matrix",
+          "Design matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "How are blunders detected?",
+        type: "Multiple Choice",
+        answer: "Using residuals",
+        options: [
+          "Using residuals",
+          "Using weights",
+          "Using instruments",
+          "Using data volume",
+        ],
+      },
+      {
+        question: "What does the variance-covariance matrix describe?",
+        type: "Multiple Choice",
+        answer: "Error distribution",
+        options: [
+          "Error distribution",
+          "Measurement weights",
+          "Residual errors",
+          "Instrument errors",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment do?",
+        type: "Multiple Choice",
+        answer: "Fixes parameters",
+        options: [
+          "Fixes parameters",
+          "Removes errors",
+          "Increases residuals",
+          "Reduces weights",
+        ],
+      },
+      {
+        question: "What are normal equations used for?",
+        type: "Multiple Choice",
+        answer: "Solve for unknowns",
+        options: [
+          "Solve for unknowns",
+          "Measure errors",
+          "Assign weights",
+          "Collect data",
+        ],
+      },
+      {
+        question: "What do error ellipses represent?",
+        type: "Multiple Choice",
+        answer: "Positional uncertainty",
+        options: [
+          "Positional uncertainty",
+          "Measurement time",
+          "Instrument accuracy",
+          "Data volume",
+        ],
+      },
+      {
+        question: "What improves adjustment reliability?",
+        type: "Multiple Choice",
+        answer: "Higher degree of freedom",
+        options: [
+          "Higher degree of freedom",
+          "Fewer observations",
+          "Equal weights",
+          "No residuals",
+        ],
+      },
+      {
+        question: "What does the weight matrix account for?",
+        type: "Multiple Choice",
+        answer: "Observation correlations",
+        options: [
+          "Observation correlations",
+          "Instrument errors",
+          "Residual errors",
+          "Data volume",
+        ],
+      },
+      {
+        question: "Where is survey adjustment applied?",
+        type: "Multiple Choice",
+        answer: "Traverse networks",
+        options: [
+          "Traverse networks",
+          "Data storage",
+          "Instrument repair",
+          "Field calibration",
+        ],
+      },
+      {
+        question:
+          "What does the residual vector indicate in a perfect adjustment?",
+        type: "Multiple Choice",
+        answer: "Zero",
+        options: ["Zero", "One", "Random", "Infinite"],
+      },
+      {
+        question: "What does a high standard deviation indicate?",
+        type: "Multiple Choice",
+        answer: "Low precision",
+        options: [
+          "High precision",
+          "Low precision",
+          "Small error",
+          "Large residual",
+        ],
+      },
+      {
+        question: "What is the least squares method for non-linear problems?",
+        type: "Multiple Choice",
+        answer: "Iterative",
+        options: ["Iterative", "Direct", "Random", "Fixed"],
+      },
+      {
+        question: "What is the cofactor matrix used for?",
+        type: "Multiple Choice",
+        answer: "Error propagation",
+        options: [
+          "Error propagation",
+          "Weight assignment",
+          "Residual calculation",
+          "Data collection",
+        ],
+      },
+      {
+        question: "Which error type is modeled and corrected?",
+        type: "Multiple Choice",
+        answer: "Systematic",
+        options: ["Random", "Systematic", "Gross", "Blunder"],
+      },
+      {
+        question: "What is inverted to solve for unknowns?",
+        type: "Multiple Choice",
+        answer: "Normal matrix",
+        options: [
+          "Weight matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What provides a reference for coordinates?",
+        type: "Multiple Choice",
+        answer: "Datum",
+        options: ["Datum", "Residual", "Weight", "Variance"],
+      },
+      {
+        question: "What does the chi-square test assess?",
+        type: "Multiple Choice",
+        answer: "Residual distribution",
+        options: [
+          "Residual distribution",
+          "Instrument accuracy",
+          "Measurement time",
+          "Data volume",
+        ],
+      },
+      {
+        question: "What does a free network adjustment require?",
+        type: "Multiple Choice",
+        answer: "No constraints",
+        options: [
+          "No constraints",
+          "All constraints",
+          "Equal weights",
+          "No residuals",
+        ],
+      },
+      {
+        question: "What does the standard error measure?",
+        type: "Multiple Choice",
+        answer: "Adjustment accuracy",
+        options: [
+          "Adjustment accuracy",
+          "Instrument cost",
+          "Data volume",
+          "Error type",
+        ],
+      },
+    ],
+    Medium: [
+      // True/False Questions (151-225)
+      {
+        question: "Error propagation uses the variance-covariance matrix.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is singular in a well-defined adjustment.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Condition equations reduce the number of unknowns.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The standard error of unit weight is always one.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A robust adjustment handles outliers effectively.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The cofactor matrix is inverted to obtain the weight matrix.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Network adjustment improves coordinate accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The chi-square test is used for unweighted adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is linearized in non-linear adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are corrected during least squares adjustment.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The variance-covariance matrix is used for error ellipses.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment increases residuals.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The normal equations are solved iteratively for linear problems.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipses are used in 3D adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is updated in non-linear adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is critical for GNSS baseline processing.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The residual vector is used to compute the standard error.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A high degree of freedom indicates a weak adjustment.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The least squares method minimizes the sum of residuals.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for datum transformations.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors are detected using statistical tests.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is derived from the weight matrix.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A datum defect occurs in free network adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The standard error of unit weight evaluates residual fit.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Redundant observations are critical for error detection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is constant in non-linear adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are modeled in least squares adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The variance-covariance matrix is used for precision analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment enforces geometric conditions.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal equations are used for error propagation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipses represent uncertainty in 2D coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The weight matrix is diagonal for uncorrelated observations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is used for leveling network design.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The residual vector is used to detect outliers.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A high standard deviation indicates high accuracy.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The least squares method is applied to condition equations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for weight assignment.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors are corrected during field measurements.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is used for residual analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A datum provides a reference for error propagation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The chi-square test is used for variance analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A free network adjustment requires fixed coordinates.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The standard error measures observation accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Redundant observations reduce adjustment accuracy.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is used for weight assignment.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are detected using the chi-square test.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The variance-covariance matrix is used for error ellipses.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A constrained adjustment reduces the number of observations.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The normal equations are derived from observation equations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipses are used for 1D adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is used for error propagation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is critical for traverse closure.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The residual vector is used for variance estimation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A high degree of freedom indicates a robust adjustment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The least squares method minimizes weighted residuals.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for coordinate transformations.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors are detected using residuals.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is used for error detection.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A datum defect occurs in constrained adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The standard error of unit weight evaluates adjustment quality.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Redundant observations improve error detection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is linearized for linear adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are corrected during post-processing.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The variance-covariance matrix is used for uncertainty analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment enforces datum constraints.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal equations are used for variance estimation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipses represent uncertainty in 3D coordinates.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is diagonal for correlated observations.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is used for GNSS network design.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The residual vector is used to compute the chi-square statistic.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A high standard deviation indicates low precision.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The least squares method is applied to observation equations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for error detection.",
+        answer: "False",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (226-300)
+      {
+        question: "What is used for error propagation?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a singular normal matrix indicate?",
+        type: "Multiple Choice",
+        answer: "Ill-defined adjustment",
+        options: [
+          "Ill-defined adjustment",
+          "Optimal adjustment",
+          "No adjustment",
+          "Perfect adjustment",
+        ],
+      },
+      {
+        question: "What do condition equations enforce?",
+        type: "Multiple Choice",
+        answer: "Geometric constraints",
+        options: [
+          "Geometric constraints",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What does the standard error of unit weight evaluate?",
+        type: "Multiple Choice",
+        answer: "Adjustment fit",
+        options: [
+          "Adjustment fit",
+          "Instrument accuracy",
+          "Measurement time",
+          "Data volume",
+        ],
+      },
+      {
+        question: "What does a robust adjustment handle?",
+        type: "Multiple Choice",
+        answer: "Outliers",
+        options: ["Outliers", "Weights", "Residuals", "Variances"],
+      },
+      {
+        question: "What is inverted to obtain the weight matrix?",
+        type: "Multiple Choice",
+        answer: "Cofactor matrix",
+        options: [
+          "Weight matrix",
+          "Cofactor matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does network adjustment improve?",
+        type: "Multiple Choice",
+        answer: "Coordinate accuracy",
+        options: [
+          "Coordinate accuracy",
+          "Instrument design",
+          "Data storage",
+          "Field time",
+        ],
+      },
+      {
+        question: "What is linearized in non-linear adjustments?",
+        type: "Multiple Choice",
+        answer: "Design matrix",
+        options: [
+          "Weight matrix",
+          "Design matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for error ellipses?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment enforce?",
+        type: "Multiple Choice",
+        answer: "Geometric conditions",
+        options: [
+          "Geometric conditions",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What are normal equations solved for in linear problems?",
+        type: "Multiple Choice",
+        answer: "Directly",
+        options: ["Directly", "Iteratively", "Randomly", "Manually"],
+      },
+      {
+        question: "What do error ellipses represent?",
+        type: "Multiple Choice",
+        answer: "2D uncertainty",
+        options: [
+          "1D uncertainty",
+          "2D uncertainty",
+          "3D uncertainty",
+          "No uncertainty",
+        ],
+      },
+      {
+        question: "What is the weight matrix for uncorrelated observations?",
+        type: "Multiple Choice",
+        answer: "Diagonal",
+        options: ["Diagonal", "Symmetric", "Singular", "Random"],
+      },
+      {
+        question: "Where is survey adjustment critical?",
+        type: "Multiple Choice",
+        answer: "GNSS baseline processing",
+        options: [
+          "GNSS baseline processing",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used to compute the standard error?",
+        type: "Multiple Choice",
+        answer: "Residual vector",
+        options: [
+          "Weight matrix",
+          "Residual vector",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What does a high degree of freedom indicate?",
+        type: "Multiple Choice",
+        answer: "Robust adjustment",
+        options: [
+          "Weak adjustment",
+          "Robust adjustment",
+          "No adjustment",
+          "Perfect adjustment",
+        ],
+      },
+      {
+        question: "What does the least squares method minimize?",
+        type: "Multiple Choice",
+        answer: "Weighted residuals",
+        options: [
+          "Weighted residuals",
+          "Raw residuals",
+          "Weights",
+          "Variances",
+        ],
+      },
+      {
+        question: "How are systematic errors detected?",
+        type: "Multiple Choice",
+        answer: "Statistical tests",
+        options: [
+          "Statistical tests",
+          "Manual inspection",
+          "Random sampling",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What is the normal matrix derived from?",
+        type: "Multiple Choice",
+        answer: "Weight and design matrices",
+        options: [
+          "Weight and design matrices",
+          "Residual matrix",
+          "Cofactor matrix",
+          "Error matrix",
+        ],
+      },
+      {
+        question: "What occurs in free network adjustments?",
+        type: "Multiple Choice",
+        answer: "Datum defect",
+        options: [
+          "Datum defect",
+          "No defect",
+          "Weight defect",
+          "Residual defect",
+        ],
+      },
+      {
+        question: "What does the standard error of unit weight evaluate?",
+        type: "Multiple Choice",
+        answer: "Residual fit",
+        options: [
+          "Residual fit",
+          "Instrument accuracy",
+          "Measurement time",
+          "Data volume",
+        ],
+      },
+      {
+        question: "What improves error detection?",
+        type: "Multiple Choice",
+        answer: "Redundant observations",
+        options: [
+          "Redundant observations",
+          "Fewer measurements",
+          "Unweighted data",
+          "Fixed errors",
+        ],
+      },
+      {
+        question: "What is constant in non-linear adjustments?",
+        type: "Multiple Choice",
+        answer: "Weight matrix",
+        options: [
+          "Weight matrix",
+          "Design matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for precision analysis?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment enforce?",
+        type: "Multiple Choice",
+        answer: "Datum constraints",
+        options: [
+          "Datum constraints",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What are error ellipses used for?",
+        type: "Multiple Choice",
+        answer: "2D coordinates",
+        options: [
+          "1D coordinates",
+          "2D coordinates",
+          "3D coordinates",
+          "No coordinates",
+        ],
+      },
+      {
+        question: "What is the weight matrix for correlated observations?",
+        type: "Multiple Choice",
+        answer: "Non-diagonal",
+        options: ["Diagonal", "Non-diagonal", "Singular", "Random"],
+      },
+      {
+        question: "Where is survey adjustment applied?",
+        type: "Multiple Choice",
+        answer: "Leveling network design",
+        options: [
+          "Leveling network design",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used to detect outliers?",
+        type: "Multiple Choice",
+        answer: "Residual vector",
+        options: [
+          "Weight matrix",
+          "Residual vector",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What does a high standard deviation indicate?",
+        type: "Multiple Choice",
+        answer: "Low precision",
+        options: [
+          "High precision",
+          "Low precision",
+          "Small error",
+          "Large residual",
+        ],
+      },
+      {
+        question: "What is applied to condition equations?",
+        type: "Multiple Choice",
+        answer: "Least squares",
+        options: [
+          "Least squares",
+          "Random sampling",
+          "Manual inspection",
+          "Data collection",
+        ],
+      },
+      {
+        question: "How are blunders detected?",
+        type: "Multiple Choice",
+        answer: "Chi-square test",
+        options: ["Chi-square test", "T-test", "F-test", "Z-test"],
+      },
+      {
+        question: "What is used for uncertainty analysis?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment enforce?",
+        type: "Multiple Choice",
+        answer: "Geometric conditions",
+        options: [
+          "Geometric conditions",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What are normal equations derived from?",
+        type: "Multiple Choice",
+        answer: "Observation equations",
+        options: [
+          "Observation equations",
+          "Weight matrix",
+          "Residual matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What do error ellipses represent?",
+        type: "Multiple Choice",
+        answer: "2D uncertainty",
+        options: [
+          "1D uncertainty",
+          "2D uncertainty",
+          "3D uncertainty",
+          "No uncertainty",
+        ],
+      },
+      {
+        question: "What is the weight matrix for uncorrelated observations?",
+        type: "Multiple Choice",
+        answer: "Diagonal",
+        options: ["Diagonal", "Symmetric", "Singular", "Random"],
+      },
+      {
+        question: "Where is survey adjustment critical?",
+        type: "Multiple Choice",
+        answer: "Traverse closure",
+        options: [
+          "Traverse closure",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used to compute the chi-square statistic?",
+        type: "Multiple Choice",
+        answer: "Residual vector",
+        options: [
+          "Weight matrix",
+          "Residual vector",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What does a high degree of freedom indicate?",
+        type: "Multiple Choice",
+        answer: "Robust adjustment",
+        options: [
+          "Weak adjustment",
+          "Robust adjustment",
+          "No adjustment",
+          "Perfect adjustment",
+        ],
+      },
+      {
+        question: "What does the least squares method minimize?",
+        type: "Multiple Choice",
+        answer: "Weighted residuals",
+        options: [
+          "Weighted residuals",
+          "Raw residuals",
+          "Weights",
+          "Variances",
+        ],
+      },
+      {
+        question: "How are systematic errors detected?",
+        type: "Multiple Choice",
+        answer: "Residuals",
+        options: [
+          "Residuals",
+          "Manual inspection",
+          "Random sampling",
+          "Data collection",
+        ],
+      },
+    ],
+    Hard: [
+      {
+        question: "Robust estimation reduces the impact of outliers.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The variance-covariance matrix is singular in a well-defined adjustment.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Condition equations are used in 3D geodetic adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The standard error of unit weight is used for datum transformations.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A free network adjustment resolves datum defects.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for 3D error ellipsoids.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Network adjustment is critical for GNSS precise positioning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The chi-square test is used for non-linear adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The design matrix is updated iteratively in non-linear adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are modeled in robust adjustments.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The variance-covariance matrix is used for confidence regions.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment increases the number of unknowns.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The normal equations are solved using matrix inversion.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipsoids are used in 3D adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is updated in robust adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is critical for deformation monitoring.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The residual vector is used for robust estimation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A high degree of freedom indicates a weak network.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The least squares method is robust to outliers.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for variance estimation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors are corrected using robust estimation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is used for 3D error analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A datum defect is resolved using constraints.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The standard error of unit weight is used for outlier detection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Redundant observations are critical for robust adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is used for 3D error ellipsoids.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are detected using robust estimation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The variance-covariance matrix is used for 3D error ellipsoids.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment enforces 3D geometric constraints.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal equations are used for robust estimation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipsoids represent uncertainty in 2D coordinates.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is used for 3D error analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is critical for GNSS network adjustment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The residual vector is used for 3D error analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A high standard deviation indicates low accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The least squares method is applied to 3D adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The cofactor matrix is used for 3D error propagation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Systematic errors are detected using 3D error analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "The normal matrix is used for variance-covariance analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "A datum defect occurs in 3D adjustments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "The standard error of unit weight is used for 3D error analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Redundant observations improve 3D adjustment accuracy.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The design matrix is used for robust estimation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Blunders are corrected using robust estimation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question:
+          "The variance-covariance matrix is used for robust estimation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A constrained adjustment enforces 3D datum constraints.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The normal equations are used for 3D error analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Error ellipsoids represent uncertainty in 3D coordinates.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "The weight matrix is used for 3D error ellipsoids.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Survey adjustment is critical for geodetic network design.",
+        answer: "True",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (351-400)
+      {
+        question: "What does robust estimation reduce?",
+        type: "Multiple Choice",
+        answer: "Impact of outliers",
+        options: [
+          "Impact of outliers",
+          "Number of observations",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What is used for 3D error ellipsoids?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What are condition equations used for?",
+        type: "Multiple Choice",
+        answer: "3D geodetic adjustments",
+        options: [
+          "3D geodetic adjustments",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What does a free network adjustment resolve?",
+        type: "Multiple Choice",
+        answer: "Datum defects",
+        options: [
+          "Datum defects",
+          "Weight defects",
+          "Residual defects",
+          "No defects",
+        ],
+      },
+      {
+        question: "What is critical for GNSS precise positioning?",
+        type: "Multiple Choice",
+        answer: "Network adjustment",
+        options: [
+          "Network adjustment",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for non-linear adjustments?",
+        type: "Multiple Choice",
+        answer: "Chi-square test",
+        options: ["Chi-square test", "T-test", "F-test", "Z-test"],
+      },
+      {
+        question: "What is updated iteratively in non-linear adjustments?",
+        type: "Multiple Choice",
+        answer: "Design matrix",
+        options: [
+          "Weight matrix",
+          "Design matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for confidence regions?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment enforce?",
+        type: "Multiple Choice",
+        answer: "3D geometric constraints",
+        options: [
+          "3D geometric constraints",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "How are normal equations solved?",
+        type: "Multiple Choice",
+        answer: "Matrix inversion",
+        options: [
+          "Matrix inversion",
+          "Random sampling",
+          "Manual inspection",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What do error ellipsoids represent?",
+        type: "Multiple Choice",
+        answer: "3D uncertainty",
+        options: [
+          "1D uncertainty",
+          "2D uncertainty",
+          "3D uncertainty",
+          "No uncertainty",
+        ],
+      },
+      {
+        question: "What is updated in robust adjustments?",
+        type: "Multiple Choice",
+        answer: "Weight matrix",
+        options: [
+          "Weight matrix",
+          "Design matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "Where is survey adjustment critical?",
+        type: "Multiple Choice",
+        answer: "Deformation monitoring",
+        options: [
+          "Deformation monitoring",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for robust estimation?",
+        type: "Multiple Choice",
+        answer: "Residual vector",
+        options: [
+          "Weight matrix",
+          "Residual vector",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What does a high degree of freedom indicate?",
+        type: "Multiple Choice",
+        answer: "Robust network",
+        options: [
+          "Weak network",
+          "Robust network",
+          "No network",
+          "Perfect network",
+        ],
+      },
+      {
+        question: "What is the least squares method sensitive to?",
+        type: "Multiple Choice",
+        answer: "Outliers",
+        options: ["Outliers", "Weights", "Residuals", "Variances"],
+      },
+      {
+        question: "What is used for variance estimation?",
+        type: "Multiple Choice",
+        answer: "Cofactor matrix",
+        options: [
+          "Weight matrix",
+          "Cofactor matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "How are blunders detected?",
+        type: "Multiple Choice",
+        answer: "Robust estimation",
+        options: [
+          "Robust estimation",
+          "Manual inspection",
+          "Random sampling",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What is used for 3D error ellipsoids?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment enforce?",
+        type: "Multiple Choice",
+        answer: "3D datum constraints",
+        options: [
+          "3D datum constraints",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What do error ellipsoids represent?",
+        type: "Multiple Choice",
+        answer: "3D uncertainty",
+        options: [
+          "1D uncertainty",
+          "2D uncertainty",
+          "3D uncertainty",
+          "No uncertainty",
+        ],
+      },
+      {
+        question: "Where is survey adjustment critical?",
+        type: "Multiple Choice",
+        answer: "GNSS network adjustment",
+        options: [
+          "GNSS network adjustment",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for 3D error propagation?",
+        type: "Multiple Choice",
+        answer: "Cofactor matrix",
+        options: [
+          "Weight matrix",
+          "Cofactor matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What improves 3D adjustment accuracy?",
+        type: "Multiple Choice",
+        answer: "Redundant observations",
+        options: [
+          "Redundant observations",
+          "Fewer measurements",
+          "Unweighted data",
+          "Fixed errors",
+        ],
+      },
+      {
+        question: "What is used for geodetic network design?",
+        type: "Multiple Choice",
+        answer: "Survey adjustment",
+        options: [
+          "Survey adjustment",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for outlier detection?",
+        type: "Multiple Choice",
+        answer: "Standard error of unit weight",
+        options: [
+          "Standard error of unit weight",
+          "Weight matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for robust estimation?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment enforce?",
+        type: "Multiple Choice",
+        answer: "3D geometric constraints",
+        options: [
+          "3D geometric constraints",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What do error ellipsoids represent?",
+        type: "Multiple Choice",
+        answer: "3D uncertainty",
+        options: [
+          "1D uncertainty",
+          "2D uncertainty",
+          "3D uncertainty",
+          "No uncertainty",
+        ],
+      },
+      {
+        question: "Where is survey adjustment critical?",
+        type: "Multiple Choice",
+        answer: "Geodetic network design",
+        options: [
+          "Geodetic network design",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for 3D error analysis?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What is used for robust estimation?",
+        type: "Multiple Choice",
+        answer: "Residual vector",
+        options: [
+          "Weight matrix",
+          "Residual vector",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for 3D error propagation?",
+        type: "Multiple Choice",
+        answer: "Cofactor matrix",
+        options: [
+          "Weight matrix",
+          "Cofactor matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What improves 3D adjustment accuracy?",
+        type: "Multiple Choice",
+        answer: "Redundant observations",
+        options: [
+          "Redundant observations",
+          "Fewer measurements",
+          "Unweighted data",
+          "Fixed errors",
+        ],
+      },
+      {
+        question: "What is used for geodetic network design?",
+        type: "Multiple Choice",
+        answer: "Survey adjustment",
+        options: [
+          "Survey adjustment",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for outlier detection?",
+        type: "Multiple Choice",
+        answer: "Standard error of unit weight",
+        options: [
+          "Standard error of unit weight",
+          "Weight matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for robust estimation?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What does a constrained adjustment enforce?",
+        type: "Multiple Choice",
+        answer: "3D datum constraints",
+        options: [
+          "3D datum constraints",
+          "Error elimination",
+          "Weight assignment",
+          "Data collection",
+        ],
+      },
+      {
+        question: "What do error ellipsoids represent?",
+        type: "Multiple Choice",
+        answer: "3D uncertainty",
+        options: [
+          "1D uncertainty",
+          "2D uncertainty",
+          "3D uncertainty",
+          "No uncertainty",
+        ],
+      },
+      {
+        question: "Where is survey adjustment critical?",
+        type: "Multiple Choice",
+        answer: "GNSS network adjustment",
+        options: [
+          "GNSS network adjustment",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for 3D error analysis?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What is used for robust estimation?",
+        type: "Multiple Choice",
+        answer: "Residual vector",
+        options: [
+          "Weight matrix",
+          "Residual vector",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for 3D error propagation?",
+        type: "Multiple Choice",
+        answer: "Cofactor matrix",
+        options: [
+          "Weight matrix",
+          "Cofactor matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+      {
+        question: "What improves 3D adjustment accuracy?",
+        type: "Multiple Choice",
+        answer: "Redundant observations",
+        options: [
+          "Redundant observations",
+          "Fewer measurements",
+          "Unweighted data",
+          "Fixed errors",
+        ],
+      },
+      {
+        question: "What is used for geodetic network design?",
+        type: "Multiple Choice",
+        answer: "Survey adjustment",
+        options: [
+          "Survey adjustment",
+          "Instrument repair",
+          "Data storage",
+          "Field calibration",
+        ],
+      },
+      {
+        question: "What is used for outlier detection?",
+        type: "Multiple Choice",
+        answer: "Standard error of unit weight",
+        options: [
+          "Standard error of unit weight",
+          "Weight matrix",
+          "Normal matrix",
+          "Cofactor matrix",
+        ],
+      },
+      {
+        question: "What is used for robust estimation?",
+        type: "Multiple Choice",
+        answer: "Variance-covariance matrix",
+        options: [
+          "Weight matrix",
+          "Variance-covariance matrix",
+          "Normal matrix",
+          "Residual matrix",
+        ],
+      },
+    ],
+  },
+  "Planning the Physical Environment": {
+    programOfStudy: "Geomatic Engineering",
+    levelOfStudy: "Level 300",
+    semesterOfStudy: "Semester 2",
+    Easy: [
+      {
+        question: "GIS is used for land use planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Topographic maps are irrelevant for urban planning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Zoning regulates land use in urban areas.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor environmental changes.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering supports infrastructure planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A cadastral map shows property boundaries.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Spatial data is used in environmental planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban sprawl is a planned development process.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS can integrate demographic data for planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Land use planning ignores environmental factors.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for flood mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A master plan guides long-term urban development.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools are used for site selection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental impact assessment is optional in planning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Surveying provides data for topographic maps.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot visualize spatial relationships.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Land use zoning prevents incompatible developments.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing monitors deforestation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids transportation planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital elevation model represents terrain.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores population growth.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for utility network planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys are used for land registration.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot detect land cover changes.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support disaster management planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A land use plan allocates space for different activities.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Topographic surveys are used for site planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot store spatial data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Zoning maps guide urban development.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for coastal planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering supports environmental monitoring.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A master plan is a short-term planning tool.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Spatial analysis is used in urban planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral maps are used for tax assessment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor urban growth.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools are used for park planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital terrain model is used for flood risk assessment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores infrastructure needs.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports land use change analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying is used for boundary demarcation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for agricultural planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in waste management planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A zoning ordinance enforces land use regulations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Topographic maps are used for road planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform overlay analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing monitors wetland changes.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support water resource planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A land use plan ignores community needs.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Spatial data is used for site suitability analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys support land tenure systems.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot detect soil erosion.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in renewable energy planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital elevation model is used for slope analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores environmental sustainability.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for transportation network analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying provides data for land use maps.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for forest management.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support coastal zone management.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A master plan includes zoning regulations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Topographic surveys are used for drainage planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot integrate raster and vector data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing monitors land degradation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in urban renewal planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital terrain model is used for visibility analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores economic factors.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports environmental impact assessment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral maps are used for urban planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor water quality.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support biodiversity conservation planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A zoning map is a static planning tool.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Topographic maps are used for utility planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for population density analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports infrastructure alignment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for disaster risk mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in tourism planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (76-150)
+      {
+        question: "What is GIS used for in planning?",
+        type: "Multiple Choice",
+        answer: "Land use planning",
+        options: [
+          "Land use planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does a topographic map provide for urban planning?",
+        type: "Multiple Choice",
+        answer: "Terrain data",
+        options: [
+          "Terrain data",
+          "Population data",
+          "Economic data",
+          "Weather data",
+        ],
+      },
+      {
+        question: "What does zoning regulate?",
+        type: "Multiple Choice",
+        answer: "Land use",
+        options: [
+          "Land use",
+          "Population growth",
+          "Economic activity",
+          "Weather patterns",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Environmental changes",
+        options: [
+          "Environmental changes",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does geomatic engineering support?",
+        type: "Multiple Choice",
+        answer: "Infrastructure planning",
+        options: [
+          "Infrastructure planning",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a cadastral map show?",
+        type: "Multiple Choice",
+        answer: "Property boundaries",
+        options: [
+          "Property boundaries",
+          "Weather patterns",
+          "Population density",
+          "Road networks",
+        ],
+      },
+      {
+        question: "What is used in environmental planning?",
+        type: "Multiple Choice",
+        answer: "Spatial data",
+        options: [
+          "Spatial data",
+          "Financial data",
+          "Historical data",
+          "Medical data",
+        ],
+      },
+      {
+        question: "What is urban sprawl?",
+        type: "Multiple Choice",
+        answer: "Uncontrolled expansion",
+        options: [
+          "Uncontrolled expansion",
+          "Planned development",
+          "Economic growth",
+          "Population decline",
+        ],
+      },
+      {
+        question: "What can GIS integrate for planning?",
+        type: "Multiple Choice",
+        answer: "Demographic data",
+        options: [
+          "Demographic data",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does land use planning consider?",
+        type: "Multiple Choice",
+        answer: "Environmental factors",
+        options: [
+          "Environmental factors",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Flood mapping",
+        options: [
+          "Flood mapping",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What guides long-term urban development?",
+        type: "Multiple Choice",
+        answer: "Master plan",
+        options: [
+          "Master plan",
+          "Zoning map",
+          "Cadastral map",
+          "Topographic map",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Site selection",
+        options: [
+          "Site selection",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is required in planning projects?",
+        type: "Multiple Choice",
+        answer: "Environmental impact assessment",
+        options: [
+          "Environmental impact assessment",
+          "Financial audit",
+          "Medical evaluation",
+          "Historical review",
+        ],
+      },
+      {
+        question: "What does surveying provide for planning?",
+        type: "Multiple Choice",
+        answer: "Topographic maps",
+        options: [
+          "Topographic maps",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What can GIS visualize?",
+        type: "Multiple Choice",
+        answer: "Spatial relationships",
+        options: [
+          "Spatial relationships",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does land use zoning prevent?",
+        type: "Multiple Choice",
+        answer: "Incompatible developments",
+        options: [
+          "Incompatible developments",
+          "Population growth",
+          "Economic activity",
+          "Weather changes",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor?",
+        type: "Multiple Choice",
+        answer: "Deforestation",
+        options: [
+          "Deforestation",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Transportation",
+        options: [
+          "Transportation",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a digital elevation model represent?",
+        type: "Multiple Choice",
+        answer: "Terrain",
+        options: ["Terrain", "Population", "Economy", "Weather"],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Population growth",
+        options: [
+          "Population growth",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What is GIS used for in planning?",
+        type: "Multiple Choice",
+        answer: "Utility networks",
+        options: [
+          "Utility networks",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral surveys used for?",
+        type: "Multiple Choice",
+        answer: "Land registration",
+        options: [
+          "Land registration",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing detect in planning?",
+        type: "Multiple Choice",
+        answer: "Land cover changes",
+        options: [
+          "Land cover changes",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Disaster management",
+        options: [
+          "Disaster management",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a land use plan allocate?",
+        type: "Multiple Choice",
+        answer: "Space for activities",
+        options: [
+          "Space for activities",
+          "Financial resources",
+          "Human resources",
+          "Medical facilities",
+        ],
+      },
+      {
+        question: "What are topographic surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Site planning",
+        options: [
+          "Site planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can GIS store?",
+        type: "Multiple Choice",
+        answer: "Spatial data",
+        options: [
+          "Spatial data",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What guides urban development?",
+        type: "Multiple Choice",
+        answer: "Zoning maps",
+        options: [
+          "Zoning maps",
+          "Weather maps",
+          "Population maps",
+          "Economic maps",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Coastal planning",
+        options: [
+          "Coastal planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering support?",
+        type: "Multiple Choice",
+        answer: "Environmental monitoring",
+        options: [
+          "Environmental monitoring",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a master plan?",
+        type: "Multiple Choice",
+        answer: "Long-term planning tool",
+        options: [
+          "Long-term planning tool",
+          "Short-term planning tool",
+          "Economic plan",
+          "Weather plan",
+        ],
+      },
+      {
+        question: "What is used in urban planning?",
+        type: "Multiple Choice",
+        answer: "Spatial analysis",
+        options: [
+          "Spatial analysis",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What are cadastral maps used for?",
+        type: "Multiple Choice",
+        answer: "Tax assessment",
+        options: [
+          "Tax assessment",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Urban growth",
+        options: [
+          "Urban growth",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Park planning",
+        options: [
+          "Park planning",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital terrain model used for?",
+        type: "Multiple Choice",
+        answer: "Flood risk assessment",
+        options: [
+          "Flood risk assessment",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Infrastructure needs",
+        options: [
+          "Infrastructure needs",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Land use change analysis",
+        options: [
+          "Land use change analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying provide for planning?",
+        type: "Multiple Choice",
+        answer: "Boundary demarcation",
+        options: [
+          "Boundary demarcation",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Agricultural planning",
+        options: [
+          "Agricultural planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Waste management",
+        options: [
+          "Waste management",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a zoning ordinance enforce?",
+        type: "Multiple Choice",
+        answer: "Land use regulations",
+        options: [
+          "Land use regulations",
+          "Population control",
+          "Economic policies",
+          "Weather regulations",
+        ],
+      },
+      {
+        question: "What are topographic maps used for in planning?",
+        type: "Multiple Choice",
+        answer: "Road planning",
+        options: [
+          "Road planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can GIS perform in planning?",
+        type: "Multiple Choice",
+        answer: "Overlay analysis",
+        options: [
+          "Overlay analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor?",
+        type: "Multiple Choice",
+        answer: "Wetland changes",
+        options: [
+          "Wetland changes",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Water resources",
+        options: [
+          "Water resources",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a land use plan consider?",
+        type: "Multiple Choice",
+        answer: "Community needs",
+        options: [
+          "Community needs",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What is spatial data used for in planning?",
+        type: "Multiple Choice",
+        answer: "Site suitability analysis",
+        options: [
+          "Site suitability analysis",
+          "Financial analysis",
+          "Medical analysis",
+          "Historical analysis",
+        ],
+      },
+      {
+        question: "What do cadastral surveys support?",
+        type: "Multiple Choice",
+        answer: "Land tenure systems",
+        options: [
+          "Land tenure systems",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing detect in planning?",
+        type: "Multiple Choice",
+        answer: "Soil erosion",
+        options: [
+          "Soil erosion",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Renewable energy",
+        options: [
+          "Renewable energy",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital elevation model used for?",
+        type: "Multiple Choice",
+        answer: "Slope analysis",
+        options: [
+          "Slope analysis",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Environmental sustainability",
+        options: [
+          "Environmental sustainability",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Transportation networks",
+        options: [
+          "Transportation networks",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying provide for planning?",
+        type: "Multiple Choice",
+        answer: "Land use maps",
+        options: [
+          "Land use maps",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Forest management",
+        options: [
+          "Forest management",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Coastal zone management",
+        options: [
+          "Coastal zone management",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a master plan include?",
+        type: "Multiple Choice",
+        answer: "Zoning regulations",
+        options: [
+          "Zoning regulations",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What are topographic surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Drainage planning",
+        options: [
+          "Drainage planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can GIS integrate in planning?",
+        type: "Multiple Choice",
+        answer: "Raster and vector data",
+        options: [
+          "Raster and vector data",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Land degradation",
+        options: [
+          "Land degradation",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Urban renewal",
+        options: [
+          "Urban renewal",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital terrain model used for?",
+        type: "Multiple Choice",
+        answer: "Visibility analysis",
+        options: [
+          "Visibility analysis",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Economic factors",
+        options: [
+          "Economic factors",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Environmental impact assessment",
+        options: [
+          "Environmental impact assessment",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral maps used for in planning?",
+        type: "Multiple Choice",
+        answer: "Urban planning",
+        options: [
+          "Urban planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Water quality",
+        options: [
+          "Water quality",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Biodiversity conservation",
+        options: [
+          "Biodiversity conservation",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a zoning map?",
+        type: "Multiple Choice",
+        answer: "Dynamic planning tool",
+        options: [
+          "Dynamic planning tool",
+          "Static planning tool",
+          "Economic plan",
+          "Weather plan",
+        ],
+      },
+      {
+        question: "What are topographic maps used for in planning?",
+        type: "Multiple Choice",
+        answer: "Utility planning",
+        options: [
+          "Utility planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Population density analysis",
+        options: [
+          "Population density analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "Infrastructure alignment",
+        options: [
+          "Infrastructure alignment",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Disaster risk mapping",
+        options: [
+          "Disaster risk mapping",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Tourism",
+        options: [
+          "Tourism",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      // Medium: [
+      // True/False Questions (151-225)
+      {
+        question: "Spatial analysis identifies suitable land use zones.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental impact assessment ignores geospatial data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Urban growth models use GIS for simulation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Remote sensing cannot provide high-resolution data for planning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support sustainable urban planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A viewshed analysis determines visible areas from a point.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Land use conflicts are resolved using spatial planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform network analysis for transportation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data supports urban heat island analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in watershed management.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A buffer analysis creates zones around features.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental planning ignores climate data.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports multi-criteria decision analysis in planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys are used for land use zoning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor air pollution.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support green infrastructure planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital elevation model is used for hydrologic modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores social equity.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for accessibility analysis in planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports land use change detection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for land suitability analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in disaster recovery planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A zoning ordinance is based on spatial data analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Topographic surveys are used for environmental planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot perform proximity analysis.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing monitors urban sprawl.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support ecological corridor planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A digital terrain model is used for erosion risk assessment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores transportation networks.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports land use conflict resolution.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral maps are used for infrastructure planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor vegetation health.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support climate adaptation planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A viewshed analysis is used for scenic planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental planning ignores biodiversity.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for urban density analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports environmental impact assessment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for wetland restoration.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in urban resilience planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A buffer analysis is used for zoning regulations.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores economic development.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports disaster risk assessment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys are used for land use planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor soil moisture.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support renewable energy site selection.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital elevation model is used for flood modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores public participation.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for land use suitability analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports urban infrastructure planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for coastal erosion monitoring.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in smart city planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A viewshed analysis is used for infrastructure planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental planning ignores water resources.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports transportation accessibility analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral maps are used for environmental planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor land subsidence.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support urban green space planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A digital terrain model is used for landslide risk assessment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores land use conflicts.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for ecological planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports land use zoning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for urban expansion analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in regional planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A buffer analysis is used for environmental planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental planning ignores climate change.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports urban infrastructure planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys are used for disaster planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing monitors urban air quality.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support land use optimization.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "A digital elevation model is used for urban drainage planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores zoning regulations.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for environmental monitoring.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports topographic planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for biodiversity planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in transportation planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (226-300)
+      {
+        question: "What does spatial analysis identify in planning?",
+        type: "Multiple Choice",
+        answer: "Land use zones",
+        options: [
+          "Land use zones",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does environmental impact assessment use?",
+        type: "Multiple Choice",
+        answer: "Geospatial data",
+        options: [
+          "Geospatial data",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What do urban growth models use for simulation?",
+        type: "Multiple Choice",
+        answer: "GIS",
+        options: [
+          "GIS",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does remote sensing provide for planning?",
+        type: "Multiple Choice",
+        answer: "High-resolution data",
+        options: [
+          "High-resolution data",
+          "Low-resolution data",
+          "Non-spatial data",
+          "Instrument data",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Sustainable urban planning",
+        options: [
+          "Sustainable urban planning",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a viewshed analysis determine?",
+        type: "Multiple Choice",
+        answer: "Visible areas",
+        options: [
+          "Visible areas",
+          "Population density",
+          "Economic activity",
+          "Weather patterns",
+        ],
+      },
+      {
+        question: "What resolves land use conflicts?",
+        type: "Multiple Choice",
+        answer: "Spatial planning",
+        options: [
+          "Spatial planning",
+          "Financial planning",
+          "Medical planning",
+          "Historical planning",
+        ],
+      },
+      {
+        question: "What can GIS perform for transportation?",
+        type: "Multiple Choice",
+        answer: "Network analysis",
+        options: [
+          "Network analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does remote sensing support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban heat island analysis",
+        options: [
+          "Urban heat island analysis",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Watershed management",
+        options: [
+          "Watershed management",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a buffer analysis create?",
+        type: "Multiple Choice",
+        answer: "Zones around features",
+        options: [
+          "Zones around features",
+          "Population maps",
+          "Economic reports",
+          "Weather forecasts",
+        ],
+      },
+      {
+        question: "What does environmental planning consider?",
+        type: "Multiple Choice",
+        answer: "Climate data",
+        options: [
+          "Climate data",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Multi-criteria decision analysis",
+        options: [
+          "Multi-criteria decision analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Land use zoning",
+        options: [
+          "Land use zoning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Air pollution",
+        options: [
+          "Air pollution",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Green infrastructure",
+        options: [
+          "Green infrastructure",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital elevation model used for?",
+        type: "Multiple Choice",
+        answer: "Hydrologic modeling",
+        options: [
+          "Hydrologic modeling",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Social equity",
+        options: [
+          "Social equity",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Accessibility analysis",
+        options: [
+          "Accessibility analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "Land use change detection",
+        options: [
+          "Land use change detection",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Land suitability analysis",
+        options: [
+          "Land suitability analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Disaster recovery",
+        options: [
+          "Disaster recovery",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a zoning ordinance based on?",
+        type: "Multiple Choice",
+        answer: "Spatial data analysis",
+        options: [
+          "Spatial data analysis",
+          "Financial analysis",
+          "Medical analysis",
+          "Historical analysis",
+        ],
+      },
+      {
+        question: "What are topographic surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Environmental planning",
+        options: [
+          "Environmental planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can GIS perform in planning?",
+        type: "Multiple Choice",
+        answer: "Proximity analysis",
+        options: [
+          "Proximity analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Urban sprawl",
+        options: [
+          "Urban sprawl",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Ecological corridors",
+        options: [
+          "Ecological corridors",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital terrain model used for?",
+        type: "Multiple Choice",
+        answer: "Erosion risk assessment",
+        options: [
+          "Erosion risk assessment",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Transportation networks",
+        options: [
+          "Transportation networks",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Land use conflict resolution",
+        options: [
+          "Land use conflict resolution",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral maps used for in planning?",
+        type: "Multiple Choice",
+        answer: "Infrastructure planning",
+        options: [
+          "Infrastructure planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Vegetation health",
+        options: [
+          "Vegetation health",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Climate adaptation",
+        options: [
+          "Climate adaptation",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a viewshed analysis used for?",
+        type: "Multiple Choice",
+        answer: "Scenic planning",
+        options: [
+          "Scenic planning",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does environmental planning consider?",
+        type: "Multiple Choice",
+        answer: "Biodiversity",
+        options: [
+          "Biodiversity",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban density analysis",
+        options: [
+          "Urban density analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "Environmental impact assessment",
+        options: [
+          "Environmental impact assessment",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Wetland restoration",
+        options: [
+          "Wetland restoration",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Urban resilience",
+        options: [
+          "Urban resilience",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a buffer analysis used for?",
+        type: "Multiple Choice",
+        answer: "Zoning regulations",
+        options: [
+          "Zoning regulations",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Economic development",
+        options: [
+          "Economic development",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Disaster risk assessment",
+        options: [
+          "Disaster risk assessment",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Land use planning",
+        options: [
+          "Land use planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Soil moisture",
+        options: [
+          "Soil moisture",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Renewable energy sites",
+        options: [
+          "Renewable energy sites",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital elevation model used for?",
+        type: "Multiple Choice",
+        answer: "Flood modeling",
+        options: [
+          "Flood modeling",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Public participation",
+        options: [
+          "Public participation",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Land use suitability",
+        options: [
+          "Land use suitability",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban infrastructure",
+        options: [
+          "Urban infrastructure",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Coastal erosion",
+        options: [
+          "Coastal erosion",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Smart cities",
+        options: [
+          "Smart cities",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a viewshed analysis used for?",
+        type: "Multiple Choice",
+        answer: "Infrastructure planning",
+        options: [
+          "Infrastructure planning",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does environmental planning consider?",
+        type: "Multiple Choice",
+        answer: "Water resources",
+        options: [
+          "Water resources",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Transportation accessibility",
+        options: [
+          "Transportation accessibility",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral maps used for in planning?",
+        type: "Multiple Choice",
+        answer: "Environmental planning",
+        options: [
+          "Environmental planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Land subsidence",
+        options: [
+          "Land subsidence",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban green spaces",
+        options: [
+          "Urban green spaces",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital terrain model used for?",
+        type: "Multiple Choice",
+        answer: "Landslide risk assessment",
+        options: [
+          "Landslide risk assessment",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Land use conflicts",
+        options: [
+          "Land use conflicts",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Ecological planning",
+        options: [
+          "Ecological planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "Land use zoning",
+        options: [
+          "Land use zoning",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Urban expansion",
+        options: [
+          "Urban expansion",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Regional planning",
+        options: [
+          "Regional planning",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a buffer analysis used for?",
+        type: "Multiple Choice",
+        answer: "Environmental planning",
+        options: [
+          "Environmental planning",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does environmental planning consider?",
+        type: "Multiple Choice",
+        answer: "Climate change",
+        options: [
+          "Climate change",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban infrastructure",
+        options: [
+          "Urban infrastructure",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Disaster planning",
+        options: [
+          "Disaster planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Urban air quality",
+        options: [
+          "Urban air quality",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Land use optimization",
+        options: [
+          "Land use optimization",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital elevation model used for?",
+        type: "Multiple Choice",
+        answer: "Urban drainage planning",
+        options: [
+          "Urban drainage planning",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Zoning regulations",
+        options: [
+          "Zoning regulations",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Environmental monitoring",
+        options: [
+          "Environmental monitoring",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "Topographic planning",
+        options: [
+          "Topographic planning",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Biodiversity planning",
+        options: [
+          "Biodiversity planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Transportation",
+        options: [
+          "Transportation",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+    ],
+    Medium: [
+      {
+        question: "3D urban modeling supports smart city planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Geospatial decision support systems are irrelevant for planning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Climate change adaptation requires geospatial data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question:
+          "Remote sensing cannot provide hyperspectral data for planning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support resilient infrastructure planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geospatial database integrates multi-source data.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Land use optimization uses multi-criteria analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot support real-time urban monitoring.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data supports carbon footprint analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in ecosystem service planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A 3D city model is used for urban simulation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental planning ignores ecosystem services.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports dynamic urban growth modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys are used for 3D land management.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor greenhouse gases.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support urban microclimate planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital elevation model is used for 3D flood simulation.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores resilient design.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for urban energy planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports 3D urban modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for urban vegetation mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in disaster resilience planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geospatial decision support system uses GIS.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Topographic surveys are used for 3D urban planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "GIS cannot integrate IoT data for planning.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing monitors urban land subsidence.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support low-carbon city planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A 3D city model is used for shadow analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental planning ignores carbon sequestration.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports urban flood risk modeling.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys are used for smart city planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing cannot monitor urban heat stress.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support urban biodiversity planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A digital elevation model is used for 3D urban drainage.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores climate resilience.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for urban mobility planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports urban resilience planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for urban green roof planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in 3D land use planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A geospatial database supports real-time planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Environmental planning ignores urban ecosystems.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS supports urban heat island mitigation planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Cadastral surveys are used for urban redevelopment.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing monitors urban water bodies.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic tools support urban disaster risk reduction.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "A 3D city model is used for urban wind flow analysis.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Urban planning ignores green infrastructure.",
+        answer: "False",
+        type: "True/False",
+      },
+      {
+        question: "GIS is used for urban climate adaptation planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Surveying supports 3D cadastral mapping.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Remote sensing data is used for urban forest planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      {
+        question: "Geomatic engineering aids in sustainable urban planning.",
+        answer: "True",
+        type: "True/False",
+      },
+      // Multiple Choice Questions (351-400)
+      {
+        question: "What does 3D urban modeling support?",
+        type: "Multiple Choice",
+        answer: "Smart city planning",
+        options: [
+          "Smart city planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What do geospatial decision support systems use?",
+        type: "Multiple Choice",
+        answer: "GIS",
+        options: ["GIS", "Financial data", "Medical data", "Historical data"],
+      },
+      {
+        question: "What does climate change adaptation require?",
+        type: "Multiple Choice",
+        answer: "Geospatial data",
+        options: [
+          "Geospatial data",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does remote sensing provide for planning?",
+        type: "Multiple Choice",
+        answer: "Hyperspectral data",
+        options: [
+          "Hyperspectral data",
+          "Non-spatial data",
+          "Low-resolution data",
+          "Instrument data",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Resilient infrastructure",
+        options: [
+          "Resilient infrastructure",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a geospatial database integrate?",
+        type: "Multiple Choice",
+        answer: "Multi-source data",
+        options: [
+          "Multi-source data",
+          "Population data",
+          "Economic data",
+          "Weather data",
+        ],
+      },
+      {
+        question: "What does land use optimization use?",
+        type: "Multiple Choice",
+        answer: "Multi-criteria analysis",
+        options: [
+          "Multi-criteria analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What can GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Real-time urban monitoring",
+        options: [
+          "Real-time urban monitoring",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does remote sensing support in planning?",
+        type: "Multiple Choice",
+        answer: "Carbon footprint analysis",
+        options: [
+          "Carbon footprint analysis",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Ecosystem services",
+        options: [
+          "Ecosystem services",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a 3D city model used for?",
+        type: "Multiple Choice",
+        answer: "Urban simulation",
+        options: [
+          "Urban simulation",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does environmental planning consider?",
+        type: "Multiple Choice",
+        answer: "Ecosystem services",
+        options: [
+          "Ecosystem services",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Dynamic urban growth",
+        options: [
+          "Dynamic urban growth",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "3D land management",
+        options: [
+          "3D land management",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Greenhouse gases",
+        options: [
+          "Greenhouse gases",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban microclimate",
+        options: [
+          "Urban microclimate",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital elevation model used for?",
+        type: "Multiple Choice",
+        answer: "3D flood simulation",
+        options: [
+          "3D flood simulation",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Resilient design",
+        options: [
+          "Resilient design",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban energy planning",
+        options: [
+          "Urban energy planning",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "3D urban modeling",
+        options: [
+          "3D urban modeling",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Urban vegetation mapping",
+        options: [
+          "Urban vegetation mapping",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "Disaster resilience",
+        options: [
+          "Disaster resilience",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a geospatial decision support system use?",
+        type: "Multiple Choice",
+        answer: "GIS",
+        options: ["GIS", "Financial data", "Medical data", "Historical data"],
+      },
+      {
+        question: "What are topographic surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "3D urban planning",
+        options: [
+          "3D urban planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What can GIS integrate for planning?",
+        type: "Multiple Choice",
+        answer: "IoT data",
+        options: [
+          "IoT data",
+          "Instrument data",
+          "Storage data",
+          "Calibration data",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Urban land subsidence",
+        options: [
+          "Urban land subsidence",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Low-carbon cities",
+        options: [
+          "Low-carbon cities",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a 3D city model used for?",
+        type: "Multiple Choice",
+        answer: "Shadow analysis",
+        options: [
+          "Shadow analysis",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+    ],
+    Hard: [
+      {
+        question: "What does environmental planning consider?",
+        type: "Multiple Choice",
+        answer: "Carbon sequestration",
+        options: [
+          "Carbon sequestration",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban flood risk",
+        options: [
+          "Urban flood risk",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Smart city planning",
+        options: [
+          "Smart city planning",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Urban heat stress",
+        options: [
+          "Urban heat stress",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What do geomatic tools support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban biodiversity",
+        options: [
+          "Urban biodiversity",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What is a digital elevation model used for?",
+        type: "Multiple Choice",
+        answer: "3D urban drainage",
+        options: [
+          "3D urban drainage",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does urban planning consider?",
+        type: "Multiple Choice",
+        answer: "Climate resilience",
+        options: [
+          "Climate resilience",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban mobility",
+        options: [
+          "Urban mobility",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does surveying support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban resilience",
+        options: [
+          "Urban resilience",
+          "Weather forecasts",
+          "Population statistics",
+          "Economic reports",
+        ],
+      },
+      {
+        question: "What is remote sensing used for in planning?",
+        type: "Multiple Choice",
+        answer: "Urban green roofs",
+        options: [
+          "Urban green roofs",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What does geomatic engineering aid in planning?",
+        type: "Multiple Choice",
+        answer: "3D land use",
+        options: [
+          "3D land use",
+          "Software development",
+          "Data storage",
+          "Instrument repair",
+        ],
+      },
+      {
+        question: "What does a geospatial database support?",
+        type: "Multiple Choice",
+        answer: "Real-time planning",
+        options: [
+          "Real-time planning",
+          "Population analysis",
+          "Economic planning",
+          "Weather forecasting",
+        ],
+      },
+      {
+        question: "What does environmental planning consider?",
+        type: "Multiple Choice",
+        answer: "Urban ecosystems",
+        options: [
+          "Urban ecosystems",
+          "Financial data",
+          "Medical data",
+          "Historical data",
+        ],
+      },
+      {
+        question: "What does GIS support in planning?",
+        type: "Multiple Choice",
+        answer: "Urban heat island mitigation",
+        options: [
+          "Urban heat island mitigation",
+          "Instrument calibration",
+          "Data storage",
+          "Field surveying",
+        ],
+      },
+      {
+        question: "What are cadastral surveys used for in planning?",
+        type: "Multiple Choice",
+        answer: "Urban redevelopment",
+        options: [
+          "Urban redevelopment",
+          "Weather forecasting",
+          "Population analysis",
+          "Economic planning",
+        ],
+      },
+      {
+        question: "What does remote sensing monitor in planning?",
+        type: "Multiple Choice",
+        answer: "Urban water bodies",
+        options: [
+          "Urban water bodies",
+          "Instrument accuracy",
+          "Data storage",
+          "Field measurements",
+        ],
       },
     ],
   },

@@ -6777,6 +6777,7 @@ export const courseData1 = {
       "Electrical and Electronics Engineering",
       "Petroleum Engineering",
       "Geomatic Engineering",
+      "Civil Engineering",
     ],
     levelOfStudy: "Level 100",
     semesterOfStudy: "Semester 2",
