@@ -350,7 +350,7 @@ const Dashboard = () => {
             onClick={() => navigate("/test-yourself")}
             style={styles.startQuizButton}
           >
-            Practice Quiz
+            📝 Practice Quiz
           </button>
           {/* <button onClick={() => navigate('/live-quiz')} style={styles.startQuizButton}>Live Quizzes</button> */}
           <>
@@ -358,7 +358,7 @@ const Dashboard = () => {
               onClick={() => navigate("/messages")}
               style={{ ...styles.startQuizButton, position: "relative" }}
             >
-              Notifications
+              🔔 Notifications
               {unreadCount > 0 && (
                 <span style={styles.badge}>{unreadCount}</span>
               )}
@@ -368,11 +368,17 @@ const Dashboard = () => {
             </button>
           </>
           <button
+            onClick={() => navigate("/complaint")}
+            style={styles.startQuizButton}
+          >
+            ⚠️ Report an issue
+          </button>
+          {/* <button
             onClick={() => navigate("/weekly-leaderboard")}
             style={styles.startQuizButton}
           >
             Weekly Leader Board
-          </button>
+          </button> */}
           {/* <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button> */}
           {/* <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button> */}
         </div>

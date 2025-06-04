@@ -16,6 +16,7 @@ import emailjs from "@emailjs/browser";
 import { Bar } from "react-chartjs-2";
 import { formatDistanceToNow, format } from "date-fns";
 import { FaPaperPlane } from "react-icons/fa";
+import { dotWave } from "ldrs";
 
 const AdminDashboard = () => {
   const [message, setMessage] = useState("");
@@ -73,6 +74,7 @@ const AdminDashboard = () => {
   const [messagesError, setMessagesError] = useState("");
   const [deleteMessageSuccess, setDeleteMessageSuccess] = useState("");
   const [deleteMessageError, setDeleteMessageError] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const correctPassword = "Admin123";
 
   const programAbbreviations = {
@@ -624,6 +626,25 @@ const AdminDashboard = () => {
     });
   };
 
+  const deleteReplies = async (complaintId) => {
+    const repliesRef = collection(db, "complaints", complaintId, "replies");
+    const repliesSnapshot = await getDocs(repliesRef);
+    const deletePromises = repliesSnapshot.docs.map((replyDoc) =>
+      deleteDoc(replyDoc.ref)
+    );
+    await Promise.all(deletePromises);
+  };
+
+  const deleteComplaints = async () => {
+    const complaintsRef = collection(db, "complaints");
+    const complaintsSnapshot = await getDocs(complaintsRef);
+
+    for (const complaintDoc of complaintsSnapshot.docs) {
+      await deleteReplies(complaintDoc.id);
+      await deleteDoc(doc(db, "complaints", complaintDoc.id));
+    }
+  };
+
   const handleDeleteAction = async () => {
     if (password !== correctPassword) {
       setPasswordError("Incorrect password. Please try again.");
@@ -658,6 +679,9 @@ const AdminDashboard = () => {
       } else if (deleteOption === "challenges") {
         await deleteChallenges();
         alert("All challenges and their scores deleted successfully.");
+      } else if (deleteOption === "complaints") {
+        await deleteComplaints();
+        alert("All complaints and their replies deleted successfully.");
       }
 
       setPassword("");
@@ -737,6 +761,8 @@ const AdminDashboard = () => {
       </div>
     );
   }
+
+  dotWave.register();
 
   return (
     <div style={styles.container}>
@@ -882,17 +908,11 @@ const AdminDashboard = () => {
             >
               👑
             </button>
-            {/* <button
-              onClick={() => navigate("/admin-complaint")}
-              style={{ ...styles.logoutButton, width: "20%" }}
-            >
-              ✉️
-            </button> */}
             <button
-              onClick={() => setShowMessagesModal(true)}
+              onClick={() => setShowModal(true)}
               style={{ ...styles.logoutButton, width: "20%" }}
             >
-              ✉️
+              🛎️
             </button>
             <button
               onClick={() => navigate("/weekly-leaderboard")}
@@ -939,6 +959,7 @@ const AdminDashboard = () => {
                 <option value="challenges">All Challenges</option>
                 <option value="dailyQuizzes">All Leaderboard Data</option>
                 <option value="text">All Text Data</option>
+                <option value="complaints">All Complaints Data</option>
               </select>
             </div>
             <div style={styles.inputGroup}>
@@ -1776,6 +1797,91 @@ const AdminDashboard = () => {
               style={modalStyles.closeButton}
             >
               Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1000,
+          }}
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            style={{
+              backgroundColor: "#fff",
+              padding: "30px",
+              borderRadius: "10px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              width: "70%",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 style={{ marginBottom: "10px" }}>Open:</h3>
+            <button
+              onClick={() => {
+                navigate("/admin-complaint");
+                setShowModal(false);
+              }}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                backgroundColor: "#007bff",
+                color: "#fff",
+                border: "none",
+                fontWeight: "bolder",
+                cursor: "pointer",
+                fontSize: "28px",
+              }}
+            >
+              📩 Complaints
+            </button>
+            <button
+              onClick={() => {
+                setShowMessagesModal(true);
+                setShowModal(false);
+              }}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                backgroundColor: "#28a745",
+                color: "#fff",
+                border: "none",
+                fontWeight: "bolder",
+                cursor: "pointer",
+                fontSize: "28px",
+              }}
+            >
+              💬 Messages
+            </button>
+            <button
+              onClick={() => setShowModal(false)}
+              style={{
+                padding: "8px",
+                borderRadius: "5px",
+                backgroundColor: "#ccc",
+                color: "#000",
+                border: "none",
+                cursor: "pointer",
+                marginTop: "10px",
+                fontSize: "20px",
+              }}
+            >
+              Cancel
             </button>
           </div>
         </div>

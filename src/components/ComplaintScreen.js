@@ -11,14 +11,24 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { FaArrowCircleLeft } from "react-icons/fa";
-import logo from "../assets/op.jpg";
+import logo from "../assets/original.png";
+import { dotWave } from "ldrs";
 
 const ComplaintScreen = () => {
   const [complaintText, setComplaintText] = useState("");
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [openReplies, setOpenReplies] = useState({});
   const navigate = useNavigate();
+
+  const toggleReplies = (id) => {
+    setOpenReplies((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   useEffect(() => {
     if (!auth.currentUser) {
@@ -94,6 +104,7 @@ const ComplaintScreen = () => {
   }, [navigate]);
 
   const handleSubmitComplaint = async (e) => {
+    setSubmitLoading(true);
     e.preventDefault();
     if (!complaintText.trim()) return;
 
@@ -102,6 +113,7 @@ const ComplaintScreen = () => {
 
     try {
       await addDoc(collection(db, "complaints"), {
+        userId: auth.currentUser.uid,
         username: userData.username,
         level: userData.levelOfStudy,
         program: userData.programOfStudy,
@@ -110,13 +122,19 @@ const ComplaintScreen = () => {
       });
       setComplaintText("");
       alert("Complaint submitted successfully!");
+      setSubmitLoading(false);
     } catch (err) {
       setError("Failed to submit complaint: " + err.message);
     }
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ ...styles.spinnerContainer, height: "100vh" }}>
+        <div style={styles.spinner}></div>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   if (error) {
@@ -130,11 +148,13 @@ const ComplaintScreen = () => {
     );
   }
 
+  dotWave.register();
+
   return (
     <div style={styles.container}>
       <div style={styles.background}></div>
       <div style={styles.header}>
-        <h2 style={styles.title}>Submit a Complaint</h2>
+        <h2 style={styles.title}>SUBMIT A COMPLAINT</h2>
       </div>
       <form onSubmit={handleSubmitComplaint} style={styles.form}>
         <textarea
@@ -143,45 +163,139 @@ const ComplaintScreen = () => {
           placeholder="Write your complaint or worry here..."
           style={styles.textarea}
         />
-        <button type="submit" style={styles.submitButton}>
-          Submit Complaint
+        <button
+          type="submit"
+          style={styles.submitButton}
+          disabled={submitLoading}
+        >
+          {submitLoading ? (
+            <>
+              Submiting{" "}
+              <l-dot-wave size="20" speed="1" color="white"></l-dot-wave>
+            </>
+          ) : (
+            "Submit Complaint"
+          )}
         </button>
       </form>
-      <div style={styles.scrollableContainer}>
+      <>
         <h3 style={styles.subtitle}>Your Complaints</h3>
         {complaints.length === 0 ? (
           <p style={styles.noData}>No complaints submitted yet.</p>
         ) : (
-          <ul style={styles.complaintList}>
-            {complaints.map((complaint) => (
-              <li key={complaint.id} style={styles.complaintItem}>
-                <p style={styles.complaintText}>{complaint.text}</p>
-                <p style={styles.timestamp}>
-                  Submitted on: {complaint.timestamp.toDate().toLocaleString()}
-                </p>
-                {complaint.replies && complaint.replies.length > 0 && (
-                  <div style={styles.repliesSection}>
-                    <h4 style={styles.replyTitle}>Replies</h4>
-                    {complaint.replies.map((reply) => (
-                      <div key={reply.id} style={styles.replyItem}>
-                        <p style={styles.replyText}>
-                          Admin Response: {reply.text}
-                        </p>
-                        <p style={styles.replyTimestamp}>
-                          Replied on:{" "}
-                          {reply.timestamp.toDate().toLocaleString()}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
+          <div style={{ display: "flex", gap: "20px" }}>
+            <div
+              style={{
+                width: "70%",
+                height: "240px",
+                overflowY: "auto",
+                border: "1px solid #000",
+                padding: "10px",
+                borderRadius: "8px",
+              }}
+            >
+              <ul style={styles.complaintList}>
+                {complaints.map((complaint) => (
+                  <li key={complaint.id} style={styles.complaintItem}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <p style={styles.complaintText}>{complaint.text}</p>
+                      {complaint.replies?.length > 0 && (
+                        <button
+                          onClick={() => toggleReplies(complaint.id)}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            cursor: "pointer",
+                            fontSize: "18px",
+                            marginLeft: "10px",
+                          }}
+                          title={
+                            openReplies[complaint.id]
+                              ? "Hide replies"
+                              : "Show replies"
+                          }
+                        >
+                          {openReplies[complaint.id] ? "▲" : "▼"}
+                        </button>
+                      )}
+                    </div>
+                    <p style={styles.timestamp}>
+                      Submitted on:{" "}
+                      {complaint.timestamp.toDate().toLocaleString()}
+                    </p>
+                    {openReplies[complaint.id] &&
+                      complaint.replies?.length > 0 && (
+                        <div style={styles.repliesSection}>
+                          <h4 style={styles.replyTitle}>Replies</h4>
+                          {complaint.replies.map((reply) => (
+                            <div key={reply.id} style={styles.replyItem}>
+                              <p style={styles.replyText}>
+                                Admin Response: {reply.text}
+                              </p>
+                              <p style={styles.replyTimestamp}>
+                                Replied on:{" "}
+                                {reply.timestamp.toDate().toLocaleString()}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div
+              style={{
+                width: "30%",
+                backgroundColor: "transparent",
+                padding: "5px",
+                borderRadius: "8px",
+                border: "1px solid #000",
+                height: "250px",
+              }}
+            >
+              <h4
+                style={{
+                  fontSize: "22px",
+                  textAlign: "center",
+                  marginBottom: "5px",
+                }}
+              >
+                Need Urgent Help?
+              </h4>
+              <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+                If your complaint is unresolved or needs urgent attention,
+                contact the admin directly via:
+              </p>
+              <p>
+                📧 <a href="mailto:teamunibuddy@gmail.com">Email Admin</a>
+              </p>
+              <p>
+                💬{" "}
+                <a
+                  href="https://wa.me/+233544806525"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  WhatsApp Admin
+                </a>
+              </p>
+              <p style={{ fontSize: "18px", marginTop: "8px", color: "#000" }}>
+                These links are here to help you escalate issues that require
+                faster resolution.
+              </p>
+            </div>
+          </div>
         )}
-      </div>
+      </>
       <button onClick={() => navigate(-1)} style={styles.backButton}>
-        <FaArrowCircleLeft /> Go Back
+        <FaArrowCircleLeft /> GO BACK
       </button>
     </div>
   );
@@ -213,12 +327,6 @@ const styles = {
     opacity: 0.3,
     zIndex: -1,
   },
-  scrollableContainer: {
-    flex: 1,
-    overflowY: "auto",
-    opacity: "0.9",
-    maxHeight: "430px",
-  },
   header: {
     display: "flex",
     alignItems: "center",
@@ -230,7 +338,11 @@ const styles = {
     borderRadius: "10px",
     marginTop: "20px",
   },
-  title: { fontSize: "24px", fontWeight: "bold", marginBottom: "20px" },
+  title: {
+    fontSize: "24px",
+    fontWeight: "bold",
+    marginBottom: "20px",
+  },
   form: {
     display: "flex",
     flexDirection: "column",
@@ -241,8 +353,9 @@ const styles = {
     padding: "10px",
     borderRadius: "5px",
     border: "1px solid #ddd",
-    minHeight: "100px",
-    fontSize: "14px",
+    minHeight: "200px",
+    fontSize: "18px",
+    backgroundColor: "transparent",
   },
   submitButton: {
     padding: "10px 20px",
@@ -251,38 +364,104 @@ const styles = {
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
+    fontSize: "20px",
+    textTransform: "uppercase",
+    fontWeight: "bolder",
   },
   subtitle: {
     fontSize: "20px",
-    fontWeight: "bold",
+    fontWeight: "bolder",
+    textTransform: "uppercase",
   },
-  complaintList: { listStyle: "none", padding: 0 },
+  complaintList: {
+    listStyle: "none",
+    padding: 0,
+  },
   complaintItem: {
     border: "1px solid #ddd",
     padding: "10px",
     borderRadius: "5px",
     marginBottom: "10px",
   },
-  complaintText: { margin: 0, fontSize: "14px" },
-  timestamp: { fontSize: "12px", color: "#666", marginTop: "5px" },
-  repliesSection: { marginTop: "10px", paddingLeft: "20px" },
-  replyTitle: { fontSize: "16px", fontWeight: "bold", marginBottom: "5px" },
-  replyItem: { marginBottom: "5px" },
-  replyText: { margin: 0, fontSize: "14px", color: "#333" },
-  replyTimestamp: { fontSize: "12px", color: "#666", marginTop: "3px" },
-  noData: { color: "#888", textAlign: "center" },
+  complaintText: {
+    margin: 0,
+    fontSize: "15px",
+  },
+  timestamp: {
+    fontSize: "12px",
+    color: "#666",
+    marginTop: "5px",
+  },
+  repliesSection: {
+    marginTop: "10px",
+    paddingLeft: "20px",
+  },
+  replyTitle: {
+    fontSize: "16px",
+    fontWeight: "bold",
+    marginBottom: "5px",
+  },
+  replyItem: {
+    marginBottom: "5px",
+  },
+  replyText: {
+    margin: 0,
+    fontSize: "14px",
+    color: "#333",
+  },
+  replyTimestamp: {
+    fontSize: "12px",
+    color: "#666",
+    marginTop: "3px",
+  },
+  noData: {
+    color: "#000",
+    fontSize: "40px",
+    textAlign: "center",
+    textTransform: "uppercase",
+    fontWeight: "bolder",
+  },
   backButton: {
-    padding: "10px 20px",
-    backgroundColor: "#6c757d",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
+    background: "none",
     cursor: "pointer",
+    color: "#000",
     display: "flex",
     alignItems: "center",
-    gap: "5px",
-    marginTop: "20px",
+    fontSize: "25px",
+    position: "fixed",
+    bottom: "35px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "15px",
+    boxShadow: "0 4px 4px rgba(0,0,0,0.5)",
+    borderRadius: "10px",
+    width: "95%",
+    justifyContent: "center",
+    gap: "10px",
+    fontWeight: "bolder",
+  },
+  spinnerContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  spinner: {
+    width: "30px",
+    height: "30px",
+    border: "4px solid #f3f3f3",
+    borderTop: "4px solid #007bff",
+    borderRadius: "50%",
+    animation: "spin 1s linear infinite",
+    marginBottom: "10px",
   },
 };
 
+const keyframes = `
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+document.head.insertAdjacentHTML("beforeend", `<style>${keyframes}</style>`);
 export default ComplaintScreen;

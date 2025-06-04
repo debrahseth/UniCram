@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { spiral } from "ldrs";
-import logo from "../assets/welcome1.jpg";
+import logo from "../assets/original.png";
 
 const AdminSplashScreen = () => {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [totalUsers, setTotalUsers] = useState(0);
-  const [pendingMessages, setPendingMessages] = useState(0);
+  // const [pendingMessages, setPendingMessages] = useState(0);
   const [displayedGreeting, setDisplayedGreeting] = useState("");
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
   const navigate = useNavigate();

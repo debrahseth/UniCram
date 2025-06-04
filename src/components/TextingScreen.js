@@ -94,6 +94,7 @@ const TextingScreen = () => {
   const [isAtBottom, setIsAtBottom] = useState(true);
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [initialFormData, setInitialFormData] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -159,6 +160,10 @@ const TextingScreen = () => {
     });
     return () => unsubscribe();
   }, [navigate]);
+
+  const filteredUsers = usersInProgram.filter((user) =>
+    user.username.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     if (!auth.currentUser) return;
@@ -378,11 +383,24 @@ const TextingScreen = () => {
       <div style={styles.content}>
         <div style={styles.userListContainer}>
           <h3 style={styles.sectionTitle}>Users in {currentUserProgram}</h3>
-          {usersInProgram.length === 0 ? (
-            <p style={styles.noDataMessage}>No other users in your program.</p>
+          <input
+            type="text"
+            placeholder="🔍 Search users..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              padding: "8px",
+              width: "95%",
+              marginBottom: "10px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+            }}
+          />
+          {filteredUsers.length === 0 ? (
+            <p style={styles.noDataMessage}>No users found..... Sorry</p>
           ) : (
             <ul style={styles.userList}>
-              {usersInProgram.map((user) => (
+              {filteredUsers.map((user) => (
                 <li
                   key={user.id}
                   style={{
