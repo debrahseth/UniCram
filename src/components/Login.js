@@ -17,6 +17,7 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [loadingReset, setLoadingReset] = useState(false);
+  const [showVerificationModal, setShowVerificationModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +42,14 @@ const Login = () => {
         password
       );
       const user = userCredential.user;
+
+      // Check if email is verified
+      if (!user.emailVerified) {
+        setShowVerificationModal(true);
+        setLoading(false);
+        return;
+      }
+
       const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
       if (userDoc.exists()) {
@@ -82,6 +91,16 @@ const Login = () => {
       setError(error.message);
     } finally {
       setLoadingReset(false);
+    }
+  };
+
+  const handleResendVerification = async () => {
+    try {
+      await auth.currentUser.sendEmailVerification();
+      setError("Verification email sent. Please check your inbox.");
+      setShowVerificationModal(false);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -146,7 +165,7 @@ const Login = () => {
             disabled={loadingReset}
           >
             {loadingReset ? (
-              <i className="fa fa-spinner fa-spin" style={styles.spinner}></i> // Spinner while loading
+              <i className="fa fa-spinner fa-spin" style={styles.spinner}></i>
             ) : (
               "Forgot Password?"
             )}
@@ -171,6 +190,32 @@ const Login = () => {
           Go Back
         </button>
       </div>
+
+      {showVerificationModal && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modal}>
+            <h3 style={styles.modalTitle}>Email Verification Required</h3>
+            <p style={styles.modalText}>
+              Please verify your email address to log in. Check your inbox for a
+              verification email or click below to resend it.
+            </p>
+            <div style={styles.modalButtonContainer}>
+              <button
+                onClick={handleResendVerification}
+                style={styles.modalButton}
+              >
+                Resend Verification Email
+              </button>
+              <button
+                onClick={() => setShowVerificationModal(false)}
+                style={{ ...styles.modalButton, backgroundColor: "#ccc" }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div style={styles.footerStyle}>
         <p style={{ fontSize: "30px" }}>
@@ -341,6 +386,52 @@ const styles = {
     color: "#007bff",
     cursor: "pointer",
     fontSize: "14px",
+  },
+  modalOverlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1000,
+  },
+  modal: {
+    backgroundColor: "#fff",
+    padding: "20px",
+    borderRadius: "8px",
+    maxWidth: "400px",
+    width: "100%",
+    textAlign: "center",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.7)",
+  },
+  modalTitle: {
+    fontSize: "20px",
+    fontWeight: "600",
+    marginBottom: "15px",
+    color: "#333",
+  },
+  modalText: {
+    fontSize: "16px",
+    marginBottom: "20px",
+    color: "#666",
+  },
+  modalButtonContainer: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  modalButton: {
+    padding: "10px 20px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    fontSize: "16px",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
   },
 };
 

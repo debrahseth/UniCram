@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSignOutAlt, FaArrowLeft, FaTrash } from "react-icons/fa";
 import { db, auth } from "../firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signOut,
+  getAuth,
+  deleteUser,
+} from "firebase/auth";
 import {
   onSnapshot,
   doc,
@@ -14,7 +19,6 @@ import {
   collection,
   Timestamp,
 } from "firebase/firestore";
-import { getAuth, deleteUser } from "firebase/auth";
 import logo1 from "../assets/op.jpg";
 import logo from "../assets/original.png";
 import { dotWave, metronome, spiral, lineSpinner } from "ldrs";
@@ -110,40 +114,6 @@ const Profile = () => {
       fetchUserDetails();
     }
   }, [currentUser]);
-
-  useEffect(() => {
-    if (!currentUser) return;
-
-    const userDocRef = doc(db, "users", currentUser.uid);
-    const unsubscribe = onSnapshot(userDocRef, (docSnapshot) => {
-      if (!docSnapshot.exists()) return;
-      const userData = docSnapshot.data();
-      if (userData.status === "offline") {
-        if (!logoutLoading) {
-          handleForcedLogout();
-        }
-      }
-    });
-
-    setUserDocUnsubscribe(() => unsubscribe);
-
-    return () => {
-      unsubscribe();
-    };
-  }, [currentUser, logoutLoading]);
-
-  const handleForcedLogout = async () => {
-    if (logoutLoading) return;
-    setLogoutLoading(true);
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (err) {
-      console.error("Error during forced logout:", err);
-    } finally {
-      setLogoutLoading(false);
-    }
-  };
 
   useEffect(() => {
     const style = document.createElement("style");

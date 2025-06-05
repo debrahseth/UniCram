@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import { auth, db } from "../firebase";
@@ -24,7 +24,7 @@ const Signup = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [verificationSent, setVerificationSent] = useState(false);
   const [tempUserData, setTempUserData] = useState(null);
-  const [resendTimer, setResendTimer] = useState(60); // 60 seconds
+  const [resendTimer, setResendTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
   const navigate = useNavigate();
 
@@ -68,18 +68,71 @@ const Signup = () => {
     return () => clearInterval(interval);
   }, [resendTimer, canResend]);
 
+  const validateFields = () => {
+    if (!username.trim()) {
+      setError("Username is required.");
+      return false;
+    }
+    if (!email.trim()) {
+      setError("Email is required.");
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Please enter a valid email address.");
+      return false;
+    }
+    if (!password) {
+      setError("Password is required.");
+      return false;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateAdditionalFields = () => {
+    if (!programOfStudy) {
+      setError("Program of Study is required.");
+      return false;
+    }
+    if (!levelOfStudy) {
+      setError("Level of Study is required.");
+      return false;
+    }
+    if (!semesterOfStudy) {
+      setError("Semester of Study is required.");
+      return false;
+    }
+    return true;
+  };
+
   const handleSignup = async () => {
+    setError("");
+    if (!validateFields()) {
+      return;
+    }
     setModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setModalOpen(false);
     setVerificationSent(false);
+    if (!auth.currentUser?.emailVerified) {
+      auth.currentUser?.delete().catch((err) => {
+        console.error("Failed to delete unverified user:", err);
+      });
+    }
   };
 
   const handleSubmit = async () => {
-    setLoading(true);
     setError("");
+    if (!validateAdditionalFields()) {
+      return;
+    }
+
+    setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -116,24 +169,6 @@ const Signup = () => {
             status: "online",
             role: "user",
           });
-          // const response = await fetch(
-          //   "https://prime-api-server.vercel.app/send-email",
-          //   {
-          //     method: "POST",
-          //     headers: { "Content-Type": "application/json" },
-          //     body: JSON.stringify({
-          //       to: email,
-          //       username: username,
-          //     }),
-          //   }
-          // );
-
-          // if (!response.ok) {
-          //   const errorData = await response.json();
-          //   console.error("Failed to send email:", errorData);
-          //   throw new Error("Failed to send welcome email");
-          // }
-
           setModalOpen(false);
           setLoading(false);
           navigate("/splash");
@@ -142,7 +177,6 @@ const Signup = () => {
     } catch (error) {
       console.error("Error during sign-up:", error);
       setError(error.message);
-    } finally {
       setLoading(false);
     }
   };
@@ -310,7 +344,6 @@ const Signup = () => {
                   <option value="Level 100">Level 100</option>
                   <option value="Level 200">Level 200</option>
                   <option value="Level 300">Level 300</option>
-                  <option value="Level 400">Level 400</option>
                 </select>
                 <label style={styles.label}>Semester of Study:</label>
                 <select

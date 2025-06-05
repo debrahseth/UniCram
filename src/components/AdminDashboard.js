@@ -24,6 +24,7 @@ const AdminDashboard = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
   const [quizScoresLoading, setQuizScoresLoading] = useState(false);
   const [quizScoresError, setQuizScoresError] = useState(null);
   const [selectedProgram, setSelectedProgram] = useState("");
@@ -58,12 +59,6 @@ const AdminDashboard = () => {
   const [passwordError, setPasswordError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-  // const [showSmsModal, setShowSmsModal] = useState(false);
-  // const [smsMessage, setSmsMessage] = useState("");
-  // const [selectedUsers, setSelectedUsers] = useState([]);
-  // const [smsLoading, setSmsLoading] = useState(false);
-  // const [smsSuccess, setSmsSuccess] = useState("");
-  // const [smsError, setSmsError] = useState("");
   const [showMessagesModal, setShowMessagesModal] = useState(false);
   const [showManageAdminsModal, setShowManageAdminsModal] = useState(false);
   const [adminUsers, setAdminUsers] = useState([]);
@@ -101,6 +96,35 @@ const AdminDashboard = () => {
   const abbreviatedLabels = Object.keys(analytics.programDistribution).map(
     (program) => programAbbreviations[program] || program
   );
+
+  useEffect(() => {
+    let unsubscribeAuth;
+    setAuthLoading(true);
+
+    unsubscribeAuth = onAuthStateChanged(authInstance, async (user) => {
+      setCurrentUser(user);
+      if (user) {
+        try {
+          const userDocRef = doc(db, "users", user.uid);
+          const userDoc = await getDoc(userDocRef);
+          if (!userDoc.exists() || userDoc.data().role !== "admin") {
+            setError("Unauthorized access. Redirecting to login...");
+            setTimeout(() => navigate("/login"), 2000);
+          }
+        } catch (error) {
+          console.error("Error verifying admin:", error);
+          setError("Failed to verify admin status. Redirecting to login...");
+          setTimeout(() => navigate("/login"), 2000);
+        }
+      } else {
+        setError("No user is logged in. Redirecting to login...");
+        setTimeout(() => navigate("/login"), 2000);
+      }
+      setAuthLoading(false);
+    });
+
+    return () => unsubscribeAuth && unsubscribeAuth();
+  }, [authInstance, navigate]);
 
   useEffect(() => {
     const fetchAdmins = async () => {
@@ -147,21 +171,6 @@ const AdminDashboard = () => {
   }, [authInstance]);
 
   useEffect(() => {
-    const verifyAdmin = async () => {
-      const user = auth.currentUser;
-      if (!user) {
-        navigate("/login");
-        return;
-      }
-      const userDocRef = doc(db, "users", user.uid);
-      const userDoc = await getDoc(userDocRef);
-      if (!userDoc.exists() || userDoc.data().role !== "admin") {
-        setError("Unauthorized access. Redirecting to login...");
-        setTimeout(() => navigate("/login"), 2000);
-      }
-    };
-    verifyAdmin();
-
     const usersRef = collection(db, "users");
     const unsubscribe = onSnapshot(
       usersRef,
@@ -397,7 +406,6 @@ const AdminDashboard = () => {
                 levelOfStudy: doc.data().levelOfStudy || "Unknown",
                 programOfStudy: doc.data().programOfStudy || "Unknown",
                 status: doc.data().status || "offline",
-                role: doc.data().role || "user",
                 lastActivity: doc.data().lastActivity || null,
                 phoneNumber: doc.data().userNumber || "",
               }))
@@ -429,20 +437,18 @@ const AdminDashboard = () => {
         const unsubscribe = onSnapshot(
           messagesRef,
           (snapshot) => {
-            const messagesList = snapshot.docs
-              .map((doc) => {
-                const data = doc.data();
-                return {
-                  id: doc.id,
-                  content: data.message,
-                  recipients: data.userId ? [data.userId] : [],
-                  sentAt: data.timestamp?.toDate() || new Date(),
-                  readBy: data.read && data.userId ? [data.userId] : [],
-                  sender: data.sender || "admin",
-                  isGroup: data.isGroup || false,
-                };
-              })
-              .filter((msg) => msg.sender === "admin");
+            const messagesList = snapshot.docs.map((doc) => {
+              const data = doc.data();
+              return {
+                id: doc.id,
+                content: data.message,
+                recipients: data.userId ? [data.userId] : [],
+                sentAt: data.timestamp?.toDate() || new Date(),
+                readBy: data.read && data.userId ? [data.userId] : [],
+                sender: data.sender || "admin",
+                isGroup: data.isGroup || false,
+              };
+            });
             setMessages(messagesList);
             setMessagesLoading(false);
           },
@@ -558,49 +564,17 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleToggleStatus = async (userId, currentStatus) => {
-    setUpdateSuccess("");
-    try {
-      const userRef = doc(db, "users", userId);
-      await updateDoc(userRef, {
-        status: currentStatus === "online" ? "offline" : "online",
-        lastActivity: Timestamp.fromDate(new Date()),
-      });
-      setUpdateSuccess("User status updated successfully!");
-    } catch (error) {
-      setUsersError("Failed to update user status: " + error.message);
-    }
-  };
-
-  const handleToggleRole = async (userId, currentRole) => {
-    setUpdateSuccess("");
-    try {
-      const userRef = doc(db, "users", userId);
-      await updateDoc(userRef, {
-        role: currentRole === "admin" ? "user" : "admin",
-      });
-      setUpdateSuccess("User role updated successfully!");
-    } catch (error) {
-      setUsersError("Failed to update user role: " + error.message);
-    }
-  };
-
-  // const handleDeleteUser = async (userId) => {
-  //   if (
-  //     !window.confirm(
-  //       `Are you sure you want to delete the user with ID ${userId}? This action cannot be undone.`
-  //     )
-  //   ) {
-  //     return;
-  //   }
+  // const handleToggleStatus = async (userId, currentStatus) => {
   //   setUpdateSuccess("");
-  //   setUsersError("");
   //   try {
   //     const userRef = doc(db, "users", userId);
-  //     await deleteDoc(userRef);
-  //     setUpdateSuccess("User deleted successfully!");
+  //     await updateDoc(userRef, {
+  //       status: currentStatus === "online" ? "offline" : "online",
+  //       lastActivity: Timestamp.fromDate(new Date()),
+  //     });
+  //     setUpdateSuccess("User status updated successfully!");
   //   } catch (error) {
-  //     setUsersError("Failed to delete user: " + error.message);
+  //     setUsersError("Failed to update user status: " + error.message);
   //   }
   // };
 
@@ -693,60 +667,6 @@ const AdminDashboard = () => {
       alert(`Failed to delete ${deleteOption}. Please try again.`);
     }
   };
-
-  // const formatPhoneNumber = (number) => {
-  //   if (!number || typeof number !== "string") return null;
-  //   const digits = number.replace(/\D/g, "");
-  //   if (digits.startsWith("0") && digits.length === 10) {
-  //     return `+233${digits.slice(1)}`;
-  //   }
-  //   return digits.length >= 10 && digits.startsWith("+") ? digits : null;
-  // };
-
-  // const handleSendSms = async () => {
-  //   if (!smsMessage || selectedUsers.length === 0) {
-  //     setSmsError("Please enter a message and select at least one user.");
-  //     return;
-  //   }
-  //   setSmsLoading(true);
-  //   setSmsError("");
-  //   setSmsSuccess("");
-
-  //   try {
-  //     emailjs.init("J1JJdUVnwGNm1_468");
-
-  //     const phoneNumbers = selectedUsers
-  //       .map((userId) => {
-  //         const user = users.find((u) => u.id === userId);
-  //         return user?.phoneNumber ? formatPhoneNumber(user.phoneNumber) : null;
-  //       })
-  //       .filter((num) => num);
-
-  //     if (phoneNumbers.length === 0) {
-  //       setSmsError("No valid phone numbers found for selected users.");
-  //       setSmsLoading(false);
-  //       return;
-  //     }
-
-  //     const templateParams = {
-  //       message: smsMessage,
-  //       to: phoneNumbers,
-  //       from_name: "Prime Academy",
-  //       subject: "SMS from Prime Academy",
-  //     };
-
-  //     await emailjs.send("service_ocrml1s", "template_sms", templateParams);
-
-  //     setSmsSuccess("SMS sent successfully to selected users!");
-  //     setSmsMessage("");
-  //     setSelectedUsers([]);
-  //   } catch (error) {
-  //     console.error("Error sending SMS:", error);
-  //     setSmsError("An error occurred while sending SMS: " + error.message);
-  //   } finally {
-  //     setSmsLoading(false);
-  //   }
-  // };
 
   const filteredUsers = users.filter((user) => {
     if (displayMode === "all") return true;
@@ -1100,33 +1020,6 @@ const AdminDashboard = () => {
                     </select>
                   </div>
                 </div>
-                {/* <p>
-                  <strong>Overall Average Score (Filtered):</strong>{" "}
-                  {(() => {
-                    const filteredScores =
-                      quizScoresSummary.topPerformersByProgram
-                        .filter(
-                          (item) =>
-                            !selectedProgram || item.program === selectedProgram
-                        )
-                        .flatMap((item) => item.levels)
-                        .filter(
-                          (level) =>
-                            !selectedLevel || level.level === selectedLevel
-                        )
-                        .flatMap((level) => level.subjects)
-                        .flatMap((subject) => subject.topPerformers);
-
-                    const totalScore = filteredScores.reduce(
-                      (sum, performer) => sum + performer.score,
-                      0
-                    );
-                    const totalQuizzes = filteredScores.length;
-                    return totalQuizzes > 0
-                      ? (totalScore / totalQuizzes).toFixed(1)
-                      : "0.0";
-                  })()}
-                </p> */}
 
                 <div style={modalStyles.content1}>
                   <h3 style={modalStyles.head}>
@@ -1384,15 +1277,6 @@ const AdminDashboard = () => {
                           top: "0",
                         }}
                       >
-                        Role
-                      </th>
-                      <th
-                        style={{
-                          ...tableStyles.th,
-                          position: "sticky",
-                          top: "0",
-                        }}
-                      >
                         Last Seen
                       </th>
                       <th
@@ -1404,7 +1288,6 @@ const AdminDashboard = () => {
                       >
                         Date
                       </th>
-                      {/* <th style={tableStyles.th}>Actions</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -1414,8 +1297,7 @@ const AdminDashboard = () => {
                         <td style={tableStyles.td}>{user.levelOfStudy}</td>
                         <td style={tableStyles.td}>{user.programOfStudy}</td>
                         <td style={tableStyles.td}>
-                          {/* {user.status} */}
-                          <button
+                          {/* <button
                             onClick={() =>
                               handleToggleStatus(user.id, user.status)
                             }
@@ -1432,24 +1314,19 @@ const AdminDashboard = () => {
                             {user.status === "online"
                               ? "Set Offline"
                               : "Set Online"}
-                          </button>
-                        </td>
-                        <td style={tableStyles.td}>
-                          {/* {user.role} */}
-                          <button
-                            onClick={() => handleToggleRole(user.id, user.role)}
+                          </button> */}
+                          <span
                             style={{
                               ...styles.button,
                               padding: "5px 10px",
-                              marginLeft: "10px",
                               backgroundColor:
-                                user.role === "admin" ? "#f44336" : "#4CAF50",
+                                user.status === "online"
+                                  ? "#4CAF50"
+                                  : "#f44336",
                             }}
                           >
-                            {user.role === "admin"
-                              ? "Remove Admin"
-                              : "Set Admin"}
-                          </button>
+                            {user.status}
+                          </span>
                         </td>
                         <td style={tableStyles.td}>
                           {user.status === "online"
@@ -1469,18 +1346,6 @@ const AdminDashboard = () => {
                               )
                             : "Never"}
                         </td>
-                        {/* <td style={tableStyles.td}>
-                          <button
-                            onClick={() => handleDeleteUser(user.id)}
-                            style={{
-                              ...styles.button,
-                              padding: "5px 10px",
-                              backgroundColor: "#f44336",
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td> */}
                       </tr>
                     ))}
                     {filteredUsers.length === 0 && (
@@ -1508,191 +1373,6 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
-
-      {/* {showSmsModal && (
-        <div style={modalStyles.overlay}>
-          <div style={modalStyles.modal}>
-            <h2 style={modalStyles.title}>Send SMS to Users</h2>
-            {usersLoading ? (
-              <div style={modalStyles.loading}>
-                <i
-                  className="fa fa-spinner fa-spin"
-                  style={modalStyles.spinner}
-                ></i>
-                Loading users...
-              </div>
-            ) : (
-              <div>
-                <label
-                  style={{
-                    fontWeight: "bold",
-                  }}
-                >
-                  Select Users:
-                </label>
-                <div style={{ display: "flex", gap: "20px" }}>
-                  <div
-                    style={{
-                      flex: 1,
-                      maxHeight: "180px",
-                      overflowY: "auto",
-                      border: "1px solid #ccc",
-                      borderRadius: "8px",
-                      padding: "10px",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    <table style={{ width: "100%" }}>
-                      <thead>
-                        <tr>
-                          <th style={{ textAlign: "left" }}>User</th>
-                          <th style={{ textAlign: "left" }}>Phone / Contact</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filteredUsers
-                          .slice(0, Math.ceil(filteredUsers.length / 2))
-                          .map((user) => (
-                            <tr key={user.id}>
-                              <td>
-                                <input
-                                  type="checkbox"
-                                  id={user.id}
-                                  checked={selectedUsers.includes(user.id)}
-                                  onChange={(e) => {
-                                    if (e.target.checked) {
-                                      setSelectedUsers([
-                                        ...selectedUsers,
-                                        user.id,
-                                      ]);
-                                    } else {
-                                      setSelectedUsers(
-                                        selectedUsers.filter(
-                                          (id) => id !== user.id
-                                        )
-                                      );
-                                    }
-                                  }}
-                                />
-                                <label
-                                  htmlFor={user.id}
-                                  style={{ marginLeft: "5px" }}
-                                >
-                                  {user.username}
-                                </label>
-                              </td>
-                              <td>
-                                {formatPhoneNumber(user.phoneNumber) || "N/A"}
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  <div
-                    style={{
-                      flex: 1,
-                      maxHeight: "180px",
-                      overflowY: "auto",
-                      border: "1px solid #ccc",
-                      borderRadius: "8px",
-                      padding: "10px",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    <table style={{ width: "100%" }}>
-                      <thead>
-                        <tr>
-                          <th style={{ textAlign: "left" }}>User</th>
-                          <th style={{ textAlign: "left" }}>Phone / Contact</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filteredUsers
-                          .slice(Math.ceil(filteredUsers.length / 2))
-                          .map((user) => (
-                            <tr key={user.id}>
-                              <td>
-                                <input
-                                  type="checkbox"
-                                  id={user.id}
-                                  checked={selectedUsers.includes(user.id)}
-                                  onChange={(e) => {
-                                    if (e.target.checked) {
-                                      setSelectedUsers([
-                                        ...selectedUsers,
-                                        user.id,
-                                      ]);
-                                    } else {
-                                      setSelectedUsers(
-                                        selectedUsers.filter(
-                                          (id) => id !== user.id
-                                        )
-                                      );
-                                    }
-                                  }}
-                                />
-                                <label
-                                  htmlFor={user.id}
-                                  style={{ marginLeft: "5px" }}
-                                >
-                                  {user.username}
-                                </label>
-                              </td>
-                              <td>
-                                {formatPhoneNumber(user.phoneNumber) || "N/A"}
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <textarea
-                  placeholder="Type your SMS message here..."
-                  value={smsMessage}
-                  onChange={(e) => setSmsMessage(e.target.value)}
-                  style={{ ...styles.textarea, width: "98.5%" }}
-                  rows="4"
-                />
-                {smsError && <p style={styles.error}>{smsError}</p>}
-                {smsSuccess && <p style={styles.success}>{smsSuccess}</p>}
-                {smsLoading ? (
-                  <div style={styles.loading}>
-                    <i
-                      className="fa fa-spinner fa-spin"
-                      style={styles.spinner}
-                    ></i>
-                    Sending SMS...
-                  </div>
-                ) : (
-                  <div style={styles.buttonContainer}>
-                    <button
-                      onClick={handleSendSms}
-                      style={styles.confirmButton}
-                      disabled={smsLoading}
-                    >
-                      SEND SMS
-                    </button>
-                    <button
-                      onClick={() => {
-                        setShowSmsModal(false);
-                        setSmsMessage("");
-                        setSelectedUsers([]);
-                        setSmsError("");
-                        setSmsSuccess("");
-                      }}
-                      style={styles.cancelButton}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      )} */}
 
       {showMessagesModal && (
         <div style={modalStyles.overlay}>
@@ -2117,12 +1797,10 @@ const styles = {
   button: {
     width: "100%",
     padding: "10px",
-    backgroundColor: "#4CAF50",
     color: "white",
     border: "none",
     borderRadius: "8px",
     fontSize: "16px",
-    cursor: "pointer",
     transition: "background-color 0.3s",
     display: "flex",
     justifyContent: "center",

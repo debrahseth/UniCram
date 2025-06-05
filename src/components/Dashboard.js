@@ -30,6 +30,9 @@ const Dashboard = () => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [textUnreadCount, setTextUnreadCount] = useState(0);
   const [hasTakenDailyQuiz, setHasTakenDailyQuiz] = useState(false);
+  const [showChallengeModal, setShowChallengeModal] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [latestMessage, setLatestMessage] = useState(null);
   const quotes = [
     {
       text: "The future belongs to those who believe in the beauty of their dreams.",
@@ -116,6 +119,41 @@ const Dashboard = () => {
   ];
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+  const modalOverlayStyle = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1000,
+  };
+
+  const modalContentStyle = {
+    backgroundColor: "#fff",
+    padding: "30px",
+    borderRadius: "10px",
+    width: "90%",
+    maxWidth: "500px",
+    boxShadow: "0 5px 20px rgba(0,0,0,0.3)",
+    textAlign: "center",
+    fontFamily: "Poppins, sans-serif",
+  };
+
+  const modalButtonStyle = {
+    marginTop: "20px",
+    padding: "10px 20px",
+    fontSize: "1rem",
+    fontWeight: "600",
+    backgroundColor: "#0EA5E9",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  };
 
   useEffect(() => {
     if (!auth.currentUser) return;
@@ -200,11 +238,9 @@ const Dashboard = () => {
           querySnapshot.docChanges().forEach((change) => {
             if (change.type === "added") {
               const message = change.doc.data();
-              if (!message.read && Notification.permission === "granted") {
-                new Notification("New Message Received!", {
-                  body: message.message,
-                  icon: logo,
-                });
+              if (!message.read) {
+                setLatestMessage(message);
+                setShowMessageModal(true);
               }
             }
           });
@@ -217,19 +253,9 @@ const Dashboard = () => {
         );
         unsubscribeChallenges = onSnapshot(challengesQuery, (snapshot) => {
           if (!snapshot.empty) {
-            alert("You have received a new challenge!");
+            setShowChallengeModal(true);
           }
         });
-
-        unsubscribeStatus = onSnapshot(userDocRef, (docSnapshot) => {
-          if (docSnapshot.exists()) {
-            const userData = docSnapshot.data();
-            if (userData.status === "offline") {
-              handleForcedLogout();
-            }
-          }
-        });
-
         setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -259,18 +285,6 @@ const Dashboard = () => {
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
   }, []);
-
-  const handleForcedLogout = async () => {
-    try {
-      setLogoutLoading(true);
-      await signOut(auth);
-      navigate("/login");
-    } catch (error) {
-      console.error("Error during forced logout:", error);
-    } finally {
-      setLogoutLoading(false);
-    }
-  };
 
   dotStream.register();
   spiral.register();
@@ -489,6 +503,72 @@ const Dashboard = () => {
                 DECLINE
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showChallengeModal && (
+        <div style={modalOverlayStyle}>
+          <div style={modalContentStyle}>
+            <h2 style={{ fontSize: "1.8rem", marginBottom: "10px" }}>
+              New Challenge Received!
+            </h2>
+            <p style={{ fontSize: "1.2rem" }}>
+              You've been challenged by another user. Go check your challenges!
+            </p>
+            <button
+              onClick={() => {
+                setShowChallengeModal(false);
+                navigate("/received");
+              }}
+              style={modalButtonStyle}
+            >
+              View Challenge
+            </button>
+            <button
+              onClick={() => setShowChallengeModal(false)}
+              style={{
+                ...modalButtonStyle,
+                backgroundColor: "#ccc",
+                color: "#333",
+                marginLeft: "10px",
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showMessageModal && latestMessage && (
+        <div style={modalOverlayStyle}>
+          <div style={modalContentStyle}>
+            <h2 style={{ fontSize: "1.8rem", marginBottom: "10px" }}>
+              📩 New Message Received!
+            </h2>
+            <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
+              From: {latestMessage.sender}
+            </p>
+            <button
+              onClick={() => {
+                setShowMessageModal(false);
+                navigate("/messages");
+              }}
+              style={modalButtonStyle}
+            >
+              Go to Messages
+            </button>
+            <button
+              onClick={() => setShowMessageModal(false)}
+              style={{
+                ...modalButtonStyle,
+                backgroundColor: "#ccc",
+                color: "#333",
+                marginLeft: "10px",
+              }}
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

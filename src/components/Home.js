@@ -1,10 +1,51 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import logo from "../assets/prince.jpg";
-// import logo1 from '../assets/welcome1.jpg';
 
 const Home = () => {
+  const [showModal, setShowModal] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
+
+  const modalOverlayStyle = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1000,
+  };
+
+  const modalContentStyle = {
+    backgroundColor: "#fff",
+    padding: "30px",
+    borderRadius: "10px",
+    width: "90%",
+    maxWidth: "500px",
+    boxShadow: "0 5px 20px rgba(0,0,0,0.3)",
+    textAlign: "center",
+    fontFamily: "Poppins, sans-serif",
+  };
+
+  const modalButtonStyle = {
+    marginTop: "20px",
+    padding: "10px 20px",
+    fontSize: "1rem",
+    fontWeight: "600",
+    backgroundColor: "#0EA5E9",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  };
 
   const containerStyle = {
     display: "flex",
@@ -49,15 +90,6 @@ const Home = () => {
     lineHeight: "1.7",
     animation: "fadeIn 1.5s ease-out",
   };
-
-  // const imageContainer = {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   gap: "30px",
-  //   flexWrap: "wrap",
-  //   marginBottom: "20px",
-  // };
 
   const buttonContainerStyle = {
     display: "flex",
@@ -148,20 +180,6 @@ const Home = () => {
     <div style={containerStyle}>
       <div style={background}></div>
       <h2 style={headerStyle}>Prime Academy</h2>
-      {/* <div style={imageContainer}>
-      <img
-        src={logo1}
-        alt="Study Group Logo"
-        style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: '30%', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',transform: 'scale(1)',transition: 'transform 0.3s ease',}}
-        onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}/>
-      <img
-        src={logo}
-        alt="Study Group Logo"
-        style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: '30%', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',transform: 'scale(1)',transition: 'transform 0.3s ease',}}
-        onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}/>
-      </div>   */}
       <p style={paragraphStyle}>
         Start by logging in or signing up to join the community.
       </p>
@@ -199,6 +217,26 @@ const Home = () => {
           </button>
         </div>
       </div>
+      {showModal && (
+        <div style={modalOverlayStyle}>
+          <div style={modalContentStyle}>
+            <h2 style={{ fontSize: "2rem", marginBottom: "10px" }}>
+              Welcome to Prime Academy!
+            </h2>
+            <p style={{ fontSize: "1.2rem", lineHeight: "1.5" }}>
+              For the best experience, please use a desktop or laptop. We're
+              still working on improving mobile accessibility. We apologize for
+              the inconvenience.
+            </p>
+            <button
+              onClick={() => setShowModal(false)}
+              style={modalButtonStyle}
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
