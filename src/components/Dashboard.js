@@ -10,10 +10,12 @@ import {
   where,
   onSnapshot,
   setDoc,
+  updateDoc,
   Timestamp,
   getDocs,
 } from "firebase/firestore";
 import logo from "../assets/op.jpg";
+import logo1 from "../assets/original.png";
 import useInactivityLogout from "./useInactivityLogout";
 import StreakTracker from "./StreakTracker";
 import { dotStream, spiral } from "ldrs";
@@ -33,6 +35,8 @@ const Dashboard = () => {
   const [showChallengeModal, setShowChallengeModal] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [latestMessage, setLatestMessage] = useState(null);
+  const [userRole, setUserRole] = useState("user");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const quotes = [
     {
       text: "The future belongs to those who believe in the beauty of their dreams.",
@@ -155,6 +159,81 @@ const Dashboard = () => {
     cursor: "pointer",
   };
 
+  const toggleButtonStyle = {
+    padding: "5px 10px",
+    fontSize: "1.0rem",
+    color: "#fff",
+    cursor: "pointer",
+    position: "absolute",
+    right: "20px",
+    top: "90%",
+    transform: "translateY(-50%)",
+    backgroundColor: "transparent",
+    border: "none",
+    fontWeight: "bolder",
+    textTransform: "uppercase",
+  };
+
+  const menuButtonStyle = {
+    position: "absolute",
+    top: "20px",
+    left: "20px",
+    background: "none",
+    border: "none",
+    fontSize: "1.5rem",
+    cursor: "pointer",
+    zIndex: 1050,
+  };
+
+  const overlayStyle = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    zIndex: 1000,
+  };
+
+  const sideMenuStyle = {
+    position: "fixed",
+    top: "10px",
+    left: isMenuOpen ? "0" : "-280px",
+    width: "250px",
+    height: "80%",
+    backgroundColor: "transparent",
+    boxShadow: "2px 0 5px rgba(999,999,999,0.8)",
+    borderRadius: "15px",
+    transition: "left 0.9s ease-in-out",
+    zIndex: 1100,
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  };
+
+  const sideMenuButtonStyle = {
+    padding: "10px",
+    fontSize: "1.2rem",
+    backgroundColor: "#0EA5E9",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    textAlign: "center",
+    textTransform: "uppercase",
+    fontWeight: "800",
+  };
+
+  const closeMenuButtonStyle = {
+    alignSelf: "flex-end",
+    background: "none",
+    border: "none",
+    fontSize: "1.4rem",
+    cursor: "pointer",
+    color: "red",
+  };
+
   useEffect(() => {
     if (!auth.currentUser) return;
 
@@ -201,11 +280,44 @@ const Dashboard = () => {
         if (userDoc.exists()) {
           const userData = userDoc.data();
           setUsername(userData.username);
+          setUserRole(userData.role || "user");
           setUserDetails({
             levelOfStudy: userData.levelOfStudy,
             programOfStudy: userData.programOfStudy,
             semesterOfStudy: userData.semesterOfStudy,
           });
+          const messagesQuery = query(
+            collection(db, "messages"),
+            where("userId", "==", user.uid)
+          );
+          unsubscribeMessages = onSnapshot(messagesQuery, (querySnapshot) => {
+            const userMessages = querySnapshot.docs.map((doc) => doc.data());
+            const unread = userMessages.filter(
+              (message) => !message.read
+            ).length;
+            setUnreadCount(unread);
+            querySnapshot.docChanges().forEach((change) => {
+              if (change.type === "added") {
+                const message = change.doc.data();
+                if (!message.read) {
+                  setLatestMessage(message);
+                  setShowMessageModal(true);
+                }
+              }
+            });
+          });
+
+          const challengesQuery = query(
+            collection(db, "challenges"),
+            where("receiverId", "==", user.uid),
+            where("status", "==", "pending")
+          );
+          unsubscribeChallenges = onSnapshot(challengesQuery, (snapshot) => {
+            if (!snapshot.empty) {
+              setShowChallengeModal(true);
+            }
+          });
+          setLoading(false);
           // const today = new Date();
           // today.setHours(0, 0, 0, 0);
           // const quizQuery = query(
@@ -225,38 +337,10 @@ const Dashboard = () => {
             status: "online",
           });
           setUsername(user.displayName || "User");
+          setUserRole("user");
           setShowModal(true);
+          setLoading(false);
         }
-        const messagesQuery = query(
-          collection(db, "messages"),
-          where("userId", "==", user.uid)
-        );
-        unsubscribeMessages = onSnapshot(messagesQuery, (querySnapshot) => {
-          const userMessages = querySnapshot.docs.map((doc) => doc.data());
-          const unread = userMessages.filter((message) => !message.read).length;
-          setUnreadCount(unread);
-          querySnapshot.docChanges().forEach((change) => {
-            if (change.type === "added") {
-              const message = change.doc.data();
-              if (!message.read) {
-                setLatestMessage(message);
-                setShowMessageModal(true);
-              }
-            }
-          });
-        });
-
-        const challengesQuery = query(
-          collection(db, "challenges"),
-          where("receiverId", "==", user.uid),
-          where("status", "==", "pending")
-        );
-        unsubscribeChallenges = onSnapshot(challengesQuery, (snapshot) => {
-          if (!snapshot.empty) {
-            setShowChallengeModal(true);
-          }
-        });
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
         setShowModal(true);
@@ -314,6 +398,24 @@ const Dashboard = () => {
     setShowModal(false);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = async () => {
+    setLogoutLoading(true);
+    if (currentUser) {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      await updateDoc(userDocRef, {
+        status: "offline",
+        lastActivity: Timestamp.fromDate(new Date()),
+      });
+      await signOut(auth);
+      navigate("/login");
+      setLogoutLoading(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="spinner-container">
@@ -340,6 +442,93 @@ const Dashboard = () => {
 
   return (
     <div style={styles.container}>
+      <button style={menuButtonStyle} onClick={toggleMenu}>
+        <i className="fa fa-bars"></i>
+      </button>
+      {isMenuOpen && <div style={overlayStyle} onClick={toggleMenu}></div>}
+      {userRole && (
+        <div style={sideMenuStyle}>
+          <button style={closeMenuButtonStyle} onClick={toggleMenu}>
+            <i className="fa fa-times"></i>
+          </button>
+          <img
+            src={logo1}
+            alt="Study Group Logo"
+            style={styles.profilePicture}
+          />
+          <button
+            style={{ ...sideMenuButtonStyle, backgroundColor: "green" }}
+            onClick={() => {
+              navigate("/profile");
+              toggleMenu();
+            }}
+          >
+            Profile
+          </button>
+          <button
+            style={sideMenuButtonStyle}
+            onClick={() => {
+              navigate("/weekly-leaderboard");
+              toggleMenu();
+            }}
+          >
+            Leaderboard
+          </button>
+          <button
+            style={sideMenuButtonStyle}
+            onClick={() => {
+              navigate("/texting");
+              toggleMenu();
+            }}
+          >
+            Messages {textUnreadCount > 0 && `(${textUnreadCount})`}
+          </button>
+          {userRole === "special" && (
+            <button
+              style={sideMenuButtonStyle}
+              onClick={() => {
+                navigate("/challenge");
+                toggleMenu();
+              }}
+            >
+              Challenges
+            </button>
+          )}
+          <button
+            style={{ ...sideMenuButtonStyle, backgroundColor: "gold" }}
+            onClick={() => {
+              navigate("/record");
+              toggleMenu();
+            }}
+          >
+            Quiz Records
+          </button>
+          <button
+            onClick={() => {
+              navigate("/complaint");
+              toggleMenu();
+            }}
+            style={sideMenuButtonStyle}
+          >
+            Report an issue
+          </button>
+          <button
+            style={{ ...sideMenuButtonStyle, backgroundColor: "red" }}
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+          <button
+            onClick={() => {
+              navigate("/about");
+              toggleMenu();
+            }}
+            style={sideMenuButtonStyle}
+          >
+            About
+          </button>
+        </div>
+      )}
       <div style={styles.background}></div>
       <div style={styles.header}>
         <button
@@ -367,20 +556,16 @@ const Dashboard = () => {
             📝 Practice Quiz
           </button>
           {/* <button onClick={() => navigate('/live-quiz')} style={styles.startQuizButton}>Live Quizzes</button> */}
-          <>
-            <button
-              onClick={() => navigate("/messages")}
-              style={{ ...styles.startQuizButton, position: "relative" }}
-            >
-              🔔 Notifications
-              {unreadCount > 0 && (
-                <span style={styles.badge}>{unreadCount}</span>
-              )}
-              {textUnreadCount > 0 && (
-                <span style={styles.badge}>{textUnreadCount}</span>
-              )}
-            </button>
-          </>
+          <button
+            onClick={() => navigate("/messages")}
+            style={{ ...styles.startQuizButton, position: "relative" }}
+          >
+            🔔 Notifications
+            {unreadCount > 0 && <span style={styles.badge}>{unreadCount}</span>}
+            {textUnreadCount > 0 && (
+              <span style={styles.badge}>{textUnreadCount}</span>
+            )}
+          </button>
           <button
             onClick={() => navigate("/complaint")}
             style={styles.startQuizButton}
@@ -397,7 +582,6 @@ const Dashboard = () => {
           {/* <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button> */}
         </div>
       </div>
-      {/* <button onClick={() => navigate('/users')} style={styles.userButton}>Meet the Brain Snacks Community</button> */}
       <div style={styles.scrollableContainer}>
         <div style={styles.content}>
           <div style={styles.motivationalQuotes}>
@@ -648,22 +832,6 @@ const styles = {
     marginTop: "10px",
     flexDirection: "row",
   },
-  userButton: {
-    padding: "15px",
-    display: "flex",
-    borderRadius: "10px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
-    width: "90%",
-    marginTop: "10px",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "25px",
-    fontWeight: "800",
-    color: "black",
-    backgroundColor: "#AED6F1",
-    flexDirection: "row",
-    opacity: "0.7",
-  },
   motivationalQuotes: {
     padding: "20px",
     borderRadius: "8px",
@@ -797,6 +965,12 @@ const styles = {
     minWidth: "24px",
     textAlign: "center",
     lineHeight: "1",
+  },
+  profilePicture: {
+    width: "240px",
+    height: "200px",
+    borderRadius: "30%",
+    objectFit: "cover",
   },
 };
 

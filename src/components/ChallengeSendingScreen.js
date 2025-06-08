@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import {
@@ -26,7 +26,6 @@ const ChallengeSendingScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const metadataFields = ['programOfStudy', 'levelOfStudy', 'semesterOfStudy'];
 
   const navigate = useNavigate();
 
@@ -44,7 +43,7 @@ const ChallengeSendingScreen = () => {
 
         if (userSnap.exists()) {
           const loggedInUserData = userSnap.data();
-          const { levelOfStudy, programOfStudy } = loggedInUserData;
+          const { levelOfStudy, programOfStudy, role } = loggedInUserData;
           setUserData(loggedInUserData);
 
           const unsubscribe = onSnapshot(
@@ -57,7 +56,8 @@ const ChallengeSendingScreen = () => {
                     return (
                       doc.id !== currentUser.uid &&
                       userData.levelOfStudy === levelOfStudy &&
-                      userData.programOfStudy === programOfStudy
+                      userData.programOfStudy === programOfStudy &&
+                      userData.role === role
                     );
                   })
                   .map((doc) => ({

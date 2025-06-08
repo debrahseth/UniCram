@@ -336,12 +336,12 @@ const styles = {
     width: "98%",
     boxShadow: "0 4px 4px rgba(0,0,0,0.8)",
     borderRadius: "10px",
-    marginTop: "20px",
+    marginTop: "5px",
   },
   title: {
-    fontSize: "24px",
-    fontWeight: "bold",
-    marginBottom: "20px",
+    fontSize: "40px",
+    fontWeight: "bolder",
+    marginBottom: "5px",
   },
   form: {
     display: "flex",
