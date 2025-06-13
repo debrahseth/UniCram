@@ -6,6 +6,10 @@ import {
   FaSync,
   FaTimes,
   FaArrowDown,
+  FaEdit,
+  FaTrash,
+  FaCheck,
+  FaCheckDouble,
 } from "react-icons/fa";
 import { db, auth } from "../firebase";
 import {
@@ -13,6 +17,7 @@ import {
   query,
   where,
   getDoc,
+  getDocs,
   doc,
   setDoc,
   updateDoc,
@@ -95,7 +100,91 @@ const TextingScreen = () => {
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [initialFormData, setInitialFormData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [hoveredMessageId, setHoveredMessageId] = useState(null);
+  const [editingMessageId, setEditingMessageId] = useState(null);
+  const [editContent, setEditContent] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const navigate = useNavigate();
+
+  const fetchUnreadCounts = async () => {
+    if (!auth.currentUser) return;
+    try {
+      const textQuery = query(
+        collection(db, "text"),
+        where("userIds", "array-contains", auth.currentUser.uid)
+      );
+      const querySnapshot = await getDocs(textQuery);
+      const counts = {};
+      querySnapshot.forEach((doc) => {
+        const conversation = doc.data();
+        const otherUserId = conversation.userIds.find(
+          (id) => id !== auth.currentUser.uid
+        );
+        const messages = conversation.messages || [];
+        const unread = messages.filter(
+          (msg) => msg.senderId === otherUserId && msg.read === false
+        ).length;
+        if (unread > 0) {
+          counts[otherUserId] = unread;
+        }
+      });
+      setUnreadCounts(counts);
+    } catch (err) {
+      setError("Failed to fetch unread counts: " + err.message);
+    }
+  };
+  useEffect(() => {
+    fetchUnreadCounts();
+  }, [auth.currentUser]);
+
+  useEffect(() => {
+    if (!selectedUser || !auth.currentUser) return;
+
+    const userIds = [auth.currentUser.uid, selectedUser.id].sort();
+    const conversationId = userIds.join("_");
+    const conversationRef = doc(db, "text", conversationId);
+
+    const handleTyping = async () => {
+      try {
+        const docSnapshot = await getDoc(conversationRef);
+        let typingUsers = docSnapshot.exists()
+          ? docSnapshot.data().typingUsers || []
+          : [];
+        if (newMessage.trim() && !typingUsers.includes(auth.currentUser.uid)) {
+          typingUsers = [...typingUsers, auth.currentUser.uid];
+        } else if (
+          !newMessage.trim() &&
+          typingUsers.includes(auth.currentUser.uid)
+        ) {
+          typingUsers = typingUsers.filter(
+            (uid) => uid !== auth.currentUser.uid
+          );
+        }
+        await updateDoc(conversationRef, { typingUsers });
+      } catch (err) {
+        console.error("Failed to update typing status:", err);
+      }
+    };
+
+    handleTyping();
+  }, [newMessage, selectedUser, auth.currentUser]);
+
+  useEffect(() => {
+    if (!selectedUser) return;
+
+    const userIds = [auth.currentUser.uid, selectedUser.id].sort();
+    const conversationId = userIds.join("_");
+    const conversationRef = doc(db, "text", conversationId);
+
+    const unsubscribe = onSnapshot(conversationRef, (docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const { typingUsers = [] } = docSnapshot.data();
+        setIsTyping(typingUsers.includes(selectedUser.id));
+      }
+    });
+
+    return () => unsubscribe();
+  }, [selectedUser, auth.currentUser]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -166,35 +255,6 @@ const TextingScreen = () => {
   );
 
   useEffect(() => {
-    if (!auth.currentUser) return;
-
-    const textQuery = query(
-      collection(db, "text"),
-      where("userIds", "array-contains", auth.currentUser.uid)
-    );
-
-    const unsubscribe = onSnapshot(textQuery, (querySnapshot) => {
-      const counts = {};
-      querySnapshot.forEach((doc) => {
-        const conversation = doc.data();
-        const otherUserId = conversation.userIds.find(
-          (id) => id !== auth.currentUser.uid
-        );
-        const messages = conversation.messages || [];
-        const unread = messages.filter(
-          (msg) => msg.senderId === otherUserId && msg.read === false
-        ).length;
-        if (unread > 0) {
-          counts[otherUserId] = unread;
-        }
-      });
-      setUnreadCounts(counts);
-    });
-
-    return () => unsubscribe();
-  }, [auth.currentUser]);
-
-  useEffect(() => {
     if (!selectedUser) {
       setSelectedUserProfile(null);
       setMessages([]);
@@ -246,6 +306,7 @@ const TextingScreen = () => {
           });
           if (JSON.stringify(messages) !== JSON.stringify(updatedMessages)) {
             await updateDoc(conversationRef, { messages: updatedMessages });
+            fetchUnreadCounts();
           }
 
           setMessages(updatedMessages);
@@ -282,7 +343,7 @@ const TextingScreen = () => {
     if (isAtBottom && bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages, isTyping]);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim() || !selectedUser) return;
@@ -301,14 +362,51 @@ const TextingScreen = () => {
     if (docSnapshot.exists()) {
       await updateDoc(conversationRef, {
         messages: [...messages, messageData],
+        typingUsers:
+          docSnapshot
+            .data()
+            .typingUsers?.filter((uid) => uid !== auth.currentUser.uid) || [],
       });
     } else {
       await setDoc(conversationRef, {
         userIds,
         messages: [messageData],
+        typingUsers: [],
       });
     }
     setNewMessage("");
+    fetchUnreadCounts();
+  };
+
+  const handleEditMessage = async (index) => {
+    if (!editContent.trim()) return;
+    const userIds = [auth.currentUser.uid, selectedUser.id].sort();
+    const conversationId = userIds.join("_");
+    const conversationRef = doc(db, "text", conversationId);
+    const updatedMessages = messages.map((msg, idx) =>
+      idx === index ? { ...msg, content: editContent.trim() } : msg
+    );
+    try {
+      await updateDoc(conversationRef, { messages: updatedMessages });
+      setEditingMessageId(null);
+      setEditContent("");
+      fetchUnreadCounts();
+    } catch (err) {
+      setError("Failed to edit message: " + err.message);
+    }
+  };
+
+  const handleDeleteMessage = async (index) => {
+    const userIds = [auth.currentUser.uid, selectedUser.id].sort();
+    const conversationId = userIds.join("_");
+    const conversationRef = doc(db, "text", conversationId);
+    const updatedMessages = messages.filter((_, idx) => idx !== index);
+    try {
+      await updateDoc(conversationRef, { messages: updatedMessages });
+      fetchUnreadCounts();
+    } catch (err) {
+      setError("Failed to delete message: " + err.message);
+    }
   };
 
   const handleUpdateProfile = async () => {
@@ -408,7 +506,10 @@ const TextingScreen = () => {
                     backgroundColor:
                       selectedUser?.id === user.id ? "#e0e0e0" : "#fff",
                   }}
-                  onClick={() => setSelectedUser(user)}
+                  onClick={() => {
+                    setSelectedUser(user);
+                    fetchUnreadCounts();
+                  }}
                 >
                   <span>{user.username}</span>
                   <div
@@ -484,16 +585,152 @@ const TextingScreen = () => {
                             msg.senderId === auth.currentUser.uid
                               ? "white"
                               : "black",
+                          position: "relative",
                         }}
+                        onMouseEnter={() =>
+                          msg.senderId === auth.currentUser.uid &&
+                          setHoveredMessageId(index)
+                        }
+                        onMouseLeave={() =>
+                          msg.senderId === auth.currentUser.uid &&
+                          setHoveredMessageId(null)
+                        }
                       >
-                        <p style={styles.messageText}>{msg.content}</p>
-                        <p style={styles.messageTimestamp}>
-                          {msg.timestamp.toDate().toLocaleString("en-US", {
-                            timeStyle: "short",
-                          })}
-                        </p>
+                        {editingMessageId === index ? (
+                          <div style={styles.editContainer}>
+                            <textarea
+                              value={editContent}
+                              onChange={(e) => setEditContent(e.target.value)}
+                              style={{
+                                ...styles.messageInput,
+                                width: "100%",
+                                marginBottom: "5px",
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter" && !e.shiftKey) {
+                                  e.preventDefault();
+                                  handleEditMessage(index);
+                                }
+                              }}
+                            />
+                            <div style={styles.editButtons}>
+                              <button
+                                onClick={() => handleEditMessage(index)}
+                                style={{
+                                  backgroundColor: "#4CAF50",
+                                  color: "white",
+                                  padding: "8px 16px",
+                                  marginRight: "10px",
+                                  border: "none",
+                                  borderRadius: "4px",
+                                  cursor: "pointer",
+                                  fontSize: "14px",
+                                  transition: "background-color 0.3s",
+                                }}
+                                onMouseOver={(e) =>
+                                  (e.currentTarget.style.backgroundColor =
+                                    "#45a049")
+                                }
+                                onMouseOut={(e) =>
+                                  (e.currentTarget.style.backgroundColor =
+                                    "#4CAF50")
+                                }
+                              >
+                                Send
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setEditingMessageId(null);
+                                  setEditContent("");
+                                }}
+                                style={{
+                                  backgroundColor: "#f44336",
+                                  color: "white",
+                                  padding: "8px 16px",
+                                  border: "none",
+                                  borderRadius: "4px",
+                                  cursor: "pointer",
+                                  fontSize: "14px",
+                                  transition: "background-color 0.3s",
+                                }}
+                                onMouseOver={(e) =>
+                                  (e.currentTarget.style.backgroundColor =
+                                    "#d32f2f")
+                                }
+                                onMouseOut={(e) =>
+                                  (e.currentTarget.style.backgroundColor =
+                                    "#f44336")
+                                }
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <p style={styles.messageText}>{msg.content}</p>
+                            <div style={styles.messageFooter}>
+                              <p style={styles.messageTimestamp}>
+                                {msg.timestamp
+                                  .toDate()
+                                  .toLocaleString("en-US", {
+                                    timeStyle: "short",
+                                  })}
+                              </p>
+                              {msg.senderId === auth.currentUser.uid && (
+                                <span style={styles.readIndicator}>
+                                  {msg.read ? (
+                                    <FaCheckDouble size={12} />
+                                  ) : (
+                                    <FaCheck size={12} />
+                                  )}
+                                </span>
+                              )}
+                            </div>
+                            {msg.senderId === auth.currentUser.uid &&
+                              hoveredMessageId === index && (
+                                <div style={styles.messageActions}>
+                                  <button
+                                    onClick={() => {
+                                      setEditingMessageId(index);
+                                      setEditContent(msg.content);
+                                    }}
+                                    style={styles.actionButton}
+                                    title="Edit Message"
+                                  >
+                                    <FaEdit size={16} />
+                                  </button>
+                                  <button
+                                    onClick={() => handleDeleteMessage(index)}
+                                    style={styles.actionButton}
+                                    title="Delete Message"
+                                  >
+                                    <FaTrash size={16} />
+                                  </button>
+                                </div>
+                              )}
+                          </>
+                        )}
                       </div>
                     ))}
+                    {isTyping && (
+                      <div
+                        style={{
+                          ...styles.messageBubble,
+                          alignSelf: "flex-start",
+                          backgroundColor: "#f1f1f1",
+                        }}
+                      >
+                        <l-dot-wave
+                          size="20"
+                          speed="1"
+                          color="#333"
+                        ></l-dot-wave>
+                        <span style={{ marginLeft: "10px" }}>
+                          {selectedUser.username} is typing...
+                        </span>
+                      </div>
+                    )}
                     <div ref={bottomRef} />
                   </>
                 )}
@@ -638,7 +875,7 @@ const TextingScreen = () => {
         }}
         style={styles.updateButton}
       >
-        <FaSync size={20} /> Update My Profile
+        <FaSync size={20} /> My Profile
       </button>
 
       {showUpdateModal && (
@@ -973,7 +1210,7 @@ const styles = {
     listStyle: "none",
     padding: 0,
     margin: 0,
-    maxHeight: "60vh",
+    maxHeight: "57vh",
     overflowY: "auto",
   },
   userItem: {
@@ -1028,6 +1265,7 @@ const styles = {
     padding: "10px",
     borderRadius: "10px",
     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+    marginBottom: "10px",
   },
   messageText: {
     margin: 0,
@@ -1037,7 +1275,17 @@ const styles = {
     margin: 0,
     fontSize: "12px",
     opacity: 0.7,
+  },
+  messageFooter: {
+    display: "flex",
+    alignItems: "center",
+    gap: "5px",
     marginTop: "5px",
+    justifyContent: "space-between",
+  },
+  readIndicator: {
+    display: "flex",
+    alignItems: "center",
   },
   inputContainer: {
     display: "flex",
@@ -1052,6 +1300,33 @@ const styles = {
     resize: "none",
     height: "50px",
     fontSize: "18px",
+  },
+  messageActions: {
+    top: "8px",
+    display: "flex",
+    gap: "5px",
+    position: "relative",
+  },
+  actionButton: {
+    background: "rgba(0, 0, 0, 0.7)",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    padding: "5px",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  editContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "90%",
+  },
+  editButtons: {
+    display: "flex",
+    gap: "10px",
+    justifyContent: "flex-end",
   },
   sendButton: {
     padding: "10px 20px",
