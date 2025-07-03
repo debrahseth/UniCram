@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import {
   collection,
   getDocs,
+  addDoc,
   doc,
   getDoc,
   onSnapshot,
@@ -17,6 +18,7 @@ import { Bar } from "react-chartjs-2";
 import { formatDistanceToNow, format } from "date-fns";
 import { FaPaperPlane } from "react-icons/fa";
 import { dotWave } from "ldrs";
+import questionsData from "../questions/questions.json";
 
 const AdminDashboard = () => {
   const [message, setMessage] = useState("");
@@ -25,10 +27,6 @@ const AdminDashboard = () => {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
-  const [quizScoresLoading, setQuizScoresLoading] = useState(false);
-  const [quizScoresError, setQuizScoresError] = useState(null);
-  const [selectedProgram, setSelectedProgram] = useState("");
-  const [selectedLevel, setSelectedLevel] = useState("");
   const [analytics, setAnalytics] = useState({
     totalUsers: 0,
     onlineUsers: 0,
@@ -39,12 +37,6 @@ const AdminDashboard = () => {
   const [analyticsLoading, setAnalyticsLoading] = useState(true);
   const [analyticsError, setAnalyticsError] = useState("");
   const navigate = useNavigate();
-  const [showQuizScoresModal, setShowQuizScoresModal] = useState(false);
-  const [quizScoresSummary, setQuizScoresSummary] = useState({
-    averageScore: 0,
-    topPerformers: [],
-    scoresBySubject: {},
-  });
   const [showUsersModal, setShowUsersModal] = useState(false);
   const [users, setUsers] = useState([]);
   const [usersLoading, setUsersLoading] = useState(true);
@@ -70,6 +62,38 @@ const AdminDashboard = () => {
   const [deleteMessageSuccess, setDeleteMessageSuccess] = useState("");
   const [deleteMessageError, setDeleteMessageError] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showLiveQuizModal, setShowLiveQuizModal] = useState(false);
+  const [showQuizQuestModal, setShowQuizQuestModal] = useState(false);
+  const [liveQuizData, setLiveQuizData] = useState({
+    startTime: "",
+    endTime: "",
+    level: "",
+    program: "",
+    semester: "",
+    course: "",
+  });
+  const [quizQuestData, setQuizQuestData] = useState({
+    startTime: "",
+    endTime: "",
+    level: "",
+    program: "",
+    semester: "",
+    course: "",
+    questionCount: "",
+    rewards: "",
+  });
+  const [quizError, setQuizError] = useState("");
+  const [quizSuccess, setQuizSuccess] = useState("");
+  const [quizLoading, setQuizLoading] = useState(false);
+  const [questError, setQuestError] = useState("");
+  const [questSuccess, setQuestSuccess] = useState("");
+  const [questLoading, setQuestLoading] = useState(false);
+  const [availableLevels, setAvailableLevels] = useState([]);
+  const [availablePrograms, setAvailablePrograms] = useState([]);
+  const [availableSemesters, setAvailableSemesters] = useState([]);
+  const [availableCourses, setAvailableCourses] = useState([]);
+  const [availableQuestions, setAvailableQuestions] = useState(0);
+  const [questWarning, setQuestWarning] = useState("");
   const correctPassword = "Admin123";
 
   const programAbbreviations = {
@@ -96,6 +120,221 @@ const AdminDashboard = () => {
   const abbreviatedLabels = Object.keys(analytics.programDistribution).map(
     (program) => programAbbreviations[program] || program
   );
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const usersSnapshot = await getDocs(collection(db, "users"));
+        const levels = new Set();
+        const programs = new Set();
+
+        usersSnapshot.docs.forEach((doc) => {
+          const data = doc.data();
+          if (data.levelOfStudy) levels.add(data.levelOfStudy);
+          if (data.programOfStudy) programs.add(data.programOfStudy);
+        });
+
+        const semesters = [
+          ...new Set(questionsData.map((q) => q.semesterOfStudy)),
+        ].filter(Boolean);
+        const courses = [...new Set(questionsData.map((q) => q.course))].filter(
+          Boolean
+        );
+
+        setAvailableLevels([...levels]);
+        setAvailablePrograms([...programs]);
+        setAvailableSemesters([...semesters]);
+        setAvailableCourses([...courses]);
+      } catch (error) {
+        console.error("Error fetching options:", error);
+        setQuizError("Failed to load levels and programs");
+      }
+    };
+
+    fetchOptions();
+  }, []);
+
+  useEffect(() => {
+    const count = questionsData.filter(
+      (q) =>
+        (!quizQuestData.level || q.levelOfStudy === quizQuestData.level) &&
+        (!quizQuestData.program ||
+          q.programOfStudy === quizQuestData.program) &&
+        (!quizQuestData.semester ||
+          q.semesterOfStudy === quizQuestData.semester) &&
+        (!quizQuestData.course || q.course === quizQuestData.course)
+    ).length;
+    setAvailableQuestions(count);
+
+    const questionNum = parseInt(quizQuestData.questionCount, 10);
+    if (questionNum > count) {
+      setQuestWarning(
+        `Warning: Only ${count} questions available for the selected filters. Please reduce Question Count.`
+      );
+    } else {
+      setQuestWarning("");
+    }
+  }, [
+    quizQuestData.level,
+    quizQuestData.program,
+    quizQuestData.semester,
+    quizQuestData.course,
+    quizQuestData.questionCount,
+  ]);
+
+  const handleLiveQuizSubmit = async (e) => {
+    e.preventDefault();
+    setQuizError("");
+    setQuizSuccess("");
+    setQuizLoading(true);
+
+    try {
+      const { startTime, endTime, level, program, semester, course } =
+        liveQuizData;
+
+      if (!startTime || !endTime) {
+        setQuizError("Start time and end time are required.");
+        setQuizLoading(false);
+        return;
+      }
+      if (!course) {
+        setQuizError("Course is required.");
+        setQuizLoading(false);
+        return;
+      }
+      const start = new Date(startTime);
+      const end = new Date(endTime);
+      if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+        setQuizError("Invalid start or end time.");
+        setQuizLoading(false);
+        return;
+      }
+      if (start >= end) {
+        setQuizError("Start time must be before end time.");
+        setQuizLoading(false);
+        return;
+      }
+
+      await addDoc(collection(db, "liveQuizzes"), {
+        status: "scheduled",
+        startTime: Timestamp.fromDate(start),
+        endTime: Timestamp.fromDate(end),
+        level: level || null,
+        program: program || null,
+        semester: semester || null,
+        course,
+        createdAt: Timestamp.fromDate(new Date()),
+        createdBy: auth.currentUser.uid,
+      });
+
+      setQuizSuccess("Live quiz scheduled successfully!");
+      setLiveQuizData({
+        startTime: "",
+        endTime: "",
+        level: "",
+        program: "",
+        semester: "",
+        course: "",
+      });
+      setTimeout(() => {
+        setShowLiveQuizModal(false);
+        setQuizSuccess("");
+      }, 2000);
+    } catch (error) {
+      console.error("Error scheduling live quiz:", error);
+      setQuizError("Failed to schedule quiz. Please try again.");
+    } finally {
+      setQuizLoading(false);
+    }
+  };
+
+  const handleQuizQuestSubmit = async (e) => {
+    e.preventDefault();
+    setQuestError("");
+    setQuestSuccess("");
+    setQuestLoading(true);
+
+    try {
+      const {
+        startTime,
+        endTime,
+        level,
+        program,
+        semester,
+        course,
+        questionCount,
+        rewards,
+      } = quizQuestData;
+
+      if (!startTime || !endTime || !course || !questionCount) {
+        setQuestError(
+          "Start time, end time, course, and question count are required."
+        );
+        setQuestLoading(false);
+        return;
+      }
+      const start = new Date(startTime);
+      const end = new Date(endTime);
+      const questionNum = parseInt(questionCount, 10);
+      if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+        setQuestError("Invalid start or end time.");
+        setQuestLoading(false);
+        return;
+      }
+      if (start >= end) {
+        setQuestError("Start time must be before end time.");
+        setQuestLoading(false);
+        return;
+      }
+      if (isNaN(questionNum) || questionNum <= 0) {
+        setQuestError("Question count must be a positive number.");
+        setQuestLoading(false);
+        return;
+      }
+      if (questionNum > availableQuestions) {
+        setQuestError(
+          `Cannot create mission: Only ${availableQuestions} questions available for the selected filters.`
+        );
+        setQuestLoading(false);
+        return;
+      }
+
+      await addDoc(collection(db, "gameQuests"), {
+        status: "scheduled",
+        startTime: Timestamp.fromDate(start),
+        endTime: Timestamp.fromDate(end),
+        level: level || null,
+        program: program || null,
+        semester: semester || null,
+        course,
+        questionCount: questionNum,
+        rewards: rewards || "10 QP per correct answer",
+        createdAt: Timestamp.fromDate(new Date()),
+        createdBy: auth.currentUser.uid,
+      });
+
+      setQuestSuccess("Quiz Quest mission scheduled successfully!");
+      setQuizQuestData({
+        startTime: "",
+        endTime: "",
+        level: "",
+        program: "",
+        semester: "",
+        course: "",
+        questionCount: "",
+        rewards: "",
+      });
+      setTimeout(() => {
+        setShowQuizQuestModal(false);
+        setQuestSuccess("");
+      }, 2000);
+    } catch (error) {
+      console.error("Error scheduling Quiz Quest mission:", error);
+      setQuestError("Failed to schedule mission. Please try again.");
+    } finally {
+      setQuestLoading(false);
+    }
+  };
 
   useEffect(() => {
     let unsubscribeAuth;
@@ -217,178 +456,6 @@ const AdminDashboard = () => {
 
     return () => unsubscribe();
   }, [navigate]);
-
-  useEffect(() => {
-    let unsubscribeUsers;
-
-    const fetchQuizScores = () => {
-      setQuizScoresLoading(true);
-      setQuizScoresError("");
-
-      try {
-        const usersRef = collection(db, "users");
-        unsubscribeUsers = onSnapshot(
-          usersRef,
-          (usersSnapshot) => {
-            let totalScore = 0;
-            let totalQuizzes = 0;
-            const allScores = [];
-
-            const unsubscribes = [];
-
-            usersSnapshot.docs.forEach((userDoc) => {
-              const userData = userDoc.data();
-              const username = userData.username || `User_${userDoc.id}`;
-              const quizScoresRef = collection(
-                db,
-                "users",
-                userDoc.id,
-                "quizScores"
-              );
-
-              const unsubscribeQuiz = onSnapshot(
-                quizScoresRef,
-                (quizSnapshot) => {
-                  quizSnapshot.docChanges().forEach((change) => {
-                    if (change.type === "added" || change.type === "modified") {
-                      const data = change.doc.data();
-                      const scorePercentage = data.totalQuestions
-                        ? (data.score / data.totalQuestions) * 100
-                        : 0;
-                      totalScore += data.score || 0;
-                      totalQuizzes += 1;
-                      allScores.push({
-                        username,
-                        level: userData.levelOfStudy || "Unknown",
-                        program: userData.programOfStudy || "Unknown",
-                        subject: data.subject || "Unknown",
-                        score: data.score || 0,
-                        totalQuestions: data.totalQuestions || 1,
-                        percentage: scorePercentage.toFixed(1) + "%",
-                      });
-                    } else if (change.type === "removed") {
-                      totalScore = 0;
-                      totalQuizzes = 0;
-                      allScores.length = 0;
-
-                      usersSnapshot.docs.forEach((doc) => {
-                        const userDataInner = doc.data();
-                        const usernameInner =
-                          userDataInner.username || `User_${doc.id}`;
-                        const quizScoresRefInner = collection(
-                          db,
-                          "users",
-                          doc.id,
-                          "quizScores"
-                        );
-                        onSnapshot(quizScoresRefInner, (innerSnapshot) => {
-                          innerSnapshot.forEach((quizDoc) => {
-                            const data = quizDoc.data();
-                            const scorePercentage = data.totalQuestions
-                              ? (data.score / data.totalQuestions) * 100
-                              : 0;
-                            totalScore += data.score || 0;
-                            totalQuizzes += 1;
-                            allScores.push({
-                              username: usernameInner,
-                              level: userDataInner.levelOfStudy || "Unknown",
-                              program:
-                                userDataInner.programOfStudy || "Unknown",
-                              subject: data.subject || "Unknown",
-                              score: data.score || 0,
-                              totalQuestions: data.totalQuestions || 1,
-                              percentage: scorePercentage.toFixed(1) + "%",
-                            });
-                          });
-                        });
-                      });
-                    }
-                  });
-
-                  if (totalQuizzes === 0) {
-                    setQuizScoresError("No quiz scores found for any users.");
-                  }
-
-                  const averageScore =
-                    totalQuizzes > 0 ? totalScore / totalQuizzes : 0;
-                  const topPerformersByProgram = Object.entries(
-                    allScores.reduce((acc, score) => {
-                      const programKey = score.program;
-                      acc[programKey] = acc[programKey] || {};
-                      const levelKey = score.level;
-                      acc[programKey][levelKey] =
-                        acc[programKey][levelKey] || {};
-                      const subjectKey = score.subject;
-                      acc[programKey][levelKey][subjectKey] =
-                        acc[programKey][levelKey][subjectKey] || [];
-                      acc[programKey][levelKey][subjectKey].push(score);
-                      return acc;
-                    }, {})
-                  ).map(([program, levels]) => ({
-                    program,
-                    levels: Object.entries(levels).map(([level, subjects]) => ({
-                      level,
-                      subjects: Object.entries(subjects).map(
-                        ([subject, scores]) => ({
-                          subject,
-                          topPerformers: scores
-                            .sort(
-                              (a, b) =>
-                                (b.score / b.totalQuestions || 0) -
-                                (a.score / a.totalQuestions || 0)
-                            )
-                            .slice(0, 5)
-                            .map((s) => ({
-                              username: s.username,
-                              score: s.score,
-                              totalQuestions: s.totalQuestions,
-                              percentage: s.percentage,
-                            })),
-                        })
-                      ),
-                    })),
-                  }));
-
-                  setQuizScoresSummary({
-                    averageScore: averageScore.toFixed(1),
-                    topPerformersByProgram,
-                  });
-                },
-                (error) => {
-                  setQuizScoresError(
-                    "Failed to load quiz scores: " + error.message
-                  );
-                }
-              );
-
-              unsubscribes.push(unsubscribeQuiz);
-            });
-
-            usersSnapshot.docChanges().forEach((change) => {
-              if (change.type === "removed") {
-                unsubscribes.forEach((unsub) => unsub());
-              }
-            });
-          },
-          (error) => {
-            setQuizScoresError("Failed to load users: " + error.message);
-          }
-        );
-      } catch (error) {
-        setQuizScoresError(
-          "Failed to initialize quiz scores: " + error.message
-        );
-      } finally {
-        setQuizScoresLoading(false);
-      }
-    };
-
-    fetchQuizScores();
-
-    return () => {
-      if (unsubscribeUsers) unsubscribeUsers();
-    };
-  }, []);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -564,20 +631,6 @@ const AdminDashboard = () => {
     }
   };
 
-  // const handleToggleStatus = async (userId, currentStatus) => {
-  //   setUpdateSuccess("");
-  //   try {
-  //     const userRef = doc(db, "users", userId);
-  //     await updateDoc(userRef, {
-  //       status: currentStatus === "online" ? "offline" : "online",
-  //       lastActivity: Timestamp.fromDate(new Date()),
-  //     });
-  //     setUpdateSuccess("User status updated successfully!");
-  //   } catch (error) {
-  //     setUsersError("Failed to update user status: " + error.message);
-  //   }
-  // };
-
   const deleteQuizScores = async (challengeDocId) => {
     const quizScoresRef = collection(
       db,
@@ -619,6 +672,47 @@ const AdminDashboard = () => {
     }
   };
 
+  const deleteQuizResults = async (quizId) => {
+    const quizResultsRef = collection(
+      db,
+      "liveQuizzes",
+      quizId,
+      "liveQuizResults"
+    );
+    const quizResultsSnapshot = await getDocs(quizResultsRef);
+    const deletePromises = quizResultsSnapshot.docs.map((resultDoc) =>
+      deleteDoc(resultDoc.ref)
+    );
+    await Promise.all(deletePromises);
+  };
+
+  const deleteLiveQuizzes = async () => {
+    const liveQuizzesRef = collection(db, "liveQuizzes");
+    const liveQuizzesSnapshot = await getDocs(liveQuizzesRef);
+    for (const quizDoc of liveQuizzesSnapshot.docs) {
+      await deleteQuizResults(quizDoc.id);
+      await deleteDoc(doc(db, "liveQuizzes", quizDoc.id));
+    }
+  };
+
+  const deleteQuestProgress = async (questId) => {
+    const questProgressRef = collection(db, "gameQuests", questId, "progress");
+    const questProgressSnapshot = await getDocs(questProgressRef);
+    const deletePromises = questProgressSnapshot.docs.map((progressDoc) =>
+      deleteDoc(progressDoc.ref)
+    );
+    await Promise.all(deletePromises);
+  };
+
+  const deleteGameQuests = async () => {
+    const gameQuestsRef = collection(db, "gameQuests");
+    const gameQuestsSnapshot = await getDocs(gameQuestsRef);
+    for (const questDoc of gameQuestsSnapshot.docs) {
+      await deleteQuestProgress(questDoc.id);
+      await deleteDoc(doc(db, "gameQuests", questDoc.id));
+    }
+  };
+
   const handleDeleteAction = async () => {
     if (password !== correctPassword) {
       setPasswordError("Incorrect password. Please try again.");
@@ -656,6 +750,12 @@ const AdminDashboard = () => {
       } else if (deleteOption === "complaints") {
         await deleteComplaints();
         alert("All complaints and their replies deleted successfully.");
+      } else if (deleteOption === "liveQuizzes") {
+        await deleteLiveQuizzes();
+        alert("All live quizzes and their results deleted successfully.");
+      } else if (deleteOption === "gameQuests") {
+        await deleteGameQuests();
+        alert("All Quiz Quest missions and progress deleted successfully.");
       }
 
       setPassword("");
@@ -698,10 +798,16 @@ const AdminDashboard = () => {
         </button>
         <h1 style={styles.appName}>Admin Dashboard</h1>
         <button
-          onClick={() => setShowQuizScoresModal(true)}
           style={styles.logoutButton}
+          onClick={() => setShowLiveQuizModal(true)}
         >
-          📊
+          ⏰❓
+        </button>
+        <button
+          style={styles.logoutButton}
+          onClick={() => setShowQuizQuestModal(true)}
+        >
+          🎮
         </button>
         <button onClick={handleLogout} style={styles.logoutButton}>
           🔓
@@ -856,6 +962,371 @@ const AdminDashboard = () => {
         </div>
       </div>
 
+      {showLiveQuizModal && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h2 style={modalStyles.title}>Schedule Live Quiz</h2>
+            <form onSubmit={handleLiveQuizSubmit} style={styles.form}>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Start Time</label>
+                <br />
+                <input
+                  type="datetime-local"
+                  value={liveQuizData.startTime}
+                  onChange={(e) =>
+                    setLiveQuizData({
+                      ...liveQuizData,
+                      startTime: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>End Time</label>
+                <br />
+                <input
+                  type="datetime-local"
+                  value={liveQuizData.endTime}
+                  onChange={(e) =>
+                    setLiveQuizData({
+                      ...liveQuizData,
+                      endTime: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Level of Study (Optional)</label>
+                <select
+                  value={liveQuizData.level}
+                  onChange={(e) =>
+                    setLiveQuizData({
+                      ...liveQuizData,
+                      level: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                >
+                  <option value="">All Levels</option>
+                  {availableLevels.map((level) => (
+                    <option key={level} value={level}>
+                      {level}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Program of Study (Optional)</label>
+                <select
+                  value={liveQuizData.program}
+                  onChange={(e) =>
+                    setLiveQuizData({
+                      ...liveQuizData,
+                      program: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                >
+                  <option value="">All Programs</option>
+                  {availablePrograms.map((program) => (
+                    <option key={program} value={program}>
+                      {program}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Semester of Study (Optional)</label>
+                <select
+                  value={liveQuizData.semester}
+                  onChange={(e) =>
+                    setLiveQuizData({
+                      ...liveQuizData,
+                      semester: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                >
+                  <option value="">All Semesters</option>
+                  {availableSemesters.map((semester) => (
+                    <option key={semester} value={semester}>
+                      {semester}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Course (Required)</label>
+                <br />
+                <select
+                  value={liveQuizData.course}
+                  onChange={(e) =>
+                    setLiveQuizData({
+                      ...liveQuizData,
+                      course: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                  required
+                >
+                  <option value="">Select Course</option>
+                  {availableCourses.map((course) => (
+                    <option key={course} value={course}>
+                      {course}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {quizError && <p style={styles.error}>{quizError}</p>}
+              {quizSuccess && <p style={styles.success}>{quizSuccess}</p>}
+              <div style={styles.buttonContainer}>
+                <button
+                  type="submit"
+                  style={styles.confirmButton}
+                  disabled={quizLoading}
+                >
+                  {quizLoading ? (
+                    <>
+                      Scheduling{" "}
+                      <l-dot-wave
+                        size="20"
+                        speed="1"
+                        color="white"
+                      ></l-dot-wave>
+                    </>
+                  ) : (
+                    "Schedule Quiz"
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowLiveQuizModal(false);
+                    setLiveQuizData({
+                      startTime: "",
+                      endTime: "",
+                      level: "",
+                      program: "",
+                      semester: "",
+                      course: "",
+                    });
+                    setQuizError("");
+                    setQuizSuccess("");
+                  }}
+                  style={styles.cancelButton}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showQuizQuestModal && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h2 style={modalStyles.title}>Schedule Quiz Quest Mission</h2>
+            <form onSubmit={handleQuizQuestSubmit} style={styles.form}>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Start Time</label>
+                <br></br>
+                <input
+                  type="datetime-local"
+                  value={quizQuestData.startTime}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      startTime: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>End Time</label>
+                <br></br>
+                <input
+                  type="datetime-local"
+                  value={quizQuestData.endTime}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      endTime: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Level of Study (Optional)</label>
+                <select
+                  value={quizQuestData.level}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      level: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                >
+                  <option value="">All Levels</option>
+                  {availableLevels.map((level) => (
+                    <option key={level} value={level}>
+                      {level}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Program of Study (Optional)</label>
+                <select
+                  value={quizQuestData.program}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      program: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                >
+                  <option value="">All Programs</option>
+                  {availablePrograms.map((program) => (
+                    <option key={program} value={program}>
+                      {program}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Semester of Study (Optional)</label>
+                <select
+                  value={quizQuestData.semester}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      semester: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                >
+                  <option value="">All Semesters</option>
+                  {availableSemesters.map((semester) => (
+                    <option key={semester} value={semester}>
+                      {semester}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Course (Required)</label>
+                <br></br>
+                <select
+                  value={quizQuestData.course}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      course: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                  required
+                >
+                  <option value="">Select Course</option>
+                  {availableCourses.map((course) => (
+                    <option key={course} value={course}>
+                      {course}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>
+                  Number of Questions (Required)
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  value={quizQuestData.questionCount}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      questionCount: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                  required
+                />
+              </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Rewards (Optional)</label>
+                <input
+                  type="text"
+                  placeholder="e.g., 10 points per correct answer"
+                  value={quizQuestData.rewards}
+                  onChange={(e) =>
+                    setQuizQuestData({
+                      ...quizQuestData,
+                      rewards: e.target.value,
+                    })
+                  }
+                  style={styles.input}
+                />
+              </div>
+              {questError && <p style={styles.error}>{questError}</p>}
+              {questSuccess && <p style={styles.success}>{questSuccess}</p>}
+              <div style={styles.buttonContainer}>
+                <button
+                  type="submit"
+                  style={styles.confirmButton}
+                  disabled={questLoading}
+                >
+                  {questLoading ? (
+                    <>
+                      Scheduling{" "}
+                      <l-dot-wave
+                        size="20"
+                        speed="1"
+                        color="white"
+                      ></l-dot-wave>
+                    </>
+                  ) : (
+                    "Schedule Mission"
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowQuizQuestModal(false);
+                    setQuizQuestData({
+                      startTime: "",
+                      endTime: "",
+                      level: "",
+                      program: "",
+                      semester: "",
+                      course: "",
+                      questionCount: "",
+                      rewards: "",
+                    });
+                    setQuestError("");
+                    setQuestSuccess("");
+                  }}
+                  style={styles.cancelButton}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {showDeleteModal && (
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
@@ -880,6 +1351,8 @@ const AdminDashboard = () => {
                 <option value="dailyQuizzes">All Leaderboard Data</option>
                 <option value="text">All Text Data</option>
                 <option value="complaints">All Complaints Data</option>
+                <option value="liveQuizzes">All Live Quizzes Data</option>
+                <option value="gameQuests">All Game Quests Data</option>
               </select>
             </div>
             <div style={styles.inputGroup}>
@@ -930,253 +1403,6 @@ const AdminDashboard = () => {
                 Cancel
               </button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {showQuizScoresModal && (
-        <div style={modalStyles.overlay}>
-          <div style={modalStyles.modal}>
-            <h2 style={modalStyles.title}>Quiz Scores Overview</h2>
-            {quizScoresLoading ? (
-              <div style={modalStyles.loading}>
-                <i
-                  className="fa fa-spinner fa-spin"
-                  style={modalStyles.spinner}
-                ></i>
-                Loading quiz scores...
-              </div>
-            ) : quizScoresError ? (
-              <p style={modalStyles.error}>{quizScoresError}</p>
-            ) : (
-              <div>
-                <div
-                  style={{ marginBottom: "20px", display: "flex", gap: "15px" }}
-                >
-                  <div>
-                    <label
-                      htmlFor="programFilter"
-                      style={{ marginRight: "10px", fontWeight: "bold" }}
-                    >
-                      Program of Study:
-                    </label>
-                    <select
-                      id="programFilter"
-                      value={selectedProgram}
-                      onChange={(e) => setSelectedProgram(e.target.value)}
-                      style={{
-                        padding: "5px",
-                        borderRadius: "4px",
-                        border: "1px solid #ccc",
-                      }}
-                    >
-                      <option value="">All Programs</option>
-                      {[
-                        ...new Set(
-                          quizScoresSummary.topPerformersByProgram.map(
-                            (item) => item.program
-                          )
-                        ),
-                      ]
-                        .sort()
-                        .map((program, index) => (
-                          <option key={index} value={program}>
-                            {program}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="levelFilter"
-                      style={{ marginRight: "10px", fontWeight: "bold" }}
-                    >
-                      Level of Study:
-                    </label>
-                    <select
-                      id="levelFilter"
-                      value={selectedLevel}
-                      onChange={(e) => setSelectedLevel(e.target.value)}
-                      style={{
-                        padding: "5px",
-                        borderRadius: "4px",
-                        border: "1px solid #ccc",
-                      }}
-                    >
-                      <option value="">All Levels</option>
-                      {[
-                        ...new Set(
-                          quizScoresSummary.topPerformersByProgram.flatMap(
-                            (item) => item.levels.map((level) => level.level)
-                          )
-                        ),
-                      ]
-                        .sort()
-                        .map((level, index) => (
-                          <option key={index} value={level}>
-                            {level}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div style={modalStyles.content1}>
-                  <h3 style={modalStyles.head}>
-                    Top Performers by Program and Level of Study
-                  </h3>
-                  {(() => {
-                    const filteredPrograms =
-                      quizScoresSummary.topPerformersByProgram.filter(
-                        (item) =>
-                          !selectedProgram || item.program === selectedProgram
-                      );
-
-                    const hasData = filteredPrograms.some((program) =>
-                      program.levels.some((level) =>
-                        level.subjects.some(
-                          (subject) => subject.topPerformers.length > 0
-                        )
-                      )
-                    );
-
-                    if (!hasData) {
-                      return (
-                        <p
-                          style={{
-                            color: "#ff0000",
-                            fontStyle: "italic",
-                            textAlign: "center",
-                          }}
-                        >
-                          No data available for the selected filters.
-                        </p>
-                      );
-                    }
-
-                    return filteredPrograms.map(
-                      ({ program, levels }, programIndex) => (
-                        <div
-                          key={programIndex}
-                          style={{ marginBottom: "30px" }}
-                        >
-                          <h4
-                            style={{ fontSize: "1.5em", marginBottom: "10px" }}
-                          >
-                            {program}
-                          </h4>
-                          {levels
-                            .filter(
-                              (level) =>
-                                !selectedLevel || level.level === selectedLevel
-                            )
-                            .map(({ level, subjects }, levelIndex) => (
-                              <div
-                                key={levelIndex}
-                                style={{
-                                  marginBottom: "20px",
-                                  marginLeft: "20px",
-                                }}
-                              >
-                                <h5
-                                  style={{
-                                    fontSize: "1.3em",
-                                    marginBottom: "10px",
-                                  }}
-                                >
-                                  {level}
-                                </h5>
-                                {subjects.map(
-                                  (
-                                    { subject, topPerformers },
-                                    subjectIndex
-                                  ) => (
-                                    <div
-                                      key={subjectIndex}
-                                      style={{
-                                        marginBottom: "15px",
-                                        marginLeft: "20px",
-                                      }}
-                                    >
-                                      <h6
-                                        style={{
-                                          fontSize: "1.1em",
-                                          marginBottom: "5px",
-                                        }}
-                                      >
-                                        {subject}
-                                      </h6>
-                                      <table style={tableStyles.table}>
-                                        <thead>
-                                          <tr>
-                                            <th style={tableStyles.th}>
-                                              Username
-                                            </th>
-                                            <th style={tableStyles.th}>
-                                              Score
-                                            </th>
-                                            <th style={tableStyles.th}>
-                                              Total Questions
-                                            </th>
-                                            <th style={tableStyles.th}>
-                                              Percentage Pass (%)
-                                            </th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          {topPerformers.length > 0 ? (
-                                            topPerformers.map(
-                                              (performer, i) => (
-                                                <tr
-                                                  key={i}
-                                                  style={tableStyles.tr}
-                                                >
-                                                  <td style={tableStyles.td}>
-                                                    {performer.username}
-                                                  </td>
-                                                  <td style={tableStyles.td}>
-                                                    {performer.score}
-                                                  </td>
-                                                  <td style={tableStyles.td}>
-                                                    {performer.totalQuestions}
-                                                  </td>
-                                                  <td style={tableStyles.td}>
-                                                    {performer.percentage}
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )
-                                          ) : (
-                                            <tr>
-                                              <td
-                                                colSpan="4"
-                                                style={tableStyles.noDataTd}
-                                              >
-                                                No top performers for this
-                                                subject.
-                                              </td>
-                                            </tr>
-                                          )}
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            ))}
-                        </div>
-                      )
-                    );
-                  })()}
-                </div>
-              </div>
-            )}
-            <button
-              onClick={() => setShowQuizScoresModal(false)}
-              style={modalStyles.closeButton}
-            >
-              Close
-            </button>
           </div>
         </div>
       )}
@@ -1297,24 +1523,6 @@ const AdminDashboard = () => {
                         <td style={tableStyles.td}>{user.levelOfStudy}</td>
                         <td style={tableStyles.td}>{user.programOfStudy}</td>
                         <td style={tableStyles.td}>
-                          {/* <button
-                            onClick={() =>
-                              handleToggleStatus(user.id, user.status)
-                            }
-                            style={{
-                              ...styles.button,
-                              padding: "5px 10px",
-                              marginLeft: "10px",
-                              backgroundColor:
-                                user.status === "online"
-                                  ? "#f44336"
-                                  : "#4CAF50",
-                            }}
-                          >
-                            {user.status === "online"
-                              ? "Set Offline"
-                              : "Set Online"}
-                          </button> */}
                           <span
                             style={{
                               ...styles.button,
@@ -1635,19 +1843,20 @@ const AdminDashboard = () => {
           improving — your impact is immeasurable. 🌟 🌟 Remember: every system
           you maintain is a student’s smooth path to success. Your excellence
           behind the scenes shapes the future. 🌟 🌟 Great systems. Happy users.
-          Strong academy. That’s your influence at work. 🌟      🌟 Behind every
-          smooth user experience is an admin making things happen. Your
-          attention to detail, your problem-solving, and your dedication keep
-          Prime Academy running strong. 🌟 🌟 Every ticket resolved, every
-          report reviewed, every system checked — it all matters. You're not
-          just managing data; you're enabling dreams. 🌟 🌟 Leadership isn't
-          always visible, but its effects are powerful. You're building the
-          foundation others grow from. 🌟 🌟 Prime Academy’s progress is powered
-          by people like you. Keep optimizing, keep improving — your impact is
-          immeasurable. 🌟 🌟 Remember: every system you maintain is a student’s
-          smooth path to success. Your excellence behind the scenes shapes the
-          future. 🌟 🌟 Great systems. Happy users. Strong academy. That’s your
-          influence at work. 🌟
+          Strong academy. That’s your influence at work. 🌟
+          &nbsp;&nbsp;&nbsp;&nbsp; 🌟 Behind every smooth user experience is an
+          admin making things happen. Your attention to detail, your
+          problem-solving, and your dedication keep Prime Academy running
+          strong. 🌟 🌟 Every ticket resolved, every report reviewed, every
+          system checked — it all matters. You're not just managing data; you're
+          enabling dreams. 🌟 🌟 Leadership isn't always visible, but its
+          effects are powerful. You're building the foundation others grow from.
+          🌟 🌟 Prime Academy’s progress is powered by people like you. Keep
+          optimizing, keep improving — your impact is immeasurable. 🌟 🌟
+          Remember: every system you maintain is a student’s smooth path to
+          success. Your excellence behind the scenes shapes the future. 🌟 🌟
+          Great systems. Happy users. Strong academy. That’s your influence at
+          work. 🌟
         </div>
       </div>
     </div>
@@ -1655,6 +1864,23 @@ const AdminDashboard = () => {
 };
 
 const styles = {
+  form: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  input: {
+    padding: "10px",
+    fontSize: "16px",
+    borderRadius: "8px",
+    border: "1px solid #ddd",
+    width: "90%",
+  },
+  label: {
+    fontSize: "16px",
+    fontWeight: "500",
+    marginBottom: "5px",
+    color: "#333",
+  },
   container: {
     display: "flex",
     flexDirection: "column",
@@ -1805,6 +2031,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     gap: "10px",
+    backgroundColor: "green",
   },
   error: {
     color: "red",
@@ -1933,6 +2160,7 @@ const modalStyles = {
     width: "80%",
     maxHeight: "80vh",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    overflowY: "auto",
   },
   title: {
     fontSize: "30px",

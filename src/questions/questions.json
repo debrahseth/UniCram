@@ -10,9 +10,9 @@
         ],
         "correctAnswer": "The Sun",
         "levelOfStudy": "Level 200",
-        "course": "Physical Chemistry",
+        "course": "Chemistry",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1",
+        "semesterOfStudy": "Semester 2",
         "imageUrl": "/images/thermo.png"
     },
     {
@@ -25,9 +25,9 @@
         ],
         "correctAnswer": "Stack",
         "levelOfStudy": "Level 200",
-        "course": "Physical Chemistry",
+        "course": "Chemistry",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1",
+        "semesterOfStudy": "Semester 2",
         "imageUrl": "/images/op.jpg"
     },
     {
@@ -40,7 +40,217 @@
         ],
         "correctAnswer": "O(log n)",
         "levelOfStudy": "Level 200",
-        "course": "Physical Chemistry",
+        "course": "Chemistry",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 2"
+    },
+    {
+        "question": "In a closed system undergoing an adiabatic process, what is the relationship between the change in internal energy (ΔU) and the work done (W)?",
+        "options": [
+            "ΔU = W",
+            "ΔU = -W",
+            "ΔU = Q + W",
+            "ΔU = Q - W"
+        ],
+        "correctAnswer": "ΔU = -W",
+        "levelOfStudy": "Level 300",
+        "course": "Thermodynamics",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "For a non-Newtonian power-law fluid with a flow behavior index n < 1, how does the apparent viscosity behave as the shear rate increases?",
+        "options": [
+            "Increases",
+            "Decreases",
+            "Remains constant",
+            "Becomes infinite"
+        ],
+        "correctAnswer": "Decreases",
+        "levelOfStudy": "Level 300",
+        "course": "Fluid Mechanics",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 2"
+    },
+    {
+        "question": "In a catalytic reactor, what is the primary effect of catalyst deactivation on the reaction rate, assuming constant temperature and pressure?",
+        "options": [
+            "Increases the reaction rate",
+            "Decreases the reaction rate",
+            "No effect on the reaction rate",
+            "Causes the reaction to become endothermic"
+        ],
+        "correctAnswer": "Decreases the reaction rate",
+        "levelOfStudy": "Level 400",
+        "course": "Chemical Reaction Engineering",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "In process control, what is the significance of a high gain in a proportional controller, and what is a potential drawback?",
+        "options": [
+            "Increases response speed; may cause instability",
+            "Reduces steady-state error; increases overshoot",
+            "Eliminates noise; reduces system sensitivity",
+            "Improves setpoint tracking; increases energy consumption"
+        ],
+        "correctAnswer": "Increases response speed; may cause instability",
+        "levelOfStudy": "Level 400",
+        "course": "Process Control",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 2"
+    },
+    {
+        "question": "In a binary distillation column, what happens to the minimum number of trays required for separation as the relative volatility of the components approaches 1?",
+        "options": [
+            "Decreases significantly",
+            "Remains unchanged",
+            "Increases significantly",
+            "Becomes zero"
+        ],
+        "correctAnswer": "Increases significantly",
+        "levelOfStudy": "Level 300",
+        "course": "Separation Processes",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "In mass transfer operations, what is the primary driving force for diffusion in a gas-liquid absorption process?",
+        "options": [
+            "Temperature gradient",
+            "Pressure gradient",
+            "Concentration gradient",
+            "Velocity gradient"
+        ],
+        "correctAnswer": "Concentration gradient",
+        "levelOfStudy": "Level 300",
+        "course": "Mass Transfer",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 2"
+    },
+    {
+        "question": "For an ideal gas undergoing an isothermal expansion, what is the change in enthalpy (ΔH)?",
+        "options": [
+            "ΔH > 0",
+            "ΔH < 0",
+            "ΔH = 0",
+            "ΔH = ΔU"
+        ],
+        "correctAnswer": "ΔH = 0",
+        "levelOfStudy": "Level 300",
+        "course": "Thermodynamics",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "In a turbulent flow regime, how does the friction factor in a smooth pipe depend on the Reynolds number (Re)?",
+        "options": [
+            "f ∝ Re",
+            "f ∝ 1/Re",
+            "f ∝ Re^2",
+            "f is independent of Re"
+        ],
+        "correctAnswer": "f ∝ 1/Re",
+        "levelOfStudy": "Level 300",
+        "course": "Fluid Mechanics",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 2"
+    },
+    {
+        "question": "In a batch reactor, how does the concentration of a reactant change over time for a second-order reaction with rate law r = kC^2?",
+        "options": [
+            "C = C0 / (1 + kC0t)",
+            "C = C0 e^(-kt)",
+            "C = C0 (1 - kt)",
+            "C = C0 / (1 - kC0t)"
+        ],
+        "correctAnswer": "C = C0 / (1 + kC0t)",
+        "levelOfStudy": "Level 400",
+        "course": "Chemical Reaction Engineering",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "In a feedback control loop, what is the effect of adding a derivative term to a PI controller?",
+        "options": [
+            "Increases steady-state error",
+            "Reduces response time to disturbances",
+            "Eliminates overshoot completely",
+            "Decreases system stability"
+        ],
+        "correctAnswer": "Reduces response time to disturbances",
+        "levelOfStudy": "Level 400",
+        "course": "Process Control",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 2"
+    },
+    {
+        "question": "In a liquid-liquid extraction process, what is the role of the distribution coefficient (K)?",
+        "options": [
+            "Measures the rate of mass transfer",
+            "Ratio of solute concentration in the two phases at equilibrium",
+            "Determines the solvent flow rate",
+            "Indicates the extraction column height"
+        ],
+        "correctAnswer": "Ratio of solute concentration in the two phases at equilibrium",
+        "levelOfStudy": "Level 300",
+        "course": "Separation Processes",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "What is the significance of the Lewis number (Le) in mass transfer, and what does Le = 1 imply?",
+        "options": [
+            "Ratio of thermal to mass diffusivity; Le = 1 means equal diffusivities",
+            "Ratio of momentum to mass diffusivity; Le = 1 means equal velocities",
+            "Ratio of thermal to momentum diffusivity; Le = 1 means equal conductivities",
+            "Ratio of mass to thermal conductivity; Le = 1 means equal transfer rates"
+        ],
+        "correctAnswer": "Ratio of thermal to mass diffusivity; Le = 1 means equal diffusivities",
+        "levelOfStudy": "Level 400",
+        "course": "Mass Transfer",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 2"
+    },
+    {
+        "question": "In a Carnot cycle operating between two heat reservoirs, what is the maximum theoretical efficiency?",
+        "options": [
+            "η = 1 - T_cold / T_hot",
+            "η = 1 - T_hot / T_cold",
+            "η = T_hot / (T_hot + T_cold)",
+            "η = T_cold / T_hot"
+        ],
+        "correctAnswer": "η = 1 - T_cold / T_hot",
+        "levelOfStudy": "Level 300",
+        "course": "Thermodynamics",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "What is the primary factor affecting the pressure drop in a packed bed reactor, according to the Ergun equation?",
+        "options": [
+            "Particle size and fluid velocity",
+            "Reactor length and temperature",
+            "Catalyst density and reaction rate",
+            "Bed height and inlet pressure"
+        ],
+        "correctAnswer": "Particle size and fluid velocity",
+        "levelOfStudy": "Level 400",
+        "course": "Chemical Reaction Engineering",
+        "programOfStudy": "Chemical Engineering",
+        "semesterOfStudy": "Semester 1"
+    },
+    {
+        "question": "In a continuous stirred-tank reactor (CSTR), what is the relationship between the space time (τ) and the volumetric flow rate (Q)?",
+        "options": [
+            "τ = V / Q",
+            "τ = Q / V",
+            "τ = V * Q",
+            "τ = 1 / (V * Q)"
+        ],
+        "correctAnswer": "τ = V / Q",
+        "levelOfStudy": "Level 400",
+        "course": "Chemical Reaction Engineering",
         "programOfStudy": "Chemical Engineering",
         "semesterOfStudy": "Semester 1"
     }

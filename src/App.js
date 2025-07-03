@@ -28,6 +28,7 @@ import TextingScreen from "./components/TextingScreen";
 import AdminSplashScreen from "./components/AdminSplashScreen";
 import ComplaintScreen from "./components/ComplaintScreen";
 import AdminComplaintsScreen from "./components/AdminComplaintsScreen";
+import QuizQuest from "./components/QuizQuest";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/daily-challenge" element={<DailyChallenge />} />
         <Route path="/weekly-leaderboard" element={<WeeklyLeaderBoard />} />
         <Route path="/live-quiz" element={<LiveQuiz />} />
+        <Route path="/quiz-quest" element={<QuizQuest />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/top-performers" element={<TopPerformers />} />
         <Route path="/messages" element={<Messages />} />

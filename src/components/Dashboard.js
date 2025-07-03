@@ -37,6 +37,7 @@ const Dashboard = () => {
   const [latestMessage, setLatestMessage] = useState(null);
   const [userRole, setUserRole] = useState("user");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const quotes = [
     {
       text: "The future belongs to those who believe in the beauty of their dreams.",
@@ -123,6 +124,27 @@ const Dashboard = () => {
   ];
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
+  const floatingQuizButtonStyle = {
+    position: "fixed",
+    bottom: "60px",
+    right: isHovered ? "-25px" : "-65px",
+    backgroundColor: "#FFD700",
+    color: "#fff",
+    border: "2px solid black",
+    borderRadius: "30px",
+    width: "90px",
+    height: "60px",
+    fontSize: "24px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
+    cursor: "pointer",
+    zIndex: 1500,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "right 0.6s ease",
+  };
+
   const modalOverlayStyle = {
     position: "fixed",
     top: 0,
@@ -159,21 +181,6 @@ const Dashboard = () => {
     cursor: "pointer",
   };
 
-  const toggleButtonStyle = {
-    padding: "5px 10px",
-    fontSize: "1.0rem",
-    color: "#fff",
-    cursor: "pointer",
-    position: "absolute",
-    right: "20px",
-    top: "90%",
-    transform: "translateY(-50%)",
-    backgroundColor: "transparent",
-    border: "none",
-    fontWeight: "bolder",
-    textTransform: "uppercase",
-  };
-
   const menuButtonStyle = {
     position: "absolute",
     top: "20px",
@@ -198,7 +205,7 @@ const Dashboard = () => {
   const sideMenuStyle = {
     position: "fixed",
     top: "10px",
-    left: isMenuOpen ? "0" : "-280px",
+    left: isMenuOpen ? "0" : "-300px",
     width: "250px",
     height: "80%",
     backgroundColor: "transparent",
@@ -318,18 +325,20 @@ const Dashboard = () => {
             }
           });
           setLoading(false);
-          // const today = new Date();
-          // today.setHours(0, 0, 0, 0);
-          // const quizQuery = query(
-          //   collection(db, "dailyQuizzes"),
-          //   where("userId", "==", currentUser.uid),
-          //   where("timestamp", ">=", Timestamp.fromDate(today))
-          // );
-          // const quizSnapshot = await getDocs(quizQuery);
-          // const hasTakenToday = !quizSnapshot.empty;
-          // setHasTakenDailyQuiz(hasTakenToday);
-          // setHasTakenDailyQuiz(!quizSnapshot.empty);
-          // setShowModal(!hasTakenToday);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          const quizQuery = query(
+            collection(db, "dailyQuizzes"),
+            where("userId", "==", user.uid),
+            where("programOfStudy", "==", userData.programOfStudy),
+            where("levelOfStudy", "==", userData.levelOfStudy),
+            where("semesterOfStudy", "==", userData.semesterOfStudy),
+            where("timestamp", ">=", Timestamp.fromDate(today))
+          );
+          const quizSnapshot = await getDocs(quizQuery);
+          const hasTakenToday = !quizSnapshot.empty;
+          setHasTakenDailyQuiz(hasTakenToday);
+          setShowModal(!hasTakenToday);
         } else {
           await setDoc(userDocRef, {
             username: user.displayName || "User",
@@ -442,7 +451,7 @@ const Dashboard = () => {
 
   return (
     <div style={styles.container}>
-      <button style={menuButtonStyle} onClick={toggleMenu}>
+      <button style={menuButtonStyle} title="Side Menu" onClick={toggleMenu}>
         <i className="fa fa-bars"></i>
       </button>
       {isMenuOpen && <div style={overlayStyle} onClick={toggleMenu}></div>}
@@ -504,15 +513,6 @@ const Dashboard = () => {
             Quiz Records
           </button>
           <button
-            onClick={() => {
-              navigate("/complaint");
-              toggleMenu();
-            }}
-            style={sideMenuButtonStyle}
-          >
-            Report an issue
-          </button>
-          <button
             style={{ ...sideMenuButtonStyle, backgroundColor: "red" }}
             onClick={handleLogout}
           >
@@ -534,6 +534,7 @@ const Dashboard = () => {
         <button
           onClick={() => navigate("/users")}
           style={styles.leaderboardButton}
+          title="Prime Community"
         >
           <i className="fa fa-users" style={styles.icon}></i>
         </button>
@@ -541,6 +542,7 @@ const Dashboard = () => {
         <button
           onClick={() => navigate("/profile")}
           style={styles.profileButton}
+          title="Profile"
         >
           <i className="fa fa-user" style={styles.icon}></i>
         </button>
@@ -756,6 +758,15 @@ const Dashboard = () => {
           </div>
         </div>
       )}
+      <button
+        style={floatingQuizButtonStyle}
+        onClick={() => navigate("/quiz-quest")}
+        title="Go to Quiz Quest"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        🎯
+      </button>
     </div>
   );
 };

@@ -29,7 +29,7 @@ const DailyChallenge = () => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [hasTakenToday, setHasTakenToday] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const course = questions[0]?.course || "Unknown Course";
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   dotStream.register();
 
@@ -45,18 +45,21 @@ const DailyChallenge = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const filteredQuestions = questionsData.filter(
-        (q) =>
-          q.levelOfStudy === levelOfStudy &&
-          q.programOfStudy === programOfStudy &&
-          q.semesterOfStudy === semesterOfStudy
-      );
-      setQuestions(filteredQuestions);
-      if (auth.currentUser) {
+      if (
+        !auth.currentUser ||
+        !levelOfStudy ||
+        !programOfStudy ||
+        !semesterOfStudy
+      ) {
+        setLoading(false);
+        return;
+      }
+
+      try {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const startOfToday = Timestamp.fromDate(today);
-        const q = query(
+        const quizQuery = query(
           collection(db, "dailyQuizzes"),
           where("userId", "==", auth.currentUser.uid),
           where("programOfStudy", "==", programOfStudy),
@@ -64,15 +67,47 @@ const DailyChallenge = () => {
           where("semesterOfStudy", "==", semesterOfStudy),
           where("timestamp", ">=", startOfToday)
         );
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
+        const quizSnapshot = await getDocs(quizQuery);
+        if (!quizSnapshot.empty) {
           setHasTakenToday(true);
+          const course = quizSnapshot.docs[0].data().course || "Unknown Course";
           navigate("/dashboard", {
-            state: { message: "You have already taken today’s quiz." },
+            state: {
+              message: `You have already taken today's ${course} quiz.`,
+            },
           });
+          setLoading(false);
+          return;
         }
+        const filteredQuestions = questionsData.filter(
+          (q) =>
+            q.levelOfStudy === levelOfStudy &&
+            q.programOfStudy === programOfStudy &&
+            q.semesterOfStudy === semesterOfStudy
+        );
+        const courses = [...new Set(filteredQuestions.map((q) => q.course))];
+        if (courses.length === 0) {
+          setQuestions([]);
+          setLoading(false);
+          return;
+        }
+        const dayIndex = Math.floor(today.getTime() / (1000 * 60 * 60 * 24));
+        const courseIndex = dayIndex % courses.length;
+        const selectedCourse = courses[courseIndex];
+        const courseQuestions = filteredQuestions.filter(
+          (q) => q.course === selectedCourse
+        );
+        const shuffledQuestions = courseQuestions
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 5);
+
+        setSelectedCourse(selectedCourse);
+        setQuestions(shuffledQuestions);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     if (levelOfStudy && programOfStudy && semesterOfStudy && auth.currentUser) {
@@ -116,16 +151,25 @@ const DailyChallenge = () => {
         return;
       }
       console.log("Authenticated user ID:", auth.currentUser.uid);
-      if (!levelOfStudy || !programOfStudy || !semesterOfStudy || !course) {
+      if (
+        !levelOfStudy ||
+        !programOfStudy ||
+        !semesterOfStudy ||
+        !selectedCourse
+      ) {
+        console.error("Missing required fields for quiz submission");
         setSubmitting(false);
         return;
       }
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
       const q = query(
         collection(db, "dailyQuizzes"),
         where("userId", "==", auth.currentUser.uid),
         where("programOfStudy", "==", programOfStudy),
         where("levelOfStudy", "==", levelOfStudy),
-        where("semesterOfStudy", "==", semesterOfStudy)
+        where("semesterOfStudy", "==", semesterOfStudy),
+        where("timestamp", ">=", Timestamp.fromDate(today))
       );
       const querySnapshot = await getDocs(q);
 
@@ -143,7 +187,7 @@ const DailyChallenge = () => {
           score: existingScore + newScore,
           timestamp: Timestamp.fromDate(new Date()),
           totalQuestions: existingQuestion + questions.length,
-          course: course,
+          course: selectedCourse,
         });
       } else {
         await addDoc(collection(db, "dailyQuizzes"), {
@@ -154,7 +198,7 @@ const DailyChallenge = () => {
           levelOfStudy,
           programOfStudy,
           semesterOfStudy,
-          course: course,
+          course: selectedCourse,
         });
       }
 
@@ -186,7 +230,7 @@ const DailyChallenge = () => {
     return (
       <div style={styles.container}>
         <div style={styles.background}></div>
-        <h2>You have already taken today's quiz.</h2>
+        <h2>You have already taken today's {selectedCourse || "quiz"}.</h2>
         <button onClick={handleBackToDashboard} style={styles.button}>
           BACK TO DASHBOARD
         </button>
@@ -239,7 +283,7 @@ const DailyChallenge = () => {
   return (
     <div style={styles.container}>
       <div style={styles.timerContainer}>
-        <p style={styles.questionNumber}>DAILY CHALLENGE</p>
+        <p style={styles.questionNumber}>DAILY CHALLENGE - {selectedCourse}</p>
         <p style={styles.questionNumber}>
           Question {currentQuestionIndex + 1} of {questions.length}
         </p>
@@ -288,7 +332,7 @@ const DailyChallenge = () => {
         >
           {submitting
             ? currentQuestionIndex + 1 === questions.length
-              ? "Submitting..."
+              ? "Submitting... Please wait"
               : "Loading..."
             : currentQuestionIndex + 1 === questions.length
             ? "FINISH"
@@ -303,13 +347,7 @@ const DailyChallenge = () => {
           in you! 🌟 Success is the sum of small efforts repeated every day.
           Keep pushing! 🌟 You’re not just studying — you’re building a future
           to be proud of. 🌟 Every quiz you take is one step closer to mastering
-          your field! 🌟 &nbsp;&nbsp;&nbsp;&nbsp; 🌟 Every small effort you make
-          today builds the success of tomorrow. Keep pushing, keep learning —
-          your dreams are worth it! 🌟 Your journey matters. Keep striving, keep
-          growing. Prime Academy believes in you! 🌟 Success is the sum of small
-          efforts repeated every day. Keep pushing! 🌟 You’re not just studying
-          — you’re building a future to be proud of. 🌟 Every quiz you take is
-          one step closer to mastering your field! 🌟
+          your field! 🌟
         </div>
       </div>
     </div>
@@ -448,7 +486,7 @@ const styles = {
     width: "90%",
     padding: "10px",
     zIndex: 2,
-    opacity: 0.9,
+    opacity: "0.9",
     flex: 1,
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)",

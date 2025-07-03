@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaArrowCircleLeft } from "react-icons/fa";
+import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 import { db, auth } from "../firebase";
 import {
   collection,
@@ -236,6 +236,14 @@ const WeeklyLeaderBoard = () => {
           </button>
         </div>
         <h2 style={{ fontSize: "36px" }}>WEEKLY LEADERBOARD</h2>
+        {/* <div style={styles.buttonContain}>
+          <button
+            onClick={() => navigate("/live-quiz")}
+            style={styles.backButton}
+          >
+            Live Quizzes <FaArrowCircleRight size={20} />
+          </button>
+        </div> */}
       </div>
       <div style={styles.scrollableContainer}>
         {Object.keys(leaderboardData).length === 0 ? (
