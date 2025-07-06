@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import Quiz from "./components/Quiz";
@@ -29,6 +29,7 @@ import AdminSplashScreen from "./components/AdminSplashScreen";
 import ComplaintScreen from "./components/ComplaintScreen";
 import AdminComplaintsScreen from "./components/AdminComplaintsScreen";
 import QuizQuest from "./components/QuizQuest";
+import ShutdownScreen from "./components/Shutdown";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        {/* <Route path="/home" element={<Home />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/quiz" element={<Quiz />} />
@@ -64,7 +65,8 @@ function App() {
         <Route path="/texting" element={<TextingScreen />} />
         <Route path="/complaint" element={<ComplaintScreen />} />
         <Route path="/admin-complaint" element={<AdminComplaintsScreen />} />
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<ShutdownScreen />} />
       </Routes>
     </Router>
   );
