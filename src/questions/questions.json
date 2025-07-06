@@ -137,10 +137,10 @@
             "ΔH = ΔU"
         ],
         "correctAnswer": "ΔH = 0",
-        "levelOfStudy": "Level 300",
+        "levelOfStudy": "Level 200",
         "course": "Thermodynamics",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1"
+        "semesterOfStudy": "Semester 2"
     },
     {
         "question": "In a turbulent flow regime, how does the friction factor in a smooth pipe depend on the Reynolds number (Re)?",
@@ -151,7 +151,7 @@
             "f is independent of Re"
         ],
         "correctAnswer": "f ∝ 1/Re",
-        "levelOfStudy": "Level 300",
+        "levelOfStudy": "Level 200",
         "course": "Fluid Mechanics",
         "programOfStudy": "Chemical Engineering",
         "semesterOfStudy": "Semester 2"
@@ -165,10 +165,10 @@
             "C = C0 / (1 - kC0t)"
         ],
         "correctAnswer": "C = C0 / (1 + kC0t)",
-        "levelOfStudy": "Level 400",
+        "levelOfStudy": "Level 200",
         "course": "Chemical Reaction Engineering",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1"
+        "semesterOfStudy": "Semester 2"
     },
     {
         "question": "In a feedback control loop, what is the effect of adding a derivative term to a PI controller?",
@@ -179,7 +179,7 @@
             "Decreases system stability"
         ],
         "correctAnswer": "Reduces response time to disturbances",
-        "levelOfStudy": "Level 400",
+        "levelOfStudy": "Level 200",
         "course": "Process Control",
         "programOfStudy": "Chemical Engineering",
         "semesterOfStudy": "Semester 2"
@@ -193,10 +193,10 @@
             "Indicates the extraction column height"
         ],
         "correctAnswer": "Ratio of solute concentration in the two phases at equilibrium",
-        "levelOfStudy": "Level 300",
+        "levelOfStudy": "Level 200",
         "course": "Separation Processes",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1"
+        "semesterOfStudy": "Semester 2"
     },
     {
         "question": "What is the significance of the Lewis number (Le) in mass transfer, and what does Le = 1 imply?",
@@ -207,7 +207,7 @@
             "Ratio of mass to thermal conductivity; Le = 1 means equal transfer rates"
         ],
         "correctAnswer": "Ratio of thermal to mass diffusivity; Le = 1 means equal diffusivities",
-        "levelOfStudy": "Level 400",
+        "levelOfStudy": "Level 200",
         "course": "Mass Transfer",
         "programOfStudy": "Chemical Engineering",
         "semesterOfStudy": "Semester 2"
@@ -221,10 +221,10 @@
             "η = T_cold / T_hot"
         ],
         "correctAnswer": "η = 1 - T_cold / T_hot",
-        "levelOfStudy": "Level 300",
+        "levelOfStudy": "Level 200",
         "course": "Thermodynamics",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1"
+        "semesterOfStudy": "Semester 2"
     },
     {
         "question": "What is the primary factor affecting the pressure drop in a packed bed reactor, according to the Ergun equation?",
@@ -235,10 +235,10 @@
             "Bed height and inlet pressure"
         ],
         "correctAnswer": "Particle size and fluid velocity",
-        "levelOfStudy": "Level 400",
+        "levelOfStudy": "Level 200",
         "course": "Chemical Reaction Engineering",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1"
+        "semesterOfStudy": "Semester 2"
     },
     {
         "question": "In a continuous stirred-tank reactor (CSTR), what is the relationship between the space time (τ) and the volumetric flow rate (Q)?",
@@ -249,9 +249,9 @@
             "τ = 1 / (V * Q)"
         ],
         "correctAnswer": "τ = V / Q",
-        "levelOfStudy": "Level 400",
+        "levelOfStudy": "Level 200",
         "course": "Chemical Reaction Engineering",
         "programOfStudy": "Chemical Engineering",
-        "semesterOfStudy": "Semester 1"
+        "semesterOfStudy": "Semester 2"
     }
 ]

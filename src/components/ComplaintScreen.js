@@ -119,6 +119,7 @@ const ComplaintScreen = () => {
         program: userData.programOfStudy,
         text: complaintText.trim(),
         timestamp: new Date(),
+        read: false,
       });
       setComplaintText("");
       alert("Complaint submitted successfully!");

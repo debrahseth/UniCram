@@ -11,6 +11,8 @@ import {
   updateDoc,
   deleteDoc,
   Timestamp,
+  query,
+  where,
 } from "firebase/firestore";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import emailjs from "@emailjs/browser";
@@ -94,6 +96,8 @@ const AdminDashboard = () => {
   const [availableCourses, setAvailableCourses] = useState([]);
   const [availableQuestions, setAvailableQuestions] = useState(0);
   const [questWarning, setQuestWarning] = useState("");
+  const [unreadComplaintsCount, setUnreadComplaintsCount] = useState(0);
+  const [viewUnread, setViewUnread] = useState(true);
   const correctPassword = "Admin123";
 
   const programAbbreviations = {
@@ -181,6 +185,41 @@ const AdminDashboard = () => {
     quizQuestData.course,
     quizQuestData.questionCount,
   ]);
+
+  useEffect(() => {
+    const fetchComplaints = () => {
+      try {
+        const complaintsRef = collection(db, "complaints");
+        const unsubscribe = onSnapshot(
+          complaintsRef,
+          (snapshot) => {
+            const unreadCount = snapshot.docs.filter(
+              (doc) => !doc.data().read
+            ).length;
+            setUnreadComplaintsCount(unreadCount);
+          },
+          (err) => {
+            console.error("Failed to load complaints:", err.message);
+          }
+        );
+        return () => unsubscribe();
+      } catch (error) {
+        console.error("Failed to initialize complaints:", error.message);
+      }
+    };
+
+    fetchComplaints();
+  }, []);
+
+  const markAllComplaintsAsRead = async () => {
+    const complaintsRef = collection(db, "complaints");
+    const q = query(complaintsRef, where("read", "==", false));
+    const querySnapshot = await getDocs(q);
+    const updatePromises = querySnapshot.docs.map((complaintDoc) =>
+      updateDoc(doc(db, "complaints", complaintDoc.id), { read: true })
+    );
+    await Promise.all(updatePromises);
+  };
 
   const handleLiveQuizSubmit = async (e) => {
     e.preventDefault();
@@ -631,7 +670,7 @@ const AdminDashboard = () => {
     }
   };
 
-  const deleteQuizScores = async (challengeDocId) => {
+  const deleteQuizScore = async (challengeDocId) => {
     const quizScoresRef = collection(
       db,
       "challenges",
@@ -648,7 +687,7 @@ const AdminDashboard = () => {
     const challengesRef = collection(db, "challenges");
     const challengesSnapshot = await getDocs(challengesRef);
     challengesSnapshot.forEach(async (doc) => {
-      await deleteQuizScores(doc.id);
+      await deleteQuizScore(doc.id);
       await deleteDoc(doc.ref);
     });
   };
@@ -696,20 +735,21 @@ const AdminDashboard = () => {
   };
 
   const deleteQuestProgress = async (questId) => {
-    const questProgressRef = collection(db, "gameQuests", questId, "progress");
-    const questProgressSnapshot = await getDocs(questProgressRef);
-    const deletePromises = questProgressSnapshot.docs.map((progressDoc) =>
-      deleteDoc(progressDoc.ref)
+    const progressRef = collection(db, "gameQuests", questId, "progress");
+    const progressSnapshot = await getDocs(progressRef);
+    const deletePromise = progressSnapshot.docs.map((doc) =>
+      deleteDoc(doc.ref)
     );
-    await Promise.all(deletePromises);
+    await Promise.all(deletePromise);
   };
 
   const deleteGameQuests = async () => {
     const gameQuestsRef = collection(db, "gameQuests");
     const gameQuestsSnapshot = await getDocs(gameQuestsRef);
     for (const questDoc of gameQuestsSnapshot.docs) {
-      await deleteQuestProgress(questDoc.id);
-      await deleteDoc(doc(db, "gameQuests", questDoc.id));
+      const questId = questDoc.id;
+      await deleteQuestProgress(questId);
+      await deleteDoc(doc(db, "gameQuests", questId));
     }
   };
 
@@ -936,9 +976,36 @@ const AdminDashboard = () => {
             </button>
             <button
               onClick={() => setShowModal(true)}
-              style={{ ...styles.logoutButton, width: "20%" }}
+              style={{
+                ...styles.logoutButton,
+                width: "20%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+              }}
             >
-              🛎️
+              <span role="img" aria-label="bell">
+                🛎️
+              </span>
+              {unreadComplaintsCount > 0 && (
+                <span
+                  style={{
+                    backgroundColor: "red",
+                    color: "white",
+                    borderRadius: "50%",
+                    width: "20px",
+                    height: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {unreadComplaintsCount}
+                </span>
+              )}
             </button>
             <button
               onClick={() => navigate("/weekly-leaderboard")}
@@ -1586,6 +1653,48 @@ const AdminDashboard = () => {
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
             <h2 style={modalStyles.title}>Sent Messages</h2>
+            <div
+              style={{
+                marginBottom: "20px",
+                display: "flex",
+                gap: "10px",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <button
+                onClick={() => setViewUnread(true)}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: viewUnread ? "#007bff" : "#f0f0f0",
+                  color: viewUnread ? "#fff" : "#000",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  width: "45%",
+                  textTransform: "uppercase",
+                  fontWeight: "800",
+                }}
+              >
+                Unread
+              </button>
+              <button
+                onClick={() => setViewUnread(false)}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: !viewUnread ? "#007bff" : "#f0f0f0",
+                  color: !viewUnread ? "#fff" : "#000",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  width: "45%",
+                  textTransform: "uppercase",
+                  fontWeight: "800",
+                }}
+              >
+                Read
+              </button>
+            </div>
+
             {messagesLoading ? (
               <div style={modalStyles.loading}>
                 <i
@@ -1598,19 +1707,32 @@ const AdminDashboard = () => {
               <p style={modalStyles.error}>{messagesError}</p>
             ) : (
               <div style={modalStyles.content1}>
+                <h3
+                  style={{
+                    ...modalStyles.title,
+                    fontSize: "20px",
+                    marginBottom: "15px",
+                  }}
+                >
+                  {viewUnread ? "Unread Messages" : "Read Messages"}
+                </h3>
                 <table style={tableStyles.table}>
                   <thead>
                     <tr>
                       <th style={tableStyles.th}>Message</th>
                       <th style={tableStyles.th}>Sent To</th>
                       <th style={tableStyles.th}>Sent At</th>
-                      <th style={tableStyles.th}>Read By</th>
                       <th style={tableStyles.th}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {messages.length > 0 ? (
-                      messages.map((msg) => {
+                    {messages
+                      .filter((msg) =>
+                        viewUnread
+                          ? !msg.readBy || msg.readBy.length === 0
+                          : msg.readBy && msg.readBy.length > 0
+                      )
+                      .map((msg) => {
                         const recipients = msg.recipients;
                         const recipientNames = msg.isGroup
                           ? "All Users"
@@ -1618,13 +1740,6 @@ const AdminDashboard = () => {
                               .filter((user) => recipients.includes(user.id))
                               .map((user) => user.username)
                               .join(", ") || "Unknown Users";
-                        const readByNames = msg.readBy
-                          ? users
-                              .filter((user) => msg.readBy.includes(user.id))
-                              .map((user) => user.username)
-                              .join(", ") || "None"
-                          : "None";
-                        const isRead = msg.readBy && msg.readBy.length > 0;
 
                         return (
                           <tr key={msg.id} style={tableStyles.tr}>
@@ -1642,11 +1757,6 @@ const AdminDashboard = () => {
                               {formatDistanceToNow(msg.sentAt, {
                                 addSuffix: true,
                               })}
-                            </td>
-                            <td style={tableStyles.td}>
-                              <span style={{ color: isRead ? "green" : "red" }}>
-                                {readByNames} {isRead ? "(Read)" : "(Unread)"}
-                              </span>
                             </td>
                             <td style={tableStyles.td}>
                               <button
@@ -1668,11 +1778,15 @@ const AdminDashboard = () => {
                             </td>
                           </tr>
                         );
-                      })
-                    ) : (
+                      })}
+                    {messages.filter((msg) =>
+                      viewUnread
+                        ? !msg.readBy || msg.readBy.length === 0
+                        : msg.readBy && msg.readBy.length > 0
+                    ).length === 0 && (
                       <tr>
-                        <td colSpan="4" style={tableStyles.noDataTd}>
-                          No messages found.
+                        <td colSpan="5" style={tableStyles.noDataTd}>
+                          No {viewUnread ? "unread" : "read"} messages found.
                         </td>
                       </tr>
                     )}
@@ -1680,6 +1794,7 @@ const AdminDashboard = () => {
                 </table>
               </div>
             )}
+
             <button
               onClick={() => setShowMessagesModal(false)}
               style={modalStyles.closeButton}
@@ -1722,6 +1837,7 @@ const AdminDashboard = () => {
             <h3 style={{ marginBottom: "10px" }}>Open:</h3>
             <button
               onClick={() => {
+                markAllComplaintsAsRead();
                 navigate("/admin-complaint");
                 setShowModal(false);
               }}
@@ -1734,9 +1850,32 @@ const AdminDashboard = () => {
                 fontWeight: "bolder",
                 cursor: "pointer",
                 fontSize: "28px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
               }}
             >
-              📩 Complaints
+              <span role="img" aria-label="complaints">
+                📩
+              </span>
+              Complaints
+              <span
+                style={{
+                  backgroundColor: unreadComplaintsCount > 0 ? "red" : "gray",
+                  color: "white",
+                  borderRadius: "50%",
+                  width: "20px",
+                  height: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                {unreadComplaintsCount}
+              </span>
             </button>
             <button
               onClick={() => {

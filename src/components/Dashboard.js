@@ -325,20 +325,20 @@ const Dashboard = () => {
             }
           });
           setLoading(false);
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          const quizQuery = query(
-            collection(db, "dailyQuizzes"),
-            where("userId", "==", user.uid),
-            where("programOfStudy", "==", userData.programOfStudy),
-            where("levelOfStudy", "==", userData.levelOfStudy),
-            where("semesterOfStudy", "==", userData.semesterOfStudy),
-            where("timestamp", ">=", Timestamp.fromDate(today))
-          );
-          const quizSnapshot = await getDocs(quizQuery);
-          const hasTakenToday = !quizSnapshot.empty;
-          setHasTakenDailyQuiz(hasTakenToday);
-          setShowModal(!hasTakenToday);
+          // const today = new Date();
+          // today.setHours(0, 0, 0, 0);
+          // const quizQuery = query(
+          //   collection(db, "dailyQuizzes"),
+          //   where("userId", "==", user.uid),
+          //   where("programOfStudy", "==", userData.programOfStudy),
+          //   where("levelOfStudy", "==", userData.levelOfStudy),
+          //   where("semesterOfStudy", "==", userData.semesterOfStudy),
+          //   where("timestamp", ">=", Timestamp.fromDate(today))
+          // );
+          // const quizSnapshot = await getDocs(quizQuery);
+          // const hasTakenToday = !quizSnapshot.empty;
+          // setHasTakenDailyQuiz(hasTakenToday);
+          // setShowModal(!hasTakenToday);
         } else {
           await setDoc(userDocRef, {
             username: user.displayName || "User",
@@ -550,14 +550,12 @@ const Dashboard = () => {
       </div>
       <div style={styles.button}>
         <div style={styles.buttonContainer}>
-          {/* <button onClick={() => navigate('/quiz')} style={styles.startQuizButton}>Compete Now</button> */}
           <button
             onClick={() => navigate("/test-yourself")}
             style={styles.startQuizButton}
           >
             📝 Practice Quiz
           </button>
-          {/* <button onClick={() => navigate('/live-quiz')} style={styles.startQuizButton}>Live Quizzes</button> */}
           <button
             onClick={() => navigate("/messages")}
             style={{ ...styles.startQuizButton, position: "relative" }}
@@ -574,14 +572,6 @@ const Dashboard = () => {
           >
             ⚠️ Report an issue
           </button>
-          {/* <button
-            onClick={() => navigate("/weekly-leaderboard")}
-            style={styles.startQuizButton}
-          >
-            Weekly Leader Board
-          </button> */}
-          {/* <button onClick={() => navigate('/challenge')} style={styles.startQuizButton}>Challenge a Friend</button> */}
-          {/* <button onClick={() => navigate('/received')} style={styles.startQuizButton}>See your challenges</button> */}
         </div>
       </div>
       <div style={styles.scrollableContainer}>
@@ -758,7 +748,7 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-      <button
+      {/* <button
         style={floatingQuizButtonStyle}
         onClick={() => navigate("/quiz-quest")}
         title="Go to Quiz Quest"
@@ -766,7 +756,7 @@ const Dashboard = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         🎯
-      </button>
+      </button> */}
     </div>
   );
 };

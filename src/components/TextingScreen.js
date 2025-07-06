@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaArrowCircleLeft,
-  // FaPaperPlane,
   FaSync,
   FaTimes,
   FaArrowDown,
@@ -104,6 +103,7 @@ const TextingScreen = () => {
   const [editingMessageId, setEditingMessageId] = useState(null);
   const [editContent, setEditContent] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [showUnreadOnly, setShowUnreadOnly] = useState(false);
   const navigate = useNavigate();
 
   const fetchUnreadCounts = async () => {
@@ -250,8 +250,15 @@ const TextingScreen = () => {
     return () => unsubscribe();
   }, [navigate]);
 
-  const filteredUsers = usersInProgram.filter((user) =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase())
+  const totalUnread = Object.values(unreadCounts).reduce(
+    (sum, count) => sum + (count || 0),
+    0
+  );
+
+  const filteredUsers = usersInProgram.filter(
+    (user) =>
+      user.username.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (!showUnreadOnly || unreadCounts[user.id] > 0)
   );
 
   useEffect(() => {
@@ -481,19 +488,42 @@ const TextingScreen = () => {
       <div style={styles.content}>
         <div style={styles.userListContainer}>
           <h3 style={styles.sectionTitle}>Users in {currentUserProgram}</h3>
-          <input
-            type="text"
-            placeholder="🔍 Search users..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+          <div
             style={{
-              padding: "8px",
-              width: "95%",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
               marginBottom: "10px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
             }}
-          />
+          >
+            <input
+              type="text"
+              placeholder="🔍 Search users..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                padding: "8px",
+                width: "90%",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+              }}
+            />
+            <button
+              onClick={() => setShowUnreadOnly(!showUnreadOnly)}
+              style={{
+                padding: "8px 12px",
+                backgroundColor: showUnreadOnly ? "#007bff" : "green",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontSize: "14px",
+                width: "50%",
+              }}
+            >
+              {showUnreadOnly ? "All Chats" : `Unread-(${totalUnread})`}
+            </button>
+          </div>
           {filteredUsers.length === 0 ? (
             <p style={styles.noDataMessage}>No users found..... Sorry</p>
           ) : (
@@ -759,19 +789,7 @@ const TextingScreen = () => {
                     }
                   }}
                 />
-                {/* <button onClick={handleSendMessage} style={styles.sendButton}>
-                  <FaPaperPlane /> Send
-                </button> */}
               </div>
-              {/* <p
-                style={{
-                  fontSize: "10px",
-                  color: "green",
-                  textAlign: "center",
-                }}
-              >
-                Press enter to send message
-              </p> */}
             </>
           ) : (
             <p style={styles.noDataMessage}>Select a user to start chatting.</p>
